@@ -1,0 +1,31 @@
+# Build outputs
+/target/
+/build/
+
+# Game data. Nothing derived from the discs may ever be committed:
+# disc images, extracted files, generated asset includes, saves.
+/rom/
+/assets/
+/disc/
+*.bin
+*.cue
+*.iso
+*.img
+*.chd
+*.pe2pkg
+*.pe2img
+*.pe2clut
+*.str
+*.xa
+*.mcd
+*.mcr
+
+# Local configuration (paths to the user's discs, etc.)
+/pe2.toml
+/local/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

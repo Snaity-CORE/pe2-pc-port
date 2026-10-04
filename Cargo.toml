@@ -1,0 +1,16 @@
+[workspace]
+resolver = "2"
+members = ["crates/pe2-host"]
+
+[workspace.package]
+edition = "2024"
+license = "CC0-1.0"
+publish = false
+
+[profile.dev]
+# The game code is C compiled via build.rs; keep the Rust side fast enough to
+# hold 30/60 fps in debug builds.
+opt-level = 1
+
+[profile.release]
+debug = "line-tables-only"

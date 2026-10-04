@@ -1,0 +1,4 @@
+[build]
+# Phase 1 targets 32-bit: game structs overlay disc data and assume 4-byte
+# pointers. 64-bit is a later improvement (see docs/ARCHITECTURE.md).
+target = "i686-pc-windows-msvc"
