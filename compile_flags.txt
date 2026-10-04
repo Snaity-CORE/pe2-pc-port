@@ -1,0 +1,11 @@
+--target=i686-pc-windows-msvc
+-D_LANGUAGE_C
+-DPC_PORT
+-DVER_USA
+-Ibuild/port_include
+-Iport/include
+-Idecomp/include
+-Idecomp/build
+-Idecomp/build/include
+-Idecomp/include/psyq
+-Idecomp/include/decomp
