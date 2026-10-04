@@ -49,10 +49,37 @@
 |---|---|---|
 | Target architecture | `i686-pc-windows-msvc` (32-bit) in phase 1 | Structs overlay disc data and assume 4-byte pointers. 64-bit is a phase 4 enhancement. |
 | C compiler | clang | Compiles the decomp's C almost unchanged. It is also what the `cc` crate drives. |
-| Overlays | All 448 built together, namespaced per overlay, with a dispatch table | On the PSX they all load at the same address. There are ~1875 function names duplicated across rooms and actors. |
-| Overlay data | Loaded from the `.pe2pkg` files on the player's disc | Models, animations and skeletons follow each package's `.text`. |
-| Generated `assets/*.inc` | Phase 1: generated at build time from the local disc into `build/`. Later: loaded at runtime. | Build-time generation embeds game data in the binary, so it cannot be distributed. Loading at runtime lets us ship only the executable. |
-| hasm routines | Rewritten in C (LZ decompression, TMD dispatch) | Only 9 routines, all documented in `decomp/src/main/hasm/README.md`. |
+| Memory | PSX RAM and scratchpad identity-mapped at their console addresses (see below) | Game code addresses data by fixed address across images, and disc data holds PSX pointers. |
+| Overlays | Every image linked in; each unit rewritten per image that links it (`tools/pclink.py`) | All overlays of a family load at the same address, so names and addresses repeat across them. |
+| Game data | All globals (main, gameplay, overlays) live in PSX RAM, loaded from the player's disc | Exactly the console's initial values and layout; nothing from the disc has to be in the binary. |
+| Generated `assets/*.inc` | Still needed to compile, but the data they define is remapped to PSX RAM and unused | A distributable build must drop it; auditing that is tracked for phase 3. |
+| Code generation | `-funsigned-char -fwrapv -fno-strict-aliasing -mno-sse` and friends (`tools/build_game.py`) | Matches the PSX build's semantics; globals are only as aligned as on the PSX. |
+| Runtime functions | `pcrt_<name>` for code with no C body: Psy-Q libraries and the hand-written assembly | Unimplemented ones fall back to logging stubs through `/alternatename`. |
+
+## Memory model
+
+The port keeps the PlayStation's memory map. At startup the host maps 2 MiB
+at `0x80000000` (RAM, KSEG0) and 1 KiB at `0x1F800000` (scratchpad); this
+needs a 32-bit, large-address-aware process with a fixed image base. The
+player's `SLUS_010.42` is copied to its load address and BSS is cleared, as
+the BIOS and crt0 do, and overlays are later loaded by the game's own code.
+Every pointer is then a valid host pointer: hard-coded addresses, pointers in
+disc data, and pointers the game computes.
+
+The decompiled C is compiled natively, then `tools/pclink.py` rebinds each
+object using the addresses from the decomp's matching PSX build:
+
+- **Data** defined in C becomes a reference to `psx_<ADDR>`, an absolute
+  symbol at its PSX address, so the game uses the copy in PSX RAM.
+- **Functions** keep their native body (`pcfn_<image>_<ADDR>_<name>`). When an
+  image is in memory, the runtime writes a `jmp` to each native body at the
+  function's PSX address. Taking a function's address yields that PSX address,
+  so function pointers stored in game data work, and calling into another
+  overlay reaches whichever one is loaded, as on the console.
+- **Calls** within an image or into `main` stay direct native calls.
+- **Code with no C body** (Psy-Q libraries, assembly routines) is called as
+  `pcrt_<name>` in the port runtime. Library state that lives in PSX RAM stays
+  there, for example `rand`'s seed.
 
 ## Feasibility (measured 2026-10-04)
 
@@ -68,11 +95,14 @@
 
 ## Phases
 
-0. **Infrastructure.** Repository layout, game-data guard, documentation.
-1. **Link.** All game C built for x86 against a stubbed runtime: software GTE,
-   PC Psy-Q headers, overlay namespacing, C rewrites of the hasm routines.
-2. **Title screen.** BIN/CUE reader and the game's file system, LZ
-   decompression, 2D GPU (VRAM, sprites, polygons), controller, VSync.
+0. **Infrastructure** (done). Repository layout, game-data guard,
+   documentation.
+1. **Link** (done). All game C built for x86 with a software GTE, the
+   identity-mapped memory model and a stubbed runtime. The native `main()`
+   boots through sound and graphics init into its first CD commands.
+2. **Title screen.** Disc reader (BIN/CUE, CHD) and the game's file system,
+   CD runtime, C rewrites of the hasm routines (LZ decompression, TMD
+   dispatch), 2D GPU (VRAM, sprites, polygons), controller, VSync.
 3. **Full game.** GTE and 3D models, rooms, combat, audio (SPU and CD-DA/XA),
    FMV (MDEC/STR), memory card and disc swap. Goal: finish the game, compared
    against a reference emulator.

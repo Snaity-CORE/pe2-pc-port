@@ -305,7 +305,9 @@ def main() -> None:
     for dst, content in outputs.items():
         target = args.out / dst
         target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_text(content, encoding="utf-8")
+        # Leave unchanged headers alone so dependent objects are not rebuilt.
+        if not target.exists() or target.read_text(encoding="utf-8") != content:
+            target.write_text(content, encoding="utf-8")
 
 
 def extract_macro(text: str, name: str, src: str) -> str:

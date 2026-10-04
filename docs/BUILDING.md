@@ -1,0 +1,72 @@
+# Building
+
+The build reads data from your own Parasite Eve II discs (USA, `SLUS-01042`
+and `SLUS-01055`). Everything derived from them stays in ignored directories
+(`decomp/rom`, `decomp/assets`, `decomp/build`, `build/`) and must never be
+committed.
+
+## Requirements (Windows)
+
+- Rust stable with the `i686-pc-windows-msvc` target
+- Visual Studio Build Tools with the x86 libraries
+- LLVM 18 or newer (`clang`, `llvm-lib`, `llvm-nm`, `llvm-objdump` on `PATH`)
+- Python 3.10 or newer
+- `chdman` if your dumps are CHD files
+
+Keep `core.autocrlf` off in this repository and in `decomp/` (and its
+`tools/maspsx` submodule): the decomp applies patches that do not apply with
+CRLF line endings.
+
+## 1. Decomp setup (once)
+
+```sh
+cd decomp
+git submodule update --init tools/maspsx
+python -m venv venv
+venv/Scripts/python -m pip install -r requirements.txt
+```
+
+Put your disc images in `decomp/rom/image/` as `SLUS-01042.bin/.cue` and
+`SLUS-01055.bin/.cue`. From CHD:
+
+```sh
+chdman extractcd -i "Parasite Eve II (USA) (Disc 1).chd" -o rom/image/SLUS-01042.cue -ob rom/image/SLUS-01042.bin
+chdman extractcd -i "Parasite Eve II (USA) (Disc 2).chd" -o rom/image/SLUS-01055.cue -ob rom/image/SLUS-01055.bin
+```
+
+## 2. Decomp extraction and PSX build
+
+```sh
+cd decomp
+venv/Scripts/python ninja_config.py --iso_extract   # extract the discs
+venv/Scripts/python ninja_config.py                 # split and configure
+venv/Scripts/ninja                                  # matching PSX build
+```
+
+The PSX build provides every symbol's address and which units each image
+links. Its checksum step reports `FAILED` under Git Bash because it calls
+Windows `find`; check the outputs against `configs/USA/checksum.sha` instead.
+
+## 3. Port build
+
+```sh
+python tools/gen_units.py      # units and their images, from the decomp build
+python tools/build_game.py     # game library: build/game/pe2game.lib
+cargo build                    # host executable
+```
+
+## 4. Run
+
+For now the host takes the main executable extracted from disc 1:
+
+```sh
+target/i686-pc-windows-msvc/debug/pe2.exe decomp/rom/USA/disk1/SLUS_010.42
+```
+
+## Checks
+
+```sh
+python tools/check_no_game_data.py   # nothing derived from the discs is tracked
+python tools/check_psx_unchanged.py  # PC_PORT changes leave the PSX build identical
+python tools/probe_units.py          # every unit compiles for the PC target
+```

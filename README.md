@@ -7,8 +7,9 @@ A native PC port of *Parasite Eve II* (PlayStation, USA release) built on the
 > own discs (`SLUS-01042` and `SLUS-01055`). The port reads their data at
 > runtime.
 
-Status: **phase 0** (infrastructure). Architecture and roadmap are in
-[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+Status: **phase 1 done** (the native build boots into `main()`). Architecture and
+roadmap are in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md); build steps in
+[docs/BUILDING.md](docs/BUILDING.md).
 
 ## Layout
 

@@ -63,9 +63,12 @@ def check(path: str) -> list[str]:
     if not full.is_file():
         return problems
     data = full.read_bytes()
-    for sig, what in SIGNATURES.items():
-        if sig in data and not path.startswith("tools/check_no_game_data"):
-            problems.append(f"contains a {what} signature")
+    # Signatures only count in binary files: source code may name them (the
+    # boot code checks for the "PS-X EXE" magic, for example).
+    if is_binary(data):
+        for sig, what in SIGNATURES.items():
+            if sig in data:
+                problems.append(f"contains a {what} signature")
     if is_binary(data) and len(data) > MAX_BINARY_BYTES and path not in ALLOWED_BINARIES:
         problems.append(f"is a {len(data)} byte binary file (limit {MAX_BINARY_BYTES})")
     return problems
