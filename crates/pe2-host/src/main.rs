@@ -2,6 +2,10 @@
 //! PSX runtime, and drives the decompiled game code (linked as a C static
 //! library, see build.rs).
 
+mod disc;
+mod runtime;
+
+use std::path::PathBuf;
 use std::process::ExitCode;
 
 mod ffi {
@@ -11,18 +15,40 @@ mod ffi {
     }
 }
 
+const USAGE: &str = "usage: pe2 <disc 1 image> [disc 2 image]\n\
+                     Images are your own Parasite Eve II (USA) dumps, as .cue or .chd.";
+
 fn main() -> ExitCode {
-    let Some(exe_path) = std::env::args().nth(1) else {
-        eprintln!("usage: pe2 <path to SLUS_010.42 from your Parasite Eve II disc 1>");
+    let images: Vec<PathBuf> = std::env::args_os().skip(1).map(PathBuf::from).collect();
+    if images.is_empty() || images.len() > 2 {
+        eprintln!("{USAGE}");
         return ExitCode::FAILURE;
-    };
-    let exe = match std::fs::read(&exe_path) {
-        Ok(bytes) => bytes,
+    }
+
+    let mut discs = Vec::new();
+    for image in &images {
+        match disc::open(image) {
+            Ok(d) => discs.push(d),
+            Err(err) => {
+                eprintln!("pe2: {}: {err}", image.display());
+                return ExitCode::FAILURE;
+            }
+        }
+    }
+    let disc1 = &mut discs[0];
+    let (exe_name, exe) = match disc::iso9660::boot_executable(disc1.as_mut()) {
+        Ok(found) => found,
         Err(err) => {
-            eprintln!("pe2: cannot read {exe_path}: {err}");
+            eprintln!("pe2: {}: {err}", images[0].display());
             return ExitCode::FAILURE;
         }
     };
+    eprintln!(
+        "pe2: disc 1: {} tracks, {} sectors; booting {exe_name} ({} bytes)",
+        disc1.tracks().len(),
+        disc1.total_sectors(),
+        exe.len()
+    );
 
     // SAFETY: `exe` outlives the call, which copies it into PSX memory.
     let status = unsafe { ffi::pc_boot_load(exe.as_ptr(), exe.len()) };
@@ -37,6 +63,7 @@ fn main() -> ExitCode {
         return ExitCode::FAILURE;
     }
     eprintln!("pe2: main executable loaded, entering main()");
+    runtime::start(discs);
 
     // SAFETY: memory and thunks are set up by pc_boot_load.
     let ret = unsafe { ffi::pc_boot_run() };

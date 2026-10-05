@@ -57,11 +57,19 @@ cargo build                    # host executable
 
 ## 4. Run
 
-For now the host takes the main executable extracted from disc 1:
+The host reads your disc images directly (`.cue` or `.chd`):
 
 ```sh
-target/i686-pc-windows-msvc/debug/pe2.exe decomp/rom/USA/disk1/SLUS_010.42
+target/i686-pc-windows-msvc/debug/pe2.exe "Parasite Eve II (USA) (Disc 1).chd" "Parasite Eve II (USA) (Disc 2).chd"
 ```
+
+Debug output:
+
+- `PE2_TRACE=cd` logs CD commands, `cdsector` every delivered sector, `all`
+  everything.
+- A native crash prints the faulting address and stack; map the addresses to
+  game functions with `python tools/symbolize.py <addr>...` (uses the linker
+  map, `target/.../deps/pe2.map`).
 
 ## Checks
 

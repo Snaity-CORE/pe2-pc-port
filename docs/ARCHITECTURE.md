@@ -81,6 +81,37 @@ object using the addresses from the decomp's matching PSX build:
   `pcrt_<name>` in the port runtime. Library state that lives in PSX RAM stays
   there, for example `rand`'s seed.
 
+RAM is one memory section mapped at every address the PSX mirrors it at that
+Windows allows: `0x80000000` (KSEG0), `0xA0000000` (KSEG1) and `0x00010000`
+upward (KUSEG). Windows never maps the first 64 KiB, so accesses there (the
+game reads through null pointers in places, harmlessly on the console) fault,
+and a handler decodes the instruction and performs it against the RAM mirror
+(`runtime/lowmem.rs`).
+
+## Interrupts
+
+Game callbacks run in interrupt context on the console: VSync, CD data ready
+and command complete, and later GPU, SPU and timers. The game relies on that,
+for example by spinning on a flag that only a callback sets.
+
+The runtime keeps a timeline of events on an IRQ thread (`runtime/irq.rs`).
+When an event is due, it suspends the game thread, checks that interrupts are
+enabled, runs the handler on its own stack and resumes the game thread,
+exactly like an interrupt. Interrupts are held off while the game is in
+EnterCriticalSection, and while the game thread is inside a runtime function
+so it is never suspended holding a runtime or CRT lock. Runtime functions that
+wait for an interrupt (`VSync`, `CdSync`, `CdControlB`) let interrupts in while
+waiting.
+
+## Disc and CD-ROM
+
+The host reads the player's images directly, as BIN/CUE or CHD
+(`disc/`), finds the boot executable through `SYSTEM.CNF` and ISO 9660, and
+loads it like the BIOS. The CD-ROM drive is emulated at the libcd level
+(`runtime/cdrom.rs`): primitive commands, sync and data-ready interrupts with
+their callbacks, and sectors delivered in real time at 75 or 150 sectors per
+second. XA-ADPCM and CD-DA audio come with the sound work in phase 3.
+
 ## Feasibility (measured 2026-10-04)
 
 `-fsyntax-only` build of all 559 decomp translation units with clang
@@ -100,7 +131,7 @@ object using the addresses from the decomp's matching PSX build:
 1. **Link** (done). All game C built for x86 with a software GTE, the
    identity-mapped memory model and a stubbed runtime. The native `main()`
    boots through sound and graphics init into its first CD commands.
-2. **Title screen.** Disc reader (BIN/CUE, CHD) and the game's file system,
+2. **Title screen** (in progress). Disc reader (BIN/CUE, CHD) and the game's file system,
    CD runtime, C rewrites of the hasm routines (LZ decompression, TMD
    dispatch), 2D GPU (VRAM, sprites, polygons), controller, VSync.
 3. **Full game.** GTE and 3D models, rooms, combat, audio (SPU and CD-DA/XA),

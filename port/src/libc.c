@@ -10,6 +10,10 @@
 
 #include "pc/memory.h"
 
+/* Held around CRT calls that take locks: see pc_irq_enter in the Rust runtime. */
+void pc_irq_enter(void);
+void pc_irq_leave(void);
+
 /* ---- memory and strings ------------------------------------------------- */
 
 void* pcrt_memcpy(void* dst, const void* src, int n)
@@ -37,9 +41,11 @@ int pcrt_strncmp(const char* a, const char* b, int n)
 int pcrt_sprintf(char* out, const char* fmt, ...)
 {
     va_list ap;
+    pc_irq_enter();
     va_start(ap, fmt);
     int n = vsprintf(out, fmt, ap);
     va_end(ap);
+    pc_irq_leave();
     return n;
 }
 
@@ -47,9 +53,11 @@ int pcrt_sprintf(char* out, const char* fmt, ...)
 int pcrt_printf(const char* fmt, ...)
 {
     va_list ap;
+    pc_irq_enter();
     va_start(ap, fmt);
     int n = vfprintf(stderr, fmt, ap);
     va_end(ap);
+    pc_irq_leave();
     return n;
 }
 
