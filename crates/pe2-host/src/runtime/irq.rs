@@ -161,7 +161,8 @@ pub fn in_handler() -> bool {
 }
 
 /// Blocks the game thread until `cond` holds, letting interrupts in while
-/// waiting. Called with one `Guard` held, which it releases meanwhile.
+/// waiting. Called with at least one `Guard` held; all holds are released
+/// meanwhile and restored after.
 pub fn wait_until(mut cond: impl FnMut() -> bool) {
     let irq = IRQ.get().expect("irq::start not called");
     if in_handler() {
@@ -173,13 +174,16 @@ pub fn wait_until(mut cond: impl FnMut() -> bool) {
         if cond() {
             return;
         }
-        GUARD_DEPTH.fetch_sub(1, Ordering::SeqCst);
+        // Release every hold on this thread (runtime calls can nest, e.g.
+        // interpreted code calling game code that calls VSync); none of
+        // them keeps a lock across a wait.
+        let saved = GUARD_DEPTH.swap(0, Ordering::SeqCst);
         // SAFETY: valid event handle. The short timeout re-checks `cond`
         // even if a delivery's signal was consumed by an earlier wait.
         unsafe {
             WaitForSingleObject(irq.delivered.0, 2);
         }
-        GUARD_DEPTH.fetch_add(1, Ordering::SeqCst);
+        GUARD_DEPTH.fetch_add(saved, Ordering::SeqCst);
     }
 }
 

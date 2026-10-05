@@ -65,8 +65,16 @@ target/i686-pc-windows-msvc/debug/pe2.exe "Parasite Eve II (USA) (Disc 1).chd" "
 
 Debug output:
 
-- `PE2_TRACE=cd` logs CD commands, `cdsector` every delivered sector, `all`
-  everything.
+- `PE2_TRACE` takes comma-separated topics: `cd` (CD commands), `cdsector`
+  (every delivered sector), `stream` (movie frames), `images` (overlays
+  recognized in RAM), `gpu` (command lists and display changes), `dma`, `stubs`,
+  or `all`.
+- `PE2_SCREENSHOT=<dir>` saves the displayed picture as a PNG every two
+  seconds. Screenshots show your game's content; keep them out of the
+  repository.
+
+Keyboard: arrows = d-pad, Z/X/A/S = Cross/Circle/Square/Triangle,
+Enter = Start, Backspace = Select, Q/W/E/R = L1/R1/L2/R2, Esc quits.
 - A native crash prints the faulting address and stack; map the addresses to
   game functions with `python tools/symbolize.py <addr>...` (uses the linker
   map, `target/.../deps/pe2.map`).

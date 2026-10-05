@@ -7,7 +7,7 @@
 use std::sync::Mutex;
 use std::time::{Duration, Instant};
 
-use super::{irq, psx_fn};
+use super::{call_psx, irq};
 use crate::disc::{self, Disc, RawSector};
 
 // libcd command codes.
@@ -123,13 +123,12 @@ fn call_cb(cb: u32, intr: u8, result: [u8; 8]) {
         return;
     }
     static mut CB_RESULT: [u8; 8] = [0; 8];
-    // SAFETY: only the IRQ thread calls callbacks, one at a time; the game
-    // registered `cb` with this signature.
-    unsafe {
+    // SAFETY: only the IRQ thread calls callbacks, one at a time.
+    let ptr = unsafe {
         CB_RESULT = result;
-        let f: extern "C" fn(u8, *mut u8) = psx_fn(cb);
-        f(intr, std::ptr::addr_of_mut!(CB_RESULT).cast());
-    }
+        std::ptr::addr_of_mut!(CB_RESULT) as u32
+    };
+    call_psx(cb, &[u32::from(intr), ptr]);
 }
 
 impl Drive {
@@ -328,6 +327,13 @@ fn deliver_sector(generation: u64, at: Instant) {
         if d.mode & MODE_DA != 0 && d.track_of(lba).0 > 1 {
             return None;
         }
+        if super::stream::active() {
+            // CdRead2: the sector goes into the stream ring, not to the
+            // game's ready callback.
+            d.last_header.copy_from_slice(&raw[12..20]);
+            super::stream::push_sector(&raw[24..24 + 2048], [raw[12], raw[13], raw[14]]);
+            return None;
+        }
         if super::trace("cdsector") {
             eprintln!("[cd] sector {lba} submode 0x{submode:02X} -> callback 0x{:08X}", d.ready_cb);
         }
@@ -453,6 +459,22 @@ pub extern "C" fn pcrt_CdGetSector(madr: *mut u8, size: i32) -> i32 {
         unsafe { std::ptr::copy_nonoverlapping(d.data_area()[start..].as_ptr(), madr, n) };
         d.read_off = start + n;
     });
+    1
+}
+
+/// CdRead2(mode): sets the mode and streams sectors from the current
+/// position into the St* ring (see stream.rs).
+#[unsafe(no_mangle)]
+pub extern "C" fn pcrt_CdRead2(mode: u32) -> i32 {
+    let _g = irq::guard();
+    super::stream::set_active(true);
+    with_drive(|d| {
+        d.mode = mode as u8;
+        d.start_reading();
+    });
+    if super::trace("cd") {
+        eprintln!("[cd] CdRead2 mode 0x{mode:X}");
+    }
     1
 }
 

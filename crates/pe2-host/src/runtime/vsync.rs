@@ -5,7 +5,7 @@ use std::sync::atomic::{AtomicU32, Ordering};
 use std::sync::Mutex;
 use std::time::{Duration, Instant};
 
-use super::{irq, psx_fn};
+use super::{call_psx, irq};
 
 /// NTSC field rate: 59.94 Hz.
 const FIELD: Duration = Duration::from_nanos(16_683_350);
@@ -33,6 +33,8 @@ pub fn start() {
 fn schedule_vblank(at: Instant) {
     irq::schedule(at, Box::new(move || {
         VBLANKS.fetch_add(1, Ordering::SeqCst);
+        super::stubs::refresh_pads();
+        super::scan_images();
         if let Some(t) = TIMING.lock().unwrap().as_mut() {
             t.last_vblank_at = at;
         }
@@ -46,9 +48,7 @@ fn schedule_vblank(at: Instant) {
 
         let cb = CALLBACK.load(Ordering::SeqCst);
         if cb != 0 {
-            // SAFETY: the game registered this as a `void (*)(void)`.
-            let f: extern "C" fn() = unsafe { psx_fn(cb) };
-            f();
+            call_psx(cb, &[]);
         }
     }));
 }
@@ -79,6 +79,7 @@ pub extern "C" fn pcrt_VSync(mode: i32) -> i32 {
             let now = VBLANKS.load(Ordering::SeqCst);
             let target = if n == 0 { now + 1 } else { last_call.wrapping_add(n as u32).max(now + 1) };
             irq::wait_until(|| VBLANKS.load(Ordering::SeqCst).wrapping_sub(target) as i32 >= 0);
+            super::scan_images();
             let ret = hsyncs_since(last_call_at);
             let mut t = TIMING.lock().unwrap();
             let t = t.as_mut().unwrap();

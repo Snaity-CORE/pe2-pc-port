@@ -18,18 +18,54 @@ static uint32_t read_u32(const uint8_t* p)
     return (uint32_t)p[0] | ((uint32_t)p[1] << 8) | ((uint32_t)p[2] << 16) | ((uint32_t)p[3] << 24);
 }
 
+/* One bit per RAM word: set where a thunk to native code is installed, so the
+ * MIPS interpreter knows to call native code instead of decoding x86 bytes. */
+static uint8_t thunk_bitmap[PC_PSX_RAM_SIZE / 4 / 8];
+
+int pc_thunk_at(uint32_t addr)
+{
+    uint32_t word = (addr & (PC_PSX_RAM_SIZE - 1)) >> 2;
+    return (thunk_bitmap[word >> 3] >> (word & 7)) & 1;
+}
+
+static void install_thunk(uint32_t addr, void (*native)(void))
+{
+    uint8_t* at = (uint8_t*)pc_psx_ptr(addr);
+    int32_t rel = (int32_t)((uintptr_t)native - ((uintptr_t)at + 5));
+    at[0] = 0xE9; /* jmp rel32 */
+    memcpy(at + 1, &rel, sizeof(rel));
+    uint32_t word = (addr & (PC_PSX_RAM_SIZE - 1)) >> 2;
+    thunk_bitmap[word >> 3] |= (uint8_t)(1u << (word & 7));
+}
+
+void pc_clear_thunks(uint32_t start, uint32_t size)
+{
+    for (uint32_t addr = start & ~3u; addr < start + size; addr += 4) {
+        uint32_t word = (addr & (PC_PSX_RAM_SIZE - 1)) >> 2;
+        thunk_bitmap[word >> 3] &= (uint8_t)~(1u << (word & 7));
+    }
+}
+
+int pc_install_runtime_thunks(void)
+{
+    int n = 0;
+    for (unsigned i = 0; i < pc_runtime_fn_count; i++) {
+        if (pc_runtime_fns[i].impl != pc_runtime_fns[i].stub) {
+            install_thunk(pc_runtime_fns[i].psx_addr, pc_runtime_fns[i].impl);
+            n++;
+        }
+    }
+    return n;
+}
+
 int pc_install_thunks(const char* image)
 {
     for (unsigned i = 0; i < pc_image_thunk_count; i++) {
         const PcImageThunks* t = &pc_image_thunks[i];
         if (strcmp(t->image, image) != 0)
             continue;
-        for (unsigned j = 0; j < t->count; j++) {
-            uint8_t* at = (uint8_t*)pc_psx_ptr(t->thunks[j].psx_addr);
-            int32_t rel = (int32_t)((uintptr_t)t->thunks[j].native - ((uintptr_t)at + 5));
-            at[0] = 0xE9; /* jmp rel32 */
-            memcpy(at + 1, &rel, sizeof(rel));
-        }
+        for (unsigned j = 0; j < t->count; j++)
+            install_thunk(t->thunks[j].psx_addr, t->thunks[j].native);
         return (int)t->count;
     }
     return -1;
@@ -54,6 +90,7 @@ int pc_boot_load(const uint8_t* exe, size_t size)
 
     if (pc_install_thunks("main") < 0)
         return PC_BOOT_ERR_THUNKS;
+    pc_install_runtime_thunks();
     return PC_BOOT_OK;
 }
 

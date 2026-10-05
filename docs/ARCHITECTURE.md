@@ -103,6 +103,52 @@ so it is never suspended holding a runtime or CRT lock. Runtime functions that
 wait for an interrupt (`VSync`, `CdSync`, `CdControlB`) let interrupts in while
 waiting.
 
+## Library code
+
+The game calls about 430 library routines with no C body (Psy-Q libraries
+and the decomp's hand-written assembly). They are handled in three ways:
+
+1. **Interpreted.** By default a routine runs its original MIPS code, which
+   is in PSX RAM after boot, in a small R3000 interpreter
+   (`runtime/mips.rs`), with GTE instructions on the software GTE. Pure code
+   (GTE math, GPU packet builders, the LZ decompressor, MDEC VLC decoding)
+   then behaves exactly as on the console, without a rewrite.
+2. **Native.** Routines that drive hardware or the BIOS kernel have Rust
+   implementations: CD-ROM, GPU, VSync and timers, interrupts and events,
+   controller, memory card, sound. At boot each native routine also gets a
+   thunk at its PSX address, so interpreted code and stored function
+   pointers reach it too.
+3. **Interpreted over emulated registers.** Thin layers over a device
+   (libpress over the MDEC) run interpreted, and their register accesses go
+   to device models (`runtime/hw.rs`: MDEC, DMA channels 0/1).
+
+Callbacks registered by the game or by libraries are called through
+`call_psx`: natively when a thunk is installed at the address, otherwise in
+the interpreter.
+
+## Overlays
+
+The game loads its code packages itself. The build records, for every
+image, its load address, size and two hashes of its contents (head and tail,
+with the bytes thunks cover read as zero); no image bytes reach the binary.
+At every vertical blank and VSync the runtime checks each load address and,
+when a different image is now there, installs its thunks
+(`port/src/images.c`).
+
+## GPU, MDEC and streaming
+
+The GPU is emulated in software at the command level (`runtime/gpu`):
+a 1024x512 15-bit VRAM, GP0 polygons, lines, rectangles, textures with
+CLUTs and texture windows, semi-transparency, dithering and mask bits, fed
+by the native libgpu calls (ordering tables, image transfers, drawing and
+display environments). The display area is shown in a host window
+(`video.rs`), with keyboard input mapped to the controller.
+
+The MDEC decodes macroblocks from the run-length data libpress sends it
+(`runtime/mdec.rs`). STR movies are streamed with a native CdRead2 and St*
+ring (`runtime/stream.rs`) that assembles each frame's sectors contiguously
+in the game's ring buffer.
+
 ## Disc and CD-ROM
 
 The host reads the player's images directly, as BIN/CUE or CHD

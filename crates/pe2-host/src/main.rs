@@ -4,6 +4,7 @@
 
 mod disc;
 mod runtime;
+mod video;
 
 use std::path::PathBuf;
 use std::process::ExitCode;
@@ -64,6 +65,7 @@ fn main() -> ExitCode {
     }
     eprintln!("pe2: main executable loaded, entering main()");
     runtime::start(discs);
+    video::start();
 
     // SAFETY: memory and thunks are set up by pc_boot_load.
     let ret = unsafe { ffi::pc_boot_run() };
