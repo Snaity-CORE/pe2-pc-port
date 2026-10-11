@@ -31,6 +31,18 @@ static LONG CALLBACK on_exception(EXCEPTION_POINTERS* info)
     }
     fprintf(stderr, "\n[crash] eax=%08lX ebx=%08lX ecx=%08lX edx=%08lX esi=%08lX edi=%08lX esp=%08lX ebp=%08lX\n",
             ctx->Eax, ctx->Ebx, ctx->Ecx, ctx->Edx, ctx->Esi, ctx->Edi, ctx->Esp, ctx->Ebp);
+    /* Game structures a register points at, in PSX RAM. */
+    const DWORD regs[] = {ctx->Eax, ctx->Ebx, ctx->Ecx, ctx->Edx, ctx->Esi, ctx->Edi};
+    const char* const names[] = {"eax", "ebx", "ecx", "edx", "esi", "edi"};
+    for (int r = 0; r < 6; r++) {
+        if (regs[r] < 0x80000000u || regs[r] >= 0x80200000u)
+            continue;
+        const DWORD* p = (const DWORD*)(regs[r] & ~3u);
+        fprintf(stderr, "[crash] [%s] %08lX:", names[r], (unsigned long)regs[r]);
+        for (int i = 0; i < 12; i++)
+            fprintf(stderr, " %08lX", p[i]);
+        fprintf(stderr, "\n");
+    }
     /* Return addresses on the stack help place the fault in game code. */
     const DWORD* sp = (const DWORD*)ctx->Esp;
     fprintf(stderr, "[crash] stack:");

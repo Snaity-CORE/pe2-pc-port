@@ -73,9 +73,16 @@ unsafe impl Send for SendHandle {}
 unsafe impl Sync for SendHandle {}
 
 static IRQ: OnceLock<Irq> = OnceLock::new();
+
+unsafe extern "C" {
+    fn pcgte_save(out: *mut u32);
+    fn pcgte_restore(input: *const u32);
+}
 static GUARD_DEPTH: AtomicU32 = AtomicU32::new(0);
 static GAME_MASKED: AtomicBool = AtomicBool::new(false);
 static IN_HANDLER: AtomicBool = AtomicBool::new(false);
+/// True while the game thread waits in `wait_until`.
+static WAITING: AtomicBool = AtomicBool::new(false);
 static SEQ: AtomicU64 = AtomicU64::new(0);
 
 /// Starts interrupt delivery. Must be called on the game thread.
@@ -106,11 +113,16 @@ pub fn start() {
     if IRQ.set(irq).is_err() {
         return;
     }
-    std::thread::Builder::new()
+    let handle = std::thread::Builder::new()
         .name("psx-irq".into())
         .stack_size(4 << 20)
         .spawn(irq_thread)
         .expect("spawn IRQ thread");
+    if super::watch::enabled() {
+        use std::os::windows::io::AsRawHandle;
+        super::watch::arm(handle.as_raw_handle() as HANDLE);
+        std::mem::forget(handle);
+    }
 }
 
 /// Runs `handler` in interrupt context at `at`.
@@ -178,21 +190,33 @@ pub fn wait_until(mut cond: impl FnMut() -> bool) {
         // interpreted code calling game code that calls VSync); none of
         // them keeps a lock across a wait.
         let saved = GUARD_DEPTH.swap(0, Ordering::SeqCst);
+        WAITING.store(true, Ordering::SeqCst);
         // SAFETY: valid event handle. The short timeout re-checks `cond`
         // even if a delivery's signal was consumed by an earlier wait.
         unsafe {
             WaitForSingleObject(irq.delivered.0, 2);
         }
+        WAITING.store(false, Ordering::SeqCst);
         GUARD_DEPTH.fetch_add(saved, Ordering::SeqCst);
     }
 }
 
+/// PE2_SYNC_IRQ=1 (debugging): deliver interrupts only while the game
+/// waits for one (VSync, CdSync...), never at an arbitrary instruction.
+fn sync_irq() -> bool {
+    static SYNC: std::sync::OnceLock<bool> = std::sync::OnceLock::new();
+    *SYNC.get_or_init(|| std::env::var_os("PE2_SYNC_IRQ").is_some())
+}
+
 fn interrupts_enabled() -> bool {
-    GUARD_DEPTH.load(Ordering::SeqCst) == 0 && !GAME_MASKED.load(Ordering::SeqCst)
+    GUARD_DEPTH.load(Ordering::SeqCst) == 0
+        && !GAME_MASKED.load(Ordering::SeqCst)
+        && (!sync_irq() || WAITING.load(Ordering::SeqCst))
 }
 
 fn irq_thread() {
     let irq = IRQ.get().unwrap();
+    super::watch::arm(irq.game_thread.0);
     loop {
         let due = {
             let mut q = irq.queue.lock().unwrap();
@@ -242,7 +266,23 @@ fn deliver(irq: &Irq, handler: Handler) {
     }
 
     IN_HANDLER.store(true, Ordering::SeqCst);
+    // The game's interrupt callbacks must not touch the GTE (the console's
+    // exception handler does not save it). Check, and keep the interrupted
+    // code's GTE state intact either way.
+    let mut before = [0u32; 64];
+    // SAFETY: plain copies of the software GTE register file.
+    unsafe { pcgte_save(before.as_mut_ptr()) };
     handler();
+    let mut after = [0u32; 64];
+    unsafe { pcgte_save(after.as_mut_ptr()) };
+    if before != after {
+        static REPORTED: std::sync::atomic::AtomicU32 = std::sync::atomic::AtomicU32::new(0);
+        if REPORTED.fetch_add(1, Ordering::Relaxed) < 5 {
+            let regs: Vec<usize> = (0..64).filter(|&i| before[i] != after[i]).collect();
+            eprintln!("[irq] interrupt handler changed GTE registers {regs:?}; restoring");
+        }
+        unsafe { pcgte_restore(before.as_ptr()) };
+    }
     IN_HANDLER.store(false, Ordering::SeqCst);
 
     // SAFETY: balances the SuspendThread in the loop; valid event handle.

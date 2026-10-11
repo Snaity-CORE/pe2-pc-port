@@ -59,6 +59,11 @@ fn key_to_button(key: KeyCode) -> Option<u16> {
 
 const FRAME: Duration = Duration::from_micros(16_683);
 
+/// True when PE2_INPUT scripts the controller (unattended runs).
+fn scripted() -> bool {
+    std::env::var_os("PE2_INPUT").is_some()
+}
+
 struct App {
     window: Option<Rc<Window>>,
     surface: Option<softbuffer::Surface<Rc<Window>, Rc<Window>>>,
@@ -73,7 +78,10 @@ impl ApplicationHandler for App {
         }
         let attrs = Window::default_attributes()
             .with_title("Parasite Eve II")
-            .with_inner_size(winit::dpi::LogicalSize::new(960, 720));
+            .with_inner_size(winit::dpi::LogicalSize::new(960, 720))
+            // Scripted (unattended) runs must not steal focus from whatever
+            // the user is typing in.
+            .with_active(!scripted());
         let window = Rc::new(event_loop.create_window(attrs).expect("create window"));
         let context = softbuffer::Context::new(window.clone()).expect("softbuffer context");
         self.surface = Some(softbuffer::Surface::new(&context, window.clone()).expect("softbuffer surface"));
@@ -86,8 +94,14 @@ impl ApplicationHandler for App {
                 event_loop.exit();
                 std::process::exit(0);
             }
+            // In scripted runs only PE2_INPUT drives the pad: stray keys
+            // (even Esc) would change the run being measured.
+            WindowEvent::KeyboardInput { .. } if scripted() => {}
             WindowEvent::KeyboardInput { event, .. } => {
                 if let PhysicalKey::Code(code) = event.physical_key {
+                    if code == KeyCode::F12 && event.state == ElementState::Pressed && !event.repeat {
+                        crate::runtime::gpu::DUMP_REQUEST.store(true, Ordering::SeqCst);
+                    }
                     if code == KeyCode::Escape {
                         std::process::exit(0);
                     }
@@ -168,9 +182,56 @@ fn start_screenshots() {
     });
 }
 
+/// With `PE2_INPUT=button@seconds,...` (e.g. `start@30,cross@45.5`),
+/// presses each button for 200 ms at that time after start (debugging aid
+/// for unattended runs). Buttons: up down left right cross circle square
+/// triangle start select l1 r1 l2 r2.
+fn start_input_script() {
+    let Ok(script) = std::env::var("PE2_INPUT") else { return };
+    let mut events: Vec<(f64, u16)> = Vec::new();
+    for item in script.split(',') {
+        let Some((name, at)) = item.trim().split_once('@') else { continue };
+        let bit = match name.to_ascii_lowercase().as_str() {
+            "up" => button::UP,
+            "down" => button::DOWN,
+            "left" => button::LEFT,
+            "right" => button::RIGHT,
+            "cross" => button::CROSS,
+            "circle" => button::CIRCLE,
+            "square" => button::SQUARE,
+            "triangle" => button::TRIANGLE,
+            "start" => button::START,
+            "select" => button::SELECT,
+            "l1" => button::L1,
+            "r1" => button::R1,
+            "l2" => button::L2,
+            "r2" => button::R2,
+            other => {
+                eprintln!("pe2: PE2_INPUT: unknown button {other}");
+                continue;
+            }
+        };
+        if let Ok(secs) = at.parse::<f64>() {
+            events.push((secs, bit));
+        }
+    }
+    events.sort_by(|a, b| a.0.total_cmp(&b.0));
+    let t0 = Instant::now();
+    std::thread::spawn(move || {
+        for (secs, bit) in events {
+            let at = t0 + Duration::from_secs_f64(secs);
+            std::thread::sleep(at.saturating_duration_since(Instant::now()));
+            PAD1_BUTTONS.fetch_or(bit, Ordering::SeqCst);
+            std::thread::sleep(Duration::from_millis(200));
+            PAD1_BUTTONS.fetch_and(!bit, Ordering::SeqCst);
+        }
+    });
+}
+
 /// Opens the window on its own thread.
 pub fn start() {
     start_screenshots();
+    start_input_script();
     std::thread::Builder::new()
         .name("window".into())
         .spawn(|| {

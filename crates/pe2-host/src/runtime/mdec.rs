@@ -63,6 +63,17 @@ impl Mdec {
     /// A word written to MDEC0 (command or parameter).
     pub fn write_word(&mut self, w: u32) {
         if self.remaining == 0 {
+            if w >> 29 == 1 {
+                // A new decode abandons whatever the previous one produced
+                // and the game did not read: the game skips the rest of a
+                // frame when it falls behind. The hardware decodes as its
+                // output is read, so nothing of the old frame remains; this
+                // model decodes a whole command at once and must drop it.
+                if super::trace("mdec") && !self.output.is_empty() {
+                    eprintln!("[mdec] new decode drops {} unread words", self.output.len());
+                }
+                self.output.clear();
+            }
             self.command = w;
             self.table.clear();
             self.input.clear();

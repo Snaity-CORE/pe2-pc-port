@@ -21,10 +21,12 @@ typedef struct PcImageThunks {
     const PcThunk* thunks; /* sorted by PSX address */
     unsigned count;
     /* Where the image loads and how to recognize it there: FNV-1a hashes of
-     * its first bytes and of its head and tail, with the bytes thunks cover
-     * read as zero (see tools/pclink.py, image_fingerprint). */
+     * its first bytes and of its constant part (rodata and code, the first
+     * code_size bytes), with the bytes thunks cover read as zero (see
+     * tools/pclink.py, image_fingerprint). */
     uint32_t load;
     uint32_t size;
+    uint32_t code_size;
     uint64_t prefix_hash;
     uint64_t full_hash;
 } PcImageThunks;

@@ -31,6 +31,11 @@ pub struct Gpu {
     /// Incremented by each command list, so the presenter can tell new
     /// frames from repeats.
     pub frame: u64,
+    /// PSX address of the packet being run (for traces).
+    pub cur_packet: u32,
+    /// Log every command of the current list (PE2_GPUDUMP or F12).
+    pub dump: bool,
+    dump_out: Option<std::io::BufWriter<std::fs::File>>,
 }
 
 pub static GPU: Mutex<Option<Gpu>> = Mutex::new(None);
@@ -41,6 +46,9 @@ pub fn start() {
         state: DrawState::default(),
         display: Display { x: 0, y: 0, width: 320, height: 240, rgb24: false, enabled: false },
         frame: 0,
+        cur_packet: 0,
+        dump: false,
+        dump_out: None,
     });
 }
 
@@ -70,6 +78,9 @@ fn xy(word: u32) -> (i32, i32) {
 impl Gpu {
     /// Executes one GP0 command; returns how many words it used (at least 1).
     fn command(&mut self, words: &[u32]) -> usize {
+        if self.dump {
+            self.dump_command(words);
+        }
         let w0 = words[0];
         let op = w0 >> 24;
         let st = &mut self.state;
@@ -82,6 +93,7 @@ impl Gpu {
                 let (x, y) = ((words[1] & 0xFFFF) as i32, (words[1] >> 16) as i32);
                 let (w, h) = ((words[2] & 0xFFFF) as i32, (words[2] >> 16) as i32);
                 self.vram.fill(x, y, w, h, w0 & 0xFF_FFFF);
+                vtrace(format_args!("fill ({x},{y}) {w}x{h}"));
                 3
             }
             0x1F => 1,
@@ -98,6 +110,7 @@ impl Gpu {
                 let h = ((((words[3] >> 16).wrapping_sub(1)) & 0x1FF) + 1) as i32;
                 let st = self.state;
                 self.vram.copy(sx, sy, dx, dy, w, h, &st);
+                vtrace(format_args!("copy ({sx},{sy}) {w}x{h} -> ({dx},{dy})"));
                 4
             }
             0xA0..=0xBF => {
@@ -112,6 +125,7 @@ impl Gpu {
                 let data = &words[3..(3 + count).min(words.len())];
                 let pixels = data.iter().flat_map(|w| [*w as u16, (*w >> 16) as u16]);
                 self.load_image(x, y, w, h, pixels);
+                vtrace(format_args!("packet load ({x},{y}) {w}x{h}"));
                 3 + count
             }
             0xC0..=0xDF => 3,
@@ -133,16 +147,19 @@ impl Gpu {
             0xE3 => {
                 st.area_x1 = (w0 & 0x3FF) as i32;
                 st.area_y1 = ((w0 >> 10) & 0x1FF) as i32;
+                vtrace(format_args!("draw area from ({},{})", st.area_x1, st.area_y1));
                 1
             }
             0xE4 => {
                 st.area_x2 = (w0 & 0x3FF) as i32;
                 st.area_y2 = ((w0 >> 10) & 0x1FF) as i32;
+                vtrace(format_args!("draw area to ({},{})", st.area_x2, st.area_y2));
                 1
             }
             0xE5 => {
                 st.offset_x = sext11(w0);
                 st.offset_y = sext11(w0 >> 11);
+                vtrace(format_args!("draw offset ({},{})", st.offset_x, st.offset_y));
                 1
             }
             0xE6 => {
@@ -211,6 +228,15 @@ impl Gpu {
         if !gouraud {
             for v in verts.iter_mut() {
                 (v.r, v.g, v.b) = (rgb.0, rgb.1, rgb.2);
+            }
+        }
+        if trace("gpubig") {
+            let xs = verts[..n].iter().map(|v| v.x);
+            let ys = verts[..n].iter().map(|v| v.y);
+            let (w, h) = (xs.clone().max().unwrap() - xs.min().unwrap(), ys.clone().max().unwrap() - ys.min().unwrap());
+            if w > 400 || h > 300 {
+                let coords: Vec<_> = verts[..n].iter().map(|v| (v.x - st.offset_x, v.y - st.offset_y)).collect();
+                eprintln!("[gpubig] packet 0x{:08X} op 0x{op:02X} {w}x{h} verts {coords:?} words {:08X?}", self.cur_packet, &words[..len]);
             }
         }
         self.vram.triangle(&st, &sh, [verts[0], verts[1], verts[2]]);
@@ -301,6 +327,45 @@ impl Gpu {
         len
     }
 
+    /// PE2_GPUDUMP: one line per command with the state it draws with, and
+    /// the 16 first CLUT entries of textured primitives.
+    fn dump_command(&mut self, words: &[u32]) {
+        let op = words[0] >> 24;
+        let st = &self.state;
+        let mut line = format!(
+            "[gpudump] pkt 0x{:08X} op 0x{op:02X} words {:08X?} | tpage x{} y{} depth{} semi{}",
+            self.cur_packet,
+            &words[..words.len().min(12)],
+            st.tex_x,
+            st.tex_y,
+            st.tex_depth,
+            st.semi_mode
+        );
+        let clut_word = match op {
+            0x24..=0x27 | 0x2C..=0x2F => words.get(2),
+            0x34..=0x37 | 0x3C..=0x3F => words.get(2),
+            0x64..=0x67 | 0x6C..=0x6F | 0x74..=0x77 | 0x7C..=0x7F => words.get(2),
+            _ => None,
+        };
+        if let Some(t) = clut_word {
+            let (cx, cy) = ((((t >> 16) & 0x3F) * 16) as i32, ((t >> 22) & 0x1FF) as i32);
+            let entries: Vec<u16> = (0..16).map(|i| self.vram.get(cx + i, cy)).collect();
+            line += &format!(" clut ({cx},{cy}) {entries:04X?}");
+            if (0x24..=0x3F).contains(&op) {
+                if let Some(tp) = words.get(if op >= 0x34 { 5 } else { 4 }) {
+                    line += &format!(" polytpage 0x{:04X}", tp >> 16);
+                }
+            }
+        }
+        match self.dump_out.as_mut() {
+            Some(f) => {
+                use std::io::Write;
+                let _ = writeln!(f, "{line}");
+            }
+            None => eprintln!("{line}"),
+        }
+    }
+
     /// Runs a buffer of GP0 words.
     fn run(&mut self, words: &[u32]) {
         let mut i = 0;
@@ -349,8 +414,30 @@ pub extern "C" fn pcrt_ResetGraph(mode: i32) -> i32 {
             g.state = DrawState::default();
             g.display.enabled = false;
         });
+        init_genv();
     }
     0
+}
+
+unsafe extern "C" {
+    static pc_sym_GEnv: u32;
+}
+
+/// Sets up libgpu's GEnv the way the original ResetGraph does. Interpreted
+/// libgpu routines read it: SetDrawArea clamps coordinates to the VRAM size
+/// stored here, so left at zero every drawing area collapses to one pixel.
+/// Layout: byte 0 GPU type, byte 1 initialized, +4/+6 VRAM width/height,
+/// +0x10..+0x6C filled with 0xFF.
+fn init_genv() {
+    // SAFETY: generated constant; GEnv lies in the main image's data in RAM.
+    unsafe {
+        let base = pc_sym_GEnv as *mut u8;
+        base.write(0); // type 0: 1024x512 VRAM, as on retail consoles
+        base.add(1).write(1);
+        base.add(4).cast::<u16>().write_unaligned(VRAM_WIDTH as u16);
+        base.add(6).cast::<u16>().write_unaligned(VRAM_HEIGHT as u16);
+        std::ptr::write_bytes(base.add(0x10), 0xFF, 0x5C);
+    }
 }
 
 #[unsafe(no_mangle)]
@@ -397,11 +484,64 @@ pub extern "C" fn pcrt_ClearOTag(ot: *mut u32, n: i32) -> *mut u32 {
     ot
 }
 
+/// PE2_TRACE=vram: VRAM transfers and drawing-area changes, timestamped.
+fn vtrace(args: std::fmt::Arguments) {
+    use std::sync::OnceLock;
+    use std::time::Instant;
+    static START: OnceLock<Instant> = OnceLock::new();
+    if trace("vram") {
+        let t = START.get_or_init(Instant::now).elapsed().as_secs_f64();
+        eprintln!("[vram {t:8.3}] {args}");
+    }
+}
+
+/// Set by F12 in the window: the next command list is dumped to
+/// pe2-gpudump.txt, with the VRAM before and after it as PNGs.
+pub static DUMP_REQUEST: std::sync::atomic::AtomicBool = std::sync::atomic::AtomicBool::new(false);
+
+/// Writes the whole 1024x512 VRAM as a PNG (15-bit pixels shown as RGB, so
+/// texture pages appear as raw data and CLUTs as rows of colours).
+fn save_vram_png(vram: &Vram, path: &str) {
+    let Ok(file) = std::fs::File::create(path) else { return };
+    let mut enc = png::Encoder::new(std::io::BufWriter::new(file), VRAM_WIDTH as u32, VRAM_HEIGHT as u32);
+    enc.set_color(png::ColorType::Rgb);
+    enc.set_depth(png::BitDepth::Eight);
+    let Ok(mut w) = enc.write_header() else { return };
+    let c = |v: u16| ((u32::from(v & 0x1F) * 255) / 31) as u8;
+    let data: Vec<u8> = vram.pixels.iter().flat_map(|&px| [c(px), c(px >> 5), c(px >> 10)]).collect();
+    let _ = w.write_image_data(&data);
+}
+
+/// PE2_GPUDUMP=<seconds>: dumps the first command list drawn after that time.
+fn dump_due() -> bool {
+    use std::sync::OnceLock;
+    use std::sync::atomic::{AtomicBool, Ordering};
+    use std::time::{Duration, Instant};
+    static AT: OnceLock<Option<Instant>> = OnceLock::new();
+    static DONE: AtomicBool = AtomicBool::new(false);
+    let at = AT.get_or_init(|| {
+        std::env::var("PE2_GPUDUMP").ok()?.parse::<f64>().ok().map(|s| Instant::now() + Duration::from_secs_f64(s))
+    });
+    match at {
+        Some(t) if Instant::now() >= *t => !DONE.swap(true, Ordering::SeqCst),
+        _ => false,
+    }
+}
+
 /// DrawOTag(p): draws every packet of the list starting at `p`.
 #[unsafe(no_mangle)]
 pub extern "C" fn pcrt_DrawOTag(p: *const u32) {
     let _g = irq::guard();
     with_gpu(|g| {
+        let requested = DUMP_REQUEST.swap(false, std::sync::atomic::Ordering::SeqCst);
+        g.dump = requested || dump_due();
+        if requested {
+            g.dump_out = std::fs::File::create("pe2-gpudump.txt").ok().map(std::io::BufWriter::new);
+            save_vram_png(&g.vram, "pe2-vram-before.png");
+        }
+        if g.dump {
+            eprintln!("[gpudump] ---- DrawOTag 0x{:08X} ----", p as u32);
+        }
         let mut node = p;
         let mut packets = 0;
         let mut words = Vec::with_capacity(16);
@@ -413,6 +553,7 @@ pub extern "C" fn pcrt_DrawOTag(p: *const u32) {
                 words.clear();
                 // SAFETY: the packet holds `len` words after its tag.
                 words.extend((1..=len).map(|i| unsafe { node.add(i).read() }));
+                g.cur_packet = node as u32;
                 g.run(&words);
             }
             packets += 1;
@@ -422,6 +563,11 @@ pub extern "C" fn pcrt_DrawOTag(p: *const u32) {
             node = link_ptr(tag);
         }
         g.frame += 1;
+        if g.dump_out.take().is_some() {
+            save_vram_png(&g.vram, "pe2-vram.png");
+            eprintln!("pe2: F12: wrote pe2-gpudump.txt, pe2-vram-before.png and pe2-vram.png");
+        }
+        g.dump = false;
         if trace("gpu") {
             eprintln!("[gpu] DrawOTag 0x{:08X}: {packets} packets", p as u32);
         }
@@ -444,6 +590,7 @@ pub extern "C" fn pcrt_DrawPrim(p: *const u32) {
 pub extern "C" fn pcrt_ClearImage(rect: *const Rect, r: u8, g: u8, b: u8) -> i32 {
     let _g = irq::guard();
     let rc = read_rect(rect);
+    vtrace(format_args!("ClearImage ({},{}) {}x{}", rc.x, rc.y, rc.w, rc.h));
     let rgb = u32::from(r) | (u32::from(g) << 8) | (u32::from(b) << 16);
     with_gpu(|gpu| {
         let c = raster::rgb24_to_15(rgb);
@@ -460,6 +607,7 @@ pub extern "C" fn pcrt_ClearImage(rect: *const Rect, r: u8, g: u8, b: u8) -> i32
 pub extern "C" fn pcrt_LoadImage(rect: *const Rect, p: *const u16) -> i32 {
     let _g = irq::guard();
     let rc = read_rect(rect);
+    vtrace(format_args!("LoadImage ({},{}) {}x{}", rc.x, rc.y, rc.w, rc.h));
     let n = (i32::from(rc.w) * i32::from(rc.h)).max(0) as usize;
     // SAFETY: the game passes w*h pixels.
     let pixels = unsafe { std::slice::from_raw_parts(p, n) };
@@ -503,6 +651,7 @@ pub extern "C" fn pcrt_StoreImage2(rect: *const Rect, p: *mut u16) -> i32 {
 pub extern "C" fn pcrt_MoveImage(rect: *const Rect, x: i32, y: i32) -> i32 {
     let _g = irq::guard();
     let rc = read_rect(rect);
+    vtrace(format_args!("MoveImage ({},{}) {}x{}", rc.x, rc.y, rc.w, rc.h));
     with_gpu(|g| {
         let st = DrawState::default();
         g.vram.copy(i32::from(rc.x), i32::from(rc.y), x, y, i32::from(rc.w), i32::from(rc.h), &st);

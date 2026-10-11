@@ -599,3 +599,17 @@ void pcgte_reset(void)
     memset(data, 0, sizeof(data));
     memset(ctrl, 0, sizeof(ctrl));
 }
+
+/* Snapshot / restore of the whole register file (64 words), for the runtime's
+ * interrupt delivery. Raw copies: no register write side effects. */
+void pcgte_save(uint32_t out[64])
+{
+    memcpy(out, data, sizeof(data));
+    memcpy(out + 32, ctrl, sizeof(ctrl));
+}
+
+void pcgte_restore(const uint32_t in[64])
+{
+    memcpy(data, in, sizeof(data));
+    memcpy(ctrl, in + 32, sizeof(ctrl));
+}

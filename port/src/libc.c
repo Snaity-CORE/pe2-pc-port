@@ -16,14 +16,28 @@ void pc_irq_leave(void);
 
 /* ---- memory and strings ------------------------------------------------- */
 
+/* The console's memcpy copies one byte at a time, front to back, and the game
+ * relies on it: overlapping copies replicate a pattern instead of moving it,
+ * which the C library's memcpy does not guarantee. A null destination returns
+ * NULL. */
 void* pcrt_memcpy(void* dst, const void* src, int n)
 {
-    return n > 0 ? memcpy(dst, src, (size_t)n) : dst;
+    if (!dst)
+        return NULL;
+    volatile uint8_t* d = (volatile uint8_t*)dst;
+    const volatile uint8_t* s = (const volatile uint8_t*)src;
+    for (int i = 0; i < n; i++)
+        d[i] = s[i];
+    return dst;
 }
 
+/* Same contract as the console's memset: NULL for a null destination or a
+ * count of zero or less, otherwise `dst`. */
 void* pcrt_memset(void* dst, int c, int n)
 {
-    return n > 0 ? memset(dst, c, (size_t)n) : dst;
+    if (!dst || n <= 0)
+        return NULL;
+    return memset(dst, c, (size_t)n);
 }
 
 int pcrt_strcmp(const char* a, const char* b)
@@ -79,61 +93,6 @@ void pcrt_srand(unsigned seed)
     *PSX_RAND_STATE = seed;
 }
 
-/* ---- heap (malloc3 / free3 / InitHeap3) ---------------------------------- */
-
-/* A first-fit free-list allocator over the region the game hands to
- * InitHeap3. Blocks live in PSX RAM, so returned pointers are PSX addresses
- * like on the console. Each block starts with an 8-byte header. */
-typedef struct HeapBlock {
-    uint32_t size; /* bytes after the header */
-    uint32_t free;
-} HeapBlock;
-
-static uint8_t* heap_base;
-static uint32_t heap_size;
-
-void pcrt_InitHeap3(void* addr, unsigned size)
-{
-    heap_base = (uint8_t*)(((uintptr_t)addr + 7) & ~(uintptr_t)7);
-    heap_size = (uint32_t)(size - (uint32_t)(heap_base - (uint8_t*)addr)) & ~7u;
-    HeapBlock* b = (HeapBlock*)heap_base;
-    b->size = heap_size - sizeof(HeapBlock);
-    b->free = 1;
-}
-
-void* pcrt_malloc3(unsigned size)
-{
-    size = (size + 7) & ~7u;
-    for (uint8_t* p = heap_base; heap_base && p < heap_base + heap_size;) {
-        HeapBlock* b = (HeapBlock*)p;
-        if (b->free && b->size >= size) {
-            if (b->size >= size + sizeof(HeapBlock) + 8) {
-                HeapBlock* rest = (HeapBlock*)(p + sizeof(HeapBlock) + size);
-                rest->size = b->size - size - sizeof(HeapBlock);
-                rest->free = 1;
-                b->size = size;
-            }
-            b->free = 0;
-            return p + sizeof(HeapBlock);
-        }
-        p += sizeof(HeapBlock) + b->size;
-    }
-    return NULL;
-}
-
-void pcrt_free3(void* ptr)
-{
-    if (!ptr)
-        return;
-    ((HeapBlock*)((uint8_t*)ptr - sizeof(HeapBlock)))->free = 1;
-    /* Coalesce adjacent free blocks. */
-    for (uint8_t* p = heap_base; p < heap_base + heap_size;) {
-        HeapBlock* b = (HeapBlock*)p;
-        uint8_t* next = p + sizeof(HeapBlock) + b->size;
-        if (b->free && next < heap_base + heap_size && ((HeapBlock*)next)->free) {
-            b->size += sizeof(HeapBlock) + ((HeapBlock*)next)->size;
-            continue;
-        }
-        p = next;
-    }
-}
+/* malloc3 / free3 / InitHeap3 are not implemented here on purpose: the game
+ * keeps several heaps by writing libapi's _freep cursor before each call, so
+ * the original routines run in the interpreter on the real heap state. */

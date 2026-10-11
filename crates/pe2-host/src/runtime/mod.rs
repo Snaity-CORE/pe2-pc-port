@@ -8,9 +8,11 @@ pub mod irq;
 pub mod lowmem;
 pub mod mdec;
 pub mod mips;
+pub mod selftest;
 pub mod stream;
 pub mod stubs;
 pub mod vsync;
+pub mod watch;
 
 unsafe extern "C" {
     fn pc_thunk_at(addr: u32) -> i32;
@@ -65,6 +67,7 @@ pub fn start(discs: Vec<Box<dyn crate::disc::Disc>>) {
     // SAFETY: written once before any other thread starts.
     unsafe { pc_trace_images = i32::from(trace("images")) };
     lowmem::install();
+    watch::install_handler();
     irq::start();
     vsync::start();
     gpu::start();
@@ -81,4 +84,29 @@ pub extern "C" fn pc_irq_enter() {
 #[unsafe(no_mangle)]
 pub extern "C" fn pc_irq_leave() {
     drop(irq::Guard::forgotten());
+}
+
+#[repr(C)]
+struct PcRuntimeFn {
+    psx_addr: u32,
+    implementation: usize,
+    stub: usize,
+    name: *const std::ffi::c_char,
+}
+
+unsafe extern "C" {
+    static pc_runtime_fns: [PcRuntimeFn; 0];
+    static pc_runtime_fn_count: u32;
+}
+
+/// PSX address of a main-image library routine, by name.
+pub fn library_address(name: &str) -> Option<u32> {
+    // SAFETY: generated, immutable table of pc_runtime_fn_count entries.
+    let fns = unsafe {
+        std::slice::from_raw_parts(pc_runtime_fns.as_ptr(), pc_runtime_fn_count as usize)
+    };
+    fns.iter()
+        // SAFETY: names are NUL-terminated string literals.
+        .find(|f| unsafe { std::ffi::CStr::from_ptr(f.name) }.to_bytes() == name.as_bytes())
+        .map(|f| f.psx_addr)
 }

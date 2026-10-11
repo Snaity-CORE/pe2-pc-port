@@ -63,6 +63,10 @@ fn main() -> ExitCode {
         eprintln!("pe2: boot failed ({status}): {reason}");
         return ExitCode::FAILURE;
     }
+    if std::env::var_os("PE2_SELFTEST").is_some() {
+        let failures = runtime::selftest::run(runtime::library_address);
+        return if failures == 0 { ExitCode::SUCCESS } else { ExitCode::FAILURE };
+    }
     eprintln!("pe2: main executable loaded, entering main()");
     runtime::start(discs);
     video::start();

@@ -9,6 +9,18 @@
 //!
 //! Calls from interpreted code into game functions (addresses holding a
 //! native thunk) run the native body with a0-a3 as arguments.
+//!
+//! Interpreted code is interruptible, like game code on the console; hardware
+//! register accesses and logging hold interrupts off while they run.
+
+/// eprintln! while holding off interrupts: interpreted code runs
+/// interruptibly, and stderr has a lock an interrupt handler may also take.
+macro_rules! log {
+    ($($t:tt)*) => {{
+        let _g = super::irq::guard();
+        eprintln!($($t)*);
+    }};
+}
 
 unsafe extern "C" {
     fn pcgte_read_data(reg: u32) -> u32;
@@ -17,6 +29,7 @@ unsafe extern "C" {
     fn pcgte_write_ctrl(reg: u32, value: u32);
     fn pcgte_op(instruction: u32);
     fn pc_thunk_at(addr: u32) -> i32;
+    fn pc_code_word(addr: u32) -> u32;
 }
 
 /// Return address planted in `ra`: reaching it ends the call.
@@ -26,8 +39,10 @@ const RAM_SIZE: u32 = 0x0020_0000;
 const IO_START: u32 = 0x1F80_1000;
 const IO_END: u32 = 0x1F80_3000;
 const STACK_WORDS: usize = 16 * 1024;
-/// Upper bound per call, to turn a runaway loop into a report.
-const MAX_STEPS: u64 = 500_000_000;
+
+/// PSX address of the instruction the interpreter is executing (for the
+/// write watchpoints in watch.rs; per-process, last writer wins).
+pub static CUR_PC: std::sync::atomic::AtomicU32 = std::sync::atomic::AtomicU32::new(0);
 
 struct Cpu {
     r: [u32; 32],
@@ -125,16 +140,10 @@ impl Cpu {
     }
 
     fn run(&mut self) {
-        let mut steps = 0u64;
         while self.pc != RETURN_MAGIC {
-            steps += 1;
-            if steps > MAX_STEPS {
-                eprintln!("[mips] function 0x{:08X} did not return (pc 0x{:08X})", self.entry, self.pc);
-                return;
-            }
             if matches!(self.pc, 0xA0 | 0xB0 | 0xC0) {
                 // BIOS function table call: function number in t1.
-                eprintln!(
+                log!(
                     "[mips] function 0x{:08X} calls BIOS {:02X}:{:02X} (not available, returns 0)",
                     self.entry, self.pc, self.r[9]
                 );
@@ -148,7 +157,11 @@ impl Cpu {
                 self.call_native();
                 continue;
             }
-            let insn = self.read32(self.pc);
+            // Library routines keep a thunk over their first two words;
+            // the original instructions come from pc_code_word.
+            // SAFETY: plain lookup into PSX RAM / the saved words.
+            CUR_PC.store(self.pc, std::sync::atomic::Ordering::Relaxed);
+            let insn = if is_ram(self.pc) { unsafe { pc_code_word(self.pc) } } else { self.read32(self.pc) };
             self.pending_load = std::mem::take(&mut self.next_load);
             self.pc = self.next_pc;
             self.next_pc = self.pc.wrapping_add(4);
@@ -207,7 +220,7 @@ impl Cpu {
                     self.set(rd, ret);
                     self.branch(s);
                 }
-                0x0C | 0x0D => eprintln!("[mips] syscall/break in 0x{:08X} at 0x{:08X}", self.entry, self.pc.wrapping_sub(4)),
+                0x0C | 0x0D => log!("[mips] syscall/break in 0x{:08X} at 0x{:08X}", self.entry, self.pc.wrapping_sub(4)),
                 0x10 => self.set(rd, self.hi),
                 0x11 => self.hi = s,
                 0x12 => self.set(rd, self.lo),
@@ -241,7 +254,7 @@ impl Cpu {
                 0x27 => self.set(rd, !(s | t)),
                 0x2A => self.set(rd, u32::from((s as i32) < (t as i32))),
                 0x2B => self.set(rd, u32::from(s < t)),
-                f => eprintln!("[mips] unknown SPECIAL 0x{f:02X} in 0x{:08X}", self.entry),
+                f => log!("[mips] unknown SPECIAL 0x{f:02X} in 0x{:08X}", self.entry),
             },
             0x01 => {
                 let link = rt & 0x1E == 0x10;
@@ -287,7 +300,7 @@ impl Cpu {
                         0x02 => { let v = unsafe { pcgte_read_ctrl(rd as u32) }; self.load(rt, v) }
                         0x04 => unsafe { pcgte_write_data(rd as u32, t) },
                         0x06 => unsafe { pcgte_write_ctrl(rd as u32, t) },
-                        _ => eprintln!("[mips] unknown COP2 op in 0x{:08X}", self.entry),
+                        _ => log!("[mips] unknown COP2 op in 0x{:08X}", self.entry),
                     }
                 }
             }
@@ -347,7 +360,7 @@ impl Cpu {
             // SAFETY (both): software GTE register access.
             0x32 => { let v = self.read32(addr); unsafe { pcgte_write_data(rt as u32, v) } }
             0x3A => { let v = unsafe { pcgte_read_data(rt as u32) }; self.write32(addr, v) }
-            other => eprintln!(
+            other => log!(
                 "[mips] unknown opcode 0x{other:02X} in 0x{:08X} at 0x{:08X}",
                 self.entry,
                 self.pc.wrapping_sub(4)
@@ -363,10 +376,12 @@ impl Cpu {
 /// `args` must point at eight readable words; `addr` must be MIPS code.
 #[unsafe(no_mangle)]
 pub unsafe extern "C" fn pc_mips_call(addr: u32, args: *const u32) -> u32 {
-    let _g = super::irq::guard();
     // SAFETY: the caller passes eight words (unused ones are its own frame).
     let args = unsafe { std::slice::from_raw_parts(args, 8) };
-    let mut stack = vec![0u32; STACK_WORDS];
+    let mut stack = {
+        let _g = super::irq::guard();
+        vec![0u32; STACK_WORDS]
+    };
     let sp_index = STACK_WORDS - 64;
     stack[sp_index..sp_index + 8].copy_from_slice(args);
     let sp = stack[sp_index..].as_ptr() as u32;
@@ -385,6 +400,9 @@ pub unsafe extern "C" fn pc_mips_call(addr: u32, args: *const u32) -> u32 {
     cpu.r[29] = sp;
     cpu.r[31] = RETURN_MAGIC;
     cpu.run();
-    drop(stack);
+    {
+        let _g = super::irq::guard();
+        drop(stack);
+    }
     cpu.r[2]
 }

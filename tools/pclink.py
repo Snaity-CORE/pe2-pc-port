@@ -73,6 +73,8 @@ class ElfSym:
     is_abs: bool
     is_local: bool
     file: str
+    # STT_FUNC: a real function (is_func also covers labels in code sections)
+    typed_func: bool = False
 
 
 def read_elf_symbols(path: Path) -> list[ElfSym]:
@@ -102,7 +104,7 @@ def read_elf_symbols(path: Path) -> list[ElfSym]:
             is_abs = st_shndx == 0xFFF1
             is_func = sym_type == 2 or (not is_abs and st_shndx < len(sections)
                                         and bool(sections[st_shndx][2] & 0x4))  # SHF_EXECINSTR
-            out.append(ElfSym(name, st_value, is_func, is_abs, bind == 0, current_file))
+            out.append(ElfSym(name, st_value, is_func, is_abs, bind == 0, current_file, sym_type == 2))
     return out
 
 
@@ -268,8 +270,25 @@ def c_name(sym: str) -> str:
     return sym[1:] if sym.startswith("_") else sym
 
 
+def native_runtime_names() -> set[str]:
+    """Library routines the port implements natively (pcrt_<name> defined in
+    the Rust host or in port/src)."""
+    names: set[str] = set()
+    for path in [*(ROOT / "crates").rglob("*.rs"), *(ROOT / "port" / "src").glob("*.c")]:
+        text = path.read_text(encoding="utf-8", errors="replace")
+        names |= set(re.findall(r"\bfn pcrt_(\w+)\s*\(", text))
+        names |= set(re.findall(r"^[\w\s\*]*\bpcrt_(\w+)\s*\([^;]*$", text, re.M))
+    return names
+
+
 def psx_sym(addr: int) -> str:
     return f"_psx_{addr:08X}"
+
+
+def pcjmp_sym(addr: int) -> str:
+    """Trampoline that jumps to a PSX address. Calls (REL32) must not target
+    an absolute symbol directly: MSVC's linker adds the image base to it."""
+    return f"_pcjmp_{addr:08X}"
 
 
 def native_fn(image: str, addr: int, name: str) -> str:
@@ -292,14 +311,16 @@ class Result:
     thunks: list[tuple[int, str]] = field(default_factory=list)
     runtime: set[str] = field(default_factory=set)
     absolutes: set[int] = field(default_factory=set)
+    jumps: set[int] = field(default_factory=set)
     unresolved: set[str] = field(default_factory=set)
     unmapped_defs: list[str] = field(default_factory=list)
     section_relative: int = 0
 
 
 class Linker:
-    def __init__(self, units: list[dict]):
+    def __init__(self, units: list[dict], route_calls: bool = False):
         self.units = units
+        self.route_calls = route_calls
         images = sorted({img for u in units for img in u["overlays"]})
         with concurrent.futures.ThreadPoolExecutor(os.cpu_count()) as pool:
             self.elf = dict(zip(images, pool.map(lambda i: ImageSymbols(read_elf_symbols(image_file(i))), images)))
@@ -343,18 +364,31 @@ class Linker:
 
     def library_functions(self) -> list[str]:
         """Routines in the main image with no C body: Psy-Q library code and
-        the hand-written assembly, known to the PSX build only by address."""
-        out = []
+        the hand-written assembly, known to the PSX build only by address.
+
+        Only symbols the decomp's linker script declares as functions
+        (undefined_funcs_auto) qualify. Its data symbols (undefined_syms_auto)
+        include the library's lookup tables (rsin_tbl, SQRT, ratan_tbl...):
+        a thunk written over one of those corrupts every result that uses it."""
+        funcs_file = DECOMP / "linkers" / "USA" / "undefined_funcs_auto.main.txt"
+        declared = set(re.findall(r"^(\w+)\s*=", funcs_file.read_text(encoding="utf-8"), re.M))
+        # The decomp lists a few functions among its data symbols (callback
+        # setters such as DMACallback). Those the port implements natively are
+        # functions by definition and need their thunk.
+        declared |= native_runtime_names()
+        # The game's own hand-written assembly (src/main/hasm) is defined in
+        # the image, in code, rather than declared by address.
         for name, syms in self.elf[MAIN].by_name.items():
-            if not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", name) or self.native.get(name):
+            if any(s.is_abs or s.is_local or not s.is_func for s in syms):
                 continue
-            if name.endswith(("_START", "_END", "_SIZE", "_VRAM")) or name.startswith(("D_", "jtbl_", "_")):
+            if re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", name) and not name.startswith(("D_", "jtbl_")):
+                declared.add(name)
+        out = []
+        for name in sorted(declared):
+            if self.native.get(name):
                 continue
-            # Library routines are global; locals are compiler labels (LM###).
-            if any(s.is_local for s in syms) or self.elf[MAIN].address(name) is None:
-                continue
-            s = syms[0]
-            if 0x80010000 <= s.addr < self.main_end and (s.is_abs or s.is_func):
+            addr = self.elf[MAIN].address(name)
+            if addr is not None and 0x80010000 <= addr < self.main_end:
                 out.append(name)
         return out
 
@@ -453,7 +487,13 @@ class Linker:
             addr = self.address_anywhere(name, image)
             owners = self.native.get(name, set())
             if rel32.get(s.index):
-                if image in owners and addr is not None:
+                if self.route_calls and addr is not None and owners:
+                    # Debug builds: every call to a game function goes through
+                    # the dispatcher, so PE2_INTERPRET can swap any function.
+                    target = pcjmp_sym(addr)
+                    res.jumps.add(addr)
+                    res.absolutes.add(addr)
+                elif image in owners and addr is not None:
                     target = native_fn(image, self.elf[image].address(name), name)
                 elif MAIN in owners and self.elf[MAIN].address(name) is not None:
                     target = native_fn(MAIN, self.elf[MAIN].address(name), name)
@@ -461,7 +501,8 @@ class Linker:
                     # Code in another image (or only known as an absolute
                     # import): dispatch through its PSX address to whatever
                     # is loaded there.
-                    target = psx_sym(addr)
+                    target = pcjmp_sym(addr)
+                    res.jumps.add(addr)
                     res.absolutes.add(addr)
                 elif self.elf[MAIN].lookup(name) is not None:
                     target = runtime_fn(name)  # PSX code with no C body
@@ -531,9 +572,10 @@ def masked_fnv(data: bytes, start: int, end: int, masked: list[tuple[int, int]])
     return h
 
 
-def image_fingerprint(linker: "Linker", image: str, thunk_addrs: list[int]) -> tuple[int, int, int, int]:
-    """Load address, size and the two hashes the runtime uses to recognize
-    `image` in PSX RAM (only hashes reach the binary, never image bytes)."""
+def image_fingerprint(linker: "Linker", image: str, thunk_addrs: list[int]) -> tuple[int, int, int, int, int]:
+    """Load address, size, the size of its constant part and the two hashes
+    the runtime uses to recognize `image` in PSX RAM (only hashes reach the
+    binary, never image bytes)."""
     elf = linker.elf[image]
     if image == MAIN:
         load = elf.address("main_VRAM")
@@ -545,12 +587,14 @@ def image_fingerprint(linker: "Linker", image: str, thunk_addrs: list[int]) -> t
         raise SystemExit(f"{image}: no load address")
     size = len(raw)
     masked = sorted((a - load, a - load + 5) for a in thunk_addrs if 0 <= a - load < size)
-    # Packages load front to back, so the head and the tail together tell a
-    # complete image from a partly loaded one.
-    head = min(EDGE_BYTES, size)
-    tail = max(head, size - EDGE_BYTES)
-    full = masked_fnv(raw, 0, head, masked) ^ (masked_fnv(raw, tail, size, masked) * 31 & 0xFFFFFFFFFFFFFFFF)
-    return load, size, masked_fnv(raw, 0, min(PREFIX_BYTES, size), masked), full
+    # Hash the constant part only: rodata then code, which the game never
+    # writes. The data after it changes as soon as the game uses the image, so
+    # hashing it can miss an image that is really there.
+    rodata = elf.address(f"{image}_RODATA_SIZE")
+    text = elf.address(f"{image}_TEXT_SIZE")
+    code_size = size if rodata is None or text is None else min(size, rodata + text)
+    full = masked_fnv(raw, 0, code_size, masked)
+    return load, size, code_size, masked_fnv(raw, 0, min(PREFIX_BYTES, size), masked), full
 
 
 def write_outputs(results: list[Result], linker: "Linker") -> None:
@@ -559,6 +603,11 @@ def write_outputs(results: list[Result], linker: "Linker") -> None:
         f.write("# GENERATED by tools/pclink.py: PSX addresses as absolute symbols.\n")
         for a in absolutes:
             f.write(f".globl {psx_sym(a)}\n.set {psx_sym(a)}, 0x{a:08X}\n")
+        # Trampolines for native calls into other images (see pcjmp_sym),
+        # through port/src/dispatch.s. eax is free at a cdecl call.
+        f.write("\n.text\n")
+        for a in sorted({a for r in results for a in r.jumps}):
+            f.write(f".globl {pcjmp_sym(a)}\n{pcjmp_sym(a)}:\n    movl $0x{a:08X}, %eax\n    jmp _pc_psx_dispatch\n")
 
     by_image: dict[str, list[tuple[int, str]]] = collections.defaultdict(list)
     for r in results:
@@ -576,11 +625,20 @@ def write_outputs(results: list[Result], linker: "Linker") -> None:
             f.write("};\n")
         f.write("\nconst PcImageThunks pc_image_thunks[] = {\n")
         for image, thunks in sorted(by_image.items()):
-            load, size, prefix_hash, full_hash = image_fingerprint(linker, image, sorted({a for a, _ in thunks}))
+            load, size, code_size, prefix_hash, full_hash = image_fingerprint(
+                linker, image, sorted({a for a, _ in thunks}))
             f.write(f'    {{"{image}", thunks_{image}, {len(set(thunks))}, 0x{load:08X}u, 0x{size:X}u, '
-                    f'0x{prefix_hash:016X}ull, 0x{full_hash:016X}ull}},\n')
+                    f'0x{code_size:X}u, 0x{prefix_hash:016X}ull, 0x{full_hash:016X}ull}},\n')
         f.write("};\n")
         f.write(f"const unsigned pc_image_thunk_count = {len(by_image)};\n")
+
+        # Library data the native runtime initializes the way the replaced
+        # library routines did (addresses only).
+        for name in ("GEnv",):
+            addr = linker.elf[MAIN].address(name)
+            if addr is None:
+                raise SystemExit(f"main image lacks {name}")
+            f.write(f"const unsigned pc_sym_{name} = 0x{addr:08X}u;\n")
 
         # Boot facts about the main executable: its C entry point and the BSS
         # range crt0 clears (addresses only; the image itself comes from disc).
@@ -650,10 +708,12 @@ def write_outputs(results: list[Result], linker: "Linker") -> None:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--units", type=Path, default=ROOT / "build" / "units.json")
+    parser.add_argument("--route-calls", action="store_true",
+                        help="send every call between game functions through the dispatcher (debugging)")
     args = parser.parse_args()
 
     units = json.loads(args.units.read_text())
-    linker = Linker(units)
+    linker = Linker(units, route_calls=args.route_calls)
     jobs = [(u, img) for u in units for img in u["overlays"]]
     with concurrent.futures.ThreadPoolExecutor(os.cpu_count()) as pool:
         results = list(pool.map(lambda j: linker.rewrite(*j), jobs))

@@ -56,12 +56,18 @@ static int prefix_matches(const PcImageThunks* img)
 
 static int fully_matches(const PcImageThunks* img)
 {
-    uint32_t head = img->size < EDGE_BYTES ? img->size : EDGE_BYTES;
-    uint32_t tail = img->size > EDGE_BYTES ? img->size - EDGE_BYTES : head;
-    if (tail < head)
-        tail = head;
-    uint64_t h = masked_fnv(img, 0, head) ^ (masked_fnv(img, tail, img->size) * 31u);
-    return h == img->full_hash;
+    return masked_fnv(img, 0, img->code_size) == img->full_hash;
+}
+
+/* Whether every thunk of `img` is still written: reloading an image over
+ * itself restores its original code and erases them. */
+static int thunks_intact(const PcImageThunks* img)
+{
+    for (unsigned t = 0; t < img->count; t++) {
+        if (*(const uint8_t*)pc_psx_ptr(img->thunks[t].psx_addr) != 0xE9)
+            return 0;
+    }
+    return 1;
 }
 
 static int fits_in_ram(const PcImageThunks* img)
@@ -93,14 +99,29 @@ int pc_scan_images(void)
     int installed = 0;
     for (unsigned s = 0; s < slot_count; s++) {
         Slot* slot = &slots[s];
-        if (slot->installed >= 0 && prefix_matches(&pc_image_thunks[slot->installed]))
-            continue;
+        if (slot->installed >= 0) {
+            const PcImageThunks* cur = &pc_image_thunks[slot->installed];
+            if (prefix_matches(cur)) {
+                if (thunks_intact(cur))
+                    continue;
+                /* Reloaded over itself: rewrite the thunks once complete. */
+                if (fully_matches(cur)) {
+                    pc_install_thunks(cur->image);
+                    installed++;
+                    if (pc_trace_images)
+                        fprintf(stderr, "[images] %s reloaded at 0x%08X\n", cur->image, cur->load);
+                }
+                continue;
+            }
+        }
+        int found = 0;
         for (unsigned i = 0; i < pc_image_thunk_count; i++) {
             const PcImageThunks* img = &pc_image_thunks[i];
             if (img->load != slot->load || (int)i == slot->installed || !fits_in_ram(img))
                 continue;
             if (!prefix_matches(img) || !fully_matches(img))
                 continue;
+            found = 1;
             pc_clear_thunks(img->load, img->size);
             pc_install_thunks(img->image);
             slot->installed = (int)i;
@@ -108,6 +129,15 @@ int pc_scan_images(void)
             if (pc_trace_images)
                 fprintf(stderr, "[images] %s loaded at 0x%08X (%u functions)\n", img->image, img->load, img->count);
             break;
+        }
+        /* The installed image is gone and nothing known replaced it (yet):
+         * its thunks no longer describe the slot's code. */
+        if (!found && slot->installed >= 0) {
+            const PcImageThunks* cur = &pc_image_thunks[slot->installed];
+            pc_clear_thunks(cur->load, cur->size);
+            if (pc_trace_images)
+                fprintf(stderr, "[images] %s left 0x%08X; slot content not recognized yet\n", cur->image, cur->load);
+            slot->installed = -1;
         }
     }
     return installed;

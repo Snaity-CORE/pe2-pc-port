@@ -86,7 +86,7 @@ Windows allows: `0x80000000` (KSEG0), `0xA0000000` (KSEG1) and `0x00010000`
 upward (KUSEG). Windows never maps the first 64 KiB, so accesses there (the
 game reads through null pointers in places, harmlessly on the console) fault,
 and a handler decodes the instruction and performs it against the RAM mirror
-(`runtime/lowmem.rs`).
+(`runtime/lowmem.rs`: loads, stores and ALU instructions with exact flags).
 
 ## Interrupts
 
@@ -126,14 +126,30 @@ Callbacks registered by the game or by libraries are called through
 `call_psx`: natively when a thunk is installed at the address, otherwise in
 the interpreter.
 
+Every library routine gets a thunk at its PSX address: to its native
+implementation, or to the stub that interprets it. The two MIPS words a
+thunk overwrites are kept aside for the interpreter. Native calls into
+another image go through a trampoline that runs the target natively when it
+has a thunk and in the interpreter otherwise (`port/src/dispatch.s`).
+
+## Static functions
+
+clang drops a `static` function nothing in its file references, but other
+images still call some of them by address (overlay entry points). Each unit
+is compiled through a small wrapper that includes the original source and
+references every static function the PSX build emitted for it
+(`tools/build_game.py`), so they all exist natively.
+
 ## Overlays
 
 The game loads its code packages itself. The build records, for every
 image, its load address, size and two hashes of its contents (head and tail,
 with the bytes thunks cover read as zero); no image bytes reach the binary.
-At every vertical blank and VSync the runtime checks each load address and,
-when a different image is now there, installs its thunks
-(`port/src/images.c`).
+After every CD callback, vertical blank and VSync the runtime checks each
+load address and, when a different image is now there (or the same one was
+reloaded over its thunks), installs its thunks (`port/src/images.c`). The
+check right after CD callbacks matters: the game decompresses packages
+inside them and may call into one as soon as the interrupt returns.
 
 ## GPU, MDEC and streaming
 

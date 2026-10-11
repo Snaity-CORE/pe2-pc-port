@@ -92,10 +92,50 @@ def depfile_deps(depfile: Path) -> list[Path]:
     return [Path(d.replace("\\ ", " ")) for d in deps.split() if d != "\\"]
 
 
-def compile_unit(unit: dict) -> bool:
+WRAP_DIR = BUILD / "wrap"
+
+
+def static_functions(units: list[dict]) -> dict[str, list[str]]:
+    """Static functions the PSX build emitted for each unit (from its image's
+    ELF symbols, attributed by the FILE symbol). clang drops static functions
+    nothing in their file references, but other images still call some of
+    them by address, so every one the console binary has must exist."""
+    sys.path.insert(0, str(ROOT / "tools"))
+    import pclink
+
+    by_image: dict[str, list] = {}
+    out: dict[str, list[str]] = {}
+    for unit in units:
+        image = unit["overlays"][0]
+        if image not in by_image:
+            by_image[image] = pclink.read_elf_symbols(pclink.image_file(image))
+        file = f"build/USA/src/{unit['object']}.i"
+        names = sorted({s.name for s in by_image[image]
+                        if s.file == file and s.is_local and s.typed_func
+                        and s.name.isidentifier() and not s.name.startswith("__")})
+        out[unit["object"]] = names
+    return out
+
+
+def wrapper_source(unit: dict, keep: list[str]) -> Path:
+    """A translation unit that includes the original source, then references
+    its static functions so the compiler keeps them."""
+    src = (DECOMP / unit["source"]).resolve().as_posix()
+    text = f'#include "{src}"\n'
+    if keep:
+        refs = ", ".join(f"(void*){n}" for n in keep)
+        text += f"static void* const pc_keep_statics[] __attribute__((used)) = {{{refs}}};\n"
+    path = WRAP_DIR / f"{unit['object']}.c"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    if not path.exists() or path.read_text(encoding="utf-8") != text:
+        path.write_text(text, encoding="utf-8")
+    return path
+
+
+def compile_unit(unit: dict, keep: list[str]) -> bool:
     out = OBJ_DIR / f"{unit['object']}.o"
     dep = out.with_suffix(".d")
-    src = DECOMP / unit["source"]
+    src = wrapper_source(unit, keep)
     if not outdated(out, [src, *depfile_deps(dep)]) and dep.exists():
         return False
     out.parent.mkdir(parents=True, exist_ok=True)
@@ -110,6 +150,9 @@ def compile_unit(unit: dict) -> bool:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--clean", action="store_true")
+    parser.add_argument("--route-calls", action="store_true",
+                        help="debug build: calls between game functions go through the dispatcher, "
+                             "so PE2_INTERPRET can run any function as original MIPS code")
     args = parser.parse_args()
     if args.clean:
         for d in (OBJ_DIR, LINK_DIR, GAME_DIR, BUILD / "port_include"):
@@ -121,12 +164,13 @@ def main() -> None:
 
     print("[2/5] compile")
     units = json.loads((BUILD / "units.json").read_text())
+    keep = static_functions(units)
     with concurrent.futures.ThreadPoolExecutor(os.cpu_count()) as pool:
-        built = sum(pool.map(compile_unit, units))
+        built = sum(pool.map(lambda u: compile_unit(u, keep[u["object"]]), units))
     print(f"      {built} of {len(units)} units recompiled")
 
     print("[3/5] pclink")
-    run([sys.executable, tools / "pclink.py"])
+    run([sys.executable, tools / "pclink.py", *(["--route-calls"] if args.route_calls else [])])
     print("      " + (LINK_DIR / "report.txt").read_text().split("\n\n")[0].replace("\n", "\n      "))
 
     print("[4/5] runtime")
@@ -134,6 +178,10 @@ def main() -> None:
     extra = []
     run(["clang", f"--target={TARGET}", "-c", LINK_DIR / "psx_abs.s", "-o", GAME_DIR / "psx_abs.obj"])
     extra.append(GAME_DIR / "psx_abs.obj")
+    for src in sorted((ROOT / "port" / "src").glob("*.s")):
+        obj = GAME_DIR / f"{src.stem}.obj"
+        run(["clang", f"--target={TARGET}", "-c", src, "-o", obj])
+        extra.append(obj)
     for src in [LINK_DIR / "thunks.c", LINK_DIR / "pcrt_stubs.c", *sorted((ROOT / "port" / "src").glob("*.c"))]:
         obj = GAME_DIR / f"{src.stem}.obj"
         run(["clang", "-c", *RUNTIME_CFLAGS, "-o", obj, src])

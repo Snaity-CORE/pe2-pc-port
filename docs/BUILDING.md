@@ -72,6 +72,11 @@ Debug output:
 - `PE2_SCREENSHOT=<dir>` saves the displayed picture as a PNG every two
   seconds. Screenshots show your game's content; keep them out of the
   repository.
+- `PE2_INPUT=start@20,cross@31.5` presses buttons at given times (seconds
+  after start) for unattended runs.
+- `PE2_WATCH=0x801D49C4[,...]` (up to four addresses) logs every write to
+  those words with the writing instruction's address, using the CPU's debug
+  registers.
 
 Keyboard: arrows = d-pad, Z/X/A/S = Cross/Circle/Square/Triangle,
 Enter = Start, Backspace = Select, Q/W/E/R = L1/R1/L2/R2, Esc quits.

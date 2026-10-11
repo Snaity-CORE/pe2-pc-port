@@ -45,7 +45,7 @@ unsafe extern "system" fn handler(info: *mut EXCEPTION_POINTERS) -> i32 {
         eprintln!("[lowmem] cannot emulate {:?} at 0x{:08X} (address 0x{addr:08X})", insn.code(), ctx.Eip);
         return EXCEPTION_CONTINUE_SEARCH;
     }
-    if REPORTED.fetch_add(1, Ordering::Relaxed) < 8 {
+    if REPORTED.fetch_add(1, Ordering::Relaxed) < 8 || super::trace("lowmem") {
         eprintln!("[lowmem] emulated {:?} at 0x{:08X} (PSX address 0x{addr:08X})", insn.code(), ctx.Eip);
     }
     ctx.Eip += insn.len() as u32;
@@ -135,8 +135,162 @@ fn sign_extend(v: u32, size: MemorySize) -> u32 {
     }
 }
 
+const CF: u32 = 1 << 0;
+const PF: u32 = 1 << 2;
+const AF: u32 = 1 << 4;
+const ZF: u32 = 1 << 6;
+const SF: u32 = 1 << 7;
+const OF: u32 = 1 << 11;
+
+#[derive(Clone, Copy, PartialEq)]
+enum Alu {
+    Add,
+    Sub,
+    And,
+    Or,
+    Xor,
+    Inc,
+    Dec,
+    Neg,
+    Not,
+    Cmp,
+    Test,
+}
+
+/// Computes `a op b` at `bits` width and the resulting EFLAGS.
+fn alu(op: Alu, a: u32, b: u32, bits: u32, eflags: u32) -> (u32, u32) {
+    let mask = if bits == 32 { u32::MAX } else { (1 << bits) - 1 };
+    let sign = 1u32 << (bits - 1);
+    let (a, b) = (a & mask, b & mask);
+    let (res, mut flags) = match op {
+        Alu::Add | Alu::Inc => {
+            let b = if op == Alu::Inc { 1 } else { b };
+            let r = a.wrapping_add(b) & mask;
+            let mut f = 0;
+            if op == Alu::Add && u64::from(a) + u64::from(b) > u64::from(mask) {
+                f |= CF;
+            }
+            if (!(a ^ b) & (a ^ r)) & sign != 0 {
+                f |= OF;
+            }
+            if (a ^ b ^ r) & 0x10 != 0 {
+                f |= AF;
+            }
+            (r, f)
+        }
+        Alu::Sub | Alu::Cmp | Alu::Dec | Alu::Neg => {
+            let (a, b) = match op {
+                Alu::Dec => (a, 1),
+                Alu::Neg => (0, a),
+                _ => (a, b),
+            };
+            let r = a.wrapping_sub(b) & mask;
+            let mut f = 0;
+            if op != Alu::Dec && b > a {
+                f |= CF;
+            }
+            if ((a ^ b) & (a ^ r)) & sign != 0 {
+                f |= OF;
+            }
+            if (a ^ b ^ r) & 0x10 != 0 {
+                f |= AF;
+            }
+            (r, f)
+        }
+        Alu::And | Alu::Test => (a & b, 0),
+        Alu::Or => (a | b, 0),
+        Alu::Xor => (a ^ b, 0),
+        Alu::Not => return (!a & mask, eflags),
+    };
+    if res == 0 {
+        flags |= ZF;
+    }
+    if res & sign != 0 {
+        flags |= SF;
+    }
+    if (res as u8).count_ones() % 2 == 0 {
+        flags |= PF;
+    }
+    // INC and DEC leave CF as it was.
+    if matches!(op, Alu::Inc | Alu::Dec) {
+        flags = (flags & !CF) | (eflags & CF);
+    }
+    (res, (eflags & !(CF | PF | AF | ZF | SF | OF)) | flags)
+}
+
+fn mem_bits(size: MemorySize) -> Option<u32> {
+    match size {
+        MemorySize::UInt8 | MemorySize::Int8 => Some(8),
+        MemorySize::UInt16 | MemorySize::Int16 => Some(16),
+        MemorySize::UInt32 | MemorySize::Int32 => Some(32),
+        _ => None,
+    }
+}
+
+/// ALU instructions with a memory operand: `op [m], reg/imm`,
+/// `op reg, [m]`, and the one-operand `inc/dec/neg/not [m]`.
+fn emulate_alu(insn: &Instruction, addr: u32, ctx: &mut CONTEXT) -> bool {
+    use iced_x86::Mnemonic as M;
+    let op = match insn.mnemonic() {
+        M::Add => Alu::Add,
+        M::Sub => Alu::Sub,
+        M::And => Alu::And,
+        M::Or => Alu::Or,
+        M::Xor => Alu::Xor,
+        M::Inc => Alu::Inc,
+        M::Dec => Alu::Dec,
+        M::Neg => Alu::Neg,
+        M::Not => Alu::Not,
+        M::Cmp => Alu::Cmp,
+        M::Test => Alu::Test,
+        _ => return false,
+    };
+    let Some(bits) = mem_bits(insn.memory_size()) else { return false };
+    let size = insn.memory_size();
+    let Some(mem) = read_mem(addr, size) else { return false };
+    let writes = !matches!(op, Alu::Cmp | Alu::Test);
+    let other = |ctx: &mut CONTEXT, kind: OpKind, reg: Register| -> Option<u32> {
+        match kind {
+            OpKind::Register => get_reg(ctx, reg),
+            OpKind::Immediate8 | OpKind::Immediate16 | OpKind::Immediate32
+            | OpKind::Immediate8to16 | OpKind::Immediate8to32 => Some(insn.immediate32()),
+            _ => None,
+        }
+    };
+    if insn.op0_kind() == OpKind::Memory {
+        let b = if insn.op_count() > 1 {
+            match other(ctx, insn.op1_kind(), insn.op1_register()) {
+                Some(v) => v,
+                None => return false,
+            }
+        } else {
+            0
+        };
+        let (res, flags) = alu(op, mem, b, bits, ctx.EFlags);
+        ctx.EFlags = flags;
+        if writes {
+            return write_mem(addr, size, res);
+        }
+        true
+    } else if insn.op_count() > 1 && insn.op1_kind() == OpKind::Memory && insn.op0_kind() == OpKind::Register {
+        let reg = insn.op0_register();
+        let Some(a) = get_reg(ctx, reg) else { return false };
+        let (res, flags) = alu(op, a, mem, bits, ctx.EFlags);
+        ctx.EFlags = flags;
+        if writes {
+            return set_reg(ctx, reg, res);
+        }
+        true
+    } else {
+        false
+    }
+}
+
 /// Emulates loads into a register and stores of a register or immediate.
 fn emulate(insn: &Instruction, addr: u32, ctx: &mut CONTEXT) -> bool {
+    if emulate_alu(insn, addr, ctx) {
+        return true;
+    }
     let size = insn.memory_size();
     match insn.code() {
         // mov r, [m]
@@ -171,5 +325,40 @@ fn emulate(insn: &Instruction, addr: u32, ctx: &mut CONTEXT) -> bool {
             write_mem(addr, size, insn.immediate32())
         }
         _ => false,
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn alu_flags_match_x86() {
+        // dec byte 1 -> 0: ZF, PF set; CF preserved.
+        let (r, f) = alu(Alu::Dec, 1, 0, 8, CF);
+        assert_eq!(r, 0);
+        assert_eq!(f & (ZF | PF | CF | SF), ZF | PF | CF);
+        // dec byte 0 -> 0xFF: SF, AF set, PF (8 bits) set, no ZF.
+        let (r, f) = alu(Alu::Dec, 0, 0, 8, 0);
+        assert_eq!(r, 0xFF);
+        assert_eq!(f & (ZF | SF | AF | PF | CF), SF | AF | PF);
+        // add 0x7F + 1 (8-bit): signed overflow.
+        let (r, f) = alu(Alu::Add, 0x7F, 1, 8, 0);
+        assert_eq!(r, 0x80);
+        assert_ne!(f & OF, 0);
+        // add 0xFFFF + 1 (16-bit): carry, zero.
+        let (r, f) = alu(Alu::Add, 0xFFFF, 1, 16, 0);
+        assert_eq!(r, 0);
+        assert_eq!(f & (CF | ZF), CF | ZF);
+        // cmp 3, 5 (32-bit): borrow and negative.
+        let (_, f) = alu(Alu::Cmp, 3, 5, 32, 0);
+        assert_eq!(f & (CF | SF | ZF), CF | SF);
+        // test with zero result clears CF/OF and sets ZF.
+        let (_, f) = alu(Alu::Test, 0xF0, 0x0F, 8, CF | OF);
+        assert_eq!(f & (CF | OF | ZF), ZF);
+        // neg 0x80 (8-bit): overflow and carry.
+        let (r, f) = alu(Alu::Neg, 0x80, 0, 8, 0);
+        assert_eq!(r, 0x80);
+        assert_eq!(f & (CF | OF), CF | OF);
     }
 }

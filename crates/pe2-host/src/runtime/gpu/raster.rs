@@ -308,11 +308,14 @@ fn edge(a: Vertex, b: Vertex, x: i32, y: i32) -> i32 {
     (b.x - a.x) * (y - a.y) - (b.y - a.y) * (x - a.x)
 }
 
-/// For a counter-clockwise triangle (in screen space, y down), an edge is
-/// "top" when horizontal and going left, "left" when going down.
+/// Whether pixels exactly on edge a->b belong to the triangle. The GPU draws
+/// a polygon's top and left edges and leaves out its bottom and right ones.
+/// With the triangle oriented so that `edge` is positive inside, the
+/// interior lies to the right of a "left" edge (dE/dx > 0, so b.y < a.y) and
+/// below a horizontal "top" edge (dE/dy > 0, so b.x > a.x).
 #[inline]
 fn top_left(a: Vertex, b: Vertex) -> bool {
-    (a.y == b.y && b.x < a.x) || b.y > a.y
+    (a.y == b.y && b.x > a.x) || b.y < a.y
 }
 
 #[inline]
@@ -325,4 +328,43 @@ pub fn rgb24_to_15(rgb: u32) -> u16 {
     let g = ((rgb >> 8) & 0xFF) >> 3;
     let b = ((rgb >> 16) & 0xFF) >> 3;
     (r | (g << 5) | (b << 10)) as u16
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn flat() -> Shading {
+        Shading { textured: false, raw_texture: false, gouraud: false, semi_transparent: false, clut_x: 0, clut_y: 0 }
+    }
+
+    fn state() -> DrawState {
+        DrawState { area_x2: 1023, area_y2: 511, ..DrawState::default() }
+    }
+
+    fn v(x: i32, y: i32) -> Vertex {
+        Vertex { x, y, r: 255, g: 255, b: 255, ..Vertex::default() }
+    }
+
+    /// The GPU leaves out a polygon's right column and bottom row: a quad
+    /// from (10,10) to (14,14) covers exactly x 10..=13, y 10..=13.
+    #[test]
+    fn quad_excludes_right_and_bottom_edges() {
+        let (st, sh) = (state(), flat());
+        let quads = [
+            [v(10, 10), v(14, 10), v(10, 14), v(14, 14)],
+            [v(14, 14), v(10, 14), v(14, 10), v(10, 10)],
+        ];
+        for q in quads {
+            let mut vram = Vram::default();
+            vram.triangle(&st, &sh, [q[0], q[1], q[2]]);
+            vram.triangle(&st, &sh, [q[1], q[2], q[3]]);
+            for y in 8..17 {
+                for x in 8..17 {
+                    let inside = (10..14).contains(&x) && (10..14).contains(&y);
+                    assert_eq!(vram.get(x, y) != 0, inside, "pixel ({x},{y}) for quad {q:?}");
+                }
+            }
+        }
+    }
 }

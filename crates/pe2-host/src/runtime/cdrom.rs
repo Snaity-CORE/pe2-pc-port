@@ -66,6 +66,10 @@ struct Drive {
     pos: u32,
     /// Incremented to cancel scheduled sector / completion events.
     read_gen: u64,
+    /// The read started by CdRead2, whose sectors go to the stream ring.
+    /// Any later read or pause ends streaming, as on the console where it
+    /// replaces libcd's streaming callback.
+    stream_gen: Option<u64>,
     cmd_gen: u64,
     sector: Box<RawSector>,
     read_off: usize,
@@ -90,6 +94,7 @@ pub fn start(discs: Vec<Box<dyn Disc>>) {
         setloc: None,
         pos: 0,
         read_gen: 0,
+        stream_gen: None,
         cmd_gen: 0,
         sector: Box::new([0; disc::RAW_SECTOR_SIZE]),
         read_off: 0,
@@ -129,6 +134,10 @@ fn call_cb(cb: u32, intr: u8, result: [u8; 8]) {
         std::ptr::addr_of_mut!(CB_RESULT) as u32
     };
     call_psx(cb, &[u32::from(intr), ptr]);
+    // The game decompresses code packages inside its CD callbacks and may
+    // call into one as soon as the interrupt returns, so recognize newly
+    // completed images right away.
+    super::scan_images();
 }
 
 impl Drive {
@@ -327,7 +336,7 @@ fn deliver_sector(generation: u64, at: Instant) {
         if d.mode & MODE_DA != 0 && d.track_of(lba).0 > 1 {
             return None;
         }
-        if super::stream::active() {
+        if d.stream_gen == Some(generation) && super::stream::active() {
             // CdRead2: the sector goes into the stream ring, not to the
             // game's ready callback.
             d.last_header.copy_from_slice(&raw[12..20]);
@@ -471,6 +480,7 @@ pub extern "C" fn pcrt_CdRead2(mode: u32) -> i32 {
     with_drive(|d| {
         d.mode = mode as u8;
         d.start_reading();
+        d.stream_gen = Some(d.read_gen);
     });
     if super::trace("cd") {
         eprintln!("[cd] CdRead2 mode 0x{mode:X}");

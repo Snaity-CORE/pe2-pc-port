@@ -57,18 +57,21 @@ fn hsyncs_since(at: Instant) -> i32 {
     (at.elapsed().as_secs_f64() * HSYNC_HZ) as i32
 }
 
-/// VSync(mode): mode 0 waits for the next vertical blank; n > 0 waits until
-/// n blanks have passed since the previous call; 1 returns the horizontal
-/// line count since the last blank; -1 returns the blank counter. Waiting
-/// calls return the line count since the previous call.
+/// VSync(mode): mode 0 waits for the next vertical blank; n > 1 waits until
+/// n blanks have passed since the previous call; -1 returns the blank
+/// counter. Mode 1 does not wait and, like the waiting modes, returns the
+/// horizontal lines counted since the previous waiting call, as a 16-bit
+/// value (libetc reads them from the free-running hblank root counter).
+/// Callers time a frame with differences of these values, so they must not
+/// reset at each vertical blank.
 #[unsafe(no_mangle)]
 pub extern "C" fn pcrt_VSync(mode: i32) -> i32 {
     let _g = irq::guard();
     match mode {
         m if m < 0 => VBLANKS.load(Ordering::SeqCst) as i32,
         1 => {
-            let at = TIMING.lock().unwrap().as_ref().map(|t| t.last_vblank_at);
-            at.map_or(0, hsyncs_since)
+            let at = TIMING.lock().unwrap().as_ref().map(|t| t.last_call_at);
+            at.map_or(0, |at| hsyncs_since(at) & 0xFFFF)
         }
         n => {
             let (last_call, last_call_at) = {
@@ -80,7 +83,7 @@ pub extern "C" fn pcrt_VSync(mode: i32) -> i32 {
             let target = if n == 0 { now + 1 } else { last_call.wrapping_add(n as u32).max(now + 1) };
             irq::wait_until(|| VBLANKS.load(Ordering::SeqCst).wrapping_sub(target) as i32 >= 0);
             super::scan_images();
-            let ret = hsyncs_since(last_call_at);
+            let ret = hsyncs_since(last_call_at) & 0xFFFF;
             let mut t = TIMING.lock().unwrap();
             let t = t.as_mut().unwrap();
             t.last_call = VBLANKS.load(Ordering::SeqCst);

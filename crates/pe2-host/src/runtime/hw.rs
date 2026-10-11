@@ -58,6 +58,7 @@ fn ram_word(addr: u32) -> *mut u32 {
 }
 
 pub fn read32(addr: u32) -> u32 {
+    let _g = irq::guard();
     with_hw(|h| match addr {
         MDEC0 => h.mdec.output.pop_front().unwrap_or(0),
         MDEC1 => h.mdec.status(),
@@ -80,6 +81,7 @@ pub fn read32(addr: u32) -> u32 {
 }
 
 pub fn write32(addr: u32, v: u32) {
+    let _g = irq::guard();
     let completed = with_hw(|h| match addr {
         MDEC0 => {
             h.mdec.write_word(v);
@@ -148,7 +150,16 @@ impl Hw {
                 // SAFETY: DMA addresses are PSX RAM.
                 (0, true) => self.mdec.write_word(unsafe { p.read() }),
                 (1, false) => {
-                    let w = self.mdec.output.pop_front().unwrap_or(0);
+                    let w = match self.mdec.output.pop_front() {
+                        Some(w) => w,
+                        None => {
+                            static UNDERRUNS: AtomicU32 = AtomicU32::new(0);
+                            if UNDERRUNS.fetch_add(1, Ordering::Relaxed) < 5 {
+                                eprintln!("[mdec] output underrun: DMA 1 read past the decoded data");
+                            }
+                            0
+                        }
+                    };
                     // SAFETY: as above.
                     unsafe { p.write(w) };
                 }
