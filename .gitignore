@@ -32,3 +32,8 @@ Thumbs.db
 
 # Python
 __pycache__/
+
+# Debug dumps (contain game data)
+pe2-gpudump.txt
+pe2-vram*.png
+pe2-*-trace.txt
