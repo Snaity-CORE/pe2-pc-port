@@ -7,6 +7,7 @@ pub mod hw;
 pub mod irq;
 pub mod lowmem;
 pub mod mdec;
+pub mod memcard;
 pub mod mips;
 pub mod profile;
 pub mod selftest;
