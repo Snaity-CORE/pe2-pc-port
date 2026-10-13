@@ -75,6 +75,7 @@ struct Drive {
     read_off: usize,
     last_header: [u8; 8],
     filter: (u8, u8),
+    xa: super::spu::xa::XaDecoder,
     sync_status: u8,
     sync_result: [u8; 8],
     ready_status: u8,
@@ -100,6 +101,7 @@ pub fn start(discs: Vec<Box<dyn Disc>>) {
         read_off: 0,
         last_header: [0; 8],
         filter: (0, 0),
+        xa: Default::default(),
         sync_status: CDL_COMPLETE,
         sync_result: [0; 8],
         ready_status: CDL_NO_INTR,
@@ -191,17 +193,25 @@ impl Drive {
         self.read_gen += 1;
         self.ready_status = CDL_NO_INTR;
         schedule_sector(self.read_gen, Instant::now() + SEEK_TIME);
+        super::spu::clear_cd_audio();
     }
 
     fn stop_reading(&mut self) {
         self.read_gen += 1;
         self.stat &= !(STAT_READ | STAT_PLAY);
+        // XA stops sounding when the drive stops.
+        super::spu::clear_cd_audio();
     }
 
     /// Runs `com`; returns its first-response result.
     fn command(&mut self, com: u8, param: Option<&[u8]>) -> [u8; 8] {
         if super::trace("cd") {
-            eprintln!("[cd] cmd 0x{com:02X} param {param:02X?} mode 0x{:02X} pos {}", self.mode, self.pos);
+            eprintln!(
+                "[cd {:8.3}] cmd 0x{com:02X} param {param:02X?} mode 0x{:02X} pos {}",
+                super::spu::stamp(),
+                self.mode,
+                self.pos
+            );
         }
         let mut r = [0u8; 8];
         let param_byte = |i: usize| param.and_then(|p| p.get(i).copied()).unwrap_or(0);
@@ -213,7 +223,13 @@ impl Drive {
                 }
             }
             CDL_SETMODE => self.mode = param_byte(0),
-            CDL_SETFILTER => self.filter = (param_byte(0), param_byte(1)),
+            CDL_SETFILTER => {
+                let filter = (param_byte(0), param_byte(1));
+                if filter != self.filter {
+                    super::spu::clear_cd_audio();
+                }
+                self.filter = filter;
+            }
             CDL_GETPARAM => {
                 r[1] = self.mode;
                 r[3] = self.filter.0;
@@ -329,8 +345,12 @@ fn deliver_sector(generation: u64, at: Instant) {
         let (file, chan, submode) = (raw[16], raw[17], raw[18]);
         let is_audio = submode & 0x04 != 0;
         if d.mode & MODE_RT != 0 && is_audio {
-            // XA-ADPCM goes to the sound processor, not to the host (phase 3).
-            let _ = (file, chan, d.mode & MODE_SF);
+            // XA-ADPCM goes to the sound processor, not to the host. With
+            // the filter on, only the selected file and channel play.
+            if d.mode & MODE_SF == 0 || (file, chan) == d.filter {
+                let samples = d.xa.decode_sector(&raw);
+                super::spu::push_cd_audio(samples);
+            }
             return None;
         }
         if d.mode & MODE_DA != 0 && d.track_of(lba).0 > 1 {
@@ -483,7 +503,7 @@ pub extern "C" fn pcrt_CdRead2(mode: u32) -> i32 {
         d.stream_gen = Some(d.read_gen);
     });
     if super::trace("cd") {
-        eprintln!("[cd] CdRead2 mode 0x{mode:X}");
+        eprintln!("[cd {:8.3}] CdRead2 mode 0x{mode:X}", super::spu::stamp());
     }
     1
 }
@@ -529,6 +549,9 @@ pub extern "C" fn pcrt_CdGetDiskType() -> i32 {
 }
 
 #[unsafe(no_mangle)]
-pub extern "C" fn pcrt_CdMix(_vol: *const u8) -> i32 {
+pub extern "C" fn pcrt_CdMix(vol: *const u8) -> i32 {
+    // SAFETY: the game passes a CdlATV (four volume bytes).
+    let v = unsafe { [*vol, *vol.add(1), *vol.add(2), *vol.add(3)] };
+    *super::spu::xa::MIX.lock().unwrap() = v;
     1
 }

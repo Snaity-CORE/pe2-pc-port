@@ -84,7 +84,31 @@ def run_once(spec: str, args) -> int | None:
     return data[at:].count(b"[gpubig]")
 
 
+def notes_in_window(spec: str, args) -> int:
+    """--metric notes: SPU key-ons logged between the --window times (seconds
+    since the first key-on) of a run of --total seconds."""
+    env = dict(os.environ, PE2_INTERPRET=spec, PE2_TRACE="spu", PE2_INPUT=args.input)
+    fd, path = tempfile.mkstemp(suffix=".log")
+    os.close(fd)
+    try:
+        with open(path, "wb") as log:
+            proc = subprocess.Popen([str(EXE), args.disc], env=env, stdout=log, stderr=log)
+        try:
+            proc.wait(timeout=args.total)
+        except subprocess.TimeoutExpired:
+            proc.kill()
+            proc.wait()
+        text = Path(path).read_text(encoding="utf-8", errors="replace")
+    finally:
+        os.unlink(path)
+    lo, hi = args.window
+    times = [float(m) for m in re.findall(r"\[spu\s+([0-9.]+)\] key on", text)]
+    return sum(1 for t in times if lo <= t <= hi)
+
+
 def symptom(spec: str, args) -> int:
+    if args.metric == "notes":
+        return notes_in_window(spec, args)
     for attempt in range(args.retries):
         n = run_once(spec, args)
         if n is not None:
@@ -111,6 +135,13 @@ def main() -> None:
     parser.add_argument("--to-addr", type=lambda v: int(v, 16), default=0xFFFFFFFF,
                         help="only consider functions below this address (hex)")
     parser.add_argument("--skip-baseline", action="store_true")
+    parser.add_argument("--metric", choices=["gpubig", "notes"], default="gpubig",
+                        help="gpubig: oversized polygons after gameplay loads (fixed when few); "
+                             "notes: SPU key-ons inside --window (fixed when at least --min-notes)")
+    parser.add_argument("--window", type=lambda v: tuple(float(x) for x in v.split(",")), default=(0.0, 1e9),
+                        help="notes metric: 'start,end' in seconds since the first key-on")
+    parser.add_argument("--total", type=int, default=260, help="notes metric: run length in seconds")
+    parser.add_argument("--min-notes", type=int, default=10)
     args = parser.parse_args()
 
     funcs = [f for f in image_functions(args.image) if args.from_addr <= f[0] < args.to_addr]
@@ -123,7 +154,7 @@ def main() -> None:
         half = cands[: len(cands) // 2]
         spec = f"{half[0][0]:08X}-{half[-1][0] + 1:08X}"
         n = symptom(spec, args)
-        fixed = n <= args.threshold
+        fixed = n >= args.min_notes if args.metric == "notes" else n <= args.threshold
         print(f"  interpret {len(half)} functions {spec}: {n} -> {'fixed' if fixed else 'still broken'}",
               flush=True)
         cands = half if fixed else cands[len(cands) // 2:]

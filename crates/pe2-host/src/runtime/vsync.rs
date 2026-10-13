@@ -1,8 +1,8 @@
 //! Vertical blank timing (libetc VSync / VSyncCallback) and the game's
 //! interrupt masking (libapi EnterCriticalSection / ExitCriticalSection).
 
-use std::sync::atomic::{AtomicU32, Ordering};
-use std::sync::Mutex;
+use std::sync::atomic::{AtomicU32, AtomicU64, Ordering};
+use std::sync::{Mutex, OnceLock};
 use std::time::{Duration, Instant};
 
 use super::{call_psx, irq};
@@ -19,15 +19,30 @@ struct Timing {
     last_vblank_at: Instant,
     /// VBLANKS at the previous VSync(n >= 0) call.
     last_call: u32,
-    last_call_at: Instant,
 }
 
 static TIMING: Mutex<Option<Timing>> = Mutex::new(None);
+/// Time base for LAST_CALL_NS.
+static EPOCH: OnceLock<Instant> = OnceLock::new();
+/// When the previous waiting VSync call returned, in nanoseconds since
+/// EPOCH. An atomic rather than part of TIMING: VSync(1) reads it without a
+/// lock, so it needs no guard and interrupts get in while the game polls it.
+static LAST_CALL_NS: AtomicU64 = AtomicU64::new(0);
 
 pub fn start() {
     let now = Instant::now();
-    *TIMING.lock().unwrap() = Some(Timing { last_vblank_at: now, last_call: 0, last_call_at: now });
+    EPOCH.get_or_init(|| now);
+    *TIMING.lock().unwrap() = Some(Timing { last_vblank_at: now, last_call: 0 });
     schedule_vblank(now + FIELD);
+}
+
+fn last_call_at() -> Instant {
+    *EPOCH.get().expect("vsync not started") + Duration::from_nanos(LAST_CALL_NS.load(Ordering::SeqCst))
+}
+
+fn mark_call(at: Instant) {
+    let since = at.duration_since(*EPOCH.get().expect("vsync not started"));
+    LAST_CALL_NS.store(since.as_nanos() as u64, Ordering::SeqCst);
 }
 
 fn schedule_vblank(at: Instant) {
@@ -43,6 +58,9 @@ fn schedule_vblank(at: Instant) {
         let now = Instant::now();
         if next < now {
             next = now + FIELD; // fell far behind (debugger, stall): resync
+        }
+        if super::trace("spu") && now - at > FIELD * 3 {
+            eprintln!("[spu {:8.3}] vblank delivered {} ms late", super::spu::stamp(), (now - at).as_millis());
         }
         schedule_vblank(next);
 
@@ -64,33 +82,34 @@ fn hsyncs_since(at: Instant) -> i32 {
 /// value (libetc reads them from the free-running hblank root counter).
 /// Callers time a frame with differences of these values, so they must not
 /// reset at each vertical blank.
+///
+/// Modes -1 and 1 take no lock and no guard: games poll them in tight
+/// loops (scene pacing busy-waits on VSync(1)), and interrupts must keep
+/// coming during those loops as they do on the console.
 #[unsafe(no_mangle)]
 pub extern "C" fn pcrt_VSync(mode: i32) -> i32 {
-    let _g = irq::guard();
     match mode {
-        m if m < 0 => VBLANKS.load(Ordering::SeqCst) as i32,
-        1 => {
-            let at = TIMING.lock().unwrap().as_ref().map(|t| t.last_call_at);
-            at.map_or(0, |at| hsyncs_since(at) & 0xFFFF)
-        }
-        n => {
-            let (last_call, last_call_at) = {
-                let t = TIMING.lock().unwrap();
-                let t = t.as_ref().expect("vsync not started");
-                (t.last_call, t.last_call_at)
-            };
-            let now = VBLANKS.load(Ordering::SeqCst);
-            let target = if n == 0 { now + 1 } else { last_call.wrapping_add(n as u32).max(now + 1) };
-            irq::wait_until(|| VBLANKS.load(Ordering::SeqCst).wrapping_sub(target) as i32 >= 0);
-            super::scan_images();
-            let ret = hsyncs_since(last_call_at) & 0xFFFF;
-            let mut t = TIMING.lock().unwrap();
-            let t = t.as_mut().unwrap();
-            t.last_call = VBLANKS.load(Ordering::SeqCst);
-            t.last_call_at = Instant::now();
-            ret
-        }
+        m if m < 0 => return VBLANKS.load(Ordering::SeqCst) as i32,
+        1 => return hsyncs_since(last_call_at()) & 0xFFFF,
+        _ => {}
     }
+    let _g = irq::guard();
+    let last_call_at = last_call_at();
+    let last_call = TIMING.lock().unwrap().as_ref().expect("vsync not started").last_call;
+    let now = VBLANKS.load(Ordering::SeqCst);
+    let target = if mode == 0 { now + 1 } else { last_call.wrapping_add(mode as u32).max(now + 1) };
+    irq::wait_until(|| VBLANKS.load(Ordering::SeqCst).wrapping_sub(target) as i32 >= 0);
+    super::scan_images();
+    if super::trace("spu") && last_call_at.elapsed() > FIELD * 6 {
+        eprintln!("[spu {:8.3}] game frame took {} ms", super::spu::stamp(), last_call_at.elapsed().as_millis());
+    }
+    if super::trace("hang") && last_call_at.elapsed() > FIELD * 6 {
+        super::profile::report(last_call_at);
+    }
+    let ret = hsyncs_since(last_call_at) & 0xFFFF;
+    TIMING.lock().unwrap().as_mut().unwrap().last_call = VBLANKS.load(Ordering::SeqCst);
+    mark_call(Instant::now());
+    ret
 }
 
 /// VSyncCallback(func): runs `func` at every vertical blank (0 removes it).

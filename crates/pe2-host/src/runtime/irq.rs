@@ -83,6 +83,11 @@ static GAME_MASKED: AtomicBool = AtomicBool::new(false);
 static IN_HANDLER: AtomicBool = AtomicBool::new(false);
 /// True while the game thread waits in `wait_until`.
 static WAITING: AtomicBool = AtomicBool::new(false);
+/// True while an interrupt is due but held off. Releasing the last guard
+/// then gives way to it: a game polling a runtime function in a tight loop
+/// is otherwise outside a guard only for a few instructions at a time, and
+/// interrupts would starve.
+static PENDING: AtomicBool = AtomicBool::new(false);
 static SEQ: AtomicU64 = AtomicU64::new(0);
 
 /// Starts interrupt delivery. Must be called on the game thread.
@@ -110,8 +115,12 @@ pub fn start() {
             delivered: SendHandle(CreateEventW(std::ptr::null(), 0, 0, std::ptr::null())),
         }
     };
+    let game_thread = irq.game_thread.0;
     if IRQ.set(irq).is_err() {
         return;
+    }
+    if super::trace("hang") {
+        super::profile::start(game_thread);
     }
     let handle = std::thread::Builder::new()
         .name("psx-irq".into())
@@ -158,7 +167,16 @@ impl Guard {
 
 impl Drop for Guard {
     fn drop(&mut self) {
-        GUARD_DEPTH.fetch_sub(1, Ordering::SeqCst);
+        if GUARD_DEPTH.fetch_sub(1, Ordering::SeqCst) == 1
+            && PENDING.load(Ordering::SeqCst)
+            && !in_handler()
+            && !GAME_MASKED.load(Ordering::SeqCst)
+        {
+            let since = Instant::now();
+            while PENDING.load(Ordering::SeqCst) && since.elapsed() < Duration::from_millis(2) {
+                std::thread::yield_now();
+            }
+        }
     }
 }
 
@@ -175,6 +193,7 @@ pub fn in_handler() -> bool {
 /// Blocks the game thread until `cond` holds, letting interrupts in while
 /// waiting. Called with at least one `Guard` held; all holds are released
 /// meanwhile and restored after.
+#[track_caller]
 pub fn wait_until(mut cond: impl FnMut() -> bool) {
     let irq = IRQ.get().expect("irq::start not called");
     if in_handler() {
@@ -182,8 +201,17 @@ pub fn wait_until(mut cond: impl FnMut() -> bool) {
         // console would hang the same way. Do not deadlock the IRQ thread.
         return;
     }
+    let since = std::time::Instant::now();
     loop {
         if cond() {
+            if super::trace("waits") && since.elapsed().as_millis() > 100 {
+                eprintln!(
+                    "[wait {:8.3}] {} ms in {}",
+                    super::spu::stamp(),
+                    since.elapsed().as_millis(),
+                    std::panic::Location::caller()
+                );
+            }
             return;
         }
         // Release every hold on this thread (runtime calls can nest, e.g.
@@ -245,9 +273,18 @@ fn irq_thread() {
 
 fn deliver(irq: &Irq, handler: Handler) {
     let game = irq.game_thread.0;
+    PENDING.store(true, Ordering::SeqCst);
+    let mut tries = 0u32;
     loop {
         if !interrupts_enabled() {
-            std::thread::sleep(Duration::from_micros(100));
+            // Spin briefly (the game is usually just finishing a runtime
+            // call), then back off.
+            tries += 1;
+            if tries < 1000 {
+                std::thread::yield_now();
+            } else {
+                std::thread::sleep(Duration::from_micros(100));
+            }
             continue;
         }
         // SAFETY: `game` is a valid thread handle. GetThreadContext after
@@ -259,6 +296,7 @@ fn deliver(irq: &Irq, handler: Handler) {
             GetThreadContext(game, &mut ctx);
         }
         if interrupts_enabled() {
+            PENDING.store(false, Ordering::SeqCst);
             break;
         }
         // SAFETY: balances the SuspendThread above.

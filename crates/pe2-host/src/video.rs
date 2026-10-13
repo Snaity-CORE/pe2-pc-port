@@ -102,6 +102,9 @@ impl ApplicationHandler for App {
                     if code == KeyCode::F12 && event.state == ElementState::Pressed && !event.repeat {
                         crate::runtime::gpu::DUMP_REQUEST.store(true, Ordering::SeqCst);
                     }
+                    if code == KeyCode::F11 && event.state == ElementState::Pressed && !event.repeat {
+                        eprintln!("[mark {:8.3}] F11 pressed", crate::runtime::spu::stamp());
+                    }
                     if code == KeyCode::Escape {
                         std::process::exit(0);
                     }
@@ -188,7 +191,7 @@ fn start_screenshots() {
 /// triangle start select l1 r1 l2 r2.
 fn start_input_script() {
     let Ok(script) = std::env::var("PE2_INPUT") else { return };
-    let mut events: Vec<(f64, u16)> = Vec::new();
+    let mut events: Vec<(f64, u16, bool)> = Vec::new();
     for item in script.split(',') {
         let Some((name, at)) = item.trim().split_once('@') else { continue };
         let bit = match name.to_ascii_lowercase().as_str() {
@@ -211,19 +214,27 @@ fn start_input_script() {
                 continue;
             }
         };
-        if let Ok(secs) = at.parse::<f64>() {
-            events.push((secs, bit));
+        // `button@start` taps for 200 ms; `button@start+seconds` holds.
+        let (start, hold) = match at.split_once('+') {
+            Some((a, h)) => (a.parse::<f64>(), h.parse::<f64>().unwrap_or(0.2)),
+            None => (at.parse::<f64>(), 0.2),
+        };
+        if let Ok(secs) = start {
+            events.push((secs, bit, true));
+            events.push((secs + hold, bit, false));
         }
     }
     events.sort_by(|a, b| a.0.total_cmp(&b.0));
     let t0 = Instant::now();
     std::thread::spawn(move || {
-        for (secs, bit) in events {
+        for (secs, bit, press) in events {
             let at = t0 + Duration::from_secs_f64(secs);
             std::thread::sleep(at.saturating_duration_since(Instant::now()));
-            PAD1_BUTTONS.fetch_or(bit, Ordering::SeqCst);
-            std::thread::sleep(Duration::from_millis(200));
-            PAD1_BUTTONS.fetch_and(!bit, Ordering::SeqCst);
+            if press {
+                PAD1_BUTTONS.fetch_or(bit, Ordering::SeqCst);
+            } else {
+                PAD1_BUTTONS.fetch_and(!bit, Ordering::SeqCst);
+            }
         }
     });
 }

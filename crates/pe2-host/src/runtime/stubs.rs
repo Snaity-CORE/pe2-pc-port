@@ -12,9 +12,9 @@
 
 use std::sync::Mutex;
 use std::sync::atomic::{AtomicU32, Ordering};
-use std::time::{Duration, Instant};
+use std::time::Instant;
 
-use super::{call_psx, irq, trace};
+use super::trace;
 
 fn note(name: &str) {
     if trace("stubs") {
@@ -279,82 +279,4 @@ pub extern "C" fn pcrt_MemCardSync(_mode: i32, cmds: *mut i32, rslt: *mut i32) -
     1
 }
 
-// ---- sound: accepted and dropped ------------------------------------------
-
-static SPU_TRANSFER_CB: AtomicU32 = AtomicU32::new(0);
-static SPU_IRQ_CB: AtomicU32 = AtomicU32::new(0);
-
-#[unsafe(no_mangle)]
-pub extern "C" fn pcrt_SpuInit() {}
-#[unsafe(no_mangle)]
-pub extern "C" fn pcrt_SpuSetCommonAttr(_attr: u32) {}
-#[unsafe(no_mangle)]
-pub extern "C" fn pcrt_SpuReserveReverbWorkArea(on: i32) -> i32 {
-    on
-}
-#[unsafe(no_mangle)]
-pub extern "C" fn pcrt_SpuSetReverbVoice(_on: i32, voices: u32) -> u32 {
-    voices
-}
-#[unsafe(no_mangle)]
-pub extern "C" fn pcrt_SpuSetReverb(on: i32) -> i32 {
-    on
-}
-#[unsafe(no_mangle)]
-pub extern "C" fn pcrt_SpuSetReverbModeParam(_attr: u32) {}
-#[unsafe(no_mangle)]
-pub extern "C" fn pcrt_SpuSetReverbDepth(_attr: u32) {}
-#[unsafe(no_mangle)]
-pub extern "C" fn pcrt_SpuSetTransferStartAddr(addr: u32) -> u32 {
-    addr
-}
-
-fn spu_transfer(size: u32) -> u32 {
-    let cb = SPU_TRANSFER_CB.load(Ordering::SeqCst);
-    if cb != 0 {
-        irq::schedule(Instant::now() + Duration::from_micros(200), Box::new(move || {
-            call_psx(cb, &[]);
-        }));
-    }
-    size
-}
-
-#[unsafe(no_mangle)]
-pub extern "C" fn pcrt_SpuWrite(_addr: u32, size: u32) -> u32 {
-    spu_transfer(size)
-}
-#[unsafe(no_mangle)]
-pub extern "C" fn pcrt_SpuWritePartly(_addr: u32, size: u32) -> u32 {
-    spu_transfer(size)
-}
-#[unsafe(no_mangle)]
-pub extern "C" fn pcrt_SpuIsTransferCompleted(_flag: i32) -> i32 {
-    1
-}
-#[unsafe(no_mangle)]
-pub extern "C" fn pcrt_SpuSetTransferCallback(func: u32) -> u32 {
-    SPU_TRANSFER_CB.swap(func, Ordering::SeqCst)
-}
-#[unsafe(no_mangle)]
-pub extern "C" fn pcrt_SpuSetIRQ(on: i32) -> i32 {
-    on
-}
-#[unsafe(no_mangle)]
-pub extern "C" fn pcrt_SpuSetIRQAddr(addr: u32) -> u32 {
-    addr
-}
-#[unsafe(no_mangle)]
-pub extern "C" fn pcrt_SpuSetIRQCallback(func: u32) -> u32 {
-    SPU_IRQ_CB.swap(func, Ordering::SeqCst)
-}
-#[unsafe(no_mangle)]
-pub extern "C" fn pcrt_SpuGetAllKeysStatus(status: *mut u8) {
-    if !status.is_null() {
-        // SAFETY: the game passes a 24-voice status array.
-        unsafe { std::ptr::write_bytes(status, 0, 24) };
-    }
-}
-#[unsafe(no_mangle)]
-pub extern "C" fn pcrt_SpuSetKey(_on: i32, _voices: u32) {}
-#[unsafe(no_mangle)]
-pub extern "C" fn pcrt_SpuLSetVoiceAttr(_count: i32, _attrs: u32) {}
+// Sound (libspu) lives in spu/libspu.rs.
