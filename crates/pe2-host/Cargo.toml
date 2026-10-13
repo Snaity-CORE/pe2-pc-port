@@ -12,6 +12,7 @@ path = "src/main.rs"
 [dependencies]
 chd = "0.3.4"
 cpal = "0.15"
+gilrs = "0.11"
 iced-x86 = { version = "1", default-features = false, features = ["std", "decoder", "instr_info"] }
 png = "0.17"
 softbuffer = "0.4"

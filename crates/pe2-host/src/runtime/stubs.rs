@@ -143,29 +143,65 @@ static PAD_BUFFERS: Mutex<(u32, u32)> = Mutex::new((0, 0));
 /// state of port 1 and port 2.
 #[unsafe(no_mangle)]
 pub extern "C" fn pcrt_PadInitDirect(buf1: u32, buf2: u32) {
+    let _g = super::irq::guard();
     *PAD_BUFFERS.lock().unwrap() = (buf1, buf2);
     refresh_pads();
 }
 
-/// Writes the current controller state into the game's buffers: port 1 a
-/// digital pad (0x41) with the keyboard's buttons (active-low), port 2
-/// empty.
+/// Vibration registered by PadSetAct / PadSetActAlign: the game's actuator
+/// table, its length, and which motor each of its bytes drives.
+struct Actuators {
+    table: u32,
+    len: usize,
+    align: [u8; 6],
+}
+
+static ACTUATORS: Mutex<Actuators> = Mutex::new(Actuators { table: 0, len: 0, align: [0xFF; 6] });
+
+/// Writes the current controller state into the game's buffers (active-low
+/// buttons). Port 1 is a DualShock in analog mode (0x73, sticks after the
+/// buttons) while a controller is connected, a digital pad (0x41) otherwise;
+/// port 2 is empty. Also passes the game's vibration request on.
 pub fn refresh_pads() {
     let (b1, b2) = *PAD_BUFFERS.lock().unwrap();
-    let held = crate::video::PAD1_BUTTONS.load(Ordering::SeqCst);
+    let held = crate::video::PAD1_BUTTONS.load(Ordering::SeqCst) | crate::gamepad::BUTTONS.load(Ordering::SeqCst);
+    let analog = crate::gamepad::CONNECTED.load(Ordering::SeqCst);
     // SAFETY: the game registered buffers of at least 34 bytes.
     unsafe {
         if b1 != 0 {
             let p = b1 as *mut u8;
             *p = 0x00;
-            *p.add(1) = 0x41;
+            *p.add(1) = if analog { 0x73 } else { 0x41 };
             *p.add(2) = !(held as u8);
             *p.add(3) = !((held >> 8) as u8);
+            if analog {
+                let sticks = crate::gamepad::STICKS.load(Ordering::SeqCst).to_le_bytes();
+                std::ptr::copy_nonoverlapping(sticks.as_ptr(), p.add(4), 4);
+            }
         }
         if b2 != 0 {
             *(b2 as *mut u8) = 0xFF;
         }
     }
+    update_rumble(analog);
+}
+
+/// Motor 0 (small) is on or off, motor 1 (large) has a strength 0-255.
+fn update_rumble(analog: bool) {
+    let a = ACTUATORS.lock().unwrap();
+    let mut want = 0u32;
+    if analog && a.table != 0 {
+        for i in 0..a.len.min(a.align.len()) {
+            // SAFETY: PadSetAct registered `len` readable bytes.
+            let v = unsafe { *(a.table as *const u8).add(i) };
+            match a.align[i] {
+                0 if v != 0 => want |= 1,
+                1 => want |= u32::from(v) << 8,
+                _ => {}
+            }
+        }
+    }
+    crate::gamepad::RUMBLE.store(want, Ordering::SeqCst);
 }
 
 #[unsafe(no_mangle)]
@@ -175,24 +211,56 @@ pub extern "C" fn pcrt_PadStartCom() {}
 /// otherwise.
 #[unsafe(no_mangle)]
 pub extern "C" fn pcrt_PadGetState(port: i32) -> i32 {
+    let _g = super::irq::guard();
     refresh_pads();
     if port == 0x00 { 6 } else { 0 }
 }
 
-/// PadInfoMode(port, term, offs): current controller ID 4 (digital pad).
+/// PadInfoMode(port, term, offs). InfoModeCurID (1): 7 for a DualShock in
+/// analog mode, 4 for a digital pad. InfoModeCurExID (2): 7 when the pad
+/// has an analog mode (a DualShock), else 0.
 #[unsafe(no_mangle)]
 pub extern "C" fn pcrt_PadInfoMode(port: i32, term: i32, _offs: i32) -> i32 {
-    if port == 0x00 && term == 1 { 4 } else { 0 }
+    if port != 0x00 {
+        return 0;
+    }
+    let analog = crate::gamepad::CONNECTED.load(Ordering::SeqCst);
+    match term {
+        1 => if analog { 7 } else { 4 },
+        2 => if analog { 7 } else { 0 },
+        _ => 0,
+    }
 }
 
+/// PadSetAct(port, table, len): the game's actuator values, read each frame.
 #[unsafe(no_mangle)]
-pub extern "C" fn pcrt_PadSetAct(_port: i32, _table: u32, _len: i32) {}
+pub extern "C" fn pcrt_PadSetAct(port: i32, table: u32, len: i32) {
+    let _g = super::irq::guard();
+    if port == 0x00 {
+        let mut a = ACTUATORS.lock().unwrap();
+        a.table = table;
+        a.len = len.max(0) as usize;
+    }
+}
 
+/// PadSetActAlign(port, align): which motor each actuator byte drives
+/// (0xFF: none).
 #[unsafe(no_mangle)]
-pub extern "C" fn pcrt_PadSetActAlign(_port: i32, _table: u32) -> i32 {
+pub extern "C" fn pcrt_PadSetActAlign(port: i32, align: u32) -> i32 {
+    let _g = super::irq::guard();
+    if port != 0x00 || align == 0 {
+        return 0;
+    }
+    let mut a = ACTUATORS.lock().unwrap();
+    for (i, slot) in a.align.iter_mut().enumerate() {
+        // SAFETY: the game passes a 6-byte alignment table.
+        *slot = unsafe { *(align as *const u8).add(i) };
+    }
     1
 }
 
+/// PadSetMainMode(port, offs, lock): the pad follows the controller
+/// connected, so the request is accepted as is.
 #[unsafe(no_mangle)]
 pub extern "C" fn pcrt_PadSetMainMode(_port: i32, _offs: i32, _lock: i32) -> i32 {
     1

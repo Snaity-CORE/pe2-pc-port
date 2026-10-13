@@ -3,6 +3,7 @@
 //! library, see build.rs).
 
 mod disc;
+mod gamepad;
 mod runtime;
 mod video;
 
@@ -70,6 +71,7 @@ fn main() -> ExitCode {
     eprintln!("pe2: main executable loaded, entering main()");
     runtime::start(discs);
     video::start();
+    gamepad::start();
 
     // SAFETY: memory and thunks are set up by pc_boot_load.
     let ret = unsafe { ffi::pc_boot_run() };

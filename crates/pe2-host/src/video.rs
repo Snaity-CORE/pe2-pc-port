@@ -21,6 +21,8 @@ pub static PAD1_BUTTONS: AtomicU16 = AtomicU16::new(0);
 
 pub mod button {
     pub const SELECT: u16 = 1 << 0;
+    pub const L3: u16 = 1 << 1;
+    pub const R3: u16 = 1 << 2;
     pub const START: u16 = 1 << 3;
     pub const UP: u16 = 1 << 4;
     pub const RIGHT: u16 = 1 << 5;
