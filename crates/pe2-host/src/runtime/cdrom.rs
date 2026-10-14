@@ -38,6 +38,7 @@ const CDL_DATA_END: u8 = 0x04;
 
 // Drive status bits.
 const STAT_STANDBY: u8 = 0x02; // spindle motor on
+const STAT_SHELL_OPEN: u8 = 0x10; // lid open, or opened since the last Getstat
 const STAT_READ: u8 = 0x20;
 const STAT_PLAY: u8 = 0x80;
 
@@ -55,6 +56,29 @@ const CDL_CDROM_FORMAT: i32 = 2;
 const SEEK_TIME: Duration = Duration::from_millis(20);
 /// Completion time of Pause / Stop / Seek / Init.
 const SLOW_COMMAND_TIME: Duration = Duration::from_millis(5);
+
+/// How long the lid stays open during a disc change, and how long the disc
+/// then takes to spin up.
+const LID_OPEN_TIME: Duration = Duration::from_millis(1000);
+const SPIN_UP_TIME: Duration = Duration::from_millis(500);
+/// Consecutive Getstat (CdlNop) polls with the motor stopped after which
+/// the game is taken to be waiting for the lid to open (a disc change), and
+/// the quiet time after a change before that can trigger again.
+const AUTO_SWAP_POLLS: u32 = 50;
+const AUTO_SWAP_COOLDOWN: Duration = Duration::from_secs(3);
+
+/// Set by the window (F10) to change discs, as opening the lid would.
+pub static SWAP_REQUEST: std::sync::atomic::AtomicBool = std::sync::atomic::AtomicBool::new(false);
+
+/// The lid during a disc change.
+#[derive(Clone, Copy, PartialEq)]
+enum Lid {
+    Closed,
+    /// Open until `closes_at`; disc `next` goes in.
+    Open { closes_at: Instant, next: usize },
+    /// Closed, disc spinning up until the instant.
+    SpinningUp(Instant),
+}
 
 struct Drive {
     discs: Vec<Box<dyn Disc>>,
@@ -82,6 +106,11 @@ struct Drive {
     ready_result: [u8; 8],
     sync_cb: u32,
     ready_cb: u32,
+    lid: Lid,
+    /// STAT_SHELL_OPEN stays set after the lid closes until a Getstat.
+    shell_latch: bool,
+    nop_polls: u32,
+    last_change: Option<Instant>,
 }
 
 static DRIVE: Mutex<Option<Drive>> = Mutex::new(None);
@@ -108,6 +137,10 @@ pub fn start(discs: Vec<Box<dyn Disc>>) {
         ready_result: [0; 8],
         sync_cb: 0,
         ready_cb: 0,
+        lid: Lid::Closed,
+        shell_latch: false,
+        nop_polls: 0,
+        last_change: None,
     });
 }
 
@@ -203,8 +236,65 @@ impl Drive {
         super::spu::clear_cd_audio();
     }
 
+    /// Opens the lid: the drive stops, and after LID_OPEN_TIME the next disc
+    /// is in and spins up.
+    fn open_lid(&mut self) {
+        if self.discs.len() < 2 || self.lid != Lid::Closed {
+            return;
+        }
+        self.stop_reading();
+        self.stream_gen = None;
+        self.stat &= !STAT_STANDBY;
+        self.shell_latch = true;
+        let next = (self.current + 1) % self.discs.len();
+        self.lid = Lid::Open { closes_at: Instant::now() + LID_OPEN_TIME, next };
+        eprintln!("pe2: disc lid opened");
+    }
+
+    /// Advances the lid through a disc change.
+    fn update_lid(&mut self) {
+        if SWAP_REQUEST.swap(false, std::sync::atomic::Ordering::SeqCst) {
+            self.open_lid();
+        }
+        let now = Instant::now();
+        match self.lid {
+            Lid::Open { closes_at, next } if now >= closes_at => {
+                self.current = next;
+                self.pos = 0;
+                self.lid = Lid::SpinningUp(now + SPIN_UP_TIME);
+                eprintln!("pe2: disc image {} inserted, lid closed", next + 1);
+            }
+            Lid::SpinningUp(at) if now >= at => {
+                self.stat |= STAT_STANDBY;
+                self.lid = Lid::Closed;
+                self.last_change = Some(now);
+            }
+            _ => {}
+        }
+        let shell = self.shell_latch || matches!(self.lid, Lid::Open { .. });
+        self.stat = if shell { self.stat | STAT_SHELL_OPEN } else { self.stat & !STAT_SHELL_OPEN };
+    }
+
+    /// A game that stopped the motor and polls Getstat over and over waits
+    /// for the lid to open: change discs for it.
+    fn watch_for_disc_change(&mut self, com: u8) {
+        if com != CDL_NOP {
+            self.nop_polls = 0;
+            return;
+        }
+        self.nop_polls += 1;
+        let quiet = self.last_change.is_none_or(|t| t.elapsed() >= AUTO_SWAP_COOLDOWN);
+        if self.nop_polls >= AUTO_SWAP_POLLS && self.stat & STAT_STANDBY == 0 && self.lid == Lid::Closed && quiet {
+            self.nop_polls = 0;
+            self.open_lid();
+        }
+    }
+
     /// Runs `com`; returns its first-response result.
     fn command(&mut self, com: u8, param: Option<&[u8]>) -> [u8; 8] {
+        self.update_lid();
+        self.watch_for_disc_change(com);
+        self.update_lid();
         if super::trace("cd") {
             eprintln!(
                 "[cd {:8.3}] cmd 0x{com:02X} param {param:02X?} mode 0x{:02X} pos {}",
@@ -216,7 +306,18 @@ impl Drive {
         let mut r = [0u8; 8];
         let param_byte = |i: usize| param.and_then(|p| p.get(i).copied()).unwrap_or(0);
         match com {
-            CDL_NOP => {}
+            CDL_NOP => {
+                // Getstat reports the shell-open bit, then clears it if the
+                // lid has closed since.
+                let r0 = self.stat;
+                if !matches!(self.lid, Lid::Open { .. }) {
+                    self.shell_latch = false;
+                    self.stat &= !STAT_SHELL_OPEN;
+                }
+                r[0] = r0;
+                self.complete_after(Duration::ZERO, r);
+                return r;
+            }
             CDL_SETLOC => {
                 if let Some(p) = param {
                     self.setloc = Some(disc::bcd_msf_to_lba([p[0], p[1], p[2]]));
@@ -529,7 +630,10 @@ pub extern "C" fn pcrt_CdPosToInt(p: *const u8) -> i32 {
 #[unsafe(no_mangle)]
 pub extern "C" fn pcrt_CdStatus() -> i32 {
     let _g = irq::guard();
-    with_drive(|d| i32::from(d.stat))
+    with_drive(|d| {
+        d.update_lid();
+        i32::from(d.stat)
+    })
 }
 
 #[unsafe(no_mangle)]
@@ -540,7 +644,12 @@ pub extern "C" fn pcrt_CdMode() -> i32 {
 
 #[unsafe(no_mangle)]
 pub extern "C" fn pcrt_CdDiskReady(_mode: i32) -> i32 {
-    i32::from(CDL_COMPLETE)
+    let _g = irq::guard();
+    let ready = with_drive(|d| {
+        d.update_lid();
+        d.lid == Lid::Closed
+    });
+    i32::from(if ready { CDL_COMPLETE } else { CDL_NO_INTR })
 }
 
 #[unsafe(no_mangle)]

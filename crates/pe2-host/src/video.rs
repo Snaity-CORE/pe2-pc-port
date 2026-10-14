@@ -104,6 +104,9 @@ impl ApplicationHandler for App {
                     if code == KeyCode::F12 && event.state == ElementState::Pressed && !event.repeat {
                         crate::runtime::gpu::DUMP_REQUEST.store(true, Ordering::SeqCst);
                     }
+                    if code == KeyCode::F10 && event.state == ElementState::Pressed && !event.repeat {
+                        crate::runtime::cdrom::SWAP_REQUEST.store(true, Ordering::SeqCst);
+                    }
                     if code == KeyCode::F11 && event.state == ElementState::Pressed && !event.repeat {
                         eprintln!("[mark {:8.3}] F11 pressed", crate::runtime::spu::stamp());
                     }
