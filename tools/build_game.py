@@ -15,6 +15,7 @@ run (`python ninja_config.py && ninja` in decomp/), then tools/gen_units.py.
 
     python tools/build_game.py            # incremental
     python tools/build_game.py --clean    # rebuild everything
+    python tools/build_game.py --sanitize # report undefined behaviour (ubsan.c)
 """
 
 import argparse
@@ -66,6 +67,10 @@ GAME_CFLAGS = [
     "-Wno-error=return-type", "-Wno-error=implicit-function-declaration",
     "-Wno-error=implicit-int", "-Wno-error=incompatible-pointer-types",
 ]
+# --sanitize: undefined behaviour whose result differs from the R3000's,
+# reported at run time by port/src/ubsan.c. Left shifts of negative values
+# are left out: with -fwrapv they behave as on the console.
+SANITIZE_CFLAGS = ["-fsanitize=shift-exponent,array-bounds"]
 RUNTIME_CFLAGS = [f"--target={TARGET}", "-O2", "-Wall", "-Wextra", "-Wno-unused-parameter",
                   f"-I{ROOT / 'port' / 'include'}"]
 
@@ -132,14 +137,14 @@ def wrapper_source(unit: dict, keep: list[str]) -> Path:
     return path
 
 
-def compile_unit(unit: dict, keep: list[str]) -> bool:
+def compile_unit(unit: dict, keep: list[str], cflags: list[str], stamp: Path) -> bool:
     out = OBJ_DIR / f"{unit['object']}.o"
     dep = out.with_suffix(".d")
     src = wrapper_source(unit, keep)
-    if not outdated(out, [src, *depfile_deps(dep)]) and dep.exists():
+    if not outdated(out, [src, stamp, *depfile_deps(dep)]) and dep.exists():
         return False
     out.parent.mkdir(parents=True, exist_ok=True)
-    cmd = ["clang", "-c", *GAME_CFLAGS, *(f"-I{p}" for p in INCLUDES)]
+    cmd = ["clang", "-c", *cflags, *(f"-I{p}" for p in INCLUDES)]
     for name, value in unit["defines"].items():
         cmd.append(f"-D{name}" if value is None else f"-D{name}={value}")
     cmd += ["-MD", "-MF", dep, "-o", out, src]
@@ -153,6 +158,9 @@ def main() -> None:
     parser.add_argument("--route-calls", action="store_true",
                         help="debug build: calls between game functions go through the dispatcher, "
                              "so PE2_INTERPRET can run any function as original MIPS code")
+    parser.add_argument("--sanitize", action="store_true",
+                        help="debug build: report shifts by 32 or more and out-of-bounds array "
+                             "indexing at run time ([ubsan] lines on stderr)")
     args = parser.parse_args()
     if args.clean:
         for d in (OBJ_DIR, LINK_DIR, GAME_DIR, BUILD / "port_include"):
@@ -165,8 +173,15 @@ def main() -> None:
     print("[2/5] compile")
     units = json.loads((BUILD / "units.json").read_text())
     keep = static_functions(units)
+    cflags = GAME_CFLAGS + (SANITIZE_CFLAGS if args.sanitize else [])
+    # Every unit is recompiled when the flags change (e.g. into or out of a
+    # sanitized build).
+    stamp = OBJ_DIR / "cflags.txt"
+    OBJ_DIR.mkdir(parents=True, exist_ok=True)
+    if not stamp.exists() or stamp.read_text(encoding="utf-8") != " ".join(cflags):
+        stamp.write_text(" ".join(cflags), encoding="utf-8")
     with concurrent.futures.ThreadPoolExecutor(os.cpu_count()) as pool:
-        built = sum(pool.map(lambda u: compile_unit(u, keep[u["object"]]), units))
+        built = sum(pool.map(lambda u: compile_unit(u, keep[u["object"]], cflags, stamp), units))
     print(f"      {built} of {len(units)} units recompiled")
 
     print("[3/5] pclink")
