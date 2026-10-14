@@ -122,12 +122,29 @@ void pc_clear_thunks(uint32_t start, uint32_t size)
     }
 }
 
+/* Differential tests (libtest.c): makes the interpreter run the original
+ * code of the library routine at `addr`, which has a native implementation,
+ * instead of following its thunk (on), or restores the thunk (off). */
+void pc_runtime_fn_interpret(uint32_t addr, int on)
+{
+    uint32_t word = (addr & (PC_PSX_RAM_SIZE - 1)) >> 2;
+    set_patched_bits(addr, on);
+    if (on)
+        thunk_bitmap[word >> 3] &= (uint8_t)~(1u << (word & 7));
+    else
+        thunk_bitmap[word >> 3] |= (uint8_t)(1u << (word & 7));
+}
+
 int pc_install_runtime_thunks(void)
 {
     int n = 0;
     for (unsigned i = 0; i < pc_runtime_fn_count; i++) {
         const PcRuntimeFn* f = &pc_runtime_fns[i];
         if (f->impl != f->stub) {
+            /* Keep the words the jmp replaces, for pc_runtime_fn_interpret. */
+            PatchedCode* slot = patch_slot(f->psx_addr);
+            slot->addr = f->psx_addr;
+            memcpy(slot->words, pc_psx_ptr(f->psx_addr), sizeof(slot->words));
             install_thunk(f->psx_addr, f->impl);
             n++;
         } else {

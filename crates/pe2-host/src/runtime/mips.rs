@@ -378,6 +378,9 @@ impl Cpu {
 pub unsafe extern "C" fn pc_mips_call(addr: u32, args: *const u32) -> u32 {
     // SAFETY: the caller passes eight words (unused ones are its own frame).
     let args = unsafe { std::slice::from_raw_parts(args, 8) };
+    if super::trace("interp") {
+        count_entry(addr);
+    }
     let mut stack = {
         let _g = super::irq::guard();
         vec![0u32; STACK_WORDS]
@@ -405,4 +408,25 @@ pub unsafe extern "C" fn pc_mips_call(addr: u32, args: *const u32) -> u32 {
         drop(stack);
     }
     cpu.r[2]
+}
+
+/// PE2_TRACE=interp: how often each function is entered through the
+/// interpreter, printed every 20 seconds (most called first).
+fn count_entry(addr: u32) {
+    use std::collections::HashMap;
+    use std::sync::{Mutex, Once};
+    static COUNTS: Mutex<Option<HashMap<u32, u64>>> = Mutex::new(None);
+    static REPORTER: Once = Once::new();
+    let _g = super::irq::guard();
+    *COUNTS.lock().unwrap().get_or_insert_with(HashMap::new).entry(addr).or_insert(0) += 1;
+    REPORTER.call_once(|| {
+        std::thread::spawn(|| loop {
+            std::thread::sleep(std::time::Duration::from_secs(20));
+            let mut v: Vec<(u32, u64)> =
+                COUNTS.lock().unwrap().as_ref().map(|m| m.iter().map(|(&a, &n)| (a, n)).collect()).unwrap_or_default();
+            v.sort_by(|a, b| b.1.cmp(&a.1));
+            let line: Vec<String> = v.iter().map(|(a, n)| format!("{a:08X}:{n}")).collect();
+            eprintln!("[interp] {}", line.join(" "));
+        });
+    });
 }

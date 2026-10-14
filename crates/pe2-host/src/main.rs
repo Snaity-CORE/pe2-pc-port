@@ -14,6 +14,7 @@ mod ffi {
     unsafe extern "C" {
         pub fn pc_boot_load(exe: *const u8, size: usize) -> i32;
         pub fn pc_boot_run() -> i32;
+        pub fn pc_libtest(spec: *const std::ffi::c_char) -> i32;
     }
 }
 
@@ -63,6 +64,12 @@ fn main() -> ExitCode {
         };
         eprintln!("pe2: boot failed ({status}): {reason}");
         return ExitCode::FAILURE;
+    }
+    if let Ok(spec) = std::env::var("PE2_LIBTEST") {
+        let spec = std::ffi::CString::new(spec).unwrap_or_default();
+        // SAFETY: the executable is loaded; `spec` is NUL-terminated.
+        let failures = unsafe { ffi::pc_libtest(spec.as_ptr()) };
+        return if failures == 0 { ExitCode::SUCCESS } else { ExitCode::FAILURE };
     }
     if std::env::var_os("PE2_SELFTEST").is_some() {
         let failures = runtime::selftest::run(runtime::library_address);
