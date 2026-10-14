@@ -160,6 +160,59 @@ static void s_v_v(uint32_t a[8]) { rnd_vector(A0); rnd_vector(A1); a[0] = A0; a[
 static void s_v_sv(uint32_t a[8]) { rnd_vector(A0); rnd_svector(A1, 0); a[0] = A0; a[1] = A1; }
 static void s_sv_sv(uint32_t a[8]) { rnd_svector(A0, 0); rnd_svector(A1, 0); a[0] = A0; a[1] = A1; }
 
+/* Graphics library set-ups: packets of random words, small integers. */
+static void rnd_words(uint32_t at, int n)
+{
+    for (int i = 0; i < n; i++) {
+        w32(at + 4 * i, (int32_t)rnd());
+    }
+}
+static int32_t rnd_small(int n) { return (int32_t)(rnd() % (uint32_t)n); }
+static void s_ot_p(uint32_t a[8]) { rnd_words(A0, 4); rnd_words(A1, 8); a[0] = A0; a[1] = A1; }
+static void s_p_p(uint32_t a[8])
+{
+    rnd_words(A0, 16); rnd_words(A1, 16);
+    /* Packet lengths that sometimes fit together and sometimes do not. */
+    *(uint8_t*)(uintptr_t)(A0 + 3) = (uint8_t)rnd_small(12);
+    *(uint8_t*)(uintptr_t)(A1 + 3) = (uint8_t)rnd_small(12);
+    a[0] = A0; a[1] = A1;
+}
+static void s_none(uint32_t a[8]) { (void)a; }
+static void s_p(uint32_t a[8]) { rnd_words(A0, 16); a[0] = A0; }
+static void s_p_flag(uint32_t a[8]) { rnd_words(A0, 16); a[0] = A0; a[1] = rnd() % 3 ? (uint32_t)rnd_small(2) : rnd(); }
+static void s_tpage(uint32_t a[8])
+{
+    a[0] = (uint32_t)rnd_small(4); a[1] = (uint32_t)rnd_small(4);
+    a[2] = rnd() % 4 ? (uint32_t)rnd_small(1024) : rnd(); a[3] = rnd() % 4 ? (uint32_t)rnd_small(1024) : rnd();
+}
+static void s_clut(uint32_t a[8]) { a[0] = rnd() % 4 ? (uint32_t)rnd_small(1024) : rnd(); a[1] = rnd() % 4 ? (uint32_t)rnd_small(512) : rnd(); }
+static void s_drawtpage(uint32_t a[8])
+{
+    rnd_words(A0, 4); a[0] = A0;
+    a[1] = rnd() % 3 ? (uint32_t)rnd_small(2) : rnd(); a[2] = rnd() % 3 ? (uint32_t)rnd_small(2) : rnd(); a[3] = rnd();
+}
+static void s_drawoffset(uint32_t a[8]) { rnd_words(A0, 4); rnd_words(A1, 2); a[0] = A0; a[1] = A1; }
+static void s_drawmove(uint32_t a[8])
+{
+    rnd_words(A0, 8); rnd_words(A1, 2);
+    if (rnd() % 4 == 0) { w16(A1 + 4, 0); }
+    a[0] = A0; a[1] = A1; a[2] = (uint32_t)rnd_small(1024); a[3] = (uint32_t)rnd_small(512);
+}
+static void s_defenv(uint32_t a[8])
+{
+    rnd_words(A0, 32); a[0] = A0;
+    a[1] = (uint32_t)rnd_small(1024); a[2] = (uint32_t)rnd_small(512);
+    a[3] = (uint32_t)(rnd() % 2 ? 256 + rnd_small(385) : rnd_small(1024));
+    a[4] = (uint32_t)(rnd() % 2 ? 200 + rnd_small(300) : rnd_small(512));
+}
+static void s_gsclearot(uint32_t a[8])
+{
+    rnd_words(A0, 8); rnd_words(A1, 64);
+    w32(A0, (int32_t)(rnd() % 7));   /* length: up to 64 entries */
+    w32(A0 + 4, (int32_t)A1);        /* org */
+    a[0] = (uint32_t)rnd() & 0xFFFF; a[1] = (uint32_t)rnd() & 0xFFFF; a[2] = A0;
+}
+
 #define LIB_CASES(X)                                \
     X(rsin, s_angle)                                \
     X(rcos, s_angle)                                \
@@ -191,7 +244,24 @@ static void s_sv_sv(uint32_t a[8]) { rnd_svector(A0, 0); rnd_svector(A1, 0); a[0
     X(MatrixNormal_2, s_m_m)                        \
     X(VectorNormal, s_normal_v_v)                          \
     X(VectorNormalS, s_normal_v_sv)                        \
-    X(VectorNormalSS, s_normal_sv_sv)
+    X(VectorNormalSS, s_normal_sv_sv)              \
+    X(AddPrim, s_ot_p)                              \
+    X(MargePrim, s_p_p)                             \
+    X(SetSprt, s_p)                                 \
+    X(SetTile, s_p)                                 \
+    X(SetPolyFT4, s_p)                              \
+    X(SetSemiTrans, s_p_flag)                       \
+    X(SetShadeTex, s_p_flag)                        \
+    X(GetTPage, s_tpage)                            \
+    X(GetClut, s_clut)                              \
+    X(SetDrawTPage, s_drawtpage)                    \
+    X(SetDrawStp, s_p_flag)                         \
+    X(SetDrawOffset, s_drawoffset)                  \
+    X(SetDrawMove, s_drawmove)                      \
+    X(SetDefDrawEnv, s_defenv)                      \
+    X(SetDefDispEnv, s_defenv)                      \
+    X(GsClearOt, s_gsclearot)                       \
+    X(BreakDraw, s_none)
 
 #define DECLARE(n, s) uint32_t pcrt_##n(); uint32_t pcrt_stub_##n();
 LIB_CASES(DECLARE)
@@ -203,7 +273,9 @@ static const LibCase cases[] = {LIB_CASES(ENTRY)};
 static int is_void(const char* name)
 {
     static const char* const names[] = {"SetRotMatrix", "SetTransMatrix", "MatrixNormal", "MatrixNormal_0",
-                                        "MatrixNormal_1", "MatrixNormal_2"};
+                                        "MatrixNormal_1", "MatrixNormal_2", "AddPrim", "SetSprt",
+                                        "SetTile", "SetPolyFT4", "SetSemiTrans", "SetShadeTex", "SetDrawTPage",
+                                        "SetDrawStp", "SetDrawOffset", "SetDrawMove", "GsClearOt"};
     for (size_t i = 0; i < sizeof names / sizeof names[0]; i++) {
         if (strcmp(name, names[i]) == 0) {
             return 1;
@@ -244,8 +316,8 @@ static int report(const LibCase* c, const uint32_t args[8], const State* before,
     if (!differs) {
         return 0;
     }
-    fprintf(stderr, "[libtest] %s(0x%08X, 0x%08X, 0x%08X, 0x%08X) differs:\n", c->name, args[0], args[1],
-            args[2], args[3]);
+    fprintf(stderr, "[libtest] %s(0x%08X, 0x%08X, 0x%08X, 0x%08X, 0x%08X) differs:\n", c->name, args[0],
+            args[1], args[2], args[3], args[4]);
     for (int area = 0; area < 4; area++) {
         const int32_t* w = (const int32_t*)(before->ram + area * 0x100);
         fprintf(stderr, "    in A%d:", area);
@@ -375,7 +447,7 @@ static int dump(const char* spec)
                 pc_runtime_fn_interpret(psx_addr, 0);
             }
             capture(&after, ret);
-            printf("args %08X %08X %08X %08X", args[0], args[1], args[2], args[3]);
+            printf("args %08X %08X %08X %08X %08X", args[0], args[1], args[2], args[3], args[4]);
             for (int area = 0; area < 4; area++) {
                 printf(" in%d", area);
                 for (int w = 0; w < 8; w++) {
