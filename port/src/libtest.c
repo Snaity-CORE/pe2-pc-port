@@ -178,6 +178,17 @@ static void s_p_p(uint32_t a[8])
     a[0] = A0; a[1] = A1;
 }
 static void s_none(uint32_t a[8]) { (void)a; }
+/* DecDCTBufSize: a BS header with a varied size field. */
+static void s_bsheader(uint32_t a[8]) { rnd_words(A0, 4); a[0] = A0; }
+/* DecDCTin: a run-length buffer whose header word holds a varied command and
+ * a small size, and a mode 0-3. */
+static void s_dctin(uint32_t a[8])
+{
+    rnd_words(A0, 40);
+    w32(A0, (int32_t)((rnd() & 0xFFFF0000u) | 16u));
+    a[0] = A0;
+    a[1] = (uint32_t)rnd_small(4);
+}
 static void s_p(uint32_t a[8]) { rnd_words(A0, 16); a[0] = A0; }
 static void s_p_flag(uint32_t a[8]) { rnd_words(A0, 16); a[0] = A0; a[1] = rnd() % 3 ? (uint32_t)rnd_small(2) : rnd(); }
 static void s_tpage(uint32_t a[8])
@@ -262,7 +273,9 @@ static void s_gsclearot(uint32_t a[8])
     X(SetDefDispEnv, s_defenv)                      \
     X(GsClearOt, s_gsclearot)                       \
     X(BreakDraw, s_none)                            \
-    X(InitGeom, s_none)
+    X(InitGeom, s_none)                             \
+    X(DecDCTin, s_dctin)                            \
+    X(DecDCTBufSize, s_bsheader)
 
 #define DECLARE(n, s) uint32_t pcrt_##n(); uint32_t pcrt_stub_##n();
 LIB_CASES(DECLARE)
@@ -277,7 +290,7 @@ static int is_void(const char* name)
                                         "MatrixNormal_1", "MatrixNormal_2", "AddPrim", "SetSprt",
                                         "SetTile", "SetPolyFT4", "SetSemiTrans", "SetShadeTex", "SetDrawTPage",
                                         "SetDrawStp", "SetDrawOffset", "SetDrawMove", "GsClearOt",
-                                        "InitGeom"};
+                                        "InitGeom", "DecDCTin"};
     for (size_t i = 0; i < sizeof names / sizeof names[0]; i++) {
         if (strcmp(name, names[i]) == 0) {
             return 1;
@@ -602,8 +615,213 @@ static int heap(const char* spec)
     return 0;
 }
 
+/* PE2_LIBTEST=peek:<address>:<words>: prints PSX RAM words after the main
+ * executable loads (for comparing data the port computes with the
+ * original's, never for copying it). */
+static int peek(const char* spec)
+{
+    unsigned long addr = 0, n = 0;
+    if (sscanf(spec, "peek:%lx:%lu", &addr, &n) < 2) {
+        return 1;
+    }
+    for (unsigned long i = 0; i < n; i++) {
+        printf("%08lX\n", (unsigned long)*(const uint32_t*)(uintptr_t)(addr + 4 * i));
+    }
+    fflush(stdout);
+    return 0;
+}
+
+/* PE2_LIBTEST=mdecreset: DecDCTReset(0) must load the MDEC with the same
+ * tables as the original. */
+void pc_mdec_tables(uint8_t out[256]);
+uint32_t pcrt_DecDCTReset(); uint32_t pcrt_stub_DecDCTReset();
+
+static int mdec_reset(void)
+{
+    uint8_t want[256], got[256];
+    uint32_t addr = psx_address_of((LibFn)pcrt_DecDCTReset);
+    if (addr && (LibFn)pcrt_DecDCTReset != (LibFn)pcrt_stub_DecDCTReset) {
+        pc_runtime_fn_interpret(addr, 1);
+    }
+    ((LibFn)pcrt_stub_DecDCTReset)(0, 0, 0, 0, 0, 0, 0, 0);
+    if (addr) {
+        pc_runtime_fn_interpret(addr, 0);
+    }
+    pc_mdec_tables(want);
+    ((LibFn)pcrt_DecDCTReset)(0, 0, 0, 0, 0, 0, 0, 0);
+    pc_mdec_tables(got);
+    for (int i = 0; i < 256; i++) {
+        if (want[i] != got[i]) {
+            fprintf(stderr, "[libtest] mdecreset: byte %d original %02X port %02X\n", i, want[i], got[i]);
+            return 1;
+        }
+    }
+    fprintf(stderr, "[libtest] mdecreset ok\n");
+    return 0;
+}
+
+/* PE2_LIBTEST=vlcbuild[!]: DecDCTvlcBuild's table, built at VLC_TABLE:
+ * printed for the original, or (with !) compared with the port's. */
+#define VLC_TABLE 0x80120000u
+#define VLC_TABLE_BYTES 0x11000u
+uint32_t pcrt_DecDCTvlcBuild(); uint32_t pcrt_stub_DecDCTvlcBuild();
+
+static int vlc_build(int compare)
+{
+    static uint8_t want[VLC_TABLE_BYTES];
+    uint8_t* table = (uint8_t*)(uintptr_t)VLC_TABLE;
+    memset(table, 0xCD, VLC_TABLE_BYTES);
+    uint32_t addr = psx_address_of((LibFn)pcrt_DecDCTvlcBuild);
+    int native = (LibFn)pcrt_DecDCTvlcBuild != (LibFn)pcrt_stub_DecDCTvlcBuild;
+    if (addr && native) {
+        pc_runtime_fn_interpret(addr, 1);
+    }
+    ((LibFn)pcrt_stub_DecDCTvlcBuild)(VLC_TABLE, 0, 0, 0, 0, 0, 0, 0);
+    if (addr && native) {
+        pc_runtime_fn_interpret(addr, 0);
+    }
+    if (!compare) {
+        for (uint32_t i = 0; i < VLC_TABLE_BYTES / 2; i++) {
+            printf("%04X\n", ((const uint16_t*)table)[i]);
+        }
+        fflush(stdout);
+        return 0;
+    }
+    memcpy(want, table, VLC_TABLE_BYTES);
+    memset(table, 0xCD, VLC_TABLE_BYTES);
+    ((LibFn)pcrt_DecDCTvlcBuild)(VLC_TABLE, 0, 0, 0, 0, 0, 0, 0);
+    for (uint32_t i = 0; i < VLC_TABLE_BYTES / 2; i++) {
+        uint16_t w = ((const uint16_t*)want)[i], g = ((const uint16_t*)table)[i];
+        if (w != g) {
+            fprintf(stderr, "[libtest] vlcbuild: entry %u original %04X port %04X\n", i, w, g);
+            return 1;
+        }
+    }
+    fprintf(stderr, "[libtest] vlcbuild ok\n");
+    return 0;
+}
+
+/* PE2_LIBTEST=vlcfile[!]:<size2>:<file>: decodes a captured bitstream
+ * with DecDCTvlcSize2(size2) and DecDCTvlc2 (first with the stream, then
+ * NULL until it returns 0); prints the original's calls and output, or
+ * (with !) compares the port's with it. Each side uses the table its own
+ * DecDCTvlcBuild makes. */
+#define VLC_BS     0x80140000u
+#define VLC_OUT    0x80160000u
+#define VLC_OUT_BYTES 0x40000u
+uint32_t pcrt_DecDCTvlcSize2(); uint32_t pcrt_stub_DecDCTvlcSize2();
+uint32_t pcrt_DecDCTvlc2(); uint32_t pcrt_stub_DecDCTvlc2();
+
+static uint32_t call_lib(int original, LibFn native, LibFn stub, uint32_t a0, uint32_t a1, uint32_t a2)
+{
+    if (!original) {
+        return native(a0, a1, a2, 0, 0, 0, 0, 0);
+    }
+    uint32_t addr = psx_address_of(native);
+    int replaced = native != stub;
+    if (addr && replaced) {
+        pc_runtime_fn_interpret(addr, 1);
+    }
+    uint32_t r = stub(a0, a1, a2, 0, 0, 0, 0, 0);
+    if (addr && replaced) {
+        pc_runtime_fn_interpret(addr, 0);
+    }
+    return r;
+}
+
+static int vlc_decode(int original, int size2, uint32_t rets[4096])
+{
+    memset((void*)(uintptr_t)VLC_OUT, 0xCD, VLC_OUT_BYTES);
+    memset((void*)(uintptr_t)VLC_TABLE, 0, VLC_TABLE_BYTES);
+    call_lib(original, (LibFn)pcrt_DecDCTvlcBuild, (LibFn)pcrt_stub_DecDCTvlcBuild, VLC_TABLE, 0, 0);
+    call_lib(original, (LibFn)pcrt_DecDCTvlcSize2, (LibFn)pcrt_stub_DecDCTvlcSize2, (uint32_t)size2, 0, 0);
+    int n = 0;
+    uint32_t r = call_lib(original, (LibFn)pcrt_DecDCTvlc2, (LibFn)pcrt_stub_DecDCTvlc2, VLC_BS, VLC_OUT, VLC_TABLE);
+    rets[n++] = r;
+    while (r != 0 && n < 4096) {
+        if (getenv("PE2_VLCPROGRESS")) {
+            uint32_t w = 0;
+            while (w < VLC_OUT_BYTES / 4 && ((const uint32_t*)(uintptr_t)VLC_OUT)[w] != 0xCDCDCDCDu) {
+                w++;
+            }
+            fprintf(stderr, "[vlc] after call %d: %u words\n", n, w);
+        }
+        r = call_lib(original, (LibFn)pcrt_DecDCTvlc2, (LibFn)pcrt_stub_DecDCTvlc2, 0, 0, VLC_TABLE);
+        rets[n++] = r;
+    }
+    return n;
+}
+
+static int vlc_file(const char* spec)
+{
+    int compare = spec[7] == '!';
+    int size2 = atoi(spec + 9);
+    const char* path = strchr(spec + 9, ':');
+    if (!path) {
+        return 1;
+    }
+    path++;
+    FILE* f = fopen(path, "rb");
+    if (!f) {
+        fprintf(stderr, "[libtest] cannot open %s\n", path);
+        return 1;
+    }
+    size_t len = fread((void*)(uintptr_t)VLC_BS, 1, 0x10000, f);
+    fclose(f);
+    (void)len;
+    static uint8_t want[VLC_OUT_BYTES];
+    static uint32_t want_rets[4096], got_rets[4096];
+    int nw = vlc_decode(1, size2, want_rets);
+    if (!compare) {
+        printf("calls %d:", nw);
+        for (int i = 0; i < nw; i++) {
+            printf(" %08X", want_rets[i]);
+        }
+        printf("\n");
+        for (uint32_t i = 0; i < VLC_OUT_BYTES / 4; i++) {
+            printf("%08X\n", ((const uint32_t*)(uintptr_t)VLC_OUT)[i]);
+        }
+        fflush(stdout);
+        return 0;
+    }
+    memcpy(want, (void*)(uintptr_t)VLC_OUT, VLC_OUT_BYTES);
+    int ng = vlc_decode(0, size2, got_rets);
+    /* With a limit the two split the frame at different points: only the
+     * decoded data has to match. */
+    if (size2 == 0 && (nw != ng || memcmp(want_rets, got_rets, sizeof(uint32_t) * (size_t)nw) != 0)) {
+        fprintf(stderr, "[libtest] vlcfile %s: calls differ (%d vs %d)", path, nw, ng);
+        for (int i = 0; i < nw && i < 8; i++) {
+            fprintf(stderr, " %08X/%08X", want_rets[i], i < ng ? got_rets[i] : 0);
+        }
+        fprintf(stderr, "\n");
+        return 1;
+    }
+    const uint32_t* g = (const uint32_t*)(uintptr_t)VLC_OUT;
+    const uint32_t* w = (const uint32_t*)want;
+    for (uint32_t i = 0; i < VLC_OUT_BYTES / 4; i++) {
+        if (w[i] != g[i]) {
+            fprintf(stderr, "[libtest] vlcfile %s: word %u original %08X port %08X\n", path, i, w[i], g[i]);
+            return 1;
+        }
+    }
+    fprintf(stderr, "[libtest] vlcfile ok (%d calls)\n", nw);
+    return 0;
+}
+
 int pc_libtest(const char* spec)
 {
+    if (strncmp(spec, "vlcfile", 7) == 0) {
+        return vlc_file(spec);
+    }
+    if (strncmp(spec, "vlcbuild", 8) == 0) {
+        return vlc_build(spec[8] == '!');
+    }
+    if (strcmp(spec, "mdecreset") == 0) {
+        return mdec_reset();
+    }
+    if (strncmp(spec, "peek:", 5) == 0) {
+        return peek(spec);
+    }
     if (strncmp(spec, "heap", 4) == 0 && (spec[4] == ':' || spec[4] == '!')) {
         return heap(spec);
     }

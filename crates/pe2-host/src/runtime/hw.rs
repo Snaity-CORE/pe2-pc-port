@@ -57,8 +57,17 @@ fn ram_word(addr: u32) -> *mut u32 {
     (0x8000_0000 | (addr & 0x00FF_FFFC)) as *mut u32
 }
 
+/// The MDEC's loaded tables (luma and chroma quantization, scale), for tests.
+pub fn mdec_tables() -> ([u8; 64], [u8; 64], [i16; 64]) {
+    let _g = irq::guard();
+    with_hw(|h| h.mdec.tables())
+}
+
 pub fn read32(addr: u32) -> u32 {
     let _g = irq::guard();
+    if trace("hw") {
+        eprintln!("[hw] read 0x{addr:08X}");
+    }
     with_hw(|h| match addr {
         MDEC0 => h.mdec.output.pop_front().unwrap_or(0),
         MDEC1 => h.mdec.status(),
@@ -82,6 +91,9 @@ pub fn read32(addr: u32) -> u32 {
 
 pub fn write32(addr: u32, v: u32) {
     let _g = irq::guard();
+    if trace("hw") {
+        eprintln!("[hw] write 0x{addr:08X} = 0x{v:08X}");
+    }
     let completed = with_hw(|h| match addr {
         MDEC0 => {
             h.mdec.write_word(v);

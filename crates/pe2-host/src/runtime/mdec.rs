@@ -117,6 +117,11 @@ impl Mdec {
     }
 
     /// MDEC1 status for libpress's polling.
+    /// The loaded quantization (luma, chroma) and scale tables, for tests.
+    pub fn tables(&self) -> ([u8; 64], [u8; 64], [i16; 64]) {
+        (self.luma_q, self.chroma_q, self.scale)
+    }
+
     pub fn status(&self) -> u32 {
         let mut s = 0u32;
         if self.output.is_empty() {

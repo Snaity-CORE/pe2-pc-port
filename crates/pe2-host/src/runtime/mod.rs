@@ -5,6 +5,7 @@ pub mod cdrom;
 pub mod gpu;
 pub mod hw;
 pub mod irq;
+pub mod libpress;
 pub mod lowmem;
 pub mod mdec;
 pub mod memcard;
