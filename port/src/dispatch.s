@@ -35,3 +35,14 @@ _pc_interp_entry:
     calll _pc_mips_call
     addl $8, %esp
     retl
+
+# Entry into a game function under PE2_SHADOW: eax = its shadow slot; run
+# the original and the native body from the same state and compare.
+    .globl _pc_shadow_entry
+_pc_shadow_entry:
+    leal 4(%esp), %ecx
+    pushl %ecx
+    pushl %eax
+    calll _pc_shadow_call
+    addl $8, %esp
+    retl

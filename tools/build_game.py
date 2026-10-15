@@ -87,6 +87,24 @@ def run(cmd: list, **kw) -> None:
 SDK_HEADERS = ROOT / "port" / "include" / "psyq"
 
 
+# Native-only sources in the decomp (not part of the PSX build), compiled as
+# extra units: (object, source, image, unit whose defines they share).
+PORT_UNITS = [
+    ("main/pc/hasm", "src/main/pc/hasm.c", "main", "main/fs"),
+]
+
+
+def add_port_units(units: list[dict], keep: dict[str, list[str]]):
+    """Appends PORT_UNITS to the unit list, with the defines of a sibling
+    unit of the same image."""
+    by_object = {u["object"]: u for u in units}
+    for obj, source, image, sibling in PORT_UNITS:
+        units.append({"object": obj, "source": source, "defines": dict(by_object[sibling]["defines"]),
+                      "overlays": [image]})
+        keep[obj] = []
+    return units, keep
+
+
 def check_no_sdk_headers() -> None:
     """The native build uses the port's own SDK headers only. A header the
     port does not have yet would silently come from the decomp's SDK copy
@@ -196,6 +214,9 @@ def main() -> None:
     print("[2/5] compile")
     units = json.loads((BUILD / "units.json").read_text())
     keep = static_functions(units)
+    units, keep = add_port_units(units, keep)
+    all_units = BUILD / "units_port.json"
+    all_units.write_text(json.dumps(units, indent=1), encoding="utf-8")
     cflags = GAME_CFLAGS + (SANITIZE_CFLAGS if args.sanitize else [])
     # Every unit is recompiled when the flags or include paths change (e.g.
     # into or out of a sanitized build).
@@ -213,7 +234,7 @@ def main() -> None:
     check_no_sdk_headers()
 
     print("[3/5] pclink")
-    run([sys.executable, tools / "pclink.py", *(["--route-calls"] if args.route_calls else [])])
+    run([sys.executable, tools / "pclink.py", "--units", all_units, *(["--route-calls"] if args.route_calls else [])])
     print("      " + (LINK_DIR / "report.txt").read_text().split("\n\n")[0].replace("\n", "\n      "))
 
     print("[4/5] runtime")
