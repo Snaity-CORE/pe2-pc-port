@@ -41,6 +41,7 @@ INCLUDES = [
     DECOMP / "include",
     DECOMP / "build",
     DECOMP / "build" / "include",
+    ROOT / "port" / "include" / "psyq",  # the port's own SDK headers first
     DECOMP / "include" / "psyq",
     DECOMP / "include" / "decomp",
 ]
@@ -80,6 +81,11 @@ def run(cmd: list, **kw) -> None:
     if proc.returncode:
         sys.stderr.write(proc.stdout + proc.stderr)
         raise SystemExit(f"command failed: {' '.join(map(str, cmd[:6]))} ...")
+
+
+# The port's own SDK headers. The decomp includes them as <psyq/NAME.h>,
+# which port/include resolves before decomp/include.
+SDK_HEADERS = ROOT / "port" / "include" / "psyq"
 
 
 def outdated(target: Path, deps: list[Path]) -> bool:
@@ -174,12 +180,16 @@ def main() -> None:
     units = json.loads((BUILD / "units.json").read_text())
     keep = static_functions(units)
     cflags = GAME_CFLAGS + (SANITIZE_CFLAGS if args.sanitize else [])
-    # Every unit is recompiled when the flags change (e.g. into or out of a
-    # sanitized build).
+    # Every unit is recompiled when the flags or include paths change (e.g.
+    # into or out of a sanitized build).
     stamp = OBJ_DIR / "cflags.txt"
     OBJ_DIR.mkdir(parents=True, exist_ok=True)
-    if not stamp.exists() or stamp.read_text(encoding="utf-8") != " ".join(cflags):
-        stamp.write_text(" ".join(cflags), encoding="utf-8")
+    # A new port SDK header shadows the decomp's without touching any
+    # dependency file, so their names are part of the signature too.
+    sdk_headers = sorted(h.relative_to(SDK_HEADERS).as_posix() for h in SDK_HEADERS.rglob("*.h"))
+    signature = " ".join([*cflags, *(str(i) for i in INCLUDES), *sdk_headers])
+    if not stamp.exists() or stamp.read_text(encoding="utf-8") != signature:
+        stamp.write_text(signature, encoding="utf-8")
     with concurrent.futures.ThreadPoolExecutor(os.cpu_count()) as pool:
         built = sum(pool.map(lambda u: compile_unit(u, keep[u["object"]], cflags, stamp), units))
     print(f"      {built} of {len(units)} units recompiled")
