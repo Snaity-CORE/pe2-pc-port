@@ -737,3 +737,28 @@ void pcrt_InitGeom(void)
     pcgte_write_ctrl(PCGTE_ZSF3, 0x155);
     pcgte_write_ctrl(PCGTE_ZSF4, 0x100);
 }
+
+/* ---- natural logarithm --------------------------------------------------- */
+
+/* ln(a / 4096) * 4096. The exponent comes from the leading zeros (GTE
+ * LZCS/LZCR) as (k - 12) * 2839, 2839 being ln 2 in this scale, so powers of
+ * two are exact; the mantissa's share is ln(m) * 4096 rounded down and kept
+ * below 2839. The original takes that share from tables and is up to a few
+ * units lower; the game only divides the result by 2839 (an integer log2),
+ * where the two always agree. a <= 0 has no logarithm: 0 here, a value read
+ * from past the original's tables there. */
+int pcrt_cln(int a)
+{
+    pcgte_write_data(PCGTE_LZCS, (uint32_t)a);
+    int lz = (int)pcgte_read_data(PCGTE_LZCR);
+    if (a <= 0) {
+        return 0;
+    }
+    int k = 31 - lz;
+    double m = (double)a / (double)(1u << k);
+    int f = (int)floor(log(m) * 4096.0);
+    if (f > 2838) {
+        f = 2838;
+    }
+    return (k - 12) * 2839 + f;
+}
