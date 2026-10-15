@@ -414,17 +414,17 @@ int pc_install_thunks(const char* image)
             void (*entry)(void) = should_interpret(image, addr) ? interp_entry_for(addr) : NULL;
             int shadowed = entry ? 0 : should_shadow(addr);
             void (*shadow_entry)(void) = shadowed ? shadow_entry_for(addr, t->thunks[j].native, shadowed == 2) : NULL;
-            if (shadow_entry) {
-                /* A native thunk to the comparison, keeping the original
-                 * words for the interpreter (pc_runtime_fn_interpret). */
-                PatchedCode* slot = patch_slot(addr);
-                slot->addr = addr;
-                memcpy(slot->words, pc_psx_ptr(addr), sizeof(slot->words));
-                install_thunk(addr, shadow_entry);
-            } else if (entry)
+            if (entry) {
                 install_interpreted(addr, entry);
-            else
-                install_thunk(addr, t->thunks[j].native);
+                continue;
+            }
+            /* A native thunk (to the function or to the comparison), keeping
+             * the original words so pc_runtime_fn_interpret can still run
+             * the MIPS code. */
+            PatchedCode* slot = patch_slot(addr);
+            slot->addr = addr;
+            memcpy(slot->words, pc_psx_ptr(addr), sizeof(slot->words));
+            install_thunk(addr, shadow_entry ? shadow_entry : t->thunks[j].native);
         }
         return (int)t->count;
     }

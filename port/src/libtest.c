@@ -808,8 +808,250 @@ static int vlc_file(const char* spec)
     return 0;
 }
 
+/* ---- TMD stream handlers ------------------------------------------------ */
+
+/* PE2_LIBTEST=tmd[:iterations]: the TMD stream handlers (game functions,
+ * ported from Square's assembly) against the original code, on synthetic
+ * scenes: a workspace, geometry, depth cache, ordering table and packets,
+ * with sensible GTE matrices or random registers. Each handler runs as the
+ * second record of a stream walked by Tmd_DispatchStream, after an empty
+ * tmdSkipStreamRecord, so it is entered as in the game (the reversed GT4
+ * walk can read the previous handler's result). The whole scene, the GTE
+ * and the return value are compared. */
+unsigned pc_mips_call(unsigned addr, const unsigned* args);
+
+#define TMD_DISPATCH  0x80010A20u
+#define TMD_SKIP      0x800105ACu
+#define TMD_REGION    0x80120000u
+#define TMD_REGION_SZ 0x4000u
+#define TMD_WS        (TMD_REGION + 0x0000u)
+#define TMD_STREAM    (TMD_REGION + 0x0100u)
+#define TMD_VERTS     (TMD_REGION + 0x0800u)
+#define TMD_NORMALS   (TMD_REGION + 0x0A00u)
+#define TMD_DEPTHS    (TMD_REGION + 0x1000u)
+#define TMD_OT        (TMD_REGION + 0x2000u)
+#define TMD_PACKETS   (TMD_REGION + 0x3000u)
+#define TMD_ENTRIES   64 /* vertices and normals */
+
+typedef struct {
+    uint32_t addr;
+    const char* name;
+    int words;      /* element words the handler reads */
+    int word2_full; /* word 2 is a whole-word normal offset */
+    int quad;       /* vertex 3 may repeat the previous vertex 0 */
+    int xform;      /* the vertex may repeat the previous element's */
+} TmdHandler;
+
+static const TmdHandler tmd_handlers[] = {
+    {0x800105CCu, "G3PreXformSemiTrans", 2, 0, 0, 0},
+    {0x800105F4u, "G3PreXform", 2, 0, 0, 0},
+    {0x800106F0u, "G4PreXformSemiTrans", 2, 0, 0, 0},
+    {0x80010718u, "G4PreXform", 2, 0, 0, 0},
+    {0x80010A90u, "G3CornerNormals", 4, 0, 0, 0},
+    {0x80010BF4u, "G4CornerNormals", 5, 0, 1, 0},
+    {0x80010E1Cu, "XformVertsElemColor", 3, 0, 0, 1},
+    {0x80010EF4u, "Gt3SemiTrans", 3, 0, 0, 0},
+    {0x80010F08u, "Gt3", 3, 0, 0, 0},
+    {0x8001108Cu, "Gt4SemiTrans", 4, 0, 1, 0},
+    {0x800110A0u, "Gt4", 4, 0, 1, 0},
+    {0x800112DCu, "XformVerts", 2, 0, 0, 1},
+    {0x800113B4u, "Gt3PreXformSemiTrans", 2, 0, 0, 0},
+    {0x800113E8u, "Gt3PreXform", 2, 0, 0, 0},
+    {0x800114FCu, "Gt4PreXformSemiTrans", 2, 0, 0, 0},
+    {0x80011530u, "Gt4PreXform", 2, 0, 0, 0},
+    {0x80011678u, "G3", 3, 0, 0, 0},
+    {0x800117BCu, "G4", 4, 1, 1, 0},
+    {0x80011994u, "Gt3OneNormalSemiTrans", 2, 0, 0, 0},
+    {0x800119A8u, "Gt3OneNormal", 2, 0, 0, 0},
+    {0x80011AF4u, "Gt4OneNormal", 3, 1, 1, 0},
+    {0x80011B08u, "Gt4OneNormalSemiTrans", 3, 1, 1, 0},
+    {0x8001237Cu, "Gt3CornerColors", 6, 0, 0, 0},
+    {0x80012520u, "Gt4CornerColors", 8, 0, 1, 0},
+};
+
+static uint32_t tmd_offset_pair(void)
+{
+    return (8u * (rnd() % TMD_ENTRIES)) | ((8u * (rnd() % TMD_ENTRIES)) << 16);
+}
+
+static int16_t tmd_short(int range) { return (int16_t)((int32_t)(rnd() % (uint32_t)(2 * range + 1)) - range); }
+
+/* GTE control registers of a plausible model transform; the data
+ * registers stay random. */
+static void tmd_sensible_gte(uint32_t gte[64])
+{
+    uint32_t* c = gte + 32;
+    for (int r = 0; r < 5; r++) {
+        c[r] = (uint16_t)tmd_short(4096) | ((uint32_t)(uint16_t)tmd_short(4096) << 16);
+    }
+    c[5] = (uint32_t)tmd_short(1000);
+    c[6] = (uint32_t)tmd_short(1000);
+    c[7] = (uint32_t)(int32_t)(rnd() % 8 ? 200 + rnd() % 6000 : (uint32_t)tmd_short(400));
+    for (int r = 8; r < 24; r++) {
+        c[r] = (uint16_t)tmd_short(4096) | ((uint32_t)(uint16_t)tmd_short(4096) << 16);
+    }
+    for (int r = 13; r < 16; r++) {
+        c[r] = rnd() % 0x2000;
+    }
+    for (int r = 21; r < 24; r++) {
+        c[r] = rnd() % 0x2000;
+    }
+    c[24] = (160u + rnd() % 64) << 16;
+    c[25] = (120u + rnd() % 64) << 16;
+    c[26] = 200 + rnd() % 800;
+    c[29] = rnd() % 0x1000;
+    c[30] = rnd() % 0x1000;
+}
+
+static void tmd_scene(const TmdHandler* h, uint32_t gte[64], uint32_t* flags)
+{
+    for (uint32_t a = TMD_REGION; a < TMD_REGION + TMD_REGION_SZ; a += 4) {
+        w32(a, (int32_t)rnd());
+    }
+    int sensible = rnd() % 4 != 0;
+    for (int i = 0; i < TMD_ENTRIES; i++) {
+        uint32_t v = TMD_VERTS + 8u * i, n = TMD_NORMALS + 8u * i;
+        int range = sensible ? 1500 : 32767;
+        w16(v, tmd_short(range));
+        w16(v + 2, tmd_short(range));
+        w16(v + 4, tmd_short(range));
+        w16(n, tmd_short(4096));
+        w16(n + 2, tmd_short(4096));
+        w16(n + 4, tmd_short(4096));
+    }
+    for (uint32_t i = 0; i < 1024; i++) {
+        uint32_t d = rnd() & 0xFFFF;
+        w32(TMD_DEPTHS + 4 * i, (int32_t)(rnd() % 4 ? d : d | 0x80000000u));
+    }
+
+    int stride = h->words + (int)(rnd() % 3);
+    int count  = (int)(rnd() % 13);
+    uint32_t* s = (uint32_t*)(uintptr_t)TMD_STREAM;
+    s[0] = rnd();
+    s[1] = TMD_SKIP;
+    s[2] = 1 + rnd() % 4; /* no elements */
+    s[3] = rnd();
+    s[4] = h->addr;
+    s[5] = ((uint32_t)count << 16) | (uint32_t)stride;
+    uint32_t* e = s + 6;
+    for (int i = 0; i < count; i++, e += stride) {
+        for (int w = 0; w < stride; w++) {
+            e[w] = w < 4 ? tmd_offset_pair() : rnd();
+        }
+        if (h->word2_full) {
+            e[2] = 8u * (rnd() % TMD_ENTRIES);
+        }
+        if (i > 0 && rnd() % 2) {
+            if (h->quad) {
+                e[1] = (e[1] & 0xFFFF) | ((e - stride)[0] << 16);
+            } else if (h->xform) {
+                e[0] = (e[0] & 0xFFFF0000u) | ((e - stride)[0] & 0xFFFF);
+            }
+        }
+    }
+    e[0] = (uint32_t)-2;
+
+    uint32_t* ws = (uint32_t*)(uintptr_t)TMD_WS;
+    ws[0] = TMD_PACKETS;
+    ws[1] = TMD_PACKETS;
+    ws[2] = TMD_VERTS;
+    ws[3] = TMD_NORMALS;
+    ws[4] = TMD_DEPTHS;
+    ws[5] = TMD_OT;
+    ws[0x84 / 4] = rnd() % 4 ? rnd() % 4 : rnd();
+
+    static const uint32_t flag_choices[] = {0, 0x02, 0x10, 0x12};
+    *flags = rnd() % 5 ? flag_choices[rnd() % 4] : rnd();
+
+    for (int r = 0; r < 64; r++) {
+        gte[r] = rnd();
+    }
+    if (sensible) {
+        tmd_sensible_gte(gte);
+    }
+}
+
+static int tmd_test(const char* spec)
+{
+    const char* colon = strchr(spec, ':');
+    int iterations = colon ? atoi(colon + 1) : 2000;
+    static uint8_t before[TMD_REGION_SZ], want[TMD_REGION_SZ];
+    uint8_t* region = (uint8_t*)(uintptr_t)TMD_REGION;
+    int failed = 0;
+    typedef uint32_t (*Dispatch)(uint32_t, uint32_t, uint32_t);
+
+    for (size_t k = 0; k < sizeof tmd_handlers / sizeof tmd_handlers[0]; k++) {
+        const TmdHandler* h = &tmd_handlers[k];
+        int failures = 0;
+        for (int it = 0; it < iterations && failures < 3; it++) {
+            uint32_t gte[64], gte_want[64], gte_got[64], flags;
+            tmd_scene(h, gte, &flags);
+            memcpy(before, region, TMD_REGION_SZ);
+
+            uint32_t args[8] = {TMD_WS, flags, TMD_STREAM};
+            pcgte_restore(gte);
+            pc_runtime_fn_interpret(TMD_DISPATCH, 1);
+            pc_runtime_fn_interpret(TMD_SKIP, 1);
+            pc_runtime_fn_interpret(h->addr, 1);
+            uint32_t ret_want = pc_mips_call(TMD_DISPATCH, args);
+            pc_runtime_fn_interpret(h->addr, 0);
+            pc_runtime_fn_interpret(TMD_SKIP, 0);
+            pc_runtime_fn_interpret(TMD_DISPATCH, 0);
+            pcgte_save(gte_want);
+            memcpy(want, region, TMD_REGION_SZ);
+
+            memcpy(region, before, TMD_REGION_SZ);
+            pcgte_restore(gte);
+            uint32_t ret_got = ((Dispatch)(uintptr_t)TMD_DISPATCH)(TMD_WS, flags, TMD_STREAM);
+            pcgte_save(gte_got);
+            /* The dispatcher keeps its return address: the interpreter's
+             * differs from the game's. */
+            memcpy(region + 0x2C, want + 0x2C, 4);
+
+            int bad = ret_want != ret_got;
+            for (uint32_t i = 0; i < TMD_REGION_SZ; i += 4) {
+                bad |= memcmp(want + i, region + i, 4) != 0;
+            }
+            for (int r = 0; r < 64; r++) {
+                bad |= gte_want[r] != gte_got[r];
+            }
+            if (!bad) {
+                continue;
+            }
+            failures++;
+            fprintf(stderr, "[libtest] tmd %s iteration %d: flags %08X, %u elements of %u words, shift %u\n", h->name,
+                    it, flags, ((uint32_t*)(uintptr_t)TMD_STREAM)[5] >> 16,
+                    ((uint32_t*)(uintptr_t)TMD_STREAM)[5] & 0xFFFF, *(uint32_t*)(before + 0x84));
+            if (ret_want != ret_got) {
+                fprintf(stderr, "    return: original %08X, port %08X\n", ret_want, ret_got);
+            }
+            int shown = 0;
+            for (uint32_t i = 0; i < TMD_REGION_SZ && shown < 12; i += 4) {
+                uint32_t w = *(uint32_t*)(want + i), g = *(uint32_t*)(region + i);
+                if (w != g) {
+                    fprintf(stderr, "    %08X: before %08X, original %08X, port %08X\n", TMD_REGION + i,
+                            *(uint32_t*)(before + i), w, g);
+                    shown++;
+                }
+            }
+            for (int r = 0; r < 64; r++) {
+                if (gte_want[r] != gte_got[r]) {
+                    fprintf(stderr, "    gte %s: before %08X, original %08X, port %08X\n", gte_reg_name(r), gte[r],
+                            gte_want[r], gte_got[r]);
+                }
+            }
+        }
+        fprintf(stderr, "[libtest] tmd %-22s %s\n", h->name, failures ? "FAILED" : "ok");
+        failed += failures != 0;
+    }
+    return failed;
+}
+
 int pc_libtest(const char* spec)
 {
+    if (strncmp(spec, "tmd", 3) == 0 && (spec[3] == 0 || spec[3] == ':')) {
+        return tmd_test(spec);
+    }
     if (strncmp(spec, "vlcfile", 7) == 0) {
         return vlc_file(spec);
     }
