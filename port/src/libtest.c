@@ -261,7 +261,8 @@ static void s_gsclearot(uint32_t a[8])
     X(SetDefDrawEnv, s_defenv)                      \
     X(SetDefDispEnv, s_defenv)                      \
     X(GsClearOt, s_gsclearot)                       \
-    X(BreakDraw, s_none)
+    X(BreakDraw, s_none)                            \
+    X(InitGeom, s_none)
 
 #define DECLARE(n, s) uint32_t pcrt_##n(); uint32_t pcrt_stub_##n();
 LIB_CASES(DECLARE)
@@ -275,7 +276,8 @@ static int is_void(const char* name)
     static const char* const names[] = {"SetRotMatrix", "SetTransMatrix", "MatrixNormal", "MatrixNormal_0",
                                         "MatrixNormal_1", "MatrixNormal_2", "AddPrim", "SetSprt",
                                         "SetTile", "SetPolyFT4", "SetSemiTrans", "SetShadeTex", "SetDrawTPage",
-                                        "SetDrawStp", "SetDrawOffset", "SetDrawMove", "GsClearOt"};
+                                        "SetDrawStp", "SetDrawOffset", "SetDrawMove", "GsClearOt",
+                                        "InitGeom"};
     for (size_t i = 0; i < sizeof names / sizeof names[0]; i++) {
         if (strcmp(name, names[i]) == 0) {
             return 1;
@@ -473,8 +475,138 @@ static int dump(const char* spec)
     return 1;
 }
 
+/* ---- heap scripts -------------------------------------------------------- */
+
+/* libapi's heap search cursor, which the game also writes (main/mem.c). */
+#define HEAP_FREEP (*(volatile uint32_t*)(uintptr_t)0x8005ED90u)
+#define HEAP_BASE  (SCRATCH + 0x10u)
+
+uint32_t pcrt_InitHeap3(); uint32_t pcrt_stub_InitHeap3();
+uint32_t pcrt_malloc3(); uint32_t pcrt_stub_malloc3();
+uint32_t pcrt_free3(); uint32_t pcrt_stub_free3();
+
+static uint32_t psx_address_of(LibFn native)
+{
+    for (unsigned f = 0; f < pc_runtime_fn_count; f++) {
+        if ((LibFn)pc_runtime_fns[f].impl == native) {
+            return pc_runtime_fns[f].psx_addr;
+        }
+    }
+    return 0;
+}
+
+/* Calls a heap routine, the original (through the interpreter) or the port's. */
+static uint32_t heap_call(int original, uint32_t (*native)(), uint32_t (*stub)(), uint32_t a0, uint32_t a1)
+{
+    if (!original) {
+        return ((LibFn)native)(a0, a1, 0, 0, 0, 0, 0, 0);
+    }
+    uint32_t addr = psx_address_of((LibFn)native);
+    if (addr && (LibFn)native != (LibFn)stub) {
+        pc_runtime_fn_interpret(addr, 1);
+    }
+    uint32_t r = ((LibFn)stub)(a0, a1, 0, 0, 0, 0, 0, 0);
+    if (addr && (LibFn)native != (LibFn)stub) {
+        pc_runtime_fn_interpret(addr, 0);
+    }
+    return r;
+}
+
+/* Runs a script of heap operations; records each result, the cursor and
+ * the scratch area after every step. Ops: i<size> InitHeap3(HEAP_BASE,
+ * size), m<size> malloc3, f<k> free3 of the k-th allocation, b cursor
+ * back to the heap base (as the game does before each call). */
+typedef struct {
+    uint32_t ret, freep;
+    uint8_t ram[SCRATCH_SIZE];
+} HeapStep;
+
+static int heap_run(const char* script, int original, HeapStep* steps, int max_steps)
+{
+    uint32_t allocs[256];
+    int n_alloc = 0, n = 0;
+    for (const char* p = script; *p && n < max_steps; ) {
+        char op = *p++;
+        long v = strtol(p, (char**)&p, 10);
+        uint32_t r = 0;
+        switch (op) {
+        case 'i': r = heap_call(original, pcrt_InitHeap3, pcrt_stub_InitHeap3, HEAP_BASE, (uint32_t)v); r = 0; break;
+        case 'm': r = heap_call(original, pcrt_malloc3, pcrt_stub_malloc3, (uint32_t)v, 0); if (n_alloc < 256) allocs[n_alloc++] = r; break;
+        case 'f': if (v < n_alloc && allocs[v] != 0) heap_call(original, pcrt_free3, pcrt_stub_free3, allocs[v], 0); r = 0; break;
+        case 'b': HEAP_FREEP = HEAP_BASE; break;
+        default: continue;
+        }
+        steps[n].ret = r;
+        steps[n].freep = HEAP_FREEP;
+        memcpy(steps[n].ram, (void*)(uintptr_t)SCRATCH, SCRATCH_SIZE);
+        n++;
+        if (*p == ',') {
+            p++;
+        }
+    }
+    return n;
+}
+
+/* PE2_LIBTEST=heap:<script> prints the original's results and the words of
+ * the heap after each step; heap!<script> compares the port against it. */
+static int heap(const char* spec)
+{
+    static HeapStep want[512], got[512];
+    int compare = spec[4] == '!';
+    const char* script = spec + 5;
+    uint32_t saved_freep = HEAP_FREEP;
+    memset((void*)(uintptr_t)SCRATCH, 0xAB, SCRATCH_SIZE);
+    static uint8_t start[SCRATCH_SIZE];
+    memcpy(start, (void*)(uintptr_t)SCRATCH, SCRATCH_SIZE);
+    int n = heap_run(script, 1, want, 512);
+    if (!compare) {
+        for (int i = 0; i < n; i++) {
+            printf("step %d ret %08X freep %08X:", i, want[i].ret, want[i].freep);
+            for (uint32_t off = 0; off < SCRATCH_SIZE; off += 4) {
+                uint32_t w;
+                memcpy(&w, want[i].ram + off, 4);
+                if (w != 0xABABABABu) {
+                    printf(" +%03X=%08X", off, w);
+                }
+            }
+            printf("\n");
+        }
+        HEAP_FREEP = saved_freep;
+        return 0;
+    }
+    /* A script can leave the heap unusable (a cursor outside the ring) and
+     * hang the original; anything after this line is the port's doing. */
+    fprintf(stderr, "[libtest] heap original done\n");
+    fflush(stderr);
+    memcpy((void*)(uintptr_t)SCRATCH, start, SCRATCH_SIZE);
+    HEAP_FREEP = saved_freep;
+    heap_run(script, 0, got, 512);
+    for (int i = 0; i < n; i++) {
+        if (want[i].ret != got[i].ret || want[i].freep != got[i].freep ||
+            memcmp(want[i].ram, got[i].ram, SCRATCH_SIZE) != 0) {
+            fprintf(stderr, "[libtest] heap step %d differs: ret %08X/%08X freep %08X/%08X\n", i, want[i].ret,
+                    got[i].ret, want[i].freep, got[i].freep);
+            for (uint32_t off = 0; off < SCRATCH_SIZE; off += 4) {
+                uint32_t w, g;
+                memcpy(&w, want[i].ram + off, 4);
+                memcpy(&g, got[i].ram + off, 4);
+                if (w != g) {
+                    fprintf(stderr, "    +%03X: original %08X, port %08X\n", off, w, g);
+                }
+            }
+            return 1;
+        }
+    }
+    fprintf(stderr, "[libtest] heap script ok (%d steps)\n", n);
+    HEAP_FREEP = saved_freep;
+    return 0;
+}
+
 int pc_libtest(const char* spec)
 {
+    if (strncmp(spec, "heap", 4) == 0 && (spec[4] == ':' || spec[4] == '!')) {
+        return heap(spec);
+    }
     if (strncmp(spec, "dump:", 5) == 0) {
         return dump(spec);
     }

@@ -720,3 +720,20 @@ void pcrt_MatrixNormal(Matrix* m, Matrix* n)
     pcgte_write_data(PCGTE_VZ0, (uint32_t)r1);
     pcgte_write_data(PCGTE_VXY1, (uint32_t)r2);
 }
+
+/* ---- start-up ------------------------------------------------------------ */
+
+/* The geometry defaults: screen offset 0, projection distance 1000, depth
+ * cueing over the depth range, and the 1/3 and 1/4 scales that average three
+ * and four Z values. The original also patches the BIOS exception handler
+ * to save the GTE; the host's interrupts do not need that. */
+void pcrt_InitGeom(void)
+{
+    pcgte_write_ctrl(PCGTE_OFX, 0);
+    pcgte_write_ctrl(PCGTE_OFY, 0);
+    pcgte_write_ctrl(PCGTE_H, 1000);
+    pcgte_write_ctrl(PCGTE_DQA, (uint32_t)-0x1062);
+    pcgte_write_ctrl(PCGTE_DQB, 0x1400000u);
+    pcgte_write_ctrl(PCGTE_ZSF3, 0x155);
+    pcgte_write_ctrl(PCGTE_ZSF4, 0x100);
+}
