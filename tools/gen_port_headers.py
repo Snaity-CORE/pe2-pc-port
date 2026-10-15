@@ -1,17 +1,18 @@
 #!/usr/bin/env python3
-"""Generate PC versions of the decomp's GTE headers.
+"""Generate the PC version of the decomp's GTE command header.
 
-On the PSX the GTE is driven through inline MIPS assembly: Psy-Q's
-`psyq/inline_c.h` (register loads/stores) and the decomp's `gte.h` (command
-words). This tool reads those headers from the `decomp/` submodule and rewrites
-every `__asm__` macro body as equivalent C on top of the software GTE in
-`port/include/pc/gte.h`. Everything else in the headers is kept as is.
+The decomp's `gte.h` drives the GTE with inline MIPS assembly (command
+words). This tool reads it from the `decomp/` submodule and rewrites every
+`__asm__` macro body as equivalent C on top of the software GTE in
+`port/include/pc/gte.h`. Everything else in the header is kept as is. The
+register loads and stores it builds on come from the port's own
+`port/include/psyq/inline_c.h`.
 
-The output goes to `build/port_include/` and is never committed: it is derived
-from SDK headers, so it is regenerated on each build like any other build
-artifact.
+The output goes to `build/port_include/` and is never committed: it is
+derived from the decomp's header, so it is regenerated on each build like
+any other build artifact.
 
-Supported instructions are the ones these headers use: lwc2/swc2, mtc2/mfc2,
+Supported instructions are the ones the header uses: lwc2/swc2, mtc2/mfc2,
 ctc2/cfc2, lw/lh/lhu/lb/lbu, sw/sh/sb, sll/sra/srl, addu/subu/or/and,
 addi/addiu, nop, and `.word` COP2 command words.
 """
@@ -25,7 +26,6 @@ DECOMP = ROOT / "decomp"
 
 # (source header relative to decomp/, output path relative to the out dir)
 HEADERS = [
-    ("include/psyq/inline_c.h", "psyq/inline_c.h"),
     ("include/decomp/gte.h", "gte.h"),
 ]
 

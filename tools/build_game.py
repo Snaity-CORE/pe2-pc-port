@@ -41,8 +41,7 @@ INCLUDES = [
     DECOMP / "include",
     DECOMP / "build",
     DECOMP / "build" / "include",
-    ROOT / "port" / "include" / "psyq",  # the port's own SDK headers first
-    DECOMP / "include" / "psyq",
+    ROOT / "port" / "include" / "psyq",  # the port's own SDK headers
     DECOMP / "include" / "decomp",
 ]
 
@@ -86,6 +85,24 @@ def run(cmd: list, **kw) -> None:
 # The port's own SDK headers. The decomp includes them as <psyq/NAME.h>,
 # which port/include resolves before decomp/include.
 SDK_HEADERS = ROOT / "port" / "include" / "psyq"
+
+
+def check_no_sdk_headers() -> None:
+    """The native build uses the port's own SDK headers only. A header the
+    port does not have yet would silently come from the decomp's SDK copy
+    (it is on the include path as decomp/include/psyq/...): refuse that."""
+    sdk = (DECOMP / "include" / "psyq").resolve()
+    offenders = set()
+    for dep in OBJ_DIR.rglob("*.d"):
+        for path in depfile_deps(dep):
+            try:
+                if path.resolve().is_relative_to(sdk):
+                    offenders.add(path.resolve().relative_to(sdk).as_posix())
+            except OSError:
+                pass
+    if offenders:
+        raise SystemExit("SDK headers without a port version: " + ", ".join(sorted(offenders)) +
+                         " (add them to port/include/psyq)")
 
 
 def outdated(target: Path, deps: list[Path]) -> bool:
@@ -193,6 +210,7 @@ def main() -> None:
     with concurrent.futures.ThreadPoolExecutor(os.cpu_count()) as pool:
         built = sum(pool.map(lambda u: compile_unit(u, keep[u["object"]], cflags, stamp), units))
     print(f"      {built} of {len(units)} units recompiled")
+    check_no_sdk_headers()
 
     print("[3/5] pclink")
     run([sys.executable, tools / "pclink.py", *(["--route-calls"] if args.route_calls else [])])
