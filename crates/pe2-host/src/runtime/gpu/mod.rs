@@ -42,6 +42,10 @@ pub struct Gpu {
     dump_out: Option<std::io::BufWriter<std::fs::File>>,
     /// The higher-resolution layer, when PE2_SCALE asks for one.
     pub hires: Option<hires::Hires>,
+    /// Bumped by every access from the game; `latched` is its value when
+    /// the window's picture was last taken.
+    generation: u64,
+    latched: u64,
 }
 
 /// The internal resolution, a multiple of the console's (1-8): PE2_SCALE,
@@ -71,12 +75,16 @@ pub fn start() {
         dump: false,
         dump_out: None,
         hires: (scale > 1).then(|| hires::Hires::new(scale)),
+        generation: 0,
+        latched: u64::MAX,
     });
 }
 
 fn with_gpu<R>(f: impl FnOnce(&mut Gpu) -> R) -> R {
     let mut g = GPU.lock().unwrap();
-    f(g.as_mut().expect("gpu not started"))
+    let g = g.as_mut().expect("gpu not started");
+    g.generation += 1;
+    f(g)
 }
 
 /// A PSX 24-bit bus address (as stored in ordering-table links) as a host
@@ -662,9 +670,9 @@ pub extern "C" fn pcrt_LoadImage(rect: *const Rect, p: *const u16) -> i32 {
         for (i, px) in pixels.iter().enumerate() {
             let (x, y) = ((i % rc.w as usize) as i32, (i / rc.w as usize) as i32);
             g.vram.set(i32::from(rc.x) + x, i32::from(rc.y) + y, *px);
-            if let Some(hr) = g.hires.as_mut() {
-                hr.upload(i32::from(rc.x) + x, i32::from(rc.y) + y, *px, None);
-            }
+        }
+        if let Some(hr) = g.hires.as_mut() {
+            hr.upload_rect(i32::from(rc.x), i32::from(rc.y), i32::from(rc.w), i32::from(rc.h), pixels);
         }
     });
     0
@@ -814,85 +822,125 @@ pub extern "C" fn pcrt_PutDispEnv(env: *mut DispEnv) -> *mut DispEnv {
     env
 }
 
-/// Converts the displayed region to 0RGB pixels for the host window. The
-/// GPU lock is held only to copy the raw rows; conversion happens after.
-pub fn snapshot(out: &mut Vec<u32>) -> Option<(usize, usize)> {
-    thread_local! {
-        static RAW: std::cell::RefCell<Vec<u16>> = const { std::cell::RefCell::new(Vec::new()) };
+/// The picture the window shows: the displayed region's raw pixels as of
+/// the last `latch`.
+struct Front {
+    width: usize,
+    height: usize,
+    enabled: bool,
+    /// The higher-resolution layer's pixels (when it is shown)...
+    hires: Vec<u32>,
+    /// ...else the VRAM's halfwords, `row_words` per row.
+    vram: Vec<u16>,
+    row_words: usize,
+    rgb24: bool,
+}
+
+static FRONT: Mutex<Front> = Mutex::new(Front {
+    width: 0,
+    height: 0,
+    enabled: false,
+    hires: Vec::new(),
+    vram: Vec::new(),
+    row_words: 0,
+    rgb24: false,
+});
+
+/// Takes the window's picture from the displayed region. Called at the end
+/// of each vertical blank, after the game's vblank callback: the game flips
+/// and draws there (reloading the background, then drawing over it), so
+/// the window sees whole frames only, as a TV does, never one half drawn.
+/// Skipped when nothing changed, or while the window is reading the last
+/// picture (the next blank takes it).
+pub fn latch() {
+    let mut guard = GPU.lock().unwrap();
+    let Some(g) = guard.as_mut() else { return };
+    if g.generation == g.latched {
+        return;
     }
-    RAW.with_borrow_mut(|raw| {
-        let (w, h, rgb24) = {
-            let guard = GPU.lock().unwrap();
-            let g = guard.as_ref()?;
-            let d = g.display;
-            if let (Some(hr), true, false) = (g.hires.as_ref(), d.enabled, d.rgb24) {
-                // The layer's rows, converted after the lock is released.
-                let s = hr.scale as usize;
-                let (w, h) = (d.width as usize * s, d.height as usize * s);
-                out.clear();
-                out.reserve(w * h);
-                for y in 0..h {
-                    let hy = (d.y as usize * s + y) % hr.height;
-                    let row = &hr.pixels[hy * hr.width..(hy + 1) * hr.width];
-                    let x0 = (d.x as usize * s) % hr.width;
-                    if x0 + w <= hr.width {
-                        out.extend_from_slice(&row[x0..x0 + w]);
-                    } else {
-                        out.extend((0..w).map(|i| row[(x0 + i) % hr.width]));
-                    }
-                }
-                drop(guard);
-                let lut = hires_channel_lut();
-                for px in out.iter_mut() {
-                    let p = *px;
-                    *px = (lut[((p >> 16) & 0xFF) as usize] << 16)
-                        | (lut[((p >> 8) & 0xFF) as usize] << 8)
-                        | lut[(p & 0xFF) as usize];
-                }
-                return Some((w, h));
-            }
-            let (w, h) = (d.width as usize, d.height as usize);
-            out.clear();
-            out.resize(w * h, 0);
-            if !d.enabled {
-                return Some((w, h));
-            }
-            // Halfwords per row: three bytes per pixel in 24-bit mode.
-            let row_words = if d.rgb24 { (w * 3).div_ceil(2) } else { w };
-            raw.clear();
-            for y in 0..h {
-                let vy = (d.y as usize + y) % VRAM_HEIGHT;
-                let row = &g.vram.pixels[vy * VRAM_WIDTH..(vy + 1) * VRAM_WIDTH];
-                let x0 = d.x as usize % VRAM_WIDTH;
-                if x0 + row_words <= VRAM_WIDTH {
-                    raw.extend_from_slice(&row[x0..x0 + row_words]);
-                } else {
-                    raw.extend((0..row_words).map(|i| row[(x0 + i) % VRAM_WIDTH]));
-                }
-            }
-            (w, h, d.rgb24)
-        };
-        let row_words = raw.len() / h.max(1);
-        if rgb24 {
-            for y in 0..h {
-                let row = &raw[y * row_words..(y + 1) * row_words];
-                let byte = |i: usize| -> u32 {
-                    let word = row[i / 2];
-                    u32::from(if i % 2 == 0 { word & 0xFF } else { word >> 8 })
-                };
-                for x in 0..w {
-                    let i = x * 3;
-                    out[y * w + x] = (byte(i) << 16) | (byte(i + 1) << 8) | byte(i + 2);
-                }
-            }
-        } else {
-            let lut = rgb15_lut();
-            for (px, &v) in out.iter_mut().zip(raw.iter()) {
-                *px = lut[usize::from(v & 0x7FFF)];
+    let Ok(mut f) = FRONT.try_lock() else { return };
+    g.latched = g.generation;
+    let d = g.display;
+    f.enabled = d.enabled;
+    f.rgb24 = d.rgb24;
+    f.hires.clear();
+    f.vram.clear();
+    if let (Some(hr), false) = (g.hires.as_ref(), d.rgb24) {
+        let s = hr.scale as usize;
+        let (w, h) = (d.width as usize * s, d.height as usize * s);
+        (f.width, f.height) = (w, h);
+        if !d.enabled {
+            return;
+        }
+        for y in 0..h {
+            let hy = (d.y as usize * s + y) % hr.height;
+            let row = &hr.pixels[hy * hr.width..(hy + 1) * hr.width];
+            let x0 = (d.x as usize * s) % hr.width;
+            if x0 + w <= hr.width {
+                f.hires.extend_from_slice(&row[x0..x0 + w]);
+            } else {
+                f.hires.extend((0..w).map(|i| row[(x0 + i) % hr.width]));
             }
         }
-        Some((w, h))
-    })
+        return;
+    }
+    let (w, h) = (d.width as usize, d.height as usize);
+    (f.width, f.height) = (w, h);
+    // Halfwords per row: three bytes per pixel in 24-bit mode.
+    let row_words = if d.rgb24 { (w * 3).div_ceil(2) } else { w };
+    f.row_words = row_words;
+    if !d.enabled {
+        return;
+    }
+    for y in 0..h {
+        let vy = (d.y as usize + y) % VRAM_HEIGHT;
+        let row = &g.vram.pixels[vy * VRAM_WIDTH..(vy + 1) * VRAM_WIDTH];
+        let x0 = d.x as usize % VRAM_WIDTH;
+        if x0 + row_words <= VRAM_WIDTH {
+            f.vram.extend_from_slice(&row[x0..x0 + row_words]);
+        } else {
+            f.vram.extend((0..row_words).map(|i| row[(x0 + i) % VRAM_WIDTH]));
+        }
+    }
+}
+
+/// The window's picture (see `latch`) as 0RGB pixels.
+pub fn snapshot(out: &mut Vec<u32>) -> Option<(usize, usize)> {
+    let f = FRONT.lock().unwrap();
+    let (w, h) = (f.width, f.height);
+    if w == 0 || h == 0 {
+        return None;
+    }
+    out.clear();
+    out.resize(w * h, 0);
+    if !f.enabled {
+        return Some((w, h));
+    }
+    if !f.hires.is_empty() {
+        let lut = hires_channel_lut();
+        for (px, &p) in out.iter_mut().zip(f.hires.iter()) {
+            *px = (lut[((p >> 16) & 0xFF) as usize] << 16) | (lut[((p >> 8) & 0xFF) as usize] << 8) | lut[(p & 0xFF) as usize];
+        }
+    } else if f.rgb24 {
+        let row_words = f.row_words;
+        for y in 0..h {
+            let row = &f.vram[y * row_words..(y + 1) * row_words];
+            let byte = |i: usize| -> u32 {
+                let word = row[i / 2];
+                u32::from(if i % 2 == 0 { word & 0xFF } else { word >> 8 })
+            };
+            for x in 0..w {
+                let i = x * 3;
+                out[y * w + x] = (byte(i) << 16) | (byte(i + 1) << 8) | byte(i + 2);
+            }
+        }
+    } else {
+        let lut = rgb15_lut();
+        for (px, &v) in out.iter_mut().zip(f.vram.iter()) {
+            *px = lut[usize::from(v & 0x7FFF)];
+        }
+    }
+    Some((w, h))
 }
 
 /// The layer's channels (5-bit console scale times 8) to 0..255.

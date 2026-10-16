@@ -68,6 +68,8 @@ fn schedule_vblank(at: Instant) {
         if cb != 0 {
             call_psx(cb, &[]);
         }
+        // The game flips and draws in its callback: the frame is whole now.
+        super::gpu::latch();
     }));
 }
 

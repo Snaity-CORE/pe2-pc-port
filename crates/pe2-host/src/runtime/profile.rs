@@ -50,11 +50,23 @@ pub fn start(game_thread: HANDLE) {
     let thread = SendHandle(game_thread);
     std::thread::Builder::new()
         .name("profiler".into())
-        .spawn(move || sampler(thread))
+        .spawn(move || sampler(thread, "pe2-prof.bin", true))
         .expect("spawn profiler");
 }
 
-fn sampler(thread: SendHandle) {
+/// PE2_TRACE=prof: also samples the interrupt thread, where the game's
+/// vblank callback (and the drawing it does) runs, into pe2-prof-irq.bin.
+pub fn start_irq(irq_thread: HANDLE) {
+    let thread = SendHandle(irq_thread);
+    std::thread::Builder::new()
+        .name("profiler-irq".into())
+        .spawn(move || sampler(thread, "pe2-prof-irq.bin", false))
+        .expect("spawn profiler");
+}
+
+/// Samples `thread` into `file` (with PE2_TRACE=prof); `game` keeps the
+/// recent samples for the long-frame reports.
+fn sampler(thread: SendHandle, file: &'static str, game: bool) {
     let thread = thread;
     // SAFETY: the null module name is the executable itself.
     let base = unsafe { GetModuleHandleW(std::ptr::null()) } as u32;
@@ -69,7 +81,7 @@ fn sampler(thread: SendHandle) {
     };
     let rebase = |a: u32| a.wrapping_sub(base).wrapping_add(PREFERRED_BASE);
     let mut out = super::trace("prof").then(|| {
-        std::io::BufWriter::new(std::fs::File::create("pe2-prof.bin").expect("create pe2-prof.bin"))
+        std::io::BufWriter::new(std::fs::File::create(file).expect("create profile file"))
     });
     loop {
         std::thread::sleep(Duration::from_millis(1));
@@ -116,6 +128,9 @@ fn sampler(thread: SendHandle) {
                 let _ = out.write_all(&w.to_le_bytes());
             }
             let _ = out.flush();
+        }
+        if !game {
+            continue;
         }
         let now = Instant::now();
         let mut s = SAMPLES.lock().unwrap();

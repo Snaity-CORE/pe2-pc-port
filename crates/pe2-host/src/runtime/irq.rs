@@ -130,9 +130,16 @@ pub fn start() {
         .stack_size(4 << 20)
         .spawn(irq_thread)
         .expect("spawn IRQ thread");
+    // Tools that keep using the thread's handle need it left open.
+    use std::os::windows::io::AsRawHandle;
+    let raw = handle.as_raw_handle() as HANDLE;
+    if super::trace("prof") {
+        super::profile::start_irq(raw);
+    }
     if super::watch::enabled() {
-        use std::os::windows::io::AsRawHandle;
-        super::watch::arm(handle.as_raw_handle() as HANDLE);
+        super::watch::arm(raw);
+    }
+    if super::trace("prof") || super::watch::enabled() {
         std::mem::forget(handle);
     }
 }

@@ -246,18 +246,27 @@ impl Vram {
         let y1 = max_y.min(st.area_y2);
         let dither = sh.gouraud || (sh.textured && !sh.raw_texture);
 
+        // Edge functions are linear in x: each row's covered span follows
+        // from the three of them. Top-left rule: pixels on a right or
+        // bottom edge are out, so such an edge needs w >= 1.
+        let edges = [(b, c), (c, a), (a, b)].map(|(p, q)| (-(q.y - p.y), i32::from(!top_left(p, q))));
         for y in y0..=y1 {
-            for x in x0..=x1 {
+            let (mut lo, mut hi) = (x0, x1);
+            for (k, &(e, t)) in edges.iter().enumerate() {
+                let (p, q) = [(b, c), (c, a), (a, b)][k];
+                let w = edge(p, q, x0, y);
+                if e > 0 {
+                    lo = lo.max(x0 + (t - w + e - 1).div_euclid(e));
+                } else if e < 0 {
+                    hi = hi.min(x0 + (w - t).div_euclid(-e));
+                } else if w < t {
+                    hi = lo - 1;
+                }
+            }
+            for x in lo..=hi {
                 let w0 = edge(b, c, x, y);
                 let w1 = edge(c, a, x, y);
                 let w2 = edge(a, b, x, y);
-                // Top-left rule: pixels on a right or bottom edge are out.
-                if w0 < 0 || w1 < 0 || w2 < 0 {
-                    continue;
-                }
-                if (w0 == 0 && !top_left(b, c)) || (w1 == 0 && !top_left(c, a)) || (w2 == 0 && !top_left(a, b)) {
-                    continue;
-                }
                 let interp = |fa: i32, fb: i32, fc: i32| -> i32 {
                     ((i64::from(w0) * i64::from(fa) + i64::from(w1) * i64::from(fb) + i64::from(w2) * i64::from(fc))
                         / i64::from(area)) as i32
@@ -344,6 +353,63 @@ mod tests {
 
     fn v(x: i32, y: i32) -> Vertex {
         Vertex { x, y, r: 255, g: 255, b: 255, ..Vertex::default() }
+    }
+
+    /// The rasterizer before span stepping: every pixel of the bounding box
+    /// tested, the same per-pixel arithmetic.
+    fn reference_triangle(vram: &mut Vram, st: &DrawState, sh: &Shading, v: [Vertex; 3]) {
+        let [a, b, c] = v;
+        let (min_x, max_x) = (a.x.min(b.x).min(c.x), a.x.max(b.x).max(c.x));
+        let (min_y, max_y) = (a.y.min(b.y).min(c.y), a.y.max(b.y).max(c.y));
+        if max_x - min_x > 1023 || max_y - min_y > 511 {
+            return;
+        }
+        let area = edge(a, b, c.x, c.y);
+        if area == 0 {
+            return;
+        }
+        let (b, c, area) = if area < 0 { (c, b, -area) } else { (b, c, area) };
+        let dither = sh.gouraud || (sh.textured && !sh.raw_texture);
+        for y in min_y.max(st.area_y1)..=max_y.min(st.area_y2) {
+            for x in min_x.max(st.area_x1)..=max_x.min(st.area_x2) {
+                let (w0, w1, w2) = (edge(b, c, x, y), edge(c, a, x, y), edge(a, b, x, y));
+                if w0 < 0 || w1 < 0 || w2 < 0 {
+                    continue;
+                }
+                if (w0 == 0 && !top_left(b, c)) || (w1 == 0 && !top_left(c, a)) || (w2 == 0 && !top_left(a, b)) {
+                    continue;
+                }
+                let interp = |fa: i32, fb: i32, fc: i32| -> i32 {
+                    ((i64::from(w0) * i64::from(fa) + i64::from(w1) * i64::from(fb) + i64::from(w2) * i64::from(fc))
+                        / i64::from(area)) as i32
+                };
+                let (r, g, bl) = (interp(a.r, b.r, c.r), interp(a.g, b.g, c.g), interp(a.b, b.b, c.b));
+                vram.plot(st, sh, x, y, r, g, bl, 0, 0, dither);
+            }
+        }
+    }
+
+    /// Span stepping draws exactly the pixels, and values, of testing every
+    /// pixel of the bounding box.
+    #[test]
+    fn spans_match_reference() {
+        let st = DrawState { area_x1: 3, area_y1: 5, area_x2: 200, area_y2: 150, dither: true, ..DrawState::default() };
+        let sh = Shading { gouraud: true, ..flat() };
+        let mut seed = 0x9E37_79B9u32;
+        let mut rnd = |n: i32| {
+            seed ^= seed << 13;
+            seed ^= seed >> 17;
+            seed ^= seed << 5;
+            (seed % n as u32) as i32
+        };
+        for _ in 0..3000 {
+            let mut vert = || Vertex { x: rnd(240) - 20, y: rnd(190) - 20, r: rnd(256), g: rnd(256), b: rnd(256), u: 0, v: 0 };
+            let v = [vert(), vert(), vert()];
+            let (mut got, mut want) = (Vram::default(), Vram::default());
+            got.triangle(&st, &sh, v);
+            reference_triangle(&mut want, &st, &sh, v);
+            assert!(got.pixels == want.pixels, "{v:?}");
+        }
     }
 
     /// The GPU leaves out a polygon's right column and bottom row: a quad

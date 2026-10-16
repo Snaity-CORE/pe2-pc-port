@@ -185,14 +185,20 @@ impl App {
 
 /// With `PE2_SCREENSHOT=<dir>`, saves the displayed picture as
 /// `<dir>/frame_NNN.png` every two seconds (debugging aid).
+/// `PE2_SCREENSHOT_EVERY=<ms>` changes the interval and
+/// `PE2_SCREENSHOT_AFTER=<s>` delays the first one (bursts, for flicker).
 fn start_screenshots() {
     let Some(dir) = std::env::var_os("PE2_SCREENSHOT") else { return };
     let dir = std::path::PathBuf::from(dir);
     let _ = std::fs::create_dir_all(&dir);
+    let number = |name: &str| std::env::var(name).ok().and_then(|v| v.trim().parse::<f64>().ok());
+    let every = Duration::from_secs_f64(number("PE2_SCREENSHOT_EVERY").map_or(2.0, |ms| ms / 1000.0));
+    let after = Duration::from_secs_f64(number("PE2_SCREENSHOT_AFTER").unwrap_or(0.0));
     std::thread::spawn(move || {
         let mut frame = Vec::new();
+        std::thread::sleep(after);
         for n in 0.. {
-            std::thread::sleep(Duration::from_secs(2));
+            std::thread::sleep(every);
             let Some((w, h)) = gpu::snapshot(&mut frame) else { continue };
             let rgb: Vec<u8> = frame.iter().flat_map(|p| [(p >> 16) as u8, (p >> 8) as u8, *p as u8]).collect();
             let path = dir.join(format!("frame_{n:03}.png"));
