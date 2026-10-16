@@ -257,6 +257,11 @@ fn cpu_monitor() {
                 ms(HANDLER_NS.swap(0, Relaxed))
             );
             use super::gpu::hw::{FLUSHES, VRAM_SENT};
+            use super::gpu::{EXACT_VERTICES, POLY_VERTICES};
+            let (all, exact) = (POLY_VERTICES.swap(0, Relaxed), EXACT_VERTICES.swap(0, Relaxed));
+            if all > 0 {
+                eprintln!("[cpu]   vertices: {:.0}/s, {:.1}% exact", all as f64 / wall, 100.0 * exact as f64 / all as f64);
+            }
             eprintln!(
                 "[cpu]   graphics card: {:.0} flushes/s, {:.0} KB/s of VRAM sent",
                 FLUSHES.swap(0, Relaxed) as f64 / wall,

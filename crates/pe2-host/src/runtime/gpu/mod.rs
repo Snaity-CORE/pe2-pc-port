@@ -40,6 +40,11 @@ pub struct Gpu {
     pub frame: u64,
     /// PSX address of the packet being run (for traces).
     pub cur_packet: u32,
+    /// PSX address of the command being run (0 when it is not in RAM), so
+    /// vertices can be matched with their exact positions.
+    cmd_addr: u32,
+    /// The first word of the command being run (traces).
+    cmd_word0: u32,
     /// Log every command of the current list (PE2_GPUDUMP or F12).
     pub dump: bool,
     dump_out: Option<std::io::BufWriter<std::fs::File>>,
@@ -49,6 +54,49 @@ pub struct Gpu {
     /// the window's picture was last taken.
     generation: u64,
     latched: u64,
+}
+
+/// PE2_TRACE=pgxp: every few seconds, polygon vertices with and without an
+/// exact position, by 64 KB region of their packets and GPU command.
+fn pgxp_trace(packet: u32, word0: u32, exact: bool) {
+    if !trace("pgxp") {
+        return;
+    }
+    use std::collections::BTreeMap;
+    static COUNTS: std::sync::Mutex<Option<(BTreeMap<(u32, u32), (u64, u64)>, std::time::Instant)>> =
+        std::sync::Mutex::new(None);
+    let mut guard = COUNTS.lock().unwrap();
+    let (map, since) = guard.get_or_insert_with(|| (BTreeMap::new(), std::time::Instant::now()));
+    let e = map.entry((packet & 0xFFFF_0000, word0 >> 24)).or_insert((0, 0));
+    if exact {
+        e.0 += 1;
+    } else {
+        e.1 += 1;
+    }
+    if since.elapsed().as_secs() >= 5 {
+        for ((region, op), (hit, miss)) in map.iter() {
+            eprintln!("[pgxp] packets 0x{region:08X}.. op 0x{op:02X}: {hit} exact, {miss} whole");
+        }
+        map.clear();
+        *since = std::time::Instant::now();
+    }
+}
+
+/// PE2_TRACE=cpu: polygon vertices drawn, and those with exact positions.
+pub static POLY_VERTICES: std::sync::atomic::AtomicU64 = std::sync::atomic::AtomicU64::new(0);
+pub static EXACT_VERTICES: std::sync::atomic::AtomicU64 = std::sync::atomic::AtomicU64::new(0);
+
+/// Whether the higher-resolution layer uses exact vertex positions:
+/// PE2_SUBPIXEL=0/1, else pe2.toml's [video] subpixel, else on.
+fn subpixel() -> bool {
+    static ON: std::sync::OnceLock<bool> = std::sync::OnceLock::new();
+    *ON.get_or_init(|| {
+        std::env::var("PE2_SUBPIXEL")
+            .ok()
+            .map(|v| v.trim() != "0")
+            .or(crate::config::get().video.subpixel)
+            .unwrap_or(true)
+    })
 }
 
 /// The internal resolution, a multiple of the console's (1-8): PE2_SCALE,
@@ -68,6 +116,10 @@ pub fn start() {
     let scale = scale();
     if scale > 1 {
         eprintln!("pe2: internal resolution {scale}x ({}x{})", 320 * scale, 240 * scale);
+        if subpixel() {
+            // SAFETY: a flag in gte.c, set before the game runs.
+            unsafe { pc_pgxp_culling = 1 };
+        }
     }
     *GPU.lock().unwrap() = Some(Gpu {
         vram: Vram::default(),
@@ -83,6 +135,8 @@ pub fn start() {
         }),
         generation: 0,
         latched: u64::MAX,
+        cmd_addr: 0,
+        cmd_word0: 0,
     });
 }
 
@@ -262,8 +316,9 @@ impl Gpu {
                 i += 1;
             }
             let (x, y) = xy(words[i]);
+            let exact = self.exact(i, words[i], x, y).map(|(ex, ey)| (ex + st.offset_x as f32, ey + st.offset_y as f32));
             i += 1;
-            *v = Vertex { x: x + st.offset_x, y: y + st.offset_y, r: rgb.0, g: rgb.1, b: rgb.2, u: 0, v: 0 };
+            *v = Vertex { x: x + st.offset_x, y: y + st.offset_y, r: rgb.0, g: rgb.1, b: rgb.2, u: 0, v: 0, exact };
             if textured {
                 let t = words[i];
                 i += 1;
@@ -303,6 +358,23 @@ impl Gpu {
         let (y0, y1) = (verts[..n].iter().map(|v| v.y).min().unwrap(), verts[..n].iter().map(|v| v.y).max().unwrap());
         let area = clip_area(&st, x0, y0, x1, y1);
         self.pre(area.0, area.1, area.2, area.3);
+        if self.dump {
+            let list: Vec<String> = verts[..n]
+                .iter()
+                .map(|v| match v.exact {
+                    Some((ex, ey)) => format!("({},{})~({ex:.3},{ey:.3})", v.x, v.y),
+                    None => format!("({},{})", v.x, v.y),
+                })
+                .collect();
+            let line = format!("[gpudump]   vertices {}", list.join(" "));
+            match self.dump_out.as_mut() {
+                Some(f) => {
+                    use std::io::Write;
+                    let _ = writeln!(f, "{line}");
+                }
+                None => eprintln!("{line}"),
+            }
+        }
         self.vram.triangle(&st, &sh, [verts[0], verts[1], verts[2]]);
         if quad {
             self.vram.triangle(&st, &sh, [verts[1], verts[2], verts[3]]);
@@ -349,7 +421,7 @@ impl Gpu {
             }
             let (x, y) = xy(words[i]);
             i += 1;
-            let v = Vertex { x: x + st.offset_x, y: y + st.offset_y, r: rgb.0, g: rgb.1, b: rgb.2, u: 0, v: 0 };
+            let v = Vertex { x: x + st.offset_x, y: y + st.offset_y, r: rgb.0, g: rgb.1, b: rgb.2, ..Vertex::default() };
             if let Some(p) = prev {
                 let area = clip_area(&st, p.x.min(v.x), p.y.min(v.y), p.x.max(v.x), p.y.max(v.y));
                 self.pre(area.0, area.1, area.2, area.3);
@@ -451,11 +523,33 @@ impl Gpu {
     }
 
     /// Runs a buffer of GP0 words.
-    fn run(&mut self, words: &[u32]) {
+    /// Runs GP0 words read from PSX address `addr` (0: not from RAM).
+    fn run(&mut self, words: &[u32], addr: u32) {
         let mut i = 0;
         while i < words.len() {
+            self.cmd_addr = if addr != 0 { addr + 4 * i as u32 } else { 0 };
+            self.cmd_word0 = words[i];
             i += self.command(&words[i..]).max(1);
         }
+    }
+
+    /// The exact position of the vertex in command word `i`, when there is
+    /// one for that word (and it rounds to what the word holds).
+    fn exact(&self, i: usize, word: u32, x: i32, y: i32) -> Option<(f32, f32)> {
+        if self.cmd_addr == 0 || !subpixel() || self.layer.is_none() {
+            return None;
+        }
+        POLY_VERTICES.fetch_add(1, std::sync::atomic::Ordering::Relaxed);
+        let (mut ex, mut ey, mut ez) = (0f32, 0f32, 0f32);
+        // SAFETY: pgxp.c's lookup reads only its own table.
+        let found = unsafe { pc_pgxp_lookup(self.cmd_addr + 4 * i as u32, word, &mut ex, &mut ey, &mut ez) };
+        if found == 0 || (ex - x as f32).abs() > 8.0 || (ey - y as f32).abs() > 8.0 {
+            pgxp_trace(self.cur_packet, self.cmd_word0, false);
+            return None;
+        }
+        EXACT_VERTICES.fetch_add(1, std::sync::atomic::Ordering::Relaxed);
+        pgxp_trace(self.cur_packet, self.cmd_word0, true);
+        Some((ex, ey))
     }
 
     fn load_image(&mut self, x: i32, y: i32, w: i32, h: i32, pixels: impl Iterator<Item = u16>) {
@@ -515,6 +609,9 @@ pub extern "C" fn pcrt_ResetGraph(mode: i32) -> i32 {
 }
 
 unsafe extern "C" {
+    fn pc_pgxp_lookup(addr: u32, word: u32, x: *mut f32, y: *mut f32, z: *mut f32) -> i32;
+    fn pc_pgxp_tick();
+    static mut pc_pgxp_culling: i32;
     static pc_sym_GEnv: u32;
 }
 
@@ -649,7 +746,7 @@ pub extern "C" fn pcrt_DrawOTag(p: *const u32) {
                 // SAFETY: the packet holds `len` words after its tag.
                 words.extend((1..=len).map(|i| unsafe { node.add(i).read() }));
                 g.cur_packet = node as u32;
-                g.run(&words);
+                g.run(&words, node as u32 + 4);
             }
             packets += 1;
             if tag & 0x00FF_FFFF == 0x00FF_FFFF || packets > 1_000_000 {
@@ -678,7 +775,7 @@ pub extern "C" fn pcrt_DrawPrim(p: *const u32) {
         let len = (p.read() >> 24) as usize;
         (1..=len).map(|i| p.add(i).read()).collect()
     };
-    with_gpu(|g| g.run(&words));
+    with_gpu(|g| g.run(&words, p as u32 + 4));
 }
 
 #[unsafe(no_mangle)]
@@ -817,7 +914,7 @@ pub extern "C" fn pcrt_PutDrawEnv(env: *mut DrawEnv) -> *mut DrawEnv {
     for (i, w) in code.iter().enumerate() {
         e.dr_env[1 + i] = *w;
     }
-    with_gpu(|g| g.run(&code));
+    with_gpu(|g| g.run(&code, 0));
     env
 }
 
@@ -923,6 +1020,8 @@ static FRONT: Mutex<Front> = Mutex::new(Front {
 /// Skipped when nothing changed, or while the window is reading the last
 /// picture (the next blank takes it).
 pub fn latch() {
+    // SAFETY: a counter in pgxp.c, also called on the interrupt thread only.
+    unsafe { pc_pgxp_tick() };
     let mut guard = GPU.lock().unwrap();
     let Some(g) = guard.as_mut() else { return };
     if g.generation == g.latched {

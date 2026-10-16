@@ -363,7 +363,7 @@ mod tests {
         for _ in 0..3000 {
             let mut native = Vram::default();
             let mut layer = Hires::new(1);
-            let mut vert = || Vertex { x: rnd(240), y: rnd(190), r: 255, g: 255, b: 255, u: 0, v: 0 };
+            let mut vert = || Vertex { x: rnd(240), y: rnd(190), r: 255, g: 255, b: 255, ..Vertex::default() };
             let v = [vert(), vert(), vert()];
             native.triangle(&st, &sh, v);
             layer.triangle(&native, &st, &sh, v);

@@ -144,8 +144,11 @@ static void push_sz(u16 z)
     data[PCGTE_SZ3] = z;
 }
 
+static void shift_precise(void);
+
 static void push_sxy(s16 x, s16 y)
 {
+    shift_precise();
     data[PCGTE_SXY0] = data[PCGTE_SXY1];
     data[PCGTE_SXY1] = data[PCGTE_SXY2];
     data[PCGTE_SXY2] = (u16)x | ((u32)(u16)y << 16);
@@ -226,6 +229,110 @@ static u32 unr_divide(u16 h, u16 sz3)
 /* ---- commands ---------------------------------------------------------- */
 
 /* Rotate, translate and perspective-transform vector n. */
+/* ---- Sub-pixel precision (pgxp.c) -------------------------------------- *
+ * The exact position of the projection in each SXY FIFO slot, shifted with
+ * the FIFO; a write to an SXY register leaves its slot without one. The
+ * whole-pixel word is kept too, so a register changed behind the FIFO's
+ * back (interrupt save/restore) is never matched with a stale position. */
+static struct {
+    u32 word;
+    int valid;
+    float x, y, z;
+} precise[3];
+
+void pc_pgxp_record(uint32_t addr, uint32_t word, float x, float y, float z, int valid);
+
+static void shift_precise(void)
+{
+    precise[0] = precise[1];
+    precise[1] = precise[2];
+    precise[2].valid = 0;
+}
+
+/* After a projection pushed (sx, sy): its exact position into slot 2,
+ * unless the projection saturated somewhere (`saturated`: the division,
+ * IR1/IR2 or the screen coordinates were clamped), when the whole-pixel
+ * position is not an approximation of it. The position is the projection
+ * of the full-precision camera-space vertex (`v`, before the GTE's own
+ * rounding of x, y and z), as PGXP with preserved projection precision. */
+static void remember_precise(const s64 v[3], s16 sx, s16 sy, int saturated)
+{
+    if (saturated || v[2] <= 0) {
+        return;
+    }
+    double h = (double)(u16)ctrl[PCGTE_H];
+    double x = (double)(s32)ctrl[PCGTE_OFX] / 65536.0 + h * (double)v[0] / (double)v[2];
+    double y = (double)(s32)ctrl[PCGTE_OFY] / 65536.0 + h * (double)v[1] / (double)v[2];
+    if (x < sx - 8.0 || x > sx + 8.0 || y < sy - 8.0 || y > sy + 8.0) {
+        return;
+    }
+    precise[2].word = (u16)sx | ((u32)(u16)sy << 16);
+    precise[2].valid = 1;
+    precise[2].x = (float)x;
+    precise[2].y = (float)y;
+    precise[2].z = (float)((double)v[2] / 4096.0);
+}
+
+/* Facing from exact positions (PE2_SUBPIXEL with a higher resolution:
+ * pc_pgxp_culling). Polygons a fraction of a console pixel wide, such as
+ * those filling the joints between a model's parts, have a whole-pixel area
+ * of zero or less and are skipped by the game; at a higher resolution they
+ * cover the seams, so their facing must come from the positions they will
+ * be drawn at. A fractional area is kept away from zero, which the game
+ * reads as edge-on. */
+int pc_pgxp_culling;
+
+static int precise_nclip(void)
+{
+    if (!pc_pgxp_culling) {
+        return 0;
+    }
+    for (int i = 0; i < 3; i++) {
+        if (!precise[i].valid || precise[i].word != data[PCGTE_SXY0 + i]) {
+            return 0;
+        }
+    }
+    double x0 = precise[0].x, y0 = precise[0].y, x1 = precise[1].x, y1 = precise[1].y;
+    double x2 = precise[2].x, y2 = precise[2].y;
+    double n = x0 * y1 + x1 * y2 + x2 * y0 - x0 * y2 - x1 * y0 - x2 * y1;
+    if (n > 0.1 && n < 1.0) {
+        n += 1.0;
+    } else if (n < -0.1 && n > -1.0) {
+        n -= 1.0;
+    }
+    data[PCGTE_MAC0] = (u32)(s32)n;
+    return 1;
+}
+
+int pc_pgxp_lookup(uint32_t addr, uint32_t word, float* x, float* y, float* z);
+
+void pcgte_load_sxy(unsigned reg, const uint32_t* src)
+{
+    u32 word = *src;
+    float x, y, z;
+    pcgte_write_data(reg, word);
+    unsigned slot = reg == PCGTE_SXYP ? 2 : reg - PCGTE_SXY0;
+    if (slot < 3 && pc_pgxp_lookup((u32)(uintptr_t)src, word, &x, &y, &z)) {
+        precise[slot].word = word;
+        precise[slot].valid = 1;
+        precise[slot].x = x;
+        precise[slot].y = y;
+        precise[slot].z = z;
+    }
+}
+
+void pcgte_store_sxy(unsigned reg, uint32_t* dst)
+{
+    u32 word = pcgte_read_data(reg);
+    unsigned slot = reg == PCGTE_SXYP ? 2 : reg - PCGTE_SXY0;
+    *dst = word;
+    if (slot < 3 && precise[slot].valid && precise[slot].word == word) {
+        pc_pgxp_record((u32)(uintptr_t)dst, word, precise[slot].x, precise[slot].y, precise[slot].z, 1);
+    } else {
+        pc_pgxp_record((u32)(uintptr_t)dst, word, 0, 0, 0, 0);
+    }
+}
+
 static void rtp(int n, int sf, int lm, int last)
 {
     s64 v[3];
@@ -253,13 +360,19 @@ static void rtp(int n, int sf, int lm, int last)
     }
     push_sz(Lm_D(v[2] >> 12));
 
-    s64 q = unr_divide((u16)ctrl[PCGTE_H], SZ(3));
+    u16 h = (u16)ctrl[PCGTE_H];
+    int saturated = h >= (u32)SZ(3) * 2 || (s32)(s16)IR(1) != MAC(1) || (s32)(s16)IR(2) != MAC(2);
+    s64 q = unr_divide(h, SZ(3));
+    saturated |= q >= 0x1FFFF;
     s64 m0;
     m0 = F(q * IR(1) + (s32)ctrl[PCGTE_OFX]);
     s16 sx = Lm_G(1, m0 >> 16);
+    saturated |= (m0 >> 16) != sx;
     m0 = F(q * IR(2) + (s32)ctrl[PCGTE_OFY]);
     s16 sy = Lm_G(2, m0 >> 16);
+    saturated |= (m0 >> 16) != sy;
     push_sxy(sx, sy);
+    remember_precise(v, sx, sy, saturated);
     if (last) {
         m0 = F(q * (s16)ctrl[PCGTE_DQA] + (s32)ctrl[PCGTE_DQB]);
         data[PCGTE_MAC0] = (u32)(s32)m0;
@@ -269,8 +382,13 @@ static void rtp(int n, int sf, int lm, int last)
     }
 }
 
+static int precise_nclip(void);
+
 static void cmd_nclip(void)
 {
+    if (precise_nclip()) {
+        return;
+    }
     s64 v = (s64)SX(0) * SY(1) + (s64)SX(1) * SY(2) + (s64)SX(2) * SY(0)
           - (s64)SX(0) * SY(2) - (s64)SX(1) * SY(0) - (s64)SX(2) * SY(1);
     data[PCGTE_MAC0] = (u32)(s32)F(v);
@@ -548,9 +666,16 @@ void pcgte_write_data(unsigned reg, uint32_t value)
 {
     switch (reg & 31) {
     case PCGTE_SXYP:
+        shift_precise();
         data[PCGTE_SXY0] = data[PCGTE_SXY1];
         data[PCGTE_SXY1] = data[PCGTE_SXY2];
         data[PCGTE_SXY2] = value;
+        break;
+    case PCGTE_SXY0:
+    case PCGTE_SXY1:
+    case PCGTE_SXY2:
+        precise[(reg & 31) - PCGTE_SXY0].valid = 0;
+        data[reg & 31] = value;
         break;
     case PCGTE_IRGB:
         data[PCGTE_IRGB] = value & 0x7FFF;

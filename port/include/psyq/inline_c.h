@@ -314,8 +314,8 @@
 #define gte_stotz(r0)  PSX_GTE_ST1(r0, 7, 0)
 #define gte_stopz(r0)  PSX_GTE_ST1(r0, 24, 0)
 #define gte_stsz(r0)   PSX_GTE_ST1(r0, 19, 0)
-#define gte_stsxy(r0)  PSX_GTE_ST1(r0, 14, 0)
-#define gte_stsxy2(r0) PSX_GTE_ST1(r0, 14, 0)
+#define gte_stsxy(r0)  pcgte_store_sxy(14, (uint32_t*)(uintptr_t)(r0))
+#define gte_stsxy2(r0) pcgte_store_sxy(14, (uint32_t*)(uintptr_t)(r0))
 #define gte_stlzc(r0)  PSX_GTE_ST1(r0, 31, 0)
 
 /* FLAG. */
@@ -354,16 +354,16 @@
         uintptr_t _a0 = (uintptr_t)(r0);                                                              \
         uintptr_t _a1 = (uintptr_t)(r1);                                                              \
         uintptr_t _a2 = (uintptr_t)(r2);                                                              \
-        PCMEM_SW(_a0, pcgte_read_data(12));                                                           \
-        PCMEM_SW(_a1, pcgte_read_data(13));                                                           \
-        PCMEM_SW(_a2, pcgte_read_data(14));                                                           \
+        pcgte_store_sxy(12, (uint32_t*)_a0);                                                           \
+        pcgte_store_sxy(13, (uint32_t*)_a1);                                                           \
+        pcgte_store_sxy(14, (uint32_t*)_a2);                                                           \
     } while (0)
 #define PSX_GTE_STSXY3_AT(r0, o0, o1, o2)                                                             \
     do {                                                                                              \
         uintptr_t _a0 = (uintptr_t)(r0);                                                              \
-        PCMEM_SW((_a0 + (o0)), pcgte_read_data(12));                                                  \
-        PCMEM_SW((_a0 + (o1)), pcgte_read_data(13));                                                  \
-        PCMEM_SW((_a0 + (o2)), pcgte_read_data(14));                                                  \
+        pcgte_store_sxy(12, (uint32_t*)(_a0 + (o0)));                                                  \
+        pcgte_store_sxy(13, (uint32_t*)(_a0 + (o1)));                                                  \
+        pcgte_store_sxy(14, (uint32_t*)(_a0 + (o2)));                                                  \
     } while (0)
 #define gte_stsxy3_f3(r0)  PSX_GTE_STSXY3_AT(r0, 8, 12, 16)
 #define gte_stsxy3_f4(r0)  PSX_GTE_STSXY3_AT(r0, 8, 12, 16)

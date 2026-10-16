@@ -53,6 +53,17 @@ void pcgte_op(uint32_t instruction);
  * by the gte_mvmva() macro. */
 void pcgte_op_dmpsx_mvmva(uint32_t placeholder);
 
+/* Stores SXY register `reg` (12-15) at `dst`, recording the projection's
+ * exact position against that word for the renderer (pgxp.c). */
+void pcgte_store_sxy(unsigned reg, uint32_t* dst);
+
+/* Loads SXY register `reg` (12-15, 15 pushing the FIFO) from `src`, with
+ * the exact position recorded for that word, if any. */
+void pcgte_load_sxy(unsigned reg, const uint32_t* src);
+
+/* Copies the word at `src` to `dst` with its recorded exact position. */
+void pc_pgxp_copy(uint32_t dst, uint32_t src);
+
 /* Clears every register (power-on state). */
 void pcgte_reset(void);
 

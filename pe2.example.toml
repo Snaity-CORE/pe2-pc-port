@@ -18,6 +18,9 @@ scale = 4
 # "hardware" (the graphics card, the default) or "software" (everything on
 # the CPU; also used when no graphics adapter works).
 # renderer = "hardware"
+# Exact vertex positions from the game's 3D projections at scales above 1,
+# instead of whole console pixels: no wobbling or gaps between polygons.
+# subpixel = true
 
 [memcard]
 # Raw 128 KB memory card images (DuckStation's .mcd files work). Default:

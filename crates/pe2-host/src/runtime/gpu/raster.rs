@@ -16,6 +16,9 @@ pub struct Vertex {
     pub b: i32,
     pub u: i32,
     pub v: i32,
+    /// The exact screen position, when the game's projection left one
+    /// (pgxp.c); only the higher-resolution layer uses it.
+    pub exact: Option<(f32, f32)>,
 }
 
 /// How a primitive's pixels are produced.
@@ -403,7 +406,7 @@ mod tests {
             (seed % n as u32) as i32
         };
         for _ in 0..3000 {
-            let mut vert = || Vertex { x: rnd(240) - 20, y: rnd(190) - 20, r: rnd(256), g: rnd(256), b: rnd(256), u: 0, v: 0 };
+            let mut vert = || Vertex { x: rnd(240) - 20, y: rnd(190) - 20, r: rnd(256), g: rnd(256), b: rnd(256), ..Vertex::default() };
             let v = [vert(), vert(), vert()];
             let (mut got, mut want) = (Vram::default(), Vram::default());
             got.triangle(&st, &sh, v);

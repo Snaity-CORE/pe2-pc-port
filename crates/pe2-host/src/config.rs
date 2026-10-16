@@ -33,6 +33,8 @@ pub struct Video {
     pub scale: Option<i32>,
     /// "hardware" (the graphics card, the default) or "software".
     pub renderer: Option<String>,
+    /// Exact (sub-pixel) vertex positions at higher resolutions (default on).
+    pub subpixel: Option<bool>,
 }
 
 #[derive(Debug, Default, Deserialize)]

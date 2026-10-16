@@ -584,8 +584,9 @@ impl Hw {
             v.iter()
                 .map(|q| {
                     let c = if gouraud { q } else { &v[0] };
+                    let (x, y) = q.exact.unwrap_or((q.x as f32, q.y as f32));
                     GpuVertex {
-                        pos: [q.x as f32 * s, q.y as f32 * s],
+                        pos: [x * s, y * s],
                         color: rgb(c.r, c.g, c.b),
                         uv: [q.u as f32, q.v as f32],
                         ..t
