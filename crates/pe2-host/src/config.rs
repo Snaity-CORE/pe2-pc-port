@@ -49,6 +49,8 @@ pub struct Video {
 pub struct General {
     /// Ask before Esc quits (default on).
     pub confirm_exit: Option<bool>,
+    /// The launcher's language: "en" (the default) or "pt".
+    pub language: Option<String>,
 }
 
 #[derive(Debug, Default, Deserialize)]
@@ -63,6 +65,12 @@ static CONFIG: OnceLock<Config> = OnceLock::new();
 /// The settings (loaded on first use; defaults when there is no file).
 pub fn get() -> &'static Config {
     CONFIG.get_or_init(load)
+}
+
+/// The settings file in use, or where a new one goes (next to the
+/// executable).
+pub fn file_path() -> PathBuf {
+    candidates().into_iter().find(|p| p.is_file()).unwrap_or_else(|| candidates().pop().unwrap())
 }
 
 fn candidates() -> Vec<PathBuf> {

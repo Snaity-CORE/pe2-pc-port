@@ -6,6 +6,7 @@ mod config;
 mod disc;
 mod gamepad;
 mod gfx;
+mod launcher;
 mod present;
 mod runtime;
 mod video;
@@ -23,10 +24,20 @@ mod ffi {
 
 const USAGE: &str = "usage: pe2 [disc 1 image] [disc 2 image]\n\
                      Images are your own Parasite Eve II (USA) dumps, as .cue or .chd.\n\
-                     Without arguments, pe2.toml's [discs] disc1 and disc2 are used.";
+                     Without arguments, the launcher opens; with --play, pe2.toml's [discs]\n\
+                     disc1 and disc2 are played.";
 
 fn main() -> ExitCode {
     let mut images: Vec<PathBuf> = std::env::args_os().skip(1).map(PathBuf::from).collect();
+    // No arguments: the launcher, except for the unattended and test runs
+    // the PE2_* variables drive. It plays with `--play`.
+    let unattended = ["PE2_INPUT", "PE2_LIBTEST", "PE2_SELFTEST"].iter().any(|v| std::env::var_os(v).is_some());
+    if images.is_empty() && !unattended {
+        return launcher::run();
+    }
+    if images.len() == 1 && images[0].as_os_str() == "--play" {
+        images.clear();
+    }
     if images.is_empty() {
         let discs = &config::get().discs;
         images.extend(discs.disc1.iter().chain(discs.disc2.iter()).cloned());

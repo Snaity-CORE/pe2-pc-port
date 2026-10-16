@@ -63,6 +63,11 @@ The host reads your disc images directly (`.cue` or `.chd`):
 target/i686-pc-windows-msvc/debug/pe2.exe "Parasite Eve II (USA) (Disc 1).chd" "Parasite Eve II (USA) (Disc 2).chd"
 ```
 
+Started without arguments, `pe2` opens a launcher (Setup on first run: disc
+images, memory cards, quality; Play; Settings; Exit, in English or Portuguese)
+that writes `pe2.toml` and runs the game as `pe2 --play`, coming back when it
+quits. Runs driven by `PE2_INPUT`, `PE2_LIBTEST` or `PE2_SELFTEST` skip it.
+
 Settings: copy `pe2.example.toml` to `pe2.toml` (in the directory you run
 from, or next to `pe2.exe`) to set the disc images (then `pe2` needs no
 arguments), the internal resolution and the memory card images. Arguments

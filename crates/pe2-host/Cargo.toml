@@ -12,13 +12,16 @@ path = "src/main.rs"
 [dependencies]
 chd = "0.3.4"
 cpal = "0.15"
+eframe = { version = "0.37.0", default-features = false, features = ["glow", "default_fonts", "accesskit"] }
 gilrs = "0.11"
 iced-x86 = { version = "1", default-features = false, features = ["std", "decoder", "instr_info"] }
 png = "0.17"
 pollster = "1.0.1"
+rfd = "0.17.2"
 serde = { version = "1.0.229", features = ["derive"] }
 softbuffer = "0.4"
 toml = "1.1.8"
+toml_edit = "0.25.17"
 wgpu = "30"
 windows-sys = { version = "0.61", features = ["Win32_Foundation", "Win32_System_Threading", "Win32_System_Diagnostics_Debug", "Win32_System_Diagnostics_ToolHelp", "Win32_System_Kernel", "Win32_Media", "Win32_Security", "Win32_System_Memory", "Win32_System_LibraryLoader", "Win32_UI_WindowsAndMessaging"] }
 winit = "0.30"

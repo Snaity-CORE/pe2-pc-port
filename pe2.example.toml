@@ -6,6 +6,8 @@
 # in "double quotes" a backslash starts an escape sequence.
 
 [general]
+# The launcher's language: "en" or "pt".
+# language = "en"
 # Esc asks before quitting (Cancel is the default: Enter or Esc again keep
 # playing); false quits at once.
 # confirm_exit = true
