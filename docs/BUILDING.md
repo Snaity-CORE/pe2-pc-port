@@ -63,6 +63,11 @@ The host reads your disc images directly (`.cue` or `.chd`):
 target/i686-pc-windows-msvc/debug/pe2.exe "Parasite Eve II (USA) (Disc 1).chd" "Parasite Eve II (USA) (Disc 2).chd"
 ```
 
+Settings: copy `pe2.example.toml` to `pe2.toml` (in the directory you run
+from, or next to `pe2.exe`) to set the disc images (then `pe2` needs no
+arguments), the internal resolution and the memory card images. Arguments
+and `PE2_*` environment variables override it.
+
 Debug output:
 
 - `PE2_TRACE` takes comma-separated topics: `cd` (CD commands), `cdsector`

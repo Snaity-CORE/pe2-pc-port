@@ -15,7 +15,8 @@
 //! ```
 //!
 //! Images live in `memcards/` next to the executable (`pe2_card1.mcd`,
-//! `pe2_card2.mcd`), or wherever PE2_MEMCARD1 / PE2_MEMCARD2 point. A slot
+//! `pe2_card2.mcd`), or wherever PE2_MEMCARD1 / PE2_MEMCARD2 or pe2.toml's
+//! [memcard] slot1 / slot2 point. A slot
 //! without an image file holds a freshly formatted card; the file is written
 //! on the first save.
 //!
@@ -78,6 +79,10 @@ static STATE: Mutex<Option<State>> = Mutex::new(None);
 fn image_path(slot: usize) -> PathBuf {
     if let Some(p) = std::env::var_os(format!("PE2_MEMCARD{}", slot + 1)) {
         return PathBuf::from(p);
+    }
+    let cfg = &crate::config::get().memcard;
+    if let Some(p) = [&cfg.slot1, &cfg.slot2][slot] {
+        return p.clone();
     }
     let dir = std::env::current_exe()
         .ok()

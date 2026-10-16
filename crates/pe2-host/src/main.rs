@@ -2,6 +2,7 @@
 //! PSX runtime, and drives the decompiled game code (linked as a C static
 //! library, see build.rs).
 
+mod config;
 mod disc;
 mod gamepad;
 mod runtime;
@@ -18,11 +19,16 @@ mod ffi {
     }
 }
 
-const USAGE: &str = "usage: pe2 <disc 1 image> [disc 2 image]\n\
-                     Images are your own Parasite Eve II (USA) dumps, as .cue or .chd.";
+const USAGE: &str = "usage: pe2 [disc 1 image] [disc 2 image]\n\
+                     Images are your own Parasite Eve II (USA) dumps, as .cue or .chd.\n\
+                     Without arguments, pe2.toml's [discs] disc1 and disc2 are used.";
 
 fn main() -> ExitCode {
-    let images: Vec<PathBuf> = std::env::args_os().skip(1).map(PathBuf::from).collect();
+    let mut images: Vec<PathBuf> = std::env::args_os().skip(1).map(PathBuf::from).collect();
+    if images.is_empty() {
+        let discs = &config::get().discs;
+        images.extend(discs.disc1.iter().chain(discs.disc2.iter()).cloned());
+    }
     if images.is_empty() || images.len() > 2 {
         eprintln!("{USAGE}");
         return ExitCode::FAILURE;

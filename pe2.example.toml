@@ -1,0 +1,23 @@
+# Settings for pe2. Copy this file to pe2.toml (in the directory you run
+# pe2 from, or next to pe2.exe) and edit it; pe2.toml is not tracked by git.
+# Command-line arguments and PE2_* environment variables override it.
+# Relative paths are relative to the pe2.toml file. Write Windows paths in
+# 'single quotes' (backslashes are fine there) or with forward slashes:
+# in "double quotes" a backslash starts an escape sequence.
+
+[discs]
+# Your own dumps of Parasite Eve II (USA), .cue or .chd. With these set,
+# pe2 starts without arguments.
+# disc1 = 'D:\Games\PSX\Parasite Eve II (USA) (Disc 1).chd'
+# disc2 = 'D:\Games\PSX\Parasite Eve II (USA) (Disc 2).chd'
+
+[video]
+# Internal resolution, a multiple of the console's 320x240: 1 is the
+# console's picture (with its dithering); 2-8 render in true colour.
+scale = 4
+
+[memcard]
+# Raw 128 KB memory card images (DuckStation's .mcd files work). Default:
+# memcards/pe2_card1.mcd and pe2_card2.mcd next to pe2.exe.
+# slot1 = "memcards/pe2_card1.mcd"
+# slot2 = "memcards/pe2_card2.mcd"

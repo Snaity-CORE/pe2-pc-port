@@ -44,14 +44,24 @@ pub struct Gpu {
     pub hires: Option<hires::Hires>,
 }
 
-/// PE2_SCALE: the internal resolution, a multiple of the console's (1-8).
+/// The internal resolution, a multiple of the console's (1-8): PE2_SCALE,
+/// else pe2.toml's [video] scale, else 1.
 fn scale() -> i32 {
-    std::env::var("PE2_SCALE").ok().and_then(|v| v.trim().parse().ok()).unwrap_or(1).clamp(1, 8)
+    std::env::var("PE2_SCALE")
+        .ok()
+        .and_then(|v| v.trim().parse().ok())
+        .or(crate::config::get().video.scale)
+        .unwrap_or(1)
+        .clamp(1, 8)
 }
 
 pub static GPU: Mutex<Option<Gpu>> = Mutex::new(None);
 
 pub fn start() {
+    let scale = scale();
+    if scale > 1 {
+        eprintln!("pe2: internal resolution {scale}x ({}x{})", 320 * scale, 240 * scale);
+    }
     *GPU.lock().unwrap() = Some(Gpu {
         vram: Vram::default(),
         state: DrawState::default(),
@@ -60,7 +70,7 @@ pub fn start() {
         cur_packet: 0,
         dump: false,
         dump_out: None,
-        hires: (scale() > 1).then(|| hires::Hires::new(scale())),
+        hires: (scale > 1).then(|| hires::Hires::new(scale)),
     });
 }
 
