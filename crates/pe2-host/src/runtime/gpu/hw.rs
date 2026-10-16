@@ -1,0 +1,858 @@
+//! The higher-resolution layer on the graphics card: what hires.rs does on
+//! the CPU, rendered with wgpu into a texture `scale` times the VRAM's size.
+//!
+//! Operations are recorded in order (draws as vertices, uploads as data,
+//! copies) and run on the card at each `flush`. Textures and CLUTs are
+//! sampled, in the shader, from a copy of the native VRAM: it is sent again
+//! before a primitive samples an area the native VRAM changed since the
+//! last copy, and before the native VRAM changes an area that recorded
+//! primitives sample, so each primitive sees the VRAM as it was when the
+//! game drew it.
+//!
+//! The game never tests the mask bit when drawing (it only sets it), and
+//! textures come from the native VRAM, where the bit is exact; this layer
+//! keeps no mask bit.
+
+use std::sync::atomic::{AtomicU64, Ordering};
+
+use super::raster::{DrawState, Shading, VRAM_HEIGHT, VRAM_WIDTH, Vertex as NativeVertex, Vram};
+use crate::gfx::Gfx;
+
+/// PE2_TRACE=cpu: flushes, and native VRAM halfwords sent to the card.
+pub static FLUSHES: AtomicU64 = AtomicU64::new(0);
+pub static VRAM_SENT: AtomicU64 = AtomicU64::new(0);
+
+const SHADER: &str = r#"
+struct Uniforms { size: vec2<f32>, scale: f32, _pad: f32 };
+@group(0) @binding(0) var<uniform> u: Uniforms;
+@group(0) @binding(1) var vram: texture_2d<u32>;
+@group(0) @binding(2) var<storage, read> uploads: array<u32>;
+@group(0) @binding(3) var scratch: texture_2d<f32>;
+
+struct In {
+    @location(0) pos: vec2<f32>,
+    @location(1) color: u32,
+    @location(2) uv: vec2<f32>,
+    @location(3) mode: u32,
+    @location(4) clut: u32,
+    @location(5) window: u32,
+};
+struct Out {
+    @builtin(position) pos: vec4<f32>,
+    @location(0) @interpolate(linear) color: vec3<f32>,
+    @location(1) @interpolate(linear) uv: vec2<f32>,
+    @location(2) @interpolate(flat) mode: u32,
+    @location(3) @interpolate(flat) clut: u32,
+    @location(4) @interpolate(flat) window: u32,
+};
+
+@vertex
+fn vs(i: In) -> Out {
+    var o: Out;
+    // Pixel (x, y) is covered when its integer position is inside, as in
+    // the CPU rasterizers: shift by half a pixel to the GPU's centres.
+    let p = (i.pos + vec2<f32>(0.5, 0.5)) / u.size * 2.0 - 1.0;
+    o.pos = vec4<f32>(p.x, -p.y, 0.0, 1.0);
+    o.color = vec3<f32>(f32(i.color & 0xFFu), f32((i.color >> 8u) & 0xFFu), f32((i.color >> 16u) & 0xFFu));
+    o.uv = i.uv;
+    o.mode = i.mode;
+    o.clut = i.clut;
+    o.window = i.window;
+    return o;
+}
+
+fn vram_at(x: u32, y: u32) -> u32 {
+    return textureLoad(vram, vec2<u32>(x & 1023u, y & 511u), 0).r;
+}
+
+// mode: bits 0-9 texture page x, 10-18 page y, 20-21 depth, 22 textured,
+// 23 raw texture, 24-25 pass (0 all texels, 1 those without bit 15, 2
+// those with it), 26-27 kind (0 primitive, 1 upload, 2 copy).
+@fragment
+fn fs(o: Out) -> @location(0) vec4<f32> {
+    let kind = (o.mode >> 26u) & 3u;
+    if (kind == 1u) {
+        // Upload: clut = first halfword in `uploads`, window = row width.
+        let n = vec2<u32>(floor(o.uv));
+        let index = o.clut + n.y * o.window + n.x;
+        let word = uploads[index >> 1u];
+        let px = (word >> ((index & 1u) * 16u)) & 0xFFFFu;
+        return vec4<f32>(rgb15(px), 1.0);
+    }
+    if (kind == 2u) {
+        return vec4<f32>(textureLoad(scratch, vec2<u32>(floor(o.uv)), 0).rgb, 1.0);
+    }
+    var c = floor(o.color);
+    if (((o.mode >> 22u) & 1u) != 0u) {
+        var tu = u32(i32(floor(o.uv.x)));
+        var tv = u32(i32(floor(o.uv.y)));
+        let mx = o.window & 31u;
+        let my = (o.window >> 5u) & 31u;
+        let ox = (o.window >> 10u) & 31u;
+        let oy = (o.window >> 15u) & 31u;
+        tu = ((tu & ~(mx * 8u)) | ((ox & mx) * 8u)) & 0xFFu;
+        tv = ((tv & ~(my * 8u)) | ((oy & my) * 8u)) & 0xFFu;
+        let px = o.mode & 1023u;
+        let py = (o.mode >> 10u) & 511u;
+        let depth = (o.mode >> 20u) & 3u;
+        let cx = o.clut & 1023u;
+        let cy = (o.clut >> 10u) & 511u;
+        var t: u32;
+        if (depth == 0u) {
+            let word = vram_at(px + tu / 4u, py + tv);
+            t = vram_at(cx + ((word >> ((tu & 3u) * 4u)) & 0xFu), cy);
+        } else if (depth == 1u) {
+            let word = vram_at(px + tu / 2u, py + tv);
+            t = vram_at(cx + ((word >> ((tu & 1u) * 8u)) & 0xFFu), cy);
+        } else {
+            t = vram_at(px + tu, py + tv);
+        }
+        if (t == 0u) {
+            discard;
+        }
+        let pass_ = (o.mode >> 24u) & 3u;
+        let mask = (t >> 15u) & 1u;
+        if ((pass_ == 1u && mask == 1u) || (pass_ == 2u && mask == 0u)) {
+            discard;
+        }
+        let tc = vec3<f32>(f32((t & 31u) << 3u), f32(((t >> 5u) & 31u) << 3u), f32(((t >> 10u) & 31u) << 3u));
+        if (((o.mode >> 23u) & 1u) != 0u) {
+            c = tc;
+        } else {
+            c = floor(tc * c / 128.0);
+        }
+    }
+    return vec4<f32>(min(c, vec3<f32>(255.0)) / 255.0, 1.0);
+}
+
+fn rgb15(px: u32) -> vec3<f32> {
+    return vec3<f32>(f32((px & 31u) << 3u), f32(((px >> 5u) & 31u) << 3u), f32(((px >> 10u) & 31u) << 3u)) / 255.0;
+}
+"#;
+
+#[repr(C)]
+#[derive(Clone, Copy, Default)]
+struct GpuVertex {
+    pos: [f32; 2],
+    color: u32,
+    uv: [f32; 2],
+    mode: u32,
+    clut: u32,
+    window: u32,
+}
+
+const KIND_UPLOAD: u32 = 1 << 26;
+const KIND_COPY: u32 = 2 << 26;
+
+/// Fixed-function blending for the four semi-transparency modes, or none.
+#[derive(Clone, Copy, PartialEq, Eq)]
+enum Blend {
+    None,
+    Average,
+    Add,
+    Subtract,
+    AddQuarter,
+}
+
+impl Blend {
+    fn index(self) -> usize {
+        self as usize
+    }
+
+    fn constant(self) -> f64 {
+        match self {
+            Blend::Average => 0.5,
+            Blend::AddQuarter => 0.25,
+            _ => 1.0,
+        }
+    }
+
+    fn state(self) -> Option<wgpu::BlendState> {
+        use wgpu::{BlendComponent, BlendFactor as F, BlendOperation as Op};
+        let color = match self {
+            Blend::None => return None,
+            Blend::Average => BlendComponent { src_factor: F::Constant, dst_factor: F::Constant, operation: Op::Add },
+            Blend::Add => BlendComponent { src_factor: F::One, dst_factor: F::One, operation: Op::Add },
+            Blend::Subtract => BlendComponent { src_factor: F::One, dst_factor: F::One, operation: Op::ReverseSubtract },
+            Blend::AddQuarter => BlendComponent { src_factor: F::Constant, dst_factor: F::One, operation: Op::Add },
+        };
+        Some(wgpu::BlendState { color, alpha: BlendComponent::REPLACE })
+    }
+}
+
+/// A recorded operation.
+enum Op {
+    /// Vertices `first..first + count` with one blend mode and scissor.
+    Draw { blend: Blend, scissor: [u32; 4], first: u32, count: u32 },
+    /// Copies a rectangle of the target to the same place in the scratch
+    /// texture (for a VRAM-to-VRAM copy drawn by the next Draw).
+    ToScratch { x: u32, y: u32, w: u32, h: u32 },
+}
+
+/// A native VRAM rectangle, inclusive.
+#[derive(Clone, Copy)]
+struct Area {
+    x0: i32,
+    y0: i32,
+    x1: i32,
+    y1: i32,
+}
+
+impl Area {
+    const EMPTY: Area = Area { x0: i32::MAX, y0: i32::MAX, x1: i32::MIN, y1: i32::MIN };
+
+    fn new(x: i32, y: i32, w: i32, h: i32) -> Area {
+        Area { x0: x, y0: y, x1: x + w - 1, y1: y + h - 1 }
+    }
+
+    fn union(self, o: Area) -> Area {
+        Area { x0: self.x0.min(o.x0), y0: self.y0.min(o.y0), x1: self.x1.max(o.x1), y1: self.y1.max(o.y1) }
+    }
+
+    fn hits(self, o: Area) -> bool {
+        self.x0 <= o.x1 && o.x0 <= self.x1 && self.y0 <= o.y1 && o.y0 <= self.y1
+    }
+
+    fn contains(self, o: Area) -> bool {
+        self.x0 <= o.x0 && o.x1 <= self.x1 && self.y0 <= o.y0 && o.y1 <= self.y1
+    }
+}
+
+/// A few rectangles: texture pages and CLUTs lie far apart, and one
+/// bounding box of them would cover the framebuffers too.
+#[derive(Default)]
+struct Areas(Vec<Area>);
+
+impl Areas {
+    const MAX: usize = 32;
+
+    fn add(&mut self, a: Area) {
+        if a.x0 > a.x1 || a.y0 > a.y1 || self.0.iter().any(|b| b.contains(a)) {
+            return;
+        }
+        self.0.retain(|b| !a.contains(*b));
+        if self.0.len() == Self::MAX {
+            // Too many: merge everything (correct, if coarse).
+            let all = self.0.iter().fold(a, |u, b| u.union(*b));
+            self.0.clear();
+            self.0.push(all);
+        } else {
+            self.0.push(a);
+        }
+    }
+
+    fn hits(&self, a: Area) -> bool {
+        self.0.iter().any(|b| b.hits(a))
+    }
+
+    fn bounds(&self) -> Area {
+        self.0.iter().fold(Area::EMPTY, |u, b| u.union(*b))
+    }
+
+    fn clear(&mut self) {
+        self.0.clear();
+    }
+}
+
+pub struct Hw {
+    gfx: &'static Gfx,
+    pub scale: i32,
+    width: u32,
+    height: u32,
+    pub target: wgpu::Texture,
+    scratch: wgpu::Texture,
+    vram: wgpu::Texture,
+    uniforms: wgpu::Buffer,
+    vertex_buffer: Option<wgpu::Buffer>,
+    upload_buffer: wgpu::Buffer,
+    bind: wgpu::BindGroup,
+    layout: wgpu::BindGroupLayout,
+    pipelines: Vec<wgpu::RenderPipeline>,
+    vertices: Vec<GpuVertex>,
+    uploads: Vec<u16>,
+    ops: Vec<Op>,
+    /// Native VRAM written since the last copy sent to the card, and the
+    /// native VRAM recorded primitives sample.
+    dirty: Areas,
+    sampled: Areas,
+}
+
+impl Hw {
+    pub fn new(gfx: &'static Gfx, scale: i32) -> Hw {
+        let device = &gfx.device;
+        let (width, height) = (VRAM_WIDTH as u32 * scale as u32, VRAM_HEIGHT as u32 * scale as u32);
+        let texture = |label, w, h, format, usage| {
+            device.create_texture(&wgpu::TextureDescriptor {
+                label: Some(label),
+                size: wgpu::Extent3d { width: w, height: h, depth_or_array_layers: 1 },
+                mip_level_count: 1,
+                sample_count: 1,
+                dimension: wgpu::TextureDimension::D2,
+                format,
+                usage,
+                view_formats: &[],
+            })
+        };
+        use wgpu::TextureUsages as U;
+        let target = texture(
+            "hw target",
+            width,
+            height,
+            wgpu::TextureFormat::Rgba8Unorm,
+            U::RENDER_ATTACHMENT | U::TEXTURE_BINDING | U::COPY_SRC | U::COPY_DST,
+        );
+        let scratch = texture("hw scratch", width, height, wgpu::TextureFormat::Rgba8Unorm, U::TEXTURE_BINDING | U::COPY_DST);
+        let vram = texture("hw vram", VRAM_WIDTH as u32, VRAM_HEIGHT as u32, wgpu::TextureFormat::R16Uint, U::TEXTURE_BINDING | U::COPY_DST);
+        let uniforms = device.create_buffer(&wgpu::BufferDescriptor {
+            label: Some("hw uniforms"),
+            size: 16,
+            usage: wgpu::BufferUsages::UNIFORM | wgpu::BufferUsages::COPY_DST,
+            mapped_at_creation: false,
+        });
+        let u: [f32; 4] = [width as f32, height as f32, scale as f32, 0.0];
+        gfx.queue.write_buffer(&uniforms, 0, bytes(&u));
+        let upload_buffer = Self::make_upload_buffer(device, 1 << 20);
+
+        let entry = |binding, ty| wgpu::BindGroupLayoutEntry {
+            binding,
+            visibility: wgpu::ShaderStages::FRAGMENT | wgpu::ShaderStages::VERTEX,
+            ty,
+            count: None,
+        };
+        let layout = device.create_bind_group_layout(&wgpu::BindGroupLayoutDescriptor {
+            label: Some("hw"),
+            entries: &[
+                entry(0, wgpu::BindingType::Buffer { ty: wgpu::BufferBindingType::Uniform, has_dynamic_offset: false, min_binding_size: None }),
+                entry(1, wgpu::BindingType::Texture {
+                    sample_type: wgpu::TextureSampleType::Uint,
+                    view_dimension: wgpu::TextureViewDimension::D2,
+                    multisampled: false,
+                }),
+                entry(2, wgpu::BindingType::Buffer {
+                    ty: wgpu::BufferBindingType::Storage { read_only: true },
+                    has_dynamic_offset: false,
+                    min_binding_size: None,
+                }),
+                entry(3, wgpu::BindingType::Texture {
+                    sample_type: wgpu::TextureSampleType::Float { filterable: false },
+                    view_dimension: wgpu::TextureViewDimension::D2,
+                    multisampled: false,
+                }),
+            ],
+        });
+        let module = device.create_shader_module(wgpu::ShaderModuleDescriptor {
+            label: Some("hw"),
+            source: wgpu::ShaderSource::Wgsl(SHADER.into()),
+        });
+        let pipeline_layout = device.create_pipeline_layout(&wgpu::PipelineLayoutDescriptor {
+            label: Some("hw"),
+            bind_group_layouts: &[Some(&layout)],
+            ..Default::default()
+        });
+        let attributes = wgpu::vertex_attr_array![0 => Float32x2, 1 => Uint32, 2 => Float32x2, 3 => Uint32, 4 => Uint32, 5 => Uint32];
+        let pipelines = [Blend::None, Blend::Average, Blend::Add, Blend::Subtract, Blend::AddQuarter]
+            .iter()
+            .map(|b| {
+                device.create_render_pipeline(&wgpu::RenderPipelineDescriptor {
+                    label: Some("hw"),
+                    layout: Some(&pipeline_layout),
+                    vertex: wgpu::VertexState {
+                        module: &module,
+                        entry_point: Some("vs"),
+                        buffers: &[Some(wgpu::VertexBufferLayout {
+                            array_stride: std::mem::size_of::<GpuVertex>() as u64,
+                            step_mode: wgpu::VertexStepMode::Vertex,
+                            attributes: &attributes,
+                        })],
+                        compilation_options: Default::default(),
+                    },
+                    fragment: Some(wgpu::FragmentState {
+                        module: &module,
+                        entry_point: Some("fs"),
+                        targets: &[Some(wgpu::ColorTargetState {
+                            format: wgpu::TextureFormat::Rgba8Unorm,
+                            blend: b.state(),
+                            write_mask: wgpu::ColorWrites::ALL,
+                        })],
+                        compilation_options: Default::default(),
+                    }),
+                    primitive: wgpu::PrimitiveState::default(),
+                    depth_stencil: None,
+                    multisample: wgpu::MultisampleState::default(),
+                    multiview_mask: None,
+                    cache: None,
+                })
+            })
+            .collect();
+        let bind = Self::make_bind(device, &layout, &uniforms, &vram, &upload_buffer, &scratch);
+        Hw {
+            gfx,
+            scale,
+            width,
+            height,
+            target,
+            scratch,
+            vram,
+            uniforms,
+            vertex_buffer: None,
+            upload_buffer,
+            bind,
+            layout,
+            pipelines,
+            vertices: Vec::new(),
+            uploads: Vec::new(),
+            ops: Vec::new(),
+            dirty: Areas(vec![Area::new(0, 0, VRAM_WIDTH as i32, VRAM_HEIGHT as i32)]),
+            sampled: Areas::default(),
+        }
+    }
+
+    fn make_upload_buffer(device: &wgpu::Device, size: u64) -> wgpu::Buffer {
+        device.create_buffer(&wgpu::BufferDescriptor {
+            label: Some("hw uploads"),
+            size,
+            usage: wgpu::BufferUsages::STORAGE | wgpu::BufferUsages::COPY_DST,
+            mapped_at_creation: false,
+        })
+    }
+
+    fn make_bind(
+        device: &wgpu::Device,
+        layout: &wgpu::BindGroupLayout,
+        uniforms: &wgpu::Buffer,
+        vram: &wgpu::Texture,
+        uploads: &wgpu::Buffer,
+        scratch: &wgpu::Texture,
+    ) -> wgpu::BindGroup {
+        let vram_view = vram.create_view(&Default::default());
+        let scratch_view = scratch.create_view(&Default::default());
+        device.create_bind_group(&wgpu::BindGroupDescriptor {
+            label: Some("hw"),
+            layout,
+            entries: &[
+                wgpu::BindGroupEntry { binding: 0, resource: uniforms.as_entire_binding() },
+                wgpu::BindGroupEntry { binding: 1, resource: wgpu::BindingResource::TextureView(&vram_view) },
+                wgpu::BindGroupEntry { binding: 2, resource: uploads.as_entire_binding() },
+                wgpu::BindGroupEntry { binding: 3, resource: wgpu::BindingResource::TextureView(&scratch_view) },
+            ],
+        })
+    }
+
+    // ---- ordering with the native VRAM ----------------------------------
+
+    /// Before the native VRAM changes `x, y, w, h`: recorded primitives
+    /// that sample it must run first.
+    pub fn before_native_write(&mut self, vram: &Vram, x: i32, y: i32, w: i32, h: i32) {
+        if self.sampled.hits(Area::new(x, y, w, h)) {
+            self.flush(vram);
+        }
+    }
+
+    /// After the native VRAM changed `x, y, w, h`.
+    pub fn after_native_write(&mut self, x: i32, y: i32, w: i32, h: i32) {
+        self.dirty.add(Area::new(x, y, w, h));
+    }
+
+    /// A textured primitive samples `page` and `clut`: they must be current.
+    fn sample(&mut self, vram: &Vram, st: &DrawState, sh: &Shading) {
+        let page_w = match st.tex_depth {
+            0 => 64,
+            1 => 128,
+            _ => 256,
+        };
+        let page = Area::new(st.tex_x, st.tex_y, page_w, 256);
+        let clut_w = if st.tex_depth == 0 { 16 } else { 256 };
+        let clut = Area::new(sh.clut_x, sh.clut_y, clut_w, 1);
+        if self.dirty.hits(page) || (st.tex_depth < 2 && self.dirty.hits(clut)) {
+            self.flush(vram);
+        }
+        self.sampled.add(page);
+        if st.tex_depth < 2 {
+            self.sampled.add(clut);
+        }
+    }
+
+    // ---- recording ----------------------------------------------------------
+
+    /// Recorded work beyond this runs at once (the card's buffers have
+    /// size limits, and nothing is gained by waiting).
+    const PENDING_LIMIT: usize = 8 << 20;
+
+    fn too_much(&self) -> bool {
+        self.uploads.len() * 2 + self.vertices.len() * std::mem::size_of::<GpuVertex>() > Self::PENDING_LIMIT
+    }
+
+    fn push_draw(&mut self, blend: Blend, scissor: [u32; 4], verts: &[GpuVertex]) {
+        let first = self.vertices.len() as u32;
+        self.vertices.extend_from_slice(verts);
+        if let Some(Op::Draw { blend: b, scissor: s, count, .. }) = self.ops.last_mut() {
+            if *b == blend && *s == scissor {
+                *count += verts.len() as u32;
+                return;
+            }
+        }
+        self.ops.push(Op::Draw { blend, scissor, first, count: verts.len() as u32 });
+    }
+
+    fn full(&self) -> [u32; 4] {
+        [0, 0, self.width, self.height]
+    }
+
+    /// The drawing area as a scissor rectangle.
+    fn scissor(&self, st: &DrawState) -> [u32; 4] {
+        let s = self.scale;
+        let x0 = (st.area_x1 * s).clamp(0, self.width as i32);
+        let y0 = (st.area_y1 * s).clamp(0, self.height as i32);
+        let x1 = ((st.area_x2 + 1) * s).clamp(x0, self.width as i32);
+        let y1 = ((st.area_y2 + 1) * s).clamp(y0, self.height as i32);
+        [x0 as u32, y0 as u32, (x1 - x0) as u32, (y1 - y0) as u32]
+    }
+
+    /// A rectangle in this layer's pixels as two triangles; `uv` at its
+    /// top-left and bottom-right corners.
+    fn quad(x0: f32, y0: f32, x1: f32, y1: f32, u0: [f32; 2], u1: [f32; 2], template: GpuVertex) -> [GpuVertex; 6] {
+        let v = |x, y, u, v| GpuVertex { pos: [x, y], uv: [u, v], ..template };
+        let (a, b, c, d) = (v(x0, y0, u0[0], u0[1]), v(x1, y0, u1[0], u0[1]), v(x0, y1, u0[0], u1[1]), v(x1, y1, u1[0], u1[1]));
+        [a, b, c, b, d, c]
+    }
+
+    /// The vertex fields a primitive's shading selects.
+    fn template(&self, st: &DrawState, sh: &Shading, pass: u32) -> GpuVertex {
+        let mut mode = 0;
+        if sh.textured {
+            mode = (st.tex_x as u32 & 1023)
+                | ((st.tex_y as u32 & 511) << 10)
+                | ((st.tex_depth as u32 & 3) << 20)
+                | (1 << 22)
+                | (u32::from(sh.raw_texture) << 23)
+                | (pass << 24);
+        }
+        GpuVertex {
+            mode,
+            clut: (sh.clut_x as u32 & 1023) | ((sh.clut_y as u32 & 511) << 10),
+            window: (st.win_mask_x as u32 & 31)
+                | ((st.win_mask_y as u32 & 31) << 5)
+                | ((st.win_off_x as u32 & 31) << 10)
+                | ((st.win_off_y as u32 & 31) << 15),
+            ..Default::default()
+        }
+    }
+
+    fn semi_blend(st: &DrawState) -> Blend {
+        match st.semi_mode {
+            0 => Blend::Average,
+            1 => Blend::Add,
+            2 => Blend::Subtract,
+            _ => Blend::AddQuarter,
+        }
+    }
+
+    /// Records a shaded primitive: textured semi-transparent ones in two
+    /// passes, since only texels with bit 15 set are blended.
+    fn shaded(&mut self, vram: &Vram, st: &DrawState, sh: &Shading, make: impl Fn(GpuVertex) -> Vec<GpuVertex>) {
+        if self.too_much() {
+            self.flush(vram);
+        }
+        if sh.textured {
+            self.sample(vram, st, sh);
+        }
+        let scissor = self.scissor(st);
+        if !sh.semi_transparent {
+            let verts = make(self.template(st, sh, 0));
+            self.push_draw(Blend::None, scissor, &verts);
+        } else if !sh.textured {
+            let verts = make(self.template(st, sh, 0));
+            self.push_draw(Self::semi_blend(st), scissor, &verts);
+        } else {
+            let opaque = make(self.template(st, sh, 1));
+            self.push_draw(Blend::None, scissor, &opaque);
+            let blended = make(self.template(st, sh, 2));
+            self.push_draw(Self::semi_blend(st), scissor, &blended);
+        }
+    }
+
+    pub fn triangle(&mut self, vram: &Vram, st: &DrawState, sh: &Shading, v: [NativeVertex; 3]) {
+        // The GPU skips polygons larger than 1023x511.
+        let (min_x, max_x) = (v[0].x.min(v[1].x).min(v[2].x), v[0].x.max(v[1].x).max(v[2].x));
+        let (min_y, max_y) = (v[0].y.min(v[1].y).min(v[2].y), v[0].y.max(v[1].y).max(v[2].y));
+        if max_x - min_x > 1023 || max_y - min_y > 511 {
+            return;
+        }
+        let s = self.scale as f32;
+        let gouraud = sh.gouraud;
+        self.shaded(vram, st, sh, |t| {
+            v.iter()
+                .map(|q| {
+                    let c = if gouraud { q } else { &v[0] };
+                    GpuVertex {
+                        pos: [q.x as f32 * s, q.y as f32 * s],
+                        color: rgb(c.r, c.g, c.b),
+                        uv: [q.u as f32, q.v as f32],
+                        ..t
+                    }
+                })
+                .collect()
+        });
+    }
+
+    /// A sprite: each texel covers `scale` x `scale` pixels.
+    #[allow(clippy::too_many_arguments)]
+    pub fn rectangle(
+        &mut self,
+        vram: &Vram,
+        st: &DrawState,
+        sh: &Shading,
+        x: i32,
+        y: i32,
+        w: i32,
+        h: i32,
+        color: (i32, i32, i32),
+        u: i32,
+        v: i32,
+    ) {
+        if w <= 0 || h <= 0 {
+            return;
+        }
+        let s = self.scale as f32;
+        // Texel coordinates at the corners: with a flip, counting down from
+        // just below the next texel keeps whole texels per native pixel.
+        const EDGE: f32 = 1.0 / 4096.0;
+        let (u0, u1) =
+            if st.rect_flip_x { (u as f32 + 1.0 - EDGE, (u - w) as f32 + 1.0 - EDGE) } else { (u as f32, (u + w) as f32) };
+        let (v0, v1) =
+            if st.rect_flip_y { (v as f32 + 1.0 - EDGE, (v - h) as f32 + 1.0 - EDGE) } else { (v as f32, (v + h) as f32) };
+        let (x0, y0, x1, y1) = (x as f32 * s, y as f32 * s, (x + w) as f32 * s, (y + h) as f32 * s);
+        // The quad's far edges sit on pixel boundaries: pull them in by a
+        // half pixel so the last row and column are covered exactly once.
+        let c = rgb(color.0, color.1, color.2);
+        self.shaded(vram, st, sh, |t| {
+            Self::quad(x0, y0, x1 - 0.0, y1 - 0.0, [u0, v0], [u1, v1], GpuVertex { color: c, ..t })
+                .iter()
+                .map(|q| GpuVertex { pos: [q.pos[0] - 0.5, q.pos[1] - 0.5], ..*q })
+                .collect()
+        });
+    }
+
+    /// A line: the native rasterizer's pixels, each a `scale` x `scale` block.
+    pub fn line(&mut self, vram: &Vram, st: &DrawState, sh: &Shading, a: NativeVertex, b: NativeVertex) {
+        let (dx, dy) = (b.x - a.x, b.y - a.y);
+        if dx.abs() > 1023 || dy.abs() > 511 {
+            return;
+        }
+        let steps = dx.abs().max(dy.abs());
+        let s = self.scale as f32;
+        let gouraud = sh.gouraud;
+        self.shaded(vram, st, sh, |t| {
+            let mut out = Vec::with_capacity(6 * (steps as usize + 1));
+            for i in 0..=steps {
+                let lerp = |p: i32, q: i32| if steps == 0 { p } else { p + (q - p) * i / steps };
+                let (x, y) = (lerp(a.x, b.x) as f32 * s, lerp(a.y, b.y) as f32 * s);
+                let c = if gouraud { rgb(lerp(a.r, b.r), lerp(a.g, b.g), lerp(a.b, b.b)) } else { rgb(a.r, a.g, a.b) };
+                for q in Self::quad(x - 0.5, y - 0.5, x + s - 0.5, y + s - 0.5, [0.0; 2], [0.0; 2], GpuVertex { color: c, ..t }) {
+                    out.push(q);
+                }
+            }
+            out
+        });
+    }
+
+    /// GP0(02h) fill, with the native command's coordinate rounding.
+    pub fn fill_command(&mut self, x: i32, y: i32, w: i32, h: i32, rgb24: u32) {
+        let w = ((w & 0x3FF) + 0xF) & !0xF;
+        self.fill(x & 0x3F0, y & 0x1FF, w, h & 0x1FF, rgb24);
+    }
+
+    /// A rectangle of native pixels set to one colour (ClearImage).
+    pub fn fill(&mut self, x: i32, y: i32, w: i32, h: i32, rgb24: u32) {
+        if w <= 0 || h <= 0 {
+            return;
+        }
+        let s = self.scale as f32;
+        let c = rgb((rgb24 & 0xFF) as i32, ((rgb24 >> 8) & 0xFF) as i32, ((rgb24 >> 16) & 0xFF) as i32);
+        let verts = Self::quad(
+            x as f32 * s - 0.5,
+            y as f32 * s - 0.5,
+            (x + w) as f32 * s - 0.5,
+            (y + h) as f32 * s - 0.5,
+            [0.0; 2],
+            [0.0; 2],
+            GpuVertex { color: c, ..Default::default() },
+        );
+        let full = self.full();
+        self.push_draw(Blend::None, full, &verts);
+    }
+
+    /// An image transfer of `w` x `h` native pixels (the native VRAM
+    /// already has them: `vram` is only for flushing early).
+    pub fn upload_rect(&mut self, vram: &Vram, x: i32, y: i32, w: i32, h: i32, pixels: &[u16]) {
+        if w <= 0 || h <= 0 {
+            return;
+        }
+        if self.too_much() {
+            self.flush(vram);
+        }
+        let n = (w * h) as usize;
+        let first = self.uploads.len() as u32;
+        self.uploads.extend_from_slice(&pixels[..n.min(pixels.len())]);
+        self.uploads.resize(first as usize + n, 0);
+        let s = self.scale as f32;
+        let template = GpuVertex { mode: KIND_UPLOAD, clut: first, window: w as u32, ..Default::default() };
+        let verts = Self::quad(
+            x as f32 * s - 0.5,
+            y as f32 * s - 0.5,
+            (x + w) as f32 * s - 0.5,
+            (y + h) as f32 * s - 0.5,
+            [0.0, 0.0],
+            [w as f32, h as f32],
+            template,
+        );
+        let full = self.full();
+        self.push_draw(Blend::None, full, &verts);
+    }
+
+    /// A VRAM-to-VRAM copy (no wrapping at the VRAM's edges).
+    pub fn copy(&mut self, sx: i32, sy: i32, dx: i32, dy: i32, w: i32, h: i32) {
+        let s = self.scale;
+        let clip = |p: i32, len: i32, max: i32| (p.clamp(0, max), (p + len).clamp(0, max));
+        let (sx0, sx1) = clip(sx * s, w * s, self.width as i32);
+        let (sy0, sy1) = clip(sy * s, h * s, self.height as i32);
+        if sx1 <= sx0 || sy1 <= sy0 {
+            return;
+        }
+        self.ops.push(Op::ToScratch { x: sx0 as u32, y: sy0 as u32, w: (sx1 - sx0) as u32, h: (sy1 - sy0) as u32 });
+        let (cw, ch) = ((sx1 - sx0) as f32, (sy1 - sy0) as f32);
+        let (x0, y0) = ((dx * s) as f32 - 0.5, (dy * s) as f32 - 0.5);
+        let verts = Self::quad(
+            x0,
+            y0,
+            x0 + cw,
+            y0 + ch,
+            [sx0 as f32, sy0 as f32],
+            [sx1 as f32, sy1 as f32],
+            GpuVertex { mode: KIND_COPY, ..Default::default() },
+        );
+        let full = self.full();
+        let first = self.vertices.len() as u32;
+        self.vertices.extend_from_slice(&verts);
+        // Never merged with a previous draw: the scratch copy comes between.
+        self.ops.push(Op::Draw { blend: Blend::None, scissor: full, first, count: 6 });
+    }
+
+    // ---- running --------------------------------------------------------------
+
+    /// Runs everything recorded on the card.
+    pub fn flush(&mut self, vram: &Vram) {
+        let gfx = self.gfx;
+        // The part of the native VRAM that changed since the last copy.
+        let d = self.dirty.bounds();
+        let (x0, y0) = (d.x0.max(0), d.y0.max(0));
+        let (x1, y1) = (d.x1.min(VRAM_WIDTH as i32 - 1), d.y1.min(VRAM_HEIGHT as i32 - 1));
+        if x0 <= x1 && y0 <= y1 {
+            let (w, h) = ((x1 - x0 + 1) as usize, (y1 - y0 + 1) as usize);
+            let mut rows = Vec::with_capacity(w * h);
+            for y in y0 as usize..=y1 as usize {
+                rows.extend_from_slice(&vram.pixels[y * VRAM_WIDTH + x0 as usize..][..w]);
+            }
+            gfx.queue.write_texture(
+                wgpu::TexelCopyTextureInfo {
+                    texture: &self.vram,
+                    mip_level: 0,
+                    origin: wgpu::Origin3d { x: x0 as u32, y: y0 as u32, z: 0 },
+                    aspect: wgpu::TextureAspect::All,
+                },
+                bytes(&rows),
+                wgpu::TexelCopyBufferLayout { offset: 0, bytes_per_row: Some(w as u32 * 2), rows_per_image: Some(h as u32) },
+                wgpu::Extent3d { width: w as u32, height: h as u32, depth_or_array_layers: 1 },
+            );
+            VRAM_SENT.fetch_add((w * h) as u64, Ordering::Relaxed);
+        }
+        self.dirty.clear();
+        self.sampled.clear();
+        if self.ops.is_empty() {
+            return;
+        }
+        let device = &gfx.device;
+        FLUSHES.fetch_add(1, Ordering::Relaxed);
+
+        let vbytes = bytes(&self.vertices);
+        if self.vertex_buffer.as_ref().is_none_or(|b| b.size() < vbytes.len() as u64) {
+            self.vertex_buffer = Some(device.create_buffer(&wgpu::BufferDescriptor {
+                label: Some("hw vertices"),
+                size: (vbytes.len() as u64).next_power_of_two().max(1 << 16),
+                usage: wgpu::BufferUsages::VERTEX | wgpu::BufferUsages::COPY_DST,
+                mapped_at_creation: false,
+            }));
+        }
+        let vertex_buffer = self.vertex_buffer.as_ref().unwrap();
+        gfx.queue.write_buffer(vertex_buffer, 0, vbytes);
+        if !self.uploads.is_empty() {
+            if self.uploads.len() % 2 == 1 {
+                self.uploads.push(0);
+            }
+            let ubytes = bytes(&self.uploads);
+            if self.upload_buffer.size() < ubytes.len() as u64 {
+                self.upload_buffer = Self::make_upload_buffer(device, (ubytes.len() as u64).next_power_of_two());
+                self.bind = Self::make_bind(device, &self.layout, &self.uniforms, &self.vram, &self.upload_buffer, &self.scratch);
+            }
+            gfx.queue.write_buffer(&self.upload_buffer, 0, ubytes);
+        }
+
+        let view = self.target.create_view(&Default::default());
+        let mut encoder = device.create_command_encoder(&Default::default());
+        let mut i = 0;
+        while i < self.ops.len() {
+            if let Op::ToScratch { x, y, w, h } = self.ops[i] {
+                let at = |texture| wgpu::TexelCopyTextureInfo {
+                    texture,
+                    mip_level: 0,
+                    origin: wgpu::Origin3d { x, y, z: 0 },
+                    aspect: wgpu::TextureAspect::All,
+                };
+                encoder.copy_texture_to_texture(at(&self.target), at(&self.scratch), wgpu::Extent3d {
+                    width: w,
+                    height: h,
+                    depth_or_array_layers: 1,
+                });
+                i += 1;
+                continue;
+            }
+            // A render pass over the run of draws up to the next copy.
+            let mut pass = encoder.begin_render_pass(&wgpu::RenderPassDescriptor {
+                label: Some("hw"),
+                color_attachments: &[Some(wgpu::RenderPassColorAttachment {
+                    view: &view,
+                    depth_slice: None,
+                    resolve_target: None,
+                    ops: wgpu::Operations { load: wgpu::LoadOp::Load, store: wgpu::StoreOp::Store },
+                })],
+                ..Default::default()
+            });
+            pass.set_vertex_buffer(0, vertex_buffer.slice(..));
+            pass.set_bind_group(0, &self.bind, &[]);
+            while let Some(Op::Draw { blend, scissor, first, count }) = self.ops.get(i) {
+                if scissor[2] > 0 && scissor[3] > 0 {
+                    pass.set_pipeline(&self.pipelines[blend.index()]);
+                    let k = blend.constant();
+                    pass.set_blend_constant(wgpu::Color { r: k, g: k, b: k, a: k });
+                    pass.set_scissor_rect(scissor[0], scissor[1], scissor[2], scissor[3]);
+                    pass.draw(*first..*first + *count, 0..1);
+                }
+                i += 1;
+            }
+        }
+        gfx.queue.submit([encoder.finish()]);
+        self.vertices.clear();
+        self.uploads.clear();
+        self.ops.clear();
+    }
+}
+
+fn rgb(r: i32, g: i32, b: i32) -> u32 {
+    (r.clamp(0, 255) as u32) | ((g.clamp(0, 255) as u32) << 8) | ((b.clamp(0, 255) as u32) << 16)
+}
+
+fn bytes<T: Copy>(v: &[T]) -> &[u8] {
+    // SAFETY: plain-old-data slices (u16, u32, f32, GpuVertex: repr(C),
+    // no padding) viewed as bytes.
+    unsafe { std::slice::from_raw_parts(v.as_ptr().cast(), std::mem::size_of_val(v)) }
+}

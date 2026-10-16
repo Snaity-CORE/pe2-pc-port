@@ -59,5 +59,13 @@ fn open() -> Option<Gfx> {
         }
     };
     eprintln!("pe2: graphics: {} ({:?})", info.name, info.backend);
+    // Report errors instead of the default panic: on the interrupt thread
+    // a panic would stop the game.
+    device.on_uncaptured_error(std::sync::Arc::new(|err| {
+        static REPORTED: std::sync::atomic::AtomicU32 = std::sync::atomic::AtomicU32::new(0);
+        if REPORTED.fetch_add(1, std::sync::atomic::Ordering::Relaxed) < 10 {
+            eprintln!("pe2: graphics error: {err}");
+        }
+    }));
     Some(Gfx { instance, adapter, device, queue })
 }

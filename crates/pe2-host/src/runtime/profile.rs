@@ -256,6 +256,12 @@ fn cpu_monitor() {
                 ms(BLOCKED_NS.swap(0, Relaxed)),
                 ms(HANDLER_NS.swap(0, Relaxed))
             );
+            use super::gpu::hw::{FLUSHES, VRAM_SENT};
+            eprintln!(
+                "[cpu]   graphics card: {:.0} flushes/s, {:.0} KB/s of VRAM sent",
+                FLUSHES.swap(0, Relaxed) as f64 / wall,
+                VRAM_SENT.swap(0, Relaxed) as f64 * 2.0 / 1024.0 / wall
+            );
         }
     }
 }

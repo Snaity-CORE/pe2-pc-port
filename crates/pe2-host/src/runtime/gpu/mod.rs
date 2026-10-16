@@ -6,9 +6,12 @@
 //! when the call returns, so DrawSync never has to wait.
 //!
 //! With `PE2_SCALE=2..8`, everything is also drawn into a higher-resolution
-//! true-colour layer (hires.rs), which the window shows instead.
+//! true-colour layer, which the window shows instead: on the graphics card
+//! (hw.rs) or, with the software renderer, on the CPU (hires.rs).
 
 pub mod hires;
+pub mod hw;
+pub mod layer;
 pub mod raster;
 
 use std::sync::Mutex;
@@ -41,7 +44,7 @@ pub struct Gpu {
     pub dump: bool,
     dump_out: Option<std::io::BufWriter<std::fs::File>>,
     /// The higher-resolution layer, when PE2_SCALE asks for one.
-    pub hires: Option<hires::Hires>,
+    pub layer: Option<layer::Layer>,
     /// Bumped by every access from the game; `latched` is its value when
     /// the window's picture was last taken.
     generation: u64,
@@ -74,7 +77,10 @@ pub fn start() {
         cur_packet: 0,
         dump: false,
         dump_out: None,
-        hires: (scale > 1).then(|| hires::Hires::new(scale)),
+        layer: (scale > 1).then(|| match crate::gfx::get() {
+            Some(gfx) => layer::Layer::Hardware(hw::Hw::new(gfx, scale)),
+            None => layer::Layer::Software(hires::Hires::new(scale)),
+        }),
         generation: 0,
         latched: u64::MAX,
     });
@@ -106,6 +112,19 @@ fn xy(word: u32) -> (i32, i32) {
 }
 
 impl Gpu {
+    /// Brackets a change of the native VRAM, for the layer's ordering.
+    fn pre(&mut self, x: i32, y: i32, w: i32, h: i32) {
+        if let Some(l) = self.layer.as_mut() {
+            l.before_native_write(&self.vram, x, y, w, h);
+        }
+    }
+
+    fn post(&mut self, x: i32, y: i32, w: i32, h: i32) {
+        if let Some(l) = self.layer.as_mut() {
+            l.after_native_write(x, y, w, h);
+        }
+    }
+
     /// Executes one GP0 command; returns how many words it used (at least 1).
     fn command(&mut self, words: &[u32]) -> usize {
         if self.dump {
@@ -122,8 +141,11 @@ impl Gpu {
                 }
                 let (x, y) = ((words[1] & 0xFFFF) as i32, (words[1] >> 16) as i32);
                 let (w, h) = ((words[2] & 0xFFFF) as i32, (words[2] >> 16) as i32);
+                let area = (x & 0x3F0, y & 0x1FF, ((w & 0x3FF) + 0xF) & !0xF, h & 0x1FF);
+                self.pre(area.0, area.1, area.2, area.3);
                 self.vram.fill(x, y, w, h, w0 & 0xFF_FFFF);
-                if let Some(hr) = self.hires.as_mut() {
+                self.post(area.0, area.1, area.2, area.3);
+                if let Some(hr) = self.layer.as_mut() {
                     hr.fill_command(x, y, w, h, w0 & 0xFF_FFFF);
                 }
                 vtrace(format_args!("fill ({x},{y}) {w}x{h}"));
@@ -142,8 +164,10 @@ impl Gpu {
                 let w = (((words[3] & 0xFFFF).wrapping_sub(1) & 0x3FF) + 1) as i32;
                 let h = ((((words[3] >> 16).wrapping_sub(1)) & 0x1FF) + 1) as i32;
                 let st = self.state;
+                self.pre(dx, dy, w, h);
                 self.vram.copy(sx, sy, dx, dy, w, h, &st);
-                if let Some(hr) = self.hires.as_mut() {
+                self.post(dx, dy, w, h);
+                if let Some(hr) = self.layer.as_mut() {
                     hr.copy(sx, sy, dx, dy, w, h, &st);
                 }
                 vtrace(format_args!("copy ({sx},{sy}) {w}x{h} -> ({dx},{dy})"));
@@ -275,11 +299,16 @@ impl Gpu {
                 eprintln!("[gpubig] packet 0x{:08X} op 0x{op:02X} {w}x{h} verts {coords:?} words {:08X?}", self.cur_packet, &words[..len]);
             }
         }
+        let (x0, x1) = (verts[..n].iter().map(|v| v.x).min().unwrap(), verts[..n].iter().map(|v| v.x).max().unwrap());
+        let (y0, y1) = (verts[..n].iter().map(|v| v.y).min().unwrap(), verts[..n].iter().map(|v| v.y).max().unwrap());
+        let area = clip_area(&st, x0, y0, x1, y1);
+        self.pre(area.0, area.1, area.2, area.3);
         self.vram.triangle(&st, &sh, [verts[0], verts[1], verts[2]]);
         if quad {
             self.vram.triangle(&st, &sh, [verts[1], verts[2], verts[3]]);
         }
-        if let Some(hr) = self.hires.as_mut() {
+        self.post(area.0, area.1, area.2, area.3);
+        if let Some(hr) = self.layer.as_mut() {
             hr.triangle(&self.vram, &st, &sh, [verts[0], verts[1], verts[2]]);
             if quad {
                 hr.triangle(&self.vram, &st, &sh, [verts[1], verts[2], verts[3]]);
@@ -322,8 +351,11 @@ impl Gpu {
             i += 1;
             let v = Vertex { x: x + st.offset_x, y: y + st.offset_y, r: rgb.0, g: rgb.1, b: rgb.2, u: 0, v: 0 };
             if let Some(p) = prev {
+                let area = clip_area(&st, p.x.min(v.x), p.y.min(v.y), p.x.max(v.x), p.y.max(v.y));
+                self.pre(area.0, area.1, area.2, area.3);
                 self.vram.line(&st, &sh, p, v);
-                if let Some(hr) = self.hires.as_mut() {
+                self.post(area.0, area.1, area.2, area.3);
+                if let Some(hr) = self.layer.as_mut() {
                     hr.line(&self.vram, &st, &sh, p, v);
                 }
                 if !poly {
@@ -368,8 +400,12 @@ impl Gpu {
             2 => (8, 8),
             _ => (16, 16),
         };
-        self.vram.rectangle(&st, &sh, x + st.offset_x, y + st.offset_y, w, h, color(words[0]), u, v);
-        if let Some(hr) = self.hires.as_mut() {
+        let (rx, ry) = (x + st.offset_x, y + st.offset_y);
+        let area = clip_area(&st, rx, ry, rx + w - 1, ry + h - 1);
+        self.pre(area.0, area.1, area.2, area.3);
+        self.vram.rectangle(&st, &sh, rx, ry, w, h, color(words[0]), u, v);
+        self.post(area.0, area.1, area.2, area.3);
+        if let Some(hr) = self.layer.as_mut() {
             hr.rectangle(&self.vram, &st, &sh, x + st.offset_x, y + st.offset_y, w, h, color(words[0]), u, v);
         }
         len
@@ -422,25 +458,33 @@ impl Gpu {
         }
     }
 
-    fn load_image(&mut self, x: i32, y: i32, w: i32, h: i32, mut pixels: impl Iterator<Item = u16>) {
+    fn load_image(&mut self, x: i32, y: i32, w: i32, h: i32, pixels: impl Iterator<Item = u16>) {
         let st = self.state;
-        for row in 0..h {
-            for col in 0..w {
-                let Some(px) = pixels.next() else { return };
-                let (px_x, px_y) = (x + col, y + row);
-                if let Some(hr) = self.hires.as_mut() {
-                    hr.upload(px_x, px_y, px, Some(&st));
-                }
-                if st.check_mask && self.vram.get(px_x, px_y) & 0x8000 != 0 {
-                    continue;
-                }
-                self.vram.set(px_x, px_y, px | if st.set_mask { 0x8000 } else { 0 });
+        let pixels: Vec<u16> = pixels.take((w * h).max(0) as usize).collect();
+        self.pre(x, y, w, h);
+        for (i, &px) in pixels.iter().enumerate() {
+            let (px_x, px_y) = (x + i as i32 % w, y + i as i32 / w);
+            if st.check_mask && self.vram.get(px_x, px_y) & 0x8000 != 0 {
+                continue;
             }
+            self.vram.set(px_x, px_y, px | if st.set_mask { 0x8000 } else { 0 });
+        }
+        self.post(x, y, w, h);
+        if let Some(hr) = self.layer.as_mut() {
+            hr.upload(&self.vram, x, y, w, h, &pixels, Some(&st));
         }
     }
 }
 
 // ---- libgpu ---------------------------------------------------------------
+
+/// The rectangle a primitive spanning x0..=x1, y0..=y1 can change: inside
+/// the drawing area, as (x, y, w, h).
+fn clip_area(st: &DrawState, x0: i32, y0: i32, x1: i32, y1: i32) -> (i32, i32, i32, i32) {
+    let (x0, y0) = (x0.max(st.area_x1), y0.max(st.area_y1));
+    let (x1, y1) = (x1.min(st.area_x2), y1.min(st.area_y2));
+    (x0, y0, (x1 - x0 + 1).max(0), (y1 - y0 + 1).max(0))
+}
 
 /// RECT { short x, y, w, h }.
 #[repr(C)]
@@ -644,14 +688,17 @@ pub extern "C" fn pcrt_ClearImage(rect: *const Rect, r: u8, g: u8, b: u8) -> i32
     vtrace(format_args!("ClearImage ({},{}) {}x{}", rc.x, rc.y, rc.w, rc.h));
     let rgb = u32::from(r) | (u32::from(g) << 8) | (u32::from(b) << 16);
     with_gpu(|gpu| {
-        if let Some(hr) = gpu.hires.as_mut() {
-            hr.fill(i32::from(rc.x), i32::from(rc.y), i32::from(rc.w), i32::from(rc.h), rgb);
-        }
+        let (x0, y0, w, h) = (i32::from(rc.x), i32::from(rc.y), i32::from(rc.w), i32::from(rc.h));
+        gpu.pre(x0, y0, w, h);
         let c = raster::rgb24_to_15(rgb);
-        for y in 0..i32::from(rc.h) {
-            for x in 0..i32::from(rc.w) {
-                gpu.vram.set(i32::from(rc.x) + x, i32::from(rc.y) + y, c);
+        for y in 0..h {
+            for x in 0..w {
+                gpu.vram.set(x0 + x, y0 + y, c);
             }
+        }
+        gpu.post(x0, y0, w, h);
+        if let Some(hr) = gpu.layer.as_mut() {
+            hr.fill(x0, y0, w, h, rgb);
         }
     });
     0
@@ -666,13 +713,16 @@ pub extern "C" fn pcrt_LoadImage(rect: *const Rect, p: *const u16) -> i32 {
     // SAFETY: the game passes w*h pixels.
     let pixels = unsafe { std::slice::from_raw_parts(p, n) };
     with_gpu(|g| {
+        let (x0, y0, w, h) = (i32::from(rc.x), i32::from(rc.y), i32::from(rc.w), i32::from(rc.h));
+        g.pre(x0, y0, w, h);
         // Image transfers ignore the mask settings.
         for (i, px) in pixels.iter().enumerate() {
             let (x, y) = ((i % rc.w as usize) as i32, (i / rc.w as usize) as i32);
-            g.vram.set(i32::from(rc.x) + x, i32::from(rc.y) + y, *px);
+            g.vram.set(x0 + x, y0 + y, *px);
         }
-        if let Some(hr) = g.hires.as_mut() {
-            hr.upload_rect(i32::from(rc.x), i32::from(rc.y), i32::from(rc.w), i32::from(rc.h), pixels);
+        g.post(x0, y0, w, h);
+        if let Some(hr) = g.layer.as_mut() {
+            hr.upload(&g.vram, x0, y0, w, h, pixels, None);
         }
     });
     0
@@ -711,8 +761,10 @@ pub extern "C" fn pcrt_MoveImage(rect: *const Rect, x: i32, y: i32) -> i32 {
     vtrace(format_args!("MoveImage ({},{}) {}x{}", rc.x, rc.y, rc.w, rc.h));
     with_gpu(|g| {
         let st = DrawState::default();
+        g.pre(x, y, i32::from(rc.w), i32::from(rc.h));
         g.vram.copy(i32::from(rc.x), i32::from(rc.y), x, y, i32::from(rc.w), i32::from(rc.h), &st);
-        if let Some(hr) = g.hires.as_mut() {
+        g.post(x, y, i32::from(rc.w), i32::from(rc.h));
+        if let Some(hr) = g.layer.as_mut() {
             hr.copy(i32::from(rc.x), i32::from(rc.y), x, y, i32::from(rc.w), i32::from(rc.h), &st);
         }
     });
@@ -834,6 +886,23 @@ struct Front {
     vram: Vec<u16>,
     row_words: usize,
     rgb24: bool,
+    /// The picture is in HW_FRONT, on the graphics card.
+    on_card: bool,
+}
+
+/// The picture on the graphics card (hardware layer): the displayed region
+/// copied out of the layer's texture, and its size.
+pub struct CardFront {
+    pub texture: wgpu::Texture,
+    pub width: u32,
+    pub height: u32,
+}
+
+pub static HW_FRONT: Mutex<Option<CardFront>> = Mutex::new(None);
+
+/// Whether the window's picture is on the graphics card.
+pub fn front_on_card() -> bool {
+    FRONT.lock().unwrap().on_card
 }
 
 static FRONT: Mutex<Front> = Mutex::new(Front {
@@ -844,6 +913,7 @@ static FRONT: Mutex<Front> = Mutex::new(Front {
     vram: Vec::new(),
     row_words: 0,
     rgb24: false,
+    on_card: false,
 });
 
 /// Takes the window's picture from the displayed region. Called at the end
@@ -861,11 +931,27 @@ pub fn latch() {
     let Ok(mut f) = FRONT.try_lock() else { return };
     g.latched = g.generation;
     let d = g.display;
+    // Whatever is shown, the card catches up once a frame (uploads would
+    // pile up while a 24-bit movie is displayed from the VRAM).
+    if let Some(layer::Layer::Hardware(hw)) = g.layer.as_mut() {
+        hw.flush(&g.vram);
+    }
     f.enabled = d.enabled;
     f.rgb24 = d.rgb24;
     f.hires.clear();
     f.vram.clear();
-    if let (Some(hr), false) = (g.hires.as_ref(), d.rgb24) {
+    f.on_card = false;
+    if let (Some(layer::Layer::Hardware(hw)), false) = (g.layer.as_mut(), d.rgb24) {
+        let s = hw.scale as u32;
+        let (w, h) = (d.width as u32 * s, d.height as u32 * s);
+        (f.width, f.height) = (w as usize, h as usize);
+        if d.enabled {
+            latch_on_card(hw, d.x as u32 * s, d.y as u32 * s, w, h);
+            f.on_card = true;
+        }
+        return;
+    }
+    if let (Some(layer::Layer::Software(hr)), false) = (g.layer.as_ref(), d.rgb24) {
         let s = hr.scale as usize;
         let (w, h) = (d.width as usize * s, d.height as usize * s);
         (f.width, f.height) = (w, h);
@@ -904,12 +990,90 @@ pub fn latch() {
     }
 }
 
+/// Copies the displayed region of the hardware layer into HW_FRONT.
+fn latch_on_card(hw: &hw::Hw, x: u32, y: u32, w: u32, h: u32) {
+    let Some(gfx) = crate::gfx::get() else { return };
+    let mut front = HW_FRONT.lock().unwrap();
+    if front.as_ref().is_none_or(|f| (f.width, f.height) != (w, h)) {
+        let texture = gfx.device.create_texture(&wgpu::TextureDescriptor {
+            label: Some("front"),
+            size: wgpu::Extent3d { width: w, height: h, depth_or_array_layers: 1 },
+            mip_level_count: 1,
+            sample_count: 1,
+            dimension: wgpu::TextureDimension::D2,
+            format: wgpu::TextureFormat::Rgba8Unorm,
+            usage: wgpu::TextureUsages::TEXTURE_BINDING | wgpu::TextureUsages::COPY_DST | wgpu::TextureUsages::COPY_SRC,
+            view_formats: &[],
+        });
+        *front = Some(CardFront { texture, width: w, height: h });
+    }
+    let f = front.as_ref().unwrap();
+    let size = hw.target.size();
+    // The displayed region, clipped to the layer (no wrapping).
+    let (cw, ch) = (w.min(size.width.saturating_sub(x)), h.min(size.height.saturating_sub(y)));
+    if cw == 0 || ch == 0 {
+        return;
+    }
+    let mut encoder = gfx.device.create_command_encoder(&Default::default());
+    encoder.copy_texture_to_texture(
+        wgpu::TexelCopyTextureInfo {
+            texture: &hw.target,
+            mip_level: 0,
+            origin: wgpu::Origin3d { x, y, z: 0 },
+            aspect: wgpu::TextureAspect::All,
+        },
+        wgpu::TexelCopyTextureInfo { texture: &f.texture, mip_level: 0, origin: wgpu::Origin3d::ZERO, aspect: wgpu::TextureAspect::All },
+        wgpu::Extent3d { width: cw, height: ch, depth_or_array_layers: 1 },
+    );
+    gfx.queue.submit([encoder.finish()]);
+}
+
+/// Reads HW_FRONT back as 0RGB pixels (screenshots; slow).
+fn read_card_front(out: &mut Vec<u32>) -> Option<(usize, usize)> {
+    let gfx = crate::gfx::get()?;
+    let front = HW_FRONT.lock().unwrap();
+    let f = front.as_ref()?;
+    let row = (f.width * 4).next_multiple_of(256);
+    let buffer = gfx.device.create_buffer(&wgpu::BufferDescriptor {
+        label: Some("readback"),
+        size: u64::from(row * f.height),
+        usage: wgpu::BufferUsages::COPY_DST | wgpu::BufferUsages::MAP_READ,
+        mapped_at_creation: false,
+    });
+    let mut encoder = gfx.device.create_command_encoder(&Default::default());
+    encoder.copy_texture_to_buffer(
+        wgpu::TexelCopyTextureInfo { texture: &f.texture, mip_level: 0, origin: wgpu::Origin3d::ZERO, aspect: wgpu::TextureAspect::All },
+        wgpu::TexelCopyBufferInfo {
+            buffer: &buffer,
+            layout: wgpu::TexelCopyBufferLayout { offset: 0, bytes_per_row: Some(row), rows_per_image: Some(f.height) },
+        },
+        wgpu::Extent3d { width: f.width, height: f.height, depth_or_array_layers: 1 },
+    );
+    gfx.queue.submit([encoder.finish()]);
+    buffer.map_async(wgpu::MapMode::Read, .., |_| {});
+    gfx.device.poll(wgpu::PollType::Wait { submission_index: None, timeout: None }).ok()?;
+    let data = buffer.get_mapped_range(..).ok()?;
+    let lut = hires_channel_lut();
+    out.clear();
+    for y in 0..f.height as usize {
+        let line = &data[y * row as usize..y * row as usize + f.width as usize * 4];
+        out.extend(line.chunks_exact(4).map(|p| {
+            (lut[p[0] as usize] << 16) | (lut[p[1] as usize] << 8) | lut[p[2] as usize]
+        }));
+    }
+    Some((f.width as usize, f.height as usize))
+}
+
 /// The window's picture (see `latch`) as 0RGB pixels.
 pub fn snapshot(out: &mut Vec<u32>) -> Option<(usize, usize)> {
     let f = FRONT.lock().unwrap();
     let (w, h) = (f.width, f.height);
     if w == 0 || h == 0 {
         return None;
+    }
+    if f.on_card {
+        drop(f);
+        return read_card_front(out);
     }
     out.clear();
     out.resize(w * h, 0);
@@ -944,7 +1108,7 @@ pub fn snapshot(out: &mut Vec<u32>) -> Option<(usize, usize)> {
 }
 
 /// The layer's channels (5-bit console scale times 8) to 0..255.
-fn hires_channel_lut() -> &'static [u32; 256] {
+pub fn hires_channel_lut() -> &'static [u32; 256] {
     static LUT: std::sync::OnceLock<[u32; 256]> = std::sync::OnceLock::new();
     LUT.get_or_init(|| std::array::from_fn(|c| (c as u32 * 255 / 248).min(255)))
 }

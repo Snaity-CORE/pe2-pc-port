@@ -1,5 +1,6 @@
-//! Shows the game's picture in the window through the graphics card: the
-//! latched frame goes to a texture, drawn letterboxed at 4:3.
+//! Shows the game's picture in the window through the graphics card,
+//! letterboxed at 4:3: the hardware layer's latched picture, already on the
+//! card, or else the CPU's (sent as a texture).
 
 use std::sync::Arc;
 
@@ -26,9 +27,13 @@ fn vs(@builtin(vertex_index) i: u32) -> Out {
 @group(0) @binding(0) var frame: texture_2d<f32>;
 @group(0) @binding(1) var smp: sampler;
 
+// The hardware layer keeps channels in the console's scale (5 bits times
+// 8, up to 248): `gain` brings them to the full range.
+override gain: f32 = 1.0;
+
 @fragment
 fn fs(o: Out) -> @location(0) vec4<f32> {
-    return vec4<f32>(textureSample(frame, smp, o.uv).rgb, 1.0);
+    return vec4<f32>(min(textureSample(frame, smp, o.uv).rgb * gain, vec3<f32>(1.0)), 1.0);
 }
 "#;
 
@@ -36,7 +41,11 @@ pub struct Presenter {
     gfx: &'static Gfx,
     surface: wgpu::Surface<'static>,
     config: wgpu::SurfaceConfiguration,
+    /// For CPU pictures, and for the hardware layer's (with the gain).
     pipeline: wgpu::RenderPipeline,
+    card_pipeline: wgpu::RenderPipeline,
+    /// The bind group of the hardware layer's picture, by its size.
+    card: Option<((u32, u32), wgpu::BindGroup)>,
     layout: wgpu::BindGroupLayout,
     sampler: wgpu::Sampler,
     /// The picture's texture, its size and its bind group.
@@ -102,31 +111,31 @@ impl Presenter {
             bind_group_layouts: &[Some(&layout)],
             ..Default::default()
         });
-        let pipeline = device.create_render_pipeline(&wgpu::RenderPipelineDescriptor {
-            label: Some("present"),
-            layout: Some(&pipeline_layout),
-            vertex: wgpu::VertexState {
-                module: &module,
-                entry_point: Some("vs"),
-                buffers: &[],
-                compilation_options: Default::default(),
-            },
-            fragment: Some(wgpu::FragmentState {
-                module: &module,
-                entry_point: Some("fs"),
-                targets: &[Some(wgpu::ColorTargetState {
-                    format,
-                    blend: None,
-                    write_mask: wgpu::ColorWrites::ALL,
-                })],
-                compilation_options: Default::default(),
-            }),
-            primitive: wgpu::PrimitiveState::default(),
-            depth_stencil: None,
-            multisample: wgpu::MultisampleState::default(),
-            multiview_mask: None,
-            cache: None,
-        });
+        let make_pipeline = |constants: &[(&str, f64)]| {
+            device.create_render_pipeline(&wgpu::RenderPipelineDescriptor {
+                label: Some("present"),
+                layout: Some(&pipeline_layout),
+                vertex: wgpu::VertexState {
+                    module: &module,
+                    entry_point: Some("vs"),
+                    buffers: &[],
+                    compilation_options: Default::default(),
+                },
+                fragment: Some(wgpu::FragmentState {
+                    module: &module,
+                    entry_point: Some("fs"),
+                    targets: &[Some(wgpu::ColorTargetState { format, blend: None, write_mask: wgpu::ColorWrites::ALL })],
+                    compilation_options: wgpu::PipelineCompilationOptions { constants, ..Default::default() },
+                }),
+                primitive: wgpu::PrimitiveState::default(),
+                depth_stencil: None,
+                multisample: wgpu::MultisampleState::default(),
+                multiview_mask: None,
+                cache: None,
+            })
+        };
+        let pipeline = make_pipeline(&[]);
+        let card_pipeline = make_pipeline(&[("gain", 255.0 / 248.0)]);
         // Nearest texels when the window is an integer multiple of the
         // picture; linear smooths other sizes.
         let sampler = device.create_sampler(&wgpu::SamplerDescriptor {
@@ -135,7 +144,18 @@ impl Presenter {
             min_filter: wgpu::FilterMode::Linear,
             ..Default::default()
         });
-        Some(Presenter { gfx, surface, config, pipeline, layout, sampler, frame: None, pixels: Vec::new() })
+        Some(Presenter {
+            gfx,
+            surface,
+            config,
+            pipeline,
+            card_pipeline,
+            card: None,
+            layout,
+            sampler,
+            frame: None,
+            pixels: Vec::new(),
+        })
     }
 
     pub fn resize(&mut self, width: u32, height: u32) {
@@ -149,6 +169,20 @@ impl Presenter {
 
     /// Draws the latched picture, letterboxed.
     pub fn present(&mut self) {
+        if crate::runtime::gpu::front_on_card() {
+            let front = crate::runtime::gpu::HW_FRONT.lock().unwrap();
+            let Some(f) = front.as_ref() else { return };
+            let size = (f.width, f.height);
+            if self.card.as_ref().is_none_or(|c| c.0 != size) {
+                let view = f.texture.create_view(&Default::default());
+                let bind = self.bind(&view);
+                self.card = Some((size, bind));
+            }
+            drop(front);
+            let bind = self.card.as_ref().unwrap().1.clone();
+            self.draw(&bind, true);
+            return;
+        }
         let Some((fw, fh)) = crate::runtime::gpu::snapshot(&mut self.pixels) else { return };
         let (fw, fh) = (fw as u32, fh as u32);
         let gfx = self.gfx;
@@ -165,14 +199,7 @@ impl Presenter {
                 view_formats: &[],
             });
             let view = texture.create_view(&Default::default());
-            let bind = gfx.device.create_bind_group(&wgpu::BindGroupDescriptor {
-                label: Some("picture"),
-                layout: &self.layout,
-                entries: &[
-                    wgpu::BindGroupEntry { binding: 0, resource: wgpu::BindingResource::TextureView(&view) },
-                    wgpu::BindGroupEntry { binding: 1, resource: wgpu::BindingResource::Sampler(&self.sampler) },
-                ],
-            });
+            let bind = self.bind(&view);
             self.frame = Some((texture, (fw, fh), bind));
         }
         let (texture, _, bind) = self.frame.as_ref().unwrap();
@@ -182,7 +209,24 @@ impl Presenter {
             wgpu::TexelCopyBufferLayout { offset: 0, bytes_per_row: Some(fw * 4), rows_per_image: Some(fh) },
             wgpu::Extent3d { width: fw, height: fh, depth_or_array_layers: 1 },
         );
+        let bind = bind.clone();
+        self.draw(&bind, false);
+    }
 
+    fn bind(&self, view: &wgpu::TextureView) -> wgpu::BindGroup {
+        self.gfx.device.create_bind_group(&wgpu::BindGroupDescriptor {
+            label: Some("picture"),
+            layout: &self.layout,
+            entries: &[
+                wgpu::BindGroupEntry { binding: 0, resource: wgpu::BindingResource::TextureView(view) },
+                wgpu::BindGroupEntry { binding: 1, resource: wgpu::BindingResource::Sampler(&self.sampler) },
+            ],
+        })
+    }
+
+    /// Draws the picture bound by `bind`, letterboxed, and presents it.
+    fn draw(&mut self, bind: &wgpu::BindGroup, card: bool) {
+        let gfx = self.gfx;
         let target = match self.surface.get_current_texture() {
             wgpu::CurrentSurfaceTexture::Success(t) => t,
             wgpu::CurrentSurfaceTexture::Suboptimal(t) => {
@@ -211,7 +255,7 @@ impl Presenter {
                 ..Default::default()
             });
             pass.set_viewport(((ww - pw) / 2.0).floor(), ((wh - ph) / 2.0).floor(), pw.floor(), ph.floor(), 0.0, 1.0);
-            pass.set_pipeline(&self.pipeline);
+            pass.set_pipeline(if card { &self.card_pipeline } else { &self.pipeline });
             pass.set_bind_group(0, bind, &[]);
             pass.draw(0..3, 0..1);
         }
