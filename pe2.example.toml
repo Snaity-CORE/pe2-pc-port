@@ -24,6 +24,9 @@ scale = 4
 # Perspective-correct textures and colours on 3D polygons (needs subpixel):
 # no more warping of textures on large polygons seen at an angle.
 # perspective = true
+# Textures of 3D polygons: "nearest" (the console's look) or "bilinear"
+# (smoothed; sprites, text and the interface stay sharp).
+# texture_filter = "nearest"
 # Start in borderless full screen (a window without borders covering the
 # monitor, no mode change); Alt+Enter toggles it at any time.
 # fullscreen = false

@@ -37,6 +37,7 @@ struct In {
     @location(4) clut: u32,
     @location(5) window: u32,
     @location(6) w: f32,
+    @location(7) limits: u32,
 };
 struct Out {
     @builtin(position) pos: vec4<f32>,
@@ -47,6 +48,7 @@ struct Out {
     @location(2) @interpolate(flat) mode: u32,
     @location(3) @interpolate(flat) clut: u32,
     @location(4) @interpolate(flat) window: u32,
+    @location(5) @interpolate(flat) limits: u32,
 };
 
 @vertex
@@ -62,6 +64,7 @@ fn vs(i: In) -> Out {
     o.mode = i.mode;
     o.clut = i.clut;
     o.window = i.window;
+    o.limits = i.limits;
     return o;
 }
 
@@ -71,7 +74,8 @@ fn vram_at(x: u32, y: u32) -> u32 {
 
 // mode: bits 0-9 texture page x, 10-18 page y, 20-21 depth, 22 textured,
 // 23 raw texture, 24-25 pass (0 all texels, 1 those without bit 15, 2
-// those with it), 26-27 kind (0 primitive, 1 upload, 2 copy).
+// those with it), 26-27 kind (0 primitive, 1 upload, 2 copy), 28 bilinear
+// filtering (limits: the polygon's u, v minimum and maximum, a byte each).
 @fragment
 fn fs(o: Out) -> @location(0) vec4<f32> {
     let kind = (o.mode >> 26u) & 3u;
@@ -88,38 +92,54 @@ fn fs(o: Out) -> @location(0) vec4<f32> {
     }
     var c = floor(o.color);
     if (((o.mode >> 22u) & 1u) != 0u) {
-        var tu = u32(i32(floor(o.uv.x)));
-        var tv = u32(i32(floor(o.uv.y)));
-        let mx = o.window & 31u;
-        let my = (o.window >> 5u) & 31u;
-        let ox = (o.window >> 10u) & 31u;
-        let oy = (o.window >> 15u) & 31u;
-        tu = ((tu & ~(mx * 8u)) | ((ox & mx) * 8u)) & 0xFFu;
-        tv = ((tv & ~(my * 8u)) | ((oy & my) * 8u)) & 0xFFu;
-        let px = o.mode & 1023u;
-        let py = (o.mode >> 10u) & 511u;
-        let depth = (o.mode >> 20u) & 3u;
-        let cx = o.clut & 1023u;
-        let cy = (o.clut >> 10u) & 511u;
         var t: u32;
-        if (depth == 0u) {
-            let word = vram_at(px + tu / 4u, py + tv);
-            t = vram_at(cx + ((word >> ((tu & 3u) * 4u)) & 0xFu), cy);
-        } else if (depth == 1u) {
-            let word = vram_at(px + tu / 2u, py + tv);
-            t = vram_at(cx + ((word >> ((tu & 1u) * 8u)) & 0xFFu), cy);
+        var tc: vec3<f32>;
+        if (((o.mode >> 28u) & 1u) != 0u) {
+            // Bilinear: the four texels around the sample point, kept inside
+            // the polygon's own texture rectangle (`limits`, so neighbours
+            // in the texture page do not bleed in). Transparent texels
+            // (value 0) weigh nothing: colour is premultiplied by coverage,
+            // and a pixel less than half covered is not drawn.
+            let lo = vec2<i32>(i32(o.limits & 0xFFu), i32((o.limits >> 8u) & 0xFFu));
+            let hi = vec2<i32>(i32((o.limits >> 16u) & 0xFFu), i32((o.limits >> 24u) & 0xFFu));
+            let p = o.uv - vec2<f32>(0.5, 0.5);
+            let base = vec2<i32>(floor(p));
+            let f = p - floor(p);
+            var sum = vec3<f32>(0.0);
+            var cover = 0.0;
+            var best = 0.0;
+            t = 0u;
+            for (var k = 0u; k < 4u; k++) {
+                let d = vec2<i32>(i32(k & 1u), i32(k >> 1u));
+                let at = clamp(base + d, lo, hi);
+                let w = select(1.0 - f.x, f.x, d.x == 1) * select(1.0 - f.y, f.y, d.y == 1);
+                let s = texel(o.mode, o.clut, o.window, at.x, at.y);
+                if (s != 0u) {
+                    sum += w * texel_rgb(s);
+                    cover += w;
+                    // The heaviest opaque texel decides the mask bit.
+                    if (w > best) {
+                        best = w;
+                        t = s;
+                    }
+                }
+            }
+            if (cover < 0.5) {
+                discard;
+            }
+            tc = sum / cover;
         } else {
-            t = vram_at(px + tu, py + tv);
-        }
-        if (t == 0u) {
-            discard;
+            t = texel(o.mode, o.clut, o.window, i32(floor(o.uv.x)), i32(floor(o.uv.y)));
+            if (t == 0u) {
+                discard;
+            }
+            tc = texel_rgb(t);
         }
         let pass_ = (o.mode >> 24u) & 3u;
         let mask = (t >> 15u) & 1u;
         if ((pass_ == 1u && mask == 1u) || (pass_ == 2u && mask == 0u)) {
             discard;
         }
-        let tc = vec3<f32>(f32((t & 31u) << 3u), f32(((t >> 5u) & 31u) << 3u), f32(((t >> 10u) & 31u) << 3u));
         if (((o.mode >> 23u) & 1u) != 0u) {
             c = tc;
         } else {
@@ -127,6 +147,35 @@ fn fs(o: Out) -> @location(0) vec4<f32> {
         }
     }
     return vec4<f32>(min(c, vec3<f32>(255.0)) / 255.0, 1.0);
+}
+
+// The 15-bit texel at (u, v) of the primitive's texture page, through its
+// texture window and CLUT.
+fn texel(mode: u32, clut: u32, window: u32, u_in: i32, v_in: i32) -> u32 {
+    let mx = window & 31u;
+    let my = (window >> 5u) & 31u;
+    let ox = (window >> 10u) & 31u;
+    let oy = (window >> 15u) & 31u;
+    let tu = ((u32(u_in) & ~(mx * 8u)) | ((ox & mx) * 8u)) & 0xFFu;
+    let tv = ((u32(v_in) & ~(my * 8u)) | ((oy & my) * 8u)) & 0xFFu;
+    let px = mode & 1023u;
+    let py = (mode >> 10u) & 511u;
+    let depth = (mode >> 20u) & 3u;
+    let cx = clut & 1023u;
+    let cy = (clut >> 10u) & 511u;
+    if (depth == 0u) {
+        let word = vram_at(px + tu / 4u, py + tv);
+        return vram_at(cx + ((word >> ((tu & 3u) * 4u)) & 0xFu), cy);
+    }
+    if (depth == 1u) {
+        let word = vram_at(px + tu / 2u, py + tv);
+        return vram_at(cx + ((word >> ((tu & 1u) * 8u)) & 0xFFu), cy);
+    }
+    return vram_at(px + tu, py + tv);
+}
+
+fn texel_rgb(t: u32) -> vec3<f32> {
+    return vec3<f32>(f32((t & 31u) << 3u), f32(((t >> 5u) & 31u) << 3u), f32(((t >> 10u) & 31u) << 3u));
 }
 
 fn rgb15(px: u32) -> vec3<f32> {
@@ -145,6 +194,28 @@ struct GpuVertex {
     window: u32,
     /// Depth for perspective-correct interpolation (0: none).
     w: f32,
+    /// Bilinear filtering: the polygon's texture rectangle (u0, v0, u1, v1).
+    limits: u32,
+}
+
+const FILTER_BILINEAR: u32 = 1 << 28;
+
+/// Whether 3D polygons' textures are filtered: PE2_TEXTURE_FILTER, else
+/// pe2.toml's [video] texture_filter ("nearest", the default, or
+/// "bilinear"). Sprites (text, interface) are never filtered.
+fn bilinear() -> bool {
+    static ON: std::sync::OnceLock<bool> = std::sync::OnceLock::new();
+    *ON.get_or_init(|| {
+        let choice = std::env::var("PE2_TEXTURE_FILTER").ok().or_else(|| crate::config::get().video.texture_filter.clone());
+        match choice.as_deref().map(str::trim) {
+            None | Some("nearest") => false,
+            Some("bilinear") => true,
+            Some(other) => {
+                eprintln!("pe2: unknown texture filter {other:?} (nearest or bilinear); using nearest");
+                false
+            }
+        }
+    })
 }
 
 const KIND_UPLOAD: u32 = 1 << 26;
@@ -355,7 +426,7 @@ impl Hw {
             bind_group_layouts: &[Some(&layout)],
             ..Default::default()
         });
-        let attributes = wgpu::vertex_attr_array![0 => Float32x2, 1 => Uint32, 2 => Float32x2, 3 => Uint32, 4 => Uint32, 5 => Uint32, 6 => Float32];
+        let attributes = wgpu::vertex_attr_array![0 => Float32x2, 1 => Uint32, 2 => Float32x2, 3 => Uint32, 4 => Uint32, 5 => Uint32, 6 => Float32, 7 => Uint32];
         let pipelines = [Blend::None, Blend::Average, Blend::Add, Blend::Subtract, Blend::AddQuarter]
             .iter()
             .map(|b| {
@@ -586,6 +657,14 @@ impl Hw {
         }
         let s = self.scale as f32;
         let gouraud = sh.gouraud;
+        let (filter, limits) = if sh.textured && bilinear() {
+            let (u0, u1) = (v.iter().map(|q| q.u).min().unwrap(), v.iter().map(|q| q.u).max().unwrap());
+            let (v0, v1) = (v.iter().map(|q| q.v).min().unwrap(), v.iter().map(|q| q.v).max().unwrap());
+            let byte = |n: i32| n.clamp(0, 255) as u32;
+            (FILTER_BILINEAR, byte(u0) | (byte(v0) << 8) | (byte(u1) << 16) | (byte(v1) << 24))
+        } else {
+            (0, 0)
+        };
         self.shaded(vram, st, sh, |t| {
             v.iter()
                 .map(|q| {
@@ -596,6 +675,8 @@ impl Hw {
                         color: rgb(c.r, c.g, c.b),
                         uv: [q.u as f32, q.v as f32],
                         w: if v.iter().all(|p| p.w > 0.0) { q.w } else { 0.0 },
+                        mode: t.mode | filter,
+                        limits,
                         ..t
                     }
                 })
