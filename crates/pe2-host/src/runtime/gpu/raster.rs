@@ -107,6 +107,7 @@ impl DrawState {
 
 const DITHER: [[i32; 4]; 4] = [[-4, 0, -3, 1], [2, -2, 3, -1], [-3, 1, -4, 0], [3, -1, 2, -2]];
 
+#[derive(Clone)]
 pub struct Vram {
     pub pixels: Box<[u16]>,
 }
@@ -182,6 +183,18 @@ impl Vram {
         if x < st.area_x1 || x > st.area_x2 || y < st.area_y1 || y > st.area_y2 {
             return;
         }
+        if sh.textured {
+            self.shade::<true>(st, sh, x, y, r, g, b, u, v, dither);
+        } else {
+            self.shade::<false>(st, sh, x, y, r, g, b, u, v, dither);
+        }
+    }
+
+    /// `plot` for a pixel known to be inside the drawing area, built once
+    /// for textured and once for untextured primitives.
+    #[allow(clippy::too_many_arguments)]
+    #[inline(always)]
+    fn shade<const TEX: bool>(&mut self, st: &DrawState, sh: &Shading, x: i32, y: i32, r: i32, g: i32, b: i32, u: i32, v: i32, dither: bool) {
         let dst = self.get(x, y);
         if st.check_mask && dst & 0x8000 != 0 {
             return;
@@ -190,7 +203,7 @@ impl Vram {
         let (mut cr, mut cg, mut cb);
         let mut mask_bit = 0u16;
         let mut blend = sh.semi_transparent;
-        if sh.textured {
+        if TEX {
             let t = self.texel(st, sh, u, v);
             if t == 0 {
                 return; // fully transparent texel
@@ -273,21 +286,68 @@ impl Vram {
                     hi = lo - 1;
                 }
             }
-            for x in lo..=hi {
-                let w0 = edge(b, c, x, y);
-                let w1 = edge(c, a, x, y);
-                let w2 = edge(a, b, x, y);
-                let interp = |fa: i32, fb: i32, fc: i32| -> i32 {
-                    ((i64::from(w0) * i64::from(fa) + i64::from(w1) * i64::from(fb) + i64::from(w2) * i64::from(fc))
-                        / i64::from(area)) as i32
-                };
-                let (r, g, bl) = if sh.gouraud {
-                    (interp(a.r, b.r, c.r), interp(a.g, b.g, c.g), interp(a.b, b.b, c.b))
-                } else {
-                    (a.r, a.g, a.b)
-                };
-                let (u, vv) = if sh.textured { (interp(a.u, b.u, c.u), interp(a.v, b.v, c.v)) } else { (0, 0) };
-                self.plot(st, sh, x, y, r, g, bl, u, vv, dither);
+            if lo > hi {
+                continue;
+            }
+            match (sh.textured, sh.gouraud) {
+                (true, true) => self.span::<true, true>(st, sh, [a, b, c], area, &edges, y, lo, hi, dither),
+                (true, false) => self.span::<true, false>(st, sh, [a, b, c], area, &edges, y, lo, hi, dither),
+                (false, true) => self.span::<false, true>(st, sh, [a, b, c], area, &edges, y, lo, hi, dither),
+                (false, false) => self.span::<false, false>(st, sh, [a, b, c], area, &edges, y, lo, hi, dither),
+            }
+        }
+    }
+
+    /// Draws one row of a triangle, x from `lo` to `hi` (inside the drawing
+    /// area), built once per shading kind so the pixel loop carries only
+    /// what that kind needs.
+    #[allow(clippy::too_many_arguments)]
+    #[inline(always)]
+    fn span<const TEX: bool, const GOURAUD: bool>(
+        &mut self,
+        st: &DrawState,
+        sh: &Shading,
+        [a, b, c]: [Vertex; 3],
+        area: i32,
+        edges: &[(i32, i32); 3],
+        y: i32,
+        lo: i32,
+        hi: i32,
+        dither: bool,
+    ) {
+        // Each attribute is (w0*fa + w1*fb + w2*fc) / area: a linear
+        // numerator, never negative inside (weights and values are not),
+        // so its truncated quotient steps along x with a remainder,
+        // exactly, without dividing per pixel.
+        let (w0, w1, w2) = (edge(b, c, lo, y), edge(c, a, lo, y), edge(a, b, lo, y));
+        let (s0, s1, s2) = (edges[0].0, edges[1].0, edges[2].0);
+        let start = |fa: i32, fb: i32, fc: i32| {
+            let n = i64::from(w0) * i64::from(fa) + i64::from(w1) * i64::from(fb) + i64::from(w2) * i64::from(fc);
+            let d = i64::from(s0) * i64::from(fa) + i64::from(s1) * i64::from(fb) + i64::from(s2) * i64::from(fc);
+            Step::new(n, d, i64::from(area))
+        };
+        let mut attrs = [Step::default(); 5];
+        if GOURAUD {
+            attrs[0] = start(a.r, b.r, c.r);
+            attrs[1] = start(a.g, b.g, c.g);
+            attrs[2] = start(a.b, b.b, c.b);
+        }
+        if TEX {
+            attrs[3] = start(a.u, b.u, c.u);
+            attrs[4] = start(a.v, b.v, c.v);
+        }
+        for x in lo..=hi {
+            let (r, g, bl) = if GOURAUD { (attrs[0].q as i32, attrs[1].q as i32, attrs[2].q as i32) } else { (a.r, a.g, a.b) };
+            let (u, vv) = if TEX { (attrs[3].q as i32, attrs[4].q as i32) } else { (0, 0) };
+            self.shade::<TEX>(st, sh, x, y, r, g, bl, u, vv, dither);
+            if GOURAUD {
+                attrs[0].advance();
+                attrs[1].advance();
+                attrs[2].advance();
+            }
+            if TEX {
+                attrs[3].advance();
+                attrs[4].advance();
             }
         }
     }
@@ -296,11 +356,17 @@ impl Vram {
     /// origin (u, v).
     #[allow(clippy::too_many_arguments)]
     pub fn rectangle(&mut self, st: &DrawState, sh: &Shading, x: i32, y: i32, w: i32, h: i32, color: (i32, i32, i32), u: i32, v: i32) {
-        for dy in 0..h {
-            for dx in 0..w {
+        let (dx0, dx1) = ((st.area_x1 - x).max(0), (st.area_x2 - x + 1).min(w));
+        let (dy0, dy1) = ((st.area_y1 - y).max(0), (st.area_y2 - y + 1).min(h));
+        for dy in dy0..dy1 {
+            let tv = if st.rect_flip_y { v - dy } else { v + dy };
+            for dx in dx0..dx1 {
                 let tu = if st.rect_flip_x { u - dx } else { u + dx };
-                let tv = if st.rect_flip_y { v - dy } else { v + dy };
-                self.plot(st, sh, x + dx, y + dy, color.0, color.1, color.2, tu, tv, false);
+                if sh.textured {
+                    self.shade::<true>(st, sh, x + dx, y + dy, color.0, color.1, color.2, tu, tv, false);
+                } else {
+                    self.shade::<false>(st, sh, x + dx, y + dy, color.0, color.1, color.2, tu, tv, false);
+                }
             }
         }
     }
@@ -318,6 +384,33 @@ impl Vram {
             let y = t(a.y, b.y);
             let (r, g, bl) = if sh.gouraud { (t(a.r, b.r), t(a.g, b.g), t(a.b, b.b)) } else { (a.r, a.g, a.b) };
             self.plot(st, sh, x, y, r, g, bl, 0, 0, sh.gouraud);
+        }
+    }
+}
+
+/// floor(n / d) as n goes up by `step` at a time (d > 0): the quotient,
+/// and the remainder in 0..d.
+#[derive(Clone, Copy, Default)]
+struct Step {
+    q: i64,
+    r: i64,
+    dq: i64,
+    dr: i64,
+    d: i64,
+}
+
+impl Step {
+    fn new(n: i64, step: i64, d: i64) -> Step {
+        Step { q: n.div_euclid(d), r: n.rem_euclid(d), dq: step.div_euclid(d), dr: step.rem_euclid(d), d }
+    }
+
+    #[inline]
+    fn advance(&mut self) {
+        self.q += self.dq;
+        self.r += self.dr;
+        if self.r >= self.d {
+            self.r -= self.d;
+            self.q += 1;
         }
     }
 }
@@ -393,10 +486,52 @@ mod tests {
                     ((i64::from(w0) * i64::from(fa) + i64::from(w1) * i64::from(fb) + i64::from(w2) * i64::from(fc))
                         / i64::from(area)) as i32
                 };
-                let (r, g, bl) = (interp(a.r, b.r, c.r), interp(a.g, b.g, c.g), interp(a.b, b.b, c.b));
-                vram.plot(st, sh, x, y, r, g, bl, 0, 0, dither);
+                let (r, g, bl) = if sh.gouraud {
+                    (interp(a.r, b.r, c.r), interp(a.g, b.g, c.g), interp(a.b, b.b, c.b))
+                } else {
+                    (a.r, a.g, a.b)
+                };
+                let (u, vv) = if sh.textured { (interp(a.u, b.u, c.u), interp(a.v, b.v, c.v)) } else { (0, 0) };
+                vram.plot(st, sh, x, y, r, g, bl, u, vv, dither);
             }
         }
+    }
+
+    /// Timing of textured gouraud triangles: `cargo test --release -p
+    /// pe2-host raster_speed -- --ignored --nocapture`.
+    #[test]
+    #[ignore]
+    fn raster_speed() {
+        let st = DrawState { area_x2: 1023, area_y2: 511, dither: true, tex_depth: 2, ..DrawState::default() };
+        let sh = Shading { gouraud: true, textured: true, ..flat() };
+        let mut seed = 0x1357_9BDFu32;
+        let mut rnd = |n: i32| {
+            seed ^= seed << 13;
+            seed ^= seed >> 17;
+            seed ^= seed << 5;
+            (seed % n as u32) as i32
+        };
+        let tris: Vec<[Vertex; 3]> = (0..20_000)
+            .map(|_| {
+                let (cx, cy) = (rnd(300), rnd(220));
+                std::array::from_fn(|_| Vertex {
+                    x: cx + rnd(60),
+                    y: cy + rnd(60),
+                    r: rnd(256),
+                    g: rnd(256),
+                    b: rnd(256),
+                    u: rnd(256),
+                    v: rnd(256),
+                    ..Vertex::default()
+                })
+            })
+            .collect();
+        let mut vram = Vram::default();
+        let t = std::time::Instant::now();
+        for v in &tris {
+            vram.triangle(&st, &sh, *v);
+        }
+        eprintln!("raster_speed: {:?} for {} triangles", t.elapsed(), tris.len());
     }
 
     /// Span stepping draws exactly the pixels, and values, of testing every
@@ -412,13 +547,57 @@ mod tests {
             seed ^= seed << 5;
             (seed % n as u32) as i32
         };
-        for _ in 0..3000 {
-            let mut vert = || Vertex { x: rnd(240) - 20, y: rnd(190) - 20, r: rnd(256), g: rnd(256), b: rnd(256), ..Vertex::default() };
+        // A texture page of non-transparent texels, for the textured runs.
+        let mut textured_vram = Vram::default();
+        for (i, p) in textured_vram.pixels.iter_mut().enumerate() {
+            *p = (i as u16).wrapping_mul(40503) | 1;
+        }
+        let tex_st = DrawState { tex_x: 512, tex_y: 0, tex_depth: 2, ..st };
+        for k in 0..6000 {
+            let mut vert = || Vertex {
+                x: rnd(240) - 20,
+                y: rnd(190) - 20,
+                r: rnd(256),
+                g: rnd(256),
+                b: rnd(256),
+                u: rnd(256),
+                v: rnd(256),
+                ..Vertex::default()
+            };
             let v = [vert(), vert(), vert()];
-            let (mut got, mut want) = (Vram::default(), Vram::default());
+            let (st, sh, base) = match k % 3 {
+                0 => (st, sh, Vram::default()),
+                1 => (tex_st, Shading { textured: true, ..sh }, textured_vram.clone()),
+                _ => (tex_st, Shading { textured: true, gouraud: false, ..sh }, textured_vram.clone()),
+            };
+            let (mut got, mut want) = (base.clone(), base);
             got.triangle(&st, &sh, v);
             reference_triangle(&mut want, &st, &sh, v);
             assert!(got.pixels == want.pixels, "{v:?}");
+        }
+    }
+
+    /// Rectangles clipped to the drawing area up front draw what testing
+    /// every pixel against it draws.
+    #[test]
+    fn rectangles_match_reference() {
+        let st = DrawState { area_x1: 3, area_y1: 5, area_x2: 200, area_y2: 150, tex_depth: 2, tex_x: 512, ..DrawState::default() };
+        let mut base = Vram::default();
+        for (i, p) in base.pixels.iter_mut().enumerate() {
+            *p = (i as u16).wrapping_mul(40503) | 1;
+        }
+        for (k, &(x, y, w, h)) in [(-10, -10, 40, 30), (190, 140, 30, 30), (50, 60, 16, 16), (0, 0, 256, 256), (201, 10, 5, 5)].iter().enumerate() {
+            let sh = Shading { textured: k % 2 == 0, raw_texture: true, ..flat() };
+            let st = DrawState { rect_flip_x: k == 2, ..st };
+            let (mut got, mut want) = (base.clone(), base.clone());
+            got.rectangle(&st, &sh, x, y, w, h, (100, 150, 200), 7, 9);
+            for dy in 0..h {
+                for dx in 0..w {
+                    let tu = if st.rect_flip_x { 7 - dx } else { 7 + dx };
+                    want.plot(&st, &sh, x + dx, y + dy, 100, 150, 200, tu, 9 + dy, false);
+                }
+            }
+            assert!(got.pixels == want.pixels, "{x} {y} {w} {h}");
         }
     }
 
