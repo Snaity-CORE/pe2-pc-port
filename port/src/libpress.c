@@ -10,6 +10,14 @@
  * MPEG-1 variable-length code (ISO 11172-2 table B.14, dct_coeff_next), with
  * an escape of 6 bits of run and 10 of level and "10" ending the block.
  *
+ * Version 3 frames code each block's DC instead as a difference from the
+ * previous block's of the same component (Cr, Cb, then four Y blocks per
+ * macroblock), its size in bits in MPEG-1's dct_dc_size_luminance or
+ * _chrominance code (ISO 11172-2 tables B.12, B.13) followed by the value
+ * bits, a leading 0 bit marking a negative one; the predictors start at 0
+ * with each frame and the DC sent is the predictor times 4. Ten 1 bits in
+ * place of a block end such a frame.
+ *
  * Output: the frame's first word (size and command), then one halfword per
  * code: (scale << 10) | DC opening each block, (run << 10) | level for each
  * coefficient, 0xFE00 closing it. A DC of 0x1FF ends the frame, and 0xFE00
@@ -68,6 +76,35 @@ enum { CODE_EOB = 0xFE, CODE_ESCAPE = 0xFF };
 /* A DC value of 0x1FF in place of a block ends the frame. */
 #define END_OF_FRAME 0x1FFu
 
+/* Version 3 DC size codes: length, code, value bits. */
+static const uint8_t dc_codes[2][9][3] = {
+    /* luminance */
+    {{2, 0x0, 1}, {2, 0x1, 2}, {3, 0x4, 0}, {3, 0x5, 3}, {3, 0x6, 4},
+     {4, 0xE, 5}, {5, 0x1E, 6}, {6, 0x3E, 7}, {7, 0x7E, 8}},
+    /* chrominance */
+    {{2, 0x0, 0}, {2, 0x1, 1}, {2, 0x2, 2}, {3, 0x6, 3}, {4, 0xE, 4},
+     {5, 0x1E, 5}, {6, 0x3E, 6}, {7, 0x7E, 7}, {8, 0xFE, 8}},
+};
+
+/* By the next 8 bits: code length, then value bits. Entries left {0, 0}
+ * (not a valid code) read nothing, a difference of 0, as in the original's
+ * table. */
+static uint8_t dc_sizes[2][256][2];
+
+static void init_dc_sizes(void)
+{
+    for (int t = 0; t < 2; t++) {
+        for (int c = 0; c < 9; c++) {
+            int len = dc_codes[t][c][0];
+            uint32_t first = (uint32_t)dc_codes[t][c][1] << (8 - len);
+            for (uint32_t k = 0; k < 1u << (8 - len); k++) {
+                dc_sizes[t][first + k][0] = (uint8_t)len;
+                dc_sizes[t][first + k][1] = dc_codes[t][c][2];
+            }
+        }
+    }
+}
+
 /* For each 16-bit window: code length in the low byte (0: invalid), then
  * run and level (run CODE_EOB / CODE_ESCAPE for those two codes). */
 static uint32_t lut[1 << 16];
@@ -90,6 +127,7 @@ static void init_lut(void)
     }
     add_code(2, 0x2, CODE_EOB, 0);    /* 10: end of block */
     add_code(6, 0x1, CODE_ESCAPE, 0); /* 000001: escape */
+    init_dc_sizes();
 }
 
 /* Decoder state between calls. */
@@ -102,6 +140,9 @@ static struct {
     uint16_t scale;      /* quantization scale << 10 */
     int in_block;        /* inside a block (its DC has been read) */
     int active;
+    int version3;        /* DC coded as differences */
+    int block;           /* version 3: 1, 2 (Cr, Cb), 3..6 (Y) */
+    int32_t pred[3];     /* version 3 DC predictors: Cr, Cb, Y */
 } dec;
 
 static int words_per_call;
@@ -132,8 +173,29 @@ static uint32_t take(int n)
 static int decode_code(void)
 {
     if (!dec.in_block) {
-        uint32_t dc = take(10);
-        if (dc == END_OF_FRAME) {
+        uint32_t dc;
+        int end;
+        if (dec.version3) {
+            end = peek(10) == 0x3FF;
+            if (!end) {
+                const uint8_t* size = dc_sizes[dec.block < 3][peek(8)];
+                int len = size[0], bits = size[1];
+                int32_t diff = 0;
+                skip(len);
+                if (bits) {
+                    uint32_t v = take(bits);
+                    diff = (v >> (bits - 1)) ? (int32_t)v : (int32_t)v - (int32_t)((1u << bits) - 1);
+                }
+                int32_t* p = &dec.pred[dec.block < 3 ? dec.block - 1 : 2];
+                *p += diff;
+                dc = ((uint32_t)*p << 2) & 0x3FF;
+                dec.block = dec.block == 6 ? 1 : dec.block + 1;
+            }
+        } else {
+            dc = take(10);
+            end = dc == END_OF_FRAME;
+        }
+        if (end) {
             while (dec.out < dec.end) {
                 *dec.out++ = 0xFE00;
             }
@@ -220,6 +282,8 @@ int pcrt_DecDCTvlc2(uint32_t* bs, uint32_t* buf, uint16_t* table)
         dec.out = (uint16_t*)(buf + 1);
         dec.end = dec.out + 2u * h[0];
         dec.scale = (uint16_t)(h[2] << 10);
+        dec.version3 = h[3] >= 3;
+        dec.block = 1;
         dec.active = 1;
     }
     if (!dec.active) {
