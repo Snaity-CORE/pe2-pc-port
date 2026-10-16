@@ -34,6 +34,10 @@ pub struct Shading {
     pub semi_transparent: bool,
     pub clut_x: i32,
     pub clut_y: i32,
+    /// A textured polygon's texel rectangle (u0, v0, u1, v1), inclusive:
+    /// the texels the console's interpolation can reach. Only the
+    /// higher-resolution layer uses it (see hw.rs).
+    pub uv_limits: Option<(i32, i32, i32, i32)>,
 }
 
 /// The drawing state set by the E1-E6 commands.
@@ -350,7 +354,7 @@ mod tests {
     use super::*;
 
     fn flat() -> Shading {
-        Shading { textured: false, raw_texture: false, gouraud: false, semi_transparent: false, clut_x: 0, clut_y: 0 }
+        Shading { textured: false, raw_texture: false, gouraud: false, semi_transparent: false, clut_x: 0, clut_y: 0, uv_limits: None }
     }
 
     fn state() -> DrawState {

@@ -318,6 +318,7 @@ impl Gpu {
             semi_transparent: op & 0x02 != 0,
             clut_x: 0,
             clut_y: 0,
+            uv_limits: None,
         };
         let mut verts = [Vertex::default(); 4];
         let mut i = 0;
@@ -360,6 +361,15 @@ impl Gpu {
             for v in verts.iter_mut() {
                 (v.r, v.g, v.b) = (rgb.0, rgb.1, rgb.2);
             }
+        }
+        // The texels the polygon can sample on the console: at a higher
+        // resolution, interpolation reaches past the last one (its maximum
+        // coordinate is exclusive) into neighbouring textures.
+        if sh.textured {
+            let (u0, u1) = (verts[..n].iter().map(|v| v.u).min().unwrap(), verts[..n].iter().map(|v| v.u).max().unwrap());
+            let (v0, v1) = (verts[..n].iter().map(|v| v.v).min().unwrap(), verts[..n].iter().map(|v| v.v).max().unwrap());
+            let last = |lo: i32, hi: i32| if hi > lo { hi - 1 } else { hi };
+            sh.uv_limits = Some((u0, v0, last(u0, u1), last(v0, v1)));
         }
         // Perspective-correct interpolation needs every vertex's depth.
         if !perspective() || verts[..n].iter().any(|v| v.w <= 0.0) {
@@ -423,6 +433,7 @@ impl Gpu {
             semi_transparent: op & 0x02 != 0,
             clut_x: 0,
             clut_y: 0,
+            uv_limits: None,
         };
         let mut i = 1;
         let mut rgb = color(words[0]);
@@ -477,6 +488,7 @@ impl Gpu {
             semi_transparent: op & 0x02 != 0,
             clut_x: 0,
             clut_y: 0,
+            uv_limits: None,
         };
         let mut i = 2;
         let (mut u, mut v) = (0, 0);

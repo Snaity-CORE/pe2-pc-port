@@ -75,7 +75,8 @@ fn vram_at(x: u32, y: u32) -> u32 {
 // mode: bits 0-9 texture page x, 10-18 page y, 20-21 depth, 22 textured,
 // 23 raw texture, 24-25 pass (0 all texels, 1 those without bit 15, 2
 // those with it), 26-27 kind (0 primitive, 1 upload, 2 copy), 28 bilinear
-// filtering (limits: the polygon's u, v minimum and maximum, a byte each).
+// filtering, 29 texel clamping (limits: the polygon's u, v minimum and
+// maximum, a byte each).
 @fragment
 fn fs(o: Out) -> @location(0) vec4<f32> {
     let kind = (o.mode >> 26u) & 3u;
@@ -129,7 +130,13 @@ fn fs(o: Out) -> @location(0) vec4<f32> {
             }
             tc = sum / cover;
         } else {
-            t = texel(o.mode, o.clut, o.window, i32(floor(o.uv.x)), i32(floor(o.uv.y)));
+            var at = vec2<i32>(floor(o.uv));
+            if (((o.mode >> 29u) & 1u) != 0u) {
+                let lo = vec2<i32>(i32(o.limits & 0xFFu), i32((o.limits >> 8u) & 0xFFu));
+                let hi = vec2<i32>(i32((o.limits >> 16u) & 0xFFu), i32((o.limits >> 24u) & 0xFFu));
+                at = clamp(at, lo, hi);
+            }
+            t = texel(o.mode, o.clut, o.window, at.x, at.y);
             if (t == 0u) {
                 discard;
             }
@@ -199,6 +206,7 @@ struct GpuVertex {
 }
 
 const FILTER_BILINEAR: u32 = 1 << 28;
+const UV_CLAMP: u32 = 1 << 29;
 
 /// Whether 3D polygons' textures are filtered: PE2_TEXTURE_FILTER, else
 /// pe2.toml's [video] texture_filter ("nearest", the default, or
@@ -657,13 +665,15 @@ impl Hw {
         }
         let s = self.scale as f32;
         let gouraud = sh.gouraud;
-        let (filter, limits) = if sh.textured && bilinear() {
-            let (u0, u1) = (v.iter().map(|q| q.u).min().unwrap(), v.iter().map(|q| q.u).max().unwrap());
-            let (v0, v1) = (v.iter().map(|q| q.v).min().unwrap(), v.iter().map(|q| q.v).max().unwrap());
-            let byte = |n: i32| n.clamp(0, 255) as u32;
-            (FILTER_BILINEAR, byte(u0) | (byte(v0) << 8) | (byte(u1) << 16) | (byte(v1) << 24))
-        } else {
-            (0, 0)
+        // Texels are kept inside the polygon's own rectangle (see
+        // Shading::uv_limits), and filtered when asked.
+        let (filter, limits) = match sh.uv_limits {
+            Some((u0, v0, u1, v1)) if sh.textured => {
+                let byte = |n: i32| n.clamp(0, 255) as u32;
+                let flags = UV_CLAMP | if bilinear() { FILTER_BILINEAR } else { 0 };
+                (flags, byte(u0) | (byte(v0) << 8) | (byte(u1) << 16) | (byte(v1) << 24))
+            }
+            _ => (0, 0),
         };
         self.shaded(vram, st, sh, |t| {
             v.iter()

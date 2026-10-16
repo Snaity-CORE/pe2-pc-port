@@ -352,7 +352,7 @@ mod tests {
     #[test]
     fn coverage_matches_native_at_scale_1() {
         let st = DrawState { area_x1: 3, area_y1: 5, area_x2: 200, area_y2: 150, ..DrawState::default() };
-        let sh = Shading { textured: false, raw_texture: false, gouraud: false, semi_transparent: false, clut_x: 0, clut_y: 0 };
+        let sh = Shading { textured: false, raw_texture: false, gouraud: false, semi_transparent: false, clut_x: 0, clut_y: 0, uv_limits: None };
         let mut seed = 0x1234_5678u32;
         let mut rnd = |n: i32| {
             seed ^= seed << 13;
