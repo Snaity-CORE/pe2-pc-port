@@ -762,35 +762,66 @@ pub extern "C" fn pcrt_PutDispEnv(env: *mut DispEnv) -> *mut DispEnv {
     env
 }
 
-/// Converts the displayed region to 0RGB pixels for the host window.
+/// Converts the displayed region to 0RGB pixels for the host window. The
+/// GPU lock is held only to copy the raw rows; conversion happens after.
 pub fn snapshot(out: &mut Vec<u32>) -> Option<(usize, usize)> {
-    let g = GPU.lock().unwrap();
-    let g = g.as_ref()?;
-    let d = g.display;
-    let (w, h) = (d.width as usize, d.height as usize);
-    out.clear();
-    out.resize(w * h, 0);
-    if !d.enabled {
-        return Some((w, h));
+    thread_local! {
+        static RAW: std::cell::RefCell<Vec<u16>> = const { std::cell::RefCell::new(Vec::new()) };
     }
-    for y in 0..h {
-        let vy = (d.y as usize + y) % VRAM_HEIGHT;
-        let row = &g.vram.pixels[vy * VRAM_WIDTH..(vy + 1) * VRAM_WIDTH];
-        for x in 0..w {
-            out[y * w + x] = if d.rgb24 {
-                // Three bytes per pixel across the 16-bit row.
+    RAW.with_borrow_mut(|raw| {
+        let (w, h, rgb24) = {
+            let g = GPU.lock().unwrap();
+            let g = g.as_ref()?;
+            let d = g.display;
+            let (w, h) = (d.width as usize, d.height as usize);
+            out.clear();
+            out.resize(w * h, 0);
+            if !d.enabled {
+                return Some((w, h));
+            }
+            // Halfwords per row: three bytes per pixel in 24-bit mode.
+            let row_words = if d.rgb24 { (w * 3).div_ceil(2) } else { w };
+            raw.clear();
+            for y in 0..h {
+                let vy = (d.y as usize + y) % VRAM_HEIGHT;
+                let row = &g.vram.pixels[vy * VRAM_WIDTH..(vy + 1) * VRAM_WIDTH];
+                let x0 = d.x as usize % VRAM_WIDTH;
+                if x0 + row_words <= VRAM_WIDTH {
+                    raw.extend_from_slice(&row[x0..x0 + row_words]);
+                } else {
+                    raw.extend((0..row_words).map(|i| row[(x0 + i) % VRAM_WIDTH]));
+                }
+            }
+            (w, h, d.rgb24)
+        };
+        let row_words = raw.len() / h.max(1);
+        if rgb24 {
+            for y in 0..h {
+                let row = &raw[y * row_words..(y + 1) * row_words];
                 let byte = |i: usize| -> u32 {
-                    let word = row[(d.x as usize + i / 2) % VRAM_WIDTH];
+                    let word = row[i / 2];
                     u32::from(if i % 2 == 0 { word & 0xFF } else { word >> 8 })
                 };
-                let i = x * 3;
-                (byte(i) << 16) | (byte(i + 1) << 8) | byte(i + 2)
-            } else {
-                let px = row[(d.x as usize + x) % VRAM_WIDTH];
-                let c = |v: u16| u32::from(v & 0x1F) * 255 / 31;
-                (c(px) << 16) | (c(px >> 5) << 8) | c(px >> 10)
-            };
+                for x in 0..w {
+                    let i = x * 3;
+                    out[y * w + x] = (byte(i) << 16) | (byte(i + 1) << 8) | byte(i + 2);
+                }
+            }
+        } else {
+            let lut = rgb15_lut();
+            for (px, &v) in out.iter_mut().zip(raw.iter()) {
+                *px = lut[usize::from(v & 0x7FFF)];
+            }
         }
-    }
-    Some((w, h))
+        Some((w, h))
+    })
+}
+
+/// 15-bit BGR VRAM pixels to 0RGB, each channel scaled to 0..255.
+fn rgb15_lut() -> &'static [u32] {
+    static LUT: std::sync::OnceLock<Vec<u32>> = std::sync::OnceLock::new();
+    LUT.get_or_init(|| {
+        let c = |v: u32| (v & 0x1F) * 255 / 31;
+        (0..0x8000u32).map(|px| (c(px) << 16) | (c(px >> 5) << 8) | c(px >> 10)).collect()
+    })
 }

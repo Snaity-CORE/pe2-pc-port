@@ -6,6 +6,15 @@
 //! game thread spent that time. Addresses are given for the preferred load
 //! address 0x00400000; map them to functions with tools/symbolize.py
 //! (--map target/i686-pc-windows-msvc/release/deps/pe2.map).
+//!
+//! With `PE2_TRACE=prof`, every sample also goes to pe2-prof.bin (eight
+//! little-endian words: flags, eip, then the callers), for a whole-session
+//! profile by function: tools/profile_report.py. Flags: bit 0 in an
+//! interrupt handler, bit 1 eip outside the executable (then 0).
+//!
+//! With `PE2_TRACE=cpu`, every 10 seconds prints the CPU time each thread
+//! of the process used (by thread name, or id for unnamed ones; the game
+//! runs on the main thread).
 
 use std::collections::{HashMap, VecDeque};
 use std::sync::Mutex;
@@ -59,6 +68,9 @@ fn sampler(thread: SendHandle) {
         start..start + size
     };
     let rebase = |a: u32| a.wrapping_sub(base).wrapping_add(PREFERRED_BASE);
+    let mut out = super::trace("prof").then(|| {
+        std::io::BufWriter::new(std::fs::File::create("pe2-prof.bin").expect("create pe2-prof.bin"))
+    });
     loop {
         std::thread::sleep(Duration::from_millis(1));
         let mut stack = [0u32; 512];
@@ -92,6 +104,18 @@ fn sampler(thread: SendHandle) {
                 callers[n] = rebase(w);
                 n += 1;
             }
+        }
+        if let Some(out) = out.as_mut() {
+            use std::io::Write;
+            let mut record = [0u32; 2 + CALLERS];
+            let inside = text.contains(&ctx.Eip);
+            record[0] = in_handler as u32 | (!inside as u32) << 1;
+            record[1] = if inside { rebase(ctx.Eip) } else { 0 };
+            record[2..].copy_from_slice(&callers);
+            for w in record {
+                let _ = out.write_all(&w.to_le_bytes());
+            }
+            let _ = out.flush();
         }
         let now = Instant::now();
         let mut s = SAMPLES.lock().unwrap();
@@ -133,4 +157,90 @@ pub fn report(since: Instant) {
     }
     top(eips, "at");
     top(callers, "under");
+}
+
+/// Starts the `PE2_TRACE=cpu` monitor.
+pub fn start_cpu_monitor() {
+    std::thread::Builder::new()
+        .name("cpu-monitor".into())
+        .spawn(cpu_monitor)
+        .expect("spawn cpu monitor");
+}
+
+fn cpu_monitor() {
+    use windows_sys::Win32::Foundation::{CloseHandle, FILETIME, LocalFree};
+    use windows_sys::Win32::System::Diagnostics::ToolHelp::{
+        CreateToolhelp32Snapshot, TH32CS_SNAPTHREAD, THREADENTRY32, Thread32First, Thread32Next,
+    };
+    use windows_sys::Win32::System::Threading::{
+        GetCurrentProcessId, GetThreadDescription, GetThreadTimes, OpenThread, THREAD_QUERY_LIMITED_INFORMATION,
+    };
+
+    const PERIOD: Duration = Duration::from_secs(10);
+    let ticks = |t: FILETIME| (u64::from(t.dwHighDateTime) << 32) | u64::from(t.dwLowDateTime);
+    let mut previous: HashMap<u32, u64> = HashMap::new();
+    let mut last = Instant::now();
+    loop {
+        std::thread::sleep(PERIOD);
+        let now = Instant::now();
+        let wall = (now - last).as_secs_f64();
+        last = now;
+        let mut rows = Vec::new();
+        let mut current = HashMap::new();
+        // SAFETY: plain Win32 queries on this process's own threads; every
+        // handle opened here is closed, and the description is freed.
+        unsafe {
+            let pid = GetCurrentProcessId();
+            let snap = CreateToolhelp32Snapshot(TH32CS_SNAPTHREAD, 0);
+            let mut entry: THREADENTRY32 = std::mem::zeroed();
+            entry.dwSize = std::mem::size_of::<THREADENTRY32>() as u32;
+            let mut more = Thread32First(snap, &mut entry) != 0;
+            while more {
+                if entry.th32OwnerProcessID == pid {
+                    let tid = entry.th32ThreadID;
+                    let h = OpenThread(THREAD_QUERY_LIMITED_INFORMATION, 0, tid);
+                    if !h.is_null() {
+                        let mut t: [FILETIME; 4] = std::mem::zeroed();
+                        if GetThreadTimes(h, &mut t[0], &mut t[1], &mut t[2], &mut t[3]) != 0 {
+                            let used = ticks(t[2]) + ticks(t[3]);
+                            current.insert(tid, used);
+                            let mut name = format!("tid {tid}");
+                            let mut desc = std::ptr::null_mut();
+                            if GetThreadDescription(h, &mut desc) >= 0 && !desc.is_null() {
+                                let len = (0..).take_while(|&i| *desc.add(i) != 0).count();
+                                let s = String::from_utf16_lossy(std::slice::from_raw_parts(desc, len));
+                                if !s.is_empty() {
+                                    name = s;
+                                }
+                                LocalFree(desc.cast());
+                            }
+                            let delta = used.saturating_sub(previous.get(&tid).copied().unwrap_or(used));
+                            rows.push((delta, name));
+                        }
+                        CloseHandle(h);
+                    }
+                }
+                more = Thread32Next(snap, &mut entry) != 0;
+            }
+            CloseHandle(snap);
+        }
+        previous = current;
+        rows.sort_by(|a, b| b.0.cmp(&a.0));
+        let total: u64 = rows.iter().map(|r| r.0).sum();
+        let pct = |t: u64| 100.0 * t as f64 / 1e7 / wall;
+        let list: Vec<String> =
+            rows.iter().filter(|r| pct(r.0) >= 0.5).map(|(t, n)| format!("{n} {:.1}%", pct(*t))).collect();
+        eprintln!("[cpu] {:.1}% of one core: {}", pct(total), list.join(", "));
+        {
+            use std::sync::atomic::Ordering::Relaxed;
+            use super::irq::{BLOCKED_NS, DELIVERED, HANDLER_NS};
+            let ms = |ns: u64| ns as f64 / 1e6 / wall;
+            eprintln!(
+                "[cpu]   interrupts: {:.0}/s, waiting for the game {:.2} ms/s, handlers {:.2} ms/s",
+                DELIVERED.swap(0, Relaxed) as f64 / wall,
+                ms(BLOCKED_NS.swap(0, Relaxed)),
+                ms(HANDLER_NS.swap(0, Relaxed))
+            );
+        }
+    }
 }

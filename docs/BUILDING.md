@@ -69,6 +69,11 @@ Debug output:
   (every delivered sector), `stream` (movie frames), `images` (overlays
   recognized in RAM), `gpu` (command lists and display changes), `dma`, `stubs`,
   or `all`.
+- Performance: `PE2_TRACE=cpu` prints each thread's CPU use every 10 seconds
+  (and interrupt delivery costs); `PE2_TRACE=prof` samples the game thread
+  every millisecond into `pe2-prof.bin`, summarized by function with
+  `python tools/profile_report.py pe2-prof.bin [--skip SECONDS]` (release
+  build: uses `target/i686-pc-windows-msvc/release/deps/pe2.map`).
 - `PE2_SCREENSHOT=<dir>` saves the displayed picture as a PNG every two
   seconds. Screenshots show your game's content; keep them out of the
   repository.

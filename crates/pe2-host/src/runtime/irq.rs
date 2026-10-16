@@ -119,8 +119,11 @@ pub fn start() {
     if IRQ.set(irq).is_err() {
         return;
     }
-    if super::trace("hang") {
+    if super::trace("hang") || super::trace("prof") {
         super::profile::start(game_thread);
+    }
+    if super::trace("cpu") {
+        super::profile::start_cpu_monitor();
     }
     let handle = std::thread::Builder::new()
         .name("psx-irq".into())
@@ -271,9 +274,16 @@ fn irq_thread() {
     }
 }
 
+/// PE2_TRACE=cpu: interrupts delivered, and nanoseconds spent waiting for
+/// the game to enable interrupts and running handlers.
+pub static DELIVERED: AtomicU64 = AtomicU64::new(0);
+pub static BLOCKED_NS: AtomicU64 = AtomicU64::new(0);
+pub static HANDLER_NS: AtomicU64 = AtomicU64::new(0);
+
 fn deliver(irq: &Irq, handler: Handler) {
     let game = irq.game_thread.0;
     PENDING.store(true, Ordering::SeqCst);
+    let blocked_since = Instant::now();
     let mut tries = 0u32;
     loop {
         if !interrupts_enabled() {
@@ -303,6 +313,8 @@ fn deliver(irq: &Irq, handler: Handler) {
         unsafe { ResumeThread(game) };
     }
 
+    let handler_since = Instant::now();
+    BLOCKED_NS.fetch_add((handler_since - blocked_since).as_nanos() as u64, Ordering::Relaxed);
     IN_HANDLER.store(true, Ordering::SeqCst);
     // The game's interrupt callbacks must not touch the GTE (the console's
     // exception handler does not save it). Check, and keep the interrupted
@@ -322,6 +334,8 @@ fn deliver(irq: &Irq, handler: Handler) {
         unsafe { pcgte_restore(before.as_ptr()) };
     }
     IN_HANDLER.store(false, Ordering::SeqCst);
+    HANDLER_NS.fetch_add(handler_since.elapsed().as_nanos() as u64, Ordering::Relaxed);
+    DELIVERED.fetch_add(1, Ordering::Relaxed);
 
     // SAFETY: balances the SuspendThread in the loop; valid event handle.
     unsafe {

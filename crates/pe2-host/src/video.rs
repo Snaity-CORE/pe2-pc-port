@@ -70,6 +70,9 @@ struct App {
     window: Option<Rc<Window>>,
     surface: Option<softbuffer::Surface<Rc<Window>, Rc<Window>>>,
     frame: Vec<u32>,
+    /// Source column of each window column, for the current scale.
+    columns: Vec<usize>,
+    columns_for: (usize, usize),
     next_redraw: Instant,
 }
 
@@ -153,13 +156,27 @@ impl App {
         // Fit a 4:3 picture into the window, letterboxed.
         let (pw, ph) = if ww * 3 > wh * 4 { (wh * 4 / 3, wh) } else { (ww, ww * 3 / 4) };
         let (ox, oy) = ((ww - pw) / 2, (wh - ph) / 2);
-        buf.fill(0);
+        if self.columns_for != (fw, pw) {
+            self.columns = (0..pw).map(|x| x * fw / pw).collect();
+            self.columns_for = (fw, pw);
+        }
+        buf[..oy * ww].fill(0);
+        buf[(oy + ph) * ww..].fill(0);
+        let mut previous_sy = usize::MAX;
         for y in 0..ph {
+            let line = (oy + y) * ww;
+            buf[line..line + ox].fill(0);
+            buf[line + ox + pw..line + ww].fill(0);
             let sy = y * fh / ph;
+            if sy == previous_sy {
+                // Same source row as the line above.
+                buf.copy_within(line - ww + ox..line - ww + ox + pw, line + ox);
+                continue;
+            }
+            previous_sy = sy;
             let src = &self.frame[sy * fw..(sy + 1) * fw];
-            let dst = &mut buf[(oy + y) * ww + ox..(oy + y) * ww + ox + pw];
-            for (x, px) in dst.iter_mut().enumerate() {
-                *px = src[x * fw / pw];
+            for (px, &sx) in buf[line + ox..line + ox + pw].iter_mut().zip(&self.columns) {
+                *px = src[sx];
             }
         }
         let _ = buf.present();
@@ -252,7 +269,14 @@ pub fn start() {
         .name("window".into())
         .spawn(|| {
             let event_loop = EventLoop::builder().with_any_thread(true).build().expect("event loop");
-            let mut app = App { window: None, surface: None, frame: Vec::new(), next_redraw: Instant::now() };
+            let mut app = App {
+                window: None,
+                surface: None,
+                frame: Vec::new(),
+                columns: Vec::new(),
+                columns_for: (0, 0),
+                next_redraw: Instant::now(),
+            };
             let _ = event_loop.run_app(&mut app);
         })
         .expect("spawn window thread");
