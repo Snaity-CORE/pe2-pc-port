@@ -24,6 +24,9 @@ scale = 4
 # Perspective-correct textures and colours on 3D polygons (needs subpixel):
 # no more warping of textures on large polygons seen at an angle.
 # perspective = true
+# Start in borderless full screen (a window without borders covering the
+# monitor, no mode change); Alt+Enter toggles it at any time.
+# fullscreen = false
 
 [memcard]
 # Raw 128 KB memory card images (DuckStation's .mcd files work). Default:

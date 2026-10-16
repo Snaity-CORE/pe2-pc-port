@@ -92,7 +92,8 @@ Debug output:
   registers.
 
 Keyboard: arrows = d-pad, Z/X/A/S = Cross/Circle/Square/Triangle,
-Enter = Start, Backspace = Select, Q/W/E/R = L1/R1/L2/R2, Esc quits.
+Enter = Start, Backspace = Select, Q/W/E/R = L1/R1/L2/R2, Alt+Enter toggles
+borderless full screen (`fullscreen = true` in pe2.toml starts in it), Esc quits.
 - A native crash prints the faulting address and stack; map the addresses to
   game functions with `python tools/symbolize.py <addr>...` (uses the linker
   map, `target/.../deps/pe2.map`).

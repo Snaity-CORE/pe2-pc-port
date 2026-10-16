@@ -76,6 +76,13 @@ struct App {
     columns: Vec<usize>,
     columns_for: (usize, usize),
     next_redraw: Instant,
+    /// Alt is held (Alt+Enter toggles full screen).
+    alt: bool,
+}
+
+/// Borderless full screen on the window's monitor, or a window.
+fn fullscreen_mode(on: bool) -> Option<winit::window::Fullscreen> {
+    on.then_some(winit::window::Fullscreen::Borderless(None))
 }
 
 impl ApplicationHandler for App {
@@ -88,7 +95,8 @@ impl ApplicationHandler for App {
             .with_inner_size(winit::dpi::LogicalSize::new(960, 720))
             // Scripted (unattended) runs must not steal focus from whatever
             // the user is typing in.
-            .with_active(!scripted());
+            .with_active(!scripted())
+            .with_fullscreen(fullscreen_mode(crate::config::get().video.fullscreen.unwrap_or(false) && !scripted()));
         let window = Arc::new(event_loop.create_window(attrs).expect("create window"));
         self.hardware = crate::gfx::get().and_then(|gfx| crate::present::Presenter::new(gfx, window.clone()));
         if self.hardware.is_none() {
@@ -107,8 +115,19 @@ impl ApplicationHandler for App {
             // In scripted runs only PE2_INPUT drives the pad: stray keys
             // (even Esc) would change the run being measured.
             WindowEvent::KeyboardInput { .. } if scripted() => {}
+            WindowEvent::ModifiersChanged(modifiers) => self.alt = modifiers.state().alt_key(),
             WindowEvent::KeyboardInput { event, .. } => {
                 if let PhysicalKey::Code(code) = event.physical_key {
+                    // Alt+Enter: full screen on or off (Enter is also Start:
+                    // not passed to the pad while Alt is held).
+                    if self.alt && matches!(code, KeyCode::Enter | KeyCode::NumpadEnter) {
+                        if event.state == ElementState::Pressed && !event.repeat {
+                            if let Some(w) = &self.window {
+                                w.set_fullscreen(fullscreen_mode(w.fullscreen().is_none()));
+                            }
+                        }
+                        return;
+                    }
                     if code == KeyCode::F12 && event.state == ElementState::Pressed && !event.repeat {
                         crate::runtime::gpu::DUMP_REQUEST.store(true, Ordering::SeqCst);
                     }
@@ -295,6 +314,7 @@ pub fn start() {
                 frame: Vec::new(),
                 columns: Vec::new(),
                 columns_for: (0, 0),
+                alt: false,
                 next_redraw: Instant::now(),
             };
             let _ = event_loop.run_app(&mut app);

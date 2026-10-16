@@ -37,6 +37,8 @@ pub struct Video {
     pub subpixel: Option<bool>,
     /// Perspective-correct textures and colours (with subpixel; default on).
     pub perspective: Option<bool>,
+    /// Start in full screen (Alt+Enter toggles it; default off).
+    pub fullscreen: Option<bool>,
 }
 
 #[derive(Debug, Default, Deserialize)]
