@@ -147,7 +147,7 @@ impl Vram {
         }
     }
 
-    fn texel(&self, st: &DrawState, sh: &Shading, u: i32, v: i32) -> u16 {
+    pub fn texel(&self, st: &DrawState, sh: &Shading, u: i32, v: i32) -> u16 {
         let u = (u & !(st.win_mask_x * 8)) | ((st.win_off_x & st.win_mask_x) * 8);
         let v = (v & !(st.win_mask_y * 8)) | ((st.win_off_y & st.win_mask_y) * 8);
         let (u, v) = (u & 0xFF, v & 0xFF);

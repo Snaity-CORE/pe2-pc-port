@@ -4,7 +4,11 @@
 //!
 //! Drawing is synchronous: a command list sent with DrawOTag is fully drawn
 //! when the call returns, so DrawSync never has to wait.
+//!
+//! With `PE2_SCALE=2..8`, everything is also drawn into a higher-resolution
+//! true-colour layer (hires.rs), which the window shows instead.
 
+pub mod hires;
 pub mod raster;
 
 use std::sync::Mutex;
@@ -36,6 +40,13 @@ pub struct Gpu {
     /// Log every command of the current list (PE2_GPUDUMP or F12).
     pub dump: bool,
     dump_out: Option<std::io::BufWriter<std::fs::File>>,
+    /// The higher-resolution layer, when PE2_SCALE asks for one.
+    pub hires: Option<hires::Hires>,
+}
+
+/// PE2_SCALE: the internal resolution, a multiple of the console's (1-8).
+fn scale() -> i32 {
+    std::env::var("PE2_SCALE").ok().and_then(|v| v.trim().parse().ok()).unwrap_or(1).clamp(1, 8)
 }
 
 pub static GPU: Mutex<Option<Gpu>> = Mutex::new(None);
@@ -49,6 +60,7 @@ pub fn start() {
         cur_packet: 0,
         dump: false,
         dump_out: None,
+        hires: (scale() > 1).then(|| hires::Hires::new(scale())),
     });
 }
 
@@ -93,6 +105,9 @@ impl Gpu {
                 let (x, y) = ((words[1] & 0xFFFF) as i32, (words[1] >> 16) as i32);
                 let (w, h) = ((words[2] & 0xFFFF) as i32, (words[2] >> 16) as i32);
                 self.vram.fill(x, y, w, h, w0 & 0xFF_FFFF);
+                if let Some(hr) = self.hires.as_mut() {
+                    hr.fill_command(x, y, w, h, w0 & 0xFF_FFFF);
+                }
                 vtrace(format_args!("fill ({x},{y}) {w}x{h}"));
                 3
             }
@@ -110,6 +125,9 @@ impl Gpu {
                 let h = ((((words[3] >> 16).wrapping_sub(1)) & 0x1FF) + 1) as i32;
                 let st = self.state;
                 self.vram.copy(sx, sy, dx, dy, w, h, &st);
+                if let Some(hr) = self.hires.as_mut() {
+                    hr.copy(sx, sy, dx, dy, w, h, &st);
+                }
                 vtrace(format_args!("copy ({sx},{sy}) {w}x{h} -> ({dx},{dy})"));
                 4
             }
@@ -243,6 +261,12 @@ impl Gpu {
         if quad {
             self.vram.triangle(&st, &sh, [verts[1], verts[2], verts[3]]);
         }
+        if let Some(hr) = self.hires.as_mut() {
+            hr.triangle(&self.vram, &st, &sh, [verts[0], verts[1], verts[2]]);
+            if quad {
+                hr.triangle(&self.vram, &st, &sh, [verts[1], verts[2], verts[3]]);
+            }
+        }
         len
     }
 
@@ -281,6 +305,9 @@ impl Gpu {
             let v = Vertex { x: x + st.offset_x, y: y + st.offset_y, r: rgb.0, g: rgb.1, b: rgb.2, u: 0, v: 0 };
             if let Some(p) = prev {
                 self.vram.line(&st, &sh, p, v);
+                if let Some(hr) = self.hires.as_mut() {
+                    hr.line(&self.vram, &st, &sh, p, v);
+                }
                 if !poly {
                     return i;
                 }
@@ -324,6 +351,9 @@ impl Gpu {
             _ => (16, 16),
         };
         self.vram.rectangle(&st, &sh, x + st.offset_x, y + st.offset_y, w, h, color(words[0]), u, v);
+        if let Some(hr) = self.hires.as_mut() {
+            hr.rectangle(&self.vram, &st, &sh, x + st.offset_x, y + st.offset_y, w, h, color(words[0]), u, v);
+        }
         len
     }
 
@@ -380,6 +410,9 @@ impl Gpu {
             for col in 0..w {
                 let Some(px) = pixels.next() else { return };
                 let (px_x, px_y) = (x + col, y + row);
+                if let Some(hr) = self.hires.as_mut() {
+                    hr.upload(px_x, px_y, px, Some(&st));
+                }
                 if st.check_mask && self.vram.get(px_x, px_y) & 0x8000 != 0 {
                     continue;
                 }
@@ -593,6 +626,9 @@ pub extern "C" fn pcrt_ClearImage(rect: *const Rect, r: u8, g: u8, b: u8) -> i32
     vtrace(format_args!("ClearImage ({},{}) {}x{}", rc.x, rc.y, rc.w, rc.h));
     let rgb = u32::from(r) | (u32::from(g) << 8) | (u32::from(b) << 16);
     with_gpu(|gpu| {
+        if let Some(hr) = gpu.hires.as_mut() {
+            hr.fill(i32::from(rc.x), i32::from(rc.y), i32::from(rc.w), i32::from(rc.h), rgb);
+        }
         let c = raster::rgb24_to_15(rgb);
         for y in 0..i32::from(rc.h) {
             for x in 0..i32::from(rc.w) {
@@ -616,6 +652,9 @@ pub extern "C" fn pcrt_LoadImage(rect: *const Rect, p: *const u16) -> i32 {
         for (i, px) in pixels.iter().enumerate() {
             let (x, y) = ((i % rc.w as usize) as i32, (i / rc.w as usize) as i32);
             g.vram.set(i32::from(rc.x) + x, i32::from(rc.y) + y, *px);
+            if let Some(hr) = g.hires.as_mut() {
+                hr.upload(i32::from(rc.x) + x, i32::from(rc.y) + y, *px, None);
+            }
         }
     });
     0
@@ -655,6 +694,9 @@ pub extern "C" fn pcrt_MoveImage(rect: *const Rect, x: i32, y: i32) -> i32 {
     with_gpu(|g| {
         let st = DrawState::default();
         g.vram.copy(i32::from(rc.x), i32::from(rc.y), x, y, i32::from(rc.w), i32::from(rc.h), &st);
+        if let Some(hr) = g.hires.as_mut() {
+            hr.copy(i32::from(rc.x), i32::from(rc.y), x, y, i32::from(rc.w), i32::from(rc.h), &st);
+        }
     });
     0
 }
@@ -770,9 +812,35 @@ pub fn snapshot(out: &mut Vec<u32>) -> Option<(usize, usize)> {
     }
     RAW.with_borrow_mut(|raw| {
         let (w, h, rgb24) = {
-            let g = GPU.lock().unwrap();
-            let g = g.as_ref()?;
+            let guard = GPU.lock().unwrap();
+            let g = guard.as_ref()?;
             let d = g.display;
+            if let (Some(hr), true, false) = (g.hires.as_ref(), d.enabled, d.rgb24) {
+                // The layer's rows, converted after the lock is released.
+                let s = hr.scale as usize;
+                let (w, h) = (d.width as usize * s, d.height as usize * s);
+                out.clear();
+                out.reserve(w * h);
+                for y in 0..h {
+                    let hy = (d.y as usize * s + y) % hr.height;
+                    let row = &hr.pixels[hy * hr.width..(hy + 1) * hr.width];
+                    let x0 = (d.x as usize * s) % hr.width;
+                    if x0 + w <= hr.width {
+                        out.extend_from_slice(&row[x0..x0 + w]);
+                    } else {
+                        out.extend((0..w).map(|i| row[(x0 + i) % hr.width]));
+                    }
+                }
+                drop(guard);
+                let lut = hires_channel_lut();
+                for px in out.iter_mut() {
+                    let p = *px;
+                    *px = (lut[((p >> 16) & 0xFF) as usize] << 16)
+                        | (lut[((p >> 8) & 0xFF) as usize] << 8)
+                        | lut[(p & 0xFF) as usize];
+                }
+                return Some((w, h));
+            }
             let (w, h) = (d.width as usize, d.height as usize);
             out.clear();
             out.resize(w * h, 0);
@@ -815,6 +883,12 @@ pub fn snapshot(out: &mut Vec<u32>) -> Option<(usize, usize)> {
         }
         Some((w, h))
     })
+}
+
+/// The layer's channels (5-bit console scale times 8) to 0..255.
+fn hires_channel_lut() -> &'static [u32; 256] {
+    static LUT: std::sync::OnceLock<[u32; 256]> = std::sync::OnceLock::new();
+    LUT.get_or_init(|| std::array::from_fn(|c| (c as u32 * 255 / 248).min(255)))
 }
 
 /// 15-bit BGR VRAM pixels to 0RGB, each channel scaled to 0..255.
