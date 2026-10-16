@@ -5,6 +5,11 @@
 # 'single quotes' (backslashes are fine there) or with forward slashes:
 # in "double quotes" a backslash starts an escape sequence.
 
+[general]
+# Esc asks before quitting (Cancel is the default: Enter or Esc again keep
+# playing); false quits at once.
+# confirm_exit = true
+
 [discs]
 # Your own dumps of Parasite Eve II (USA), .cue or .chd. With these set,
 # pe2 starts without arguments.

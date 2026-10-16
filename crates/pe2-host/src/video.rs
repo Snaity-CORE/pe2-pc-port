@@ -142,7 +142,10 @@ impl ApplicationHandler for App {
                         eprintln!("[mark {:8.3}] F11 pressed", crate::runtime::spu::stamp());
                     }
                     if code == KeyCode::Escape {
-                        std::process::exit(0);
+                        if event.state == ElementState::Pressed && !event.repeat && self.confirm_quit() {
+                            std::process::exit(0);
+                        }
+                        return;
                     }
                     if let Some(bit) = key_to_button(code) {
                         match event.state {
@@ -181,6 +184,36 @@ impl ApplicationHandler for App {
 }
 
 impl App {
+    /// Esc: asks before quitting ([general] confirm_exit, default on). Cancel
+    /// is the default button, so Enter or a second Esc keep playing.
+    fn confirm_quit(&self) -> bool {
+        if !crate::config::get().general.confirm_exit.unwrap_or(true) {
+            return true;
+        }
+        use windows_sys::Win32::UI::WindowsAndMessaging::{
+            IDOK, MB_DEFBUTTON2, MB_ICONQUESTION, MB_OKCANCEL, MB_SETFOREGROUND, MessageBoxW,
+        };
+        use winit::raw_window_handle::{HasWindowHandle, RawWindowHandle};
+        let hwnd = self
+            .window
+            .as_ref()
+            .and_then(|w| w.window_handle().ok())
+            .and_then(|h| match h.as_raw() {
+                RawWindowHandle::Win32(h) => Some(h.hwnd.get() as *mut core::ffi::c_void),
+                _ => None,
+            })
+            .unwrap_or(std::ptr::null_mut());
+        let wide = |s: &str| s.encode_utf16().chain(std::iter::once(0)).collect::<Vec<u16>>();
+        let (text, caption) = (wide("Quit Parasite Eve II?"), wide("Parasite Eve II"));
+        // SAFETY: valid NUL-terminated strings and this thread's own window.
+        let answer = unsafe {
+            MessageBoxW(hwnd, text.as_ptr(), caption.as_ptr(), MB_OKCANCEL | MB_ICONQUESTION | MB_DEFBUTTON2 | MB_SETFOREGROUND)
+        };
+        // Keys released while the box was open never reached the window.
+        PAD1_BUTTONS.store(0, Ordering::SeqCst);
+        answer == IDOK
+    }
+
     /// "Parasite Eve II — 30 fps — 1280×960 — Vulkan": frames the game drew
     /// in the last second, the picture's size and the renderer.
     fn update_title(&mut self, now: Instant) {

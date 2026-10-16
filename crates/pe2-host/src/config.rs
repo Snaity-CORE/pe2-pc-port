@@ -14,6 +14,7 @@ pub const FILE_NAME: &str = "pe2.toml";
 #[derive(Debug, Default, Deserialize)]
 #[serde(default, deny_unknown_fields)]
 pub struct Config {
+    pub general: General,
     pub discs: Discs,
     pub video: Video,
     pub memcard: Memcard,
@@ -41,6 +42,13 @@ pub struct Video {
     pub fullscreen: Option<bool>,
     /// 3D textures: "nearest" (the default) or "bilinear".
     pub texture_filter: Option<String>,
+}
+
+#[derive(Debug, Default, Deserialize)]
+#[serde(default, deny_unknown_fields)]
+pub struct General {
+    /// Ask before Esc quits (default on).
+    pub confirm_exit: Option<bool>,
 }
 
 #[derive(Debug, Default, Deserialize)]

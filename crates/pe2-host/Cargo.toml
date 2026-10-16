@@ -20,5 +20,5 @@ serde = { version = "1.0.229", features = ["derive"] }
 softbuffer = "0.4"
 toml = "1.1.8"
 wgpu = "30"
-windows-sys = { version = "0.61", features = ["Win32_Foundation", "Win32_System_Threading", "Win32_System_Diagnostics_Debug", "Win32_System_Diagnostics_ToolHelp", "Win32_System_Kernel", "Win32_Media", "Win32_Security", "Win32_System_Memory", "Win32_System_LibraryLoader"] }
+windows-sys = { version = "0.61", features = ["Win32_Foundation", "Win32_System_Threading", "Win32_System_Diagnostics_Debug", "Win32_System_Diagnostics_ToolHelp", "Win32_System_Kernel", "Win32_Media", "Win32_Security", "Win32_System_Memory", "Win32_System_LibraryLoader", "Win32_UI_WindowsAndMessaging"] }
 winit = "0.30"
