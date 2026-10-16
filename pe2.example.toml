@@ -38,6 +38,20 @@ scale = 4
 # monitor, no mode change); Alt+Enter toggles it at any time.
 # fullscreen = false
 
+[input]
+# Player 1's controller: "auto" (the one last used) or its name, as the
+# launcher's Controls screen lists it.
+# controller = "auto"
+# vibration = true
+# The launcher's Controls screen edits the mappings below. Keys use winit's
+# names ("KeyZ", "ArrowUp", "Enter"); controller buttons are by position
+# ("South" is A on Xbox and Cross on PlayStation pads). Esc, P, F9-F12 and
+# Alt keep their own jobs.
+# [input.keyboard]
+# cross = "KeyZ"
+# [input.gamepad]
+# cross = "South"
+
 [memcard]
 # Raw 128 KB memory card images (DuckStation's .mcd files work). Default:
 # memcards/pe2_card1.mcd and pe2_card2.mcd next to pe2.exe.

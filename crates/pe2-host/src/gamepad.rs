@@ -1,18 +1,18 @@
 //! Game controllers (Xbox, DualShock 4/5 and others, through gilrs), read on
 //! their own thread into the state the controller emulation picks up.
 //!
-//! The controller last used drives port 1. Its buttons map by position to
-//! the PlayStation's (south = Cross, east = Circle, west = Square, north =
-//! Triangle, bumpers = L1/R1, triggers = L2/R2, back = Select, stick clicks
-//! = L3/R3), and its sticks become the DualShock's.
+//! The controller pe2.toml's [input] controller names drives port 1, or by
+//! default the one last used. Its buttons map as [input.gamepad] says
+//! (by default by position: south = Cross, east = Circle, west = Square,
+//! north = Triangle, bumpers = L1/R1, triggers = L2/R2, back = Select,
+//! stick clicks = L3/R3; see controls.rs), and its sticks become the
+//! DualShock's. [input] vibration = false turns rumble off.
 
 use std::sync::atomic::{AtomicBool, AtomicU16, AtomicU32, Ordering};
 use std::time::Duration;
 
 use gilrs::ff::{BaseEffect, BaseEffectType, Effect, EffectBuilder, Replay, Ticks};
-use gilrs::{Axis, Button, EventType, GamepadId, Gilrs};
-
-use crate::video::button;
+use gilrs::{Axis, EventType, GamepadId, Gilrs};
 
 /// Buttons held on the controller, PSX bit layout (1 = pressed).
 pub static BUTTONS: AtomicU16 = AtomicU16::new(0);
@@ -25,24 +25,6 @@ pub static CONNECTED: AtomicBool = AtomicBool::new(false);
 /// motor on in bit 0.
 pub static RUMBLE: AtomicU32 = AtomicU32::new(0);
 
-const BUTTON_MAP: [(Button, u16); 16] = [
-    (Button::South, button::CROSS),
-    (Button::East, button::CIRCLE),
-    (Button::West, button::SQUARE),
-    (Button::North, button::TRIANGLE),
-    (Button::LeftTrigger, button::L1),
-    (Button::RightTrigger, button::R1),
-    (Button::LeftTrigger2, button::L2),
-    (Button::RightTrigger2, button::R2),
-    (Button::Select, button::SELECT),
-    (Button::Start, button::START),
-    (Button::LeftThumb, button::L3),
-    (Button::RightThumb, button::R3),
-    (Button::DPadUp, button::UP),
-    (Button::DPadDown, button::DOWN),
-    (Button::DPadLeft, button::LEFT),
-    (Button::DPadRight, button::RIGHT),
-];
 
 /// A stick axis (-1.0..1.0, up positive for Y) as a DualShock byte.
 fn axis_byte(v: f32, invert: bool) -> u8 {
@@ -65,6 +47,10 @@ fn run() {
             return;
         }
     };
+    let map = crate::controls::gamepad();
+    let input = &crate::config::get().input;
+    let wanted = input.controller.as_deref().filter(|n| !n.is_empty() && *n != "auto");
+    let vibration = input.vibration.unwrap_or(true);
     let mut active: Option<GamepadId> = None;
     let mut rumble: (u32, Option<Effect>) = (0, None);
     loop {
@@ -75,9 +61,16 @@ fn run() {
                     active.get_or_insert(ev.id);
                 }
                 EventType::Disconnected if active == Some(ev.id) => active = None,
-                // The controller last used takes over port 1.
-                EventType::ButtonPressed(..) => active = Some(ev.id),
+                // The controller last used takes over port 1, unless one
+                // is chosen.
+                EventType::ButtonPressed(..) if wanted.is_none() => active = Some(ev.id),
                 _ => {}
+            }
+        }
+        // The chosen controller whenever it is connected.
+        if let Some(name) = wanted {
+            if let Some((id, _)) = gilrs.gamepads().find(|(_, g)| g.name() == name) {
+                active = Some(id);
             }
         }
         if active.is_none_or(|id| gilrs.connected_gamepad(id).is_none()) {
@@ -86,7 +79,7 @@ fn run() {
 
         match active.and_then(|id| gilrs.connected_gamepad(id)) {
             Some(pad) => {
-                let held = BUTTON_MAP.iter().filter(|(b, _)| pad.is_pressed(*b)).fold(0, |a, (_, bit)| a | bit);
+                let held = map.iter().filter(|(b, _)| pad.is_pressed(*b)).fold(0, |a, (_, bit)| a | bit);
                 let sticks = u32::from_le_bytes([
                     axis_byte(pad.value(Axis::RightStickX), false),
                     axis_byte(pad.value(Axis::RightStickY), true),
@@ -104,7 +97,7 @@ fn run() {
             }
         }
 
-        let want = RUMBLE.load(Ordering::SeqCst);
+        let want = if vibration { RUMBLE.load(Ordering::SeqCst) } else { 0 };
         if want != rumble.0 {
             rumble = (want, active.and_then(|id| start_rumble(&mut gilrs, id, want)));
         }

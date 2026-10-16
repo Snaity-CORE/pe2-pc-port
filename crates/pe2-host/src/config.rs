@@ -17,7 +17,22 @@ pub struct Config {
     pub general: General,
     pub discs: Discs,
     pub video: Video,
+    pub input: Input,
     pub memcard: Memcard,
+}
+
+#[derive(Debug, Default, Deserialize)]
+#[serde(default, deny_unknown_fields)]
+pub struct Input {
+    /// Player 1's controller: "auto" (the one last used, the default) or a
+    /// controller's name.
+    pub controller: Option<String>,
+    /// Controller vibration (default on).
+    pub vibration: Option<bool>,
+    /// PlayStation button name -> key name (see controls.rs).
+    pub keyboard: std::collections::BTreeMap<String, String>,
+    /// PlayStation button name -> controller button name.
+    pub gamepad: std::collections::BTreeMap<String, String>,
 }
 
 #[derive(Debug, Default, Deserialize)]

@@ -38,25 +38,12 @@ pub mod button {
     pub const SQUARE: u16 = 1 << 15;
 }
 
+/// The buttons a key presses ([input.keyboard] in pe2.toml; see
+/// controls.rs).
 fn key_to_button(key: KeyCode) -> Option<u16> {
-    use button::*;
-    Some(match key {
-        KeyCode::ArrowUp => UP,
-        KeyCode::ArrowDown => DOWN,
-        KeyCode::ArrowLeft => LEFT,
-        KeyCode::ArrowRight => RIGHT,
-        KeyCode::KeyZ => CROSS,
-        KeyCode::KeyX => CIRCLE,
-        KeyCode::KeyA => SQUARE,
-        KeyCode::KeyS => TRIANGLE,
-        KeyCode::Enter => START,
-        KeyCode::Backspace => SELECT,
-        KeyCode::KeyQ => L1,
-        KeyCode::KeyW => R1,
-        KeyCode::KeyE => L2,
-        KeyCode::KeyR => R2,
-        _ => return None,
-    })
+    static MAP: std::sync::OnceLock<Vec<(KeyCode, u16)>> = std::sync::OnceLock::new();
+    let bits = MAP.get_or_init(crate::controls::keyboard).iter().filter(|(k, _)| *k == key).fold(0, |a, (_, b)| a | b);
+    (bits != 0).then_some(bits)
 }
 
 const FRAME: Duration = Duration::from_micros(16_683);

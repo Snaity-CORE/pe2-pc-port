@@ -13,6 +13,8 @@ use std::sync::atomic::{AtomicBool, Ordering};
 
 use eframe::egui;
 
+use crate::controls::{BUTTONS, RESERVED_KEYS, key_code, key_label, pad_button, pad_label};
+
 /// The disc images' boot executables: Parasite Eve II (USA).
 const DISC_SERIALS: [&str; 2] = ["SLUS_010.42", "SLUS_010.55"];
 
@@ -60,6 +62,12 @@ struct Settings {
     fullscreen: bool,
     /// Empty: the default card in memcards/ next to pe2.exe.
     cards: [String; 2],
+    /// Player 1's controller by name; empty: the one last used.
+    controller: String,
+    vibration: bool,
+    /// Key and controller button names, in controls::BUTTONS order.
+    keys: [String; 16],
+    pads: [String; 16],
 }
 
 impl Settings {
@@ -78,6 +86,16 @@ impl Settings {
             bilinear: get("video", "texture_filter").and_then(|v| v.as_str()) == Some("bilinear"),
             fullscreen: flag("video", "fullscreen", false),
             cards: [text("memcard", "slot1"), text("memcard", "slot2")],
+            controller: get("input", "controller").and_then(|v| v.as_str()).filter(|n| *n != "auto").unwrap_or("").to_string(),
+            vibration: flag("input", "vibration", true),
+            keys: std::array::from_fn(|i| {
+                let b = &BUTTONS[i];
+                doc.get("input").and_then(|t| t.get("keyboard")).and_then(|t| t.get(b.name)).and_then(|v| v.as_str()).unwrap_or(b.key).to_string()
+            }),
+            pads: std::array::from_fn(|i| {
+                let b = &BUTTONS[i];
+                doc.get("input").and_then(|t| t.get("gamepad")).and_then(|t| t.get(b.name)).and_then(|v| v.as_str()).unwrap_or(b.pad).to_string()
+            }),
         }
     }
 
@@ -105,6 +123,12 @@ impl Settings {
         doc["video"]["perspective"] = value(self.perspective);
         doc["video"]["texture_filter"] = value(if self.bilinear { "bilinear" } else { "nearest" });
         doc["video"]["fullscreen"] = value(self.fullscreen);
+        doc["input"]["controller"] = value(if self.controller.is_empty() { "auto" } else { self.controller.as_str() });
+        doc["input"]["vibration"] = value(self.vibration);
+        for (i, b) in BUTTONS.iter().enumerate() {
+            doc["input"]["keyboard"][b.name] = value(self.keys[i].as_str());
+            doc["input"]["gamepad"][b.name] = value(self.pads[i].as_str());
+        }
     }
 }
 
@@ -130,6 +154,7 @@ enum Screen {
     /// The first-run setup, at a step.
     Setup(u8),
     Settings,
+    Controls,
 }
 
 struct Launcher {
@@ -142,6 +167,28 @@ struct Launcher {
     checks: [Option<Result<(), String>>; 2],
     running: Arc<AtomicBool>,
     message: Option<String>,
+    /// Controls: the controller tab is shown (else the keyboard's), and the
+    /// button waiting for a key or controller button (controller, index).
+    pad_tab: bool,
+    capture: Option<(bool, usize)>,
+    /// Controllers, for their names and to catch their buttons.
+    gilrs: Option<gilrs::Gilrs>,
+}
+
+/// The pe2.toml name of a key egui reports ("A" -> "KeyA", "Num1" ->
+/// "Digit1"), when a button can be mapped to it.
+fn egui_key_name(key: egui::Key) -> Option<String> {
+    let name = format!("{key:?}");
+    let name = match name.as_str() {
+        n if n.len() == 1 && n.as_bytes()[0].is_ascii_uppercase() => format!("Key{n}"),
+        n if n.starts_with("Num") && n.len() == 4 => format!("Digit{}", &n[3..]),
+        "Equals" => "Equal".into(),
+        "Backtick" => "Backquote".into(),
+        "OpenBracket" => "BracketLeft".into(),
+        "CloseBracket" => "BracketRight".into(),
+        n => n.to_string(),
+    };
+    key_code(&name).map(|_| name)
 }
 
 impl Launcher {
@@ -161,6 +208,9 @@ impl Launcher {
             checks: [None, None],
             running: Arc::new(AtomicBool::new(false)),
             message: None,
+            pad_tab: false,
+            capture: None,
+            gilrs: gilrs::Gilrs::new().ok(),
         };
         launcher.recheck();
         if launcher.checks[0].as_ref().is_none_or(|c| c.is_err()) {
@@ -253,6 +303,12 @@ impl Launcher {
             if button(ui, lang.t("Settings", "Configurações"), !running) {
                 self.edit = self.saved.clone();
                 self.screen = Screen::Settings;
+            }
+            ui.add_space(6.0);
+            if button(ui, lang.t("Controls", "Controles"), !running) {
+                self.edit = self.saved.clone();
+                self.capture = None;
+                self.screen = Screen::Controls;
             }
             ui.add_space(6.0);
             if button(ui, lang.t("Setup", "Configuração inicial"), !running) {
@@ -451,6 +507,151 @@ impl Launcher {
     }
 }
 
+impl Launcher {
+    /// A key or controller button for the button being changed, if one was
+    /// pressed this frame; Esc gives up.
+    fn catch(&mut self, ctx: &egui::Context) {
+        let lang = self.lang();
+        // Controller events: drained always, used while catching one.
+        let mut pressed = None;
+        if let Some(g) = self.gilrs.as_mut() {
+            while let Some(ev) = g.next_event() {
+                if let gilrs::EventType::ButtonPressed(b, _) = ev.event {
+                    pressed = Some(format!("{b:?}"));
+                }
+            }
+        }
+        let Some((pad, i)) = self.capture else { return };
+        if pad {
+            if let Some(name) = pressed.filter(|n| pad_button(n).is_some()) {
+                self.edit.pads[i] = name;
+                self.capture = None;
+            }
+            if ctx.input(|inp| inp.key_pressed(egui::Key::Escape)) {
+                self.capture = None;
+            }
+            return;
+        }
+        let mut caught = None;
+        ctx.input_mut(|inp| {
+            for ev in &inp.events {
+                if let egui::Event::Key { key, pressed: true, .. } = ev {
+                    caught = Some(if *key == egui::Key::Escape { None } else { egui_key_name(*key) });
+                    break;
+                }
+            }
+            if caught.is_none() && inp.modifiers.shift {
+                caught = Some(Some("ShiftLeft".to_string()));
+            } else if caught.is_none() && inp.modifiers.ctrl {
+                caught = Some(Some("ControlLeft".to_string()));
+            }
+            if caught.is_some() {
+                // The key must not also press the widget in focus.
+                inp.events.clear();
+            }
+        });
+        match caught {
+            Some(Some(name)) if RESERVED_KEYS.contains(&name.as_str()) => {
+                self.message = Some(format!("{}: {}", key_label(&name), lang.t("reserved (Esc, P, F9-F12, Alt)", "reservada (Esc, P, F9-F12, Alt)")));
+            }
+            Some(Some(name)) => {
+                self.edit.keys[i] = name;
+                self.capture = None;
+                self.message = None;
+            }
+            Some(None) => self.capture = None,
+            None => {}
+        }
+    }
+
+    fn controls_screen(&mut self, ui: &mut egui::Ui) {
+        self.catch(ui.ctx());
+        // Keep polling the controllers while this screen is open.
+        ui.ctx().request_repaint_after(std::time::Duration::from_millis(30));
+        let lang = self.lang();
+        ui.heading(lang.t("Controls", "Controles"));
+        ui.horizontal(|ui| {
+            ui.selectable_value(&mut self.pad_tab, false, lang.t("Keyboard", "Teclado"));
+            ui.selectable_value(&mut self.pad_tab, true, lang.t("Controller", "Controle"));
+        });
+        ui.separator();
+        if self.pad_tab {
+            let names: Vec<String> =
+                self.gilrs.as_ref().map(|g| g.gamepads().map(|(_, p)| p.name().to_string()).collect()).unwrap_or_default();
+            ui.horizontal(|ui| {
+                ui.label(lang.t("Player 1", "Jogador 1"));
+                let auto = lang.t("Last one used", "O último usado");
+                egui::ComboBox::from_id_salt("controller")
+                    .selected_text(if self.edit.controller.is_empty() { auto } else { self.edit.controller.as_str() })
+                    .width(300.0)
+                    .show_ui(ui, |ui| {
+                        ui.selectable_value(&mut self.edit.controller, String::new(), auto);
+                        let mut all = names.clone();
+                        if !self.edit.controller.is_empty() && !all.contains(&self.edit.controller) {
+                            all.push(self.edit.controller.clone());
+                        }
+                        for n in all {
+                            ui.selectable_value(&mut self.edit.controller, n.clone(), n);
+                        }
+                    });
+            });
+            if names.is_empty() {
+                ui.label(lang.t("No controller connected.", "Nenhum controle conectado."));
+            }
+            ui.checkbox(&mut self.edit.vibration, lang.t("Vibration", "Vibração"));
+        } else {
+            ui.label(lang.t("Esc, P, F9-F12 and Alt keep their own jobs.", "Esc, P, F9-F12 e Alt mantêm suas funções."));
+        }
+        ui.add_space(4.0);
+        egui::ScrollArea::vertical().max_height(340.0).show(ui, |ui| {
+            egui::Grid::new("bindings").num_columns(2).spacing([24.0, 4.0]).show(ui, |ui| {
+                for (i, b) in BUTTONS.iter().enumerate() {
+                    ui.label(b.label);
+                    let waiting = self.capture == Some((self.pad_tab, i));
+                    let text = if waiting {
+                        lang.t("Press a button... (Esc cancels)", "Aperte um botão... (Esc cancela)").to_string()
+                    } else if self.pad_tab {
+                        pad_label(&self.edit.pads[i])
+                    } else {
+                        key_label(&self.edit.keys[i])
+                    };
+                    if ui.add(egui::Button::new(text).min_size([230.0, 0.0].into())).clicked() {
+                        self.capture = Some((self.pad_tab, i));
+                        self.message = None;
+                    }
+                    ui.end_row();
+                }
+            });
+        });
+        ui.separator();
+        ui.horizontal(|ui| {
+            if ui.button(lang.t("Save", "Salvar")).clicked() {
+                self.capture = None;
+                self.save();
+                if self.message.is_none() {
+                    self.screen = Screen::Main;
+                }
+            }
+            if ui.button(lang.t("Cancel", "Cancelar")).clicked() {
+                self.capture = None;
+                self.edit = self.saved.clone();
+                self.message = None;
+                self.screen = Screen::Main;
+            }
+            if ui.button(lang.t("Restore defaults", "Restaurar padrões")).clicked() {
+                self.capture = None;
+                for (i, b) in BUTTONS.iter().enumerate() {
+                    if self.pad_tab {
+                        self.edit.pads[i] = b.pad.to_string();
+                    } else {
+                        self.edit.keys[i] = b.key.to_string();
+                    }
+                }
+            }
+        });
+    }
+}
+
 impl eframe::App for Launcher {
     fn ui(&mut self, ui: &mut egui::Ui, frame: &mut eframe::Frame) {
         let window = window_handle(frame);
@@ -459,6 +660,7 @@ impl eframe::App for Launcher {
                 Screen::Main => self.main_screen(ui, window),
                 Screen::Setup(step) => self.setup_screen(ui, step),
                 Screen::Settings => self.settings_screen(ui),
+                Screen::Controls => self.controls_screen(ui),
             }
             if let Some(m) = &self.message {
                 ui.colored_label(egui::Color32::LIGHT_RED, m.as_str());
@@ -491,17 +693,34 @@ fn show_window(window: Option<isize>, show: bool) {
     }
 }
 
+/// egui's fonts have no PlayStation face-button symbols (the controller
+/// labels' ✕ ○ □ △): Windows' Segoe UI Symbol, where present, is a
+/// fallback for the glyphs they lack.
+fn add_symbol_font(ctx: &egui::Context) {
+    let Ok(bytes) = std::fs::read(r"C:\Windows\Fonts\seguisym.ttf") else { return };
+    let mut fonts = egui::FontDefinitions::default();
+    fonts.font_data.insert("symbols".into(), std::sync::Arc::new(egui::FontData::from_owned(bytes)));
+    for family in [egui::FontFamily::Proportional, egui::FontFamily::Monospace] {
+        fonts.families.entry(family).or_default().push("symbols".into());
+    }
+    ctx.set_fonts(fonts);
+}
+
 /// Runs the launcher until it is closed.
 pub fn run() -> ExitCode {
     let options = eframe::NativeOptions {
         viewport: egui::ViewportBuilder::default()
             .with_title("Parasite Eve II")
-            .with_inner_size([560.0, 470.0])
+            .with_inner_size([560.0, 520.0])
             .with_resizable(false),
         renderer: eframe::Renderer::Glow,
         ..Default::default()
     };
-    match eframe::run_native("Parasite Eve II", options, Box::new(|_| Ok(Box::new(Launcher::new())))) {
+    let creator = Box::new(|cc: &eframe::CreationContext<'_>| {
+        add_symbol_font(&cc.egui_ctx);
+        Ok(Box::new(Launcher::new()) as Box<dyn eframe::App>)
+    });
+    match eframe::run_native("Parasite Eve II", options, creator) {
         Ok(()) => ExitCode::SUCCESS,
         Err(e) => {
             eprintln!("pe2: launcher: {e}");
@@ -513,6 +732,15 @@ pub fn run() -> ExitCode {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn egui_keys_become_mapping_names() {
+        assert_eq!(egui_key_name(egui::Key::Z).as_deref(), Some("KeyZ"));
+        assert_eq!(egui_key_name(egui::Key::Num7).as_deref(), Some("Digit7"));
+        assert_eq!(egui_key_name(egui::Key::ArrowLeft).as_deref(), Some("ArrowLeft"));
+        assert_eq!(egui_key_name(egui::Key::OpenBracket).as_deref(), Some("BracketLeft"));
+        assert_eq!(egui_key_name(egui::Key::Enter).as_deref(), Some("Enter"));
+    }
 
     /// Settings written into the example file read back the same, through
     /// the game's own settings parser, and the comments stay.
@@ -529,6 +757,10 @@ mod tests {
         s.bilinear = true;
         s.fullscreen = true;
         s.cards = [String::new(), "cards/two.mcd".into()];
+        s.controller = "Xbox 360 Controller".into();
+        s.vibration = false;
+        s.keys[4] = "KeyJ".into(); // cross
+        s.pads[8] = "Mode".into(); // start
         s.store(&mut doc);
         let text = doc.to_string();
         assert!(text.contains("# Settings for pe2."), "comments kept");
@@ -541,7 +773,13 @@ mod tests {
         assert_eq!(config.video.subpixel, Some(false));
         assert_eq!(config.video.texture_filter.as_deref(), Some("bilinear"));
         assert_eq!(config.memcard.slot2.as_deref(), Some(Path::new("cards/two.mcd")));
+        assert_eq!(config.input.controller.as_deref(), Some("Xbox 360 Controller"));
+        assert_eq!(config.input.vibration, Some(false));
+        assert_eq!(config.input.keyboard.get("cross").map(String::as_str), Some("KeyJ"));
+        assert_eq!(config.input.keyboard.get("up").map(String::as_str), Some("ArrowUp"));
+        assert_eq!(config.input.gamepad.get("start").map(String::as_str), Some("Mode"));
         let again = Settings::load(&doc);
+        assert!(again.keys[4] == "KeyJ" && again.pads[8] == "Mode" && !again.vibration);
         assert!(again.language == Lang::Pt && again.scale == 6 && again.bilinear && !again.subpixel);
     }
 }
