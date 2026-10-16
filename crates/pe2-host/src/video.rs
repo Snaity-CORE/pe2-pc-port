@@ -138,6 +138,13 @@ impl ApplicationHandler for App {
                     if code == KeyCode::F10 && event.state == ElementState::Pressed && !event.repeat {
                         crate::runtime::cdrom::SWAP_REQUEST.store(true, Ordering::SeqCst);
                     }
+                    if code == KeyCode::F9 && event.state == ElementState::Pressed && !event.repeat {
+                        save_screenshot();
+                    }
+                    if code == KeyCode::KeyP && event.state == ElementState::Pressed && !event.repeat {
+                        crate::runtime::irq::set_paused(!crate::runtime::irq::PAUSED.load(Ordering::SeqCst));
+                        self.update_title(Instant::now());
+                    }
                     if code == KeyCode::F11 && event.state == ElementState::Pressed && !event.repeat {
                         eprintln!("[mark {:8.3}] F11 pressed", crate::runtime::spu::stamp());
                     }
@@ -226,7 +233,11 @@ impl App {
             (Some(gfx), Some(_)) => format!("{:?}", gfx.adapter.get_info().backend),
             _ => "software".to_string(),
         };
-        window.set_title(&format!("Parasite Eve II — {fps:.0} fps — {w}×{h} — {renderer}"));
+        if crate::runtime::irq::PAUSED.load(Ordering::SeqCst) {
+            window.set_title(&format!("Parasite Eve II — Paused (P) — {w}×{h} — {renderer}"));
+        } else {
+            window.set_title(&format!("Parasite Eve II — {fps:.0} fps — {w}×{h} — {renderer}"));
+        }
     }
 
     fn present(&mut self) {
@@ -270,6 +281,50 @@ impl App {
     }
 }
 
+/// Writes 0RGB pixels as a PNG.
+fn write_png(path: &std::path::Path, w: usize, h: usize, frame: &[u32]) -> std::io::Result<()> {
+    let rgb: Vec<u8> = frame.iter().flat_map(|p| [(p >> 16) as u8, (p >> 8) as u8, *p as u8]).collect();
+    let file = std::fs::File::create(path)?;
+    let mut enc = png::Encoder::new(std::io::BufWriter::new(file), w as u32, h as u32);
+    enc.set_color(png::ColorType::Rgb);
+    enc.set_depth(png::BitDepth::Eight);
+    let mut writer = enc.write_header().map_err(std::io::Error::other)?;
+    writer.write_image_data(&rgb).map_err(std::io::Error::other)
+}
+
+/// F9: saves the picture, at the internal resolution, as
+/// screenshots/pe2_YYYY-MM-DD_HH-MM-SS.png next to pe2.exe (on a thread:
+/// reading it back from the graphics card waits for it).
+fn save_screenshot() {
+    std::thread::spawn(|| {
+        let mut frame = Vec::new();
+        let Some((w, h)) = gpu::snapshot(&mut frame) else { return };
+        let dir = std::env::current_exe()
+            .ok()
+            .and_then(|p| p.parent().map(|d| d.join("screenshots")))
+            .unwrap_or_else(|| "screenshots".into());
+        let _ = std::fs::create_dir_all(&dir);
+        // SAFETY: fills a plain struct.
+        let t = unsafe {
+            let mut t = std::mem::zeroed();
+            windows_sys::Win32::System::SystemInformation::GetLocalTime(&mut t);
+            t
+        };
+        let stem = format!("pe2_{:04}-{:02}-{:02}_{:02}-{:02}-{:02}", t.wYear, t.wMonth, t.wDay, t.wHour, t.wMinute, t.wSecond);
+        let mut path = dir.join(format!("{stem}.png"));
+        for n in 2.. {
+            if !path.exists() {
+                break;
+            }
+            path = dir.join(format!("{stem}_{n}.png"));
+        }
+        match write_png(&path, w, h, &frame) {
+            Ok(()) => eprintln!("pe2: screenshot {}", path.display()),
+            Err(e) => eprintln!("pe2: screenshot {}: {e}", path.display()),
+        }
+    });
+}
+
 /// With `PE2_SCREENSHOT=<dir>`, saves the displayed picture as
 /// `<dir>/frame_NNN.png` every two seconds (debugging aid).
 /// `PE2_SCREENSHOT_EVERY=<ms>` changes the interval and
@@ -306,9 +361,28 @@ fn start_screenshots() {
 /// triangle start select l1 r1 l2 r2.
 fn start_input_script() {
     let Ok(script) = std::env::var("PE2_INPUT") else { return };
-    let mut events: Vec<(f64, u16, bool)> = Vec::new();
+    /// Scripted actions: buttons pressed and released, and the P and F9
+    /// keys (`pause@t` toggles pause, `screenshot@t` saves one).
+    enum Action {
+        Press(u16),
+        Release(u16),
+        Pause,
+        Screenshot,
+    }
+    let mut events: Vec<(f64, Action)> = Vec::new();
     for item in script.split(',') {
         let Some((name, at)) = item.trim().split_once('@') else { continue };
+        let key = match name.to_ascii_lowercase().as_str() {
+            "pause" => Some(Action::Pause),
+            "screenshot" => Some(Action::Screenshot),
+            _ => None,
+        };
+        if let Some(action) = key {
+            if let Ok(secs) = at.parse::<f64>() {
+                events.push((secs, action));
+            }
+            continue;
+        }
         let bit = match name.to_ascii_lowercase().as_str() {
             "up" => button::UP,
             "down" => button::DOWN,
@@ -335,20 +409,21 @@ fn start_input_script() {
             None => (at.parse::<f64>(), 0.2),
         };
         if let Ok(secs) = start {
-            events.push((secs, bit, true));
-            events.push((secs + hold, bit, false));
+            events.push((secs, Action::Press(bit)));
+            events.push((secs + hold, Action::Release(bit)));
         }
     }
     events.sort_by(|a, b| a.0.total_cmp(&b.0));
     let t0 = Instant::now();
     std::thread::spawn(move || {
-        for (secs, bit, press) in events {
+        for (secs, action) in events {
             let at = t0 + Duration::from_secs_f64(secs);
             std::thread::sleep(at.saturating_duration_since(Instant::now()));
-            if press {
-                PAD1_BUTTONS.fetch_or(bit, Ordering::SeqCst);
-            } else {
-                PAD1_BUTTONS.fetch_and(!bit, Ordering::SeqCst);
+            match action {
+                Action::Press(bit) => _ = PAD1_BUTTONS.fetch_or(bit, Ordering::SeqCst),
+                Action::Release(bit) => _ = PAD1_BUTTONS.fetch_and(!bit, Ordering::SeqCst),
+                Action::Pause => crate::runtime::irq::set_paused(!crate::runtime::irq::PAUSED.load(Ordering::SeqCst)),
+                Action::Screenshot => save_screenshot(),
             }
         }
     });

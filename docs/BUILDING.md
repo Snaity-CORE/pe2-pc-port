@@ -91,7 +91,8 @@ Debug output:
   seconds. Screenshots show your game's content; keep them out of the
   repository.
 - `PE2_INPUT=start@20,cross@31.5` presses buttons at given times (seconds
-  after start) for unattended runs.
+  after start) for unattended runs; `pause@t` toggles pause and
+  `screenshot@t` saves one, as P and F9 do.
 - `PE2_WATCH=0x801D49C4[,...]` (up to four addresses) logs every write to
   those words with the writing instruction's address, using the CPU's debug
   registers.
@@ -99,7 +100,9 @@ Debug output:
 Keyboard: arrows = d-pad, Z/X/A/S = Cross/Circle/Square/Triangle,
 Enter = Start, Backspace = Select, Q/W/E/R = L1/R1/L2/R2, Alt+Enter toggles
 borderless full screen (`fullscreen = true` in pe2.toml starts in it), Esc asks to
-quit (`[general] confirm_exit = false` quits at once).
+quit (`[general] confirm_exit = false` quits at once), P pauses and resumes, F9
+saves a screenshot at the internal resolution in `screenshots/` next to
+pe2.exe.
 - A native crash prints the faulting address and stack; map the addresses to
   game functions with `python tools/symbolize.py <addr>...` (uses the linker
   map, `target/.../deps/pe2.map`).

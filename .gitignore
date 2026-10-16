@@ -37,3 +37,6 @@ __pycache__/
 pe2-gpudump.txt
 pe2-vram*.png
 pe2-*-trace.txt
+
+# Game log written when started from the launcher without a console
+pe2.log

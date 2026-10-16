@@ -252,10 +252,37 @@ fn interrupts_enabled() -> bool {
         && (!sync_irq() || WAITING.load(Ordering::SeqCst))
 }
 
+/// The game is paused (P): its thread suspended and no interrupt delivered.
+pub static PAUSED: AtomicBool = AtomicBool::new(false);
+
+/// Pauses or resumes the game. The game thread is suspended outright; an
+/// interrupt being delivered at that moment still finishes (Windows counts
+/// suspensions, so the game stays stopped after the handler resumes it),
+/// and no other is delivered until the game resumes. Overdue events then
+/// run at once; the vertical blank resynchronizes by itself.
+pub fn set_paused(on: bool) {
+    let Some(irq) = IRQ.get() else { return };
+    if PAUSED.swap(on, Ordering::SeqCst) == on {
+        return;
+    }
+    // SAFETY: the game thread's handle, valid for the process's life.
+    unsafe {
+        if on {
+            SuspendThread(irq.game_thread.0);
+        } else {
+            ResumeThread(irq.game_thread.0);
+        }
+    }
+}
+
 fn irq_thread() {
     let irq = IRQ.get().unwrap();
     super::watch::arm(irq.game_thread.0);
     loop {
+        if PAUSED.load(Ordering::SeqCst) {
+            std::thread::sleep(Duration::from_millis(10));
+            continue;
+        }
         let due = {
             let mut q = irq.queue.lock().unwrap();
             match q.peek() {

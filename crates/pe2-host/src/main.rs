@@ -27,7 +27,28 @@ const USAGE: &str = "usage: pe2 [disc 1 image] [disc 2 image]\n\
                      Without arguments, the launcher opens; with --play, pe2.toml's [discs]\n\
                      disc1 and disc2 are played.";
 
+/// Started from Explorer, the process is alone on a console of its own:
+/// let it go, so no empty console window stays behind the game. Started
+/// from a terminal, the console is shared and keeps the logs.
+fn drop_own_console() {
+    use windows_sys::Win32::System::Console::{FreeConsole, GetConsoleProcessList};
+    let mut ids = [0u32; 2];
+    // SAFETY: a two-entry buffer for the list.
+    unsafe {
+        if GetConsoleProcessList(ids.as_mut_ptr(), ids.len() as u32) == 1 {
+            FreeConsole();
+        }
+    }
+}
+
+/// Whether the process has a console (for the game the launcher starts).
+pub fn has_console() -> bool {
+    // SAFETY: plain query.
+    unsafe { !windows_sys::Win32::System::Console::GetConsoleWindow().is_null() }
+}
+
 fn main() -> ExitCode {
+    drop_own_console();
     let mut images: Vec<PathBuf> = std::env::args_os().skip(1).map(PathBuf::from).collect();
     // No arguments: the launcher, except for the unattended and test runs
     // the PE2_* variables drive. It plays with `--play`.

@@ -198,7 +198,24 @@ impl Launcher {
                 return;
             }
         };
-        let mut child = match std::process::Command::new(exe).arg("--play").spawn() {
+        let mut command = std::process::Command::new(exe);
+        command.arg("--play");
+        if !crate::has_console() {
+            // Without one to share, a console program would get a new
+            // console window; and the standard handles left by the console
+            // the launcher let go are not valid to pass on. The game's log
+            // goes to pe2.log next to pe2.exe instead.
+            use std::os::windows::process::CommandExt;
+            use std::process::Stdio;
+            const CREATE_NO_WINDOW: u32 = 0x0800_0000;
+            command.creation_flags(CREATE_NO_WINDOW).stdin(Stdio::null()).stdout(Stdio::null());
+            let log = std::env::current_exe().ok().and_then(|e| e.parent().map(|d| d.join("pe2.log")));
+            match log.and_then(|p| std::fs::File::create(p).ok()) {
+                Some(file) => command.stderr(file),
+                None => command.stderr(Stdio::null()),
+            };
+        }
+        let mut child = match command.spawn() {
             Ok(c) => c,
             Err(e) => {
                 self.message = Some(e.to_string());

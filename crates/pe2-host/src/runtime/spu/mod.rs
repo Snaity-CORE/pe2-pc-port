@@ -65,6 +65,13 @@ pub fn clear_cd_audio() {
 /// Runs the SPU for `frames` samples into `out` (interleaved stereo) and
 /// raises the IRQ if a voice reached the IRQ address.
 fn render(out: &mut Vec<(i16, i16)>, frames: usize) {
+    // Paused, the game thread may be stopped holding the SPU: silence,
+    // without touching it.
+    if irq::PAUSED.load(Ordering::SeqCst) {
+        out.clear();
+        out.resize(frames, (0, 0));
+        return;
+    }
     let irq = with_spu(|s| {
         out.clear();
         out.extend((0..frames).map(|_| s.tick()));
