@@ -78,6 +78,10 @@ struct App {
     next_redraw: Instant,
     /// Alt is held (Alt+Enter toggles full screen).
     alt: bool,
+    /// The title's frame rate: when it was last updated, and the frame
+    /// count then.
+    title_at: Instant,
+    title_frames: u64,
 }
 
 /// Borderless full screen on the window's monitor, or a window.
@@ -169,11 +173,29 @@ impl ApplicationHandler for App {
             }
             self.next_redraw = now + FRAME;
         }
+        if now.duration_since(self.title_at) >= Duration::from_secs(1) {
+            self.update_title(now);
+        }
         event_loop.set_control_flow(ControlFlow::WaitUntil(self.next_redraw));
     }
 }
 
 impl App {
+    /// "Parasite Eve II — 30 fps — 1280×960 — Vulkan": frames the game drew
+    /// in the last second, the picture's size and the renderer.
+    fn update_title(&mut self, now: Instant) {
+        let frames = gpu::FRAMES.load(Ordering::Relaxed);
+        let fps = (frames - self.title_frames) as f64 / now.duration_since(self.title_at).as_secs_f64();
+        (self.title_at, self.title_frames) = (now, frames);
+        let Some(window) = &self.window else { return };
+        let (w, h) = gpu::picture_size();
+        let renderer = match (crate::gfx::get(), &self.hardware) {
+            (Some(gfx), Some(_)) => format!("{:?}", gfx.adapter.get_info().backend),
+            _ => "software".to_string(),
+        };
+        window.set_title(&format!("Parasite Eve II — {fps:.0} fps — {w}×{h} — {renderer}"));
+    }
+
     fn present(&mut self) {
         let (Some(window), Some(surface)) = (&self.window, &mut self.surface) else { return };
         let size = window.inner_size();
@@ -315,6 +337,8 @@ pub fn start() {
                 columns: Vec::new(),
                 columns_for: (0, 0),
                 alt: false,
+                title_at: Instant::now(),
+                title_frames: 0,
                 next_redraw: Instant::now(),
             };
             let _ = event_loop.run_app(&mut app);

@@ -1019,6 +1019,17 @@ pub struct CardFront {
 
 pub static HW_FRONT: Mutex<Option<CardFront>> = Mutex::new(None);
 
+/// New pictures latched so far: frames the game drew (the window title's
+/// frame rate).
+pub static FRAMES: std::sync::atomic::AtomicU64 = std::sync::atomic::AtomicU64::new(0);
+
+/// The size of the window's picture (the internal resolution, or the
+/// console's for 24-bit movies).
+pub fn picture_size() -> (usize, usize) {
+    let f = FRONT.lock().unwrap();
+    (f.width, f.height)
+}
+
 /// Whether the window's picture is on the graphics card.
 pub fn front_on_card() -> bool {
     FRONT.lock().unwrap().on_card
@@ -1051,6 +1062,7 @@ pub fn latch() {
     }
     let Ok(mut f) = FRONT.try_lock() else { return };
     g.latched = g.generation;
+    FRAMES.fetch_add(1, std::sync::atomic::Ordering::Relaxed);
     let d = g.display;
     // Whatever is shown, the card catches up once a frame (uploads would
     // pile up while a 24-bit movie is displayed from the VRAM).
