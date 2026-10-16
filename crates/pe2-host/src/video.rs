@@ -3,7 +3,7 @@
 //! the game keeps the main thread.
 
 use std::num::NonZeroU32;
-use std::rc::Rc;
+use std::sync::Arc;
 use std::sync::atomic::{AtomicU16, Ordering};
 use std::time::{Duration, Instant};
 
@@ -67,8 +67,10 @@ fn scripted() -> bool {
 }
 
 struct App {
-    window: Option<Rc<Window>>,
-    surface: Option<softbuffer::Surface<Rc<Window>, Rc<Window>>>,
+    window: Option<Arc<Window>>,
+    /// The graphics card's presenter, or else a CPU-drawn surface.
+    hardware: Option<crate::present::Presenter>,
+    surface: Option<softbuffer::Surface<Arc<Window>, Arc<Window>>>,
     frame: Vec<u32>,
     /// Source column of each window column, for the current scale.
     columns: Vec<usize>,
@@ -87,9 +89,12 @@ impl ApplicationHandler for App {
             // Scripted (unattended) runs must not steal focus from whatever
             // the user is typing in.
             .with_active(!scripted());
-        let window = Rc::new(event_loop.create_window(attrs).expect("create window"));
-        let context = softbuffer::Context::new(window.clone()).expect("softbuffer context");
-        self.surface = Some(softbuffer::Surface::new(&context, window.clone()).expect("softbuffer surface"));
+        let window = Arc::new(event_loop.create_window(attrs).expect("create window"));
+        self.hardware = crate::gfx::get().and_then(|gfx| crate::present::Presenter::new(gfx, window.clone()));
+        if self.hardware.is_none() {
+            let context = softbuffer::Context::new(window.clone()).expect("softbuffer context");
+            self.surface = Some(softbuffer::Surface::new(&context, window.clone()).expect("softbuffer surface"));
+        }
         self.window = Some(window);
     }
 
@@ -124,7 +129,15 @@ impl ApplicationHandler for App {
                     }
                 }
             }
-            WindowEvent::RedrawRequested => self.present(),
+            WindowEvent::Resized(size) => {
+                if let Some(hw) = self.hardware.as_mut() {
+                    hw.resize(size.width, size.height);
+                }
+            }
+            WindowEvent::RedrawRequested => match self.hardware.as_mut() {
+                Some(hw) => hw.present(),
+                None => self.present(),
+            },
             _ => {}
         }
     }
@@ -277,6 +290,7 @@ pub fn start() {
             let event_loop = EventLoop::builder().with_any_thread(true).build().expect("event loop");
             let mut app = App {
                 window: None,
+                hardware: None,
                 surface: None,
                 frame: Vec::new(),
                 columns: Vec::new(),

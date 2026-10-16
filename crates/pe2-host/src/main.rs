@@ -5,6 +5,8 @@
 mod config;
 mod disc;
 mod gamepad;
+mod gfx;
+mod present;
 mod runtime;
 mod video;
 

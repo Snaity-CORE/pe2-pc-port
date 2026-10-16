@@ -31,6 +31,8 @@ pub struct Discs {
 pub struct Video {
     /// Internal resolution, a multiple of the console's (1-8).
     pub scale: Option<i32>,
+    /// "hardware" (the graphics card, the default) or "software".
+    pub renderer: Option<String>,
 }
 
 #[derive(Debug, Default, Deserialize)]

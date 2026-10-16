@@ -15,6 +15,9 @@
 # Internal resolution, a multiple of the console's 320x240: 1 is the
 # console's picture (with its dithering); 2-8 render in true colour.
 scale = 4
+# "hardware" (the graphics card, the default) or "software" (everything on
+# the CPU; also used when no graphics adapter works).
+# renderer = "hardware"
 
 [memcard]
 # Raw 128 KB memory card images (DuckStation's .mcd files work). Default:
