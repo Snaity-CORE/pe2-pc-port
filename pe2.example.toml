@@ -21,6 +21,9 @@ scale = 4
 # Exact vertex positions from the game's 3D projections at scales above 1,
 # instead of whole console pixels: no wobbling or gaps between polygons.
 # subpixel = true
+# Perspective-correct textures and colours on 3D polygons (needs subpixel):
+# no more warping of textures on large polygons seen at an angle.
+# perspective = true
 
 [memcard]
 # Raw 128 KB memory card images (DuckStation's .mcd files work). Default:

@@ -35,6 +35,8 @@ pub struct Video {
     pub renderer: Option<String>,
     /// Exact (sub-pixel) vertex positions at higher resolutions (default on).
     pub subpixel: Option<bool>,
+    /// Perspective-correct textures and colours (with subpixel; default on).
+    pub perspective: Option<bool>,
 }
 
 #[derive(Debug, Default, Deserialize)]

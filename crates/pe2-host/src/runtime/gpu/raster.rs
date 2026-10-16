@@ -19,6 +19,9 @@ pub struct Vertex {
     /// The exact screen position, when the game's projection left one
     /// (pgxp.c); only the higher-resolution layer uses it.
     pub exact: Option<(f32, f32)>,
+    /// The vertex's depth for perspective-correct interpolation, when every
+    /// vertex of its polygon has one (0: none).
+    pub w: f32,
 }
 
 /// How a primitive's pixels are produced.

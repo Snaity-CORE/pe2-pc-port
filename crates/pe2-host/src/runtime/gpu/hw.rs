@@ -36,11 +36,14 @@ struct In {
     @location(3) mode: u32,
     @location(4) clut: u32,
     @location(5) window: u32,
+    @location(6) w: f32,
 };
 struct Out {
     @builtin(position) pos: vec4<f32>,
-    @location(0) @interpolate(linear) color: vec3<f32>,
-    @location(1) @interpolate(linear) uv: vec2<f32>,
+    // Perspective-correct with the vertices' depths in w; with w = 1 (no
+    // depths), plain linear interpolation as on the console.
+    @location(0) color: vec3<f32>,
+    @location(1) uv: vec2<f32>,
     @location(2) @interpolate(flat) mode: u32,
     @location(3) @interpolate(flat) clut: u32,
     @location(4) @interpolate(flat) window: u32,
@@ -52,7 +55,8 @@ fn vs(i: In) -> Out {
     // Pixel (x, y) is covered when its integer position is inside, as in
     // the CPU rasterizers: shift by half a pixel to the GPU's centres.
     let p = (i.pos + vec2<f32>(0.5, 0.5)) / u.size * 2.0 - 1.0;
-    o.pos = vec4<f32>(p.x, -p.y, 0.0, 1.0);
+    let w = select(1.0, i.w, i.w > 0.0);
+    o.pos = vec4<f32>(p.x * w, -p.y * w, 0.0, w);
     o.color = vec3<f32>(f32(i.color & 0xFFu), f32((i.color >> 8u) & 0xFFu), f32((i.color >> 16u) & 0xFFu));
     o.uv = i.uv;
     o.mode = i.mode;
@@ -139,6 +143,8 @@ struct GpuVertex {
     mode: u32,
     clut: u32,
     window: u32,
+    /// Depth for perspective-correct interpolation (0: none).
+    w: f32,
 }
 
 const KIND_UPLOAD: u32 = 1 << 26;
@@ -349,7 +355,7 @@ impl Hw {
             bind_group_layouts: &[Some(&layout)],
             ..Default::default()
         });
-        let attributes = wgpu::vertex_attr_array![0 => Float32x2, 1 => Uint32, 2 => Float32x2, 3 => Uint32, 4 => Uint32, 5 => Uint32];
+        let attributes = wgpu::vertex_attr_array![0 => Float32x2, 1 => Uint32, 2 => Float32x2, 3 => Uint32, 4 => Uint32, 5 => Uint32, 6 => Float32];
         let pipelines = [Blend::None, Blend::Average, Blend::Add, Blend::Subtract, Blend::AddQuarter]
             .iter()
             .map(|b| {
@@ -589,6 +595,7 @@ impl Hw {
                         pos: [x * s, y * s],
                         color: rgb(c.r, c.g, c.b),
                         uv: [q.u as f32, q.v as f32],
+                        w: if v.iter().all(|p| p.w > 0.0) { q.w } else { 0.0 },
                         ..t
                     }
                 })

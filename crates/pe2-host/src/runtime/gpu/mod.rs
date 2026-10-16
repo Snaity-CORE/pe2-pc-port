@@ -99,6 +99,20 @@ fn subpixel() -> bool {
     })
 }
 
+/// Whether textures and colours are interpolated with perspective
+/// correction where vertex depths are known: PE2_PERSPECTIVE=0/1, else
+/// pe2.toml's [video] perspective, else on.
+fn perspective() -> bool {
+    static ON: std::sync::OnceLock<bool> = std::sync::OnceLock::new();
+    *ON.get_or_init(|| {
+        std::env::var("PE2_PERSPECTIVE")
+            .ok()
+            .map(|v| v.trim() != "0")
+            .or(crate::config::get().video.perspective)
+            .unwrap_or(true)
+    })
+}
+
 /// The internal resolution, a multiple of the console's (1-8): PE2_SCALE,
 /// else pe2.toml's [video] scale, else 1.
 fn scale() -> i32 {
@@ -316,9 +330,11 @@ impl Gpu {
                 i += 1;
             }
             let (x, y) = xy(words[i]);
-            let exact = self.exact(i, words[i], x, y).map(|(ex, ey)| (ex + st.offset_x as f32, ey + st.offset_y as f32));
+            let found = self.exact(i, words[i], x, y);
+            let exact = found.map(|(ex, ey, _)| (ex + st.offset_x as f32, ey + st.offset_y as f32));
+            let w = found.map_or(0.0, |(_, _, ez)| ez);
             i += 1;
-            *v = Vertex { x: x + st.offset_x, y: y + st.offset_y, r: rgb.0, g: rgb.1, b: rgb.2, u: 0, v: 0, exact };
+            *v = Vertex { x: x + st.offset_x, y: y + st.offset_y, r: rgb.0, g: rgb.1, b: rgb.2, u: 0, v: 0, exact, w };
             if textured {
                 let t = words[i];
                 i += 1;
@@ -343,6 +359,12 @@ impl Gpu {
         if !gouraud {
             for v in verts.iter_mut() {
                 (v.r, v.g, v.b) = (rgb.0, rgb.1, rgb.2);
+            }
+        }
+        // Perspective-correct interpolation needs every vertex's depth.
+        if !perspective() || verts[..n].iter().any(|v| v.w <= 0.0) {
+            for v in verts.iter_mut() {
+                v.w = 0.0;
             }
         }
         if trace("gpubig") {
@@ -535,7 +557,7 @@ impl Gpu {
 
     /// The exact position of the vertex in command word `i`, when there is
     /// one for that word (and it rounds to what the word holds).
-    fn exact(&self, i: usize, word: u32, x: i32, y: i32) -> Option<(f32, f32)> {
+    fn exact(&self, i: usize, word: u32, x: i32, y: i32) -> Option<(f32, f32, f32)> {
         if self.cmd_addr == 0 || !subpixel() || self.layer.is_none() {
             return None;
         }
@@ -549,7 +571,7 @@ impl Gpu {
         }
         EXACT_VERTICES.fetch_add(1, std::sync::atomic::Ordering::Relaxed);
         pgxp_trace(self.cur_packet, self.cmd_word0, true);
-        Some((ex, ey))
+        Some((ex, ey, ez))
     }
 
     fn load_image(&mut self, x: i32, y: i32, w: i32, h: i32, pixels: impl Iterator<Item = u16>) {
