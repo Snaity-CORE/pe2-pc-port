@@ -75,7 +75,11 @@ pub fn settings() -> PathBuf {
 /// `failed` gets why, if it could not be started.
 pub fn open_user_dir(failed: impl FnOnce(String) + Send + 'static) {
     let _ = std::fs::create_dir_all(user_dir());
-    let dir = user_dir().to_path_buf();
+    open_dir(user_dir().to_path_buf(), failed);
+}
+
+/// Opens `dir` in the system's file manager, as open_user_dir does.
+pub fn open_dir(dir: PathBuf, failed: impl FnOnce(String) + Send + 'static) {
     let program = if cfg!(windows) {
         "explorer"
     } else if cfg!(target_os = "macos") {

@@ -33,8 +33,12 @@ priority = 0      # higher wins where two mods replace the same thing
 enabled = true    # false keeps the mod installed but unused
 ```
 
-`[mods] enabled = false` in `pe2.toml` (or `PE2_MODS=0`) turns all mods off.
-The game's log lists the mods it uses at startup.
+The launcher's **Mods** screen lists the installed mods, turns each on or
+off and sets their order (higher in the list wins), writing `enabled` and
+`priority` into each `mod.toml` and keeping the rest of the file. It also
+turns all mods off (`[mods] enabled = false` in `pe2.toml`, or `PE2_MODS=0`),
+turns dumping on, and opens the mods folder. Changes apply when the game
+starts; its log lists the mods it uses.
 
 ## Backgrounds and full-screen pictures
 
@@ -43,7 +47,8 @@ title and menu screens are full-screen pictures too. A mod can replace any of
 them with a picture of its own, at any resolution: 1280x960 (4x) suits most
 setups, and the picture is scaled to the internal resolution.
 
-1. Turn on dumping: `[mods] dump = true` in `pe2.toml` (or `PE2_DUMP=1`).
+1. Turn on dumping: in the launcher's Mods screen, or `[mods] dump = true` in
+   `pe2.toml` (or `PE2_DUMP=1`).
 2. Play through the places you want to change. Each picture the game shows is
    saved once as `dumps/backgrounds/<hash>.png` in the data folder.
 3. Make your version of a picture (paint over it, upscale it, ...) and save it
@@ -73,7 +78,7 @@ hash or a name of what it replaces, never containing the game's files, never
 changing the game's own data in memory unless the kind is meant to.
 
 1. **Backgrounds and full-screen pictures** (done): dump and replace, as above.
-2. **A Mods screen in the launcher**: list, turn on and off, order.
+2. **A Mods screen in the launcher** (done): list, turn on and off, order.
 3. **Memory patches**: an address, a value and when to apply it (GameShark
    style), for cheats and fixes.
 4. **Music and voices**: the XA audio tracks replaced by OGG or FLAC files,

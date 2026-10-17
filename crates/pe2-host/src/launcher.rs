@@ -217,6 +217,7 @@ enum Icon {
     Play,
     Settings,
     Controls,
+    Mods,
     Setup,
     Exit,
 }
@@ -228,6 +229,7 @@ impl Icon {
             Icon::Play => '\u{E768}',
             Icon::Settings => '\u{E713}',
             Icon::Controls => '\u{E7FC}',
+            Icon::Mods => '\u{EA86}',
             Icon::Setup => '\u{E7F4}',
             Icon::Exit => '\u{F3B1}',
         }
@@ -276,6 +278,9 @@ struct Settings {
     interpolation: bool,
     crt: bool,
     integer_scaling: bool,
+    /// [mods] enabled and dump.
+    mods_enabled: bool,
+    mods_dump: bool,
     fullscreen: bool,
     /// Empty: the default card in memcards/ in the folder of the player's
     /// files (paths.rs).
@@ -310,6 +315,8 @@ impl Settings {
             interpolation: flag("video", "frame_interpolation", true),
             crt: flag("video", "crt", false),
             integer_scaling: flag("video", "integer_scaling", false),
+            mods_enabled: flag("mods", "enabled", true),
+            mods_dump: flag("mods", "dump", false),
             fullscreen: flag("video", "fullscreen", false),
             cards: [text("memcard", "slot1"), text("memcard", "slot2")],
             controller: get("input", "controller")
@@ -368,6 +375,8 @@ impl Settings {
         doc["video"]["frame_interpolation"] = value(self.interpolation);
         doc["video"]["crt"] = value(self.crt);
         doc["video"]["integer_scaling"] = value(self.integer_scaling);
+        doc["mods"]["enabled"] = value(self.mods_enabled);
+        doc["mods"]["dump"] = value(self.mods_dump);
         doc["video"]["fullscreen"] = value(self.fullscreen);
         doc["input"]["controller"] = value(if self.controller.is_empty() { "auto" } else { self.controller.as_str() });
         doc["input"]["vibration"] = value(self.vibration);
@@ -403,6 +412,20 @@ enum Screen {
     Setup(u8),
     Settings,
     Controls,
+    Mods,
+}
+
+/// A mod as the Mods screen edits it: on or off, and its place in the
+/// order (the list's order; the first wins).
+struct ModRow {
+    dir: PathBuf,
+    name: String,
+    about: String,
+    enabled: bool,
+    /// As it was, to write only what changed: on or off, and where in the
+    /// list.
+    was_enabled: bool,
+    was_at: usize,
 }
 
 struct Launcher {
@@ -437,6 +460,8 @@ struct Launcher {
     /// The main screen's chosen button, and the other screens' focus.
     menu_focus: usize,
     focus: Focus,
+    /// The Mods screen's list.
+    mods: Vec<ModRow>,
 }
 
 /// The pe2.toml name of a key egui reports ("A" -> "KeyA", "Num1" ->
@@ -485,6 +510,7 @@ impl Launcher {
             stick: [0; 2],
             menu_focus: 0,
             focus: Focus::default(),
+            mods: Vec::new(),
         };
         launcher.recheck();
         if launcher.checks[0].as_ref().is_none_or(|c| c.is_err()) {
@@ -674,6 +700,7 @@ impl Launcher {
             (Icon::Play, lang.t("Play", "Jogar"), ready && !running, true),
             (Icon::Settings, lang.t("Settings", "Configurações"), !running, false),
             (Icon::Controls, lang.t("Controls", "Controles"), !running, false),
+            (Icon::Mods, lang.t("Mods", "Mods"), !running, false),
             (Icon::Setup, lang.t("Setup", "Configuração inicial"), !running, false),
             (Icon::Exit, lang.t("Exit", "Sair"), true, false),
         ];
@@ -698,9 +725,9 @@ impl Launcher {
             self.menu_focus = step(self.menu_focus, true);
         }
         let pressed = (self.nav.contains(&Nav::Accept) || keys.2).then_some(self.menu_focus);
-        let mut y = full.top() + 282.0;
+        let mut y = full.top() + 276.0;
         for (k, (icon, label, enabled, primary)) in buttons.into_iter().enumerate() {
-            let rect = Rect::from_min_size(pos2(full.left() + 73.0, y), vec2(324.0, 50.0));
+            let rect = Rect::from_min_size(pos2(full.left() + 73.0, y), vec2(324.0, 46.0));
             let response = self.menu_button(ui, rect, icon, label, enabled, primary, self.menu_focus == k);
             if response.hovered() && enabled {
                 self.menu_focus = k;
@@ -717,6 +744,11 @@ impl Launcher {
                         self.capture = None;
                         self.go(Screen::Controls);
                     }
+                    Icon::Mods => {
+                        self.edit = self.saved.clone();
+                        self.load_mods();
+                        self.go(Screen::Mods);
+                    }
                     Icon::Setup => {
                         self.edit = self.saved.clone();
                         self.go(Screen::Setup(0));
@@ -724,7 +756,7 @@ impl Launcher {
                     Icon::Exit => ui.ctx().send_viewport_cmd(egui::ViewportCommand::Close),
                 }
             }
-            y += 58.0;
+            y += 52.0;
         }
         let status = if self.starting.load(Ordering::SeqCst) {
             Some((egui::Color32::from_gray(200), lang.t("Starting the game...", "Iniciando o jogo...")))
@@ -1159,6 +1191,142 @@ impl Launcher {
     }
 }
 
+impl Launcher {
+    /// The installed mods, in their order, for the Mods screen.
+    fn load_mods(&mut self) {
+        self.mods = crate::mods::installed()
+            .into_iter()
+            .enumerate()
+            .map(|(k, m)| {
+                let mut about = Vec::new();
+                if let Some(a) = &m.author {
+                    about.push(a.clone());
+                }
+                if let Some(d) = &m.description {
+                    about.push(d.clone());
+                }
+                ModRow {
+                    name: match &m.version {
+                        Some(v) => format!("{} {v}", m.name),
+                        None => m.name.clone(),
+                    },
+                    about: about.join(" — "),
+                    enabled: m.enabled,
+                    was_enabled: m.enabled,
+                    was_at: k,
+                    dir: m.dir,
+                }
+            })
+            .collect();
+    }
+
+    /// Writes each mod's mod.toml where something changed: on or off, and,
+    /// when the order changed, every mod's priority (the first in the list
+    /// highest). The file's other contents are kept.
+    fn save_mods(&mut self) -> Result<(), String> {
+        let count = self.mods.len() as i64;
+        let reordered = self.mods.iter().enumerate().any(|(k, m)| m.was_at != k);
+        for (k, m) in self.mods.iter().enumerate() {
+            let priority = count - 1 - k as i64;
+            if m.enabled == m.was_enabled && !reordered {
+                continue;
+            }
+            let path = m.dir.join("mod.toml");
+            let mut doc = std::fs::read_to_string(&path)
+                .ok()
+                .and_then(|t| t.parse::<toml_edit::DocumentMut>().ok())
+                .unwrap_or_default();
+            doc["enabled"] = toml_edit::value(m.enabled);
+            if reordered {
+                doc["priority"] = toml_edit::value(priority);
+            }
+            std::fs::write(&path, doc.to_string()).map_err(|e| format!("{}: {e}", path.display()))?;
+        }
+        Ok(())
+    }
+
+    fn mods_screen(&mut self, ui: &mut egui::Ui) {
+        let lang = self.lang();
+        ui.heading(lang.t("Mods", "Mods"));
+        self.focus.checkbox(ui, &mut self.edit.mods_enabled, lang.t("Use mods", "Usar mods"), true);
+        self.focus.checkbox(
+            ui,
+            &mut self.edit.mods_dump,
+            lang.t(
+                "Save the game's backgrounds while playing (for making mods)",
+                "Salvar os cenários do jogo enquanto joga (para criar mods)",
+            ),
+            true,
+        );
+        if self.focus.button(ui, lang.t("Open the mods folder", "Abrir a pasta de mods"), true) {
+            let dir = crate::mods::mods_dir();
+            let _ = std::fs::create_dir_all(&dir);
+            let (error, ctx) = (self.launch_error.clone(), ui.ctx().clone());
+            crate::paths::open_dir(dir, move |e| {
+                *error.lock().unwrap() = Some(e);
+                ctx.request_repaint();
+            });
+        }
+        ui.label(egui::RichText::new(crate::mods::mods_dir().display().to_string()).weak());
+        ui.separator();
+        let mut swap = None;
+        egui::ScrollArea::vertical().max_height(ui.available_height() - 90.0).show(ui, |ui| {
+            if self.mods.is_empty() {
+                ui.label(lang.t(
+                    "No mods installed. A mod is a folder in the mods folder above (see docs/MODDING.md).",
+                    "Nenhum mod instalado. Um mod é uma pasta dentro da pasta de mods acima (veja docs/MODDING.md).",
+                ));
+            }
+            let count = self.mods.len();
+            for k in 0..count {
+                ui.horizontal(|ui| {
+                    let m = &mut self.mods[k];
+                    self.focus.checkbox(ui, &mut m.enabled, &m.name, self.edit.mods_enabled);
+                    if self.focus.button(ui, "▲", k > 0) {
+                        swap = Some(k - 1);
+                    }
+                    if self.focus.button(ui, "▼", k + 1 < count) {
+                        swap = Some(k);
+                    }
+                });
+                if !self.mods[k].about.is_empty() {
+                    ui.label(egui::RichText::new(&self.mods[k].about).weak());
+                }
+                ui.add_space(4.0);
+            }
+        });
+        if let Some(k) = swap {
+            self.mods.swap(k, k + 1);
+        }
+        ui.label(
+            egui::RichText::new(lang.t(
+                "Higher in the list wins where two mods change the same thing. Changes apply when the game starts.",
+                "Mais acima na lista vence quando dois mods mudam a mesma coisa. As mudanças valem quando o jogo começa.",
+            ))
+            .weak(),
+        );
+        ui.separator();
+        ui.horizontal(|ui| {
+            if self.focus.button(ui, lang.t("Save", "Salvar"), true) {
+                match self.save_mods() {
+                    Ok(()) => {
+                        self.save();
+                        if self.message.is_none() {
+                            self.go(Screen::Main);
+                        }
+                    }
+                    Err(e) => self.message = Some(e),
+                }
+            }
+            if self.focus.button(ui, lang.t("Cancel", "Cancelar"), true) {
+                self.edit = self.saved.clone();
+                self.message = None;
+                self.go(Screen::Main);
+            }
+        });
+    }
+}
+
 impl eframe::App for Launcher {
     /// Reads the controllers before each frame: their moves, and the button
     /// pressed (for the Controls screen to catch); and, on the other
@@ -1275,6 +1443,7 @@ impl eframe::App for Launcher {
                             Screen::Setup(step) => self.setup_screen(ui, step),
                             Screen::Settings => self.settings_screen(ui),
                             Screen::Controls => self.controls_screen(ui),
+                            Screen::Mods => self.mods_screen(ui),
                         }
                         if let Some(m) = &self.message {
                             ui.colored_label(egui::Color32::from_rgb(255, 120, 110), m.as_str());
@@ -1298,6 +1467,10 @@ impl Launcher {
                 Ok("settings") => Screen::Settings,
                 Ok("controls") => Screen::Controls,
                 Ok("setup") => Screen::Setup(0),
+                Ok("mods") => {
+                    self.load_mods();
+                    Screen::Mods
+                }
                 _ => self.screen,
             };
         }
