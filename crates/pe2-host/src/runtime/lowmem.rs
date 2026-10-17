@@ -7,8 +7,6 @@
 //! handler emulates the faulting instruction against the RAM mirror at
 //! 0x80000000 and resumes after it.
 
-use std::sync::atomic::{AtomicU32, Ordering};
-
 use iced_x86::{Code, Decoder, DecoderOptions, Instruction, MemorySize, OpKind, Register};
 use windows_sys::Win32::Foundation::{EXCEPTION_ACCESS_VIOLATION, NTSTATUS};
 use windows_sys::Win32::System::Diagnostics::Debug::{
@@ -19,8 +17,6 @@ const LOW_LIMIT: u32 = 0x1_0000;
 const RAM_BASE: u32 = 0x8000_0000;
 const EXCEPTION_CONTINUE_EXECUTION: i32 = -1;
 const EXCEPTION_CONTINUE_SEARCH: i32 = 0;
-
-static REPORTED: AtomicU32 = AtomicU32::new(0);
 
 pub fn install() {
     // SAFETY: registering a handler with the documented signature.
@@ -45,7 +41,8 @@ unsafe extern "system" fn handler(info: *mut EXCEPTION_POINTERS) -> i32 {
         eprintln!("[lowmem] cannot emulate {:?} at 0x{:08X} (address 0x{addr:08X})", insn.code(), ctx.Eip);
         return EXCEPTION_CONTINUE_SEARCH;
     }
-    if REPORTED.fetch_add(1, Ordering::Relaxed) < 8 || super::trace("lowmem") {
+    // Expected (see above): reported only when asked, PE2_TRACE=lowmem.
+    if super::trace("lowmem") {
         eprintln!("[lowmem] emulated {:?} at 0x{:08X} (PSX address 0x{addr:08X})", insn.code(), ctx.Eip);
     }
     ctx.Eip += insn.len() as u32;
