@@ -55,10 +55,10 @@ python tools/build_game.py     # game library: build/game/pe2game.lib
 cargo build                    # host executable
 ```
 
-Optional icon: put a square PNG of your own at `local/icon.png` (the folder
-is ignored by git, as nothing from the game may be committed) and build
-again. It becomes pe2.exe's icon in Explorer and the taskbar, and the
-game's and launcher's window icon. Without it the build simply has none.
+The icon (pe2.exe in Explorer and the taskbar, and the game's and
+launcher's windows) is `crates/pe2-host/res/icon.png`. To use a picture of
+your own instead, put a square PNG at `local/icon.png` (ignored by git) and
+build again.
 
 ## 4. Run
 

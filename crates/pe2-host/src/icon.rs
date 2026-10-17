@@ -1,5 +1,5 @@
-//! The application icon for the windows: the player's local/icon.png, built
-//! in when it is there (see build.rs).
+//! The application icon for the windows: res/icon.png, or the player's own
+//! local/icon.png, built in (see build.rs).
 
 /// The icon's pixels (RGBA) and side, if pe2.exe was built with one.
 pub fn rgba() -> Option<(Vec<u8>, u32)> {

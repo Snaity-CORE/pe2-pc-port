@@ -1,9 +1,7 @@
 //! Links the game library built by `python tools/build_game.py`, and the
-//! application icon when there is one.
-//!
-//! The icon is the player's own picture, `local/icon.png` (any size, square,
-//! transparency kept): like everything from the game, it is never in the
-//! repository. Without it pe2.exe gets no icon.
+//! application icon: the project's res/icon.png, or a picture of the
+//! player's own at `local/icon.png` (any size, square, transparency kept;
+//! ignored by git).
 
 use std::path::{Path, PathBuf};
 
@@ -46,15 +44,18 @@ fn main() {
 const ICON_SIZES: [u32; 6] = [256, 64, 48, 32, 24, 16];
 const WINDOW_ICON_SIZE: u32 = 128;
 
-/// With local/icon.png: pe2.res (linked into pe2.exe) and icon.rgba (for
-/// the windows, cfg `pe2_icon`), in OUT_DIR.
+/// pe2.res (linked into pe2.exe) and icon.rgba (for the windows, cfg
+/// `pe2_icon`), in OUT_DIR, from local/icon.png or else res/icon.png.
 fn icon(root: &Path) {
     println!("cargo::rustc-check-cfg=cfg(pe2_icon)");
     let local = root.join("local");
-    let path = local.join("icon.png");
-    // Watch the folder (it changes when the picture is added) or, without
-    // it, the repository's root.
+    let own = local.join("icon.png");
+    let project = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("res/icon.png");
+    // Watch the folder (it changes when a picture is added) or, without it,
+    // the repository's root; and the project's picture.
     println!("cargo:rerun-if-changed={}", if local.exists() { local.display() } else { root.display() });
+    println!("cargo:rerun-if-changed={}", project.display());
+    let path = if own.exists() { own } else { project };
     if !path.exists() {
         return;
     }
