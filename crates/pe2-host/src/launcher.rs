@@ -66,6 +66,10 @@ struct Settings {
     /// Player 1's controller by name; empty: the one last used.
     controller: String,
     vibration: bool,
+    /// Camera-relative movement ([input] movement = "modern"), and the
+    /// tank movement's quick turn.
+    modern: bool,
+    quick_turn: bool,
     /// Key and controller button names, in controls::BUTTONS order.
     keys: [String; 16],
     pads: [String; 16],
@@ -90,6 +94,8 @@ impl Settings {
             cards: [text("memcard", "slot1"), text("memcard", "slot2")],
             controller: get("input", "controller").and_then(|v| v.as_str()).filter(|n| *n != "auto").unwrap_or("").to_string(),
             vibration: flag("input", "vibration", true),
+            modern: get("input", "movement").and_then(|v| v.as_str()) == Some("modern"),
+            quick_turn: flag("input", "quick_turn", true),
             keys: std::array::from_fn(|i| {
                 let b = &BUTTONS[i];
                 doc.get("input").and_then(|t| t.get("keyboard")).and_then(|t| t.get(b.name)).and_then(|v| v.as_str()).unwrap_or(b.key).to_string()
@@ -128,6 +134,8 @@ impl Settings {
         doc["video"]["fullscreen"] = value(self.fullscreen);
         doc["input"]["controller"] = value(if self.controller.is_empty() { "auto" } else { self.controller.as_str() });
         doc["input"]["vibration"] = value(self.vibration);
+        doc["input"]["movement"] = value(if self.modern { "modern" } else { "tank" });
+        doc["input"]["quick_turn"] = value(self.quick_turn);
         for (i, b) in BUTTONS.iter().enumerate() {
             doc["input"]["keyboard"][b.name] = value(self.keys[i].as_str());
             doc["input"]["gamepad"][b.name] = value(self.pads[i].as_str());
@@ -577,6 +585,15 @@ impl Launcher {
         let lang = self.lang();
         ui.heading(lang.t("Controls", "Controles"));
         ui.horizontal(|ui| {
+            ui.label(lang.t("Movement", "Movimento"));
+            ui.selectable_value(&mut self.edit.modern, false, lang.t("Tank (original)", "Tanque (original)"));
+            ui.selectable_value(&mut self.edit.modern, true, lang.t("Modern (relative to the camera)", "Moderno (relativo à câmera)"));
+        });
+        ui.add_enabled_ui(!self.edit.modern, |ui| {
+            ui.checkbox(&mut self.edit.quick_turn, lang.t("Quick turn (back + run)", "Meia-volta rápida (trás + correr)"));
+        });
+        ui.separator();
+        ui.horizontal(|ui| {
             ui.selectable_value(&mut self.pad_tab, false, lang.t("Keyboard", "Teclado"));
             ui.selectable_value(&mut self.pad_tab, true, lang.t("Controller", "Controle"));
         });
@@ -717,7 +734,7 @@ pub fn run() -> ExitCode {
     let options = eframe::NativeOptions {
         viewport: egui::ViewportBuilder::default()
             .with_title("Parasite Eve II")
-            .with_inner_size([560.0, 545.0])
+            .with_inner_size([560.0, 600.0])
             .with_resizable(false),
         renderer: eframe::Renderer::Glow,
         ..Default::default()

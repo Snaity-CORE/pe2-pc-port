@@ -105,6 +105,38 @@ pub fn pad_label(name: &str) -> String {
     }
 }
 
+/// Whether movement is camera-relative ([input] movement = "modern").
+pub fn modern_movement() -> bool {
+    match crate::config::get().input.movement.as_deref().map(str::trim) {
+        None | Some("tank") => false,
+        Some("modern") => true,
+        Some(other) => {
+            eprintln!("pe2: unknown movement {other:?} (tank or modern); using tank");
+            false
+        }
+    }
+}
+
+/// The game's movement options (pad_input.c in the fork): bit 0 modern
+/// movement, bit 1 quick turn.
+#[unsafe(no_mangle)]
+pub extern "C" fn pc_input_options() -> u32 {
+    static OPTIONS: std::sync::OnceLock<u32> = std::sync::OnceLock::new();
+    *OPTIONS.get_or_init(|| {
+        let quick_turn = crate::config::get().input.quick_turn.unwrap_or(true);
+        u32::from(modern_movement()) | (u32::from(quick_turn) << 1)
+    })
+}
+
+/// PE2_TRACE=move: the stick (or d-pad) direction, the yaw it asks for,
+/// the player's yaw and position, each tick of modern movement.
+#[unsafe(no_mangle)]
+pub extern "C" fn pc_trace_movement(sx: i32, sy: i32, want: i32, yaw: i32, x: i32, z: i32) {
+    if crate::runtime::trace("move") {
+        eprintln!("[move] stick ({sx}, {sy}) want {want} yaw {yaw} at ({x}, {z})");
+    }
+}
+
 /// The keyboard mapping in use: each key and the buttons it presses.
 pub fn keyboard() -> Vec<(KeyCode, u16)> {
     let config = &crate::config::get().input.keyboard;

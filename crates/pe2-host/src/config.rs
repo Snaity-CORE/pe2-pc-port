@@ -33,6 +33,11 @@ pub struct Input {
     pub keyboard: std::collections::BTreeMap<String, String>,
     /// PlayStation button name -> controller button name.
     pub gamepad: std::collections::BTreeMap<String, String>,
+    /// "tank" (the original, the default) or "modern" (the stick or d-pad
+    /// points where to go, relative to the camera).
+    pub movement: Option<String>,
+    /// Back + run turns around, with tank movement (default on).
+    pub quick_turn: Option<bool>,
 }
 
 #[derive(Debug, Default, Deserialize)]

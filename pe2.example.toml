@@ -47,6 +47,12 @@ scale = 4
 # launcher's Controls screen lists it.
 # controller = "auto"
 # vibration = true
+# Movement: "tank" (the original: up walks forward, left and right turn)
+# or "modern" (the stick or d-pad points where to go, relative to the
+# camera; a full push of the stick runs).
+# movement = "tank"
+# With tank movement, back + run turns around at once.
+# quick_turn = true
 # The launcher's Controls screen edits the mappings below. Keys use winit's
 # names ("KeyZ", "ArrowUp", "Enter"); controller buttons are by position
 # ("South" is A on Xbox and Cross on PlayStation pads). Esc, P, F9-F12 and
