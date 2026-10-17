@@ -9,11 +9,13 @@
 //! true-colour layer, which the window shows instead: on the graphics card
 //! (hw.rs) or, with the software renderer, on the CPU (hires.rs).
 
+mod atlas;
 pub mod hires;
 pub mod hw;
 mod interp;
 pub mod layer;
 pub mod raster;
+mod textures;
 
 use std::sync::Mutex;
 

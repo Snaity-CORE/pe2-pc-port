@@ -66,14 +66,49 @@ What to know:
 
 - **Foreground pieces.** Parts of a room that pass in front of the characters
   (pillars, railings, furniture edges) are drawn separately, from texture
-  memory, on top of the background. They keep the original look until texture
-  replacement exists (see the plan below): match your background to them.
+  memory, on top of the background: they are textures (see below), to be
+  replaced to match your background.
 - **Only the picture changes.** The game still has its own picture in video
   memory; replacing it never changes how the game plays.
 - **Hardware renderer.** Replacements show with the graphics card renderer at
   any internal resolution; with the software renderer the original shows.
 - **Loading.** A picture is read the first time its room shows (the original
   shows for a frame or two meanwhile) and kept while it is in use.
+
+## Textures
+
+Models (Aya, enemies, weapons), the interface (fonts, the HUD, menus) and the
+pieces of rooms drawn over backgrounds are drawn from textures, and a mod can
+replace them at a higher resolution.
+
+On the PlayStation a texture is a page of texture memory (256x256 texels)
+read through a palette: the same page drawn with another palette is another
+texture. A texture is known by a hash of both: its file name is
+`<page hash>-<palette hash>.png` (or `<page hash>.png` for 15-bit textures,
+which have no palette).
+
+1. Turn on dumping (as for backgrounds) and play to where the texture shows.
+   Each texture drawn is saved once as `dumps/textures/<name>.png`: the whole
+   page as that palette shows it, 256x256, transparent where nothing was
+   loaded and where the game draws nothing.
+2. Make your version, at any multiple of 256x256 (1024x1024 is 4x), and save
+   it as `mods/<your mod>/textures/<same name>.png`.
+
+What to know:
+
+- **One page, many things.** A page often holds several textures (Aya's
+  face, arms and hair share one), and parts of it drawn with other palettes
+  look wrong in the dump: only the parts drawn with this palette matter.
+  The other palettes have dumps of their own.
+- **Transparency.** Your picture's transparency is used: pixels less than
+  half opaque are not drawn. Whether the rest blends (semi-transparency)
+  still follows the game's own texture.
+- **Pages change.** The hash covers the whole page as it was loaded. If the
+  game loads something else into part of a page (another room's objects),
+  that is a new texture with a dump of its own: some textures need one
+  replacement per place they show in.
+- **Hardware renderer.** As with backgrounds, replacements show with the
+  graphics card renderer; dumping needs it too.
 
 ## Music
 
@@ -212,10 +247,8 @@ changing the game's own data in memory unless the kind is meant to.
    at any size, as above. Still to come for translations: decoding the
    dialogue bundles' glyph text to editable text and back, and the texts
    held in the executable.
-6. **Textures**: model, interface and foreground textures replaced at a higher
-   resolution. On the PlayStation a texture is a region of video memory read
-   through a palette, so a texture's identity is that region and its palette,
-   hashed as the game uploads them.
+6. **Textures** (done): dumped and replaced at any resolution, by texture page
+   and palette, as above.
 7. **Movies**: FMVs replaced by video files, which needs a video decoder.
 
 The extract saves files as the game stores them. Converting them to common

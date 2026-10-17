@@ -1280,8 +1280,8 @@ impl Launcher {
             ui,
             &mut self.edit.mods_dump,
             lang.t(
-                "Save the game's backgrounds and music while playing (for making mods)",
-                "Salvar os cenários e as músicas do jogo enquanto joga (para criar mods)",
+                "Save the game's pictures, textures and music while playing (for making mods)",
+                "Salvar as imagens, texturas e músicas do jogo enquanto joga (para criar mods)",
             ),
             true,
         );

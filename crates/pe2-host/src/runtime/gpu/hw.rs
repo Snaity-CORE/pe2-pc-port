@@ -39,6 +39,11 @@ struct Uniforms { size: vec2<f32>, scale: f32, _pad: f32 };
 @group(0) @binding(1) var vram: texture_2d<u32>;
 @group(0) @binding(2) var<storage, read> uploads: array<u32>;
 @group(0) @binding(3) var scratch: texture_2d<f32>;
+// Mods' textures (atlas.rs): the layers they are packed in, and per
+// texture its place (x | y << 16), size (w | h << 16), layer, and the
+// texels it replaces (w | h << 16).
+@group(1) @binding(0) var atlas: texture_2d_array<f32>;
+@group(1) @binding(1) var<storage, read> atlas_table: array<vec4<u32>>;
 
 struct In {
     @location(0) pos: vec2<f32>,
@@ -49,6 +54,8 @@ struct In {
     @location(5) window: u32,
     @location(6) w: f32,
     @location(7) limits: u32,
+    @location(8) repl: u32,
+    @location(9) origin: u32,
 };
 struct Out {
     @builtin(position) pos: vec4<f32>,
@@ -60,6 +67,8 @@ struct Out {
     @location(3) @interpolate(flat) clut: u32,
     @location(4) @interpolate(flat) window: u32,
     @location(5) @interpolate(flat) limits: u32,
+    @location(6) @interpolate(flat) repl: u32,
+    @location(7) @interpolate(flat) origin: u32,
 };
 
 @vertex
@@ -76,6 +85,8 @@ fn vs(i: In) -> Out {
     o.clut = i.clut;
     o.window = i.window;
     o.limits = i.limits;
+    o.repl = i.repl;
+    o.origin = i.origin;
     return o;
 }
 
@@ -110,7 +121,31 @@ fn fs(o: Out) -> @location(0) vec4<f32> {
     if (((o.mode >> 22u) & 1u) != 0u) {
         var t: u32;
         var tc: vec3<f32>;
-        if (((o.mode >> 28u) & 1u) != 0u) {
+        if (o.repl != 0u) {
+            // A mod's texture (repl: its table index + 1; origin: where the
+            // texture memory it replaces starts, in texels, x | y << 12).
+            // Its colours and transparency are drawn; the game's own texel
+            // still decides the mask bit.
+            let d = atlas_table[o.repl - 1u];
+            let per = f32(4u >> ((o.mode >> 20u) & 3u));
+            let page = vec2<f32>(f32(o.mode & 1023u) * per, f32((o.mode >> 10u) & 511u));
+            let p = page + o.uv - vec2<f32>(f32(o.origin & 4095u), f32(o.origin >> 12u));
+            let texels = vec2<f32>(f32(d.w & 0xFFFFu), f32(d.w >> 16u));
+            let size = vec2<u32>(d.y & 0xFFFFu, d.y >> 16u);
+            let q = min(vec2<u32>(max(p / texels * vec2<f32>(size), vec2<f32>(0.0))), size - vec2<u32>(1u));
+            let s = textureLoad(atlas, vec2<u32>(d.x & 0xFFFFu, d.x >> 16u) + q, d.z, 0);
+            if (s.a < 0.5) {
+                discard;
+            }
+            tc = floor(s.rgb * 255.0);
+            var at = vec2<i32>(floor(o.uv));
+            if (((o.mode >> 29u) & 1u) != 0u) {
+                let lo = vec2<i32>(i32(o.limits & 0xFFu), i32((o.limits >> 8u) & 0xFFu));
+                let hi = vec2<i32>(i32((o.limits >> 16u) & 0xFFu), i32((o.limits >> 24u) & 0xFFu));
+                at = clamp(at, lo, hi);
+            }
+            t = texel(o.mode, o.clut, o.window, at.x, at.y);
+        } else if (((o.mode >> 28u) & 1u) != 0u) {
             // Bilinear: the four texels around the sample point, kept inside
             // the polygon's own texture rectangle (`limits`, so neighbours
             // in the texture page do not bleed in). Transparent texels
@@ -260,6 +295,10 @@ struct GpuVertex {
     w: f32,
     /// Bilinear filtering: the polygon's texture rectangle (u0, v0, u1, v1).
     limits: u32,
+    /// A mod's texture: its atlas table index + 1 (0: none), and where the
+    /// texture memory it replaces starts, in texels (x | y << 12).
+    repl: u32,
+    origin: u32,
 }
 
 const FILTER_BILINEAR: u32 = 1 << 28;
@@ -498,6 +537,10 @@ pub struct Hw {
     /// native VRAM recorded primitives sample.
     dirty: Areas,
     sampled: Areas,
+    /// Mods' textures: what primitives draw from, and the replacements on
+    /// the card.
+    tracker: super::textures::Tracker,
+    atlas: super::atlas::Atlas,
 }
 
 impl Hw {
@@ -590,12 +633,13 @@ impl Hw {
             label: Some("hw"),
             source: wgpu::ShaderSource::Wgsl(SHADER.into()),
         });
+        let atlas = super::atlas::Atlas::new(gfx, crate::mods::wants_textures());
         let pipeline_layout = device.create_pipeline_layout(&wgpu::PipelineLayoutDescriptor {
             label: Some("hw"),
-            bind_group_layouts: &[Some(&layout)],
+            bind_group_layouts: &[Some(&layout), Some(&atlas.layout)],
             ..Default::default()
         });
-        let attributes = wgpu::vertex_attr_array![0 => Float32x2, 1 => Uint32, 2 => Float32x2, 3 => Uint32, 4 => Uint32, 5 => Uint32, 6 => Float32, 7 => Uint32];
+        let attributes = wgpu::vertex_attr_array![0 => Float32x2, 1 => Uint32, 2 => Float32x2, 3 => Uint32, 4 => Uint32, 5 => Uint32, 6 => Float32, 7 => Uint32, 8 => Uint32, 9 => Uint32];
         let pipelines = [Blend::None, Blend::Average, Blend::Add, Blend::Subtract, Blend::AddQuarter]
             .iter()
             .map(|b| {
@@ -658,6 +702,8 @@ impl Hw {
             vram_replay: None,
             dirty: Areas(vec![Area::new(0, 0, VRAM_WIDTH as i32, VRAM_HEIGHT as i32)]),
             sampled: Areas::default(),
+            tracker: Default::default(),
+            atlas,
         }
     }
 
@@ -705,6 +751,34 @@ impl Hw {
     /// After the native VRAM changed `x, y, w, h`.
     pub fn after_native_write(&mut self, x: i32, y: i32, w: i32, h: i32) {
         self.dirty.add(Area::new(x, y, w, h));
+        if crate::mods::wants_textures() {
+            self.tracker.write(x, y, w, h);
+        }
+    }
+
+    /// The mod's texture a textured primitive with texel rectangle `uv`
+    /// draws instead, as the vertex fields (repl, origin); zeros for none.
+    fn replacement(&mut self, vram: &Vram, st: &DrawState, sh: &Shading, uv: (i32, i32, i32, i32)) -> (u32, u32) {
+        if !sh.textured || !crate::mods::wants_textures() {
+            return (0, 0);
+        }
+        let Some(f) = self.tracker.find(vram, st, sh, uv) else { return (0, 0) };
+        let origin = (f.origin_x as u32 & 4095) | ((f.origin_y as u32 & 511) << 12);
+        if let Some(i) = self.atlas.index(f.key) {
+            return (i, origin);
+        }
+        let Some(picture) = crate::mods::texture(f.key) else { return (0, 0) };
+        let added = match self.atlas.add(f.key, &picture, f.width, f.height) {
+            Some(i) => Some(i),
+            None => {
+                // Full: what was recorded runs with the textures it uses,
+                // then the atlas starts over.
+                self.flush(vram);
+                self.atlas.clear();
+                self.atlas.add(f.key, &picture, f.width, f.height)
+            }
+        };
+        added.map_or((0, 0), |i| (i, origin))
     }
 
     /// A textured primitive samples `page` and `clut`: they must be current.
@@ -861,6 +935,10 @@ impl Hw {
             _ => (0, 0),
         };
         let keys = v.map(|q| q.key);
+        let (repl, origin) = match sh.uv_limits {
+            Some(uv) => self.replacement(vram, st, sh, uv),
+            None => (0, 0),
+        };
         self.shaded(vram, st, sh, &keys, |t| {
             v.iter()
                 .map(|q| {
@@ -873,6 +951,8 @@ impl Hw {
                         w: if v.iter().all(|p| p.w > 0.0) { q.w } else { 0.0 },
                         mode: t.mode | filter,
                         limits,
+                        repl,
+                        origin,
                         ..t
                     }
                 })
@@ -916,8 +996,15 @@ impl Hw {
         // The quad's far edges sit on pixel boundaries: pull them in by a
         // half pixel so the last row and column are covered exactly once.
         let c = rgb(color.0, color.1, color.2);
+        let uv = (
+            if st.rect_flip_x { u - w + 1 } else { u },
+            if st.rect_flip_y { v - h + 1 } else { v },
+            if st.rect_flip_x { u } else { u + w - 1 },
+            if st.rect_flip_y { v } else { v + h - 1 },
+        );
+        let (repl, origin) = self.replacement(vram, st, sh, uv);
         self.shaded(vram, st, sh, &[], |t| {
-            Self::quad(x0, y0, x1 - 0.0, y1 - 0.0, [u0, v0], [u1, v1], GpuVertex { color: c, ..t })
+            Self::quad(x0, y0, x1 - 0.0, y1 - 0.0, [u0, v0], [u1, v1], GpuVertex { color: c, repl, origin, ..t })
                 .iter()
                 .map(|q| GpuVertex { pos: [q.pos[0] - 0.5, q.pos[1] - 0.5], ..*q })
                 .collect()
@@ -986,6 +1073,9 @@ impl Hw {
     pub fn upload_rect(&mut self, vram: &Vram, x: i32, y: i32, w: i32, h: i32, pixels: &[u16]) {
         if w <= 0 || h <= 0 {
             return;
+        }
+        if crate::mods::wants_textures() {
+            self.tracker.upload(x, y, w, h);
         }
         if self.too_much() {
             self.flush(vram);
@@ -1245,6 +1335,7 @@ impl Hw {
                 _ => &self.bind,
             };
             pass.set_bind_group(0, bind, &[]);
+            pass.set_bind_group(1, &self.atlas.bind, &[]);
             PASSES.fetch_add(1, Ordering::Relaxed);
             // State is set only when it changes (draws mostly share it).
             let (mut blend_now, mut scissor_now) = (None, None);

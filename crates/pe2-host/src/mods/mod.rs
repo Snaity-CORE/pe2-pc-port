@@ -7,9 +7,10 @@
 //! game's own files. What they replace is never touched in the console's
 //! VRAM: the game sees its own data, and only the picture changes.
 //!
-//! Music: music.rs; game files: files.rs. Backgrounds and full-screen pictures, as
-//! `backgrounds/<hash>.png`, where the hash is `screen_hash` of the
-//! 320x240 (or so) image the game sends to the GPU. With `[mods] dump`,
+//! Music: music.rs; game files: files.rs; textures: runtime/gpu/textures.rs.
+//! Backgrounds and full-screen pictures, as `backgrounds/<hash>.png`, where
+//! the hash is `screen_hash` of the 320x240 (or so) image the game sends to
+//! the GPU. With `[mods] dump`,
 //! each such image is saved once as `dumps/backgrounds/<hash>.png`.
 
 use std::collections::{HashMap, HashSet};
@@ -124,33 +125,72 @@ enum Slot {
     Failed,
 }
 
-struct Backgrounds {
-    /// Hash -> the file of the mod that wins for it.
-    files: HashMap<u64, PathBuf>,
-    loaded: Mutex<HashMap<u64, Slot>>,
+/// The pictures mods supply of one kind (in `<mod>/<dir>/<name>.png`), by
+/// the key their file name gives, loaded when first wanted.
+struct Library<K> {
+    /// Key -> the file of the mod that wins for it.
+    files: HashMap<K, PathBuf>,
+    loaded: Mutex<HashMap<K, Slot>>,
+    /// Whether the pictures' transparency is kept (else opaque).
+    alpha: bool,
 }
 
-fn backgrounds() -> &'static Backgrounds {
-    static INDEX: OnceLock<Backgrounds> = OnceLock::new();
-    INDEX.get_or_init(|| {
+impl<K: std::hash::Hash + Eq + Copy + Send + Sync + 'static> Library<K> {
+    fn scan(dir: &str, key: impl Fn(&str) -> Option<K>, alpha: bool) -> Library<K> {
         let mut files = HashMap::new();
         if enabled() {
-            let mods: Vec<Mod> = installed().into_iter().filter(|m| m.enabled).collect();
             // Lowest priority first, so the highest overwrites it.
-            for m in mods.iter().rev() {
-                let Ok(entries) = std::fs::read_dir(m.dir.join("backgrounds")) else { continue };
+            for m in installed().iter().filter(|m| m.enabled).rev() {
+                let Ok(entries) = std::fs::read_dir(m.dir.join(dir)) else { continue };
                 for e in entries.flatten() {
                     let path = e.path();
-                    let hash = path
+                    let found = path
                         .file_stem()
                         .and_then(|s| s.to_str())
                         .filter(|_| path.extension().is_some_and(|x| x.eq_ignore_ascii_case("png")))
-                        .and_then(|s| u64::from_str_radix(s, 16).ok());
-                    if let Some(hash) = hash {
-                        files.insert(hash, path);
+                        .and_then(&key);
+                    if let Some(k) = found {
+                        files.insert(k, path);
                     }
                 }
             }
+        }
+        Library { files, loaded: Mutex::new(HashMap::new()), alpha }
+    }
+
+    /// The picture for `key`, once loaded: the first call starts loading it
+    /// on a thread of its own and answers None (the game's own shows until
+    /// it is ready).
+    fn get(&'static self, key: K) -> Option<Arc<Picture>> {
+        let path = self.files.get(&key)?;
+        let mut loaded = self.loaded.lock().unwrap();
+        match loaded.get(&key) {
+            Some(Slot::Ready(p)) => return Some(p.clone()),
+            Some(Slot::Loading | Slot::Failed) => return None,
+            None => {}
+        }
+        loaded.insert(key, Slot::Loading);
+        let path = path.clone();
+        std::thread::spawn(move || {
+            let slot = match read_png(&path, self.alpha) {
+                Ok(p) => Slot::Ready(Arc::new(p)),
+                Err(err) => {
+                    eprintln!("pe2: mods: {}: {err}", path.display());
+                    Slot::Failed
+                }
+            };
+            self.loaded.lock().unwrap().insert(key, slot);
+        });
+        None
+    }
+}
+
+fn backgrounds() -> &'static Library<u64> {
+    static INDEX: OnceLock<Library<u64>> = OnceLock::new();
+    INDEX.get_or_init(|| {
+        let library = Library::scan("backgrounds", |s| u64::from_str_radix(s, 16).ok(), false);
+        if enabled() {
+            let mods: Vec<Mod> = installed().into_iter().filter(|m| m.enabled).collect();
             for m in &mods {
                 let version = m.version.as_deref().map(|v| format!(" {v}")).unwrap_or_default();
                 let author = m.author.as_deref().map(|a| format!(" by {a}")).unwrap_or_default();
@@ -158,42 +198,89 @@ fn backgrounds() -> &'static Backgrounds {
                 eprintln!("pe2: mod: {}{version}{author}{about}", m.name);
             }
             if !mods.is_empty() {
-                eprintln!("pe2: mods: {} on, {} backgrounds", mods.len(), files.len());
+                eprintln!(
+                    "pe2: mods: {} on, {} backgrounds, {} textures",
+                    mods.len(),
+                    library.files.len(),
+                    textures().files.len()
+                );
             }
         }
-        Backgrounds { files, loaded: Mutex::new(HashMap::new()) }
+        library
     })
 }
 
-/// The background a mod supplies for the screen image `hash`, once loaded:
-/// the first call starts loading it on a thread of its own and answers
-/// None (the game's own image shows until it is ready).
+/// The background a mod supplies for the screen image `hash`, once loaded
+/// (see Library::get).
 pub fn background(hash: u64) -> Option<Arc<Picture>> {
-    let index = backgrounds();
-    let path = index.files.get(&hash)?;
-    let mut loaded = index.loaded.lock().unwrap();
-    match loaded.get(&hash) {
-        Some(Slot::Ready(p)) => return Some(p.clone()),
-        Some(Slot::Loading | Slot::Failed) => return None,
-        None => {}
-    }
-    loaded.insert(hash, Slot::Loading);
-    let path = path.clone();
-    std::thread::spawn(move || {
-        let slot = match read_png(&path) {
-            Ok(p) => Slot::Ready(Arc::new(p)),
-            Err(err) => {
-                eprintln!("pe2: mods: {}: {err}", path.display());
-                Slot::Failed
-            }
-        };
-        backgrounds().loaded.lock().unwrap().insert(hash, slot);
-    });
-    None
+    backgrounds().get(hash)
 }
 
-/// A PNG as RGBA (any colour type or depth png can expand to 8 bits).
-fn read_png(path: &Path) -> Result<Picture, String> {
+/// A texture's key: the hash of the texture memory it is drawn from, and of
+/// the palette it is drawn with (0 for 15-bit textures, which have none).
+pub type TextureKey = (u64, u64);
+
+/// The file name a texture is known by: `<texture>-<palette>`, or
+/// `<texture>` for 15-bit textures.
+pub fn texture_name((texture, palette): TextureKey) -> String {
+    if palette == 0 { format!("{texture:016x}") } else { format!("{texture:016x}-{palette:016x}") }
+}
+
+fn textures() -> &'static Library<TextureKey> {
+    static INDEX: OnceLock<Library<TextureKey>> = OnceLock::new();
+    INDEX.get_or_init(|| {
+        let key = |s: &str| {
+            let (t, p) = s.split_once('-').unwrap_or((s, "0"));
+            Some((u64::from_str_radix(t, 16).ok()?, u64::from_str_radix(p, 16).ok()?))
+        };
+        Library::scan("textures", key, true)
+    })
+}
+
+/// The texture a mod supplies for `key`, once loaded (see Library::get).
+pub fn texture(key: TextureKey) -> Option<Arc<Picture>> {
+    textures().get(key)
+}
+
+/// Whether anything here wants to know the textures drawn: mods with
+/// textures, or dumping.
+pub fn wants_textures() -> bool {
+    dumping() || !textures().files.is_empty()
+}
+
+/// With dumping on, saves texture `key` (`w` x `h` RGBA) as
+/// `dumps/textures/<name>.png`, once, on a thread of its own. `rgba` is
+/// only called the first time.
+pub fn dump_texture(key: TextureKey, w: u32, h: u32, rgba: impl FnOnce() -> Vec<u8>) {
+    static SEEN: Mutex<Option<HashSet<TextureKey>>> = Mutex::new(None);
+    if !dumping() || !SEEN.lock().unwrap().get_or_insert_with(HashSet::new).insert(key) {
+        return;
+    }
+    let dir = crate::paths::user_file("dumps").join("textures");
+    let path = dir.join(format!("{}.png", texture_name(key)));
+    if path.exists() {
+        return;
+    }
+    let rgba = rgba();
+    std::thread::spawn(move || {
+        let _ = std::fs::create_dir_all(&dir);
+        let written = std::fs::File::create(&path).map_err(|e| e.to_string()).and_then(|file| {
+            let mut enc = png::Encoder::new(std::io::BufWriter::new(file), w, h);
+            enc.set_color(png::ColorType::Rgba);
+            enc.set_depth(png::BitDepth::Eight);
+            let mut writer = enc.write_header().map_err(|e| e.to_string())?;
+            writer.write_image_data(&rgba).map_err(|e| e.to_string())
+        });
+        match written {
+            Ok(()) => eprintln!("pe2: dumped {}", path.display()),
+            Err(err) => eprintln!("pe2: dump {}: {err}", path.display()),
+        }
+    });
+}
+
+/// A PNG as RGBA (any colour type or depth png can expand to 8 bits),
+/// opaque unless `alpha`.
+fn read_png(path: &Path, alpha: bool) -> Result<Picture, String> {
     let file = std::fs::File::open(path).map_err(|e| e.to_string())?;
     let mut decoder = png::Decoder::new(std::io::BufReader::new(file));
     decoder.set_transformations(png::Transformations::normalize_to_color8());
@@ -204,8 +291,10 @@ fn read_png(path: &Path) -> Result<Picture, String> {
     let rgba = buf[..info.buffer_size()]
         .chunks_exact(channels)
         .flat_map(|p| match channels {
-            1 | 2 => [p[0], p[0], p[0], 255],
-            _ => [p[0], p[1], p[2], 255],
+            1 => [p[0], p[0], p[0], 255],
+            2 => [p[0], p[0], p[0], if alpha { p[1] } else { 255 }],
+            3 => [p[0], p[1], p[2], 255],
+            _ => [p[0], p[1], p[2], if alpha { p[3] } else { 255 }],
         })
         .collect();
     Ok(Picture { width: info.width, height: info.height, rgba })
