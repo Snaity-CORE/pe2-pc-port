@@ -79,6 +79,16 @@ fn main() -> ExitCode {
             }
         }
     }
+    for (n, (image, d)) in images.iter().zip(&discs).enumerate() {
+        let tracks = d.tracks().len();
+        eprintln!(
+            "pe2: disc {}: {} ({tracks} track{}, {} sectors)",
+            n + 1,
+            image.file_name().map_or_else(|| image.display().to_string(), |f| f.to_string_lossy().into_owned()),
+            if tracks == 1 { "" } else { "s" },
+            d.total_sectors()
+        );
+    }
     let disc1 = &mut discs[0];
     let (exe_name, exe) = match disc::iso9660::boot_executable(disc1.as_mut()) {
         Ok(found) => found,
@@ -87,12 +97,6 @@ fn main() -> ExitCode {
             return ExitCode::FAILURE;
         }
     };
-    eprintln!(
-        "pe2: disc 1: {} tracks, {} sectors; booting {exe_name} ({} bytes)",
-        disc1.tracks().len(),
-        disc1.total_sectors(),
-        exe.len()
-    );
 
     // SAFETY: `exe` outlives the call, which copies it into PSX memory.
     let status = unsafe { ffi::pc_boot_load(exe.as_ptr(), exe.len()) };
@@ -116,7 +120,10 @@ fn main() -> ExitCode {
         let failures = runtime::selftest::run(runtime::library_address);
         return if failures == 0 { ExitCode::SUCCESS } else { ExitCode::FAILURE };
     }
-    eprintln!("pe2: main executable loaded, entering main()");
+    // The disc's executable supplies the game's data (tables, text, initial
+    // values) at its PlayStation addresses; its MIPS code is never run.
+    eprintln!("pe2: game data: {exe_name} from disc 1 ({} KB), loaded into PlayStation memory", exe.len() / 1024);
+    eprintln!("pe2: game code: native, starting the game");
     runtime::start(discs);
     video::start();
     gamepad::start();

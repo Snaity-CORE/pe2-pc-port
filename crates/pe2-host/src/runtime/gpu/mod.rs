@@ -132,7 +132,7 @@ pub static GPU: Mutex<Option<Gpu>> = Mutex::new(None);
 pub fn start() {
     let scale = scale();
     if scale > 1 {
-        eprintln!("pe2: internal resolution {scale}x ({}x{})", 320 * scale, 240 * scale);
+        eprintln!("pe2: video: internal resolution {scale}x ({}x{})", 320 * scale, 240 * scale);
         if subpixel() {
             // SAFETY: a flag in gte.c, set before the game runs.
             unsafe { pc_pgxp_culling = 1 };
@@ -145,7 +145,7 @@ pub fn start() {
     let mut interp = None;
     if let Some(layer::Layer::Hardware(hw)) = layer.as_mut() {
         if subpixel() && interp::enabled() {
-            eprintln!("pe2: frame interpolation on");
+            eprintln!("pe2: video: frame interpolation on (60 fps motion)");
             hw.keep_frames();
             interp = Some(interp::Interp::default());
         }

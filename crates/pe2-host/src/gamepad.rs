@@ -57,7 +57,7 @@ fn run() {
         while let Some(ev) = gilrs.next_event() {
             match ev.event {
                 EventType::Connected => {
-                    eprintln!("pe2: controller connected: {}", gilrs.gamepad(ev.id).name());
+                    eprintln!("pe2: input: controller connected: {}", gilrs.gamepad(ev.id).name());
                     active.get_or_insert(ev.id);
                 }
                 EventType::Disconnected if active == Some(ev.id) => active = None,

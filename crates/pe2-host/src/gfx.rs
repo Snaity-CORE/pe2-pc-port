@@ -58,7 +58,7 @@ fn open() -> Option<Gfx> {
             return None;
         }
     };
-    eprintln!("pe2: graphics: {} ({:?})", info.name, info.backend);
+    eprintln!("pe2: video: graphics card {} ({:?})", info.name, info.backend);
     // Report errors instead of the default panic: on the interrupt thread
     // a panic would stop the game.
     device.on_uncaptured_error(std::sync::Arc::new(|err| {
