@@ -731,11 +731,13 @@ fn add_symbol_font(ctx: &egui::Context) {
 
 /// Runs the launcher until it is closed.
 pub fn run() -> ExitCode {
+    let mut viewport =
+        egui::ViewportBuilder::default().with_title("Parasite Eve II").with_inner_size([560.0, 600.0]).with_resizable(false);
+    if let Some((rgba, side)) = crate::icon::rgba() {
+        viewport = viewport.with_icon(egui::IconData { rgba, width: side, height: side });
+    }
     let options = eframe::NativeOptions {
-        viewport: egui::ViewportBuilder::default()
-            .with_title("Parasite Eve II")
-            .with_inner_size([560.0, 600.0])
-            .with_resizable(false),
+        viewport,
         renderer: eframe::Renderer::Glow,
         ..Default::default()
     };

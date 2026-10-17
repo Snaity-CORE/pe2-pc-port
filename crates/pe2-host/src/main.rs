@@ -3,6 +3,7 @@
 //! library, see build.rs).
 
 mod config;
+mod icon;
 mod controls;
 mod disc;
 mod gamepad;

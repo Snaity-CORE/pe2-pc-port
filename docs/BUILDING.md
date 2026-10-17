@@ -55,6 +55,11 @@ python tools/build_game.py     # game library: build/game/pe2game.lib
 cargo build                    # host executable
 ```
 
+Optional icon: put a square PNG of your own at `local/icon.png` (the folder
+is ignored by git, as nothing from the game may be committed) and build
+again. It becomes pe2.exe's icon in Explorer and the taskbar, and the
+game's and launcher's window icon. Without it the build simply has none.
+
 ## 4. Run
 
 The host reads your disc images directly (`.cue` or `.chd`):

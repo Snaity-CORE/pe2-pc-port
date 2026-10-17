@@ -99,6 +99,7 @@ impl ApplicationHandler for App {
         }
         let attrs = Window::default_attributes()
             .with_title("Parasite Eve II")
+            .with_window_icon(crate::icon::rgba().and_then(|(px, side)| winit::window::Icon::from_rgba(px, side, side).ok()))
             .with_inner_size(winit::dpi::LogicalSize::new(960, 720))
             // Scripted (unattended) runs must not steal focus from whatever
             // the user is typing in.
