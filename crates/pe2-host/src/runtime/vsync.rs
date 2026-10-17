@@ -68,6 +68,7 @@ fn schedule_vblank(at: Instant) {
 
             // Mods' cheats and patches, before the game's handler sees memory.
             crate::mods::apply_patches();
+            crate::mods::music::poll();
             let cb = CALLBACK.load(Ordering::SeqCst);
             if cb != 0 {
                 call_psx(cb, &[]);

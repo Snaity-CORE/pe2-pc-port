@@ -11,11 +11,14 @@ path = "src/main.rs"
 
 [dependencies]
 chd = "0.3.4"
+claxon = "0.4"
 cpal = "0.15"
 eframe = { version = "0.37.0", default-features = false, features = ["glow", "default_fonts", "accesskit"] }
 gilrs = "0.11"
+hound = "3.5"
 image-webp = "0.2"
 iced-x86 = { version = "1", default-features = false, features = ["std", "decoder", "instr_info"] }
+lewton = "0.10"
 png = "0.17"
 pollster = "1.0.1"
 rfd = "0.17.2"

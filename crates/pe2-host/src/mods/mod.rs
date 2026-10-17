@@ -7,7 +7,7 @@
 //! game's own files. What they replace is never touched in the console's
 //! VRAM: the game sees its own data, and only the picture changes.
 //!
-//! So far: pre-rendered backgrounds and full-screen pictures, as
+//! Music: see music.rs. Backgrounds and full-screen pictures, as
 //! `backgrounds/<hash>.png`, where the hash is `screen_hash` of the
 //! 320x240 (or so) image the game sends to the GPU. With `[mods] dump`,
 //! each such image is saved once as `dumps/backgrounds/<hash>.png`.
@@ -17,6 +17,8 @@ use std::path::{Path, PathBuf};
 use std::sync::{Arc, Mutex, OnceLock};
 
 use serde::Deserialize;
+
+pub mod music;
 
 /// A mod's `mod.toml` (every field optional).
 #[derive(Debug, Default, Deserialize)]

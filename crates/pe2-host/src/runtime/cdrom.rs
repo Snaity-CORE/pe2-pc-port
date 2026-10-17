@@ -451,6 +451,13 @@ fn deliver_sector(generation: u64, at: Instant) {
             // XA-ADPCM goes to the sound processor, not to the host. With
             // the filter on, only the selected file and channel play.
             if d.mode & MODE_SF == 0 || (file, chan) == d.filter {
+                if super::trace("xa") {
+                    eprintln!(
+                        "[xa] disc {} lba {lba} file {file} chan {chan} submode 0x{submode:02X} coding 0x{:02X}",
+                        d.current + 1,
+                        raw[19]
+                    );
+                }
                 let samples = d.xa.decode_sector(&raw);
                 super::spu::push_cd_audio(samples);
             }

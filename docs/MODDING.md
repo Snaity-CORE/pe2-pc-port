@@ -71,6 +71,39 @@ What to know:
 - **Loading.** A picture is read the first time its room shows (the original
   shows for a frame or two meanwhile) and kept while it is in use.
 
+## Music
+
+Parasite Eve II's music is sequenced: the game plays MIDI-like songs on the
+sound chip's voices, one song at a time, each known by a sequence id. A mod can
+replace a song with a recording of its own (OGG Vorbis, FLAC or WAV, any sample
+rate, mono or stereo):
+
+1. Turn on dumping, as for backgrounds, and play to where the song plays. The
+   first two minutes of each song are saved as `dumps/music/<id>.wav` in the
+   data folder (written when the song changes, or after two minutes).
+2. Save your recording as `mods/<your mod>/music/<same id>.ogg` (or `.flac`,
+   `.wav`). The id is two hexadecimal digits, as the dump's name has it: `26`
+   is the Akropolis Tower's fire escape.
+
+While a replacement plays, the song's voices are left out of the mix and the
+recording plays instead, following the game's fades, mutes and volume
+settings and stopping when the song stops. Sound effects and the movies' audio
+are untouched. The recording loops from its end back to its start; OGG files
+with `LOOPSTART` and `LOOPLENGTH` tags (in samples, as many looped tracks
+carry) loop over that span instead. `music.toml` in the mod sets these per
+song:
+
+```toml
+[track.26]
+volume = 0.8        # loudness against the original song (default 1)
+loop_start = 12.5   # seconds (default: the tag, or the start)
+loop_end = 95.0     # seconds (default: the tag, or the end)
+looping = true      # false plays the recording once
+```
+
+A recording is decoded the first time its song plays (the original plays for
+a moment meanwhile) and kept from then on.
+
 ## Cheats and memory patches
 
 A mod's `patches.toml` changes the game's memory each frame, as a cheat
@@ -104,6 +137,10 @@ game's log says why.
 The decompilation's symbol maps give the addresses of the game's variables
 (`gPlayerStatus` holds HP, MP, experience and more).
 
+A patch that writes every frame also writes while a save loads: one that
+changes `gPlayerStatus` makes the game report the save as corrupted. Turn such
+mods off to load, or guard the code with a condition.
+
 ## The plan
 
 Mod support grows in this order. Each kind follows the same rules: found by a
@@ -113,8 +150,9 @@ changing the game's own data in memory unless the kind is meant to.
 1. **Backgrounds and full-screen pictures** (done): dump and replace, as above.
 2. **A Mods screen in the launcher** (done): list, turn on and off, order.
 3. **Memory patches** (done): GameShark codes and plain writes, each frame.
-4. **Music and voices**: the XA audio tracks replaced by OGG or FLAC files,
-   mixed by the sound chip's emulation.
+4. **Music** (done): sequenced songs dumped, and replaced by recordings, as
+   above. (Recorded audio, the movies' and cutscenes' XA tracks, comes with
+   movies.)
 5. **Disc file replacement**: a file, or a part of a stage's CDF bundle, served
    from the mod instead of the disc, in the game's own formats; with text
    extraction, this is what translations need. Files larger than the original
@@ -126,4 +164,4 @@ changing the game's own data in memory unless the kind is meant to.
 7. **Movies**: FMVs replaced by video files, which needs a video decoder.
 
 An extractor for the disc's own files (`pe2 --extract`: images to PNG, sounds
-and music to WAV) comes with the kinds that need it (4 and 5).
+to WAV) comes with the kinds that need it (5 onwards).

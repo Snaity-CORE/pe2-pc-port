@@ -74,11 +74,56 @@ fn render(out: &mut Vec<(i16, i16)>, frames: usize) {
     }
     let irq = with_spu(|s| {
         out.clear();
+        // A mod's recording replacing the music, if one plays.
+        s.music_input.clear();
+        crate::mods::music::take(&mut s.music_input, frames);
         out.extend((0..frames).map(|_| s.tick()));
         std::mem::take(&mut s.irq_flag)
     });
     if irq {
         raise_irq();
+    }
+    record(out);
+}
+
+/// PE2_RECORD_AUDIO=<file.wav>:<start s>:<seconds>: saves what the SPU
+/// plays over that span (debugging: checks the mix without listening).
+fn record(samples: &[(i16, i16)]) {
+    use std::sync::Mutex;
+    /// When rendering began, what was kept, and whether it is saved.
+    type Recording = (Instant, Vec<(i16, i16)>, bool);
+    static STATE: Mutex<Option<Recording>> = Mutex::new(None);
+    static SPEC: OnceLock<Option<(String, f64, f64)>> = OnceLock::new();
+    let Some((path, start, len)) = SPEC.get_or_init(|| {
+        let v = std::env::var("PE2_RECORD_AUDIO").ok()?;
+        let mut parts = v.rsplitn(3, ':');
+        let len = parts.next()?.parse().ok()?;
+        let start = parts.next()?.parse().ok()?;
+        Some((parts.next()?.to_string(), start, len))
+    }) else {
+        return;
+    };
+    let mut guard = STATE.lock().unwrap();
+    let (since, buf, done) = guard.get_or_insert_with(|| (Instant::now(), Vec::new(), false));
+    if *done || since.elapsed().as_secs_f64() < *start {
+        return;
+    }
+    buf.extend_from_slice(samples);
+    if buf.len() as f64 >= len * f64::from(self::core::SAMPLE_RATE) {
+        *done = true;
+        let spec = hound::WavSpec {
+            channels: 2,
+            sample_rate: self::core::SAMPLE_RATE,
+            bits_per_sample: 16,
+            sample_format: hound::SampleFormat::Int,
+        };
+        if let Ok(mut w) = hound::WavWriter::create(path, spec) {
+            for &(l, r) in buf.iter() {
+                let _ = w.write_sample(l).and_then(|()| w.write_sample(r));
+            }
+            let _ = w.finalize();
+            eprintln!("pe2: recorded {path}");
+        }
     }
 }
 
