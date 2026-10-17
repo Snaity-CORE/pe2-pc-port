@@ -50,6 +50,10 @@ scale = 4
 # The look of a CRT television: scanlines (the console's 240 lines) and an
 # aperture grille. Best with the window at least 720 pixels high.
 # crt = false
+# Show the picture at whole multiples of its height (sharp pixels, black
+# borders around), rather than filling the window. Clearest at internal
+# resolutions small enough to fit at 2x or more.
+# integer_scaling = false
 # Start in borderless full screen (a window without borders covering the
 # monitor, no mode change); Alt+Enter toggles it at any time.
 # fullscreen = false

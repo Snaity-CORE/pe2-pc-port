@@ -133,6 +133,7 @@ struct Settings {
     smooth_backgrounds: bool,
     interpolation: bool,
     crt: bool,
+    integer_scaling: bool,
     fullscreen: bool,
     /// Empty: the default card in memcards/ in the folder of the player's
     /// files (paths.rs).
@@ -166,6 +167,7 @@ impl Settings {
             smooth_backgrounds: get("video", "background_filter").and_then(|v| v.as_str()) == Some("bicubic"),
             interpolation: flag("video", "frame_interpolation", true),
             crt: flag("video", "crt", false),
+            integer_scaling: flag("video", "integer_scaling", false),
             fullscreen: flag("video", "fullscreen", false),
             cards: [text("memcard", "slot1"), text("memcard", "slot2")],
             controller: get("input", "controller")
@@ -223,6 +225,7 @@ impl Settings {
         doc["video"]["background_filter"] = value(if self.smooth_backgrounds { "bicubic" } else { "nearest" });
         doc["video"]["frame_interpolation"] = value(self.interpolation);
         doc["video"]["crt"] = value(self.crt);
+        doc["video"]["integer_scaling"] = value(self.integer_scaling);
         doc["video"]["fullscreen"] = value(self.fullscreen);
         doc["input"]["controller"] = value(if self.controller.is_empty() { "auto" } else { self.controller.as_str() });
         doc["input"]["vibration"] = value(self.vibration);
@@ -632,6 +635,10 @@ impl Launcher {
         });
         ui.add_enabled_ui(e.hardware, |ui| {
             ui.checkbox(&mut e.crt, lang.t("CRT look (scanlines)", "Visual de TV de tubo (linhas)"));
+            ui.checkbox(
+                &mut e.integer_scaling,
+                lang.t("Integer scaling (sharp, with borders)", "Escala inteira (nítida, com bordas)"),
+            );
         });
         ui.checkbox(
             &mut e.fullscreen,

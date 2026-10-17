@@ -1,7 +1,8 @@
 //! Shows the game's picture in the window through the graphics card,
 //! letterboxed at 4:3: the hardware layer's latched picture, already on the
 //! card, or else the CPU's (sent as a texture). Optionally as a CRT
-//! television would ([video] crt): scanlines and an aperture grille.
+//! television would ([video] crt): scanlines and an aperture grille; and
+//! at whole multiples of its height ([video] integer_scaling).
 
 use std::sync::Arc;
 
@@ -27,8 +28,10 @@ fn vs(@builtin(vertex_index) i: u32) -> Out {
 
 @group(0) @binding(0) var frame: texture_2d<f32>;
 @group(0) @binding(1) var smp: sampler;
-// The console's lines in the picture (240, or 480 interlaced).
-@group(0) @binding(2) var<uniform> lines: vec4<f32>;
+// x: the console's lines in the picture (240, or 480 interlaced); y: 1 to
+// take whole texels (the picture shown at whole multiples of its size);
+// z, w: the picture's size in texels.
+@group(0) @binding(2) var<uniform> params: vec4<f32>;
 
 // The hardware layer keeps channels in the console's scale (5 bits times
 // 8, up to 248): `gain` brings them to the full range.
@@ -50,7 +53,7 @@ fn fs(o: Out) -> @location(0) vec4<f32> {
     if (crt) {
         // The two scanlines around this point, each sampled at its centre
         // and weighted by its beam.
-        let n = lines.x;
+        let n = params.x;
         let y = o.uv.y * n - 0.5;
         let i = floor(y);
         let f = y - i;
@@ -63,6 +66,9 @@ fn fs(o: Out) -> @location(0) vec4<f32> {
         let mask = select(select(vec3<f32>(0.82, 0.82, 1.08), vec3<f32>(0.82, 1.08, 0.82), col == 1u),
                           vec3<f32>(1.08, 0.82, 0.82), col == 0u);
         c = c * mask;
+    } else if (params.y > 0.5) {
+        let size = params.zw;
+        c = textureLoad(frame, vec2<i32>(min(floor(o.uv * size), size - 1.0)), 0).rgb * gain;
     } else {
         c = textureSample(frame, smp, o.uv).rgb * gain;
     }
@@ -78,9 +84,9 @@ pub struct Presenter {
     /// CRT when asked.
     pipeline: wgpu::RenderPipeline,
     card_pipeline: wgpu::RenderPipeline,
-    /// The picture's console lines, for the CRT's scanlines.
-    lines: wgpu::Buffer,
-    lines_now: f32,
+    /// The shader's parameters (see `params` there), and what they hold.
+    params: wgpu::Buffer,
+    params_now: [f32; 4],
     /// The bind group of the hardware layer's picture, by its size.
     card: Option<((u32, u32), wgpu::BindGroup)>,
     layout: wgpu::BindGroupLayout,
@@ -153,13 +159,12 @@ impl Presenter {
                 },
             ],
         });
-        let lines = device.create_buffer(&wgpu::BufferDescriptor {
-            label: Some("present lines"),
+        let params = device.create_buffer(&wgpu::BufferDescriptor {
+            label: Some("present params"),
             size: 16,
             usage: wgpu::BufferUsages::UNIFORM | wgpu::BufferUsages::COPY_DST,
             mapped_at_creation: false,
         });
-        gfx.queue.write_buffer(&lines, 0, &[240f32, 0.0, 0.0, 0.0].map(f32::to_le_bytes).concat());
         let pipeline_layout = device.create_pipeline_layout(&wgpu::PipelineLayoutDescriptor {
             label: Some("present"),
             bind_group_layouts: &[Some(&layout)],
@@ -209,8 +214,8 @@ impl Presenter {
             config,
             pipeline,
             card_pipeline,
-            lines,
-            lines_now: 240.0,
+            params,
+            params_now: [0.0; 4],
             card: None,
             layout,
             sampler,
@@ -241,7 +246,7 @@ impl Presenter {
             }
             drop(front);
             let bind = self.card.as_ref().unwrap().1.clone();
-            self.draw(&bind, true);
+            self.draw(&bind, true, size);
             return;
         }
         let Some((fw, fh)) = crate::runtime::gpu::snapshot(&mut self.pixels) else { return };
@@ -276,7 +281,7 @@ impl Presenter {
             wgpu::Extent3d { width: fw, height: fh, depth_or_array_layers: 1 },
         );
         let bind = bind.clone();
-        self.draw(&bind, false);
+        self.draw(&bind, false, (fw, fh));
     }
 
     fn bind(&self, view: &wgpu::TextureView) -> wgpu::BindGroup {
@@ -286,18 +291,21 @@ impl Presenter {
             entries: &[
                 wgpu::BindGroupEntry { binding: 0, resource: wgpu::BindingResource::TextureView(view) },
                 wgpu::BindGroupEntry { binding: 1, resource: wgpu::BindingResource::Sampler(&self.sampler) },
-                wgpu::BindGroupEntry { binding: 2, resource: self.lines.as_entire_binding() },
+                wgpu::BindGroupEntry { binding: 2, resource: self.params.as_entire_binding() },
             ],
         })
     }
 
-    /// Draws the picture bound by `bind`, letterboxed, and presents it.
-    fn draw(&mut self, bind: &wgpu::BindGroup, card: bool) {
+    /// Draws the picture bound by `bind`, `size` texels, letterboxed, and
+    /// presents it.
+    fn draw(&mut self, bind: &wgpu::BindGroup, card: bool, size: (u32, u32)) {
         let gfx = self.gfx;
+        let (x, y, pw, ph, whole) = viewport(self.config.width, self.config.height, size.0, size.1, integer_scaling());
         let lines = crate::runtime::gpu::picture_lines().max(1) as f32;
-        if lines != self.lines_now {
-            gfx.queue.write_buffer(&self.lines, 0, &[lines, 0.0, 0.0, 0.0].map(f32::to_le_bytes).concat());
-            self.lines_now = lines;
+        let params = [lines, if whole { 1.0 } else { 0.0 }, size.0 as f32, size.1 as f32];
+        if params != self.params_now {
+            gfx.queue.write_buffer(&self.params, 0, &params.map(f32::to_le_bytes).concat());
+            self.params_now = params;
         }
         let target = match self.surface.get_current_texture() {
             wgpu::CurrentSurfaceTexture::Success(t) => t,
@@ -312,8 +320,6 @@ impl Presenter {
             _ => return,
         };
         let view = target.texture.create_view(&Default::default());
-        let (ww, wh) = (self.config.width as f32, self.config.height as f32);
-        let (pw, ph) = if ww * 3.0 > wh * 4.0 { (wh * 4.0 / 3.0, wh) } else { (ww, ww * 3.0 / 4.0) };
         let mut encoder = gfx.device.create_command_encoder(&Default::default());
         {
             let mut pass = encoder.begin_render_pass(&wgpu::RenderPassDescriptor {
@@ -329,7 +335,7 @@ impl Presenter {
                 })],
                 ..Default::default()
             });
-            pass.set_viewport(((ww - pw) / 2.0).floor(), ((wh - ph) / 2.0).floor(), pw.floor(), ph.floor(), 0.0, 1.0);
+            pass.set_viewport(x as f32, y as f32, pw as f32, ph as f32, 0.0, 1.0);
             pass.set_pipeline(if card { &self.card_pipeline } else { &self.pipeline });
             pass.set_bind_group(0, bind, &[]);
             pass.draw(0..3, 0..1);
@@ -337,6 +343,40 @@ impl Presenter {
         gfx.queue.submit([encoder.finish()]);
         gfx.queue.present(target);
     }
+}
+
+/// Where the picture goes in a `ww` x `wh` window: x, y, width, height,
+/// and whether it is a whole multiple of the picture's `tw` x `th` texels
+/// (shown with whole texels). The picture fills the window at 4:3, or,
+/// with `integer`, takes the largest whole multiple of its height that
+/// fits, at 4:3 (as wide as that height wants), unless not even one does.
+fn viewport(ww: u32, wh: u32, tw: u32, th: u32, integer: bool) -> (u32, u32, u32, u32, bool) {
+    let fit = || if ww * 3 > wh * 4 { (wh * 4 / 3, wh) } else { (ww, ww * 3 / 4) };
+    let (pw, ph) = if integer && th > 0 {
+        let mut k = wh / th;
+        while k > 0 && th * k * 4 / 3 > ww {
+            k -= 1;
+        }
+        if k == 0 { fit() } else { (th * k * 4 / 3, th * k) }
+    } else {
+        fit()
+    };
+    let whole = integer && tw > 0 && th > 0 && pw % tw == 0 && ph % th == 0;
+    ((ww - pw) / 2, (wh - ph) / 2, pw, ph, whole)
+}
+
+/// Whether the picture is shown at whole multiples of its height:
+/// PE2_INTEGER_SCALING=0/1, else pe2.toml's [video] integer_scaling, else
+/// off.
+fn integer_scaling() -> bool {
+    static ON: std::sync::OnceLock<bool> = std::sync::OnceLock::new();
+    *ON.get_or_init(|| {
+        std::env::var("PE2_INTEGER_SCALING")
+            .ok()
+            .map(|v| v.trim() != "0")
+            .or(crate::config::get().video.integer_scaling)
+            .unwrap_or(false)
+    })
 }
 
 /// Whether the picture looks like a CRT television's: PE2_CRT=0/1, else
@@ -348,4 +388,30 @@ fn crt() -> bool {
 fn bytemuck_u32(words: &[u32]) -> &[u8] {
     // SAFETY: u32 has no padding and u8 has alignment 1.
     unsafe { std::slice::from_raw_parts(words.as_ptr().cast(), std::mem::size_of_val(words)) }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::viewport;
+
+    /// Filling keeps 4:3 and centres the picture.
+    #[test]
+    fn fills_at_four_thirds() {
+        assert_eq!(viewport(1920, 1080, 1280, 960, false), (240, 0, 1440, 1080, false));
+        assert_eq!(viewport(800, 800, 320, 240, false), (0, 100, 800, 600, false));
+    }
+
+    /// Whole multiples of the picture's height, at 4:3; whole texels when
+    /// the width is a multiple too; filling when not even one fits.
+    #[test]
+    fn integer_multiples() {
+        assert_eq!(viewport(1920, 1080, 320, 240, true), (320, 60, 1280, 960, true));
+        assert_eq!(viewport(1440, 1080, 1280, 960, true), (80, 60, 1280, 960, true));
+        // 368 wide modes: 4:3 by height, not a multiple of the width.
+        assert_eq!(viewport(1920, 1080, 368, 240, true), (320, 60, 1280, 960, false));
+        // Too narrow for 4x at 1080 lines: 3x.
+        assert_eq!(viewport(1200, 1080, 320, 240, true), (120, 180, 960, 720, true));
+        // 960 lines do not fit 700: filling instead.
+        assert_eq!(viewport(1000, 700, 1280, 960, true), (33, 0, 933, 700, false));
+    }
 }

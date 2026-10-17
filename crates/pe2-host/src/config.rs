@@ -68,6 +68,9 @@ pub struct Video {
     /// The look of a CRT television: scanlines and an aperture grille
     /// (graphics card presentation; default off).
     pub crt: Option<bool>,
+    /// The picture at whole multiples of its height, with black borders
+    /// (graphics card presentation; default off).
+    pub integer_scaling: Option<bool>,
 }
 
 #[derive(Debug, Default, Deserialize)]
