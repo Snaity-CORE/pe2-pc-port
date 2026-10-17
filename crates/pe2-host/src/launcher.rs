@@ -59,6 +59,7 @@ struct Settings {
     subpixel: bool,
     perspective: bool,
     bilinear: bool,
+    smooth_backgrounds: bool,
     interpolation: bool,
     fullscreen: bool,
     /// Empty: the default card in memcards/ next to pe2.exe.
@@ -89,6 +90,7 @@ impl Settings {
             subpixel: flag("video", "subpixel", true),
             perspective: flag("video", "perspective", true),
             bilinear: get("video", "texture_filter").and_then(|v| v.as_str()) == Some("bilinear"),
+            smooth_backgrounds: get("video", "background_filter").and_then(|v| v.as_str()) == Some("bicubic"),
             interpolation: flag("video", "frame_interpolation", true),
             fullscreen: flag("video", "fullscreen", false),
             cards: [text("memcard", "slot1"), text("memcard", "slot2")],
@@ -130,6 +132,7 @@ impl Settings {
         doc["video"]["subpixel"] = value(self.subpixel);
         doc["video"]["perspective"] = value(self.perspective);
         doc["video"]["texture_filter"] = value(if self.bilinear { "bilinear" } else { "nearest" });
+        doc["video"]["background_filter"] = value(if self.smooth_backgrounds { "bicubic" } else { "nearest" });
         doc["video"]["frame_interpolation"] = value(self.interpolation);
         doc["video"]["fullscreen"] = value(self.fullscreen);
         doc["input"]["controller"] = value(if self.controller.is_empty() { "auto" } else { self.controller.as_str() });
@@ -403,6 +406,7 @@ impl Launcher {
             });
             ui.add_enabled_ui(e.hardware, |ui| {
                 ui.checkbox(&mut e.bilinear, lang.t("Smooth 3D textures (bilinear)", "Suavizar texturas 3D (bilinear)"));
+                ui.checkbox(&mut e.smooth_backgrounds, lang.t("Smooth backgrounds (bicubic)", "Suavizar cenários (bicúbico)"));
             });
             ui.add_enabled_ui(e.hardware && e.subpixel, |ui| {
                 ui.checkbox(&mut e.interpolation, lang.t("Smooth motion (60 fps)", "Movimento suave (60 fps)"));

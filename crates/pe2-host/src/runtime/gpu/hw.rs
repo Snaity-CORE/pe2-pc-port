@@ -84,7 +84,11 @@ fn vram_at(x: u32, y: u32) -> u32 {
 fn fs(o: Out) -> @location(0) vec4<f32> {
     let kind = (o.mode >> 26u) & 3u;
     if (kind == 1u) {
-        // Upload: clut = first halfword in `uploads`, window = row width.
+        // Upload: clut = first halfword in `uploads`, window = row width,
+        // limits = rows; bit 28: smoothed (bicubic) rather than blocks.
+        if (((o.mode >> 28u) & 1u) != 0u) {
+            return vec4<f32>(upload_bicubic(o.clut, o.window, o.limits, o.uv), 1.0);
+        }
         let n = vec2<u32>(floor(o.uv));
         let index = o.clut + n.y * o.window + n.x;
         let word = uploads[index >> 1u];
@@ -184,6 +188,48 @@ fn texel(mode: u32, clut: u32, window: u32, u_in: i32, v_in: i32) -> u32 {
     return vram_at(px + tu, py + tv);
 }
 
+// Pixel (x, y) of an upload `w` x `h` starting at halfword `first`, the
+// nearest one inside it.
+fn upload_px(first: u32, w: u32, h: u32, x: i32, y: i32) -> vec3<f32> {
+    let cx = u32(clamp(x, 0, i32(w) - 1));
+    let cy = u32(clamp(y, 0, i32(h) - 1));
+    let index = first + cy * w + cx;
+    let word = uploads[index >> 1u];
+    return rgb15((word >> ((index & 1u) * 16u)) & 0xFFFFu);
+}
+
+// Catmull-Rom weights of the four pixels around a sample `t` past the
+// second one: sharp, and exact at the pixels themselves.
+fn catmull_rom(t: f32) -> vec4<f32> {
+    let t2 = t * t;
+    let t3 = t2 * t;
+    return vec4<f32>(
+        -0.5 * t3 + t2 - 0.5 * t,
+        1.5 * t3 - 2.5 * t2 + 1.0,
+        -1.5 * t3 + 2.0 * t2 + 0.5 * t,
+        0.5 * t3 - 0.5 * t2,
+    );
+}
+
+// An upload sampled bicubically at `uv` (in its pixels), its edges
+// extended: pre-rendered backgrounds enlarged smoothly instead of in blocks.
+fn upload_bicubic(first: u32, w: u32, h: u32, uv: vec2<f32>) -> vec3<f32> {
+    let p = uv - vec2<f32>(0.5, 0.5);
+    let base = vec2<i32>(floor(p));
+    let f = p - floor(p);
+    let wx = catmull_rom(f.x);
+    let wy = catmull_rom(f.y);
+    var sum = vec3<f32>(0.0);
+    for (var j = 0; j < 4; j++) {
+        var row = vec3<f32>(0.0);
+        for (var i = 0; i < 4; i++) {
+            row += wx[i] * upload_px(first, w, h, base.x + i - 1, base.y + j - 1);
+        }
+        sum += wy[j] * row;
+    }
+    return clamp(sum, vec3<f32>(0.0), vec3<f32>(1.0));
+}
+
 fn texel_rgb(t: u32) -> vec3<f32> {
     return vec3<f32>(f32((t & 31u) << 3u), f32(((t >> 5u) & 31u) << 3u), f32(((t >> 10u) & 31u) << 3u));
 }
@@ -229,7 +275,30 @@ fn bilinear() -> bool {
     })
 }
 
+/// Whether image transfers (the pre-rendered backgrounds, full-screen
+/// pictures) are enlarged smoothly: PE2_BACKGROUND_FILTER, else pe2.toml's
+/// [video] background_filter ("nearest", the default: blocks of whole
+/// console pixels, or "bicubic").
+fn smooth_uploads() -> bool {
+    static ON: std::sync::OnceLock<bool> = std::sync::OnceLock::new();
+    *ON.get_or_init(|| {
+        let choice = std::env::var("PE2_BACKGROUND_FILTER").ok().or_else(|| crate::config::get().video.background_filter.clone());
+        match choice.as_deref().map(str::trim) {
+            None | Some("nearest") => false,
+            Some("bicubic") => true,
+            Some(other) => {
+                eprintln!("pe2: unknown background filter {other:?} (nearest or bicubic); using nearest");
+                false
+            }
+        }
+    })
+}
+
+/// Smaller transfers stay in blocks: bits of interface, not pictures.
+const SMOOTH_UPLOAD_MIN: i32 = 64;
+
 const KIND_UPLOAD: u32 = 1 << 26;
+const UPLOAD_SMOOTH: u32 = 1 << 28;
 const KIND_COPY: u32 = 2 << 26;
 
 /// Fixed-function blending for the four semi-transparency modes, or none.
@@ -841,7 +910,14 @@ impl Hw {
         self.uploads.extend_from_slice(&pixels[..n.min(pixels.len())]);
         self.uploads.resize(first as usize + n, 0);
         let s = self.scale as f32;
-        let template = GpuVertex { mode: KIND_UPLOAD, clut: first, window: w as u32, ..Default::default() };
+        let smooth = smooth_uploads() && w >= SMOOTH_UPLOAD_MIN && h >= SMOOTH_UPLOAD_MIN;
+        let template = GpuVertex {
+            mode: KIND_UPLOAD | if smooth { UPLOAD_SMOOTH } else { 0 },
+            clut: first,
+            window: w as u32,
+            limits: h as u32,
+            ..Default::default()
+        };
         let verts = Self::quad(
             x as f32 * s - 0.5,
             y as f32 * s - 0.5,

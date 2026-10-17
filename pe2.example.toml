@@ -34,6 +34,10 @@ scale = 4
 # Textures of 3D polygons: "nearest" (the console's look) or "bilinear"
 # (smoothed; sprites, text and the interface stay sharp).
 # texture_filter = "nearest"
+# Pre-rendered backgrounds and full-screen pictures at scales above 1:
+# "nearest" (blocks of console pixels, as now) or "bicubic" (enlarged
+# smoothly; text and the interface stay sharp). Hardware renderer.
+# background_filter = "nearest"
 # Smooth motion: where the game runs at 30 fps, frames in between at 60,
 # with the 3D models halfway (backgrounds and the interface are unchanged).
 # No added delay. Needs the hardware renderer and subpixel.
