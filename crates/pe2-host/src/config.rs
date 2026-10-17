@@ -65,6 +65,9 @@ pub struct Video {
     pub background_filter: Option<String>,
     /// Frames in between at 60 fps (hardware renderer, subpixel; default on).
     pub frame_interpolation: Option<bool>,
+    /// The look of a CRT television: scanlines and an aperture grille
+    /// (graphics card presentation; default off).
+    pub crt: Option<bool>,
 }
 
 #[derive(Debug, Default, Deserialize)]

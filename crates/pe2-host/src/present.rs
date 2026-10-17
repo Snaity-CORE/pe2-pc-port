@@ -1,6 +1,7 @@
 //! Shows the game's picture in the window through the graphics card,
 //! letterboxed at 4:3: the hardware layer's latched picture, already on the
-//! card, or else the CPU's (sent as a texture).
+//! card, or else the CPU's (sent as a texture). Optionally as a CRT
+//! television would ([video] crt): scanlines and an aperture grille.
 
 use std::sync::Arc;
 
@@ -26,14 +27,46 @@ fn vs(@builtin(vertex_index) i: u32) -> Out {
 
 @group(0) @binding(0) var frame: texture_2d<f32>;
 @group(0) @binding(1) var smp: sampler;
+// The console's lines in the picture (240, or 480 interlaced).
+@group(0) @binding(2) var<uniform> lines: vec4<f32>;
 
 // The hardware layer keeps channels in the console's scale (5 bits times
 // 8, up to 248): `gain` brings them to the full range.
 override gain: f32 = 1.0;
+// A CRT television's look.
+override crt: bool = false;
+
+// How much of a scanline's light reaches `d` lines from its centre: a
+// gaussian beam, wider where the line is brighter, as a tube's spot is.
+fn beam(d: f32, c: vec3<f32>) -> f32 {
+    let luma = dot(c, vec3<f32>(0.299, 0.587, 0.114));
+    let sigma = mix(0.26, 0.42, luma);
+    return exp(-(d * d) / (2.0 * sigma * sigma));
+}
 
 @fragment
 fn fs(o: Out) -> @location(0) vec4<f32> {
-    return vec4<f32>(min(textureSample(frame, smp, o.uv).rgb * gain, vec3<f32>(1.0)), 1.0);
+    var c: vec3<f32>;
+    if (crt) {
+        // The two scanlines around this point, each sampled at its centre
+        // and weighted by its beam.
+        let n = lines.x;
+        let y = o.uv.y * n - 0.5;
+        let i = floor(y);
+        let f = y - i;
+        let c0 = textureSample(frame, smp, vec2<f32>(o.uv.x, (i + 0.5) / n)).rgb * gain;
+        let c1 = textureSample(frame, smp, vec2<f32>(o.uv.x, (i + 1.5) / n)).rgb * gain;
+        c = (c0 * beam(f, c0) + c1 * beam(1.0 - f, c1)) * 1.45;
+        // Aperture grille: alternate red, green and blue stripes, column by
+        // column of the window.
+        let col = u32(o.pos.x) % 3u;
+        let mask = select(select(vec3<f32>(0.82, 0.82, 1.08), vec3<f32>(0.82, 1.08, 0.82), col == 1u),
+                          vec3<f32>(1.08, 0.82, 0.82), col == 0u);
+        c = c * mask;
+    } else {
+        c = textureSample(frame, smp, o.uv).rgb * gain;
+    }
+    return vec4<f32>(min(c, vec3<f32>(1.0)), 1.0);
 }
 "#;
 
@@ -41,9 +74,13 @@ pub struct Presenter {
     gfx: &'static Gfx,
     surface: wgpu::Surface<'static>,
     config: wgpu::SurfaceConfiguration,
-    /// For CPU pictures, and for the hardware layer's (with the gain).
+    /// For CPU pictures, and for the hardware layer's (with the gain); as a
+    /// CRT when asked.
     pipeline: wgpu::RenderPipeline,
     card_pipeline: wgpu::RenderPipeline,
+    /// The picture's console lines, for the CRT's scanlines.
+    lines: wgpu::Buffer,
+    lines_now: f32,
     /// The bind group of the hardware layer's picture, by its size.
     card: Option<((u32, u32), wgpu::BindGroup)>,
     layout: wgpu::BindGroupLayout,
@@ -104,8 +141,25 @@ impl Presenter {
                     ty: wgpu::BindingType::Sampler(wgpu::SamplerBindingType::Filtering),
                     count: None,
                 },
+                wgpu::BindGroupLayoutEntry {
+                    binding: 2,
+                    visibility: wgpu::ShaderStages::FRAGMENT,
+                    ty: wgpu::BindingType::Buffer {
+                        ty: wgpu::BufferBindingType::Uniform,
+                        has_dynamic_offset: false,
+                        min_binding_size: None,
+                    },
+                    count: None,
+                },
             ],
         });
+        let lines = device.create_buffer(&wgpu::BufferDescriptor {
+            label: Some("present lines"),
+            size: 16,
+            usage: wgpu::BufferUsages::UNIFORM | wgpu::BufferUsages::COPY_DST,
+            mapped_at_creation: false,
+        });
+        gfx.queue.write_buffer(&lines, 0, &[240f32, 0.0, 0.0, 0.0].map(f32::to_le_bytes).concat());
         let pipeline_layout = device.create_pipeline_layout(&wgpu::PipelineLayoutDescriptor {
             label: Some("present"),
             bind_group_layouts: &[Some(&layout)],
@@ -138,8 +192,9 @@ impl Presenter {
                 cache: None,
             })
         };
-        let pipeline = make_pipeline(&[]);
-        let card_pipeline = make_pipeline(&[("gain", 255.0 / 248.0)]);
+        let crt = if crt() { 1.0 } else { 0.0 };
+        let pipeline = make_pipeline(&[("crt", crt)]);
+        let card_pipeline = make_pipeline(&[("gain", 255.0 / 248.0), ("crt", crt)]);
         // Nearest texels when the window is an integer multiple of the
         // picture; linear smooths other sizes.
         let sampler = device.create_sampler(&wgpu::SamplerDescriptor {
@@ -154,6 +209,8 @@ impl Presenter {
             config,
             pipeline,
             card_pipeline,
+            lines,
+            lines_now: 240.0,
             card: None,
             layout,
             sampler,
@@ -229,6 +286,7 @@ impl Presenter {
             entries: &[
                 wgpu::BindGroupEntry { binding: 0, resource: wgpu::BindingResource::TextureView(view) },
                 wgpu::BindGroupEntry { binding: 1, resource: wgpu::BindingResource::Sampler(&self.sampler) },
+                wgpu::BindGroupEntry { binding: 2, resource: self.lines.as_entire_binding() },
             ],
         })
     }
@@ -236,6 +294,11 @@ impl Presenter {
     /// Draws the picture bound by `bind`, letterboxed, and presents it.
     fn draw(&mut self, bind: &wgpu::BindGroup, card: bool) {
         let gfx = self.gfx;
+        let lines = crate::runtime::gpu::picture_lines().max(1) as f32;
+        if lines != self.lines_now {
+            gfx.queue.write_buffer(&self.lines, 0, &[lines, 0.0, 0.0, 0.0].map(f32::to_le_bytes).concat());
+            self.lines_now = lines;
+        }
         let target = match self.surface.get_current_texture() {
             wgpu::CurrentSurfaceTexture::Success(t) => t,
             wgpu::CurrentSurfaceTexture::Suboptimal(t) => {
@@ -274,6 +337,12 @@ impl Presenter {
         gfx.queue.submit([encoder.finish()]);
         gfx.queue.present(target);
     }
+}
+
+/// Whether the picture looks like a CRT television's: PE2_CRT=0/1, else
+/// pe2.toml's [video] crt, else off.
+fn crt() -> bool {
+    std::env::var("PE2_CRT").ok().map(|v| v.trim() != "0").or(crate::config::get().video.crt).unwrap_or(false)
 }
 
 fn bytemuck_u32(words: &[u32]) -> &[u8] {

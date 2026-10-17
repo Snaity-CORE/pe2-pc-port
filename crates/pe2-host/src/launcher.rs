@@ -132,6 +132,7 @@ struct Settings {
     bilinear: bool,
     smooth_backgrounds: bool,
     interpolation: bool,
+    crt: bool,
     fullscreen: bool,
     /// Empty: the default card in memcards/ in the folder of the player's
     /// files (paths.rs).
@@ -164,6 +165,7 @@ impl Settings {
             bilinear: get("video", "texture_filter").and_then(|v| v.as_str()) == Some("bilinear"),
             smooth_backgrounds: get("video", "background_filter").and_then(|v| v.as_str()) == Some("bicubic"),
             interpolation: flag("video", "frame_interpolation", true),
+            crt: flag("video", "crt", false),
             fullscreen: flag("video", "fullscreen", false),
             cards: [text("memcard", "slot1"), text("memcard", "slot2")],
             controller: get("input", "controller")
@@ -220,6 +222,7 @@ impl Settings {
         doc["video"]["texture_filter"] = value(if self.bilinear { "bilinear" } else { "nearest" });
         doc["video"]["background_filter"] = value(if self.smooth_backgrounds { "bicubic" } else { "nearest" });
         doc["video"]["frame_interpolation"] = value(self.interpolation);
+        doc["video"]["crt"] = value(self.crt);
         doc["video"]["fullscreen"] = value(self.fullscreen);
         doc["input"]["controller"] = value(if self.controller.is_empty() { "auto" } else { self.controller.as_str() });
         doc["input"]["vibration"] = value(self.vibration);
@@ -626,6 +629,9 @@ impl Launcher {
             ui.add_enabled_ui(e.hardware && e.subpixel, |ui| {
                 ui.checkbox(&mut e.interpolation, lang.t("Smooth motion (60 fps)", "Movimento suave (60 fps)"));
             });
+        });
+        ui.add_enabled_ui(e.hardware, |ui| {
+            ui.checkbox(&mut e.crt, lang.t("CRT look (scanlines)", "Visual de TV de tubo (linhas)"));
         });
         ui.checkbox(
             &mut e.fullscreen,

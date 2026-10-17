@@ -47,6 +47,9 @@ scale = 4
 # with the 3D models halfway (backgrounds and the interface are unchanged).
 # No added delay. Needs the hardware renderer and subpixel.
 # frame_interpolation = true
+# The look of a CRT television: scanlines (the console's 240 lines) and an
+# aperture grille. Best with the window at least 720 pixels high.
+# crt = false
 # Start in borderless full screen (a window without borders covering the
 # monitor, no mode change); Alt+Enter toggles it at any time.
 # fullscreen = false

@@ -1039,6 +1039,8 @@ pub extern "C" fn pcrt_PutDispEnv(env: *mut DispEnv) -> *mut DispEnv {
 struct Front {
     width: usize,
     height: usize,
+    /// The console's lines in the picture (240, or 480 interlaced).
+    lines: usize,
     enabled: bool,
     /// The higher-resolution layer's pixels (when it is shown)...
     hires: Vec<u32>,
@@ -1071,6 +1073,11 @@ pub fn picture_size() -> (usize, usize) {
     (f.width, f.height)
 }
 
+/// The console's lines in the window's picture (240, or 480 interlaced).
+pub fn picture_lines() -> usize {
+    FRONT.lock().unwrap().lines
+}
+
 /// Whether the window's picture is on the graphics card.
 pub fn front_on_card() -> bool {
     FRONT.lock().unwrap().on_card
@@ -1079,6 +1086,7 @@ pub fn front_on_card() -> bool {
 static FRONT: Mutex<Front> = Mutex::new(Front {
     width: 0,
     height: 0,
+    lines: 240,
     enabled: false,
     hires: Vec::new(),
     vram: Vec::new(),
@@ -1126,6 +1134,7 @@ pub fn latch() {
     }
     f.enabled = d.enabled;
     f.rgb24 = d.rgb24;
+    f.lines = d.height as usize;
     f.hires.clear();
     f.vram.clear();
     f.on_card = false;
