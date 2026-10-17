@@ -84,7 +84,10 @@ Debug output:
 - `PE2_TRACE` takes comma-separated topics: `cd` (CD commands), `cdsector`
   (every delivered sector), `stream` (movie frames), `images` (overlays
   recognized in RAM), `gpu` (command lists and display changes), `dma`, `stubs`,
-  or `all`.
+  `xa` (XA audio sectors played), `files` (each game file read, by its mod
+  name), `music` (songs and replacement gain), or `all`.
+- `PE2_RECORD_AUDIO=<file.wav>:<start>:<seconds>` saves what the sound chip
+  plays over that span, to check the mix without listening.
 - Performance: `PE2_TRACE=cpu` prints each thread's CPU use every 10 seconds
   (and interrupt delivery costs); `PE2_TRACE=prof` samples the game thread
   every millisecond into `pe2-prof.bin`, summarized by function with

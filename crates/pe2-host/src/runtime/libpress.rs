@@ -39,7 +39,7 @@ fn block_control(words: u32) -> u32 {
 
 /// The default quantization table, for luma and chroma alike: MPEG-1's
 /// intra matrix, in the zig-zag order the MDEC takes it.
-fn default_quant() -> [u8; 64] {
+pub(crate) fn default_quant() -> [u8; 64] {
     const INTRA: [u8; 64] = [
         2, 16, 19, 22, 26, 27, 29, 34, 16, 16, 22, 24, 27, 29, 34, 37, 19, 22, 26, 27, 29, 34, 34, 38, 22, 22, 26, 27,
         29, 34, 37, 40, 22, 26, 27, 29, 32, 35, 40, 48, 26, 27, 29, 32, 35, 40, 48, 58, 26, 27, 29, 34, 38, 46, 56, 69,
@@ -55,7 +55,7 @@ fn default_quant() -> [u8; 64] {
 
 /// The IDCT scale table: c(u) cos((2x + 1) u pi / 16) in 15 fractional bits,
 /// c(0) = 1/sqrt(2), rounded down.
-fn default_scale() -> [i16; 64] {
+pub(crate) fn default_scale() -> [i16; 64] {
     std::array::from_fn(|i| {
         let (u, x) = ((i / 8) as f64, (i % 8) as f64);
         let c = if u == 0.0 { std::f64::consts::FRAC_1_SQRT_2 } else { 1.0 };

@@ -29,7 +29,8 @@ mod ffi {
 const USAGE: &str = "usage: pe2 [disc 1 image] [disc 2 image]\n\
                      Images are your own Parasite Eve II (USA) dumps, as .cue or .chd.\n\
                      Without arguments, the launcher opens; with --play, pe2.toml's [discs]\n\
-                     disc1 and disc2 are played.";
+                     disc1 and disc2 are played. --extract [images] saves the discs' files\n\
+                     to dumps/files in the data folder, for making mods.";
 
 /// Started from Explorer, the process is alone on a console of its own:
 /// let it go, so no empty console window stays behind the game. Started
@@ -54,10 +55,14 @@ pub fn has_console() -> bool {
 fn main() -> ExitCode {
     drop_own_console();
     let mut images: Vec<PathBuf> = std::env::args_os().skip(1).map(PathBuf::from).collect();
+    let extract = images.first().is_some_and(|a| a.as_os_str() == "--extract");
+    if extract {
+        images.remove(0);
+    }
     // No arguments: the launcher, except for the unattended and test runs
     // the PE2_* variables drive. It plays with `--play`.
     let unattended = ["PE2_INPUT", "PE2_LIBTEST", "PE2_SELFTEST"].iter().any(|v| std::env::var_os(v).is_some());
-    if images.is_empty() && !unattended {
+    if images.is_empty() && !unattended && !extract {
         return launcher::run();
     }
     if images.len() == 1 && images[0].as_os_str() == "--play" {
@@ -92,6 +97,16 @@ fn main() -> ExitCode {
             if tracks == 1 { "" } else { "s" },
             d.total_sectors()
         );
+    }
+    if extract {
+        let out = paths::user_file("dumps");
+        return match mods::files::extract(&mut discs, &out) {
+            Ok(()) => ExitCode::SUCCESS,
+            Err(e) => {
+                eprintln!("pe2: extract: {}: {e}", out.display());
+                ExitCode::FAILURE
+            }
+        };
     }
     let disc1 = &mut discs[0];
     let (exe_name, exe) = match disc::iso9660::boot_executable(disc1.as_mut()) {

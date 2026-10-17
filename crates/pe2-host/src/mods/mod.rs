@@ -7,7 +7,7 @@
 //! game's own files. What they replace is never touched in the console's
 //! VRAM: the game sees its own data, and only the picture changes.
 //!
-//! Music: see music.rs. Backgrounds and full-screen pictures, as
+//! Music: music.rs; game files: files.rs. Backgrounds and full-screen pictures, as
 //! `backgrounds/<hash>.png`, where the hash is `screen_hash` of the
 //! 320x240 (or so) image the game sends to the GPU. With `[mods] dump`,
 //! each such image is saved once as `dumps/backgrounds/<hash>.png`.
@@ -18,6 +18,7 @@ use std::sync::{Arc, Mutex, OnceLock};
 
 use serde::Deserialize;
 
+pub mod files;
 pub mod music;
 
 /// A mod's `mod.toml` (every field optional).
@@ -223,24 +224,29 @@ pub fn dump_screen(hash: u64, w: i32, h: i32, pixels: &[u16]) {
     if path.exists() {
         return;
     }
-    let rgb: Vec<u8> = pixels
-        .iter()
-        .flat_map(|&p| [((p & 31) << 3) as u8, (((p >> 5) & 31) << 3) as u8, (((p >> 10) & 31) << 3) as u8])
-        .collect();
+    let pixels = pixels.to_vec();
     std::thread::spawn(move || {
         let _ = std::fs::create_dir_all(&dir);
-        let written = std::fs::File::create(&path).map_err(|e| e.to_string()).and_then(|file| {
-            let mut enc = png::Encoder::new(std::io::BufWriter::new(file), w as u32, h as u32);
-            enc.set_color(png::ColorType::Rgb);
-            enc.set_depth(png::BitDepth::Eight);
-            let mut writer = enc.write_header().map_err(|e| e.to_string())?;
-            writer.write_image_data(&rgb).map_err(|e| e.to_string())
-        });
-        match written {
+        match save_png(&path, w as u32, h as u32, &pixels) {
             Ok(()) => eprintln!("pe2: dumped {}", path.display()),
             Err(err) => eprintln!("pe2: dump {}: {err}", path.display()),
         }
     });
+}
+
+/// Saves 15-bit pixels as an RGB PNG (each channel's 5 bits shifted up, so
+/// the colours are the console's exactly).
+pub fn save_png(path: &Path, w: u32, h: u32, pixels: &[u16]) -> Result<(), String> {
+    let rgb: Vec<u8> = pixels
+        .iter()
+        .flat_map(|&p| [((p & 31) << 3) as u8, (((p >> 5) & 31) << 3) as u8, (((p >> 10) & 31) << 3) as u8])
+        .collect();
+    let file = std::fs::File::create(path).map_err(|e| e.to_string())?;
+    let mut enc = png::Encoder::new(std::io::BufWriter::new(file), w, h);
+    enc.set_color(png::ColorType::Rgb);
+    enc.set_depth(png::BitDepth::Eight);
+    let mut writer = enc.write_header().map_err(|e| e.to_string())?;
+    writer.write_image_data(&rgb).map_err(|e| e.to_string())
 }
 
 /// Whether anything here wants screen images: mods with backgrounds, or

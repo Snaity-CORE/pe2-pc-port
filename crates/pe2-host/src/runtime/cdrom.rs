@@ -114,11 +114,16 @@ struct Drive {
     shell_latch: bool,
     nop_polls: u32,
     last_change: Option<Instant>,
+    /// Mods: each disc's replaced files and file starts, and the replaced
+    /// file being read, by its first sector (see mods::files).
+    overrides: Vec<(crate::mods::files::Overrides, crate::mods::files::Starts)>,
+    redirect: Option<(u32, std::sync::Arc<Vec<u8>>)>,
 }
 
 static DRIVE: Mutex<Option<Drive>> = Mutex::new(None);
 
-pub fn start(discs: Vec<Box<dyn Disc>>) {
+pub fn start(mut discs: Vec<Box<dyn Disc>>) {
+    let overrides = discs.iter_mut().enumerate().map(|(n, d)| crate::mods::files::overrides(d.as_mut(), n)).collect();
     *DRIVE.lock().unwrap() = Some(Drive {
         discs,
         current: 0,
@@ -144,6 +149,8 @@ pub fn start(discs: Vec<Box<dyn Disc>>) {
         shell_latch: false,
         nop_polls: 0,
         last_change: None,
+        overrides,
+        redirect: None,
     });
 }
 
@@ -221,9 +228,9 @@ impl Drive {
     }
 
     fn start_reading(&mut self) {
-        if let Some(target) = self.setloc.take() {
-            self.pos = target;
-        }
+        let target = self.setloc.take().unwrap_or(self.pos);
+        self.retarget(target);
+        self.pos = target;
         self.stat = (self.stat | STAT_STANDBY | STAT_READ) & !STAT_PLAY;
         self.read_gen += 1;
         self.ready_status = CDL_NO_INTR;
@@ -262,6 +269,7 @@ impl Drive {
         match self.lid {
             Lid::Open { closes_at, next } if now >= closes_at => {
                 self.current = next;
+                self.redirect = None;
                 self.pos = 0;
                 self.lid = Lid::SpinningUp(now + SPIN_UP_TIME);
                 eprintln!("pe2: disc image {} inserted, lid closed", next + 1);
@@ -388,9 +396,9 @@ impl Drive {
             }
             CDL_SEEK_L | CDL_SEEK_P => {
                 self.stop_reading();
-                if let Some(target) = self.setloc.take() {
-                    self.pos = target;
-                }
+                let target = self.setloc.take().unwrap_or(self.pos);
+                self.retarget(target);
+                self.pos = target;
                 r[0] = self.stat;
                 self.complete_after(SEEK_TIME, r);
                 return r;
@@ -406,6 +414,40 @@ impl Drive {
         r[0] = self.stat;
         self.complete_after(Duration::ZERO, r);
         r
+    }
+
+    /// Mods: a read or seek from `lba` (before `pos` moves there). The game
+    /// reads a file from its first sector on, so one starting at a replaced
+    /// file serves the replacement from there; a read resuming inside it
+    /// (a retry, where the last read stopped) keeps it, and a read of
+    /// anything else ends it.
+    fn retarget(&mut self, lba: u32) {
+        let Some((files, starts)) = self.overrides.get(self.current) else { return };
+        if let Some((start, data)) = &self.redirect {
+            let end = start + (data.len() / disc::SECTOR_SIZE) as u32;
+            if (*start + 1..end).contains(&lba) && (lba == self.pos || !starts.contains_key(&lba)) {
+                return;
+            }
+        }
+        self.redirect = files.get(&lba).map(|data| (lba, data.clone()));
+        if crate::runtime::trace("files")
+            && let Some(name) = starts.get(&lba)
+        {
+            let from = if self.redirect.is_some() { "a mod" } else { "the disc" };
+            eprintln!("[files] {name} (sector {lba}) from {from}");
+        }
+    }
+
+    /// The replacement's sector `lba`, as a raw mode 2 form 1 data sector.
+    fn replaced_sector(&self, lba: u32, raw: &mut disc::RawSector) -> bool {
+        let Some((start, data)) = &self.redirect else { return false };
+        let at = (lba.wrapping_sub(*start) as usize).wrapping_mul(disc::SECTOR_SIZE);
+        let Some(src) = data.get(at..at + disc::SECTOR_SIZE) else { return false };
+        let msf = disc::lba_to_bcd_msf(lba);
+        raw[12..16].copy_from_slice(&[msf[0], msf[1], msf[2], 2]);
+        raw[16..24].copy_from_slice(&[0, 0, 0x08, 0, 0, 0, 0x08, 0]);
+        raw[24..24 + disc::SECTOR_SIZE].copy_from_slice(src);
+        true
     }
 
     /// Bytes of the current sector the game reads with CdGetSector.
@@ -431,14 +473,15 @@ fn deliver_sector(generation: u64, at: Instant) {
             return None;
         }
         let lba = d.pos;
-        if lba >= d.discs[d.current].total_sectors() {
+        let mut raw = [0u8; disc::RAW_SECTOR_SIZE];
+        let replaced = d.replaced_sector(lba, &mut raw);
+        if lba >= d.discs[d.current].total_sectors() && !replaced {
             d.stop_reading();
             d.ready_status = CDL_DATA_END;
             d.ready_result[0] = d.stat;
             return Some((d.ready_cb, CDL_DATA_END, d.ready_result));
         }
-        let mut raw = [0u8; disc::RAW_SECTOR_SIZE];
-        if let Err(e) = d.discs[d.current].read_sector(lba, &mut raw) {
+        if !replaced && let Err(e) = d.discs[d.current].read_sector(lba, &mut raw) {
             eprintln!("[cdrom] read error at LBA {lba}: {e}");
         }
         d.pos += 1;

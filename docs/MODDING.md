@@ -47,11 +47,15 @@ title and menu screens are full-screen pictures too. A mod can replace any of
 them with a picture of its own, at any resolution: 1280x960 (4x) suits most
 setups, and the picture is scaled to the internal resolution.
 
-1. Turn on dumping: in the launcher's Mods screen, or `[mods] dump = true` in
-   `pe2.toml` (or `PE2_DUMP=1`).
-2. Play through the places you want to change. Each picture the game shows is
-   saved once as `dumps/backgrounds/<hash>.png` in the data folder.
-3. Make your version of a picture (paint over it, upscale it, ...) and save it
+1. Get the pictures, in `dumps/backgrounds/<hash>.png` in the data folder:
+   - **Every room background at once**: **Extract the game's files** in the
+     launcher's Mods screen (or `pe2 --extract`) decodes all of them, about
+     1,760, as the game does.
+   - **Anything else** (title and menu screens, close-ups shown when
+     examining things): turn on dumping, in the launcher's Mods screen or
+     with `[mods] dump = true` in `pe2.toml` (or `PE2_DUMP=1`), and play
+     through the places you want; each picture the game shows is saved once.
+2. Make your version of a picture (paint over it, upscale it, ...) and save it
    as `mods/<your mod>/backgrounds/<same hash>.png`.
 
 The file name is what ties a replacement to the picture it replaces: a 64-bit
@@ -104,6 +108,57 @@ looping = true      # false plays the recording once
 A recording is decoded the first time its song plays (the original plays for
 a moment meanwhile) and kept from then on.
 
+## Game files
+
+Everything else the game reads from the disc (models, textures, sound banks,
+room packages, menu texts, dialogue) lives in its own file system: the files
+of `STAGE0.CDF` and the folders of `STAGE1.CDF` to `STAGE5.CDF`. A mod can
+replace any of them.
+
+1. Extract the files: **Extract the game's files** in the launcher's Mods
+   screen, or `pe2 --extract`. They go to `dumps/files/` in the data folder
+   (about 130 MB; both discs share them), and every room background as a
+   picture to `dumps/backgrounds/` (see above).
+2. Find the one you want. With `PE2_TRACE=files` the game's log names each
+   file as it is read, so playing to a place shows which files it uses.
+3. Put your version in `mods/<your mod>/files/` under the same path.
+
+A file is a run of chunks, and the extract saves each chunk's contents as
+`<file>/<chunk>.<type>`, for example `stage1/1501/file6/0.bs` (a room's
+background) or `stage0/file20101/2.txt` (a weapon's description). A mod
+replaces a chunk with a file of the same path; the rest of the file stays as
+on the disc. `<file>.bin` instead replaces a whole file with its on-disc
+bytes (chunk headers included), for tools that build files themselves.
+
+| Type | What it is | Editing |
+|---|---|---|
+| `.txt` | Menu and item texts, with markup (`\Ss`, `\B9`, `\Z` ends) | Any text editor |
+| `.bs` | A room background as the movie decoder reads it (MDEC) | A BS encoder |
+| `.pe2img`, `.pe2clut` | Pictures and palettes for video memory, compressed | The decompilation's tools |
+| `.pe2pkg` | Code and data packages (rooms, menus, actors), compressed | The decompilation's tools |
+| `.pe2cap2` | Dialogue bundles: pictures, glyph tables and scripts | The decompilation's tools |
+| `.spk` | Sound banks | The decompilation's tools |
+
+The paths and the chunk contents are the same as those of the
+decompilation's asset tools (`tools/peassets` in the decomp repository): the
+extract matches their `raw/` store byte for byte, so they can decompress and
+rebuild what it saves.
+
+What to know:
+
+- **Sizes.** A replacement can be larger than the original: the drive serves
+  it in place of the original as the game reads it, so nothing on the disc
+  moves. But the game loads each chunk at a fixed place in memory, and what
+  follows that place may be in use: a text or package much larger than the
+  original can overwrite other data. Keep sizes close to the originals unless
+  you know the space is free.
+- **Code.** This port runs the game's code natively: the code in a package
+  is not run, and changing it keeps the package from being recognized (the
+  game then stops). Packages' data can change.
+- **Dialogue.** Spoken lines are not stored as text but as indices into
+  glyph pictures carried in each dialogue bundle; turning them into text,
+  and back, is not done yet (see the plan).
+
 ## Cheats and memory patches
 
 A mod's `patches.toml` changes the game's memory each frame, as a cheat
@@ -153,15 +208,16 @@ changing the game's own data in memory unless the kind is meant to.
 4. **Music** (done): sequenced songs dumped, and replaced by recordings, as
    above. (Recorded audio, the movies' and cutscenes' XA tracks, comes with
    movies.)
-5. **Disc file replacement**: a file, or a part of a stage's CDF bundle, served
-   from the mod instead of the disc, in the game's own formats; with text
-   extraction, this is what translations need. Files larger than the original
-   need the game's sector tables adjusted.
+5. **Game files** (done): extracted, and replaced chunk by chunk or whole,
+   at any size, as above. Still to come for translations: decoding the
+   dialogue bundles' glyph text to editable text and back, and the texts
+   held in the executable.
 6. **Textures**: model, interface and foreground textures replaced at a higher
    resolution. On the PlayStation a texture is a region of video memory read
    through a palette, so a texture's identity is that region and its palette,
    hashed as the game uploads them.
 7. **Movies**: FMVs replaced by video files, which needs a video decoder.
 
-An extractor for the disc's own files (`pe2 --extract`: images to PNG, sounds
-to WAV) comes with the kinds that need it (5 onwards).
+The extract saves files as the game stores them. Converting them to common
+formats (pictures to PNG, sound banks to WAV) and back is left to the
+decompilation's tools for now.

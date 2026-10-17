@@ -11,6 +11,8 @@ use std::path::Path;
 
 /// Bytes in a raw CD sector (sync, header, subheader, data, EDC/ECC).
 pub const RAW_SECTOR_SIZE: usize = 2352;
+/// Bytes of data in a mode 2 form 1 sector, as files are read.
+pub const SECTOR_SIZE: usize = 2048;
 /// Sectors before LBA 0 (the two-second lead-in): MSF 00:02:00 is LBA 0.
 pub const LBA_MSF_OFFSET: u32 = 150;
 
