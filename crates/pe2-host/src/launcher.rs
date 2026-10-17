@@ -9,6 +9,11 @@
 //! The main screen is the PE2PC art (res/launcher_bg.webp, the logo in
 //! res/launcher_logo.webp) with a column of buttons; the other screens show
 //! on a dark panel over the same background.
+//!
+//! A controller works it too: the d-pad or left stick moves between
+//! buttons and settings (left and right change a choice), A (Cross)
+//! presses or ticks, B (Circle) goes back without saving. The arrow keys,
+//! Enter and Esc do the same (outside text fields).
 
 use std::path::{Path, PathBuf};
 use std::process::ExitCode;
@@ -69,8 +74,145 @@ impl Art {
     }
 }
 
+/// What a controller asks of the launcher this frame.
+#[derive(Clone, Copy, PartialEq, Eq)]
+enum Nav {
+    Up,
+    Down,
+    Left,
+    Right,
+    Accept,
+    Back,
+}
+
+/// The controller's focus on the Settings, Setup and Controls screens:
+/// each interactive item registers itself as it is drawn, in order, and
+/// the focused one is outlined, kept in view and gets the controller's
+/// presses.
+#[derive(Default)]
+struct Focus {
+    /// The focused item, the items counted last frame and so far this one.
+    at: usize,
+    count: usize,
+    counting: usize,
+    /// This frame's presses, for the focused item.
+    accept: bool,
+    left: bool,
+    right: bool,
+    /// The focus moved this frame (scroll to it); a move asked for by an
+    /// item, for the next frame.
+    moved: bool,
+    pending: i32,
+}
+
+impl Focus {
+    /// Starts a frame with the controller's moves.
+    fn frame(&mut self, nav: &[Nav]) {
+        self.count = self.counting;
+        self.counting = 0;
+        self.moved = false;
+        let mut step = std::mem::take(&mut self.pending);
+        step += nav.iter().map(|n| matches!(n, Nav::Down) as i32 - matches!(n, Nav::Up) as i32).sum::<i32>();
+        if step != 0 && self.count > 0 {
+            self.at = (self.at as i32 + step).clamp(0, self.count as i32 - 1) as usize;
+            self.moved = true;
+        }
+        self.at = self.at.min(self.count.saturating_sub(1));
+        self.accept = nav.contains(&Nav::Accept);
+        self.left = nav.contains(&Nav::Left);
+        self.right = nav.contains(&Nav::Right);
+    }
+
+    /// Back to the first item (a new screen).
+    fn reset(&mut self) {
+        *self = Focus::default();
+    }
+
+    /// Registers the next item (drawn as `response`): whether it has the
+    /// focus. Left and right move to the neighbouring item unless `choice`
+    /// (they change its value then).
+    fn item(&mut self, ui: &egui::Ui, response: &egui::Response, choice: bool) -> bool {
+        let k = self.counting;
+        self.counting += 1;
+        if k != self.at {
+            return false;
+        }
+        ui.painter().rect_stroke(
+            response.rect.expand(3.0),
+            4.0,
+            egui::Stroke::new(2.0, TEAL),
+            egui::StrokeKind::Outside,
+        );
+        if self.moved {
+            response.scroll_to_me(Some(egui::Align::Center));
+        }
+        if !choice && (self.left || self.right) {
+            self.pending = if self.right { 1 } else { -1 };
+            self.left = false;
+            self.right = false;
+        }
+        true
+    }
+
+    /// A checkbox; A ticks it.
+    fn checkbox(&mut self, ui: &mut egui::Ui, value: &mut bool, text: &str, enabled: bool) {
+        let response = ui.add_enabled(enabled, egui::Checkbox::new(value, text));
+        if self.item(ui, &response, false) && enabled && std::mem::take(&mut self.accept) {
+            *value = !*value;
+        }
+    }
+
+    /// A button: whether it was pressed (clicked, or A while focused).
+    fn button(&mut self, ui: &mut egui::Ui, text: &str, enabled: bool) -> bool {
+        let response = ui.add_enabled(enabled, egui::Button::new(text));
+        let pressed = self.item(ui, &response, false) && enabled && std::mem::take(&mut self.accept);
+        response.clicked() || pressed
+    }
+
+    /// A choice among `options`, shown as "◀ name ▶" after `label`: the
+    /// arrows (or left and right, or A for the next) change it.
+    fn choice<T: PartialEq + Clone>(
+        &mut self,
+        ui: &mut egui::Ui,
+        label: &str,
+        value: &mut T,
+        options: &[(T, String)],
+        enabled: bool,
+    ) {
+        let at = options.iter().position(|(v, _)| v == value).unwrap_or(0);
+        let mut to = at;
+        let row = ui.add_enabled_ui(enabled, |ui| {
+            ui.horizontal(|ui| {
+                if !label.is_empty() {
+                    ui.label(label);
+                }
+                if ui.small_button("◀").clicked() {
+                    to = at.checked_sub(1).unwrap_or(options.len() - 1);
+                }
+                let name = options.get(at).map_or("", |(_, n)| n.as_str());
+                ui.add_sized([230.0, 20.0], egui::Label::new(egui::RichText::new(name).strong()));
+                if ui.small_button("▶").clicked() {
+                    to = (at + 1) % options.len();
+                }
+            })
+            .response
+        });
+        if self.item(ui, &row.inner, true) && enabled && !options.is_empty() {
+            if std::mem::take(&mut self.left) {
+                to = at.checked_sub(1).unwrap_or(options.len() - 1);
+            }
+            if std::mem::take(&mut self.right) || std::mem::take(&mut self.accept) {
+                to = (at + 1) % options.len();
+            }
+        }
+        if to != at && enabled {
+            *value = options[to].0.clone();
+        }
+    }
+}
+
 /// The main screen's buttons.
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 enum Icon {
     Play,
     Settings,
@@ -284,6 +426,17 @@ struct Launcher {
     icons: bool,
     /// PE2_LAUNCHER_SHOT: frames drawn, to take the picture once settled.
     frames: u32,
+    /// The game was started and has no window yet; why it could not start.
+    starting: Arc<AtomicBool>,
+    launch_error: Arc<std::sync::Mutex<Option<String>>>,
+    /// This frame's controller moves, the controller button pressed (for
+    /// the Controls screen), and the left stick's last direction (x, y).
+    nav: Vec<Nav>,
+    pad_pressed: Option<String>,
+    stick: [i8; 2],
+    /// The main screen's chosen button, and the other screens' focus.
+    menu_focus: usize,
+    focus: Focus,
 }
 
 /// The pe2.toml name of a key egui reports ("A" -> "KeyA", "Num1" ->
@@ -325,6 +478,13 @@ impl Launcher {
             art,
             icons,
             frames: 0,
+            starting: Arc::new(AtomicBool::new(false)),
+            launch_error: Arc::new(std::sync::Mutex::new(None)),
+            nav: Vec::new(),
+            pad_pressed: None,
+            stick: [0; 2],
+            menu_focus: 0,
+            focus: Focus::default(),
         };
         launcher.recheck();
         if launcher.checks[0].as_ref().is_none_or(|c| c.is_err()) {
@@ -356,7 +516,10 @@ impl Launcher {
         }
     }
 
-    /// Runs the game as a child process, hiding the launcher until it quits.
+    /// Runs the game as a child process. Starting it, and waiting for its
+    /// window, happen on a thread of their own, so the launcher keeps
+    /// drawing ("Starting the game..."); it hides once the game's window
+    /// shows, and comes back when the game quits.
     fn play(&mut self, ctx: &egui::Context, window: Option<isize>) {
         let exe = match std::env::current_exe() {
             Ok(e) => e,
@@ -381,17 +544,32 @@ impl Launcher {
                 None => command.stderr(Stdio::null()),
             };
         }
-        let mut child = match command.spawn() {
-            Ok(c) => c,
-            Err(e) => {
-                self.message = Some(e.to_string());
-                return;
-            }
-        };
+        self.message = None;
         self.running.store(true, Ordering::SeqCst);
-        show_window(window, false);
-        let (running, ctx) = (self.running.clone(), ctx.clone());
+        self.starting.store(true, Ordering::SeqCst);
+        let (running, starting, error, ctx) =
+            (self.running.clone(), self.starting.clone(), self.launch_error.clone(), ctx.clone());
         std::thread::spawn(move || {
+            let mut child = match command.spawn() {
+                Ok(c) => c,
+                Err(e) => {
+                    *error.lock().unwrap() = Some(e.to_string());
+                    starting.store(false, Ordering::SeqCst);
+                    running.store(false, Ordering::SeqCst);
+                    ctx.request_repaint();
+                    return;
+                }
+            };
+            // Until the game shows its window (or quits first).
+            let since = std::time::Instant::now();
+            while !has_window(child.id()) && since.elapsed() < std::time::Duration::from_secs(30) {
+                if child.try_wait().ok().flatten().is_some() {
+                    break;
+                }
+                std::thread::sleep(std::time::Duration::from_millis(50));
+            }
+            starting.store(false, Ordering::SeqCst);
+            show_window(window, false);
             let _ = child.wait();
             running.store(false, Ordering::SeqCst);
             show_window(window, true);
@@ -400,8 +578,10 @@ impl Launcher {
     }
 
     /// One of the main screen's buttons at `rect`: a dark glass panel with
-    /// an icon and a label, lit in the accent colour when pointed at or
-    /// focused; `primary` (Play) is lit always.
+    /// an icon and a label, lit in the accent colour when `chosen` (pointed
+    /// at, or picked with the controller or keyboard); `primary` (Play) is
+    /// tinted always.
+    #[allow(clippy::too_many_arguments)]
     fn menu_button(
         &self,
         ui: &mut egui::Ui,
@@ -410,10 +590,11 @@ impl Launcher {
         label: &str,
         enabled: bool,
         primary: bool,
+        chosen: bool,
     ) -> egui::Response {
         use egui::{Color32, FontFamily, FontId, Stroke, StrokeKind, pos2};
         let response = ui.allocate_rect(rect, if enabled { egui::Sense::click() } else { egui::Sense::hover() });
-        let lit = enabled && (response.hovered() || response.has_focus());
+        let lit = enabled && chosen;
         let (fill, stroke) = match (primary && enabled, lit) {
             (true, false) => (Color32::from_rgba_unmultiplied(8, 78, 74, 215), Stroke::new(1.5, TEAL)),
             (true, true) => (Color32::from_rgba_unmultiplied(14, 112, 106, 230), Stroke::new(2.0, TEAL)),
@@ -496,31 +677,58 @@ impl Launcher {
             (Icon::Setup, lang.t("Setup", "Configuração inicial"), !running, false),
             (Icon::Exit, lang.t("Exit", "Sair"), true, false),
         ];
+        // The controller's or keyboard's choice: up and down skip the
+        // buttons that are off; Accept (or Enter) presses.
+        let keys = ui.ctx().input(|i| {
+            (i.key_pressed(egui::Key::ArrowUp), i.key_pressed(egui::Key::ArrowDown), i.key_pressed(egui::Key::Enter))
+        });
+        let enabled: Vec<usize> = (0..buttons.len()).filter(|&k| buttons[k].2).collect();
+        if !enabled.contains(&self.menu_focus) {
+            self.menu_focus = enabled.first().copied().unwrap_or(0);
+        }
+        let step = |focus: usize, down: bool| {
+            let at = enabled.iter().position(|&k| k == focus).unwrap_or(0);
+            let next = if down { (at + 1).min(enabled.len().saturating_sub(1)) } else { at.saturating_sub(1) };
+            enabled.get(next).copied().unwrap_or(focus)
+        };
+        if self.nav.contains(&Nav::Up) || keys.0 {
+            self.menu_focus = step(self.menu_focus, false);
+        }
+        if self.nav.contains(&Nav::Down) || keys.1 {
+            self.menu_focus = step(self.menu_focus, true);
+        }
+        let pressed = (self.nav.contains(&Nav::Accept) || keys.2).then_some(self.menu_focus);
         let mut y = full.top() + 282.0;
-        for (icon, label, enabled, primary) in buttons {
+        for (k, (icon, label, enabled, primary)) in buttons.into_iter().enumerate() {
             let rect = Rect::from_min_size(pos2(full.left() + 73.0, y), vec2(324.0, 50.0));
-            if self.menu_button(ui, rect, icon, label, enabled, primary).clicked() {
+            let response = self.menu_button(ui, rect, icon, label, enabled, primary, self.menu_focus == k);
+            if response.hovered() && enabled {
+                self.menu_focus = k;
+            }
+            if response.clicked() || (enabled && pressed == Some(k)) {
                 match icon {
                     Icon::Play => self.play(ui.ctx(), window),
                     Icon::Settings => {
                         self.edit = self.saved.clone();
-                        self.screen = Screen::Settings;
+                        self.go(Screen::Settings);
                     }
                     Icon::Controls => {
                         self.edit = self.saved.clone();
                         self.capture = None;
-                        self.screen = Screen::Controls;
+                        self.go(Screen::Controls);
                     }
                     Icon::Setup => {
                         self.edit = self.saved.clone();
-                        self.screen = Screen::Setup(0);
+                        self.go(Screen::Setup(0));
                     }
                     Icon::Exit => ui.ctx().send_viewport_cmd(egui::ViewportCommand::Close),
                 }
             }
             y += 58.0;
         }
-        let status = if running {
+        let status = if self.starting.load(Ordering::SeqCst) {
+            Some((egui::Color32::from_gray(200), lang.t("Starting the game...", "Iniciando o jogo...")))
+        } else if running {
             Some((egui::Color32::from_gray(200), lang.t("The game is running.", "O jogo está rodando.")))
         } else if !ready {
             Some((
@@ -550,24 +758,47 @@ impl Launcher {
         }
     }
 
+    /// A disc's or memory card's path: a text field and a Browse button
+    /// (the item the controller focuses; A browses).
+    fn path_row(&mut self, ui: &mut egui::Ui, card: Option<usize>, disc: Option<usize>) {
+        let lang = self.lang();
+        ui.horizontal(|ui| {
+            let (text, hint) = match (card, disc) {
+                (Some(s), _) => {
+                    (&mut self.edit.cards[s], lang.t("default (memcards folder)", "padrão (pasta memcards)"))
+                }
+                (_, Some(d)) => (&mut self.edit.discs[d], ""),
+                _ => return,
+            };
+            let changed = ui.add(egui::TextEdit::singleline(text).hint_text(hint).desired_width(520.0)).changed();
+            if self.focus.button(ui, lang.t("Browse...", "Procurar..."), true) {
+                let picked = match card {
+                    Some(_) => rfd::FileDialog::new().add_filter("Memory card", &["mcd", "mcr"]).save_file(),
+                    None => rfd::FileDialog::new().add_filter("CD image", &["chd", "cue"]).pick_file(),
+                };
+                if let Some(p) = picked {
+                    match (card, disc) {
+                        (Some(s), _) => self.edit.cards[s] = p.display().to_string(),
+                        (_, Some(d)) => {
+                            self.edit.discs[d] = p.display().to_string();
+                            self.checks[d] = Some(check_disc(&self.edit.discs[d], d, lang));
+                        }
+                        _ => {}
+                    }
+                }
+            }
+            if let (true, Some(d)) = (changed, disc) {
+                self.checks[d] = Some(check_disc(&self.edit.discs[d], d, lang));
+            }
+        });
+    }
+
     /// Disc and memory card pickers (Setup and Settings).
     fn files(&mut self, ui: &mut egui::Ui, cards: bool) {
         let lang = self.lang();
         for d in 0..2 {
             ui.label(format!("{} {}", lang.t("Disc", "Disco"), d + 1));
-            ui.horizontal(|ui| {
-                let changed =
-                    ui.add(egui::TextEdit::singleline(&mut self.edit.discs[d]).desired_width(560.0)).changed();
-                if ui.button(lang.t("Browse...", "Procurar...")).clicked()
-                    && let Some(p) = rfd::FileDialog::new().add_filter("CD image", &["chd", "cue"]).pick_file()
-                {
-                    self.edit.discs[d] = p.display().to_string();
-                    self.checks[d] = Some(check_disc(&self.edit.discs[d], d, lang));
-                }
-                if changed {
-                    self.checks[d] = Some(check_disc(&self.edit.discs[d], d, lang));
-                }
-            });
+            self.path_row(ui, None, Some(d));
             match &self.checks[d] {
                 Some(Ok(())) => ui.colored_label(egui::Color32::LIGHT_GREEN, lang.t("Found.", "Encontrado.")),
                 Some(Err(e)) => ui.colored_label(egui::Color32::LIGHT_RED, e.as_str()),
@@ -576,81 +807,75 @@ impl Launcher {
             ui.add_space(6.0);
         }
         if cards {
-            for s in 0..2 {
-                ui.label(format!("{} {}", lang.t("Memory card, slot", "Memory card, slot"), s + 1));
-                ui.horizontal(|ui| {
-                    ui.add(
-                        egui::TextEdit::singleline(&mut self.edit.cards[s])
-                            .hint_text(lang.t("default (memcards folder)", "padrão (pasta memcards)"))
-                            .desired_width(560.0),
-                    );
-                    if ui.button(lang.t("Browse...", "Procurar...")).clicked()
-                        && let Some(p) = rfd::FileDialog::new().add_filter("Memory card", &["mcd", "mcr"]).save_file()
-                    {
-                        self.edit.cards[s] = p.display().to_string();
-                    }
-                });
-            }
+            self.cards(ui);
+        }
+    }
+
+    /// The memory card pickers.
+    fn cards(&mut self, ui: &mut egui::Ui) {
+        let lang = self.lang();
+        for s in 0..2 {
+            ui.label(format!("{} {}", lang.t("Memory card, slot", "Memory card, slot"), s + 1));
+            self.path_row(ui, Some(s), None);
         }
     }
 
     fn graphics(&mut self, ui: &mut egui::Ui) {
         let lang = self.lang();
-        let e = &mut self.edit;
-        ui.horizontal(|ui| {
-            ui.label(lang.t("Resolution", "Resolução"));
-            egui::ComboBox::from_id_salt("scale")
-                .selected_text(format!("{}x ({}x{})", e.scale, 320 * e.scale, 240 * e.scale))
-                .show_ui(ui, |ui| {
-                    for s in 1..=8 {
-                        ui.selectable_value(&mut e.scale, s, format!("{s}x ({}x{})", 320 * s, 240 * s));
-                    }
-                });
-        });
-        ui.checkbox(&mut e.hardware, lang.t("Graphics card renderer", "Renderizar pela placa de vídeo"));
-        ui.add_enabled_ui(e.scale > 1, |ui| {
-            ui.checkbox(
-                &mut e.subpixel,
-                lang.t("Sub-pixel precision (no wobbling)", "Precisão subpixel (sem tremido)"),
-            );
-            ui.add_enabled_ui(e.subpixel, |ui| {
-                ui.checkbox(
-                    &mut e.perspective,
-                    lang.t("Perspective-correct textures", "Texturas com correção de perspectiva"),
-                );
-            });
-            ui.add_enabled_ui(e.hardware, |ui| {
-                ui.checkbox(
-                    &mut e.bilinear,
-                    lang.t("Smooth 3D textures (bilinear)", "Suavizar texturas 3D (bilinear)"),
-                );
-                ui.checkbox(
-                    &mut e.smooth_backgrounds,
-                    lang.t("Smooth backgrounds (bicubic)", "Suavizar cenários (bicúbico)"),
-                );
-            });
-            ui.add_enabled_ui(e.hardware && e.subpixel, |ui| {
-                ui.checkbox(&mut e.interpolation, lang.t("Smooth motion (60 fps)", "Movimento suave (60 fps)"));
-            });
-        });
-        ui.add_enabled_ui(e.hardware, |ui| {
-            ui.checkbox(&mut e.crt, lang.t("CRT look (scanlines)", "Visual de TV de tubo (linhas)"));
-            ui.checkbox(
-                &mut e.integer_scaling,
-                lang.t("Integer scaling (sharp, with borders)", "Escala inteira (nítida, com bordas)"),
-            );
-        });
-        ui.checkbox(
+        let (f, e) = (&mut self.focus, &mut self.edit);
+        let scales: Vec<(i64, String)> = (1..=8).map(|s| (s, format!("{s}x ({}x{})", 320 * s, 240 * s))).collect();
+        f.choice(ui, lang.t("Resolution", "Resolução"), &mut e.scale, &scales, true);
+        f.checkbox(ui, &mut e.hardware, lang.t("Graphics card renderer", "Renderizar pela placa de vídeo"), true);
+        let hi = e.scale > 1;
+        f.checkbox(
+            ui,
+            &mut e.subpixel,
+            lang.t("Sub-pixel precision (no wobbling)", "Precisão subpixel (sem tremido)"),
+            hi,
+        );
+        f.checkbox(
+            ui,
+            &mut e.perspective,
+            lang.t("Perspective-correct textures", "Texturas com correção de perspectiva"),
+            hi && e.subpixel,
+        );
+        let card = hi && e.hardware;
+        f.checkbox(
+            ui,
+            &mut e.bilinear,
+            lang.t("Smooth 3D textures (bilinear)", "Suavizar texturas 3D (bilinear)"),
+            card,
+        );
+        f.checkbox(
+            ui,
+            &mut e.smooth_backgrounds,
+            lang.t("Smooth backgrounds (bicubic)", "Suavizar cenários (bicúbico)"),
+            card,
+        );
+        f.checkbox(
+            ui,
+            &mut e.interpolation,
+            lang.t("Smooth motion (60 fps)", "Movimento suave (60 fps)"),
+            card && e.subpixel,
+        );
+        f.checkbox(ui, &mut e.crt, lang.t("CRT look (scanlines)", "Visual de TV de tubo (linhas)"), e.hardware);
+        f.checkbox(
+            ui,
+            &mut e.integer_scaling,
+            lang.t("Integer scaling (sharp, with borders)", "Escala inteira (nítida, com bordas)"),
+            e.hardware,
+        );
+        f.checkbox(
+            ui,
             &mut e.fullscreen,
             lang.t("Start in full screen (Alt+Enter toggles)", "Iniciar em tela cheia (Alt+Enter alterna)"),
+            true,
         );
     }
 
-    fn language(&mut self, ui: &mut egui::Ui) {
-        ui.horizontal(|ui| {
-            ui.selectable_value(&mut self.edit.language, Lang::En, "English");
-            ui.selectable_value(&mut self.edit.language, Lang::Pt, "Português");
-        });
+    fn language(&mut self, ui: &mut egui::Ui, label: &str) {
+        let options = [(Lang::En, "English".to_string()), (Lang::Pt, "Português".to_string())];
+        self.focus.choice(ui, label, &mut self.edit.language, &options, true);
     }
 
     fn setup_screen(&mut self, ui: &mut egui::Ui, step: u8) {
@@ -660,8 +885,7 @@ impl Launcher {
         ui.separator();
         match step {
             0 => {
-                ui.label(lang.t("Language", "Idioma"));
-                self.language(ui);
+                self.language(ui, lang.t("Language", "Idioma"));
                 ui.add_space(8.0);
                 ui.label(lang.t(
                     "You need your own dumps of Parasite Eve II (USA), discs 1 and 2, as .chd or .cue images.",
@@ -675,52 +899,48 @@ impl Launcher {
                     "Os saves ficam em imagens de memory card. Deixe vazio para usar as padrão na pasta memcards da pasta de dados do PE2PC; os cartões .mcd do DuckStation também funcionam.",
                 ));
                 ui.add_space(6.0);
-                for s in 0..2 {
-                    ui.label(format!("Slot {}", s + 1));
-                    ui.horizontal(|ui| {
-                        ui.add(
-                            egui::TextEdit::singleline(&mut self.edit.cards[s])
-                                .hint_text(lang.t("default (memcards folder)", "padrão (pasta memcards)"))
-                                .desired_width(560.0),
-                        );
-                        if ui.button(lang.t("Browse...", "Procurar...")).clicked()
-                            && let Some(p) =
-                                rfd::FileDialog::new().add_filter("Memory card", &["mcd", "mcr"]).save_file()
-                        {
-                            self.edit.cards[s] = p.display().to_string();
-                        }
-                    });
-                }
+                self.cards(ui);
             }
             _ => self.graphics(ui),
         }
         ui.add_space(12.0);
         ui.separator();
+        let discs_ok = self.checks[0].as_ref().is_some_and(|c| c.is_ok());
+        let ready = self.saved_ready();
+        let mut go = None;
         ui.horizontal(|ui| {
-            if step > 0 && ui.button(lang.t("Back", "Voltar")).clicked() {
-                self.screen = Screen::Setup(step - 1);
+            if step > 0 && self.focus.button(ui, lang.t("Back", "Voltar"), true) {
+                go = Some(Screen::Setup(step - 1));
             }
-            let discs_ok = self.checks[0].as_ref().is_some_and(|c| c.is_ok());
             if step < 3 {
-                if ui.add_enabled(step != 1 || discs_ok, egui::Button::new(lang.t("Next", "Avançar"))).clicked() {
-                    self.screen = Screen::Setup(step + 1);
+                if self.focus.button(ui, lang.t("Next", "Avançar"), step != 1 || discs_ok) {
+                    go = Some(Screen::Setup(step + 1));
                 }
-            } else if ui.button(lang.t("Finish", "Concluir")).clicked() {
+            } else if self.focus.button(ui, lang.t("Finish", "Concluir"), true) {
                 self.save();
-                self.screen = Screen::Main;
+                go = Some(Screen::Main);
             }
-            if self.saved_ready() && ui.button(lang.t("Cancel", "Cancelar")).clicked() {
+            if ready && self.focus.button(ui, lang.t("Cancel", "Cancelar"), true) {
                 self.edit = self.saved.clone();
                 self.recheck();
-                self.screen = Screen::Main;
+                go = Some(Screen::Main);
             }
         });
-        if step == 1 && !self.checks[0].as_ref().is_some_and(|c| c.is_ok()) {
+        if step == 1 && !discs_ok {
             ui.label(lang.t(
                 "Disc 1 is needed to go on (disc 2 can be added later).",
                 "O disco 1 é necessário para continuar (o disco 2 pode ser adicionado depois).",
             ));
         }
+        if let Some(screen) = go {
+            self.go(screen);
+        }
+    }
+
+    /// Shows another screen, its focus on its first item.
+    fn go(&mut self, screen: Screen) {
+        self.screen = screen;
+        self.focus.reset();
     }
 
     /// Whether the saved settings already have a working disc 1.
@@ -735,15 +955,24 @@ impl Launcher {
         // The panel's height, but for the buttons below.
         egui::ScrollArea::vertical().max_height(ui.available_height() - 64.0).show(ui, |ui| {
             ui.strong(lang.t("General", "Geral"));
-            self.language(ui);
-            ui.checkbox(&mut self.edit.confirm_exit, lang.t("Ask before Esc quits", "Perguntar antes de Esc sair"));
+            self.language(ui, lang.t("Language", "Idioma"));
+            self.focus.checkbox(
+                ui,
+                &mut self.edit.confirm_exit,
+                lang.t("Ask before Esc quits", "Perguntar antes de Esc sair"),
+                true,
+            );
             ui.horizontal(|ui| {
                 ui.label(lang.t(
                     "Data folder (settings, saves, screenshots):",
                     "Pasta de dados (configurações, saves, capturas):",
                 ));
-                if ui.button(lang.t("Open", "Abrir")).clicked() {
-                    crate::paths::open_user_dir();
+                if self.focus.button(ui, lang.t("Open", "Abrir"), true) {
+                    let (error, ctx) = (self.launch_error.clone(), ui.ctx().clone());
+                    crate::paths::open_user_dir(move |e| {
+                        *error.lock().unwrap() = Some(e);
+                        ctx.request_repaint();
+                    });
                 }
             });
             ui.label(egui::RichText::new(crate::paths::user_dir().display().to_string()).weak());
@@ -756,16 +985,16 @@ impl Launcher {
         });
         ui.separator();
         ui.horizontal(|ui| {
-            if ui.button(lang.t("Save", "Salvar")).clicked() {
+            if self.focus.button(ui, lang.t("Save", "Salvar"), true) {
                 self.save();
                 if self.message.is_none() {
-                    self.screen = Screen::Main;
+                    self.go(Screen::Main);
                 }
             }
-            if ui.button(lang.t("Cancel", "Cancelar")).clicked() {
+            if self.focus.button(ui, lang.t("Cancel", "Cancelar"), true) {
                 self.edit = self.saved.clone();
                 self.recheck();
-                self.screen = Screen::Main;
+                self.go(Screen::Main);
             }
         });
     }
@@ -776,15 +1005,8 @@ impl Launcher {
     /// pressed this frame; Esc gives up.
     fn catch(&mut self, ctx: &egui::Context) {
         let lang = self.lang();
-        // Controller events: drained always, used while catching one.
-        let mut pressed = None;
-        if let Some(g) = self.gilrs.as_mut() {
-            while let Some(ev) = g.next_event() {
-                if let gilrs::EventType::ButtonPressed(b, _) = ev.event {
-                    pressed = Some(format!("{b:?}"));
-                }
-            }
-        }
+        // The controller button pressed this frame (raw_input_hook).
+        let pressed = self.pad_pressed.take();
         let Some((pad, i)) = self.capture else { return };
         if pad {
             if let Some(name) = pressed.filter(|n| pad_button(n).is_some()) {
@@ -834,30 +1056,28 @@ impl Launcher {
 
     fn controls_screen(&mut self, ui: &mut egui::Ui) {
         self.catch(ui.ctx());
-        // Keep polling the controllers while this screen is open.
-        ui.ctx().request_repaint_after(std::time::Duration::from_millis(30));
         let lang = self.lang();
         ui.heading(lang.t("Controls", "Controles"));
-        ui.horizontal(|ui| {
-            ui.label(lang.t("Movement", "Movimento"));
-            ui.selectable_value(&mut self.edit.modern, false, lang.t("Tank (original)", "Tanque (original)"));
-            ui.selectable_value(
-                &mut self.edit.modern,
-                true,
-                lang.t("Modern (relative to the camera)", "Moderno (relativo à câmera)"),
-            );
-        });
-        ui.add_enabled_ui(!self.edit.modern, |ui| {
-            ui.checkbox(
-                &mut self.edit.quick_turn,
-                lang.t("Quick turn (back + run)", "Meia-volta rápida (trás + correr)"),
-            );
-        });
+        let movement = [
+            (false, lang.t("Tank (original)", "Tanque (original)").to_string()),
+            (true, lang.t("Modern (relative to the camera)", "Moderno (relativo à câmera)").to_string()),
+        ];
+        self.focus.choice(ui, lang.t("Movement", "Movimento"), &mut self.edit.modern, &movement, true);
+        let tank = !self.edit.modern;
+        self.focus.checkbox(
+            ui,
+            &mut self.edit.quick_turn,
+            lang.t("Quick turn (back + run)", "Meia-volta rápida (trás + correr)"),
+            tank,
+        );
         ui.separator();
-        ui.horizontal(|ui| {
-            ui.selectable_value(&mut self.pad_tab, false, lang.t("Keyboard", "Teclado"));
-            ui.selectable_value(&mut self.pad_tab, true, lang.t("Controller", "Controle"));
-        });
+        let tabs =
+            [(false, lang.t("Keyboard", "Teclado").to_string()), (true, lang.t("Controller", "Controle").to_string())];
+        let before = self.pad_tab;
+        self.focus.choice(ui, lang.t("Mapping", "Mapeamento"), &mut self.pad_tab, &tabs, self.capture.is_none());
+        if self.pad_tab != before {
+            self.capture = None;
+        }
         ui.separator();
         if self.pad_tab {
             let names: Vec<String> = self
@@ -865,27 +1085,16 @@ impl Launcher {
                 .as_ref()
                 .map(|g| g.gamepads().map(|(_, p)| p.name().to_string()).collect())
                 .unwrap_or_default();
-            ui.horizontal(|ui| {
-                ui.label(lang.t("Player 1", "Jogador 1"));
-                let auto = lang.t("Last one used", "O último usado");
-                egui::ComboBox::from_id_salt("controller")
-                    .selected_text(if self.edit.controller.is_empty() { auto } else { self.edit.controller.as_str() })
-                    .width(300.0)
-                    .show_ui(ui, |ui| {
-                        ui.selectable_value(&mut self.edit.controller, String::new(), auto);
-                        let mut all = names.clone();
-                        if !self.edit.controller.is_empty() && !all.contains(&self.edit.controller) {
-                            all.push(self.edit.controller.clone());
-                        }
-                        for n in all {
-                            ui.selectable_value(&mut self.edit.controller, n.clone(), n);
-                        }
-                    });
-            });
+            let mut options = vec![(String::new(), lang.t("Last one used", "O último usado").to_string())];
+            options.extend(names.iter().map(|n| (n.clone(), n.clone())));
+            if !self.edit.controller.is_empty() && !names.contains(&self.edit.controller) {
+                options.push((self.edit.controller.clone(), self.edit.controller.clone()));
+            }
+            self.focus.choice(ui, lang.t("Player 1", "Jogador 1"), &mut self.edit.controller, &options, true);
             if names.is_empty() {
                 ui.label(lang.t("No controller connected.", "Nenhum controle conectado."));
             }
-            ui.checkbox(&mut self.edit.vibration, lang.t("Vibration", "Vibração"));
+            self.focus.checkbox(ui, &mut self.edit.vibration, lang.t("Vibration", "Vibração"), true);
         } else {
             ui.label(
                 lang.t("Esc, P, F9-F12 and Alt keep their own jobs.", "Esc, P, F9-F12 e Alt mantêm suas funções."),
@@ -898,13 +1107,22 @@ impl Launcher {
                     ui.label(b.label);
                     let waiting = self.capture == Some((self.pad_tab, i));
                     let text = if waiting {
-                        lang.t("Press a button... (Esc cancels)", "Aperte um botão... (Esc cancela)").to_string()
+                        if self.pad_tab {
+                            lang.t("Press a button... (Esc cancels)", "Aperte um botão... (Esc cancela)")
+                        } else {
+                            lang.t("Press a key... (Esc cancels)", "Aperte uma tecla... (Esc cancela)")
+                        }
+                        .to_string()
                     } else if self.pad_tab {
                         pad_label(&self.edit.pads[i])
                     } else {
                         key_label(&self.edit.keys[i])
                     };
-                    if ui.add(egui::Button::new(text).min_size([230.0, 0.0].into())).clicked() {
+                    let response = ui.add(egui::Button::new(text).min_size([230.0, 0.0].into()));
+                    let pressed = self.focus.item(ui, &response, false)
+                        && self.capture.is_none()
+                        && std::mem::take(&mut self.focus.accept);
+                    if response.clicked() || pressed {
                         self.capture = Some((self.pad_tab, i));
                         self.message = None;
                     }
@@ -914,20 +1132,20 @@ impl Launcher {
         });
         ui.separator();
         ui.horizontal(|ui| {
-            if ui.button(lang.t("Save", "Salvar")).clicked() {
+            if self.focus.button(ui, lang.t("Save", "Salvar"), true) {
                 self.capture = None;
                 self.save();
                 if self.message.is_none() {
-                    self.screen = Screen::Main;
+                    self.go(Screen::Main);
                 }
             }
-            if ui.button(lang.t("Cancel", "Cancelar")).clicked() {
+            if self.focus.button(ui, lang.t("Cancel", "Cancelar"), true) {
                 self.capture = None;
                 self.edit = self.saved.clone();
                 self.message = None;
-                self.screen = Screen::Main;
+                self.go(Screen::Main);
             }
-            if ui.button(lang.t("Restore defaults", "Restaurar padrões")).clicked() {
+            if self.focus.button(ui, lang.t("Restore defaults", "Restaurar padrões"), true) {
                 self.capture = None;
                 for (i, b) in BUTTONS.iter().enumerate() {
                     if self.pad_tab {
@@ -942,9 +1160,93 @@ impl Launcher {
 }
 
 impl eframe::App for Launcher {
+    /// Reads the controllers before each frame: their moves, and the button
+    /// pressed (for the Controls screen to catch); and, on the other
+    /// screens, the arrow keys, Enter and Esc as moves.
+    fn raw_input_hook(&mut self, ctx: &egui::Context, raw: &mut egui::RawInput) {
+        self.nav.clear();
+        self.pad_pressed = None;
+        // The keyboard moves the focus too on the other screens, unless a
+        // text field is being typed in or a key is being caught.
+        let typing = ctx.memory(|m| m.focused().is_some());
+        if self.screen != Screen::Main && self.capture.is_none() && !typing {
+            raw.events.retain(|ev| {
+                let egui::Event::Key { key, pressed: true, modifiers, .. } = ev else { return true };
+                let nav = match key {
+                    egui::Key::ArrowUp => Nav::Up,
+                    egui::Key::ArrowDown => Nav::Down,
+                    egui::Key::ArrowLeft => Nav::Left,
+                    egui::Key::ArrowRight => Nav::Right,
+                    egui::Key::Enter if !modifiers.alt => Nav::Accept,
+                    egui::Key::Escape => Nav::Back,
+                    _ => return true,
+                };
+                self.nav.push(nav);
+                false
+            });
+        }
+        let Some(g) = self.gilrs.as_mut() else { return };
+        while let Some(ev) = g.next_event() {
+            match ev.event {
+                gilrs::EventType::ButtonPressed(b, _) => {
+                    self.pad_pressed = Some(format!("{b:?}"));
+                    let nav = match b {
+                        gilrs::Button::DPadUp => Some(Nav::Up),
+                        gilrs::Button::DPadDown => Some(Nav::Down),
+                        gilrs::Button::DPadLeft => Some(Nav::Left),
+                        gilrs::Button::DPadRight => Some(Nav::Right),
+                        gilrs::Button::South => Some(Nav::Accept),
+                        gilrs::Button::East => Some(Nav::Back),
+                        _ => None,
+                    };
+                    self.nav.extend(nav);
+                }
+                // The stick: a move each time it is pushed past half way.
+                gilrs::EventType::AxisChanged(axis @ (gilrs::Axis::LeftStickX | gilrs::Axis::LeftStickY), v, _) => {
+                    let k = usize::from(axis == gilrs::Axis::LeftStickY);
+                    let dir = if v > 0.6 {
+                        1
+                    } else if v < -0.6 {
+                        -1
+                    } else if v.abs() < 0.3 {
+                        0
+                    } else {
+                        self.stick[k]
+                    };
+                    if dir != self.stick[k] && dir != 0 {
+                        self.nav.push(match (k, dir) {
+                            (0, 1) => Nav::Right,
+                            (0, _) => Nav::Left,
+                            (_, 1) => Nav::Up,
+                            _ => Nav::Down,
+                        });
+                    }
+                    self.stick[k] = dir;
+                }
+                _ => {}
+            }
+        }
+    }
+
     fn ui(&mut self, ui: &mut egui::Ui, frame: &mut eframe::Frame) {
         let window = window_handle(frame);
         let full = ui.max_rect();
+        // Keep reading the controllers, and the game's start.
+        ui.ctx().request_repaint_after(std::time::Duration::from_millis(50));
+        if let Some(e) = self.launch_error.lock().unwrap().take() {
+            self.message = Some(e);
+        }
+        // B (Circle): back to the main screen without saving.
+        if self.screen != Screen::Main && self.capture.is_none() && self.nav.contains(&Nav::Back) {
+            self.edit = self.saved.clone();
+            self.recheck();
+            self.message = None;
+            self.go(if self.saved_ready() { Screen::Main } else { Screen::Setup(0) });
+        }
+        // While a controller button is being caught, the controller is not
+        // moving the focus.
+        let nav = if self.capture.is_some() { Vec::new() } else { self.nav.clone() };
+        self.focus.frame(&nav);
         match &self.art {
             Some(art) => {
                 let uv = egui::Rect::from_min_max(egui::pos2(0.0, 0.0), egui::pos2(1.0, 1.0));
@@ -1025,6 +1327,33 @@ fn window_handle(frame: &eframe::Frame) -> Option<isize> {
         RawWindowHandle::Win32(h) => Some(h.hwnd.get()),
         _ => None,
     }
+}
+
+/// Whether process `pid` shows a window yet.
+fn has_window(pid: u32) -> bool {
+    use windows_sys::Win32::Foundation::{HWND, LPARAM};
+    use windows_sys::Win32::UI::WindowsAndMessaging::{EnumWindows, GetWindowThreadProcessId, IsWindowVisible};
+    struct Search {
+        pid: u32,
+        found: bool,
+    }
+    unsafe extern "system" fn visit(hwnd: HWND, data: LPARAM) -> i32 {
+        // SAFETY: `data` is the Search below, alive for the enumeration.
+        let search = unsafe { &mut *(data as *mut Search) };
+        let mut pid = 0;
+        // SAFETY: a window handle Windows passed, and a local to write to.
+        unsafe { GetWindowThreadProcessId(hwnd, &mut pid) };
+        // SAFETY: the same window handle.
+        if pid == search.pid && unsafe { IsWindowVisible(hwnd) } != 0 {
+            search.found = true;
+            return 0;
+        }
+        1
+    }
+    let mut search = Search { pid, found: false };
+    // SAFETY: `visit` only reads windows and writes `search`.
+    unsafe { EnumWindows(Some(visit), &mut search as *mut Search as LPARAM) };
+    search.found
 }
 
 /// Hides or shows (and brings forward) the launcher window; callable from

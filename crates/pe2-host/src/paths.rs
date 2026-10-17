@@ -69,9 +69,13 @@ pub fn settings() -> PathBuf {
     user_dir().join(SETTINGS)
 }
 
-/// Opens the folder of the player's files in the system's file manager.
-pub fn open_user_dir() {
-    let dir = user_file("");
+/// Opens the folder of the player's files in the system's file manager,
+/// starting it on a thread of its own (starting a program can take a
+/// moment, which the launcher's window would otherwise hang for).
+/// `failed` gets why, if it could not be started.
+pub fn open_user_dir(failed: impl FnOnce(String) + Send + 'static) {
+    let _ = std::fs::create_dir_all(user_dir());
+    let dir = user_dir().to_path_buf();
     let program = if cfg!(windows) {
         "explorer"
     } else if cfg!(target_os = "macos") {
@@ -79,5 +83,18 @@ pub fn open_user_dir() {
     } else {
         "xdg-open"
     };
-    let _ = std::process::Command::new(program).arg(dir).spawn();
+    std::thread::spawn(move || {
+        use std::process::Stdio;
+        // Not the standard handles: a launcher without a console has none
+        // that are valid to pass on, and starting the program would fail.
+        let started = std::process::Command::new(program)
+            .arg(&dir)
+            .stdin(Stdio::null())
+            .stdout(Stdio::null())
+            .stderr(Stdio::null())
+            .spawn();
+        if let Err(e) = started {
+            failed(format!("{program} {}: {e}", dir.display()));
+        }
+    });
 }
