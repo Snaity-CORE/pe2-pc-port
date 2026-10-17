@@ -46,7 +46,23 @@ fn key_to_button(key: KeyCode) -> Option<u16> {
     (bits != 0).then_some(bits)
 }
 
-const FRAME: Duration = Duration::from_micros(16_683);
+/// Redraws without a vertical blank asking for one (paused, or before the
+/// game starts): often enough for resizing and the title.
+const FRAME: Duration = Duration::from_millis(100);
+
+/// Wakes the window's event loop from other threads.
+static PROXY: std::sync::OnceLock<std::sync::Mutex<winit::event_loop::EventLoopProxy<()>>> = std::sync::OnceLock::new();
+
+/// Each vertical blank, after the picture is latched: the window shows it
+/// once, at the blank's pace. Drawing on a timer of its own instead drifts
+/// against the blanks, showing some pictures twice and skipping others,
+/// which shows at 60 distinct pictures a second (frame interpolation) as
+/// hitches and jumps.
+pub fn vblank() {
+    if let Some(proxy) = PROXY.get() {
+        let _ = proxy.lock().unwrap().send_event(());
+    }
+}
 
 /// True when PE2_INPUT scripts the controller (unattended runs).
 fn scripted() -> bool {
@@ -162,6 +178,14 @@ impl ApplicationHandler for App {
         }
     }
 
+    fn user_event(&mut self, _event_loop: &ActiveEventLoop, _event: ()) {
+        if let Some(w) = &self.window {
+            w.request_redraw();
+        }
+        present_trace();
+        self.next_redraw = Instant::now() + FRAME;
+    }
+
     fn about_to_wait(&mut self, event_loop: &ActiveEventLoop) {
         let now = Instant::now();
         if now >= self.next_redraw {
@@ -174,6 +198,29 @@ impl ApplicationHandler for App {
             self.update_title(now);
         }
         event_loop.set_control_flow(ControlFlow::WaitUntil(self.next_redraw));
+    }
+}
+
+/// PE2_TRACE=present: every 5 s, the vertical blanks the window was woken
+/// for and those that came more than 25 ms after the previous one (hitches).
+fn present_trace() {
+    if !crate::runtime::trace("present") {
+        return;
+    }
+    static STATE: std::sync::Mutex<Option<(Instant, Instant, u32, u32, Duration)>> = std::sync::Mutex::new(None);
+    let now = Instant::now();
+    let mut state = STATE.lock().unwrap();
+    let (since, last, count, late, worst) = state.get_or_insert((now, now, 0, 0, Duration::ZERO));
+    let gap = now - *last;
+    *last = now;
+    *count += 1;
+    if gap > Duration::from_millis(25) {
+        *late += 1;
+    }
+    *worst = (*worst).max(gap);
+    if now - *since >= Duration::from_secs(5) {
+        eprintln!("[present] {count} blanks in {:.1} s, {late} late, longest gap {:.1} ms", (now - *since).as_secs_f64(), worst.as_secs_f64() * 1000.0);
+        *state = Some((now, now, 0, 0, Duration::ZERO));
     }
 }
 
@@ -424,6 +471,7 @@ pub fn start() {
         .name("window".into())
         .spawn(|| {
             let event_loop = EventLoop::builder().with_any_thread(true).build().expect("event loop");
+            let _ = PROXY.set(std::sync::Mutex::new(event_loop.create_proxy()));
             let mut app = App {
                 window: None,
                 hardware: None,
