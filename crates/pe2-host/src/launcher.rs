@@ -63,7 +63,8 @@ struct Art {
 
 impl Art {
     fn load(ctx: &egui::Context) -> Option<Art> {
-        let texture = |name: &str, bytes: &[u8]| Some(ctx.load_texture(name, decode_webp(bytes)?, egui::TextureOptions::LINEAR));
+        let texture =
+            |name: &str, bytes: &[u8]| Some(ctx.load_texture(name, decode_webp(bytes)?, egui::TextureOptions::LINEAR));
         Some(Art { background: texture("background", BACKGROUND)?, logo: texture("logo", LOGO)? })
     }
 }
@@ -165,17 +166,31 @@ impl Settings {
             interpolation: flag("video", "frame_interpolation", true),
             fullscreen: flag("video", "fullscreen", false),
             cards: [text("memcard", "slot1"), text("memcard", "slot2")],
-            controller: get("input", "controller").and_then(|v| v.as_str()).filter(|n| *n != "auto").unwrap_or("").to_string(),
+            controller: get("input", "controller")
+                .and_then(|v| v.as_str())
+                .filter(|n| *n != "auto")
+                .unwrap_or("")
+                .to_string(),
             vibration: flag("input", "vibration", true),
             modern: get("input", "movement").and_then(|v| v.as_str()) == Some("modern"),
             quick_turn: flag("input", "quick_turn", true),
             keys: std::array::from_fn(|i| {
                 let b = &BUTTONS[i];
-                doc.get("input").and_then(|t| t.get("keyboard")).and_then(|t| t.get(b.name)).and_then(|v| v.as_str()).unwrap_or(b.key).to_string()
+                doc.get("input")
+                    .and_then(|t| t.get("keyboard"))
+                    .and_then(|t| t.get(b.name))
+                    .and_then(|v| v.as_str())
+                    .unwrap_or(b.key)
+                    .to_string()
             }),
             pads: std::array::from_fn(|i| {
                 let b = &BUTTONS[i];
-                doc.get("input").and_then(|t| t.get("gamepad")).and_then(|t| t.get(b.name)).and_then(|v| v.as_str()).unwrap_or(b.pad).to_string()
+                doc.get("input")
+                    .and_then(|t| t.get("gamepad"))
+                    .and_then(|t| t.get(b.name))
+                    .and_then(|v| v.as_str())
+                    .unwrap_or(b.pad)
+                    .to_string()
             }),
         }
     }
@@ -381,14 +396,24 @@ impl Launcher {
     /// One of the main screen's buttons at `rect`: a dark glass panel with
     /// an icon and a label, lit in the accent colour when pointed at or
     /// focused; `primary` (Play) is lit always.
-    fn menu_button(&self, ui: &mut egui::Ui, rect: egui::Rect, icon: Icon, label: &str, enabled: bool, primary: bool) -> egui::Response {
+    fn menu_button(
+        &self,
+        ui: &mut egui::Ui,
+        rect: egui::Rect,
+        icon: Icon,
+        label: &str,
+        enabled: bool,
+        primary: bool,
+    ) -> egui::Response {
         use egui::{Color32, FontFamily, FontId, Stroke, StrokeKind, pos2};
         let response = ui.allocate_rect(rect, if enabled { egui::Sense::click() } else { egui::Sense::hover() });
         let lit = enabled && (response.hovered() || response.has_focus());
         let (fill, stroke) = match (primary && enabled, lit) {
             (true, false) => (Color32::from_rgba_unmultiplied(8, 78, 74, 215), Stroke::new(1.5, TEAL)),
             (true, true) => (Color32::from_rgba_unmultiplied(14, 112, 106, 230), Stroke::new(2.0, TEAL)),
-            (false, false) => (Color32::from_rgba_unmultiplied(12, 16, 18, 200), Stroke::new(1.0, Color32::from_gray(58))),
+            (false, false) => {
+                (Color32::from_rgba_unmultiplied(12, 16, 18, 200), Stroke::new(1.0, Color32::from_gray(58)))
+            }
             (false, true) => (Color32::from_rgba_unmultiplied(16, 40, 40, 220), Stroke::new(1.5, TEAL)),
         };
         let painter = ui.painter();
@@ -400,17 +425,33 @@ impl Launcher {
                 let colour = if enabled { TEAL } else { Color32::from_gray(90) };
                 let (w, h) = (16.0, 18.0);
                 painter.add(egui::Shape::convex_polygon(
-                    vec![pos2(center.x - w / 2.0, center.y - h), pos2(center.x + w, center.y), pos2(center.x - w / 2.0, center.y + h)],
+                    vec![
+                        pos2(center.x - w / 2.0, center.y - h),
+                        pos2(center.x + w, center.y),
+                        pos2(center.x - w / 2.0, center.y + h),
+                    ],
                     colour,
                     Stroke::NONE,
                 ));
             }
             _ if self.icons => {
-                painter.text(center, egui::Align2::CENTER_CENTER, icon.glyph(), FontId::new(24.0, FontFamily::Name(ICON_FAMILY.into())), text);
+                painter.text(
+                    center,
+                    egui::Align2::CENTER_CENTER,
+                    icon.glyph(),
+                    FontId::new(24.0, FontFamily::Name(ICON_FAMILY.into())),
+                    text,
+                );
             }
             _ => {}
         }
-        painter.text(pos2(rect.left() + 84.0, rect.center().y), egui::Align2::LEFT_CENTER, label, FontId::proportional(21.0), text);
+        painter.text(
+            pos2(rect.left() + 84.0, rect.center().y),
+            egui::Align2::LEFT_CENTER,
+            label,
+            FontId::proportional(21.0),
+            text,
+        );
         response
     }
 
@@ -425,7 +466,12 @@ impl Launcher {
                 let size = art.logo.size_vec2();
                 let w = 380.0;
                 let rect = Rect::from_min_size(full.min + vec2(48.0, 40.0), vec2(w, w * size.y / size.x));
-                ui.painter().image(art.logo.id(), rect, Rect::from_min_max(pos2(0.0, 0.0), pos2(1.0, 1.0)), egui::Color32::WHITE);
+                ui.painter().image(
+                    art.logo.id(),
+                    rect,
+                    Rect::from_min_max(pos2(0.0, 0.0), pos2(1.0, 1.0)),
+                    egui::Color32::WHITE,
+                );
             }
             None => {
                 ui.painter().text(
@@ -471,15 +517,30 @@ impl Launcher {
         let status = if running {
             Some((egui::Color32::from_gray(200), lang.t("The game is running.", "O jogo está rodando.")))
         } else if !ready {
-            Some((egui::Color32::from_rgb(255, 120, 110), lang.t("Choose the disc images in Setup.", "Escolha as imagens dos discos na Configuração inicial.")))
+            Some((
+                egui::Color32::from_rgb(255, 120, 110),
+                lang.t("Choose the disc images in Setup.", "Escolha as imagens dos discos na Configuração inicial."),
+            ))
         } else {
             None
         };
         if let Some((colour, text)) = status {
-            ui.painter().text(pos2(full.left() + 75.0, y + 6.0), egui::Align2::LEFT_TOP, text, egui::FontId::proportional(15.0), colour);
+            ui.painter().text(
+                pos2(full.left() + 75.0, y + 6.0),
+                egui::Align2::LEFT_TOP,
+                text,
+                egui::FontId::proportional(15.0),
+                colour,
+            );
         }
         if let Some(m) = &self.message {
-            ui.painter().text(pos2(full.left() + 75.0, y + 28.0), egui::Align2::LEFT_TOP, m, egui::FontId::proportional(14.0), egui::Color32::from_rgb(255, 120, 110));
+            ui.painter().text(
+                pos2(full.left() + 75.0, y + 28.0),
+                egui::Align2::LEFT_TOP,
+                m,
+                egui::FontId::proportional(14.0),
+                egui::Color32::from_rgb(255, 120, 110),
+            );
         }
     }
 
@@ -489,7 +550,8 @@ impl Launcher {
         for d in 0..2 {
             ui.label(format!("{} {}", lang.t("Disc", "Disco"), d + 1));
             ui.horizontal(|ui| {
-                let changed = ui.add(egui::TextEdit::singleline(&mut self.edit.discs[d]).desired_width(560.0)).changed();
+                let changed =
+                    ui.add(egui::TextEdit::singleline(&mut self.edit.discs[d]).desired_width(560.0)).changed();
                 if ui.button(lang.t("Browse...", "Procurar...")).clicked()
                     && let Some(p) = rfd::FileDialog::new().add_filter("CD image", &["chd", "cue"]).pick_file()
                 {
@@ -541,19 +603,34 @@ impl Launcher {
         });
         ui.checkbox(&mut e.hardware, lang.t("Graphics card renderer", "Renderizar pela placa de vídeo"));
         ui.add_enabled_ui(e.scale > 1, |ui| {
-            ui.checkbox(&mut e.subpixel, lang.t("Sub-pixel precision (no wobbling)", "Precisão subpixel (sem tremido)"));
+            ui.checkbox(
+                &mut e.subpixel,
+                lang.t("Sub-pixel precision (no wobbling)", "Precisão subpixel (sem tremido)"),
+            );
             ui.add_enabled_ui(e.subpixel, |ui| {
-                ui.checkbox(&mut e.perspective, lang.t("Perspective-correct textures", "Texturas com correção de perspectiva"));
+                ui.checkbox(
+                    &mut e.perspective,
+                    lang.t("Perspective-correct textures", "Texturas com correção de perspectiva"),
+                );
             });
             ui.add_enabled_ui(e.hardware, |ui| {
-                ui.checkbox(&mut e.bilinear, lang.t("Smooth 3D textures (bilinear)", "Suavizar texturas 3D (bilinear)"));
-                ui.checkbox(&mut e.smooth_backgrounds, lang.t("Smooth backgrounds (bicubic)", "Suavizar cenários (bicúbico)"));
+                ui.checkbox(
+                    &mut e.bilinear,
+                    lang.t("Smooth 3D textures (bilinear)", "Suavizar texturas 3D (bilinear)"),
+                );
+                ui.checkbox(
+                    &mut e.smooth_backgrounds,
+                    lang.t("Smooth backgrounds (bicubic)", "Suavizar cenários (bicúbico)"),
+                );
             });
             ui.add_enabled_ui(e.hardware && e.subpixel, |ui| {
                 ui.checkbox(&mut e.interpolation, lang.t("Smooth motion (60 fps)", "Movimento suave (60 fps)"));
             });
         });
-        ui.checkbox(&mut e.fullscreen, lang.t("Start in full screen (Alt+Enter toggles)", "Iniciar em tela cheia (Alt+Enter alterna)"));
+        ui.checkbox(
+            &mut e.fullscreen,
+            lang.t("Start in full screen (Alt+Enter toggles)", "Iniciar em tela cheia (Alt+Enter alterna)"),
+        );
     }
 
     fn language(&mut self, ui: &mut egui::Ui) {
@@ -594,7 +671,8 @@ impl Launcher {
                                 .desired_width(560.0),
                         );
                         if ui.button(lang.t("Browse...", "Procurar...")).clicked()
-                            && let Some(p) = rfd::FileDialog::new().add_filter("Memory card", &["mcd", "mcr"]).save_file()
+                            && let Some(p) =
+                                rfd::FileDialog::new().add_filter("Memory card", &["mcd", "mcr"]).save_file()
                         {
                             self.edit.cards[s] = p.display().to_string();
                         }
@@ -625,7 +703,10 @@ impl Launcher {
             }
         });
         if step == 1 && !self.checks[0].as_ref().is_some_and(|c| c.is_ok()) {
-            ui.label(lang.t("Disc 1 is needed to go on (disc 2 can be added later).", "O disco 1 é necessário para continuar (o disco 2 pode ser adicionado depois)."));
+            ui.label(lang.t(
+                "Disc 1 is needed to go on (disc 2 can be added later).",
+                "O disco 1 é necessário para continuar (o disco 2 pode ser adicionado depois).",
+            ));
         }
     }
 
@@ -644,7 +725,10 @@ impl Launcher {
             self.language(ui);
             ui.checkbox(&mut self.edit.confirm_exit, lang.t("Ask before Esc quits", "Perguntar antes de Esc sair"));
             ui.horizontal(|ui| {
-                ui.label(lang.t("Data folder (settings, saves, screenshots):", "Pasta de dados (configurações, saves, capturas):"));
+                ui.label(lang.t(
+                    "Data folder (settings, saves, screenshots):",
+                    "Pasta de dados (configurações, saves, capturas):",
+                ));
                 if ui.button(lang.t("Open", "Abrir")).clicked() {
                     crate::paths::open_user_dir();
                 }
@@ -719,7 +803,11 @@ impl Launcher {
         });
         match caught {
             Some(Some(name)) if RESERVED_KEYS.contains(&name.as_str()) => {
-                self.message = Some(format!("{}: {}", key_label(&name), lang.t("reserved (Esc, P, F9-F12, Alt)", "reservada (Esc, P, F9-F12, Alt)")));
+                self.message = Some(format!(
+                    "{}: {}",
+                    key_label(&name),
+                    lang.t("reserved (Esc, P, F9-F12, Alt)", "reservada (Esc, P, F9-F12, Alt)")
+                ));
             }
             Some(Some(name)) => {
                 self.edit.keys[i] = name;
@@ -740,10 +828,17 @@ impl Launcher {
         ui.horizontal(|ui| {
             ui.label(lang.t("Movement", "Movimento"));
             ui.selectable_value(&mut self.edit.modern, false, lang.t("Tank (original)", "Tanque (original)"));
-            ui.selectable_value(&mut self.edit.modern, true, lang.t("Modern (relative to the camera)", "Moderno (relativo à câmera)"));
+            ui.selectable_value(
+                &mut self.edit.modern,
+                true,
+                lang.t("Modern (relative to the camera)", "Moderno (relativo à câmera)"),
+            );
         });
         ui.add_enabled_ui(!self.edit.modern, |ui| {
-            ui.checkbox(&mut self.edit.quick_turn, lang.t("Quick turn (back + run)", "Meia-volta rápida (trás + correr)"));
+            ui.checkbox(
+                &mut self.edit.quick_turn,
+                lang.t("Quick turn (back + run)", "Meia-volta rápida (trás + correr)"),
+            );
         });
         ui.separator();
         ui.horizontal(|ui| {
@@ -752,8 +847,11 @@ impl Launcher {
         });
         ui.separator();
         if self.pad_tab {
-            let names: Vec<String> =
-                self.gilrs.as_ref().map(|g| g.gamepads().map(|(_, p)| p.name().to_string()).collect()).unwrap_or_default();
+            let names: Vec<String> = self
+                .gilrs
+                .as_ref()
+                .map(|g| g.gamepads().map(|(_, p)| p.name().to_string()).collect())
+                .unwrap_or_default();
             ui.horizontal(|ui| {
                 ui.label(lang.t("Player 1", "Jogador 1"));
                 let auto = lang.t("Last one used", "O último usado");
@@ -776,7 +874,9 @@ impl Launcher {
             }
             ui.checkbox(&mut self.edit.vibration, lang.t("Vibration", "Vibração"));
         } else {
-            ui.label(lang.t("Esc, P, F9-F12 and Alt keep their own jobs.", "Esc, P, F9-F12 e Alt mantêm suas funções."));
+            ui.label(
+                lang.t("Esc, P, F9-F12 and Alt keep their own jobs.", "Esc, P, F9-F12 e Alt mantêm suas funções."),
+            );
         }
         ui.add_space(4.0);
         egui::ScrollArea::vertical().max_height(ui.available_height() - 64.0).show(ui, |ui| {
@@ -1003,11 +1103,7 @@ pub fn run() -> ExitCode {
     if let Some((rgba, side)) = crate::icon::rgba() {
         viewport = viewport.with_icon(egui::IconData { rgba, width: side, height: side });
     }
-    let options = eframe::NativeOptions {
-        viewport,
-        renderer: eframe::Renderer::Glow,
-        ..Default::default()
-    };
+    let options = eframe::NativeOptions { viewport, renderer: eframe::Renderer::Glow, ..Default::default() };
     let creator = Box::new(|cc: &eframe::CreationContext<'_>| {
         let icons = add_fonts(&cc.egui_ctx);
         set_style(&cc.egui_ctx);

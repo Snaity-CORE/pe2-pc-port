@@ -36,10 +36,8 @@ pub fn get() -> Option<&'static Gfx> {
 
 fn open() -> Option<Gfx> {
     let instance = wgpu::Instance::default();
-    let options = wgpu::RequestAdapterOptions {
-        power_preference: wgpu::PowerPreference::HighPerformance,
-        ..Default::default()
-    };
+    let options =
+        wgpu::RequestAdapterOptions { power_preference: wgpu::PowerPreference::HighPerformance, ..Default::default() };
     let adapter = match pollster::block_on(instance.request_adapter(&options)) {
         Ok(a) => a,
         Err(err) => {
@@ -48,10 +46,9 @@ fn open() -> Option<Gfx> {
         }
     };
     let info = adapter.get_info();
-    let (device, queue) = match pollster::block_on(adapter.request_device(&wgpu::DeviceDescriptor {
-        label: Some("pe2"),
-        ..Default::default()
-    })) {
+    let (device, queue) = match pollster::block_on(
+        adapter.request_device(&wgpu::DeviceDescriptor { label: Some("pe2"), ..Default::default() }),
+    ) {
         Ok(d) => d,
         Err(err) => {
             eprintln!("pe2: {}: {err}; using the software renderer", info.name);

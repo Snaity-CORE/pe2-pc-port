@@ -46,9 +46,7 @@ pub fn trace(topic: &str) -> bool {
     static TOPICS: std::sync::OnceLock<Vec<String>> = std::sync::OnceLock::new();
     TOPICS
         .get_or_init(|| {
-            std::env::var("PE2_TRACE")
-                .map(|v| v.split(',').map(|t| t.trim().to_string()).collect())
-                .unwrap_or_default()
+            std::env::var("PE2_TRACE").map(|v| v.split(',').map(|t| t.trim().to_string()).collect()).unwrap_or_default()
         })
         .iter()
         .any(|t| t == topic || t == "all")
@@ -106,9 +104,7 @@ unsafe extern "C" {
 /// PSX address of a main-image library routine, by name.
 pub fn library_address(name: &str) -> Option<u32> {
     // SAFETY: generated, immutable table of pc_runtime_fn_count entries.
-    let fns = unsafe {
-        std::slice::from_raw_parts(pc_runtime_fns.as_ptr(), pc_runtime_fn_count as usize)
-    };
+    let fns = unsafe { std::slice::from_raw_parts(pc_runtime_fns.as_ptr(), pc_runtime_fn_count as usize) };
     fns.iter()
         // SAFETY: names are NUL-terminated string literals.
         .find(|f| unsafe { std::ffi::CStr::from_ptr(f.name) }.to_bytes() == name.as_bytes())

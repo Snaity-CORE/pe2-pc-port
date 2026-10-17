@@ -271,7 +271,8 @@ const UV_CLAMP: u32 = 1 << 29;
 fn bilinear() -> bool {
     static ON: std::sync::OnceLock<bool> = std::sync::OnceLock::new();
     *ON.get_or_init(|| {
-        let choice = std::env::var("PE2_TEXTURE_FILTER").ok().or_else(|| crate::config::get().video.texture_filter.clone());
+        let choice =
+            std::env::var("PE2_TEXTURE_FILTER").ok().or_else(|| crate::config::get().video.texture_filter.clone());
         match choice.as_deref().map(str::trim) {
             None | Some("nearest") => false,
             Some("bilinear") => true,
@@ -290,7 +291,9 @@ fn bilinear() -> bool {
 fn smooth_uploads() -> bool {
     static ON: std::sync::OnceLock<bool> = std::sync::OnceLock::new();
     *ON.get_or_init(|| {
-        let choice = std::env::var("PE2_BACKGROUND_FILTER").ok().or_else(|| crate::config::get().video.background_filter.clone());
+        let choice = std::env::var("PE2_BACKGROUND_FILTER")
+            .ok()
+            .or_else(|| crate::config::get().video.background_filter.clone());
         match choice.as_deref().map(str::trim) {
             None | Some("nearest") => false,
             Some("bicubic") => true,
@@ -338,7 +341,9 @@ impl Blend {
             Blend::None => return None,
             Blend::Average => BlendComponent { src_factor: F::Constant, dst_factor: F::Constant, operation: Op::Add },
             Blend::Add => BlendComponent { src_factor: F::One, dst_factor: F::One, operation: Op::Add },
-            Blend::Subtract => BlendComponent { src_factor: F::One, dst_factor: F::One, operation: Op::ReverseSubtract },
+            Blend::Subtract => {
+                BlendComponent { src_factor: F::One, dst_factor: F::One, operation: Op::ReverseSubtract }
+            }
             Blend::AddQuarter => BlendComponent { src_factor: F::Constant, dst_factor: F::One, operation: Op::Add },
         };
         Some(wgpu::BlendState { color, alpha: BlendComponent::REPLACE })
@@ -513,7 +518,8 @@ impl Hw {
             wgpu::TextureFormat::Rgba8Unorm,
             U::RENDER_ATTACHMENT | U::TEXTURE_BINDING | U::COPY_SRC | U::COPY_DST,
         );
-        let scratch = texture("hw scratch", width, height, wgpu::TextureFormat::Rgba8Unorm, U::TEXTURE_BINDING | U::COPY_DST);
+        let scratch =
+            texture("hw scratch", width, height, wgpu::TextureFormat::Rgba8Unorm, U::TEXTURE_BINDING | U::COPY_DST);
         let vram = texture(
             "hw vram",
             VRAM_WIDTH as u32,
@@ -540,22 +546,38 @@ impl Hw {
         let layout = device.create_bind_group_layout(&wgpu::BindGroupLayoutDescriptor {
             label: Some("hw"),
             entries: &[
-                entry(0, wgpu::BindingType::Buffer { ty: wgpu::BufferBindingType::Uniform, has_dynamic_offset: false, min_binding_size: None }),
-                entry(1, wgpu::BindingType::Texture {
-                    sample_type: wgpu::TextureSampleType::Uint,
-                    view_dimension: wgpu::TextureViewDimension::D2,
-                    multisampled: false,
-                }),
-                entry(2, wgpu::BindingType::Buffer {
-                    ty: wgpu::BufferBindingType::Storage { read_only: true },
-                    has_dynamic_offset: false,
-                    min_binding_size: None,
-                }),
-                entry(3, wgpu::BindingType::Texture {
-                    sample_type: wgpu::TextureSampleType::Float { filterable: false },
-                    view_dimension: wgpu::TextureViewDimension::D2,
-                    multisampled: false,
-                }),
+                entry(
+                    0,
+                    wgpu::BindingType::Buffer {
+                        ty: wgpu::BufferBindingType::Uniform,
+                        has_dynamic_offset: false,
+                        min_binding_size: None,
+                    },
+                ),
+                entry(
+                    1,
+                    wgpu::BindingType::Texture {
+                        sample_type: wgpu::TextureSampleType::Uint,
+                        view_dimension: wgpu::TextureViewDimension::D2,
+                        multisampled: false,
+                    },
+                ),
+                entry(
+                    2,
+                    wgpu::BindingType::Buffer {
+                        ty: wgpu::BufferBindingType::Storage { read_only: true },
+                        has_dynamic_offset: false,
+                        min_binding_size: None,
+                    },
+                ),
+                entry(
+                    3,
+                    wgpu::BindingType::Texture {
+                        sample_type: wgpu::TextureSampleType::Float { filterable: false },
+                        view_dimension: wgpu::TextureViewDimension::D2,
+                        multisampled: false,
+                    },
+                ),
             ],
         });
         let module = device.create_shader_module(wgpu::ShaderModuleDescriptor {
@@ -717,7 +739,8 @@ impl Hw {
             self.keys.resize(self.vertices.len(), 0);
         }
         if let Some(Op::Draw { blend: b, scissor: s, count, .. }) = self.ops.last_mut()
-            && *b == blend && *s == scissor
+            && *b == blend
+            && *s == scissor
         {
             *count += verts.len() as u32;
             return;
@@ -743,7 +766,8 @@ impl Hw {
     /// top-left and bottom-right corners.
     fn quad(x0: f32, y0: f32, x1: f32, y1: f32, u0: [f32; 2], u1: [f32; 2], template: GpuVertex) -> [GpuVertex; 6] {
         let v = |x, y, u, v| GpuVertex { pos: [x, y], uv: [u, v], ..template };
-        let (a, b, c, d) = (v(x0, y0, u0[0], u0[1]), v(x1, y0, u1[0], u0[1]), v(x0, y1, u0[0], u1[1]), v(x1, y1, u1[0], u1[1]));
+        let (a, b, c, d) =
+            (v(x0, y0, u0[0], u0[1]), v(x1, y0, u1[0], u0[1]), v(x0, y1, u0[0], u1[1]), v(x1, y1, u1[0], u1[1]));
         [a, b, c, b, d, c]
     }
 
@@ -780,7 +804,14 @@ impl Hw {
 
     /// Records a shaded primitive: textured semi-transparent ones in two
     /// passes, since only texels with bit 15 set are blended.
-    fn shaded(&mut self, vram: &Vram, st: &DrawState, sh: &Shading, keys: &[u32], make: impl Fn(GpuVertex) -> Vec<GpuVertex>) {
+    fn shaded(
+        &mut self,
+        vram: &Vram,
+        st: &DrawState,
+        sh: &Shading,
+        keys: &[u32],
+        make: impl Fn(GpuVertex) -> Vec<GpuVertex>,
+    ) {
         if self.too_much() {
             self.flush(vram);
         }
@@ -863,10 +894,16 @@ impl Hw {
         // Texel coordinates at the corners: with a flip, counting down from
         // just below the next texel keeps whole texels per native pixel.
         const EDGE: f32 = 1.0 / 4096.0;
-        let (u0, u1) =
-            if st.rect_flip_x { (u as f32 + 1.0 - EDGE, (u - w) as f32 + 1.0 - EDGE) } else { (u as f32, (u + w) as f32) };
-        let (v0, v1) =
-            if st.rect_flip_y { (v as f32 + 1.0 - EDGE, (v - h) as f32 + 1.0 - EDGE) } else { (v as f32, (v + h) as f32) };
+        let (u0, u1) = if st.rect_flip_x {
+            (u as f32 + 1.0 - EDGE, (u - w) as f32 + 1.0 - EDGE)
+        } else {
+            (u as f32, (u + w) as f32)
+        };
+        let (v0, v1) = if st.rect_flip_y {
+            (v as f32 + 1.0 - EDGE, (v - h) as f32 + 1.0 - EDGE)
+        } else {
+            (v as f32, (v + h) as f32)
+        };
         let (x0, y0, x1, y1) = (x as f32 * s, y as f32 * s, (x + w) as f32 * s, (y + h) as f32 * s);
         // The quad's far edges sit on pixel boundaries: pull them in by a
         // half pixel so the last row and column are covered exactly once.
@@ -894,7 +931,15 @@ impl Hw {
                 let lerp = |p: i32, q: i32| if steps == 0 { p } else { p + (q - p) * i / steps };
                 let (x, y) = (lerp(a.x, b.x) as f32 * s, lerp(a.y, b.y) as f32 * s);
                 let c = if gouraud { rgb(lerp(a.r, b.r), lerp(a.g, b.g), lerp(a.b, b.b)) } else { rgb(a.r, a.g, a.b) };
-                for q in Self::quad(x - 0.5, y - 0.5, x + s - 0.5, y + s - 0.5, [0.0; 2], [0.0; 2], GpuVertex { color: c, ..t }) {
+                for q in Self::quad(
+                    x - 0.5,
+                    y - 0.5,
+                    x + s - 0.5,
+                    y + s - 0.5,
+                    [0.0; 2],
+                    [0.0; 2],
+                    GpuVertex { color: c, ..t },
+                ) {
                     out.push(q);
                 }
             }
@@ -1018,7 +1063,13 @@ impl Hw {
         if self.ops.is_empty() {
             // Kept even without work: later flushes of the frame sample it.
             if let (Some(frame), Some(update)) = (self.frame.as_mut(), sent) {
-                frame.push(Chunk { vram: Some(update), ops: Vec::new(), vertices: Vec::new(), keys: Vec::new(), uploads: Vec::new() });
+                frame.push(Chunk {
+                    vram: Some(update),
+                    ops: Vec::new(),
+                    vertices: Vec::new(),
+                    keys: Vec::new(),
+                    uploads: Vec::new(),
+                });
             }
             return;
         }
@@ -1066,9 +1117,13 @@ impl Hw {
             let ubytes = bytes(uploads);
             if self.upload_buffer.size() < ubytes.len() as u64 {
                 self.upload_buffer = Self::make_upload_buffer(device, (ubytes.len() as u64).next_power_of_two());
-                self.bind = Self::make_bind(device, &self.layout, &self.uniforms, &self.vram, &self.upload_buffer, &self.scratch);
+                self.bind = Self::make_bind(
+                    device, &self.layout, &self.uniforms, &self.vram, &self.upload_buffer, &self.scratch,
+                );
                 if let Some((texture, bind)) = self.vram_replay.as_mut() {
-                    *bind = Self::make_bind(device, &self.layout, &self.uniforms, texture, &self.upload_buffer, &self.scratch);
+                    *bind = Self::make_bind(
+                        device, &self.layout, &self.uniforms, texture, &self.upload_buffer, &self.scratch,
+                    );
                 }
             }
             gfx.queue.write_buffer(&self.upload_buffer, 0, ubytes);
@@ -1086,11 +1141,11 @@ impl Hw {
                     origin: wgpu::Origin3d { x, y, z: 0 },
                     aspect: wgpu::TextureAspect::All,
                 };
-                encoder.copy_texture_to_texture(at(&self.target), at(&self.scratch), wgpu::Extent3d {
-                    width: w,
-                    height: h,
-                    depth_or_array_layers: 1,
-                });
+                encoder.copy_texture_to_texture(
+                    at(&self.target),
+                    at(&self.scratch),
+                    wgpu::Extent3d { width: w, height: h, depth_or_array_layers: 1 },
+                );
                 i += 1;
                 continue;
             }
@@ -1176,7 +1231,11 @@ impl Hw {
             return;
         }
         let mut encoder = self.gfx.device.create_command_encoder(&Default::default());
-        encoder.copy_texture_to_texture(at(from), at(to), wgpu::Extent3d { width: w, height: h, depth_or_array_layers: 1 });
+        encoder.copy_texture_to_texture(
+            at(from),
+            at(to),
+            wgpu::Extent3d { width: w, height: h, depth_or_array_layers: 1 },
+        );
         self.gfx.queue.submit([encoder.finish()]);
     }
 
@@ -1225,7 +1284,9 @@ impl Hw {
                 usage: wgpu::TextureUsages::TEXTURE_BINDING | wgpu::TextureUsages::COPY_DST,
                 view_formats: &[],
             });
-            let bind = Self::make_bind(&self.gfx.device, &self.layout, &self.uniforms, &texture, &self.upload_buffer, &self.scratch);
+            let bind = Self::make_bind(
+                &self.gfx.device, &self.layout, &self.uniforms, &texture, &self.upload_buffer, &self.scratch,
+            );
             self.vram_replay = Some((texture, bind));
         }
         let (texture, _) = self.vram_replay.as_ref().unwrap();

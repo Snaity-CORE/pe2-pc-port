@@ -92,9 +92,12 @@ pub fn raise_irq() {
         eprintln!("[spu {:8.3}] irq (callback 0x{cb:08X})", stamp());
     }
     if cb != 0 {
-        irq::schedule(Instant::now(), Box::new(move || {
-            call_psx(cb, &[]);
-        }));
+        irq::schedule(
+            Instant::now(),
+            Box::new(move || {
+                call_psx(cb, &[]);
+            }),
+        );
     }
 }
 

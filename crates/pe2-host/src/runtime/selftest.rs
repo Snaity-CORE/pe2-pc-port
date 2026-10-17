@@ -145,7 +145,11 @@ pub fn run(lib_addr: impl Fn(&str) -> Option<u32>) -> u32 {
     // orthonormal rows (|row| = 4096, rows orthogonal).
     let (sv, m0, m1, m2, v0, v1) = (BASE, BASE + 0x40, BASE + 0x80, BASE + 0xC0, BASE + 0x100, BASE + 0x140);
     for case in 0..12 {
-        let ang = if case == 0 { [0, 0, 0] } else { [rng.range(-4096, 4096), rng.range(-4096, 4096), rng.range(-4096, 4096)] };
+        let ang = if case == 0 {
+            [0, 0, 0]
+        } else {
+            [rng.range(-4096, 4096), rng.range(-4096, 4096), rng.range(-4096, 4096)]
+        };
         for (i, a) in ang.iter().enumerate() {
             w16(sv + 2 * i as u32, *a as i16);
         }

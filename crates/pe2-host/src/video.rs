@@ -99,7 +99,9 @@ impl ApplicationHandler for App {
         }
         let attrs = Window::default_attributes()
             .with_title("Parasite Eve II")
-            .with_window_icon(crate::icon::rgba().and_then(|(px, side)| winit::window::Icon::from_rgba(px, side, side).ok()))
+            .with_window_icon(
+                crate::icon::rgba().and_then(|(px, side)| winit::window::Icon::from_rgba(px, side, side).ok()),
+            )
             .with_inner_size(winit::dpi::LogicalSize::new(960, 720))
             // Scripted (unattended) runs must not steal focus from whatever
             // the user is typing in.
@@ -129,7 +131,8 @@ impl ApplicationHandler for App {
                     // Alt+Enter: full screen on or off (Enter is also Start:
                     // not passed to the pad while Alt is held).
                     if self.alt && matches!(code, KeyCode::Enter | KeyCode::NumpadEnter) {
-                        if event.state == ElementState::Pressed && !event.repeat
+                        if event.state == ElementState::Pressed
+                            && !event.repeat
                             && let Some(w) = &self.window
                         {
                             w.set_fullscreen(fullscreen_mode(w.fullscreen().is_none()));
@@ -222,7 +225,11 @@ fn present_trace() {
     }
     *worst = (*worst).max(gap);
     if now - *since >= Duration::from_secs(5) {
-        eprintln!("[present] {count} blanks in {:.1} s, {late} late, longest gap {:.1} ms", (now - *since).as_secs_f64(), worst.as_secs_f64() * 1000.0);
+        eprintln!(
+            "[present] {count} blanks in {:.1} s, {late} late, longest gap {:.1} ms",
+            (now - *since).as_secs_f64(),
+            worst.as_secs_f64() * 1000.0
+        );
         *state = Some((now, now, 0, 0, Duration::ZERO));
     }
 }
@@ -251,7 +258,12 @@ impl App {
         let (text, caption) = (wide("Quit Parasite Eve II?"), wide("Parasite Eve II"));
         // SAFETY: valid NUL-terminated strings and this thread's own window.
         let answer = unsafe {
-            MessageBoxW(hwnd, text.as_ptr(), caption.as_ptr(), MB_OKCANCEL | MB_ICONQUESTION | MB_DEFBUTTON2 | MB_SETFOREGROUND)
+            MessageBoxW(
+                hwnd,
+                text.as_ptr(),
+                caption.as_ptr(),
+                MB_OKCANCEL | MB_ICONQUESTION | MB_DEFBUTTON2 | MB_SETFOREGROUND,
+            )
         };
         // Keys released while the box was open never reached the window.
         PAD1_BUTTONS.store(0, Ordering::SeqCst);
@@ -345,7 +357,10 @@ fn save_screenshot() {
             windows_sys::Win32::System::SystemInformation::GetLocalTime(&mut t);
             t
         };
-        let stem = format!("pe2_{:04}-{:02}-{:02}_{:02}-{:02}-{:02}", t.wYear, t.wMonth, t.wDay, t.wHour, t.wMinute, t.wSecond);
+        let stem = format!(
+            "pe2_{:04}-{:02}-{:02}_{:02}-{:02}-{:02}",
+            t.wYear, t.wMonth, t.wDay, t.wHour, t.wMinute, t.wSecond
+        );
         let mut path = dir.join(format!("{stem}.png"));
         for n in 2.. {
             if !path.exists() {

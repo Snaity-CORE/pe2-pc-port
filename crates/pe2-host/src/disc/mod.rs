@@ -70,17 +70,11 @@ pub trait Disc: Send {
 
 /// Opens a `.cue` or `.chd` image.
 pub fn open(path: &Path) -> Result<Box<dyn Disc>> {
-    let ext = path
-        .extension()
-        .and_then(|e| e.to_str())
-        .map(str::to_ascii_lowercase);
+    let ext = path.extension().and_then(|e| e.to_str()).map(str::to_ascii_lowercase);
     match ext.as_deref() {
         Some("cue") => Ok(Box::new(cue::CueDisc::open(path)?)),
         Some("chd") => Ok(Box::new(chd::ChdDisc::open(path)?)),
-        _ => Err(DiscError::Format(format!(
-            "{}: unsupported image (use a .cue or .chd)",
-            path.display()
-        ))),
+        _ => Err(DiscError::Format(format!("{}: unsupported image (use a .cue or .chd)", path.display()))),
     }
 }
 

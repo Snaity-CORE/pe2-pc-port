@@ -10,10 +10,7 @@ fn main() {
     let game_dir = root.join("build/game");
     let lib = game_dir.join("pe2game.lib");
     if !lib.exists() {
-        panic!(
-            "{} not found: run `python tools/build_game.py` first",
-            lib.display()
-        );
+        panic!("{} not found: run `python tools/build_game.py` first", lib.display());
     }
     println!("cargo:rerun-if-changed={}", lib.display());
     println!("cargo:rustc-link-search=native={}", game_dir.display());
@@ -27,14 +24,7 @@ fn main() {
     // table.
     icon(&root);
 
-    for arg in [
-        "/LARGEADDRESSAWARE",
-        "/FIXED",
-        "/DYNAMICBASE:NO",
-        "/BASE:0x00400000",
-        "/SAFESEH:NO",
-        "/MAP",
-    ] {
+    for arg in ["/LARGEADDRESSAWARE", "/FIXED", "/DYNAMICBASE:NO", "/BASE:0x00400000", "/SAFESEH:NO", "/MAP"] {
         println!("cargo:rustc-link-arg-bins={arg}");
     }
 }
@@ -111,7 +101,12 @@ fn load_square_rgba(path: &Path) -> Result<(Vec<u8>, u32), String> {
 /// darken the edges).
 fn downscale(rgba: &[u8], from: u32, to: u32) -> Vec<u8> {
     let mut out = vec![0u8; (to * to * 4) as usize];
-    let span = |i: u32| ((i as u64 * from as u64 / to as u64) as u32, (((i + 1) as u64 * from as u64 / to as u64) as u32).max(i * from / to + 1));
+    let span = |i: u32| {
+        (
+            (i as u64 * from as u64 / to as u64) as u32,
+            (((i + 1) as u64 * from as u64 / to as u64) as u32).max(i * from / to + 1),
+        )
+    };
     for ty in 0..to {
         let (y0, y1) = span(ty);
         for tx in 0..to {

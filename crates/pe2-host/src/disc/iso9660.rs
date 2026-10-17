@@ -40,8 +40,8 @@ pub fn find_file(disc: &mut dyn Disc, path: &str) -> Result<FileExtent> {
         .collect();
     for (depth, name) in wanted.iter().enumerate() {
         let is_last = depth + 1 == wanted.len();
-        let entry = find_in_dir(disc, dir, name)?
-            .ok_or_else(|| DiscError::Format(format!("{path}: not found on disc")))?;
+        let entry =
+            find_in_dir(disc, dir, name)?.ok_or_else(|| DiscError::Format(format!("{path}: not found on disc")))?;
         if !is_last && !entry.1 {
             return Err(DiscError::Format(format!("{path}: {name} is not a directory")));
         }

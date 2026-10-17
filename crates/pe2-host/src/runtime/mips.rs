@@ -145,7 +145,9 @@ impl Cpu {
                 // BIOS function table call: function number in t1.
                 log!(
                     "[mips] function 0x{:08X} calls BIOS {:02X}:{:02X} (not available, returns 0)",
-                    self.entry, self.pc, self.r[9]
+                    self.entry,
+                    self.pc,
+                    self.r[9]
                 );
                 self.r[2] = 0;
                 self.pc = self.r[31];
@@ -220,7 +222,9 @@ impl Cpu {
                     self.set(rd, ret);
                     self.branch(s);
                 }
-                0x0C | 0x0D => log!("[mips] syscall/break in 0x{:08X} at 0x{:08X}", self.entry, self.pc.wrapping_sub(4)),
+                0x0C | 0x0D => {
+                    log!("[mips] syscall/break in 0x{:08X} at 0x{:08X}", self.entry, self.pc.wrapping_sub(4))
+                }
                 0x10 => self.set(rd, self.hi),
                 0x11 => self.hi = s,
                 0x12 => self.set(rd, self.lo),
@@ -277,10 +281,26 @@ impl Cpu {
                 self.set(31, ret);
                 self.branch((self.pc & 0xF000_0000) | ((i & 0x03FF_FFFF) << 2));
             }
-            0x04 => if s == t { self.branch(br_target) },
-            0x05 => if s != t { self.branch(br_target) },
-            0x06 => if (s as i32) <= 0 { self.branch(br_target) },
-            0x07 => if (s as i32) > 0 { self.branch(br_target) },
+            0x04 => {
+                if s == t {
+                    self.branch(br_target)
+                }
+            }
+            0x05 => {
+                if s != t {
+                    self.branch(br_target)
+                }
+            }
+            0x06 => {
+                if (s as i32) <= 0 {
+                    self.branch(br_target)
+                }
+            }
+            0x07 => {
+                if (s as i32) > 0 {
+                    self.branch(br_target)
+                }
+            }
             0x08 | 0x09 => self.set(rt, s.wrapping_add(simm)),
             0x0A => self.set(rt, u32::from((s as i32) < (simm as i32))),
             0x0B => self.set(rt, u32::from(s < simm)),
@@ -289,8 +309,8 @@ impl Cpu {
             0x0E => self.set(rt, s ^ imm),
             0x0F => self.set(rt, imm << 16),
             0x10 => match rs {
-                0x00 => self.load(rt, 0),     // mfc0: report a plain status
-                0x04 | 0x10 => {}             // mtc0 / rfe: ignored
+                0x00 => self.load(rt, 0), // mfc0: report a plain status
+                0x04 | 0x10 => {}         // mtc0 / rfe: ignored
                 _ => {}
             },
             0x12 => {
@@ -300,16 +320,28 @@ impl Cpu {
                 } else {
                     match rs {
                         // SAFETY (all four): software GTE register access.
-                        0x00 => { let v = unsafe { pcgte_read_data(rd as u32) }; self.load(rt, v) }
-                        0x02 => { let v = unsafe { pcgte_read_ctrl(rd as u32) }; self.load(rt, v) }
+                        0x00 => {
+                            let v = unsafe { pcgte_read_data(rd as u32) };
+                            self.load(rt, v)
+                        }
+                        0x02 => {
+                            let v = unsafe { pcgte_read_ctrl(rd as u32) };
+                            self.load(rt, v)
+                        }
                         0x04 => unsafe { pcgte_write_data(rd as u32, t) },
                         0x06 => unsafe { pcgte_write_ctrl(rd as u32, t) },
                         _ => log!("[mips] unknown COP2 op in 0x{:08X}", self.entry),
                     }
                 }
             }
-            0x20 => { let v = self.read8(addr) as u8 as i8 as i32 as u32; self.load(rt, v) }
-            0x21 => { let v = self.read16(addr) as u16 as i16 as i32 as u32; self.load(rt, v) }
+            0x20 => {
+                let v = self.read8(addr) as u8 as i8 as i32 as u32;
+                self.load(rt, v)
+            }
+            0x21 => {
+                let v = self.read16(addr) as u16 as i16 as i32 as u32;
+                self.load(rt, v)
+            }
             0x22 => {
                 // lwl: merge into the value the register will have.
                 let cur = if self.pending_load.0 == rt && rt != 0 { self.pending_load.1 } else { t };
@@ -322,9 +354,18 @@ impl Cpu {
                 };
                 self.load(rt, v);
             }
-            0x23 => { let v = self.read32(addr); self.load(rt, v) }
-            0x24 => { let v = self.read8(addr); self.load(rt, v) }
-            0x25 => { let v = self.read16(addr); self.load(rt, v) }
+            0x23 => {
+                let v = self.read32(addr);
+                self.load(rt, v)
+            }
+            0x24 => {
+                let v = self.read8(addr);
+                self.load(rt, v)
+            }
+            0x25 => {
+                let v = self.read16(addr);
+                self.load(rt, v)
+            }
             0x26 => {
                 let cur = if self.pending_load.0 == rt && rt != 0 { self.pending_load.1 } else { t };
                 let w = self.read32(addr & !3);
@@ -362,13 +403,17 @@ impl Cpu {
                 self.write32(a, v);
             }
             // SAFETY (both): software GTE register access.
-            0x32 => { let v = self.read32(addr); unsafe { pcgte_write_data(rt as u32, v) } }
-            0x3A => { let v = unsafe { pcgte_read_data(rt as u32) }; self.write32(addr, v) }
-            other => log!(
-                "[mips] unknown opcode 0x{other:02X} in 0x{:08X} at 0x{:08X}",
-                self.entry,
-                self.pc.wrapping_sub(4)
-            ),
+            0x32 => {
+                let v = self.read32(addr);
+                unsafe { pcgte_write_data(rt as u32, v) }
+            }
+            0x3A => {
+                let v = unsafe { pcgte_read_data(rt as u32) };
+                self.write32(addr, v)
+            }
+            other => {
+                log!("[mips] unknown opcode 0x{other:02X} in 0x{:08X} at 0x{:08X}", self.entry, self.pc.wrapping_sub(4))
+            }
         }
     }
 }
@@ -424,13 +469,19 @@ fn count_entry(addr: u32) {
     let _g = super::irq::guard();
     *COUNTS.lock().unwrap().get_or_insert_with(HashMap::new).entry(addr).or_insert(0) += 1;
     REPORTER.call_once(|| {
-        std::thread::spawn(|| loop {
-            std::thread::sleep(std::time::Duration::from_secs(20));
-            let mut v: Vec<(u32, u64)> =
-                COUNTS.lock().unwrap().as_ref().map(|m| m.iter().map(|(&a, &n)| (a, n)).collect()).unwrap_or_default();
-            v.sort_by_key(|e| std::cmp::Reverse(e.1));
-            let line: Vec<String> = v.iter().map(|(a, n)| format!("{a:08X}:{n}")).collect();
-            eprintln!("[interp] {}", line.join(" "));
+        std::thread::spawn(|| {
+            loop {
+                std::thread::sleep(std::time::Duration::from_secs(20));
+                let mut v: Vec<(u32, u64)> = COUNTS
+                    .lock()
+                    .unwrap()
+                    .as_ref()
+                    .map(|m| m.iter().map(|(&a, &n)| (a, n)).collect())
+                    .unwrap_or_default();
+                v.sort_by_key(|e| std::cmp::Reverse(e.1));
+                let line: Vec<String> = v.iter().map(|(a, n)| format!("{a:08X}:{n}")).collect();
+                eprintln!("[interp] {}", line.join(" "));
+            }
         });
     });
 }

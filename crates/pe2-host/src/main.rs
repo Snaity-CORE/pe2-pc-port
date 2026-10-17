@@ -3,13 +3,13 @@
 //! library, see build.rs).
 
 mod config;
-mod icon;
-mod paths;
 mod controls;
 mod disc;
 mod gamepad;
 mod gfx;
+mod icon;
 mod launcher;
+mod paths;
 mod present;
 mod runtime;
 mod video;

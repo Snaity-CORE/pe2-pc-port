@@ -14,8 +14,8 @@ use std::sync::atomic::{AtomicU32, Ordering};
 use std::time::{Duration, Instant};
 
 use super::core::{
-    CONTROL_CD_ENABLE, CONTROL_CD_REVERB, CONTROL_ENABLE, CONTROL_IRQ_ENABLE, CONTROL_REVERB, CONTROL_UNMUTE,
-    RAM_SIZE, ReverbRegs, VOICES,
+    CONTROL_CD_ENABLE, CONTROL_CD_REVERB, CONTROL_ENABLE, CONTROL_IRQ_ENABLE, CONTROL_REVERB, CONTROL_UNMUTE, RAM_SIZE,
+    ReverbRegs, VOICES,
 };
 use super::{IRQ_CALLBACK, with_spu};
 use crate::runtime::{call_psx, irq, trace};
@@ -338,9 +338,12 @@ fn transfer(src: *const u8, size: u32, advance: bool) -> u32 {
     }
     let cb = TRANSFER_CALLBACK.load(Ordering::SeqCst);
     if cb != 0 {
-        irq::schedule(Instant::now() + Duration::from_micros(200), Box::new(move || {
-            call_psx(cb, &[]);
-        }));
+        irq::schedule(
+            Instant::now() + Duration::from_micros(200),
+            Box::new(move || {
+                call_psx(cb, &[]);
+            }),
+        );
     }
     if trace("spu") {
         eprintln!("[spu {:8.3}] write {len} bytes to 0x{dst:05X}", super::stamp());

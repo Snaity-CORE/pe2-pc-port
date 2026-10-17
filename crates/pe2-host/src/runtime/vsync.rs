@@ -46,32 +46,35 @@ fn mark_call(at: Instant) {
 }
 
 fn schedule_vblank(at: Instant) {
-    irq::schedule(at, Box::new(move || {
-        VBLANKS.fetch_add(1, Ordering::SeqCst);
-        super::stubs::refresh_pads();
-        super::scan_images();
-        if let Some(t) = TIMING.lock().unwrap().as_mut() {
-            t.last_vblank_at = at;
-        }
-        // Keep the field rate regardless of delivery latency.
-        let mut next = at + FIELD;
-        let now = Instant::now();
-        if next < now {
-            next = now + FIELD; // fell far behind (debugger, stall): resync
-        }
-        if super::trace("spu") && now - at > FIELD * 3 {
-            eprintln!("[spu {:8.3}] vblank delivered {} ms late", super::spu::stamp(), (now - at).as_millis());
-        }
-        schedule_vblank(next);
+    irq::schedule(
+        at,
+        Box::new(move || {
+            VBLANKS.fetch_add(1, Ordering::SeqCst);
+            super::stubs::refresh_pads();
+            super::scan_images();
+            if let Some(t) = TIMING.lock().unwrap().as_mut() {
+                t.last_vblank_at = at;
+            }
+            // Keep the field rate regardless of delivery latency.
+            let mut next = at + FIELD;
+            let now = Instant::now();
+            if next < now {
+                next = now + FIELD; // fell far behind (debugger, stall): resync
+            }
+            if super::trace("spu") && now - at > FIELD * 3 {
+                eprintln!("[spu {:8.3}] vblank delivered {} ms late", super::spu::stamp(), (now - at).as_millis());
+            }
+            schedule_vblank(next);
 
-        let cb = CALLBACK.load(Ordering::SeqCst);
-        if cb != 0 {
-            call_psx(cb, &[]);
-        }
-        // The game flips and draws in its callback: the frame is whole now.
-        super::gpu::latch();
-        crate::video::vblank();
-    }));
+            let cb = CALLBACK.load(Ordering::SeqCst);
+            if cb != 0 {
+                call_psx(cb, &[]);
+            }
+            // The game flips and draws in its callback: the frame is whole now.
+            super::gpu::latch();
+            crate::video::vblank();
+        }),
+    );
 }
 
 fn hsyncs_since(at: Instant) -> i32 {

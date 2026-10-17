@@ -53,11 +53,7 @@ pub struct Voice {
 /// Effective volume of a fixed-mode volume register (bits 0-14 hold
 /// volume/2). Sweep mode is not modelled and plays at its current value.
 fn fixed_volume(reg: u16) -> i32 {
-    if reg & 0x8000 != 0 {
-        0x7FFF
-    } else {
-        ((reg << 1) as i16) as i32
-    }
+    if reg & 0x8000 != 0 { 0x7FFF } else { ((reg << 1) as i16) as i32 }
 }
 
 impl Voice {
@@ -517,7 +513,8 @@ mod tests {
     /// A one-block looping square-ish wave plays and its envelope rises.
     #[test]
     fn voice_plays_and_loops() {
-        let mut spu = Spu { control: CONTROL_ENABLE | CONTROL_UNMUTE, main_vol: [0x3FFF, 0x3FFF], ..Default::default() };
+        let mut spu =
+            Spu { control: CONTROL_ENABLE | CONTROL_UNMUTE, main_vol: [0x3FFF, 0x3FFF], ..Default::default() };
         // Block at 0x1000: shift 0, filter 0, loop start+end+repeat.
         let a = 0x1000;
         spu.ram[a] = 0x00;

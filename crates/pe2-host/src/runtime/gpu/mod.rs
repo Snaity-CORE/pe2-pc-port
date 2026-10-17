@@ -146,7 +146,8 @@ pub fn start() {
     });
     let mut interp = None;
     if let Some(layer::Layer::Hardware(hw)) = layer.as_mut()
-        && subpixel() && interp::enabled()
+        && subpixel()
+        && interp::enabled()
     {
         eprintln!("pe2: video: frame interpolation on (60 fps motion)");
         hw.keep_frames();
@@ -351,7 +352,18 @@ impl Gpu {
             let w = found.map_or(0.0, |(_, _, ez, _)| ez);
             let key = found.map_or(0, |(.., k)| k);
             i += 1;
-            *v = Vertex { x: x + st.offset_x, y: y + st.offset_y, r: rgb.0, g: rgb.1, b: rgb.2, u: 0, v: 0, exact, w, key };
+            *v = Vertex {
+                x: x + st.offset_x,
+                y: y + st.offset_y,
+                r: rgb.0,
+                g: rgb.1,
+                b: rgb.2,
+                u: 0,
+                v: 0,
+                exact,
+                w,
+                key,
+            };
             if textured {
                 let t = words[i];
                 i += 1;
@@ -382,8 +394,10 @@ impl Gpu {
         // resolution, interpolation reaches past the last one (its maximum
         // coordinate is exclusive) into neighbouring textures.
         if sh.textured {
-            let (u0, u1) = (verts[..n].iter().map(|v| v.u).min().unwrap(), verts[..n].iter().map(|v| v.u).max().unwrap());
-            let (v0, v1) = (verts[..n].iter().map(|v| v.v).min().unwrap(), verts[..n].iter().map(|v| v.v).max().unwrap());
+            let (u0, u1) =
+                (verts[..n].iter().map(|v| v.u).min().unwrap(), verts[..n].iter().map(|v| v.u).max().unwrap());
+            let (v0, v1) =
+                (verts[..n].iter().map(|v| v.v).min().unwrap(), verts[..n].iter().map(|v| v.v).max().unwrap());
             let last = |lo: i32, hi: i32| if hi > lo { hi - 1 } else { hi };
             sh.uv_limits = Some((u0, v0, last(u0, u1), last(v0, v1)));
         }
@@ -399,7 +413,11 @@ impl Gpu {
             let (w, h) = (xs.clone().max().unwrap() - xs.min().unwrap(), ys.clone().max().unwrap() - ys.min().unwrap());
             if w > 400 || h > 300 {
                 let coords: Vec<_> = verts[..n].iter().map(|v| (v.x - st.offset_x, v.y - st.offset_y)).collect();
-                eprintln!("[gpubig] packet 0x{:08X} op 0x{op:02X} {w}x{h} verts {coords:?} words {:08X?}", self.cur_packet, &words[..len]);
+                eprintln!(
+                    "[gpubig] packet 0x{:08X} op 0x{op:02X} {w}x{h} verts {coords:?} words {:08X?}",
+                    self.cur_packet,
+                    &words[..len]
+                );
             }
         }
         let (x0, x1) = (verts[..n].iter().map(|v| v.x).min().unwrap(), verts[..n].iter().map(|v| v.x).max().unwrap());
@@ -470,7 +488,8 @@ impl Gpu {
             }
             let (x, y) = xy(words[i]);
             i += 1;
-            let v = Vertex { x: x + st.offset_x, y: y + st.offset_y, r: rgb.0, g: rgb.1, b: rgb.2, ..Vertex::default() };
+            let v =
+                Vertex { x: x + st.offset_x, y: y + st.offset_y, r: rgb.0, g: rgb.1, b: rgb.2, ..Vertex::default() };
             if let Some(p) = prev {
                 let area = clip_area(&st, p.x.min(v.x), p.y.min(v.y), p.x.max(v.x), p.y.max(v.y));
                 self.pre(area.0, area.1, area.2, area.3);
@@ -1225,7 +1244,12 @@ fn latch_on_card(hw: &hw::Hw, source: &wgpu::Texture, x: u32, y: u32, w: u32, h:
             origin: wgpu::Origin3d { x, y, z: 0 },
             aspect: wgpu::TextureAspect::All,
         },
-        wgpu::TexelCopyTextureInfo { texture: &f.texture, mip_level: 0, origin: wgpu::Origin3d::ZERO, aspect: wgpu::TextureAspect::All },
+        wgpu::TexelCopyTextureInfo {
+            texture: &f.texture,
+            mip_level: 0,
+            origin: wgpu::Origin3d::ZERO,
+            aspect: wgpu::TextureAspect::All,
+        },
         wgpu::Extent3d { width: cw, height: ch, depth_or_array_layers: 1 },
     );
     gfx.queue.submit([encoder.finish()]);
@@ -1251,7 +1275,13 @@ fn check_between(hw: &hw::Hw, region: interp::Region) {
     static TOTALS: Mutex<(u64, u64, Option<std::time::Instant>)> = Mutex::new((0, 0, None));
     let (Some(between), Some(a)) = (hw.between.as_ref(), read_card_region(&hw.target, region)) else { return };
     let Some(b) = read_card_region(between, region) else { return };
-    let differ = a.as_chunks::<3>().0.iter().zip(b.as_chunks::<3>().0).filter(|(p, q)| p.iter().zip(q.iter()).any(|(x, y)| x.abs_diff(*y) > 8)).count();
+    let differ = a
+        .as_chunks::<3>()
+        .0
+        .iter()
+        .zip(b.as_chunks::<3>().0)
+        .filter(|(p, q)| p.iter().zip(q.iter()).any(|(x, y)| x.abs_diff(*y) > 8))
+        .count();
     let mut t = TOTALS.lock().unwrap();
     t.0 += 1;
     if differ > 0 {
@@ -1277,7 +1307,12 @@ fn read_card_region(texture: &wgpu::Texture, (x, y, w, h): interp::Region) -> Op
     });
     let mut encoder = gfx.device.create_command_encoder(&Default::default());
     encoder.copy_texture_to_buffer(
-        wgpu::TexelCopyTextureInfo { texture, mip_level: 0, origin: wgpu::Origin3d { x, y, z: 0 }, aspect: wgpu::TextureAspect::All },
+        wgpu::TexelCopyTextureInfo {
+            texture,
+            mip_level: 0,
+            origin: wgpu::Origin3d { x, y, z: 0 },
+            aspect: wgpu::TextureAspect::All,
+        },
         wgpu::TexelCopyBufferInfo {
             buffer: &buffer,
             layout: wgpu::TexelCopyBufferLayout { offset: 0, bytes_per_row: Some(row), rows_per_image: Some(h) },
@@ -1309,7 +1344,12 @@ fn read_card_front(out: &mut Vec<u32>) -> Option<(usize, usize)> {
     });
     let mut encoder = gfx.device.create_command_encoder(&Default::default());
     encoder.copy_texture_to_buffer(
-        wgpu::TexelCopyTextureInfo { texture: &f.texture, mip_level: 0, origin: wgpu::Origin3d::ZERO, aspect: wgpu::TextureAspect::All },
+        wgpu::TexelCopyTextureInfo {
+            texture: &f.texture,
+            mip_level: 0,
+            origin: wgpu::Origin3d::ZERO,
+            aspect: wgpu::TextureAspect::All,
+        },
         wgpu::TexelCopyBufferInfo {
             buffer: &buffer,
             layout: wgpu::TexelCopyBufferLayout { offset: 0, bytes_per_row: Some(row), rows_per_image: Some(f.height) },
@@ -1324,9 +1364,12 @@ fn read_card_front(out: &mut Vec<u32>) -> Option<(usize, usize)> {
     out.clear();
     for y in 0..f.height as usize {
         let line = &data[y * row as usize..y * row as usize + f.width as usize * 4];
-        out.extend(line.as_chunks::<4>().0.iter().map(|p| {
-            (lut[p[0] as usize] << 16) | (lut[p[1] as usize] << 8) | lut[p[2] as usize]
-        }));
+        out.extend(
+            line.as_chunks::<4>()
+                .0
+                .iter()
+                .map(|p| (lut[p[0] as usize] << 16) | (lut[p[1] as usize] << 8) | lut[p[2] as usize]),
+        );
     }
     Some((f.width as usize, f.height as usize))
 }
@@ -1350,7 +1393,9 @@ pub fn snapshot(out: &mut Vec<u32>) -> Option<(usize, usize)> {
     if !f.hires.is_empty() {
         let lut = hires_channel_lut();
         for (px, &p) in out.iter_mut().zip(f.hires.iter()) {
-            *px = (lut[((p >> 16) & 0xFF) as usize] << 16) | (lut[((p >> 8) & 0xFF) as usize] << 8) | lut[(p & 0xFF) as usize];
+            *px = (lut[((p >> 16) & 0xFF) as usize] << 16)
+                | (lut[((p >> 8) & 0xFF) as usize] << 8)
+                | lut[(p & 0xFF) as usize];
         }
     } else if f.rgb24 {
         let row_words = f.row_words;

@@ -47,13 +47,13 @@ pub const RESERVED_KEYS: [&str; 8] = ["Escape", "KeyP", "F9", "F10", "F11", "F12
 const KEYS: &[KeyCode] = {
     use KeyCode::*;
     &[
-        KeyA, KeyB, KeyC, KeyD, KeyE, KeyF, KeyG, KeyH, KeyI, KeyJ, KeyK, KeyL, KeyM, KeyN, KeyO, KeyP, KeyQ,
-        KeyR, KeyS, KeyT, KeyU, KeyV, KeyW, KeyX, KeyY, KeyZ, Digit0, Digit1, Digit2, Digit3, Digit4, Digit5,
-        Digit6, Digit7, Digit8, Digit9, Numpad0, Numpad1, Numpad2, Numpad3, Numpad4, Numpad5, Numpad6, Numpad7,
-        Numpad8, Numpad9, NumpadAdd, NumpadSubtract, NumpadMultiply, NumpadDivide, NumpadDecimal, NumpadEnter,
-        ArrowUp, ArrowDown, ArrowLeft, ArrowRight, Enter, Space, Backspace, Tab, ShiftLeft, ShiftRight,
-        ControlLeft, ControlRight, Comma, Period, Slash, Semicolon, Quote, BracketLeft, BracketRight, Minus,
-        Equal, Backquote, Backslash, Insert, Delete, Home, End, PageUp, PageDown, F1, F2, F3, F4, F5, F6, F7, F8,
+        KeyA, KeyB, KeyC, KeyD, KeyE, KeyF, KeyG, KeyH, KeyI, KeyJ, KeyK, KeyL, KeyM, KeyN, KeyO, KeyP, KeyQ, KeyR,
+        KeyS, KeyT, KeyU, KeyV, KeyW, KeyX, KeyY, KeyZ, Digit0, Digit1, Digit2, Digit3, Digit4, Digit5, Digit6, Digit7,
+        Digit8, Digit9, Numpad0, Numpad1, Numpad2, Numpad3, Numpad4, Numpad5, Numpad6, Numpad7, Numpad8, Numpad9,
+        NumpadAdd, NumpadSubtract, NumpadMultiply, NumpadDivide, NumpadDecimal, NumpadEnter, ArrowUp, ArrowDown,
+        ArrowLeft, ArrowRight, Enter, Space, Backspace, Tab, ShiftLeft, ShiftRight, ControlLeft, ControlRight, Comma,
+        Period, Slash, Semicolon, Quote, BracketLeft, BracketRight, Minus, Equal, Backquote, Backslash, Insert, Delete,
+        Home, End, PageUp, PageDown, F1, F2, F3, F4, F5, F6, F7, F8,
     ]
 };
 
@@ -66,8 +66,8 @@ pub fn key_code(name: &str) -> Option<KeyCode> {
 pub fn pad_button(name: &str) -> Option<Button> {
     use Button::*;
     [
-        South, East, North, West, C, Z, LeftTrigger, LeftTrigger2, RightTrigger, RightTrigger2, Select, Start,
-        Mode, LeftThumb, RightThumb, DPadUp, DPadDown, DPadLeft, DPadRight,
+        South, East, North, West, C, Z, LeftTrigger, LeftTrigger2, RightTrigger, RightTrigger2, Select, Start, Mode,
+        LeftThumb, RightThumb, DPadUp, DPadDown, DPadLeft, DPadRight,
     ]
     .into_iter()
     .find(|b| format!("{b:?}") == name)

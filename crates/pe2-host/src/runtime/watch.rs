@@ -82,7 +82,10 @@ unsafe extern "system" fn handler(info: *mut EXCEPTION_POINTERS) -> i32 {
             // SAFETY: the watched word is in mapped PSX RAM.
             let value = unsafe { ((a & !3) as *const u32).read_volatile() };
             let mips = super::mips::CUR_PC.load(std::sync::atomic::Ordering::Relaxed);
-            eprintln!("[watch] write to 0x{a:08X} = 0x{value:08X} by eip 0x{:08X} (last MIPS pc 0x{mips:08X})", ctx.Eip);
+            eprintln!(
+                "[watch] write to 0x{a:08X} = 0x{value:08X} by eip 0x{:08X} (last MIPS pc 0x{mips:08X})",
+                ctx.Eip
+            );
         }
     }
     ctx.Dr6 = 0;

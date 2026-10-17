@@ -44,8 +44,7 @@ pub struct Shading {
 }
 
 /// The drawing state set by the E1-E6 commands.
-#[derive(Clone, Copy, Debug)]
-#[derive(Default)]
+#[derive(Clone, Copy, Debug, Default)]
 pub struct DrawState {
     pub tex_x: i32,
     pub tex_y: i32,
@@ -70,7 +69,6 @@ pub struct DrawState {
     pub set_mask: bool,
     pub check_mask: bool,
 }
-
 
 impl DrawState {
     /// Applies a texpage value (E1 command, or the texpage halfword of a
@@ -192,7 +190,19 @@ impl Vram {
 
     /// Shades and writes one pixel. `r g b` are 8-bit vertex colours.
     #[allow(clippy::too_many_arguments)]
-    fn plot(&mut self, st: &DrawState, sh: &Shading, x: i32, y: i32, r: i32, g: i32, b: i32, u: i32, v: i32, dither: bool) {
+    fn plot(
+        &mut self,
+        st: &DrawState,
+        sh: &Shading,
+        x: i32,
+        y: i32,
+        r: i32,
+        g: i32,
+        b: i32,
+        u: i32,
+        v: i32,
+        dither: bool,
+    ) {
         if x < st.area_x1 || x > st.area_x2 || y < st.area_y1 || y > st.area_y2 {
             return;
         }
@@ -207,7 +217,19 @@ impl Vram {
     /// for textured and once for untextured primitives.
     #[allow(clippy::too_many_arguments)]
     #[inline(always)]
-    fn shade<const TEX: bool>(&mut self, st: &DrawState, sh: &Shading, x: i32, y: i32, r: i32, g: i32, b: i32, u: i32, v: i32, dither: bool) {
+    fn shade<const TEX: bool>(
+        &mut self,
+        st: &DrawState,
+        sh: &Shading,
+        x: i32,
+        y: i32,
+        r: i32,
+        g: i32,
+        b: i32,
+        u: i32,
+        v: i32,
+        dither: bool,
+    ) {
         let dst = self.get(x, y);
         if st.check_mask && dst & 0x8000 != 0 {
             return;
@@ -223,7 +245,8 @@ impl Vram {
             }
             mask_bit = t & 0x8000;
             blend = blend && mask_bit != 0;
-            let (tr, tg, tb) = (i32::from(t & 0x1F) << 3, i32::from((t >> 5) & 0x1F) << 3, i32::from((t >> 10) & 0x1F) << 3);
+            let (tr, tg, tb) =
+                (i32::from(t & 0x1F) << 3, i32::from((t >> 5) & 0x1F) << 3, i32::from((t >> 10) & 0x1F) << 3);
             if sh.raw_texture {
                 (cr, cg, cb) = (tr, tg, tb);
             } else {
@@ -257,7 +280,8 @@ impl Vram {
             g5 = mix(bg, g5);
             b5 = mix(bb, b5);
         }
-        let out = (r5 as u16) | ((g5 as u16) << 5) | ((b5 as u16) << 10) | mask_bit | if st.set_mask { 0x8000 } else { 0 };
+        let out =
+            (r5 as u16) | ((g5 as u16) << 5) | ((b5 as u16) << 10) | mask_bit | if st.set_mask { 0x8000 } else { 0 };
         self.set(x, y, out);
     }
 
@@ -350,7 +374,8 @@ impl Vram {
             attrs[4] = start(a.v, b.v, c.v);
         }
         for x in lo..=hi {
-            let (r, g, bl) = if GOURAUD { (attrs[0].q as i32, attrs[1].q as i32, attrs[2].q as i32) } else { (a.r, a.g, a.b) };
+            let (r, g, bl) =
+                if GOURAUD { (attrs[0].q as i32, attrs[1].q as i32, attrs[2].q as i32) } else { (a.r, a.g, a.b) };
             let (u, vv) = if TEX { (attrs[3].q as i32, attrs[4].q as i32) } else { (0, 0) };
             self.shade::<TEX>(st, sh, x, y, r, g, bl, u, vv, dither);
             if GOURAUD {
@@ -368,7 +393,18 @@ impl Vram {
     /// GP0(60h-7Fh) rectangle / sprite at (x, y), `w` x `h`, with texture
     /// origin (u, v).
     #[allow(clippy::too_many_arguments)]
-    pub fn rectangle(&mut self, st: &DrawState, sh: &Shading, x: i32, y: i32, w: i32, h: i32, color: (i32, i32, i32), u: i32, v: i32) {
+    pub fn rectangle(
+        &mut self,
+        st: &DrawState,
+        sh: &Shading,
+        x: i32,
+        y: i32,
+        w: i32,
+        h: i32,
+        color: (i32, i32, i32),
+        u: i32,
+        v: i32,
+    ) {
         let (dx0, dx1) = ((st.area_x1 - x).max(0), (st.area_x2 - x + 1).min(w));
         let (dy0, dy1) = ((st.area_y1 - y).max(0), (st.area_y2 - y + 1).min(h));
         for dy in dy0..dy1 {
@@ -460,7 +496,15 @@ mod tests {
     use super::*;
 
     fn flat() -> Shading {
-        Shading { textured: false, raw_texture: false, gouraud: false, semi_transparent: false, clut_x: 0, clut_y: 0, uv_limits: None }
+        Shading {
+            textured: false,
+            raw_texture: false,
+            gouraud: false,
+            semi_transparent: false,
+            clut_x: 0,
+            clut_y: 0,
+            uv_limits: None,
+        }
     }
 
     fn state() -> DrawState {
@@ -594,12 +638,24 @@ mod tests {
     /// every pixel against it draws.
     #[test]
     fn rectangles_match_reference() {
-        let st = DrawState { area_x1: 3, area_y1: 5, area_x2: 200, area_y2: 150, tex_depth: 2, tex_x: 512, ..DrawState::default() };
+        let st = DrawState {
+            area_x1: 3,
+            area_y1: 5,
+            area_x2: 200,
+            area_y2: 150,
+            tex_depth: 2,
+            tex_x: 512,
+            ..DrawState::default()
+        };
         let mut base = Vram::default();
         for (i, p) in base.pixels.iter_mut().enumerate() {
             *p = (i as u16).wrapping_mul(40503) | 1;
         }
-        for (k, &(x, y, w, h)) in [(-10, -10, 40, 30), (190, 140, 30, 30), (50, 60, 16, 16), (0, 0, 256, 256), (201, 10, 5, 5)].iter().enumerate() {
+        for (k, &(x, y, w, h)) in
+            [(-10, -10, 40, 30), (190, 140, 30, 30), (50, 60, 16, 16), (0, 0, 256, 256), (201, 10, 5, 5)]
+                .iter()
+                .enumerate()
+        {
             let sh = Shading { textured: k % 2 == 0, raw_texture: true, ..flat() };
             let st = DrawState { rect_flip_x: k == 2, ..st };
             let (mut got, mut want) = (base.clone(), base.clone());
@@ -637,10 +693,7 @@ mod tests {
     #[test]
     fn quad_excludes_right_and_bottom_edges() {
         let (st, sh) = (state(), flat());
-        let quads = [
-            [v(10, 10), v(14, 10), v(10, 14), v(14, 14)],
-            [v(14, 14), v(10, 14), v(14, 10), v(10, 10)],
-        ];
+        let quads = [[v(10, 10), v(14, 10), v(10, 14), v(14, 14)], [v(14, 14), v(10, 14), v(14, 10), v(10, 10)]];
         for q in quads {
             let mut vram = Vram::default();
             vram.triangle(&st, &sh, [q[0], q[1], q[2]]);

@@ -115,10 +115,8 @@ impl super::Disc for CueDisc {
     }
 
     fn read_sector(&mut self, lba: u32, out: &mut RawSector) -> Result<()> {
-        let Some(t) = self
-            .layout
-            .iter()
-            .find(|l| lba >= l.track.start_lba && lba < l.track.start_lba + l.track.sectors)
+        let Some(t) =
+            self.layout.iter().find(|l| lba >= l.track.start_lba && lba < l.track.start_lba + l.track.sectors)
         else {
             out.fill(0);
             return Ok(());

@@ -17,8 +17,8 @@
 //! Runtime functions that block until an interrupt happens (VSync, CdSync)
 //! use `wait_until`, which lets interrupts in while waiting.
 
-use std::collections::BinaryHeap;
 use std::cmp::Reverse;
+use std::collections::BinaryHeap;
 use std::sync::atomic::{AtomicBool, AtomicU32, AtomicU64, Ordering};
 use std::sync::{Mutex, OnceLock};
 use std::time::{Duration, Instant};
@@ -27,8 +27,8 @@ use windows_sys::Win32::Foundation::{DUPLICATE_SAME_ACCESS, DuplicateHandle, HAN
 use windows_sys::Win32::Media::timeBeginPeriod;
 use windows_sys::Win32::System::Diagnostics::Debug::{CONTEXT, CONTEXT_CONTROL_X86, GetThreadContext};
 use windows_sys::Win32::System::Threading::{
-    CreateEventW, GetCurrentProcess, GetCurrentThread, INFINITE, ResumeThread, SetEvent,
-    SuspendThread, WaitForSingleObject,
+    CreateEventW, GetCurrentProcess, GetCurrentThread, INFINITE, ResumeThread, SetEvent, SuspendThread,
+    WaitForSingleObject,
 };
 
 /// Something that happens at a point in time on the IRQ thread.

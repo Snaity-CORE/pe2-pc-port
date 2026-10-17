@@ -127,4 +127,6 @@ folder.
 python tools/check_no_game_data.py   # nothing derived from the discs is tracked
 python tools/check_psx_unchanged.py  # PC_PORT changes leave the PSX build identical
 python tools/probe_units.py          # every unit compiles for the PC target
+cargo fmt --check                    # Rust code formatted (rustfmt.toml)
+cargo clippy --release -p pe2-host --tests   # no lint warnings
 ```

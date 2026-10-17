@@ -55,8 +55,7 @@ impl ChdDisc {
             let text = String::from_utf8_lossy(&meta.value);
             let text = text.trim_end_matches('\0');
             let field = |key: &str| -> Option<&str> {
-                text.split_whitespace()
-                    .find_map(|kv| kv.strip_prefix(key).and_then(|v| v.strip_prefix(':')))
+                text.split_whitespace().find_map(|kv| kv.strip_prefix(key).and_then(|v| v.strip_prefix(':')))
             };
             let number: u8 = field("TRACK").and_then(|v| v.parse().ok()).unwrap_or(0);
             let frames: u32 = field("FRAMES").and_then(|v| v.parse().ok()).unwrap_or(0);
@@ -65,16 +64,10 @@ impl ChdDisc {
             let pregap_in_file = field("PGTYPE").is_some_and(|t| t.starts_with('V'));
             let kind = if field("TYPE") == Some("AUDIO") { TrackKind::Audio } else { TrackKind::Data };
 
-            let (start_frame, sectors) = if pregap_in_file {
-                (frame + pregap, frames - pregap.min(frames))
-            } else {
-                (frame, frames)
-            };
+            let (start_frame, sectors) =
+                if pregap_in_file { (frame + pregap, frames - pregap.min(frames)) } else { (frame, frames) };
             let start_lba = lba + pregap;
-            layout.push(TrackFrames {
-                track: Track { number, kind, start_lba, sectors },
-                frame: start_frame,
-            });
+            layout.push(TrackFrames { track: Track { number, kind, start_lba, sectors }, frame: start_frame });
             frame += frames.div_ceil(TRACK_PADDING) * TRACK_PADDING;
             lba = start_lba + sectors;
         }
@@ -101,10 +94,8 @@ impl super::Disc for ChdDisc {
     }
 
     fn read_sector(&mut self, lba: u32, out: &mut RawSector) -> Result<()> {
-        let Some(t) = self
-            .layout
-            .iter()
-            .find(|l| lba >= l.track.start_lba && lba < l.track.start_lba + l.track.sectors)
+        let Some(t) =
+            self.layout.iter().find(|l| lba >= l.track.start_lba && lba < l.track.start_lba + l.track.sectors)
         else {
             out.fill(0);
             return Ok(());

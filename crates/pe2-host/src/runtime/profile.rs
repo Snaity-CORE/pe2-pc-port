@@ -79,9 +79,8 @@ fn sampler(thread: SendHandle, file: &'static str, game: bool) {
         start..start + size
     };
     let rebase = |a: u32| a.wrapping_sub(base).wrapping_add(PREFERRED_BASE);
-    let mut out = super::trace("prof").then(|| {
-        std::io::BufWriter::new(std::fs::File::create(file).expect("create profile file"))
-    });
+    let mut out = super::trace("prof")
+        .then(|| std::io::BufWriter::new(std::fs::File::create(file).expect("create profile file")));
     loop {
         std::thread::sleep(Duration::from_millis(1));
         let mut stack = [0u32; 512];
@@ -175,10 +174,7 @@ pub fn report(since: Instant) {
 
 /// Starts the `PE2_TRACE=cpu` monitor.
 pub fn start_cpu_monitor() {
-    std::thread::Builder::new()
-        .name("cpu-monitor".into())
-        .spawn(cpu_monitor)
-        .expect("spawn cpu monitor");
+    std::thread::Builder::new().name("cpu-monitor".into()).spawn(cpu_monitor).expect("spawn cpu monitor");
 }
 
 fn cpu_monitor() {
@@ -246,8 +242,8 @@ fn cpu_monitor() {
             rows.iter().filter(|r| pct(r.0) >= 0.5).map(|(t, n)| format!("{n} {:.1}%", pct(*t))).collect();
         eprintln!("[cpu] {:.1}% of one core: {}", pct(total), list.join(", "));
         {
-            use std::sync::atomic::Ordering::Relaxed;
             use super::irq::{BLOCKED_NS, DELIVERED, HANDLER_NS};
+            use std::sync::atomic::Ordering::Relaxed;
             let ms = |ns: u64| ns as f64 / 1e6 / wall;
             eprintln!(
                 "[cpu]   interrupts: {:.0}/s, waiting for the game {:.2} ms/s, handlers {:.2} ms/s",
@@ -259,7 +255,11 @@ fn cpu_monitor() {
             use super::gpu::{EXACT_VERTICES, POLY_VERTICES};
             let (all, exact) = (POLY_VERTICES.swap(0, Relaxed), EXACT_VERTICES.swap(0, Relaxed));
             if all > 0 {
-                eprintln!("[cpu]   vertices: {:.0}/s, {:.1}% exact", all as f64 / wall, 100.0 * exact as f64 / all as f64);
+                eprintln!(
+                    "[cpu]   vertices: {:.0}/s, {:.1}% exact",
+                    all as f64 / wall,
+                    100.0 * exact as f64 / all as f64
+                );
             }
             eprintln!(
                 "[cpu]   graphics card: {:.0} flushes/s, {:.0} KB/s of VRAM sent, {:.0} passes/s, {:.0} draws/s, {:.0} vertices/s",

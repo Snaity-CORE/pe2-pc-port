@@ -147,14 +147,23 @@ impl Hw {
         let ch = self.dma[index];
         let block = ch.bcr & 0xFFFF;
         let words = match (ch.chcr >> 9) & 3 {
-            0 => if block == 0 { 0x1_0000 } else { block },
+            0 => {
+                if block == 0 {
+                    0x1_0000
+                } else {
+                    block
+                }
+            }
             _ => block.max(1) * (ch.bcr >> 16).max(1),
         };
         let to_device = ch.chcr & 1 != 0;
         let step: i32 = if ch.chcr & 2 != 0 { -4 } else { 4 };
         let mut addr = ch.madr;
         if trace("dma") {
-            eprintln!("[dma] channel {index} {} {words} words at 0x{addr:06X}", if to_device { "from RAM" } else { "to RAM" });
+            eprintln!(
+                "[dma] channel {index} {} {words} words at 0x{addr:06X}",
+                if to_device { "from RAM" } else { "to RAM" }
+            );
         }
         for _ in 0..words {
             let p = ram_word(addr);
@@ -194,9 +203,12 @@ fn dma_complete(channel: usize) {
     if cb == 0 {
         return;
     }
-    irq::schedule(Instant::now() + Duration::from_micros(100), Box::new(move || {
-        call_psx(cb, &[]);
-    }));
+    irq::schedule(
+        Instant::now() + Duration::from_micros(100),
+        Box::new(move || {
+            call_psx(cb, &[]);
+        }),
+    );
 }
 
 /// DMACallback(channel, func): `func` runs when a transfer on `channel`

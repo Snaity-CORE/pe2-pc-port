@@ -25,7 +25,6 @@ pub static CONNECTED: AtomicBool = AtomicBool::new(false);
 /// motor on in bit 0.
 pub static RUMBLE: AtomicU32 = AtomicU32::new(0);
 
-
 /// A stick axis (-1.0..1.0, up positive for Y) as a DualShock byte.
 fn axis_byte(v: f32, invert: bool) -> u8 {
     let v = if invert { -v } else { v };
@@ -33,10 +32,7 @@ fn axis_byte(v: f32, invert: bool) -> u8 {
 }
 
 pub fn start() {
-    std::thread::Builder::new()
-        .name("gamepad".into())
-        .spawn(run)
-        .expect("spawn gamepad thread");
+    std::thread::Builder::new().name("gamepad".into()).spawn(run).expect("spawn gamepad thread");
 }
 
 fn run() {

@@ -9,9 +9,7 @@
 
 use iced_x86::{Code, Decoder, DecoderOptions, Instruction, MemorySize, OpKind, Register};
 use windows_sys::Win32::Foundation::{EXCEPTION_ACCESS_VIOLATION, NTSTATUS};
-use windows_sys::Win32::System::Diagnostics::Debug::{
-    AddVectoredExceptionHandler, CONTEXT, EXCEPTION_POINTERS,
-};
+use windows_sys::Win32::System::Diagnostics::Debug::{AddVectoredExceptionHandler, CONTEXT, EXCEPTION_POINTERS};
 
 const LOW_LIMIT: u32 = 0x1_0000;
 const RAM_BASE: u32 = 0x8000_0000;
@@ -249,8 +247,11 @@ fn emulate_alu(insn: &Instruction, addr: u32, ctx: &mut CONTEXT) -> bool {
     let other = |ctx: &mut CONTEXT, kind: OpKind, reg: Register| -> Option<u32> {
         match kind {
             OpKind::Register => get_reg(ctx, reg),
-            OpKind::Immediate8 | OpKind::Immediate16 | OpKind::Immediate32
-            | OpKind::Immediate8to16 | OpKind::Immediate8to32 => Some(insn.immediate32()),
+            OpKind::Immediate8
+            | OpKind::Immediate16
+            | OpKind::Immediate32
+            | OpKind::Immediate8to16
+            | OpKind::Immediate8to32 => Some(insn.immediate32()),
             _ => None,
         }
     };
@@ -291,9 +292,7 @@ fn emulate(insn: &Instruction, addr: u32, ctx: &mut CONTEXT) -> bool {
     let size = insn.memory_size();
     match insn.code() {
         // mov r, [m]
-        Code::Mov_r8_rm8 | Code::Mov_r16_rm16 | Code::Mov_r32_rm32
-            if insn.op1_kind() == OpKind::Memory =>
-        {
+        Code::Mov_r8_rm8 | Code::Mov_r16_rm16 | Code::Mov_r32_rm32 if insn.op1_kind() == OpKind::Memory => {
             read_mem(addr, size).is_some_and(|v| set_reg(ctx, insn.op0_register(), v))
         }
         Code::Mov_AL_moffs8 | Code::Mov_AX_moffs16 | Code::Mov_EAX_moffs32 => {
@@ -311,14 +310,10 @@ fn emulate(insn: &Instruction, addr: u32, ctx: &mut CONTEXT) -> bool {
             read_mem(addr, size).is_some_and(|v| set_reg(ctx, insn.op0_register(), sign_extend(v, size)))
         }
         // mov [m], r / imm
-        Code::Mov_rm8_r8 | Code::Mov_rm16_r16 | Code::Mov_rm32_r32
-            if insn.op0_kind() == OpKind::Memory =>
-        {
+        Code::Mov_rm8_r8 | Code::Mov_rm16_r16 | Code::Mov_rm32_r32 if insn.op0_kind() == OpKind::Memory => {
             get_reg(ctx, insn.op1_register()).is_some_and(|v| write_mem(addr, size, v))
         }
-        Code::Mov_rm8_imm8 | Code::Mov_rm16_imm16 | Code::Mov_rm32_imm32
-            if insn.op0_kind() == OpKind::Memory =>
-        {
+        Code::Mov_rm8_imm8 | Code::Mov_rm16_imm16 | Code::Mov_rm32_imm32 if insn.op0_kind() == OpKind::Memory => {
             write_mem(addr, size, insn.immediate32())
         }
         _ => false,

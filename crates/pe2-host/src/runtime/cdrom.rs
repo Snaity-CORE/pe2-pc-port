@@ -75,7 +75,10 @@ pub static SWAP_REQUEST: std::sync::atomic::AtomicBool = std::sync::atomic::Atom
 enum Lid {
     Closed,
     /// Open until `closes_at`; disc `next` goes in.
-    Open { closes_at: Instant, next: usize },
+    Open {
+        closes_at: Instant,
+        next: usize,
+    },
     /// Closed, disc spinning up until the instant.
     SpinningUp(Instant),
 }
@@ -182,11 +185,7 @@ impl Drive {
 
     fn track_of(&self, lba: u32) -> (u8, u32) {
         let tracks = self.discs[self.current].tracks();
-        tracks
-            .iter()
-            .rev()
-            .find(|t| lba >= t.start_lba)
-            .map_or((1, 0), |t| (t.number, t.start_lba))
+        tracks.iter().rev().find(|t| lba >= t.start_lba).map_or((1, 0), |t| (t.number, t.start_lba))
     }
 
     /// Starts a completion for the current command: immediate status, and an
@@ -203,19 +202,22 @@ impl Drive {
         } else {
             self.sync_status = CDL_NO_INTR;
         }
-        irq::schedule(Instant::now() + delay.max(Duration::from_micros(100)), Box::new(move || {
-            let cb = with_drive(|d| {
-                if d.cmd_gen != generation {
-                    return None;
+        irq::schedule(
+            Instant::now() + delay.max(Duration::from_micros(100)),
+            Box::new(move || {
+                let cb = with_drive(|d| {
+                    if d.cmd_gen != generation {
+                        return None;
+                    }
+                    d.sync_status = CDL_COMPLETE;
+                    d.sync_result = result;
+                    Some(d.sync_cb)
+                });
+                if let Some(cb) = cb {
+                    call_cb(cb, CDL_COMPLETE, result);
                 }
-                d.sync_status = CDL_COMPLETE;
-                d.sync_result = result;
-                Some(d.sync_cb)
-            });
-            if let Some(cb) = cb {
-                call_cb(cb, CDL_COMPLETE, result);
-            }
-        }));
+            }),
+        );
     }
 
     fn start_reading(&mut self) {
