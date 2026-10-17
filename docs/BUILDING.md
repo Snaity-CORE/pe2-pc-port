@@ -74,9 +74,9 @@ that writes `pe2.toml` (Controls remaps the keyboard and controller and picks
 player 1's controller) and runs the game as `pe2 --play`, coming back when it
 quits. Runs driven by `PE2_INPUT`, `PE2_LIBTEST` or `PE2_SELFTEST` skip it.
 
-Settings: copy `pe2.example.toml` to `pe2.toml` (in the directory you run
-from, or next to `pe2.exe`) to set the disc images (then `pe2` needs no
-arguments), the internal resolution and the memory card images. Arguments
+Settings: the launcher writes `pe2.toml` in the data folder (below); to edit
+it by hand, copy `pe2.example.toml` there, which documents every setting.
+With the disc images set in it, `pe2 --play` needs no arguments. Arguments
 and `PE2_*` environment variables override it.
 
 Debug output:
@@ -102,6 +102,9 @@ Debug output:
 - `PE2_WATCH=0x801D49C4[,...]` (up to four addresses) logs every write to
   those words with the writing instruction's address, using the CPU's debug
   registers.
+- A native crash prints the faulting address and stack; map the addresses to
+  game functions with `python tools/symbolize.py <addr>...` (uses the linker
+  map, `target/.../deps/pe2.map`).
 
 Keyboard: arrows = d-pad, Z/X/A/S = Cross/Circle/Square/Triangle,
 Enter = Start, Backspace = Select, Q/W/E/R = L1/R1/L2/R2, Alt+Enter toggles
@@ -117,9 +120,6 @@ screenshots and pe2.log: `%APPDATA%\PE2PC` on Windows,
 `portable.txt` next to pe2.exe: everything then stays in pe2.exe's folder
 (as it does when a pe2.toml is already there). `PE2_HOME` names another
 folder.
-- A native crash prints the faulting address and stack; map the addresses to
-  game functions with `python tools/symbolize.py <addr>...` (uses the linker
-  map, `target/.../deps/pe2.map`).
 
 ## Checks
 
