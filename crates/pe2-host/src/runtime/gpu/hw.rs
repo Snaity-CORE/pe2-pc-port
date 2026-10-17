@@ -27,6 +27,10 @@ use crate::gfx::Gfx;
 /// PE2_TRACE=cpu: flushes, and native VRAM halfwords sent to the card.
 pub static FLUSHES: AtomicU64 = AtomicU64::new(0);
 pub static VRAM_SENT: AtomicU64 = AtomicU64::new(0);
+/// PE2_TRACE=cpu: draw calls, render passes and vertices sent.
+pub static DRAWS: AtomicU64 = AtomicU64::new(0);
+pub static PASSES: AtomicU64 = AtomicU64::new(0);
+pub static VERTICES: AtomicU64 = AtomicU64::new(0);
 
 const SHADER: &str = r#"
 struct Uniforms { size: vec2<f32>, scale: f32, _pad: f32 };
@@ -1106,12 +1110,23 @@ impl Hw {
                 _ => &self.bind,
             };
             pass.set_bind_group(0, bind, &[]);
+            PASSES.fetch_add(1, Ordering::Relaxed);
+            // State is set only when it changes (draws mostly share it).
+            let (mut blend_now, mut scissor_now) = (None, None);
             while let Some(Op::Draw { blend, scissor, first, count }) = ops.get(i) {
                 if scissor[2] > 0 && scissor[3] > 0 {
-                    pass.set_pipeline(&self.pipelines[blend.index()]);
-                    let k = blend.constant();
-                    pass.set_blend_constant(wgpu::Color { r: k, g: k, b: k, a: k });
-                    pass.set_scissor_rect(scissor[0], scissor[1], scissor[2], scissor[3]);
+                    DRAWS.fetch_add(1, Ordering::Relaxed);
+                    VERTICES.fetch_add(u64::from(*count), Ordering::Relaxed);
+                    if blend_now != Some(*blend) {
+                        pass.set_pipeline(&self.pipelines[blend.index()]);
+                        let k = blend.constant();
+                        pass.set_blend_constant(wgpu::Color { r: k, g: k, b: k, a: k });
+                        blend_now = Some(*blend);
+                    }
+                    if scissor_now != Some(*scissor) {
+                        pass.set_scissor_rect(scissor[0], scissor[1], scissor[2], scissor[3]);
+                        scissor_now = Some(*scissor);
+                    }
                     pass.draw(*first..*first + *count, 0..1);
                 }
                 i += 1;
