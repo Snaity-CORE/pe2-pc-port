@@ -10,7 +10,10 @@
 //! game drew it.
 //!
 //! With frame interpolation, everything run for a frame is also kept, so
-//! the frame can be drawn again with its model vertices moved (interp.rs).
+//! the frame can be drawn again with its model vertices moved (interp.rs):
+//! the operations, and the native VRAM sent before each flush, so that the
+//! drawing again samples textures as each part of the frame did (the game
+//! may load other glyphs into the same place between two lines of text).
 //!
 //! The game never tests the mask bit when drawing (it only sets it), and
 //! textures come from the native VRAM, where the bit is exact; this layer
@@ -412,8 +415,19 @@ impl Areas {
     }
 }
 
+/// Native VRAM sent to the card: x, y, width, height and the halfwords.
+struct VramUpdate {
+    x: u32,
+    y: u32,
+    w: u32,
+    h: u32,
+    rows: Vec<u16>,
+}
+
 /// Work run on the card in one flush, kept to draw the frame again.
 pub struct Chunk {
+    /// The native VRAM the flush sent first.
+    vram: Option<VramUpdate>,
     ops: Vec<Op>,
     vertices: Vec<GpuVertex>,
     /// Each vertex's key (Vertex::key; 0: none).
@@ -459,6 +473,11 @@ pub struct Hw {
     /// The layer as the last frame left it, in a band of columns (x, width)
     /// holding the framebuffers: what the next frame starts from.
     before: Option<(wgpu::Texture, u32, u32)>,
+    /// The native VRAM copy as the last frame left it, and the copy frames
+    /// are drawn again with (rebuilt from it flush by flush), with its bind
+    /// group.
+    vram_before: Option<wgpu::Texture>,
+    vram_replay: Option<(wgpu::Texture, wgpu::BindGroup)>,
     /// Native VRAM written since the last copy sent to the card, and the
     /// native VRAM recorded primitives sample.
     dirty: Areas,
@@ -490,7 +509,13 @@ impl Hw {
             U::RENDER_ATTACHMENT | U::TEXTURE_BINDING | U::COPY_SRC | U::COPY_DST,
         );
         let scratch = texture("hw scratch", width, height, wgpu::TextureFormat::Rgba8Unorm, U::TEXTURE_BINDING | U::COPY_DST);
-        let vram = texture("hw vram", VRAM_WIDTH as u32, VRAM_HEIGHT as u32, wgpu::TextureFormat::R16Uint, U::TEXTURE_BINDING | U::COPY_DST);
+        let vram = texture(
+            "hw vram",
+            VRAM_WIDTH as u32,
+            VRAM_HEIGHT as u32,
+            wgpu::TextureFormat::R16Uint,
+            U::TEXTURE_BINDING | U::COPY_DST | U::COPY_SRC,
+        );
         let uniforms = device.create_buffer(&wgpu::BufferDescriptor {
             label: Some("hw uniforms"),
             size: 16,
@@ -594,6 +619,8 @@ impl Hw {
             frame: None,
             between: None,
             before: None,
+            vram_before: None,
+            vram_replay: None,
             dirty: Areas(vec![Area::new(0, 0, VRAM_WIDTH as i32, VRAM_HEIGHT as i32)]),
             sampled: Areas::default(),
         }
@@ -969,28 +996,25 @@ impl Hw {
         let d = self.dirty.bounds();
         let (x0, y0) = (d.x0.max(0), d.y0.max(0));
         let (x1, y1) = (d.x1.min(VRAM_WIDTH as i32 - 1), d.y1.min(VRAM_HEIGHT as i32 - 1));
+        let mut sent = None;
         if x0 <= x1 && y0 <= y1 {
             let (w, h) = ((x1 - x0 + 1) as usize, (y1 - y0 + 1) as usize);
             let mut rows = Vec::with_capacity(w * h);
             for y in y0 as usize..=y1 as usize {
                 rows.extend_from_slice(&vram.pixels[y * VRAM_WIDTH + x0 as usize..][..w]);
             }
-            gfx.queue.write_texture(
-                wgpu::TexelCopyTextureInfo {
-                    texture: &self.vram,
-                    mip_level: 0,
-                    origin: wgpu::Origin3d { x: x0 as u32, y: y0 as u32, z: 0 },
-                    aspect: wgpu::TextureAspect::All,
-                },
-                bytes(&rows),
-                wgpu::TexelCopyBufferLayout { offset: 0, bytes_per_row: Some(w as u32 * 2), rows_per_image: Some(h as u32) },
-                wgpu::Extent3d { width: w as u32, height: h as u32, depth_or_array_layers: 1 },
-            );
+            let update = VramUpdate { x: x0 as u32, y: y0 as u32, w: w as u32, h: h as u32, rows };
+            write_vram(gfx, &self.vram, &update);
             VRAM_SENT.fetch_add((w * h) as u64, Ordering::Relaxed);
+            sent = Some(update);
         }
         self.dirty.clear();
         self.sampled.clear();
         if self.ops.is_empty() {
+            // Kept even without work: later flushes of the frame sample it.
+            if let (Some(frame), Some(update)) = (self.frame.as_mut(), sent) {
+                frame.push(Chunk { vram: Some(update), ops: Vec::new(), vertices: Vec::new(), keys: Vec::new(), uploads: Vec::new() });
+            }
             return;
         }
         FLUSHES.fetch_add(1, Ordering::Relaxed);
@@ -998,9 +1022,9 @@ impl Hw {
         let (ops, vertices, mut uploads) =
             (std::mem::take(&mut self.ops), std::mem::take(&mut self.vertices), std::mem::take(&mut self.uploads));
         let keys = std::mem::take(&mut self.keys);
-        self.run(&ops, &vertices, &mut uploads, &target);
+        self.run(&ops, &vertices, &mut uploads, &target, false);
         match self.frame.as_mut() {
-            Some(frame) => frame.push(Chunk { ops, vertices, keys, uploads }),
+            Some(frame) => frame.push(Chunk { vram: sent, ops, vertices, keys, uploads }),
             None => {
                 // Keep the allocations.
                 (self.ops, self.vertices, self.uploads, self.keys) = (ops, vertices, uploads, keys);
@@ -1012,9 +1036,10 @@ impl Hw {
         }
     }
 
-    /// Runs recorded operations on the card, drawing into `into`. Copies
-    /// read the layer itself.
-    fn run(&mut self, ops: &[Op], vertices: &[GpuVertex], uploads: &mut Vec<u16>, into: &wgpu::Texture) {
+    /// Runs recorded operations on the card, drawing into `into`, with
+    /// textures from the native VRAM copy (`replay`: the one frames are drawn
+    /// again with). Copies read the layer itself.
+    fn run(&mut self, ops: &[Op], vertices: &[GpuVertex], uploads: &mut Vec<u16>, into: &wgpu::Texture, replay: bool) {
         let gfx = self.gfx;
         let device = &gfx.device;
         let vbytes = bytes(vertices);
@@ -1036,6 +1061,9 @@ impl Hw {
             if self.upload_buffer.size() < ubytes.len() as u64 {
                 self.upload_buffer = Self::make_upload_buffer(device, (ubytes.len() as u64).next_power_of_two());
                 self.bind = Self::make_bind(device, &self.layout, &self.uniforms, &self.vram, &self.upload_buffer, &self.scratch);
+                if let Some((texture, bind)) = self.vram_replay.as_mut() {
+                    *bind = Self::make_bind(device, &self.layout, &self.uniforms, texture, &self.upload_buffer, &self.scratch);
+                }
             }
             gfx.queue.write_buffer(&self.upload_buffer, 0, ubytes);
         }
@@ -1072,7 +1100,11 @@ impl Hw {
                 ..Default::default()
             });
             pass.set_vertex_buffer(0, vertex_buffer.slice(..));
-            pass.set_bind_group(0, &self.bind, &[]);
+            let bind = match (&self.vram_replay, replay) {
+                (Some((_, bind)), true) => bind,
+                _ => &self.bind,
+            };
+            pass.set_bind_group(0, bind, &[]);
             while let Some(Op::Draw { blend, scissor, first, count }) = ops.get(i) {
                 if scissor[2] > 0 && scissor[3] > 0 {
                     pass.set_pipeline(&self.pipelines[blend.index()]);
@@ -1141,6 +1173,51 @@ impl Hw {
         self.before = Some((texture, x, w));
     }
 
+    /// Keeps the native VRAM copy as the next frame starts from it (flush
+    /// first).
+    pub fn keep_vram(&mut self) {
+        let texture = self.vram_before.get_or_insert_with(|| {
+            self.gfx.device.create_texture(&wgpu::TextureDescriptor {
+                label: Some("hw vram before"),
+                size: self.vram.size(),
+                mip_level_count: 1,
+                sample_count: 1,
+                dimension: wgpu::TextureDimension::D2,
+                format: wgpu::TextureFormat::R16Uint,
+                usage: wgpu::TextureUsages::COPY_SRC | wgpu::TextureUsages::COPY_DST,
+                view_formats: &[],
+            })
+        });
+        let mut encoder = self.gfx.device.create_command_encoder(&Default::default());
+        encoder.copy_texture_to_texture(self.vram.as_image_copy(), texture.as_image_copy(), self.vram.size());
+        self.gfx.queue.submit([encoder.finish()]);
+    }
+
+    /// The texture frames are drawn again with, set to the native VRAM as
+    /// the last frame left it.
+    fn start_vram_replay(&mut self) {
+        if self.vram_replay.is_none() {
+            let texture = self.gfx.device.create_texture(&wgpu::TextureDescriptor {
+                label: Some("hw vram replay"),
+                size: self.vram.size(),
+                mip_level_count: 1,
+                sample_count: 1,
+                dimension: wgpu::TextureDimension::D2,
+                format: wgpu::TextureFormat::R16Uint,
+                usage: wgpu::TextureUsages::TEXTURE_BINDING | wgpu::TextureUsages::COPY_DST,
+                view_formats: &[],
+            });
+            let bind = Self::make_bind(&self.gfx.device, &self.layout, &self.uniforms, &texture, &self.upload_buffer, &self.scratch);
+            self.vram_replay = Some((texture, bind));
+        }
+        let (texture, _) = self.vram_replay.as_ref().unwrap();
+        // Without a copy yet (the first frame), the current VRAM.
+        let from = self.vram_before.as_ref().unwrap_or(&self.vram);
+        let mut encoder = self.gfx.device.create_command_encoder(&Default::default());
+        encoder.copy_texture_to_texture(from.as_image_copy(), texture.as_image_copy(), self.vram.size());
+        self.gfx.queue.submit([encoder.finish()]);
+    }
+
     /// Draws `frame` again into `between`, its keyed vertices `t` of the
     /// way from their positions in `before` (0, relative to `origin`) to
     /// their own (1). A vertex that moved further than `limit` pixels is
@@ -1158,11 +1235,19 @@ impl Hw {
             self.between = Some(self.layer_texture("hw between", U::RENDER_ATTACHMENT | U::COPY_SRC | U::COPY_DST));
         }
         let into = self.between.clone().unwrap();
-        // Start from what the frame started from (effects blend over it).
+        // Start from what the frame started from (effects blend over it),
+        // with the textures as they were then.
         if let Some((before, x, w)) = self.before.as_ref() {
             self.copy_band(before, &into, *x, *w);
         }
+        self.start_vram_replay();
         for c in frame {
+            if let (Some(update), Some((texture, _))) = (&c.vram, &self.vram_replay) {
+                write_vram(self.gfx, texture, update);
+            }
+            if c.ops.is_empty() {
+                continue;
+            }
             let mut vertices = c.vertices.clone();
             for (v, k) in vertices.iter_mut().zip(&c.keys) {
                 let Some(p) = before.get(k).filter(|_| *k != 0) else { continue };
@@ -1173,9 +1258,24 @@ impl Hw {
                 }
             }
             let mut uploads = c.uploads.clone();
-            self.run(&c.ops, &vertices, &mut uploads, &into);
+            self.run(&c.ops, &vertices, &mut uploads, &into, true);
         }
     }
+}
+
+/// Sends native VRAM halfwords to a VRAM-sized texture.
+fn write_vram(gfx: &Gfx, texture: &wgpu::Texture, u: &VramUpdate) {
+    gfx.queue.write_texture(
+        wgpu::TexelCopyTextureInfo {
+            texture,
+            mip_level: 0,
+            origin: wgpu::Origin3d { x: u.x, y: u.y, z: 0 },
+            aspect: wgpu::TextureAspect::All,
+        },
+        bytes(&u.rows),
+        wgpu::TexelCopyBufferLayout { offset: 0, bytes_per_row: Some(u.w * 2), rows_per_image: Some(u.h) },
+        wgpu::Extent3d { width: u.w, height: u.h, depth_or_array_layers: 1 },
+    );
 }
 
 fn rgb(r: i32, g: i32, b: i32) -> u32 {

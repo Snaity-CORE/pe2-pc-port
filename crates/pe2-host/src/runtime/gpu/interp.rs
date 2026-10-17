@@ -25,6 +25,14 @@ pub fn enabled() -> bool {
         .unwrap_or(true)
 }
 
+/// How far between the two frames the frame in between is: halfway, or
+/// PE2_INTERP_T for checks (1 draws the new frame itself again, which must
+/// come out the same as the frame).
+fn between_t() -> f32 {
+    static T: std::sync::OnceLock<f32> = std::sync::OnceLock::new();
+    *T.get_or_init(|| std::env::var("PE2_INTERP_T").ok().and_then(|v| v.trim().parse().ok()).unwrap_or(0.5))
+}
+
 /// A displayed region of the layer: x, y, width, height in its pixels.
 pub type Region = (u32, u32, u32, u32);
 
@@ -99,7 +107,7 @@ impl Interp {
         if drawn {
             // Further than this in one frame (1/30 s) is a cut, not movement.
             let limit = 32.0 * hw.scale as f32;
-            hw.draw_between(frame, &before, origin, 0.5, limit);
+            hw.draw_between(frame, &before, origin, between_t(), limit);
             self.pending = Some(region);
         }
         hw.keep_before(region.0, region.2);

@@ -1135,6 +1135,12 @@ pub fn latch() {
         let drawn = (st.area_x1.max(0) as u32 * s, st.area_y1.max(0) as u32 * s, w, h);
         let region = (d.enabled && drawn != shown).then_some(drawn);
         let between = g.interp.as_mut().is_some_and(|i| i.new_frame(hw, &kept, region));
+        if g.interp.is_some() {
+            hw.keep_vram();
+        }
+        if between && trace("interpcheck") {
+            check_between(hw, drawn);
+        }
         if between && trace("interpshots") {
             static SHOTS: std::sync::atomic::AtomicU32 = std::sync::atomic::AtomicU32::new(0);
             let n = SHOTS.fetch_add(1, std::sync::atomic::Ordering::Relaxed);
@@ -1149,6 +1155,9 @@ pub fn latch() {
     }
     if let Some(interp) = g.interp.as_mut() {
         interp.new_frame_hidden();
+        if let Some(layer::Layer::Hardware(hw)) = g.layer.as_mut() {
+            hw.keep_vram();
+        }
     }
     if let (Some(layer::Layer::Software(hr)), false) = (g.layer.as_ref(), d.rgb24) {
         let s = hr.scale as usize;
@@ -1230,7 +1239,41 @@ fn latch_on_card(hw: &hw::Hw, source: &wgpu::Texture, x: u32, y: u32, w: u32, h:
 
 /// PE2_TRACE=interpshots: saves a region of a layer texture as a PNG.
 fn save_card_region(texture: &wgpu::Texture, (x, y, w, h): interp::Region, path: &str) {
-    let Some(gfx) = crate::gfx::get() else { return };
+    let Some(rgb) = read_card_region(texture, (x, y, w, h)) else { return };
+    let Ok(file) = std::fs::File::create(path) else { return };
+    let mut enc = png::Encoder::new(std::io::BufWriter::new(file), w, h);
+    enc.set_color(png::ColorType::Rgb);
+    enc.set_depth(png::BitDepth::Eight);
+    if let Ok(mut writer) = enc.write_header() {
+        let _ = writer.write_image_data(&rgb);
+    }
+}
+
+/// PE2_TRACE=interpcheck (with PE2_INTERP_T=1, the frame drawn again where
+/// it is): pixels of the frame in between unlike the frame's, per frame and
+/// every 5 s. Any is a fault in drawing frames again.
+fn check_between(hw: &hw::Hw, region: interp::Region) {
+    use std::sync::Mutex;
+    static TOTALS: Mutex<(u64, u64, Option<std::time::Instant>)> = Mutex::new((0, 0, None));
+    let (Some(between), Some(a)) = (hw.between.as_ref(), read_card_region(&hw.target, region)) else { return };
+    let Some(b) = read_card_region(between, region) else { return };
+    let differ = a.chunks_exact(3).zip(b.chunks_exact(3)).filter(|(p, q)| p.iter().zip(q.iter()).any(|(x, y)| x.abs_diff(*y) > 8)).count();
+    let mut t = TOTALS.lock().unwrap();
+    t.0 += 1;
+    if differ > 0 {
+        t.1 += 1;
+        eprintln!("[interpcheck] frame {}: {differ} pixels differ", t.0);
+    }
+    let since = *t.2.get_or_insert_with(std::time::Instant::now);
+    if since.elapsed().as_secs() >= 5 {
+        eprintln!("[interpcheck] {} frames checked, {} differ", t.0, t.1);
+        t.2 = Some(std::time::Instant::now());
+    }
+}
+
+/// A region of a layer texture read back as RGB bytes (slow).
+fn read_card_region(texture: &wgpu::Texture, (x, y, w, h): interp::Region) -> Option<Vec<u8>> {
+    let gfx = crate::gfx::get()?;
     let row = (w * 4).next_multiple_of(256);
     let buffer = gfx.device.create_buffer(&wgpu::BufferDescriptor {
         label: Some("readback"),
@@ -1249,21 +1292,13 @@ fn save_card_region(texture: &wgpu::Texture, (x, y, w, h): interp::Region, path:
     );
     gfx.queue.submit([encoder.finish()]);
     buffer.map_async(wgpu::MapMode::Read, .., |_| {});
-    if gfx.device.poll(wgpu::PollType::Wait { submission_index: None, timeout: None }).is_err() {
-        return;
-    }
-    let Ok(data) = buffer.get_mapped_range(..) else { return };
+    gfx.device.poll(wgpu::PollType::Wait { submission_index: None, timeout: None }).ok()?;
+    let data = buffer.get_mapped_range(..).ok()?;
     let mut rgb = Vec::with_capacity((w * h * 3) as usize);
     for line in data.chunks(row as usize).take(h as usize) {
         rgb.extend(line[..w as usize * 4].chunks_exact(4).flat_map(|p| [p[0], p[1], p[2]]));
     }
-    let Ok(file) = std::fs::File::create(path) else { return };
-    let mut enc = png::Encoder::new(std::io::BufWriter::new(file), w, h);
-    enc.set_color(png::ColorType::Rgb);
-    enc.set_depth(png::BitDepth::Eight);
-    if let Ok(mut writer) = enc.write_header() {
-        let _ = writer.write_image_data(&rgb);
-    }
+    Some(rgb)
 }
 
 /// Reads HW_FRONT back as 0RGB pixels (screenshots; slow).
