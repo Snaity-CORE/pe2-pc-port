@@ -57,6 +57,8 @@ pub struct Video {
     pub fullscreen: Option<bool>,
     /// 3D textures: "nearest" (the default) or "bilinear".
     pub texture_filter: Option<String>,
+    /// Frames in between at 60 fps (hardware renderer, subpixel; default on).
+    pub frame_interpolation: Option<bool>,
 }
 
 #[derive(Debug, Default, Deserialize)]

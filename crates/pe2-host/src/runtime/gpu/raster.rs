@@ -22,6 +22,9 @@ pub struct Vertex {
     /// The vertex's depth for perspective-correct interpolation, when every
     /// vertex of its polygon has one (0: none).
     pub w: f32,
+    /// The model vertex this one projects, the same from frame to frame
+    /// (pgxp.c; 0: unknown): frames in between are drawn from it.
+    pub key: u32,
 }
 
 /// How a primitive's pixels are produced.

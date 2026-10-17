@@ -59,6 +59,7 @@ struct Settings {
     subpixel: bool,
     perspective: bool,
     bilinear: bool,
+    interpolation: bool,
     fullscreen: bool,
     /// Empty: the default card in memcards/ next to pe2.exe.
     cards: [String; 2],
@@ -84,6 +85,7 @@ impl Settings {
             subpixel: flag("video", "subpixel", true),
             perspective: flag("video", "perspective", true),
             bilinear: get("video", "texture_filter").and_then(|v| v.as_str()) == Some("bilinear"),
+            interpolation: flag("video", "frame_interpolation", true),
             fullscreen: flag("video", "fullscreen", false),
             cards: [text("memcard", "slot1"), text("memcard", "slot2")],
             controller: get("input", "controller").and_then(|v| v.as_str()).filter(|n| *n != "auto").unwrap_or("").to_string(),
@@ -122,6 +124,7 @@ impl Settings {
         doc["video"]["subpixel"] = value(self.subpixel);
         doc["video"]["perspective"] = value(self.perspective);
         doc["video"]["texture_filter"] = value(if self.bilinear { "bilinear" } else { "nearest" });
+        doc["video"]["frame_interpolation"] = value(self.interpolation);
         doc["video"]["fullscreen"] = value(self.fullscreen);
         doc["input"]["controller"] = value(if self.controller.is_empty() { "auto" } else { self.controller.as_str() });
         doc["input"]["vibration"] = value(self.vibration);
@@ -392,6 +395,9 @@ impl Launcher {
             });
             ui.add_enabled_ui(e.hardware, |ui| {
                 ui.checkbox(&mut e.bilinear, lang.t("Smooth 3D textures (bilinear)", "Suavizar texturas 3D (bilinear)"));
+            });
+            ui.add_enabled_ui(e.hardware && e.subpixel, |ui| {
+                ui.checkbox(&mut e.interpolation, lang.t("Smooth motion (60 fps)", "Movimento suave (60 fps)"));
             });
         });
         ui.checkbox(&mut e.fullscreen, lang.t("Start in full screen (Alt+Enter toggles)", "Iniciar em tela cheia (Alt+Enter alterna)"));
@@ -711,7 +717,7 @@ pub fn run() -> ExitCode {
     let options = eframe::NativeOptions {
         viewport: egui::ViewportBuilder::default()
             .with_title("Parasite Eve II")
-            .with_inner_size([560.0, 520.0])
+            .with_inner_size([560.0, 545.0])
             .with_resizable(false),
         renderer: eframe::Renderer::Glow,
         ..Default::default()

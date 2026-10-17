@@ -12,6 +12,11 @@
  *
  * Only the higher-resolution layer uses these positions: the console's
  * VRAM keeps being drawn with the whole-pixel ones.
+ *
+ * A position may also carry the identity of the vertex it projects (a
+ * model part and the vertex's address, see pcgte_set_vector_key), which
+ * lets the renderer find the same vertex in the previous frame and draw
+ * frames in between.
  */
 #include <stdint.h>
 
@@ -23,6 +28,7 @@ typedef struct {
     uint32_t word; /* the stored SXY value */
     float x, y, z;
     uint32_t valid;
+    uint32_t key; /* the vertex's identity, or 0 */
     uint32_t frame; /* when it was stored (see pc_pgxp_tick) */
 } Precise;
 
@@ -48,7 +54,7 @@ static Precise* entry(uint32_t addr)
     return &table[(addr & 0x1FFFFFu) >> 2];
 }
 
-void pc_pgxp_record(uint32_t addr, uint32_t word, float x, float y, float z, int valid)
+void pc_pgxp_record(uint32_t addr, uint32_t word, float x, float y, float z, int valid, uint32_t key)
 {
     Precise* e = entry(addr);
     if (e) {
@@ -57,6 +63,7 @@ void pc_pgxp_record(uint32_t addr, uint32_t word, float x, float y, float z, int
         e->y = y;
         e->z = z;
         e->valid = (uint32_t)valid;
+        e->key = key;
         e->frame = frame;
     }
 }
@@ -73,7 +80,7 @@ void pc_pgxp_copy(uint32_t dst, uint32_t src)
     }
 }
 
-int pc_pgxp_lookup(uint32_t addr, uint32_t word, float* x, float* y, float* z)
+int pc_pgxp_lookup(uint32_t addr, uint32_t word, float* x, float* y, float* z, uint32_t* key)
 {
     Precise* e = entry(addr);
     if (!e || !e->valid || e->word != word || frame - e->frame > MAX_AGE) {
@@ -82,5 +89,6 @@ int pc_pgxp_lookup(uint32_t addr, uint32_t word, float* x, float* y, float* z)
     *x = e->x;
     *y = e->y;
     *z = e->z;
+    *key = e->key;
     return 1;
 }

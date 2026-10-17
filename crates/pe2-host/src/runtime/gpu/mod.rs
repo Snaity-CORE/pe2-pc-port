@@ -11,6 +11,7 @@
 
 pub mod hires;
 pub mod hw;
+mod interp;
 pub mod layer;
 pub mod raster;
 
@@ -54,6 +55,8 @@ pub struct Gpu {
     /// the window's picture was last taken.
     generation: u64,
     latched: u64,
+    /// Frames in between (interp.rs), when drawn.
+    interp: Option<interp::Interp>,
 }
 
 /// PE2_TRACE=pgxp: every few seconds, polygon vertices with and without an
@@ -135,6 +138,18 @@ pub fn start() {
             unsafe { pc_pgxp_culling = 1 };
         }
     }
+    let mut layer = (scale > 1).then(|| match crate::gfx::get() {
+        Some(gfx) => layer::Layer::Hardware(hw::Hw::new(gfx, scale)),
+        None => layer::Layer::Software(hires::Hires::new(scale)),
+    });
+    let mut interp = None;
+    if let Some(layer::Layer::Hardware(hw)) = layer.as_mut() {
+        if subpixel() && interp::enabled() {
+            eprintln!("pe2: frame interpolation on");
+            hw.keep_frames();
+            interp = Some(interp::Interp::default());
+        }
+    }
     *GPU.lock().unwrap() = Some(Gpu {
         vram: Vram::default(),
         state: DrawState::default(),
@@ -143,12 +158,10 @@ pub fn start() {
         cur_packet: 0,
         dump: false,
         dump_out: None,
-        layer: (scale > 1).then(|| match crate::gfx::get() {
-            Some(gfx) => layer::Layer::Hardware(hw::Hw::new(gfx, scale)),
-            None => layer::Layer::Software(hires::Hires::new(scale)),
-        }),
+        layer,
         generation: 0,
         latched: u64::MAX,
+        interp,
         cmd_addr: 0,
         cmd_word0: 0,
     });
@@ -332,10 +345,11 @@ impl Gpu {
             }
             let (x, y) = xy(words[i]);
             let found = self.exact(i, words[i], x, y);
-            let exact = found.map(|(ex, ey, _)| (ex + st.offset_x as f32, ey + st.offset_y as f32));
-            let w = found.map_or(0.0, |(_, _, ez)| ez);
+            let exact = found.map(|(ex, ey, ..)| (ex + st.offset_x as f32, ey + st.offset_y as f32));
+            let w = found.map_or(0.0, |(_, _, ez, _)| ez);
+            let key = found.map_or(0, |(.., k)| k);
             i += 1;
-            *v = Vertex { x: x + st.offset_x, y: y + st.offset_y, r: rgb.0, g: rgb.1, b: rgb.2, u: 0, v: 0, exact, w };
+            *v = Vertex { x: x + st.offset_x, y: y + st.offset_y, r: rgb.0, g: rgb.1, b: rgb.2, u: 0, v: 0, exact, w, key };
             if textured {
                 let t = words[i];
                 i += 1;
@@ -568,22 +582,23 @@ impl Gpu {
     }
 
     /// The exact position of the vertex in command word `i`, when there is
-    /// one for that word (and it rounds to what the word holds).
-    fn exact(&self, i: usize, word: u32, x: i32, y: i32) -> Option<(f32, f32, f32)> {
+    /// one for that word (and it rounds to what the word holds), its depth
+    /// and its key.
+    fn exact(&self, i: usize, word: u32, x: i32, y: i32) -> Option<(f32, f32, f32, u32)> {
         if self.cmd_addr == 0 || !subpixel() || self.layer.is_none() {
             return None;
         }
         POLY_VERTICES.fetch_add(1, std::sync::atomic::Ordering::Relaxed);
-        let (mut ex, mut ey, mut ez) = (0f32, 0f32, 0f32);
+        let (mut ex, mut ey, mut ez, mut key) = (0f32, 0f32, 0f32, 0u32);
         // SAFETY: pgxp.c's lookup reads only its own table.
-        let found = unsafe { pc_pgxp_lookup(self.cmd_addr + 4 * i as u32, word, &mut ex, &mut ey, &mut ez) };
+        let found = unsafe { pc_pgxp_lookup(self.cmd_addr + 4 * i as u32, word, &mut ex, &mut ey, &mut ez, &mut key) };
         if found == 0 || (ex - x as f32).abs() > 8.0 || (ey - y as f32).abs() > 8.0 {
             pgxp_trace(self.cur_packet, self.cmd_word0, false);
             return None;
         }
         EXACT_VERTICES.fetch_add(1, std::sync::atomic::Ordering::Relaxed);
         pgxp_trace(self.cur_packet, self.cmd_word0, true);
-        Some((ex, ey, ez))
+        Some((ex, ey, ez, key))
     }
 
     fn load_image(&mut self, x: i32, y: i32, w: i32, h: i32, pixels: impl Iterator<Item = u16>) {
@@ -643,7 +658,7 @@ pub extern "C" fn pcrt_ResetGraph(mode: i32) -> i32 {
 }
 
 unsafe extern "C" {
-    fn pc_pgxp_lookup(addr: u32, word: u32, x: *mut f32, y: *mut f32, z: *mut f32) -> i32;
+    fn pc_pgxp_lookup(addr: u32, word: u32, x: *mut f32, y: *mut f32, z: *mut f32, key: *mut u32) -> i32;
     fn pc_pgxp_tick();
     static mut pc_pgxp_culling: i32;
     static pc_sym_GEnv: u32;
@@ -797,6 +812,7 @@ pub extern "C" fn pcrt_DrawOTag(p: *const u32) {
         if trace("gpu") {
             eprintln!("[gpu] DrawOTag 0x{:08X}: {packets} packets", p as u32);
         }
+        vtrace(format_args!("DrawOTag 0x{:08X}: {packets} packets", p as u32));
     });
 }
 
@@ -1063,18 +1079,32 @@ static FRONT: Mutex<Front> = Mutex::new(Front {
 /// and draws there (reloading the background, then drawing over it), so
 /// the window sees whole frames only, as a TV does, never one half drawn.
 /// Skipped when nothing changed, or while the window is reading the last
-/// picture (the next blank takes it).
+/// picture (the next blank takes it). With frame interpolation, the blank
+/// after a new frame shows that frame drawn halfway from the one on screen
+/// (interp.rs).
 pub fn latch() {
     // SAFETY: a counter in pgxp.c, also called on the interrupt thread only.
     unsafe { pc_pgxp_tick() };
     let mut guard = GPU.lock().unwrap();
     let Some(g) = guard.as_mut() else { return };
+    if let Some(interp) = g.interp.as_mut() {
+        interp.blank();
+    }
     if g.generation == g.latched {
+        // No new frame: the frame in between, if one is ready.
+        let pending = g.interp.as_mut().and_then(interp::Interp::take_pending);
+        if let (Some((x, y, w, h)), Some(layer::Layer::Hardware(hw))) = (pending, g.layer.as_ref()) {
+            if let Some(between) = hw.between.as_ref() {
+                latch_on_card(hw, between, x, y, w, h);
+                FRAMES.fetch_add(1, std::sync::atomic::Ordering::Relaxed);
+            }
+        }
         return;
     }
     let Ok(mut f) = FRONT.try_lock() else { return };
     g.latched = g.generation;
     FRAMES.fetch_add(1, std::sync::atomic::Ordering::Relaxed);
+    vtrace(format_args!("latch"));
     let d = g.display;
     // Whatever is shown, the card catches up once a frame (uploads would
     // pile up while a 24-bit movie is displayed from the VRAM).
@@ -1086,15 +1116,39 @@ pub fn latch() {
     f.hires.clear();
     f.vram.clear();
     f.on_card = false;
+    let kept = match g.layer.as_mut() {
+        Some(layer::Layer::Hardware(hw)) => hw.take_frame(),
+        _ => Vec::new(),
+    };
     if let (Some(layer::Layer::Hardware(hw)), false) = (g.layer.as_mut(), d.rgb24) {
         let s = hw.scale as u32;
         let (w, h) = (d.width as u32 * s, d.height as u32 * s);
         (f.width, f.height) = (w as usize, h as usize);
+        let shown = (d.x as u32 * s, d.y as u32 * s, w, h);
         if d.enabled {
-            latch_on_card(hw, d.x as u32 * s, d.y as u32 * s, w, h);
+            latch_on_card(hw, &hw.target, shown.0, shown.1, w, h);
             f.on_card = true;
         }
+        // The new frame was drawn into the other framebuffer, which the
+        // game shows from the blank after next: the drawing area's.
+        let st = g.state;
+        let drawn = (st.area_x1.max(0) as u32 * s, st.area_y1.max(0) as u32 * s, w, h);
+        let region = (d.enabled && drawn != shown).then_some(drawn);
+        let between = g.interp.as_mut().is_some_and(|i| i.new_frame(hw, &kept, region));
+        if between && trace("interpshots") {
+            static SHOTS: std::sync::atomic::AtomicU32 = std::sync::atomic::AtomicU32::new(0);
+            let n = SHOTS.fetch_add(1, std::sync::atomic::Ordering::Relaxed);
+            if n % 20 == 0 {
+                let n = n / 20;
+                save_card_region(&hw.target, shown, &format!("pe2-interp-{n:03}-a-shown.png"));
+                save_card_region(hw.between.as_ref().unwrap(), drawn, &format!("pe2-interp-{n:03}-b-between.png"));
+                save_card_region(&hw.target, drawn, &format!("pe2-interp-{n:03}-c-next.png"));
+            }
+        }
         return;
+    }
+    if let Some(interp) = g.interp.as_mut() {
+        interp.new_frame_hidden();
     }
     if let (Some(layer::Layer::Software(hr)), false) = (g.layer.as_ref(), d.rgb24) {
         let s = hr.scale as usize;
@@ -1135,8 +1189,9 @@ pub fn latch() {
     }
 }
 
-/// Copies the displayed region of the hardware layer into HW_FRONT.
-fn latch_on_card(hw: &hw::Hw, x: u32, y: u32, w: u32, h: u32) {
+/// Copies the displayed region of the hardware layer (or of `source`, a
+/// texture of the same size) into HW_FRONT.
+fn latch_on_card(hw: &hw::Hw, source: &wgpu::Texture, x: u32, y: u32, w: u32, h: u32) {
     let Some(gfx) = crate::gfx::get() else { return };
     let mut front = HW_FRONT.lock().unwrap();
     if front.as_ref().is_none_or(|f| (f.width, f.height) != (w, h)) {
@@ -1162,7 +1217,7 @@ fn latch_on_card(hw: &hw::Hw, x: u32, y: u32, w: u32, h: u32) {
     let mut encoder = gfx.device.create_command_encoder(&Default::default());
     encoder.copy_texture_to_texture(
         wgpu::TexelCopyTextureInfo {
-            texture: &hw.target,
+            texture: source,
             mip_level: 0,
             origin: wgpu::Origin3d { x, y, z: 0 },
             aspect: wgpu::TextureAspect::All,
@@ -1171,6 +1226,44 @@ fn latch_on_card(hw: &hw::Hw, x: u32, y: u32, w: u32, h: u32) {
         wgpu::Extent3d { width: cw, height: ch, depth_or_array_layers: 1 },
     );
     gfx.queue.submit([encoder.finish()]);
+}
+
+/// PE2_TRACE=interpshots: saves a region of a layer texture as a PNG.
+fn save_card_region(texture: &wgpu::Texture, (x, y, w, h): interp::Region, path: &str) {
+    let Some(gfx) = crate::gfx::get() else { return };
+    let row = (w * 4).next_multiple_of(256);
+    let buffer = gfx.device.create_buffer(&wgpu::BufferDescriptor {
+        label: Some("readback"),
+        size: u64::from(row * h),
+        usage: wgpu::BufferUsages::COPY_DST | wgpu::BufferUsages::MAP_READ,
+        mapped_at_creation: false,
+    });
+    let mut encoder = gfx.device.create_command_encoder(&Default::default());
+    encoder.copy_texture_to_buffer(
+        wgpu::TexelCopyTextureInfo { texture, mip_level: 0, origin: wgpu::Origin3d { x, y, z: 0 }, aspect: wgpu::TextureAspect::All },
+        wgpu::TexelCopyBufferInfo {
+            buffer: &buffer,
+            layout: wgpu::TexelCopyBufferLayout { offset: 0, bytes_per_row: Some(row), rows_per_image: Some(h) },
+        },
+        wgpu::Extent3d { width: w, height: h, depth_or_array_layers: 1 },
+    );
+    gfx.queue.submit([encoder.finish()]);
+    buffer.map_async(wgpu::MapMode::Read, .., |_| {});
+    if gfx.device.poll(wgpu::PollType::Wait { submission_index: None, timeout: None }).is_err() {
+        return;
+    }
+    let Ok(data) = buffer.get_mapped_range(..) else { return };
+    let mut rgb = Vec::with_capacity((w * h * 3) as usize);
+    for line in data.chunks(row as usize).take(h as usize) {
+        rgb.extend(line[..w as usize * 4].chunks_exact(4).flat_map(|p| [p[0], p[1], p[2]]));
+    }
+    let Ok(file) = std::fs::File::create(path) else { return };
+    let mut enc = png::Encoder::new(std::io::BufWriter::new(file), w, h);
+    enc.set_color(png::ColorType::Rgb);
+    enc.set_depth(png::BitDepth::Eight);
+    if let Ok(mut writer) = enc.write_header() {
+        let _ = writer.write_image_data(&rgb);
+    }
 }
 
 /// Reads HW_FRONT back as 0RGB pixels (screenshots; slow).

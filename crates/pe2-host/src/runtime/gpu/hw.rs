@@ -9,6 +9,9 @@
 //! primitives sample, so each primitive sees the VRAM as it was when the
 //! game drew it.
 //!
+//! With frame interpolation, everything run for a frame is also kept, so
+//! the frame can be drawn again with its model vertices moved (interp.rs).
+//!
 //! The game never tests the mask bit when drawing (it only sets it), and
 //! textures come from the native VRAM, where the bit is exact; this layer
 //! keeps no mask bit.
@@ -266,6 +269,7 @@ impl Blend {
 }
 
 /// A recorded operation.
+#[derive(Clone, Copy)]
 enum Op {
     /// Vertices `first..first + count` with one blend mode and scissor.
     Draw { blend: Blend, scissor: [u32; 4], first: u32, count: u32 },
@@ -339,6 +343,28 @@ impl Areas {
     }
 }
 
+/// Work run on the card in one flush, kept to draw the frame again.
+pub struct Chunk {
+    ops: Vec<Op>,
+    vertices: Vec<GpuVertex>,
+    /// Each vertex's key (Vertex::key; 0: none).
+    keys: Vec<u32>,
+    uploads: Vec<u16>,
+}
+
+/// The positions of a frame's keyed vertices, in this layer's pixels.
+pub fn positions(frame: &[Chunk]) -> std::collections::HashMap<u32, [f32; 2]> {
+    let mut out = std::collections::HashMap::new();
+    for c in frame {
+        for (v, &k) in c.vertices.iter().zip(&c.keys) {
+            if k != 0 {
+                out.entry(k).or_insert(v.pos);
+            }
+        }
+    }
+    out
+}
+
 pub struct Hw {
     gfx: &'static Gfx,
     pub scale: i32,
@@ -354,8 +380,16 @@ pub struct Hw {
     layout: wgpu::BindGroupLayout,
     pipelines: Vec<wgpu::RenderPipeline>,
     vertices: Vec<GpuVertex>,
+    keys: Vec<u32>,
     uploads: Vec<u16>,
     ops: Vec<Op>,
+    /// The flushes of the frame being drawn, when frames are kept.
+    frame: Option<Vec<Chunk>>,
+    /// Where frames are drawn again (created when first needed).
+    pub between: Option<wgpu::Texture>,
+    /// The layer as the last frame left it, in a band of columns (x, width)
+    /// holding the framebuffers: what the next frame starts from.
+    before: Option<(wgpu::Texture, u32, u32)>,
     /// Native VRAM written since the last copy sent to the card, and the
     /// native VRAM recorded primitives sample.
     dirty: Areas,
@@ -485,8 +519,12 @@ impl Hw {
             layout,
             pipelines,
             vertices: Vec::new(),
+            keys: Vec::new(),
             uploads: Vec::new(),
             ops: Vec::new(),
+            frame: None,
+            between: None,
+            before: None,
             dirty: Areas(vec![Area::new(0, 0, VRAM_WIDTH as i32, VRAM_HEIGHT as i32)]),
             sampled: Areas::default(),
         }
@@ -567,9 +605,16 @@ impl Hw {
         self.uploads.len() * 2 + self.vertices.len() * std::mem::size_of::<GpuVertex>() > Self::PENDING_LIMIT
     }
 
-    fn push_draw(&mut self, blend: Blend, scissor: [u32; 4], verts: &[GpuVertex]) {
+    /// Records vertices drawn with one blend mode and scissor; `keys`, when
+    /// not empty, has each vertex's key.
+    fn push_draw(&mut self, blend: Blend, scissor: [u32; 4], verts: &[GpuVertex], keys: &[u32]) {
         let first = self.vertices.len() as u32;
         self.vertices.extend_from_slice(verts);
+        if keys.len() == verts.len() {
+            self.keys.extend_from_slice(keys);
+        } else {
+            self.keys.resize(self.vertices.len(), 0);
+        }
         if let Some(Op::Draw { blend: b, scissor: s, count, .. }) = self.ops.last_mut() {
             if *b == blend && *s == scissor {
                 *count += verts.len() as u32;
@@ -634,7 +679,7 @@ impl Hw {
 
     /// Records a shaded primitive: textured semi-transparent ones in two
     /// passes, since only texels with bit 15 set are blended.
-    fn shaded(&mut self, vram: &Vram, st: &DrawState, sh: &Shading, make: impl Fn(GpuVertex) -> Vec<GpuVertex>) {
+    fn shaded(&mut self, vram: &Vram, st: &DrawState, sh: &Shading, keys: &[u32], make: impl Fn(GpuVertex) -> Vec<GpuVertex>) {
         if self.too_much() {
             self.flush(vram);
         }
@@ -644,15 +689,15 @@ impl Hw {
         let scissor = self.scissor(st);
         if !sh.semi_transparent {
             let verts = make(self.template(st, sh, 0));
-            self.push_draw(Blend::None, scissor, &verts);
+            self.push_draw(Blend::None, scissor, &verts, keys);
         } else if !sh.textured {
             let verts = make(self.template(st, sh, 0));
-            self.push_draw(Self::semi_blend(st), scissor, &verts);
+            self.push_draw(Self::semi_blend(st), scissor, &verts, keys);
         } else {
             let opaque = make(self.template(st, sh, 1));
-            self.push_draw(Blend::None, scissor, &opaque);
+            self.push_draw(Blend::None, scissor, &opaque, keys);
             let blended = make(self.template(st, sh, 2));
-            self.push_draw(Self::semi_blend(st), scissor, &blended);
+            self.push_draw(Self::semi_blend(st), scissor, &blended, keys);
         }
     }
 
@@ -675,7 +720,8 @@ impl Hw {
             }
             _ => (0, 0),
         };
-        self.shaded(vram, st, sh, |t| {
+        let keys = v.map(|q| q.key);
+        self.shaded(vram, st, sh, &keys, |t| {
             v.iter()
                 .map(|q| {
                     let c = if gouraud { q } else { &v[0] };
@@ -724,7 +770,7 @@ impl Hw {
         // The quad's far edges sit on pixel boundaries: pull them in by a
         // half pixel so the last row and column are covered exactly once.
         let c = rgb(color.0, color.1, color.2);
-        self.shaded(vram, st, sh, |t| {
+        self.shaded(vram, st, sh, &[], |t| {
             Self::quad(x0, y0, x1 - 0.0, y1 - 0.0, [u0, v0], [u1, v1], GpuVertex { color: c, ..t })
                 .iter()
                 .map(|q| GpuVertex { pos: [q.pos[0] - 0.5, q.pos[1] - 0.5], ..*q })
@@ -741,7 +787,7 @@ impl Hw {
         let steps = dx.abs().max(dy.abs());
         let s = self.scale as f32;
         let gouraud = sh.gouraud;
-        self.shaded(vram, st, sh, |t| {
+        self.shaded(vram, st, sh, &[], |t| {
             let mut out = Vec::with_capacity(6 * (steps as usize + 1));
             for i in 0..=steps {
                 let lerp = |p: i32, q: i32| if steps == 0 { p } else { p + (q - p) * i / steps };
@@ -778,7 +824,7 @@ impl Hw {
             GpuVertex { color: c, ..Default::default() },
         );
         let full = self.full();
-        self.push_draw(Blend::None, full, &verts);
+        self.push_draw(Blend::None, full, &verts, &[]);
     }
 
     /// An image transfer of `w` x `h` native pixels (the native VRAM
@@ -806,7 +852,7 @@ impl Hw {
             template,
         );
         let full = self.full();
-        self.push_draw(Blend::None, full, &verts);
+        self.push_draw(Blend::None, full, &verts, &[]);
     }
 
     /// A VRAM-to-VRAM copy (no wrapping at the VRAM's edges).
@@ -833,6 +879,7 @@ impl Hw {
         let full = self.full();
         let first = self.vertices.len() as u32;
         self.vertices.extend_from_slice(&verts);
+        self.keys.resize(self.vertices.len(), 0);
         // Never merged with a previous draw: the scratch copy comes between.
         self.ops.push(Op::Draw { blend: Blend::None, scissor: full, first, count: 6 });
     }
@@ -870,10 +917,31 @@ impl Hw {
         if self.ops.is_empty() {
             return;
         }
-        let device = &gfx.device;
         FLUSHES.fetch_add(1, Ordering::Relaxed);
+        let target = self.target.clone();
+        let (ops, vertices, mut uploads) =
+            (std::mem::take(&mut self.ops), std::mem::take(&mut self.vertices), std::mem::take(&mut self.uploads));
+        let keys = std::mem::take(&mut self.keys);
+        self.run(&ops, &vertices, &mut uploads, &target);
+        match self.frame.as_mut() {
+            Some(frame) => frame.push(Chunk { ops, vertices, keys, uploads }),
+            None => {
+                // Keep the allocations.
+                (self.ops, self.vertices, self.uploads, self.keys) = (ops, vertices, uploads, keys);
+                self.ops.clear();
+                self.vertices.clear();
+                self.uploads.clear();
+                self.keys.clear();
+            }
+        }
+    }
 
-        let vbytes = bytes(&self.vertices);
+    /// Runs recorded operations on the card, drawing into `into`. Copies
+    /// read the layer itself.
+    fn run(&mut self, ops: &[Op], vertices: &[GpuVertex], uploads: &mut Vec<u16>, into: &wgpu::Texture) {
+        let gfx = self.gfx;
+        let device = &gfx.device;
+        let vbytes = bytes(vertices);
         if self.vertex_buffer.as_ref().is_none_or(|b| b.size() < vbytes.len() as u64) {
             self.vertex_buffer = Some(device.create_buffer(&wgpu::BufferDescriptor {
                 label: Some("hw vertices"),
@@ -884,11 +952,11 @@ impl Hw {
         }
         let vertex_buffer = self.vertex_buffer.as_ref().unwrap();
         gfx.queue.write_buffer(vertex_buffer, 0, vbytes);
-        if !self.uploads.is_empty() {
-            if self.uploads.len() % 2 == 1 {
-                self.uploads.push(0);
+        if !uploads.is_empty() {
+            if uploads.len() % 2 == 1 {
+                uploads.push(0);
             }
-            let ubytes = bytes(&self.uploads);
+            let ubytes = bytes(uploads);
             if self.upload_buffer.size() < ubytes.len() as u64 {
                 self.upload_buffer = Self::make_upload_buffer(device, (ubytes.len() as u64).next_power_of_two());
                 self.bind = Self::make_bind(device, &self.layout, &self.uniforms, &self.vram, &self.upload_buffer, &self.scratch);
@@ -896,11 +964,12 @@ impl Hw {
             gfx.queue.write_buffer(&self.upload_buffer, 0, ubytes);
         }
 
-        let view = self.target.create_view(&Default::default());
+        let vertex_buffer = self.vertex_buffer.as_ref().unwrap();
+        let view = into.create_view(&Default::default());
         let mut encoder = device.create_command_encoder(&Default::default());
         let mut i = 0;
-        while i < self.ops.len() {
-            if let Op::ToScratch { x, y, w, h } = self.ops[i] {
+        while i < ops.len() {
+            if let Op::ToScratch { x, y, w, h } = ops[i] {
                 let at = |texture| wgpu::TexelCopyTextureInfo {
                     texture,
                     mip_level: 0,
@@ -928,7 +997,7 @@ impl Hw {
             });
             pass.set_vertex_buffer(0, vertex_buffer.slice(..));
             pass.set_bind_group(0, &self.bind, &[]);
-            while let Some(Op::Draw { blend, scissor, first, count }) = self.ops.get(i) {
+            while let Some(Op::Draw { blend, scissor, first, count }) = ops.get(i) {
                 if scissor[2] > 0 && scissor[3] > 0 {
                     pass.set_pipeline(&self.pipelines[blend.index()]);
                     let k = blend.constant();
@@ -940,9 +1009,96 @@ impl Hw {
             }
         }
         gfx.queue.submit([encoder.finish()]);
-        self.vertices.clear();
-        self.uploads.clear();
-        self.ops.clear();
+    }
+
+    // ---- frames in between ------------------------------------------------
+
+    /// Keeps what each frame runs, from now on (see `take_frame`).
+    pub fn keep_frames(&mut self) {
+        self.frame.get_or_insert_with(Vec::new);
+    }
+
+    /// What was run since the last call (flush first).
+    pub fn take_frame(&mut self) -> Vec<Chunk> {
+        self.frame.as_mut().map(std::mem::take).unwrap_or_default()
+    }
+
+    /// A texture the size of the layer.
+    fn layer_texture(&self, label: &str, usage: wgpu::TextureUsages) -> wgpu::Texture {
+        self.gfx.device.create_texture(&wgpu::TextureDescriptor {
+            label: Some(label),
+            size: self.target.size(),
+            mip_level_count: 1,
+            sample_count: 1,
+            dimension: wgpu::TextureDimension::D2,
+            format: wgpu::TextureFormat::Rgba8Unorm,
+            usage,
+            view_formats: &[],
+        })
+    }
+
+    /// Copies columns x..x + w of one layer-sized texture to another.
+    fn copy_band(&self, from: &wgpu::Texture, to: &wgpu::Texture, x: u32, w: u32) {
+        let at = |texture| wgpu::TexelCopyTextureInfo {
+            texture,
+            mip_level: 0,
+            origin: wgpu::Origin3d { x, y: 0, z: 0 },
+            aspect: wgpu::TextureAspect::All,
+        };
+        let w = w.min(self.width.saturating_sub(x));
+        if w == 0 {
+            return;
+        }
+        let mut encoder = self.gfx.device.create_command_encoder(&Default::default());
+        encoder.copy_texture_to_texture(at(from), at(to), wgpu::Extent3d { width: w, height: self.height, depth_or_array_layers: 1 });
+        self.gfx.queue.submit([encoder.finish()]);
+    }
+
+    /// Keeps columns x..x + w of the layer as the next frame starts from
+    /// them (flush first).
+    pub fn keep_before(&mut self, x: u32, w: u32) {
+        let texture = match self.before.take() {
+            Some((t, ..)) => t,
+            None => self.layer_texture("hw before", wgpu::TextureUsages::COPY_SRC | wgpu::TextureUsages::COPY_DST),
+        };
+        self.copy_band(&self.target, &texture, x, w);
+        self.before = Some((texture, x, w));
+    }
+
+    /// Draws `frame` again into `between`, its keyed vertices `t` of the
+    /// way from their positions in `before` (0, relative to `origin`) to
+    /// their own (1). A vertex that moved further than `limit` pixels is
+    /// left where it is: the camera cut away.
+    pub fn draw_between(
+        &mut self,
+        frame: &[Chunk],
+        before: &std::collections::HashMap<u32, [f32; 2]>,
+        origin: [f32; 2],
+        t: f32,
+        limit: f32,
+    ) {
+        if self.between.is_none() {
+            use wgpu::TextureUsages as U;
+            self.between = Some(self.layer_texture("hw between", U::RENDER_ATTACHMENT | U::COPY_SRC | U::COPY_DST));
+        }
+        let into = self.between.clone().unwrap();
+        // Start from what the frame started from (effects blend over it).
+        if let Some((before, x, w)) = self.before.as_ref() {
+            self.copy_band(before, &into, *x, *w);
+        }
+        for c in frame {
+            let mut vertices = c.vertices.clone();
+            for (v, k) in vertices.iter_mut().zip(&c.keys) {
+                let Some(p) = before.get(k).filter(|_| *k != 0) else { continue };
+                let p = [p[0] + origin[0], p[1] + origin[1]];
+                let (dx, dy) = (v.pos[0] - p[0], v.pos[1] - p[1]);
+                if dx.abs() <= limit && dy.abs() <= limit {
+                    v.pos = [p[0] + dx * t, p[1] + dy * t];
+                }
+            }
+            let mut uploads = c.uploads.clone();
+            self.run(&c.ops, &vertices, &mut uploads, &into);
+        }
     }
 }
 

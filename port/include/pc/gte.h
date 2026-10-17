@@ -61,6 +61,12 @@ void pcgte_store_sxy(unsigned reg, uint32_t* dst);
  * the exact position recorded for that word, if any. */
 void pcgte_load_sxy(unsigned reg, const uint32_t* src);
 
+/* Gives the vertex just written to V0-V2 (n) an identity, kept with its
+ * projection's exact position (pgxp.c): the same vertex of the same model
+ * part has the same key from frame to frame. Writing the vector clears it,
+ * so set it after. 0: none. */
+void pcgte_set_vector_key(unsigned n, uint32_t key);
+
 /* Copies the word at `src` to `dst` with its recorded exact position. */
 void pc_pgxp_copy(uint32_t dst, uint32_t src);
 

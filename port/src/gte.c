@@ -238,9 +238,21 @@ static struct {
     u32 word;
     int valid;
     float x, y, z;
+    u32 key;
 } precise[3];
 
-void pc_pgxp_record(uint32_t addr, uint32_t word, float x, float y, float z, int valid);
+/* The identity of the vertex in each of V0-V2, or 0 (see
+ * pcgte_set_vector_key); a projection passes it to its SXY slot. */
+static u32 vector_key[3];
+
+void pcgte_set_vector_key(unsigned n, uint32_t key)
+{
+    if (n < 3) {
+        vector_key[n] = key;
+    }
+}
+
+void pc_pgxp_record(uint32_t addr, uint32_t word, float x, float y, float z, int valid, uint32_t key);
 
 static void shift_precise(void)
 {
@@ -255,7 +267,7 @@ static void shift_precise(void)
  * position is not an approximation of it. The position is the projection
  * of the full-precision camera-space vertex (`v`, before the GTE's own
  * rounding of x, y and z), as PGXP with preserved projection precision. */
-static void remember_precise(const s64 v[3], s16 sx, s16 sy, int saturated)
+static void remember_precise(const s64 v[3], s16 sx, s16 sy, int saturated, u32 key)
 {
     if (saturated || v[2] <= 0) {
         return;
@@ -271,6 +283,7 @@ static void remember_precise(const s64 v[3], s16 sx, s16 sy, int saturated)
     precise[2].x = (float)x;
     precise[2].y = (float)y;
     precise[2].z = (float)((double)v[2] / 4096.0);
+    precise[2].key = key;
 }
 
 /* Facing from exact positions (PE2_SUBPIXEL with a higher resolution:
@@ -304,20 +317,22 @@ static int precise_nclip(void)
     return 1;
 }
 
-int pc_pgxp_lookup(uint32_t addr, uint32_t word, float* x, float* y, float* z);
+int pc_pgxp_lookup(uint32_t addr, uint32_t word, float* x, float* y, float* z, uint32_t* key);
 
 void pcgte_load_sxy(unsigned reg, const uint32_t* src)
 {
     u32 word = *src;
     float x, y, z;
+    u32 key;
     pcgte_write_data(reg, word);
     unsigned slot = reg == PCGTE_SXYP ? 2 : reg - PCGTE_SXY0;
-    if (slot < 3 && pc_pgxp_lookup((u32)(uintptr_t)src, word, &x, &y, &z)) {
+    if (slot < 3 && pc_pgxp_lookup((u32)(uintptr_t)src, word, &x, &y, &z, &key)) {
         precise[slot].word = word;
         precise[slot].valid = 1;
         precise[slot].x = x;
         precise[slot].y = y;
         precise[slot].z = z;
+        precise[slot].key = key;
     }
 }
 
@@ -327,9 +342,10 @@ void pcgte_store_sxy(unsigned reg, uint32_t* dst)
     unsigned slot = reg == PCGTE_SXYP ? 2 : reg - PCGTE_SXY0;
     *dst = word;
     if (slot < 3 && precise[slot].valid && precise[slot].word == word) {
-        pc_pgxp_record((u32)(uintptr_t)dst, word, precise[slot].x, precise[slot].y, precise[slot].z, 1);
+        pc_pgxp_record((u32)(uintptr_t)dst, word, precise[slot].x, precise[slot].y, precise[slot].z, 1,
+                       precise[slot].key);
     } else {
-        pc_pgxp_record((u32)(uintptr_t)dst, word, 0, 0, 0, 0);
+        pc_pgxp_record((u32)(uintptr_t)dst, word, 0, 0, 0, 0, 0);
     }
 }
 
@@ -372,7 +388,7 @@ static void rtp(int n, int sf, int lm, int last)
     s16 sy = Lm_G(2, m0 >> 16);
     saturated |= (m0 >> 16) != sy;
     push_sxy(sx, sy);
-    remember_precise(v, sx, sy, saturated);
+    remember_precise(v, sx, sy, saturated, vector_key[n]);
     if (last) {
         m0 = F(q * (s16)ctrl[PCGTE_DQA] + (s32)ctrl[PCGTE_DQB]);
         data[PCGTE_MAC0] = (u32)(s32)m0;
@@ -664,6 +680,10 @@ static u32 leading_count(u32 v)
 
 void pcgte_write_data(unsigned reg, uint32_t value)
 {
+    /* A vector written by anything but a keyed load has no identity. */
+    if ((reg & 31) < 6) {
+        vector_key[(reg & 31) / 2] = 0;
+    }
     switch (reg & 31) {
     case PCGTE_SXYP:
         shift_precise();
