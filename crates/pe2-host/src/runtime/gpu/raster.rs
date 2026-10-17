@@ -45,6 +45,7 @@ pub struct Shading {
 
 /// The drawing state set by the E1-E6 commands.
 #[derive(Clone, Copy, Debug)]
+#[derive(Default)]
 pub struct DrawState {
     pub tex_x: i32,
     pub tex_y: i32,
@@ -70,32 +71,6 @@ pub struct DrawState {
     pub check_mask: bool,
 }
 
-impl Default for DrawState {
-    fn default() -> Self {
-        DrawState {
-            tex_x: 0,
-            tex_y: 0,
-            semi_mode: 0,
-            tex_depth: 0,
-            dither: false,
-            tex_disable: false,
-            rect_flip_x: false,
-            rect_flip_y: false,
-            win_mask_x: 0,
-            win_mask_y: 0,
-            win_off_x: 0,
-            win_off_y: 0,
-            area_x1: 0,
-            area_y1: 0,
-            area_x2: 0,
-            area_y2: 0,
-            offset_x: 0,
-            offset_y: 0,
-            set_mask: false,
-            check_mask: false,
-        }
-    }
-}
 
 impl DrawState {
     /// Applies a texpage value (E1 command, or the texpage halfword of a
@@ -132,6 +107,40 @@ impl Vram {
         self.pixels[((y as usize) & (VRAM_HEIGHT - 1)) * VRAM_WIDTH + ((x as usize) & (VRAM_WIDTH - 1))] = v;
     }
 
+    /// Writes a `w` x `h` image at (x, y), row by row, wrapping at the
+    /// VRAM's edges (image transfers ignore the mask settings).
+    pub fn write_rect(&mut self, x: i32, y: i32, w: i32, h: i32, pixels: &[u16]) {
+        let (w, h) = (w.max(0) as usize, h.max(0) as usize);
+        let x0 = (x as usize) & (VRAM_WIDTH - 1);
+        for (row, line) in pixels.chunks(w.max(1)).take(h).enumerate() {
+            let vy = ((y as usize).wrapping_add(row)) & (VRAM_HEIGHT - 1);
+            if x0 + line.len() <= VRAM_WIDTH {
+                self.pixels[vy * VRAM_WIDTH + x0..][..line.len()].copy_from_slice(line);
+            } else {
+                for (i, &px) in line.iter().enumerate() {
+                    self.set(x + i as i32, vy as i32, px);
+                }
+            }
+        }
+    }
+
+    /// Reads a `w` x `h` image at (x, y) into `out`, wrapping at the VRAM's
+    /// edges.
+    pub fn read_rect(&self, x: i32, y: i32, w: i32, h: i32, out: &mut [u16]) {
+        let (w, h) = (w.max(0) as usize, h.max(0) as usize);
+        let x0 = (x as usize) & (VRAM_WIDTH - 1);
+        for (row, line) in out.chunks_mut(w.max(1)).take(h).enumerate() {
+            let vy = ((y as usize).wrapping_add(row)) & (VRAM_HEIGHT - 1);
+            if x0 + line.len() <= VRAM_WIDTH {
+                line.copy_from_slice(&self.pixels[vy * VRAM_WIDTH + x0..][..line.len()]);
+            } else {
+                for (i, px) in line.iter_mut().enumerate() {
+                    *px = self.get(x + i as i32, vy as i32);
+                }
+            }
+        }
+    }
+
     /// GP0(02h) fill: ignores the drawing area and mask settings; x and
     /// width are in 16-pixel units.
     pub fn fill(&mut self, x: i32, y: i32, w: i32, h: i32, rgb: u32) {
@@ -147,6 +156,7 @@ impl Vram {
         }
     }
 
+    #[allow(clippy::too_many_arguments)]
     pub fn copy(&mut self, sx: i32, sy: i32, dx: i32, dy: i32, w: i32, h: i32, st: &DrawState) {
         for row in 0..h {
             // Copy row by row through a buffer so overlapping copies behave.
@@ -601,6 +611,24 @@ mod tests {
                 }
             }
             assert!(got.pixels == want.pixels, "{x} {y} {w} {h}");
+        }
+    }
+
+    /// Row-by-row image writes and reads match pixel-by-pixel ones,
+    /// wrapping at the VRAM's edges included.
+    #[test]
+    fn rect_transfers_match_pixels() {
+        for &(x, y, w, h) in &[(0, 0, 320, 240), (1000, 500, 40, 20), (-8, 3, 16, 4), (700, 100, 1, 1), (5, 5, 0, 3)] {
+            let pixels: Vec<u16> = (0..w * h).map(|i| (i as u16).wrapping_mul(7919) | 1).collect();
+            let (mut got, mut want) = (Vram::default(), Vram::default());
+            got.write_rect(x, y, w, h, &pixels);
+            for (i, &px) in pixels.iter().enumerate() {
+                want.set(x + i as i32 % w, y + i as i32 / w, px);
+            }
+            assert!(got.pixels == want.pixels, "write {x},{y} {w}x{h}");
+            let mut back = vec![0u16; (w * h) as usize];
+            got.read_rect(x, y, w, h, &mut back);
+            assert_eq!(back, pixels, "read {x},{y} {w}x{h}");
         }
     }
 

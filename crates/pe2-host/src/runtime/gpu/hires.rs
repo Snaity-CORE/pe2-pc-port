@@ -125,6 +125,7 @@ impl Hires {
         [(row + x, first), (row, len - first)]
     }
 
+    #[allow(clippy::too_many_arguments)]
     pub fn copy(&mut self, sx: i32, sy: i32, dx: i32, dy: i32, w: i32, h: i32, st: &DrawState) {
         let s = self.scale;
         let len = ((w * s).max(0) as usize).min(self.width);

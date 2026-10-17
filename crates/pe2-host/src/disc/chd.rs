@@ -43,7 +43,7 @@ impl ChdDisc {
         let file = BufReader::new(File::open(path)?);
         let mut chd = Chd::open(file, None).map_err(chd_err)?;
         let hunk_size = chd.header().hunk_size() as usize;
-        if hunk_size % FRAME_SIZE != 0 {
+        if !hunk_size.is_multiple_of(FRAME_SIZE) {
             return Err(DiscError::Format(format!("{}: not a CD image", path.display())));
         }
         let metas: Vec<Metadata> = Vec::try_from(chd.metadata_refs()).map_err(chd_err)?;
@@ -121,7 +121,7 @@ impl super::Disc for ChdDisc {
         out.copy_from_slice(&self.hunk_buf[off..off + RAW_SECTOR_SIZE]);
         // CHD stores audio samples big-endian; the drive delivers little-endian.
         if t.track.kind == TrackKind::Audio {
-            for pair in out.chunks_exact_mut(2) {
+            for pair in out.as_chunks_mut::<2>().0 {
                 pair.swap(0, 1);
             }
         }

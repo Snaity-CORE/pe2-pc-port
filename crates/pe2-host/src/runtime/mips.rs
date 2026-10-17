@@ -244,7 +244,11 @@ impl Cpu {
                     };
                 }
                 0x1B => {
-                    (self.lo, self.hi) = if t == 0 { (0xFFFF_FFFF, s) } else { (s / t, s % t) };
+                    (self.lo, self.hi) = match (s.checked_div(t), s.checked_rem(t)) {
+                        (Some(q), Some(r)) => (q, r),
+                        // Division by zero: what the R3000 leaves.
+                        _ => (0xFFFF_FFFF, s),
+                    };
                 }
                 0x20 | 0x21 => self.set(rd, s.wrapping_add(t)),
                 0x22 | 0x23 => self.set(rd, s.wrapping_sub(t)),
@@ -424,7 +428,7 @@ fn count_entry(addr: u32) {
             std::thread::sleep(std::time::Duration::from_secs(20));
             let mut v: Vec<(u32, u64)> =
                 COUNTS.lock().unwrap().as_ref().map(|m| m.iter().map(|(&a, &n)| (a, n)).collect()).unwrap_or_default();
-            v.sort_by(|a, b| b.1.cmp(&a.1));
+            v.sort_by_key(|e| std::cmp::Reverse(e.1));
             let line: Vec<String> = v.iter().map(|(a, n)| format!("{a:08X}:{n}")).collect();
             eprintln!("[interp] {}", line.join(" "));
         });

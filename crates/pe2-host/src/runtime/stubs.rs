@@ -227,7 +227,7 @@ pub extern "C" fn pcrt_PadInfoMode(port: i32, term: i32, _offs: i32) -> i32 {
     let analog = crate::gamepad::CONNECTED.load(Ordering::SeqCst);
     match term {
         1 => if analog { 7 } else { 4 },
-        2 => if analog { 7 } else { 0 },
+        2 if analog => { 7 },
         _ => 0,
     }
 }

@@ -205,7 +205,7 @@ fn alu(op: Alu, a: u32, b: u32, bits: u32, eflags: u32) -> (u32, u32) {
     if res & sign != 0 {
         flags |= SF;
     }
-    if (res as u8).count_ones() % 2 == 0 {
+    if (res as u8).count_ones().is_multiple_of(2) {
         flags |= PF;
     }
     // INC and DEC leave CF as it was.

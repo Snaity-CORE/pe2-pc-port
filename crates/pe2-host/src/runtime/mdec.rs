@@ -252,12 +252,12 @@ impl Mdec {
         }
         if depth == 2 {
             bytes.resize(bytes.len().div_ceil(4) * 4, 0);
-            self.output.extend(bytes.chunks_exact(4).map(|c| u32::from_le_bytes([c[0], c[1], c[2], c[3]])));
+            self.output.extend(bytes.as_chunks::<4>().0.iter().map(|c| u32::from_le_bytes([c[0], c[1], c[2], c[3]])));
         } else {
             if halfs.len() % 2 == 1 {
                 halfs.push(0);
             }
-            self.output.extend(halfs.chunks_exact(2).map(|h| u32::from(h[0]) | (u32::from(h[1]) << 16)));
+            self.output.extend(halfs.as_chunks::<2>().0.iter().map(|h| u32::from(h[0]) | (u32::from(h[1]) << 16)));
         }
     }
 }

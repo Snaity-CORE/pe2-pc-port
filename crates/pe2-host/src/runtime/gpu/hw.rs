@@ -711,11 +711,11 @@ impl Hw {
         } else {
             self.keys.resize(self.vertices.len(), 0);
         }
-        if let Some(Op::Draw { blend: b, scissor: s, count, .. }) = self.ops.last_mut() {
-            if *b == blend && *s == scissor {
-                *count += verts.len() as u32;
-                return;
-            }
+        if let Some(Op::Draw { blend: b, scissor: s, count, .. }) = self.ops.last_mut()
+            && *b == blend && *s == scissor
+        {
+            *count += verts.len() as u32;
+            return;
         }
         self.ops.push(Op::Draw { blend, scissor, first, count: verts.len() as u32 });
     }
@@ -748,7 +748,7 @@ impl Hw {
         if sh.textured {
             mode = (st.tex_x as u32 & 1023)
                 | ((st.tex_y as u32 & 511) << 10)
-                | ((st.tex_depth as u32 & 3) << 20)
+                | ((st.tex_depth & 3) << 20)
                 | (1 << 22)
                 | (u32::from(sh.raw_texture) << 23)
                 | (pass << 24);
@@ -1022,7 +1022,11 @@ impl Hw {
         let (ops, vertices, mut uploads) =
             (std::mem::take(&mut self.ops), std::mem::take(&mut self.vertices), std::mem::take(&mut self.uploads));
         let keys = std::mem::take(&mut self.keys);
-        self.run(&ops, &vertices, &mut uploads, &target, false);
+        // Whole words for the shader's storage buffer.
+        if uploads.len() % 2 == 1 {
+            uploads.push(0);
+        }
+        self.run(&ops, &vertices, &uploads, &target, false);
         match self.frame.as_mut() {
             Some(frame) => frame.push(Chunk { vram: sent, ops, vertices, keys, uploads }),
             None => {
@@ -1039,7 +1043,7 @@ impl Hw {
     /// Runs recorded operations on the card, drawing into `into`, with
     /// textures from the native VRAM copy (`replay`: the one frames are drawn
     /// again with). Copies read the layer itself.
-    fn run(&mut self, ops: &[Op], vertices: &[GpuVertex], uploads: &mut Vec<u16>, into: &wgpu::Texture, replay: bool) {
+    fn run(&mut self, ops: &[Op], vertices: &[GpuVertex], uploads: &[u16], into: &wgpu::Texture, replay: bool) {
         let gfx = self.gfx;
         let device = &gfx.device;
         let vbytes = bytes(vertices);
@@ -1054,9 +1058,6 @@ impl Hw {
         let vertex_buffer = self.vertex_buffer.as_ref().unwrap();
         gfx.queue.write_buffer(vertex_buffer, 0, vbytes);
         if !uploads.is_empty() {
-            if uploads.len() % 2 == 1 {
-                uploads.push(0);
-            }
             let ubytes = bytes(uploads);
             if self.upload_buffer.size() < ubytes.len() as u64 {
                 self.upload_buffer = Self::make_upload_buffer(device, (ubytes.len() as u64).next_power_of_two());
@@ -1257,8 +1258,7 @@ impl Hw {
                     v.pos = [p[0] + dx * t, p[1] + dy * t];
                 }
             }
-            let mut uploads = c.uploads.clone();
-            self.run(&c.ops, &vertices, &mut uploads, &into, true);
+            self.run(&c.ops, &vertices, &c.uploads, &into, true);
         }
     }
 }

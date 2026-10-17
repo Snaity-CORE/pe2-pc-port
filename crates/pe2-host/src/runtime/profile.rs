@@ -67,7 +67,6 @@ pub fn start_irq(irq_thread: HANDLE) {
 /// Samples `thread` into `file` (with PE2_TRACE=prof); `game` keeps the
 /// recent samples for the long-frame reports.
 fn sampler(thread: SendHandle, file: &'static str, game: bool) {
-    let thread = thread;
     // SAFETY: the null module name is the executable itself.
     let base = unsafe { GetModuleHandleW(std::ptr::null()) } as u32;
     // The code section, from the PE header: BaseOfCode and SizeOfCode.
@@ -153,7 +152,7 @@ pub fn report(since: Instant) {
     eprintln!("[hang] {total} samples, {in_irq} in interrupt handlers");
     let top = |counts: HashMap<u32, usize>, what: &str| {
         let mut v: Vec<_> = counts.into_iter().collect();
-        v.sort_by(|a, b| b.1.cmp(&a.1));
+        v.sort_by_key(|e| std::cmp::Reverse(e.1));
         for (addr, n) in v.into_iter().take(12) {
             eprintln!("[hang]   {what} 0x{addr:08X} {:5.1}%", 100.0 * n as f64 / total as f64);
         }
@@ -240,7 +239,7 @@ fn cpu_monitor() {
             CloseHandle(snap);
         }
         previous = current;
-        rows.sort_by(|a, b| b.0.cmp(&a.0));
+        rows.sort_by_key(|r| std::cmp::Reverse(r.0));
         let total: u64 = rows.iter().map(|r| r.0).sum();
         let pct = |t: u64| 100.0 * t as f64 / 1e7 / wall;
         let list: Vec<String> =

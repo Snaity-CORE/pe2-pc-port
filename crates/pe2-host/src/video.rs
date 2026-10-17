@@ -129,10 +129,10 @@ impl ApplicationHandler for App {
                     // Alt+Enter: full screen on or off (Enter is also Start:
                     // not passed to the pad while Alt is held).
                     if self.alt && matches!(code, KeyCode::Enter | KeyCode::NumpadEnter) {
-                        if event.state == ElementState::Pressed && !event.repeat {
-                            if let Some(w) = &self.window {
-                                w.set_fullscreen(fullscreen_mode(w.fullscreen().is_none()));
-                            }
+                        if event.state == ElementState::Pressed && !event.repeat
+                            && let Some(w) = &self.window
+                        {
+                            w.set_fullscreen(fullscreen_mode(w.fullscreen().is_none()));
                         }
                         return;
                     }
@@ -208,7 +208,9 @@ fn present_trace() {
     if !crate::runtime::trace("present") {
         return;
     }
-    static STATE: std::sync::Mutex<Option<(Instant, Instant, u32, u32, Duration)>> = std::sync::Mutex::new(None);
+    /// Since when, the last blank, blanks, late ones and the longest gap.
+    type Stats = (Instant, Instant, u32, u32, Duration);
+    static STATE: std::sync::Mutex<Option<Stats>> = std::sync::Mutex::new(None);
     let now = Instant::now();
     let mut state = STATE.lock().unwrap();
     let (since, last, count, late, worst) = state.get_or_insert((now, now, 0, 0, Duration::ZERO));
@@ -372,7 +374,7 @@ fn start_screenshots() {
     std::thread::spawn(move || {
         let mut frame = Vec::new();
         std::thread::sleep(after);
-        for n in 0.. {
+        for n in 0..u32::MAX {
             std::thread::sleep(every);
             let Some((w, h)) = gpu::snapshot(&mut frame) else { continue };
             let rgb: Vec<u8> = frame.iter().flat_map(|p| [(p >> 16) as u8, (p >> 8) as u8, *p as u8]).collect();

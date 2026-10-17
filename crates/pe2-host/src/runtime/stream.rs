@@ -94,10 +94,10 @@ impl Ring {
         let same_frame = self.frames.back().is_some_and(|f| f.number == number && !f.complete);
         if !same_frame {
             // A new frame: anything unfinished before it is lost.
-            if let Some(f) = self.frames.back_mut() {
-                if !f.complete {
-                    f.dropped = true;
-                }
+            if let Some(f) = self.frames.back_mut()
+                && !f.complete
+            {
+                f.dropped = true;
             }
             self.frames.retain(|f| !(f.dropped && !f.handed_out));
             let len = u32::from(count) * PAYLOAD;

@@ -141,7 +141,7 @@ impl Voice {
             }
         }
         if exponential && decreasing {
-            delta = delta * self.env >> 15;
+            delta = (delta * self.env) >> 15;
         }
         self.env_counter += increment.max(1) as u32;
         if self.env_counter & 0x8000 != 0 {
@@ -324,8 +324,8 @@ impl Spu {
         let frac = ((v.counter >> 4) & 0xFF) as i32;
         let cur = i32::from(v.samples[index.min(27)]);
         let before = if index == 0 { i32::from(v.prev) } else { i32::from(v.samples[index - 1]) };
-        let sample = before + ((cur - before) * frac >> 8);
-        let out = sample * v.env >> 15;
+        let sample = before + (((cur - before) * frac) >> 8);
+        let out = (sample * v.env) >> 15;
         v.step_envelope();
 
         v.counter += u32::from(v.pitch.min(0x4000));
@@ -392,7 +392,7 @@ impl Spu {
     fn reverb_side(&mut self, side: usize) {
         let r = self.reverb;
         let other = 1 - side;
-        let m = |v: i32, f: i16| v * i32::from(f) >> 15;
+        let m = |v: i32, f: i16| (v * i32::from(f)) >> 15;
         let input = m(self.reverb_in[side], r.v_in[side]);
 
         let same = u32::from(r.m_same[side]);
@@ -438,8 +438,8 @@ impl Spu {
                     continue;
                 }
                 let v = &self.voices[i];
-                let vl = s * fixed_volume(v.vol_l) >> 15;
-                let vr = s * fixed_volume(v.vol_r) >> 15;
+                let vl = (s * fixed_volume(v.vol_l)) >> 15;
+                let vr = (s * fixed_volume(v.vol_r)) >> 15;
                 l += vl;
                 r += vr;
                 if self.reverb_on & (1 << i) != 0 {
@@ -448,16 +448,16 @@ impl Spu {
                 }
             }
         }
-        if let Some((cl, cr)) = self.cd_input.pop_front() {
-            if self.control & CONTROL_CD_ENABLE != 0 {
-                let cl = i32::from(cl) * i32::from(self.cd_vol[0]) >> 15;
-                let cr = i32::from(cr) * i32::from(self.cd_vol[1]) >> 15;
-                l += cl;
-                r += cr;
-                if self.control & CONTROL_CD_REVERB != 0 {
-                    rl += cl;
-                    rr += cr;
-                }
+        if let Some((cl, cr)) = self.cd_input.pop_front()
+            && self.control & CONTROL_CD_ENABLE != 0
+        {
+            let cl = (i32::from(cl) * i32::from(self.cd_vol[0])) >> 15;
+            let cr = (i32::from(cr) * i32::from(self.cd_vol[1])) >> 15;
+            l += cl;
+            r += cr;
+            if self.control & CONTROL_CD_REVERB != 0 {
+                rl += cl;
+                rr += cr;
             }
         }
 
@@ -481,8 +481,8 @@ impl Spu {
         if self.control & CONTROL_UNMUTE == 0 {
             return (0, 0);
         }
-        let l = sat(sat(l) * fixed_volume(self.main_vol[0]) >> 15);
-        let r = sat(sat(r) * fixed_volume(self.main_vol[1]) >> 15);
+        let l = sat((sat(l) * fixed_volume(self.main_vol[0])) >> 15);
+        let r = sat((sat(r) * fixed_volume(self.main_vol[1])) >> 15);
         (l as i16, r as i16)
     }
 
@@ -517,9 +517,7 @@ mod tests {
     /// A one-block looping square-ish wave plays and its envelope rises.
     #[test]
     fn voice_plays_and_loops() {
-        let mut spu = Spu::default();
-        spu.control = CONTROL_ENABLE | CONTROL_UNMUTE;
-        spu.main_vol = [0x3FFF, 0x3FFF];
+        let mut spu = Spu { control: CONTROL_ENABLE | CONTROL_UNMUTE, main_vol: [0x3FFF, 0x3FFF], ..Default::default() };
         // Block at 0x1000: shift 0, filter 0, loop start+end+repeat.
         let a = 0x1000;
         spu.ram[a] = 0x00;
@@ -548,8 +546,7 @@ mod tests {
     /// A block ending without the repeat flag silences the voice.
     #[test]
     fn end_without_repeat_stops() {
-        let mut spu = Spu::default();
-        spu.control = CONTROL_ENABLE | CONTROL_UNMUTE;
+        let mut spu = Spu { control: CONTROL_ENABLE | CONTROL_UNMUTE, ..Default::default() };
         let a = 0x2000;
         spu.ram[a + 1] = 0x01;
         let v = &mut spu.voices[3];

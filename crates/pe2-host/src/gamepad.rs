@@ -68,10 +68,10 @@ fn run() {
             }
         }
         // The chosen controller whenever it is connected.
-        if let Some(name) = wanted {
-            if let Some((id, _)) = gilrs.gamepads().find(|(_, g)| g.name() == name) {
-                active = Some(id);
-            }
+        if let Some(name) = wanted
+            && let Some((id, _)) = gilrs.gamepads().find(|(_, g)| g.name() == name)
+        {
+            active = Some(id);
         }
         if active.is_none_or(|id| gilrs.connected_gamepad(id).is_none()) {
             active = gilrs.gamepads().next().map(|(id, _)| id);

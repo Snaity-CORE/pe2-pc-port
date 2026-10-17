@@ -490,11 +490,11 @@ impl Launcher {
             ui.label(format!("{} {}", lang.t("Disc", "Disco"), d + 1));
             ui.horizontal(|ui| {
                 let changed = ui.add(egui::TextEdit::singleline(&mut self.edit.discs[d]).desired_width(560.0)).changed();
-                if ui.button(lang.t("Browse...", "Procurar...")).clicked() {
-                    if let Some(p) = rfd::FileDialog::new().add_filter("CD image", &["chd", "cue"]).pick_file() {
-                        self.edit.discs[d] = p.display().to_string();
-                        self.checks[d] = Some(check_disc(&self.edit.discs[d], d, lang));
-                    }
+                if ui.button(lang.t("Browse...", "Procurar...")).clicked()
+                    && let Some(p) = rfd::FileDialog::new().add_filter("CD image", &["chd", "cue"]).pick_file()
+                {
+                    self.edit.discs[d] = p.display().to_string();
+                    self.checks[d] = Some(check_disc(&self.edit.discs[d], d, lang));
                 }
                 if changed {
                     self.checks[d] = Some(check_disc(&self.edit.discs[d], d, lang));
@@ -516,10 +516,10 @@ impl Launcher {
                             .hint_text(lang.t("default (memcards folder)", "padrão (pasta memcards)"))
                             .desired_width(560.0),
                     );
-                    if ui.button(lang.t("Browse...", "Procurar...")).clicked() {
-                        if let Some(p) = rfd::FileDialog::new().add_filter("Memory card", &["mcd", "mcr"]).save_file() {
-                            self.edit.cards[s] = p.display().to_string();
-                        }
+                    if ui.button(lang.t("Browse...", "Procurar...")).clicked()
+                        && let Some(p) = rfd::FileDialog::new().add_filter("Memory card", &["mcd", "mcr"]).save_file()
+                    {
+                        self.edit.cards[s] = p.display().to_string();
                     }
                 });
             }
@@ -593,10 +593,10 @@ impl Launcher {
                                 .hint_text(lang.t("default (memcards folder)", "padrão (pasta memcards)"))
                                 .desired_width(560.0),
                         );
-                        if ui.button(lang.t("Browse...", "Procurar...")).clicked() {
-                            if let Some(p) = rfd::FileDialog::new().add_filter("Memory card", &["mcd", "mcr"]).save_file() {
-                                self.edit.cards[s] = p.display().to_string();
-                            }
+                        if ui.button(lang.t("Browse...", "Procurar...")).clicked()
+                            && let Some(p) = rfd::FileDialog::new().add_filter("Memory card", &["mcd", "mcr"]).save_file()
+                        {
+                            self.edit.cards[s] = p.display().to_string();
                         }
                     });
                 }

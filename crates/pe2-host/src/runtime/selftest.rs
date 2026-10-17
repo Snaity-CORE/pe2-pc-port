@@ -224,8 +224,8 @@ pub fn run(lib_addr: impl Fn(&str) -> Option<u32>) -> u32 {
         }
         w32(v0 + 12, 0);
         call(lib.apply_matrix_lv, &[m0, v0, v1]);
-        for i in 0..3 {
-            let want: i64 = (0..3).map(|k| i64::from(a[i][k]) * i64::from(v[k])).sum::<i64>() >> 12;
+        for (i, row) in a.iter().enumerate() {
+            let want: i64 = (0..3).map(|k| i64::from(row[k]) * i64::from(v[k])).sum::<i64>() >> 12;
             rep.check(&format!("ApplyMatrixLV #{case} [{i}] v={v:?}"), r32(v1 + 4 * i as u32).into(), want, 2);
         }
     }

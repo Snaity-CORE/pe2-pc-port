@@ -8,7 +8,7 @@ use super::raster::{DrawState, Shading, Vertex, Vram};
 
 pub enum Layer {
     Software(Hires),
-    Hardware(Hw),
+    Hardware(Box<Hw>),
 }
 
 impl Layer {

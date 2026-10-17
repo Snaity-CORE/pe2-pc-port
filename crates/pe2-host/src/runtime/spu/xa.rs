@@ -29,7 +29,7 @@ impl XaDecoder {
         let data = &raw[24..24 + 0x900];
 
         let mut decoded: Vec<(i16, i16)> = Vec::with_capacity(18 * 224);
-        for portion in data.chunks_exact(128) {
+        for portion in data.as_chunks::<128>().0 {
             let blocks = if eight_bit { 4 } else { 8 };
             let mut units: Vec<[i16; 28]> = Vec::with_capacity(blocks);
             for b in 0..blocks {
@@ -38,7 +38,7 @@ impl XaDecoder {
                 units.push(self.decode_unit(portion, b, param, eight_bit, ch));
             }
             if stereo {
-                for pair in units.chunks_exact(2) {
+                for pair in units.as_chunks::<2>().0 {
                     decoded.extend(pair[0].iter().zip(pair[1].iter()).map(|(l, r)| (*l, *r)));
                 }
             } else {

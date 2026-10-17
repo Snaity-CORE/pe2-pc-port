@@ -66,8 +66,10 @@ fn pgxp_trace(packet: u32, word0: u32, exact: bool) {
         return;
     }
     use std::collections::BTreeMap;
-    static COUNTS: std::sync::Mutex<Option<(BTreeMap<(u32, u32), (u64, u64)>, std::time::Instant)>> =
-        std::sync::Mutex::new(None);
+    /// Vertices with and without an exact position, by packet region and
+    /// command, since the last report.
+    type Counts = BTreeMap<(u32, u32), (u64, u64)>;
+    static COUNTS: std::sync::Mutex<Option<(Counts, std::time::Instant)>> = std::sync::Mutex::new(None);
     let mut guard = COUNTS.lock().unwrap();
     let (map, since) = guard.get_or_insert_with(|| (BTreeMap::new(), std::time::Instant::now()));
     let e = map.entry((packet & 0xFFFF_0000, word0 >> 24)).or_insert((0, 0));
@@ -139,16 +141,16 @@ pub fn start() {
         }
     }
     let mut layer = (scale > 1).then(|| match crate::gfx::get() {
-        Some(gfx) => layer::Layer::Hardware(hw::Hw::new(gfx, scale)),
+        Some(gfx) => layer::Layer::Hardware(Box::new(hw::Hw::new(gfx, scale))),
         None => layer::Layer::Software(hires::Hires::new(scale)),
     });
     let mut interp = None;
-    if let Some(layer::Layer::Hardware(hw)) = layer.as_mut() {
-        if subpixel() && interp::enabled() {
-            eprintln!("pe2: video: frame interpolation on (60 fps motion)");
-            hw.keep_frames();
-            interp = Some(interp::Interp::default());
-        }
+    if let Some(layer::Layer::Hardware(hw)) = layer.as_mut()
+        && subpixel() && interp::enabled()
+    {
+        eprintln!("pe2: video: frame interpolation on (60 fps motion)");
+        hw.keep_frames();
+        interp = Some(interp::Interp::default());
     }
     *GPU.lock().unwrap() = Some(Gpu {
         vram: Vram::default(),
@@ -555,10 +557,10 @@ impl Gpu {
             let (cx, cy) = ((((t >> 16) & 0x3F) * 16) as i32, ((t >> 22) & 0x1FF) as i32);
             let entries: Vec<u16> = (0..16).map(|i| self.vram.get(cx + i, cy)).collect();
             line += &format!(" clut ({cx},{cy}) {entries:04X?}");
-            if (0x24..=0x3F).contains(&op) {
-                if let Some(tp) = words.get(if op >= 0x34 { 5 } else { 4 }) {
-                    line += &format!(" polytpage 0x{:04X}", tp >> 16);
-                }
+            if (0x24..=0x3F).contains(&op)
+                && let Some(tp) = words.get(if op >= 0x34 { 5 } else { 4 })
+            {
+                line += &format!(" polytpage 0x{:04X}", tp >> 16);
             }
         }
         match self.dump_out.as_mut() {
@@ -863,10 +865,7 @@ pub extern "C" fn pcrt_LoadImage(rect: *const Rect, p: *const u16) -> i32 {
         let (x0, y0, w, h) = (i32::from(rc.x), i32::from(rc.y), i32::from(rc.w), i32::from(rc.h));
         g.pre(x0, y0, w, h);
         // Image transfers ignore the mask settings.
-        for (i, px) in pixels.iter().enumerate() {
-            let (x, y) = ((i % rc.w as usize) as i32, (i / rc.w as usize) as i32);
-            g.vram.set(x0 + x, y0 + y, *px);
-        }
+        g.vram.write_rect(x0, y0, w, h, pixels);
         g.post(x0, y0, w, h);
         if let Some(hr) = g.layer.as_mut() {
             hr.upload(&g.vram, x0, y0, w, h, pixels, None);
@@ -884,15 +883,10 @@ pub extern "C" fn pcrt_LoadImage2(rect: *const Rect, p: *const u16) -> i32 {
 pub extern "C" fn pcrt_StoreImage(rect: *const Rect, p: *mut u16) -> i32 {
     let _g = irq::guard();
     let rc = read_rect(rect);
-    with_gpu(|g| {
-        for y in 0..i32::from(rc.h) {
-            for x in 0..i32::from(rc.w) {
-                let px = g.vram.get(i32::from(rc.x) + x, i32::from(rc.y) + y);
-                // SAFETY: the game passes room for w*h pixels.
-                unsafe { *p.add((y * i32::from(rc.w) + x) as usize) = px };
-            }
-        }
-    });
+    let n = (i32::from(rc.w) * i32::from(rc.h)).max(0) as usize;
+    // SAFETY: the game passes room for w*h pixels.
+    let out = unsafe { std::slice::from_raw_parts_mut(p, n) };
+    with_gpu(|g| g.vram.read_rect(i32::from(rc.x), i32::from(rc.y), i32::from(rc.w), i32::from(rc.h), out));
     0
 }
 
@@ -1093,11 +1087,11 @@ pub fn latch() {
     if g.generation == g.latched {
         // No new frame: the frame in between, if one is ready.
         let pending = g.interp.as_mut().and_then(interp::Interp::take_pending);
-        if let (Some((x, y, w, h)), Some(layer::Layer::Hardware(hw))) = (pending, g.layer.as_ref()) {
-            if let Some(between) = hw.between.as_ref() {
-                latch_on_card(hw, between, x, y, w, h);
-                FRAMES.fetch_add(1, std::sync::atomic::Ordering::Relaxed);
-            }
+        if let (Some((x, y, w, h)), Some(layer::Layer::Hardware(hw))) = (pending, g.layer.as_ref())
+            && let Some(between) = hw.between.as_ref()
+        {
+            latch_on_card(hw, between, x, y, w, h);
+            FRAMES.fetch_add(1, std::sync::atomic::Ordering::Relaxed);
         }
         return;
     }
@@ -1144,7 +1138,7 @@ pub fn latch() {
         if between && trace("interpshots") {
             static SHOTS: std::sync::atomic::AtomicU32 = std::sync::atomic::AtomicU32::new(0);
             let n = SHOTS.fetch_add(1, std::sync::atomic::Ordering::Relaxed);
-            if n % 20 == 0 {
+            if n.is_multiple_of(20) {
                 let n = n / 20;
                 save_card_region(&hw.target, shown, &format!("pe2-interp-{n:03}-a-shown.png"));
                 save_card_region(hw.between.as_ref().unwrap(), drawn, &format!("pe2-interp-{n:03}-b-between.png"));
@@ -1257,7 +1251,7 @@ fn check_between(hw: &hw::Hw, region: interp::Region) {
     static TOTALS: Mutex<(u64, u64, Option<std::time::Instant>)> = Mutex::new((0, 0, None));
     let (Some(between), Some(a)) = (hw.between.as_ref(), read_card_region(&hw.target, region)) else { return };
     let Some(b) = read_card_region(between, region) else { return };
-    let differ = a.chunks_exact(3).zip(b.chunks_exact(3)).filter(|(p, q)| p.iter().zip(q.iter()).any(|(x, y)| x.abs_diff(*y) > 8)).count();
+    let differ = a.as_chunks::<3>().0.iter().zip(b.as_chunks::<3>().0).filter(|(p, q)| p.iter().zip(q.iter()).any(|(x, y)| x.abs_diff(*y) > 8)).count();
     let mut t = TOTALS.lock().unwrap();
     t.0 += 1;
     if differ > 0 {
@@ -1296,7 +1290,7 @@ fn read_card_region(texture: &wgpu::Texture, (x, y, w, h): interp::Region) -> Op
     let data = buffer.get_mapped_range(..).ok()?;
     let mut rgb = Vec::with_capacity((w * h * 3) as usize);
     for line in data.chunks(row as usize).take(h as usize) {
-        rgb.extend(line[..w as usize * 4].chunks_exact(4).flat_map(|p| [p[0], p[1], p[2]]));
+        rgb.extend(line[..w as usize * 4].as_chunks::<4>().0.iter().flat_map(|p| [p[0], p[1], p[2]]));
     }
     Some(rgb)
 }
@@ -1330,7 +1324,7 @@ fn read_card_front(out: &mut Vec<u32>) -> Option<(usize, usize)> {
     out.clear();
     for y in 0..f.height as usize {
         let line = &data[y * row as usize..y * row as usize + f.width as usize * 4];
-        out.extend(line.chunks_exact(4).map(|p| {
+        out.extend(line.as_chunks::<4>().0.iter().map(|p| {
             (lut[p[0] as usize] << 16) | (lut[p[1] as usize] << 8) | lut[p[2] as usize]
         }));
     }
@@ -1364,7 +1358,7 @@ pub fn snapshot(out: &mut Vec<u32>) -> Option<(usize, usize)> {
             let row = &f.vram[y * row_words..(y + 1) * row_words];
             let byte = |i: usize| -> u32 {
                 let word = row[i / 2];
-                u32::from(if i % 2 == 0 { word & 0xFF } else { word >> 8 })
+                u32::from(if i.is_multiple_of(2) { word & 0xFF } else { word >> 8 })
             };
             for x in 0..w {
                 let i = x * 3;
