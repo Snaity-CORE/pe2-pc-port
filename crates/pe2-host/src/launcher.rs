@@ -5,6 +5,10 @@
 //! option of pe2.toml (keeping the file's comments); Play runs the game as a
 //! child process (`pe2 --play`) and the launcher comes back when it quits.
 //! English or Portuguese.
+//!
+//! The main screen is the PE2PC art (res/launcher_bg.webp, the logo in
+//! res/launcher_logo.webp) with a column of buttons; the other screens show
+//! on a dark panel over the same background.
 
 use std::path::{Path, PathBuf};
 use std::process::ExitCode;
@@ -20,6 +24,72 @@ const DISC_SERIALS: [&str; 2] = ["SLUS_010.42", "SLUS_010.55"];
 
 /// The template of a new pe2.toml: the documented example.
 const EXAMPLE: &str = include_str!("../../../pe2.example.toml");
+
+/// The launcher's art, made for the project (nothing from the game).
+const BACKGROUND: &[u8] = include_bytes!("../res/launcher_bg.webp");
+const LOGO: &[u8] = include_bytes!("../res/launcher_logo.webp");
+
+/// The window's size, the background's.
+const WINDOW: [f32; 2] = [960.0, 640.0];
+
+/// The art's accent colour, and darker shades of it.
+const TEAL: egui::Color32 = egui::Color32::from_rgb(38, 200, 186);
+const TEAL_DARK: egui::Color32 = egui::Color32::from_rgb(10, 92, 88);
+const TEAL_DEEP: egui::Color32 = egui::Color32::from_rgb(6, 52, 50);
+
+/// The font family of Windows' icon font (Segoe Fluent Icons or Segoe MDL2
+/// Assets), when there is one.
+const ICON_FAMILY: &str = "icons";
+
+/// Decodes a WebP picture to an egui image.
+fn decode_webp(bytes: &[u8]) -> Option<egui::ColorImage> {
+    let mut decoder = image_webp::WebPDecoder::new(std::io::Cursor::new(bytes)).ok()?;
+    let (w, h) = decoder.dimensions();
+    let mut buf = vec![0u8; decoder.output_buffer_size()?];
+    decoder.read_image(&mut buf).ok()?;
+    let size = [w as usize, h as usize];
+    Some(if decoder.has_alpha() {
+        egui::ColorImage::from_rgba_unmultiplied(size, &buf)
+    } else {
+        egui::ColorImage::from_rgb(size, &buf)
+    })
+}
+
+/// The background and the logo, on the graphics card.
+struct Art {
+    background: egui::TextureHandle,
+    logo: egui::TextureHandle,
+}
+
+impl Art {
+    fn load(ctx: &egui::Context) -> Option<Art> {
+        let texture = |name: &str, bytes: &[u8]| Some(ctx.load_texture(name, decode_webp(bytes)?, egui::TextureOptions::LINEAR));
+        Some(Art { background: texture("background", BACKGROUND)?, logo: texture("logo", LOGO)? })
+    }
+}
+
+/// The main screen's buttons.
+#[derive(Clone, Copy)]
+enum Icon {
+    Play,
+    Settings,
+    Controls,
+    Setup,
+    Exit,
+}
+
+impl Icon {
+    /// The icon's glyph in Windows' icon font (Play is drawn).
+    fn glyph(self) -> char {
+        match self {
+            Icon::Play => '\u{E768}',
+            Icon::Settings => '\u{E713}',
+            Icon::Controls => '\u{E7FC}',
+            Icon::Setup => '\u{E7F4}',
+            Icon::Exit => '\u{F3B1}',
+        }
+    }
+}
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 enum Lang {
@@ -187,6 +257,11 @@ struct Launcher {
     capture: Option<(bool, usize)>,
     /// Controllers, for their names and to catch their buttons.
     gilrs: Option<gilrs::Gilrs>,
+    art: Option<Art>,
+    /// Windows' icon font was found.
+    icons: bool,
+    /// PE2_LAUNCHER_SHOT: frames drawn, to take the picture once settled.
+    frames: u32,
 }
 
 /// The pe2.toml name of a key egui reports ("A" -> "KeyA", "Num1" ->
@@ -206,7 +281,7 @@ fn egui_key_name(key: egui::Key) -> Option<String> {
 }
 
 impl Launcher {
-    fn new() -> Launcher {
+    fn new(art: Option<Art>, icons: bool) -> Launcher {
         let file = crate::config::file_path();
         let doc = std::fs::read_to_string(&file)
             .ok()
@@ -225,6 +300,9 @@ impl Launcher {
             pad_tab: false,
             capture: None,
             gilrs: gilrs::Gilrs::new().ok(),
+            art,
+            icons,
+            frames: 0,
         };
         launcher.recheck();
         if launcher.checks[0].as_ref().is_none_or(|c| c.is_err()) {
@@ -297,49 +375,109 @@ impl Launcher {
         });
     }
 
+    /// One of the main screen's buttons at `rect`: a dark glass panel with
+    /// an icon and a label, lit in the accent colour when pointed at or
+    /// focused; `primary` (Play) is lit always.
+    fn menu_button(&self, ui: &mut egui::Ui, rect: egui::Rect, icon: Icon, label: &str, enabled: bool, primary: bool) -> egui::Response {
+        use egui::{Color32, FontFamily, FontId, Stroke, StrokeKind, pos2};
+        let response = ui.allocate_rect(rect, if enabled { egui::Sense::click() } else { egui::Sense::hover() });
+        let lit = enabled && (response.hovered() || response.has_focus());
+        let (fill, stroke) = match (primary && enabled, lit) {
+            (true, false) => (Color32::from_rgba_unmultiplied(8, 78, 74, 215), Stroke::new(1.5, TEAL)),
+            (true, true) => (Color32::from_rgba_unmultiplied(14, 112, 106, 230), Stroke::new(2.0, TEAL)),
+            (false, false) => (Color32::from_rgba_unmultiplied(12, 16, 18, 200), Stroke::new(1.0, Color32::from_gray(58))),
+            (false, true) => (Color32::from_rgba_unmultiplied(16, 40, 40, 220), Stroke::new(1.5, TEAL)),
+        };
+        let painter = ui.painter();
+        painter.rect(rect, 4.0, fill, stroke, StrokeKind::Inside);
+        let text = if enabled { Color32::from_gray(232) } else { Color32::from_gray(110) };
+        let center = pos2(rect.left() + 44.0, rect.center().y);
+        match icon {
+            Icon::Play => {
+                let colour = if enabled { TEAL } else { Color32::from_gray(90) };
+                let (w, h) = (16.0, 18.0);
+                painter.add(egui::Shape::convex_polygon(
+                    vec![pos2(center.x - w / 2.0, center.y - h), pos2(center.x + w, center.y), pos2(center.x - w / 2.0, center.y + h)],
+                    colour,
+                    Stroke::NONE,
+                ));
+            }
+            _ if self.icons => {
+                painter.text(center, egui::Align2::CENTER_CENTER, icon.glyph(), FontId::new(24.0, FontFamily::Name(ICON_FAMILY.into())), text);
+            }
+            _ => {}
+        }
+        painter.text(pos2(rect.left() + 84.0, rect.center().y), egui::Align2::LEFT_CENTER, label, FontId::proportional(21.0), text);
+        response
+    }
+
     fn main_screen(&mut self, ui: &mut egui::Ui, window: Option<isize>) {
+        use egui::{Rect, pos2, vec2};
         let lang = self.lang();
         let ready = self.checks[0].as_ref().is_some_and(|c| c.is_ok());
-        ui.vertical_centered(|ui| {
-            ui.add_space(24.0);
-            ui.heading(egui::RichText::new("Parasite Eve II").size(32.0));
-            ui.label(lang.t("PC port", "Port para PC"));
-            ui.add_space(28.0);
-            let button = |ui: &mut egui::Ui, text: &str, enabled: bool| {
-                ui.add_enabled(enabled, egui::Button::new(egui::RichText::new(text).size(18.0)).min_size([220.0, 40.0].into()))
-                    .clicked()
-            };
-            let running = self.running.load(Ordering::SeqCst);
-            if button(ui, lang.t("Play", "Jogar"), ready && !running) {
-                self.play(ui.ctx(), window);
+        let running = self.running.load(Ordering::SeqCst);
+        let full = ui.max_rect();
+        match &self.art {
+            Some(art) => {
+                let size = art.logo.size_vec2();
+                let w = 380.0;
+                let rect = Rect::from_min_size(full.min + vec2(48.0, 40.0), vec2(w, w * size.y / size.x));
+                ui.painter().image(art.logo.id(), rect, Rect::from_min_max(pos2(0.0, 0.0), pos2(1.0, 1.0)), egui::Color32::WHITE);
             }
-            ui.add_space(6.0);
-            if button(ui, lang.t("Settings", "Configurações"), !running) {
-                self.edit = self.saved.clone();
-                self.screen = Screen::Settings;
+            None => {
+                ui.painter().text(
+                    full.min + vec2(73.0, 120.0),
+                    egui::Align2::LEFT_CENTER,
+                    "PE2PC",
+                    egui::FontId::proportional(56.0),
+                    egui::Color32::WHITE,
+                );
             }
-            ui.add_space(6.0);
-            if button(ui, lang.t("Controls", "Controles"), !running) {
-                self.edit = self.saved.clone();
-                self.capture = None;
-                self.screen = Screen::Controls;
+        }
+        let buttons = [
+            (Icon::Play, lang.t("Play", "Jogar"), ready && !running, true),
+            (Icon::Settings, lang.t("Settings", "Configurações"), !running, false),
+            (Icon::Controls, lang.t("Controls", "Controles"), !running, false),
+            (Icon::Setup, lang.t("Setup", "Configuração inicial"), !running, false),
+            (Icon::Exit, lang.t("Exit", "Sair"), true, false),
+        ];
+        let mut y = full.top() + 282.0;
+        for (icon, label, enabled, primary) in buttons {
+            let rect = Rect::from_min_size(pos2(full.left() + 73.0, y), vec2(324.0, 50.0));
+            if self.menu_button(ui, rect, icon, label, enabled, primary).clicked() {
+                match icon {
+                    Icon::Play => self.play(ui.ctx(), window),
+                    Icon::Settings => {
+                        self.edit = self.saved.clone();
+                        self.screen = Screen::Settings;
+                    }
+                    Icon::Controls => {
+                        self.edit = self.saved.clone();
+                        self.capture = None;
+                        self.screen = Screen::Controls;
+                    }
+                    Icon::Setup => {
+                        self.edit = self.saved.clone();
+                        self.screen = Screen::Setup(0);
+                    }
+                    Icon::Exit => ui.ctx().send_viewport_cmd(egui::ViewportCommand::Close),
+                }
             }
-            ui.add_space(6.0);
-            if button(ui, lang.t("Setup", "Configuração inicial"), !running) {
-                self.edit = self.saved.clone();
-                self.screen = Screen::Setup(0);
-            }
-            ui.add_space(6.0);
-            if button(ui, lang.t("Exit", "Sair"), true) {
-                ui.ctx().send_viewport_cmd(egui::ViewportCommand::Close);
-            }
-            ui.add_space(18.0);
-            if running {
-                ui.label(lang.t("The game is running.", "O jogo está rodando."));
-            } else if !ready {
-                ui.colored_label(egui::Color32::LIGHT_RED, lang.t("Choose the disc images in Setup.", "Escolha as imagens dos discos na Configuração inicial."));
-            }
-        });
+            y += 58.0;
+        }
+        let status = if running {
+            Some((egui::Color32::from_gray(200), lang.t("The game is running.", "O jogo está rodando.")))
+        } else if !ready {
+            Some((egui::Color32::from_rgb(255, 120, 110), lang.t("Choose the disc images in Setup.", "Escolha as imagens dos discos na Configuração inicial.")))
+        } else {
+            None
+        };
+        if let Some((colour, text)) = status {
+            ui.painter().text(pos2(full.left() + 75.0, y + 6.0), egui::Align2::LEFT_TOP, text, egui::FontId::proportional(15.0), colour);
+        }
+        if let Some(m) = &self.message {
+            ui.painter().text(pos2(full.left() + 75.0, y + 28.0), egui::Align2::LEFT_TOP, m, egui::FontId::proportional(14.0), egui::Color32::from_rgb(255, 120, 110));
+        }
     }
 
     /// Disc and memory card pickers (Setup and Settings).
@@ -348,7 +486,7 @@ impl Launcher {
         for d in 0..2 {
             ui.label(format!("{} {}", lang.t("Disc", "Disco"), d + 1));
             ui.horizontal(|ui| {
-                let changed = ui.add(egui::TextEdit::singleline(&mut self.edit.discs[d]).desired_width(330.0)).changed();
+                let changed = ui.add(egui::TextEdit::singleline(&mut self.edit.discs[d]).desired_width(560.0)).changed();
                 if ui.button(lang.t("Browse...", "Procurar...")).clicked() {
                     if let Some(p) = rfd::FileDialog::new().add_filter("CD image", &["chd", "cue"]).pick_file() {
                         self.edit.discs[d] = p.display().to_string();
@@ -373,7 +511,7 @@ impl Launcher {
                     ui.add(
                         egui::TextEdit::singleline(&mut self.edit.cards[s])
                             .hint_text(lang.t("default (memcards folder)", "padrão (pasta memcards)"))
-                            .desired_width(330.0),
+                            .desired_width(560.0),
                     );
                     if ui.button(lang.t("Browse...", "Procurar...")).clicked() {
                         if let Some(p) = rfd::FileDialog::new().add_filter("Memory card", &["mcd", "mcr"]).save_file() {
@@ -450,7 +588,7 @@ impl Launcher {
                         ui.add(
                             egui::TextEdit::singleline(&mut self.edit.cards[s])
                                 .hint_text(lang.t("default (memcards folder)", "padrão (pasta memcards)"))
-                                .desired_width(330.0),
+                                .desired_width(560.0),
                         );
                         if ui.button(lang.t("Browse...", "Procurar...")).clicked() {
                             if let Some(p) = rfd::FileDialog::new().add_filter("Memory card", &["mcd", "mcr"]).save_file() {
@@ -497,7 +635,8 @@ impl Launcher {
         let lang = self.lang();
         ui.heading(lang.t("Settings", "Configurações"));
         ui.separator();
-        egui::ScrollArea::vertical().max_height(360.0).show(ui, |ui| {
+        // The panel's height, but for the buttons below.
+        egui::ScrollArea::vertical().max_height(ui.available_height() - 64.0).show(ui, |ui| {
             ui.strong(lang.t("General", "Geral"));
             self.language(ui);
             ui.checkbox(&mut self.edit.confirm_exit, lang.t("Ask before Esc quits", "Perguntar antes de Esc sair"));
@@ -630,7 +769,7 @@ impl Launcher {
             ui.label(lang.t("Esc, P, F9-F12 and Alt keep their own jobs.", "Esc, P, F9-F12 e Alt mantêm suas funções."));
         }
         ui.add_space(4.0);
-        egui::ScrollArea::vertical().max_height(340.0).show(ui, |ui| {
+        egui::ScrollArea::vertical().max_height(ui.available_height() - 64.0).show(ui, |ui| {
             egui::Grid::new("bindings").num_columns(2).spacing([24.0, 4.0]).show(ui, |ui| {
                 for (i, b) in BUTTONS.iter().enumerate() {
                     ui.label(b.label);
@@ -682,17 +821,77 @@ impl Launcher {
 impl eframe::App for Launcher {
     fn ui(&mut self, ui: &mut egui::Ui, frame: &mut eframe::Frame) {
         let window = window_handle(frame);
-        egui::Frame::new().inner_margin(16.0).show(ui, |ui| {
-            match self.screen {
-                Screen::Main => self.main_screen(ui, window),
-                Screen::Setup(step) => self.setup_screen(ui, step),
-                Screen::Settings => self.settings_screen(ui),
-                Screen::Controls => self.controls_screen(ui),
+        let full = ui.max_rect();
+        match &self.art {
+            Some(art) => {
+                let uv = egui::Rect::from_min_max(egui::pos2(0.0, 0.0), egui::pos2(1.0, 1.0));
+                ui.painter().image(art.background.id(), full, uv, egui::Color32::WHITE);
             }
-            if let Some(m) = &self.message {
-                ui.colored_label(egui::Color32::LIGHT_RED, m.as_str());
+            None => {
+                ui.painter().rect_filled(full, 0.0, egui::Color32::from_rgb(6, 10, 12));
             }
-        });
+        }
+        if self.screen == Screen::Main {
+            self.main_screen(ui, window);
+        } else {
+            // The other screens: a dark glass panel over the dimmed art.
+            ui.painter().rect_filled(full, 0.0, egui::Color32::from_black_alpha(130));
+            let panel = full.shrink2(egui::vec2(70.0, 28.0));
+            ui.scope_builder(egui::UiBuilder::new().max_rect(panel), |ui| {
+                egui::Frame::new()
+                    .fill(egui::Color32::from_rgba_unmultiplied(8, 12, 14, 228))
+                    .stroke(egui::Stroke::new(1.0, TEAL_DARK))
+                    .corner_radius(8.0)
+                    .inner_margin(22.0)
+                    .show(ui, |ui| {
+                        ui.set_min_size(panel.size() - egui::vec2(44.0, 44.0));
+                        match self.screen {
+                            Screen::Main => {}
+                            Screen::Setup(step) => self.setup_screen(ui, step),
+                            Screen::Settings => self.settings_screen(ui),
+                            Screen::Controls => self.controls_screen(ui),
+                        }
+                        if let Some(m) = &self.message {
+                            ui.colored_label(egui::Color32::from_rgb(255, 120, 110), m.as_str());
+                        }
+                    });
+            });
+        }
+        self.debug_shot(ui.ctx());
+    }
+}
+
+impl Launcher {
+    /// PE2_LAUNCHER_SHOT=<file.png> (with PE2_LAUNCHER_SCREEN=main,
+    /// settings, controls or setup): saves the launcher's picture once it
+    /// settles, and quits. For checking its looks.
+    fn debug_shot(&mut self, ctx: &egui::Context) {
+        let Some(path) = std::env::var_os("PE2_LAUNCHER_SHOT") else { return };
+        self.frames += 1;
+        if self.frames == 1 {
+            self.screen = match std::env::var("PE2_LAUNCHER_SCREEN").as_deref() {
+                Ok("settings") => Screen::Settings,
+                Ok("controls") => Screen::Controls,
+                Ok("setup") => Screen::Setup(0),
+                _ => self.screen,
+            };
+        }
+        if self.frames == 6 {
+            ctx.send_viewport_cmd(egui::ViewportCommand::Screenshot(egui::ScreenshotCallback::new(move |image| {
+                let [w, h] = image.size;
+                let rgba: Vec<u8> = image.pixels.iter().flat_map(|c| c.to_array()).collect();
+                if let Ok(file) = std::fs::File::create(&path) {
+                    let mut enc = png::Encoder::new(std::io::BufWriter::new(file), w as u32, h as u32);
+                    enc.set_color(png::ColorType::Rgba);
+                    enc.set_depth(png::BitDepth::Eight);
+                    if let Ok(mut writer) = enc.write_header() {
+                        let _ = writer.write_image_data(&rgba);
+                    }
+                }
+                std::process::exit(0);
+            })));
+        }
+        ctx.request_repaint();
     }
 }
 
@@ -720,23 +919,77 @@ fn show_window(window: Option<isize>, show: bool) {
     }
 }
 
-/// egui's fonts have no PlayStation face-button symbols (the controller
-/// labels' ✕ ○ □ △): Windows' Segoe UI Symbol, where present, is a
-/// fallback for the glyphs they lack.
-fn add_symbol_font(ctx: &egui::Context) {
-    let Ok(bytes) = std::fs::read(r"C:\Windows\Fonts\seguisym.ttf") else { return };
+/// Windows' fonts, where present: Segoe UI for text; Segoe UI Symbol as a
+/// fallback for the PlayStation face-button symbols (the controller
+/// labels' ✕ ○ □ △), which egui's fonts lack; and the icon font (Segoe
+/// Fluent Icons, or Segoe MDL2 Assets before Windows 11) for the main
+/// screen's buttons. Returns whether an icon font was found.
+fn add_fonts(ctx: &egui::Context) -> bool {
+    let read = |name: &str| std::fs::read(Path::new(r"C:\Windows\Fonts").join(name)).ok();
     let mut fonts = egui::FontDefinitions::default();
-    fonts.font_data.insert("symbols".into(), std::sync::Arc::new(egui::FontData::from_owned(bytes)));
-    for family in [egui::FontFamily::Proportional, egui::FontFamily::Monospace] {
-        fonts.families.entry(family).or_default().push("symbols".into());
+    let add = |fonts: &mut egui::FontDefinitions, key: &str, bytes: Vec<u8>| {
+        fonts.font_data.insert(key.into(), std::sync::Arc::new(egui::FontData::from_owned(bytes)));
+    };
+    if let Some(bytes) = read("segoeui.ttf") {
+        add(&mut fonts, "segoe", bytes);
+        fonts.families.entry(egui::FontFamily::Proportional).or_default().insert(0, "segoe".into());
+    }
+    if let Some(bytes) = read("seguisym.ttf") {
+        add(&mut fonts, "symbols", bytes);
+        for family in [egui::FontFamily::Proportional, egui::FontFamily::Monospace] {
+            fonts.families.entry(family).or_default().push("symbols".into());
+        }
+    }
+    let icons = read("SegoeIcons.ttf").or_else(|| read("segmdl2.ttf"));
+    let found = icons.is_some();
+    if let Some(bytes) = icons {
+        add(&mut fonts, ICON_FAMILY, bytes);
+        fonts.families.insert(egui::FontFamily::Name(ICON_FAMILY.into()), vec![ICON_FAMILY.into()]);
     }
     ctx.set_fonts(fonts);
+    found
+}
+
+/// The dark look, lit in the art's teal.
+fn set_style(ctx: &egui::Context) {
+    use egui::{Color32, FontFamily, FontId, Stroke, TextStyle};
+    let mut v = egui::Visuals::dark();
+    v.selection.bg_fill = TEAL_DARK;
+    v.selection.stroke = Stroke::new(1.0, TEAL);
+    v.hyperlink_color = TEAL;
+    v.widgets.inactive.weak_bg_fill = Color32::from_rgb(22, 28, 30);
+    v.widgets.inactive.bg_fill = Color32::from_rgb(22, 28, 30);
+    v.widgets.hovered.weak_bg_fill = TEAL_DEEP;
+    v.widgets.hovered.bg_fill = TEAL_DEEP;
+    v.widgets.hovered.bg_stroke = Stroke::new(1.0, TEAL);
+    v.widgets.active.weak_bg_fill = TEAL_DARK;
+    v.widgets.active.bg_fill = TEAL_DARK;
+    v.widgets.active.bg_stroke = Stroke::new(1.0, TEAL);
+    v.widgets.open.weak_bg_fill = TEAL_DEEP;
+    v.extreme_bg_color = Color32::from_rgb(4, 7, 8);
+    v.widgets.noninteractive.fg_stroke = Stroke::new(1.0, Color32::from_gray(212));
+    v.widgets.inactive.fg_stroke = Stroke::new(1.0, Color32::from_gray(225));
+    v.window_fill = Color32::from_rgb(10, 14, 16);
+    v.panel_fill = Color32::from_rgb(6, 10, 12);
+    ctx.set_visuals(v);
+    ctx.global_style_mut(|style| {
+        style.text_styles.insert(TextStyle::Heading, FontId::new(26.0, FontFamily::Proportional));
+        style.text_styles.insert(TextStyle::Body, FontId::new(15.0, FontFamily::Proportional));
+        style.text_styles.insert(TextStyle::Button, FontId::new(15.0, FontFamily::Proportional));
+        style.spacing.button_padding = egui::vec2(10.0, 5.0);
+    });
 }
 
 /// Runs the launcher until it is closed.
 pub fn run() -> ExitCode {
-    let mut viewport =
-        egui::ViewportBuilder::default().with_title("Parasite Eve II").with_inner_size([560.0, 600.0]).with_resizable(false);
+    let mut viewport = egui::ViewportBuilder::default()
+        .with_title("PE2PC")
+        .with_inner_size(WINDOW)
+        .with_resizable(false)
+        .with_maximize_button(false);
+    if std::env::var_os("PE2_LAUNCHER_SHOT").is_some() {
+        viewport = viewport.with_active(false);
+    }
     if let Some((rgba, side)) = crate::icon::rgba() {
         viewport = viewport.with_icon(egui::IconData { rgba, width: side, height: side });
     }
@@ -746,8 +999,9 @@ pub fn run() -> ExitCode {
         ..Default::default()
     };
     let creator = Box::new(|cc: &eframe::CreationContext<'_>| {
-        add_symbol_font(&cc.egui_ctx);
-        Ok(Box::new(Launcher::new()) as Box<dyn eframe::App>)
+        let icons = add_fonts(&cc.egui_ctx);
+        set_style(&cc.egui_ctx);
+        Ok(Box::new(Launcher::new(Art::load(&cc.egui_ctx), icons)) as Box<dyn eframe::App>)
     });
     match eframe::run_native("Parasite Eve II", options, creator) {
         Ok(()) => ExitCode::SUCCESS,
