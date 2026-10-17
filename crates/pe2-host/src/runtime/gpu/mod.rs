@@ -1128,7 +1128,7 @@ pub fn latch() {
         let st = g.state;
         let drawn = (st.area_x1.max(0) as u32 * s, st.area_y1.max(0) as u32 * s, w, h);
         let region = (d.enabled && drawn != shown).then_some(drawn);
-        let between = g.interp.as_mut().is_some_and(|i| i.new_frame(hw, &kept, region));
+        let between = g.interp.as_mut().is_some_and(|i| i.new_frame(hw, &kept, region, shown));
         if g.interp.is_some() {
             hw.keep_vram();
         }

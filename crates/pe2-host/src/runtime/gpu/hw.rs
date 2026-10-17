@@ -21,6 +21,7 @@
 
 use std::sync::atomic::{AtomicU64, Ordering};
 
+use super::interp;
 use super::raster::{DrawState, Shading, VRAM_HEIGHT, VRAM_WIDTH, Vertex as NativeVertex, Vram};
 use crate::gfx::Gfx;
 
@@ -474,9 +475,9 @@ pub struct Hw {
     frame: Option<Vec<Chunk>>,
     /// Where frames are drawn again (created when first needed).
     pub between: Option<wgpu::Texture>,
-    /// The layer as the last frame left it, in a band of columns (x, width)
-    /// holding the framebuffers: what the next frame starts from.
-    before: Option<(wgpu::Texture, u32, u32)>,
+    /// The framebuffer the next frame is drawn into, as the last frame left
+    /// it (where it is in the layer): what the next frame starts from.
+    before: Option<(wgpu::Texture, interp::Region)>,
     /// The native VRAM copy as the last frame left it, and the copy frames
     /// are drawn again with (rebuilt from it flush by flush), with its bind
     /// group.
@@ -1161,32 +1162,33 @@ impl Hw {
         })
     }
 
-    /// Copies columns x..x + w of one layer-sized texture to another.
-    fn copy_band(&self, from: &wgpu::Texture, to: &wgpu::Texture, x: u32, w: u32) {
+    /// Copies a region of one layer-sized texture to the same place in
+    /// another (clipped to the layer).
+    fn copy_region(&self, from: &wgpu::Texture, to: &wgpu::Texture, (x, y, w, h): interp::Region) {
         let at = |texture| wgpu::TexelCopyTextureInfo {
             texture,
             mip_level: 0,
-            origin: wgpu::Origin3d { x, y: 0, z: 0 },
+            origin: wgpu::Origin3d { x, y, z: 0 },
             aspect: wgpu::TextureAspect::All,
         };
-        let w = w.min(self.width.saturating_sub(x));
-        if w == 0 {
+        let (w, h) = (w.min(self.width.saturating_sub(x)), h.min(self.height.saturating_sub(y)));
+        if w == 0 || h == 0 {
             return;
         }
         let mut encoder = self.gfx.device.create_command_encoder(&Default::default());
-        encoder.copy_texture_to_texture(at(from), at(to), wgpu::Extent3d { width: w, height: self.height, depth_or_array_layers: 1 });
+        encoder.copy_texture_to_texture(at(from), at(to), wgpu::Extent3d { width: w, height: h, depth_or_array_layers: 1 });
         self.gfx.queue.submit([encoder.finish()]);
     }
 
-    /// Keeps columns x..x + w of the layer as the next frame starts from
-    /// them (flush first).
-    pub fn keep_before(&mut self, x: u32, w: u32) {
+    /// Keeps `region` of the layer, where the next frame is drawn, as that
+    /// frame starts from it (flush first).
+    pub fn keep_before(&mut self, region: interp::Region) {
         let texture = match self.before.take() {
-            Some((t, ..)) => t,
+            Some((t, _)) => t,
             None => self.layer_texture("hw before", wgpu::TextureUsages::COPY_SRC | wgpu::TextureUsages::COPY_DST),
         };
-        self.copy_band(&self.target, &texture, x, w);
-        self.before = Some((texture, x, w));
+        self.copy_region(&self.target, &texture, region);
+        self.before = Some((texture, region));
     }
 
     /// Keeps the native VRAM copy as the next frame starts from it (flush
@@ -1253,8 +1255,8 @@ impl Hw {
         let into = self.between.clone().unwrap();
         // Start from what the frame started from (effects blend over it),
         // with the textures as they were then.
-        if let Some((before, x, w)) = self.before.as_ref() {
-            self.copy_band(before, &into, *x, *w);
+        if let Some((before, region)) = self.before.as_ref() {
+            self.copy_region(before, &into, *region);
         }
         self.start_vram_replay();
         for c in frame {

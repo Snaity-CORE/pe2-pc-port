@@ -70,10 +70,10 @@ impl Interp {
     }
 
     /// A new frame, `frame` (as hw.rs kept it), drawn into `region` of the
-    /// layer (None: not to be shown from it): draws it again into
-    /// `hw.between`, halfway from the last frame, for the next blank.
-    /// Returns whether it did.
-    pub fn new_frame(&mut self, hw: &mut Hw, frame: &[hw::Chunk], region: Option<Region>) -> bool {
+    /// layer (None: not to be shown from it) while `shown` is on screen:
+    /// draws it again into `hw.between`, halfway from the last frame, for
+    /// the next blank. Returns whether it did.
+    pub fn new_frame(&mut self, hw: &mut Hw, frame: &[hw::Chunk], region: Option<Region>, shown: Region) -> bool {
         self.pending = None;
         let origin = region.map_or([0.0; 2], |r| [r.0 as f32, r.1 as f32]);
         let now: HashMap<u32, [f32; 2]> =
@@ -110,7 +110,8 @@ impl Interp {
             hw.draw_between(frame, &before, origin, between_t(), limit);
             self.pending = Some(region);
         }
-        hw.keep_before(region.0, region.2);
+        // The next frame is drawn where this one is shown.
+        hw.keep_before(shown);
         drawn
     }
 }
