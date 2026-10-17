@@ -71,6 +71,39 @@ What to know:
 - **Loading.** A picture is read the first time its room shows (the original
   shows for a frame or two meanwhile) and kept while it is in use.
 
+## Cheats and memory patches
+
+A mod's `patches.toml` changes the game's memory each frame, as a cheat
+cartridge does: GameShark (Action Replay) codes as they circulate for the
+PlayStation, or plain writes.
+
+```toml
+[[cheat]]
+name = "Always 50 HP"
+codes = ["80073BA0 0032"]
+
+[[patch]]
+name = "Always 7 MP"
+address = 0x80073BA4   # a PlayStation RAM address
+size = 2               # 1, 2 or 4 bytes (default 4)
+value = 7
+```
+
+Both apply at each vertical blank, before the game's own handler, while the
+game is stopped. Each entry takes `enabled = false` to keep it but not use
+it. Where two mods write the same place, the one higher in the order writes
+last and wins.
+
+GameShark code types supported: `80` (16-bit write), `30` (8-bit write), `10`,
+`11`, `20`, `21` (16- and 8-bit increment and decrement), `D0` to `D3` and `E0`
+to `E3` (16- and 8-bit equal, different, less and greater: the next code runs
+only if the test passes) and `50` (serial repeater). A cheat with another
+type (button activators such as `D4`, timers such as `C0`) is skipped, and the
+game's log says why.
+
+The decompilation's symbol maps give the addresses of the game's variables
+(`gPlayerStatus` holds HP, MP, experience and more).
+
 ## The plan
 
 Mod support grows in this order. Each kind follows the same rules: found by a
@@ -79,8 +112,7 @@ changing the game's own data in memory unless the kind is meant to.
 
 1. **Backgrounds and full-screen pictures** (done): dump and replace, as above.
 2. **A Mods screen in the launcher** (done): list, turn on and off, order.
-3. **Memory patches**: an address, a value and when to apply it (GameShark
-   style), for cheats and fixes.
+3. **Memory patches** (done): GameShark codes and plain writes, each frame.
 4. **Music and voices**: the XA audio tracks replaced by OGG or FLAC files,
    mixed by the sound chip's emulation.
 5. **Disc file replacement**: a file, or a part of a stage's CDF bundle, served
