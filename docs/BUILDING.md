@@ -107,8 +107,16 @@ Keyboard: arrows = d-pad, Z/X/A/S = Cross/Circle/Square/Triangle,
 Enter = Start, Backspace = Select, Q/W/E/R = L1/R1/L2/R2, Alt+Enter toggles
 borderless full screen (`fullscreen = true` in pe2.toml starts in it), Esc asks to
 quit (`[general] confirm_exit = false` quits at once), P pauses and resumes, F9
-saves a screenshot at the internal resolution in `screenshots/` next to
-pe2.exe.
+saves a screenshot at the internal resolution in `screenshots/` in the data
+folder.
+
+The data folder holds pe2.toml, the default memory cards (`memcards/`),
+screenshots and pe2.log: `%APPDATA%\PE2PC` on Windows,
+`~/Library/Application Support/PE2PC` on macOS, `$XDG_DATA_HOME/pe2pc`
+(`~/.local/share/pe2pc`) elsewhere. For a portable setup, put an empty
+`portable.txt` next to pe2.exe: everything then stays in pe2.exe's folder
+(as it does when a pe2.toml is already there). `PE2_HOME` names another
+folder.
 - A native crash prints the faulting address and stack; map the addresses to
   game functions with `python tools/symbolize.py <addr>...` (uses the linker
   map, `target/.../deps/pe2.map`).

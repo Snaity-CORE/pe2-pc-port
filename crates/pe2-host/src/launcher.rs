@@ -132,7 +132,8 @@ struct Settings {
     smooth_backgrounds: bool,
     interpolation: bool,
     fullscreen: bool,
-    /// Empty: the default card in memcards/ next to pe2.exe.
+    /// Empty: the default card in memcards/ in the folder of the player's
+    /// files (paths.rs).
     cards: [String; 2],
     /// Player 1's controller by name; empty: the one last used.
     controller: String,
@@ -322,6 +323,9 @@ impl Launcher {
 
     fn save(&mut self) {
         self.edit.store(&mut self.doc);
+        if let Some(dir) = self.file.parent() {
+            let _ = std::fs::create_dir_all(dir);
+        }
         match std::fs::write(&self.file, self.doc.to_string()) {
             Ok(()) => {
                 self.saved = self.edit.clone();
@@ -346,13 +350,12 @@ impl Launcher {
             // Without one to share, a console program would get a new
             // console window; and the standard handles left by the console
             // the launcher let go are not valid to pass on. The game's log
-            // goes to pe2.log next to pe2.exe instead.
+            // goes to pe2.log in the folder of the player's files instead.
             use std::os::windows::process::CommandExt;
             use std::process::Stdio;
             const CREATE_NO_WINDOW: u32 = 0x0800_0000;
             command.creation_flags(CREATE_NO_WINDOW).stdin(Stdio::null()).stdout(Stdio::null());
-            let log = std::env::current_exe().ok().and_then(|e| e.parent().map(|d| d.join("pe2.log")));
-            match log.and_then(|p| std::fs::File::create(p).ok()) {
+            match std::fs::File::create(crate::paths::user_file("pe2.log")).ok() {
                 Some(file) => command.stderr(file),
                 None => command.stderr(Stdio::null()),
             };
@@ -578,8 +581,8 @@ impl Launcher {
             1 => self.files(ui, false),
             2 => {
                 ui.label(lang.t(
-                    "Saves go to memory card images. Leave empty for the default ones in the memcards folder next to pe2.exe; DuckStation's .mcd cards work too.",
-                    "Os saves ficam em imagens de memory card. Deixe vazio para usar as padrão na pasta memcards ao lado do pe2.exe; os cartões .mcd do DuckStation também funcionam.",
+                    "Saves go to memory card images. Leave empty for the default ones in the memcards folder of PE2PC's data folder; DuckStation's .mcd cards work too.",
+                    "Os saves ficam em imagens de memory card. Deixe vazio para usar as padrão na pasta memcards da pasta de dados do PE2PC; os cartões .mcd do DuckStation também funcionam.",
                 ));
                 ui.add_space(6.0);
                 for s in 0..2 {
@@ -640,6 +643,13 @@ impl Launcher {
             ui.strong(lang.t("General", "Geral"));
             self.language(ui);
             ui.checkbox(&mut self.edit.confirm_exit, lang.t("Ask before Esc quits", "Perguntar antes de Esc sair"));
+            ui.horizontal(|ui| {
+                ui.label(lang.t("Data folder (settings, saves, screenshots):", "Pasta de dados (configurações, saves, capturas):"));
+                if ui.button(lang.t("Open", "Abrir")).clicked() {
+                    crate::paths::open_user_dir();
+                }
+            });
+            ui.label(egui::RichText::new(crate::paths::user_dir().display().to_string()).weak());
             ui.add_space(8.0);
             ui.strong(lang.t("Graphics", "Gráficos"));
             self.graphics(ui);

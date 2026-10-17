@@ -328,16 +328,14 @@ fn write_png(path: &std::path::Path, w: usize, h: usize, frame: &[u32]) -> std::
 }
 
 /// F9: saves the picture, at the internal resolution, as
-/// screenshots/pe2_YYYY-MM-DD_HH-MM-SS.png next to pe2.exe (on a thread:
+/// screenshots/pe2_YYYY-MM-DD_HH-MM-SS.png in the folder of the player's
+/// files (paths.rs; on a thread:
 /// reading it back from the graphics card waits for it).
 fn save_screenshot() {
     std::thread::spawn(|| {
         let mut frame = Vec::new();
         let Some((w, h)) = gpu::snapshot(&mut frame) else { return };
-        let dir = std::env::current_exe()
-            .ok()
-            .and_then(|p| p.parent().map(|d| d.join("screenshots")))
-            .unwrap_or_else(|| "screenshots".into());
+        let dir = crate::paths::user_file("screenshots");
         let _ = std::fs::create_dir_all(&dir);
         // SAFETY: fills a plain struct.
         let t = unsafe {

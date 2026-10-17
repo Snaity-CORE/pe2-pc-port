@@ -14,9 +14,9 @@
 //!   0x7F u8   XOR of bytes 0x00-0x7E
 //! ```
 //!
-//! Images live in `memcards/` next to the executable (`pe2_card1.mcd`,
-//! `pe2_card2.mcd`), or wherever PE2_MEMCARD1 / PE2_MEMCARD2 or pe2.toml's
-//! [memcard] slot1 / slot2 point. A slot
+//! Images live in `memcards/` in the folder of the player's files
+//! (paths.rs: `pe2_card1.mcd`, `pe2_card2.mcd`), or wherever PE2_MEMCARD1 /
+//! PE2_MEMCARD2 or pe2.toml's [memcard] slot1 / slot2 point. A slot
 //! without an image file holds a freshly formatted card; the file is written
 //! on the first save.
 //!
@@ -84,11 +84,7 @@ fn image_path(slot: usize) -> PathBuf {
     if let Some(p) = [&cfg.slot1, &cfg.slot2][slot] {
         return p.clone();
     }
-    let dir = std::env::current_exe()
-        .ok()
-        .and_then(|p| p.parent().map(|d| d.to_path_buf()))
-        .unwrap_or_default();
-    dir.join("memcards").join(format!("pe2_card{}.mcd", slot + 1))
+    crate::paths::user_dir().join("memcards").join(format!("pe2_card{}.mcd", slot + 1))
 }
 
 fn load(slot: usize) -> Card {

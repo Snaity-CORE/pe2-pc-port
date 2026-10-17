@@ -1,5 +1,5 @@
-//! Settings from `pe2.toml`, looked for in the current directory, then next
-//! to the executable (see pe2.example.toml). Command-line arguments and
+//! Settings from `pe2.toml` in the folder of the player's files (paths.rs;
+//! see pe2.example.toml). Command-line arguments and
 //! `PE2_*` environment variables take precedence over the file; anything
 //! it leaves out keeps its default. Relative paths in the file are relative
 //! to the file itself.
@@ -8,8 +8,6 @@ use std::path::{Path, PathBuf};
 use std::sync::OnceLock;
 
 use serde::Deserialize;
-
-pub const FILE_NAME: &str = "pe2.toml";
 
 #[derive(Debug, Default, Deserialize)]
 #[serde(default, deny_unknown_fields)]
@@ -92,24 +90,16 @@ pub fn get() -> &'static Config {
     CONFIG.get_or_init(load)
 }
 
-/// The settings file in use, or where a new one goes (next to the
-/// executable).
+/// The settings file in use, or where a new one goes.
 pub fn file_path() -> PathBuf {
-    candidates().into_iter().find(|p| p.is_file()).unwrap_or_else(|| candidates().pop().unwrap())
-}
-
-fn candidates() -> Vec<PathBuf> {
-    let mut v = vec![PathBuf::from(FILE_NAME)];
-    if let Some(dir) = std::env::current_exe().ok().and_then(|p| p.parent().map(Path::to_path_buf)) {
-        v.push(dir.join(FILE_NAME));
-    }
-    v
+    crate::paths::settings()
 }
 
 fn load() -> Config {
-    let Some(path) = candidates().into_iter().find(|p| p.is_file()) else {
+    let path = file_path();
+    if !path.is_file() {
         return Config::default();
-    };
+    }
     let text = match std::fs::read_to_string(&path) {
         Ok(t) => t,
         Err(err) => {
