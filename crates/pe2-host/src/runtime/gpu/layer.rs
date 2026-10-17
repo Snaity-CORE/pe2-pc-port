@@ -62,6 +62,26 @@ impl Layer {
         }
     }
 
+    /// A screen image a mod replaces with `picture` (`pixels`, the game's
+    /// own, where the layer cannot show the picture).
+    #[allow(clippy::too_many_arguments)]
+    pub fn upload_picture(
+        &mut self,
+        vram: &Vram,
+        x: i32,
+        y: i32,
+        w: i32,
+        h: i32,
+        pixels: &[u16],
+        hash: u64,
+        picture: &crate::mods::Picture,
+    ) {
+        match self {
+            Layer::Hardware(l) => l.upload_picture(vram, x, y, w, h, hash, picture),
+            Layer::Software(_) => self.upload(vram, x, y, w, h, pixels, None),
+        }
+    }
+
     pub fn triangle(&mut self, vram: &Vram, st: &DrawState, sh: &Shading, v: [Vertex; 3]) {
         match self {
             Layer::Software(l) => l.triangle(vram, st, sh, v),

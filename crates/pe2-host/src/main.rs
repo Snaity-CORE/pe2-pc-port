@@ -9,6 +9,7 @@ mod gamepad;
 mod gfx;
 mod icon;
 mod launcher;
+mod mods;
 mod paths;
 mod present;
 mod runtime;

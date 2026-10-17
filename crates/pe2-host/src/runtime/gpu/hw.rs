@@ -358,6 +358,8 @@ enum Op {
     /// Copies a rectangle of the target to the same place in the scratch
     /// texture (for a VRAM-to-VRAM copy drawn by the next Draw).
     ToScratch { x: u32, y: u32, w: u32, h: u32 },
+    /// Copies a mod's picture (by its screen image's hash) to (x, y).
+    Picture { hash: u64, x: u32, y: u32 },
 }
 
 /// A native VRAM rectangle, inclusive.
@@ -483,6 +485,10 @@ pub struct Hw {
     /// The framebuffer the next frame is drawn into, as the last frame left
     /// it (where it is in the layer): what the next frame starts from.
     before: Option<(wgpu::Texture, interp::Region)>,
+    /// Mods' pictures at this layer's scale, by screen image hash, with
+    /// when each was last used (the least recent go beyond PICTURES_KEPT).
+    pictures: std::collections::HashMap<u64, (wgpu::Texture, u64)>,
+    pictures_used: u64,
     /// The native VRAM copy as the last frame left it, and the copy frames
     /// are drawn again with (rebuilt from it flush by flush), with its bind
     /// group.
@@ -646,6 +652,8 @@ impl Hw {
             frame: None,
             between: None,
             before: None,
+            pictures: std::collections::HashMap::new(),
+            pictures_used: 0,
             vram_before: None,
             vram_replay: None,
             dirty: Areas(vec![Area::new(0, 0, VRAM_WIDTH as i32, VRAM_HEIGHT as i32)]),
@@ -1008,6 +1016,61 @@ impl Hw {
         self.push_draw(Blend::None, full, &verts, &[]);
     }
 
+    /// A screen image (`w` x `h` native pixels at x, y) shown as a mod's
+    /// `picture` instead, enlarged or reduced to this layer's scale (the
+    /// native VRAM has the game's own: `vram` is only for flushing early).
+    #[allow(clippy::too_many_arguments)]
+    pub fn upload_picture(
+        &mut self,
+        vram: &Vram,
+        x: i32,
+        y: i32,
+        w: i32,
+        h: i32,
+        hash: u64,
+        picture: &crate::mods::Picture,
+    ) {
+        const PICTURES_KEPT: usize = 24;
+        let s = self.scale;
+        let (px, py) = ((x * s).max(0) as u32, (y * s).max(0) as u32);
+        let (pw, ph) = ((w * s) as u32, (h * s) as u32);
+        if w <= 0 || h <= 0 || px + pw > self.width || py + ph > self.height {
+            return;
+        }
+        if self.too_much() {
+            self.flush(vram);
+        }
+        self.pictures_used += 1;
+        let used = self.pictures_used;
+        if let Some(entry) = self.pictures.get_mut(&hash) {
+            entry.1 = used;
+        } else {
+            if self.pictures.len() >= PICTURES_KEPT
+                && let Some(oldest) = self.pictures.iter().min_by_key(|(_, e)| e.1).map(|(k, _)| *k)
+            {
+                self.pictures.remove(&oldest);
+            }
+            let texture = self.gfx.device.create_texture(&wgpu::TextureDescriptor {
+                label: Some("hw mod picture"),
+                size: wgpu::Extent3d { width: pw, height: ph, depth_or_array_layers: 1 },
+                mip_level_count: 1,
+                sample_count: 1,
+                dimension: wgpu::TextureDimension::D2,
+                format: wgpu::TextureFormat::Rgba8Unorm,
+                usage: wgpu::TextureUsages::COPY_SRC | wgpu::TextureUsages::COPY_DST,
+                view_formats: &[],
+            });
+            self.gfx.queue.write_texture(
+                texture.as_image_copy(),
+                &crate::mods::resize(picture, pw, ph),
+                wgpu::TexelCopyBufferLayout { offset: 0, bytes_per_row: Some(pw * 4), rows_per_image: Some(ph) },
+                wgpu::Extent3d { width: pw, height: ph, depth_or_array_layers: 1 },
+            );
+            self.pictures.insert(hash, (texture, used));
+        }
+        self.ops.push(Op::Picture { hash, x: px, y: py });
+    }
+
     /// A VRAM-to-VRAM copy (no wrapping at the VRAM's edges).
     pub fn copy(&mut self, sx: i32, sy: i32, dx: i32, dy: i32, w: i32, h: i32) {
         let s = self.scale;
@@ -1146,6 +1209,22 @@ impl Hw {
                     at(&self.scratch),
                     wgpu::Extent3d { width: w, height: h, depth_or_array_layers: 1 },
                 );
+                i += 1;
+                continue;
+            }
+            if let Op::Picture { hash, x, y } = ops[i] {
+                if let Some((picture, _)) = self.pictures.get(&hash) {
+                    encoder.copy_texture_to_texture(
+                        picture.as_image_copy(),
+                        wgpu::TexelCopyTextureInfo {
+                            texture: into,
+                            mip_level: 0,
+                            origin: wgpu::Origin3d { x, y, z: 0 },
+                            aspect: wgpu::TextureAspect::All,
+                        },
+                        picture.size(),
+                    );
+                }
                 i += 1;
                 continue;
             }

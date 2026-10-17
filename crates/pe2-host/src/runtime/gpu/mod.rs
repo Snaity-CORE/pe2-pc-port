@@ -886,8 +886,26 @@ pub extern "C" fn pcrt_LoadImage(rect: *const Rect, p: *const u16) -> i32 {
         // Image transfers ignore the mask settings.
         g.vram.write_rect(x0, y0, w, h, pixels);
         g.post(x0, y0, w, h);
+        // A screen image (a background, a full-screen picture: about the
+        // size of the screen, where the game draws or shows) is known to
+        // mods by its hash.
+        let st = g.state;
+        let on_screen = |ax: i32, ay: i32, aw: i32, ah: i32| x0 < ax + aw && ax < x0 + w && y0 < ay + ah && ay < y0 + h;
+        let screen = w >= 256
+            && h >= 192
+            && crate::mods::wants_screens()
+            && (on_screen(st.area_x1, st.area_y1, st.area_x2 - st.area_x1 + 1, st.area_y2 - st.area_y1 + 1)
+                || on_screen(g.display.x, g.display.y, g.display.width, g.display.height));
+        let hash = screen.then(|| crate::mods::screen_hash(w, h, pixels));
+        if let Some(hash) = hash {
+            crate::mods::dump_screen(hash, w, h, pixels);
+        }
+        let picture = hash.and_then(|hash| crate::mods::background(hash).map(|p| (hash, p)));
         if let Some(hr) = g.layer.as_mut() {
-            hr.upload(&g.vram, x0, y0, w, h, pixels, None);
+            match picture {
+                Some((hash, p)) => hr.upload_picture(&g.vram, x0, y0, w, h, pixels, hash, &p),
+                None => hr.upload(&g.vram, x0, y0, w, h, pixels, None),
+            }
         }
     });
     0

@@ -27,6 +27,9 @@ It plays as the console does and adds what a PC can, all optional:
 - **Modern movement**: the stick points where to go, relative to the camera,
   in exploration and in battle; or the original tank controls with a quick
   turn (back + run).
+- **Mods**: replace the pre-rendered backgrounds and full-screen pictures
+  with your own at any resolution, dumped from the game as you play (see
+  [docs/MODDING.md](docs/MODDING.md)).
 - **Comfort**: a launcher worked by mouse, keyboard or controller (English or
   Portuguese), remappable keys and controller buttons, pause, screenshots,
   borderless full screen.

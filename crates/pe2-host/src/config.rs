@@ -17,6 +17,17 @@ pub struct Config {
     pub video: Video,
     pub input: Input,
     pub memcard: Memcard,
+    pub mods: Mods,
+}
+
+#[derive(Debug, Default, Deserialize)]
+#[serde(default, deny_unknown_fields)]
+pub struct Mods {
+    /// Use the mods in the data folder's mods/ (default on).
+    pub enabled: Option<bool>,
+    /// Save what the game shows (backgrounds) in dumps/, for making mods
+    /// (default off).
+    pub dump: Option<bool>,
 }
 
 #[derive(Debug, Default, Deserialize)]

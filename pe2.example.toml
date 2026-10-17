@@ -78,6 +78,14 @@ scale = 4
 # [input.gamepad]
 # cross = "South"
 
+[mods]
+# Mods are folders in the data folder's mods/ (see docs/MODDING.md).
+# enabled = true
+# Save each background and full-screen picture the game shows, once, as
+# dumps/backgrounds/<hash>.png in the data folder: the starting point for
+# a mod's replacements.
+# dump = false
+
 [memcard]
 # Raw 128 KB memory card images (DuckStation's .mcd files work). Default:
 # memcards/pe2_card1.mcd and pe2_card2.mcd in the data folder.
