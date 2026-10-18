@@ -101,8 +101,11 @@ each one asset. A sheet is known by a hash of its contents: its file name is
      no sprite draws is never shown, and is left transparent.
    - **Characters, enemies, weapons, items, maps**: their files carry their
      palettes, one per column of their pictures.
-   - The rest (about 200 sheets: the rooms' dialogue fonts, a few cameras'
-     pieces, the credits) comes out in grey, each texel by its number.
+   - **Rooms' dialogue fonts**: with the palette the game's code draws them
+     with.
+   - The rest (about 140 sheets: cameras' pieces that no sprite table draws,
+     likely drawn by rooms' own code; the credits) comes out in grey, each
+     texel by its number.
 
    With dumping on, playing also colours sheets as the game draws them,
    which can fill in those.
@@ -166,10 +169,12 @@ The game's movies (FMVs) stream from the disc frame by frame. A mod can
 show a video file instead: an MP4 with H.264 video and AAC sound, at any
 resolution and frame rate.
 
-1. Turn on dumping and play the movie. It is known by a hash of its first
-   frame: `dumps/movies/<hash>.png` shows a picture of it, and
-   `dumps/movies/<hash>.txt` its length in frames and seconds (written when
-   it ends).
+1. Extract the game's files (**Extract the game's files** in the launcher's
+   Mods screen, or `pe2 --extract`): every movie the game lists, 28 in all,
+   is read from the discs into `dumps/movies/`. A movie is known by a hash
+   of its first frame: `<hash>.png` shows a picture of it, `<hash>.wav` is
+   its sound (when it has its own), and `<hash>.txt` says its length in
+   frames and seconds, its frame rate, its size and where it is listed.
 2. Save your video as `mods/<your mod>/movies/<same hash>.mp4`.
 
 The video must not use B-frames (the decoder does not support them). With

@@ -52,6 +52,11 @@ impl Chunk {
         usize::from(u16::from_le_bytes([self.header[2], self.header[3]]))
     }
 
+    /// Where in RAM the chunk loads (packages and bundles; else 0).
+    pub fn load_address(&self) -> u32 {
+        u32le(&self.header[8..])
+    }
+
     /// The extension the asset tools give this chunk's type.
     pub fn extension(&self) -> &'static str {
         match self.header[0] {
@@ -137,6 +142,70 @@ pub fn layout(disc: &mut dyn Disc) -> Vec<DiscFile> {
         }
     }
     files
+}
+
+/// A movie a streaming list lists (StreamSlot in the decompilation's
+/// main/stream_types.h; doc/STREAM_FORMATS.md): where it starts on the
+/// disc, its last frame (0: none set), its size, and where it is listed.
+pub struct DiscMovie {
+    pub lba: u32,
+    pub frame_limit: u32,
+    pub width: usize,
+    pub height: usize,
+    pub listed: String,
+}
+
+/// The movies the streaming lists of `disc` list: STAGE0.HED's and each
+/// stage folder's (in the folder's first sector, from 0x514). A movie
+/// plays from the disc's INTER*.STR when it says so (its volume byte),
+/// else from the CDF, relative to where its list is.
+pub fn movies(disc: &mut dyn Disc) -> Vec<DiscMovie> {
+    const ENTRY: usize = 0x28;
+    let inter = ["INTER0.STR", "INTER1.STR"].iter().find_map(|n| iso9660::find_file(disc, n).ok());
+    let mut out = Vec::new();
+    let take = |entries: &[u8], base: u32, listed: String, out: &mut Vec<DiscMovie>| {
+        for (k, e) in entries.as_chunks::<ENTRY>().0.iter().enumerate() {
+            let half = |at: usize| u32::from(u16::from_le_bytes([e[at], e[at + 1]]));
+            if half(0) != 1 {
+                continue;
+            }
+            let lba = if half(0x24) != 0 {
+                let Some(inter) = inter else { continue };
+                inter.lba + u32le(&e[8..])
+            } else {
+                base + u32le(&e[4..])
+            };
+            out.push(DiscMovie {
+                lba,
+                frame_limit: half(0x1A),
+                width: half(0x12) as usize,
+                height: half(0x14) as usize,
+                listed: format!("{listed} entry {k}"),
+            });
+        }
+    };
+    let stage0 = iso9660::find_file(disc, "STAGE0.HED").ok().zip(iso9660::find_file(disc, "STAGE0.CDF").ok());
+    if let Some((hed, cdf)) = stage0
+        && let Ok(table) = iso9660::read_file(disc, hed)
+    {
+        take(&table[..3 * ENTRY], cdf.lba, "STAGE0.HED".into(), &mut out);
+    }
+    for stage in 1..=5 {
+        let Ok(cdf) = iso9660::find_file(disc, &format!("STAGE{stage}.CDF")) else { continue };
+        let Some(table) = read_sector(disc, cdf.lba) else { continue };
+        let mut folder_lba = cdf.lba + 1;
+        for k in 0..FOLDERS {
+            let (folder, sectors) = (u32le(&table[k * 8..]), u32le(&table[k * 8 + 4..]));
+            if sectors == 0 {
+                break;
+            }
+            if let Some(list) = read_sector(disc, folder_lba) {
+                take(&list[0x514..0x514 + 18 * ENTRY], folder_lba, format!("stage{stage}/{folder}"), &mut out);
+            }
+            folder_lba += sectors;
+        }
+    }
+    out
 }
 
 /// The chunks of the file starting at `lba`.
@@ -282,6 +351,47 @@ unsafe extern "C" {
 pub fn background_pixels(bs: &[u8]) -> Option<Vec<u16>> {
     const W: usize = 320;
     const H: usize = 240;
+    let words = mdec(bs, false)?;
+    let out: Vec<u16> = words.iter().flat_map(|&w| [w as u16, (w >> 16) as u16]).collect();
+    if out.len() < W * H {
+        return None;
+    }
+    // Macroblocks come column by column, 16x16 pixels each: a column is a
+    // 16x240 strip.
+    let mut pixels = vec![0u16; W * H];
+    for (strip, column) in out.as_chunks::<{ 16 * H }>().0.iter().take(W / 16).enumerate() {
+        for (y, row) in column.as_chunks::<16>().0.iter().enumerate() {
+            pixels[y * W + strip * 16..y * W + strip * 16 + 16].copy_from_slice(row);
+        }
+    }
+    Some(pixels)
+}
+
+/// A movie frame (a BS bitstream, `width` x `height`) as the game shows it
+/// (24-bit): RGB, row by row.
+pub fn movie_frame(bs: &[u8], width: usize, height: usize) -> Option<Vec<u8>> {
+    let words = mdec(bs, true)?;
+    let bytes: Vec<u8> = words.iter().flat_map(|w| w.to_le_bytes()).collect();
+    let (columns, rows) = (width / 16, height.div_ceil(16));
+    if bytes.len() < columns * rows * 256 * 3 {
+        return None;
+    }
+    let mut out = vec![0u8; width * height * 3];
+    // Macroblocks column by column, each 16x16 pixels of 3 bytes.
+    for (k, block) in bytes.as_chunks::<{ 256 * 3 }>().0.iter().take(columns * rows).enumerate() {
+        let (bx, by) = (k / rows * 16, k % rows * 16);
+        for y in 0..16.min(height.saturating_sub(by)) {
+            let at = ((by + y) * width + bx) * 3;
+            out[at..at + 48].copy_from_slice(&block[y * 48..y * 48 + 48]);
+        }
+    }
+    Some(out)
+}
+
+/// A BS bitstream through the run-length decoding and the MDEC as the game
+/// sends it there (default tables): the output words, 15-bit pixels, or
+/// 24-bit ones with `rgb24`.
+fn mdec(bs: &[u8], rgb24: bool) -> Option<Vec<u32>> {
     let words = usize::from(u16::from_le_bytes([*bs.first()?, *bs.get(1)?]));
     if bs.len() < 8 || u16::from_le_bytes([bs[2], bs[3]]) != 0x3800 || words == 0 {
         return None;
@@ -311,24 +421,14 @@ pub fn background_pixels(bs: &[u8]) -> Option<Vec<u16>> {
     for c in crate::runtime::libpress::default_scale().chunks(2) {
         mdec.write_word(u32::from(c[0] as u16) | (u32::from(c[1] as u16) << 16));
     }
-    // The decode command, 15-bit (DecDCTin's mode 0), then the data.
-    mdec.write_word((rle[0] & !(1 << 25 | 1 << 27)) | 1 << 27);
+    // The decode command (DecDCTin's mode 0: 15-bit; mode 1: 24-bit), then
+    // the data.
+    let command = rle[0] & !(1 << 25 | 1 << 27);
+    mdec.write_word(if rgb24 { command } else { command | 1 << 27 });
     for &w in &rle[1..] {
         mdec.write_word(w);
     }
-    let out: Vec<u16> = mdec.output.iter().flat_map(|&w| [w as u16, (w >> 16) as u16]).collect();
-    if out.len() < W * H {
-        return None;
-    }
-    // Macroblocks come column by column, 16x16 pixels each: a column is a
-    // 16x240 strip.
-    let mut pixels = vec![0u16; W * H];
-    for (strip, column) in out.as_chunks::<{ 16 * H }>().0.iter().take(W / 16).enumerate() {
-        for (y, row) in column.as_chunks::<16>().0.iter().enumerate() {
-            pixels[y * W + strip * 16..y * W + strip * 16 + 16].copy_from_slice(row);
-        }
-    }
-    Some(pixels)
+    Some(mdec.output.iter().copied().collect())
 }
 
 /// The dialogue bundles of `disc` and the pictures that may hold their
@@ -338,7 +438,7 @@ pub fn dialogue_sources(disc: &mut dyn Disc) -> super::dialogue::Sources {
     for f in layout(disc) {
         for (k, c) in read_chunks(disc, f.lba).into_iter().enumerate() {
             match c.header[0] {
-                0 => out.packages.entry(f.key.clone()).or_default().push(c.payload),
+                0 => out.packages.entry(f.key.clone()).or_default().push((c.load_address(), c.payload)),
                 1 => out.pictures.entry(f.key.clone()).or_default().push(c.payload),
                 2 => out.palettes.entry(f.key.clone()).or_default().push(c.payload),
                 5 => out.backgrounds.entry(f.key.clone()).or_default().push(c.payload),
@@ -394,7 +494,9 @@ pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path) -> std::io::Result<()>
                     }
                 }
                 match c.header[0] {
-                    0 => dialogue.packages.entry(f.key.clone()).or_default().push(c.payload.clone()),
+                    0 => {
+                        dialogue.packages.entry(f.key.clone()).or_default().push((c.load_address(), c.payload.clone()))
+                    }
                     1 => dialogue.pictures.entry(f.key.clone()).or_default().push(c.payload.clone()),
                     2 => dialogue.palettes.entry(f.key.clone()).or_default().push(c.payload.clone()),
                     5 => dialogue.backgrounds.entry(f.key.clone()).or_default().push(c.payload.clone()),
@@ -418,6 +520,9 @@ pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path) -> std::io::Result<()>
         "pe2: extract: {} sheets coloured from rooms' sprites; {checked} sprite tables checked against their backgrounds, {mismatched} differ",
         painted.len()
     );
+    let movies = dumps.join("movies");
+    let count = super::movies::extract(discs, &movies)?;
+    eprintln!("pe2: extract: {count} movies in {}", movies.display());
     let text = dumps.join("text");
     let (caps, lines) = super::dialogue::extract(&dialogue, &text)?;
     eprintln!("pe2: extract: {lines} lines of dialogue in {caps} files in {}", text.display());

@@ -9,9 +9,9 @@
 //! own movie as ever underneath (its timing, skipping and ending stay as
 //! they are).
 //!
-//! With dumping on, each movie's first picture is saved as
-//! `dumps/movies/<hash>.png`, and its length in frames and seconds as
-//! `dumps/movies/<hash>.txt` when it ends, to tell which is which.
+//! The extract saves each movie of the discs (`extract`): a picture of it
+//! as `dumps/movies/<hash>.png`, its sound as `<hash>.wav` and what it is
+//! (frames, frame rate, length, size, where it is) as `<hash>.txt`.
 
 use std::collections::{HashMap, VecDeque};
 use std::path::PathBuf;
@@ -66,20 +66,9 @@ struct Sound {
     played: usize,
 }
 
-/// A movie of the game seen while dumping: its first frame's hash, how many
-/// frames it had and when it began.
-struct Seen {
-    hash: u64,
-    frames: u32,
-    began: Instant,
-    last: Instant,
-    pictured: bool,
-}
-
 #[derive(Default)]
 struct State {
     playing: Option<Playing>,
-    seen: Option<Seen>,
 }
 
 fn state() -> &'static Mutex<State> {
@@ -119,8 +108,7 @@ fn index() -> &'static HashMap<u64, PathBuf> {
 /// The game took frame `number` of the movie streaming, `data` (its
 /// sectors' payload) to decode.
 pub fn frame(number: u32, data: &[u8]) {
-    let wanted = !index().is_empty() || super::dumping();
-    if !wanted {
+    if index().is_empty() {
         return;
     }
     let mut s = state().lock().unwrap();
@@ -130,10 +118,6 @@ pub fn frame(number: u32, data: &[u8]) {
         if let Some(p) = s.playing.take() {
             p.stop.store(true, Ordering::Relaxed);
         }
-        finish_seen(&mut s);
-        if super::dumping() {
-            s.seen = Some(Seen { hash, frames: 1, began: now, last: now, pictured: false });
-        }
         if crate::runtime::trace("movies") {
             eprintln!("[movies] movie {hash:016x} begins");
         }
@@ -142,24 +126,10 @@ pub fn frame(number: u32, data: &[u8]) {
         }
         return;
     }
-    if let Some(seen) = s.seen.as_mut() {
-        seen.frames = seen.frames.max(number);
-        seen.last = now;
-    }
     if let Some(p) = s.playing.as_mut() {
         p.number = number;
         p.at = now;
     }
-}
-
-/// Writes what was seen of the last movie, if it is over.
-fn finish_seen(s: &mut State) {
-    let Some(seen) = s.seen.take() else { return };
-    let dir = crate::paths::user_file("dumps").join("movies");
-    let _ = std::fs::create_dir_all(&dir);
-    let seconds = (seen.last - seen.began).as_secs_f64() + 1.0 / GAME_FPS;
-    let text = format!("frames = {}\nseconds = {seconds:.2}\n", seen.frames);
-    let _ = std::fs::write(dir.join(format!("{:016x}.txt", seen.hash)), text);
 }
 
 /// Starts playing a mod's movie: its pictures and sound decoded on threads
@@ -219,9 +189,6 @@ pub fn tick() {
         }
         s.playing = None;
     }
-    if s.seen.as_ref().is_some_and(|seen| seen.last.elapsed() > ENDED) {
-        finish_seen(&mut s);
-    }
 }
 
 /// Whether the movie's own sound (XA) is to be left out: a mod's plays.
@@ -246,45 +213,156 @@ pub fn mix(out: &mut VecDeque<(i16, i16)>, frames: usize) {
     sound.played = (start + frames).min(sound.samples.len().max(start));
 }
 
-/// With dumping on, the game's own movie picture (24-bit, `w` x `h`, rows
-/// of `row_words` halfwords): one of each movie is saved, the first that is
-/// not dark (or the one three seconds in), to tell which movie it is.
-pub fn observe_picture(w: usize, h: usize, rows: &[u16], row_words: usize) {
-    if !super::dumping() || rows.len() < h * row_words {
-        return;
-    }
-    let mut s = state().lock().unwrap();
-    let Some(seen) = s.seen.as_mut().filter(|s| !s.pictured) else { return };
-    let mut rgb = Vec::with_capacity(w * h * 3);
-    for y in 0..h {
-        let row = &rows[y * row_words..(y + 1) * row_words];
-        for i in 0..w * 3 {
-            let word = row[i / 2];
-            rgb.push(if i.is_multiple_of(2) { word as u8 } else { (word >> 8) as u8 });
+/// STR sectors: their magic, and the payload after their header.
+const STR_MAGIC: u32 = 0x8001_0160;
+const STR_HEADER: usize = 32;
+const STR_PAYLOAD: usize = 2016;
+
+/// Saves each movie the discs' streaming lists list under `out` (see the
+/// module's comment): its frames read from the disc as the game streams
+/// them, its hash that of its first frame's data as the game takes it.
+/// Answers how many movies.
+pub fn extract(discs: &mut [Box<dyn crate::disc::Disc>], out: &std::path::Path) -> std::io::Result<usize> {
+    std::fs::create_dir_all(out)?;
+    let mut seen = std::collections::HashSet::new();
+    for disc in discs.iter_mut() {
+        let listed = super::files::movies(disc.as_mut());
+        if crate::runtime::trace("movies") {
+            eprintln!("[movies] {} listed", listed.len());
+        }
+        let mut starts = std::collections::HashSet::new();
+        for m in listed {
+            if !starts.insert(m.lba) {
+                continue;
+            }
+            let Some(movie) = read_movie(disc.as_mut(), &m) else {
+                if crate::runtime::trace("movies") {
+                    eprintln!("[movies] {} at sector {}: no first frame", m.listed, m.lba);
+                }
+                continue;
+            };
+            if !seen.insert(movie.hash) {
+                continue;
+            }
+            save_movie(&movie, &m, out)?;
         }
     }
-    let mean = rgb.iter().map(|&b| u64::from(b)).sum::<u64>() / rgb.len().max(1) as u64;
-    if mean < 24 && seen.frames < 3 * GAME_FPS as u32 {
-        return;
-    }
-    seen.pictured = true;
-    let hash = seen.hash;
-    std::thread::spawn(move || {
-        let dir = crate::paths::user_file("dumps").join("movies");
-        let _ = std::fs::create_dir_all(&dir);
-        let path = dir.join(format!("{hash:016x}.png"));
-        let written = std::fs::File::create(&path).map_err(|e| e.to_string()).and_then(|file| {
-            let mut enc = png::Encoder::new(std::io::BufWriter::new(file), w as u32, h as u32);
-            enc.set_color(png::ColorType::Rgb);
-            enc.set_depth(png::BitDepth::Eight);
-            let mut writer = enc.write_header().map_err(|e| e.to_string())?;
-            writer.write_image_data(&rgb).map_err(|e| e.to_string())
-        });
-        match written {
-            Ok(()) => eprintln!("pe2: dumped {}", path.display()),
-            Err(e) => eprintln!("pe2: dump {}: {e}", path.display()),
+    Ok(seen.len())
+}
+
+/// A movie read from the disc: its hash, frames, sectors spanned, a
+/// picture and its sound.
+struct DiscMovieRead {
+    hash: u64,
+    frames: u32,
+    sectors: u32,
+    picture: Option<(usize, usize, Vec<u8>)>,
+    sound: Vec<(i16, i16)>,
+}
+
+fn read_movie(disc: &mut dyn crate::disc::Disc, m: &super::files::DiscMovie) -> Option<DiscMovieRead> {
+    let mut raw = [0u8; crate::disc::RAW_SECTOR_SIZE];
+    let mut xa = crate::runtime::spu::xa::XaDecoder::default();
+    let (mut hash, mut last, mut sectors) = (None, 0u32, 0u32);
+    let mut frame: (u32, u16, Vec<u8>, u64) = (0, 0, Vec::new(), 0);
+    let mut picture = None;
+    let mut sound = Vec::new();
+    let mut channel = None;
+    let limit = if m.frame_limit > 0 { m.frame_limit } else { u32::MAX };
+    let mut idle = 0;
+    for lba in m.lba.. {
+        if disc.read_sector(lba, &mut raw).is_err() || idle > 64 {
+            break;
         }
-    });
+        sectors += 1;
+        let (file, chan, submode) = (raw[16], raw[17], raw[18]);
+        if submode & 0x04 != 0 {
+            // Its sound: the first XA file and channel met.
+            if *channel.get_or_insert((file, chan)) == (file, chan) {
+                sound.extend(xa.decode_sector(&raw));
+            }
+            continue;
+        }
+        let user = &raw[24..24 + 2048];
+        let word = |at: usize| u32::from_le_bytes([user[at], user[at + 1], user[at + 2], user[at + 3]]);
+        if word(0) != STR_MAGIC {
+            idle += 1;
+            continue;
+        }
+        idle = 0;
+        let (index, count, number) =
+            (u16::from_le_bytes([user[4], user[5]]), u16::from_le_bytes([user[6], user[7]]), word(8));
+        // Another movie's frames, or this one's end.
+        if number < last || number > limit || (last == 0 && number != 1) {
+            break;
+        }
+        if number != frame.0 {
+            frame = (number, count, vec![0; usize::from(count) * STR_PAYLOAD], 0);
+        }
+        if index < count {
+            let at = usize::from(index) * STR_PAYLOAD;
+            frame.2[at..at + STR_PAYLOAD].copy_from_slice(&user[STR_HEADER..STR_HEADER + STR_PAYLOAD]);
+            frame.3 |= 1 << index;
+        }
+        if frame.3.count_ones() == u32::from(frame.1) {
+            last = number;
+            if number == 1 {
+                hash = Some(super::fnv1a(frame.2.iter().copied()));
+            }
+            // Its picture: the first that is not dark (or three seconds in).
+            if picture.is_none() {
+                let (w, h) = (
+                    usize::from(u16::from_le_bytes([user[0x10], user[0x11]])),
+                    usize::from(u16::from_le_bytes([user[0x12], user[0x13]])),
+                );
+                if let Some(rgb) = super::files::movie_frame(&frame.2, w, h) {
+                    let mean = rgb.iter().map(|&b| u64::from(b)).sum::<u64>() / rgb.len().max(1) as u64;
+                    if mean >= 24 || number >= 45 {
+                        picture = Some((w, h, rgb));
+                    }
+                }
+            }
+            frame.3 = 0;
+        }
+    }
+    Some(DiscMovieRead { hash: hash?, frames: last, sectors, picture, sound })
+}
+
+fn save_movie(movie: &DiscMovieRead, m: &super::files::DiscMovie, out: &std::path::Path) -> std::io::Result<()> {
+    let name = format!("{:016x}", movie.hash);
+    // The disc streams 150 sectors a second (double speed).
+    let fps = f64::from(movie.frames) * 150.0 / f64::from(movie.sectors.max(1));
+    let fps = if fps > 22.0 { 30.0 } else { GAME_FPS };
+    let text = format!(
+        "frames = {}\nframes_per_second = {fps}\nseconds = {:.2}\nwidth = {}\nheight = {}\nlisted = \"{}\"\n",
+        movie.frames,
+        f64::from(movie.frames) / fps,
+        m.width,
+        m.height,
+        m.listed
+    );
+    std::fs::write(out.join(format!("{name}.txt")), text)?;
+    if let Some((w, h, rgb)) = &movie.picture {
+        let file = std::io::BufWriter::new(std::fs::File::create(out.join(format!("{name}.png")))?);
+        let mut enc = png::Encoder::new(file, *w as u32, *h as u32);
+        enc.set_color(png::ColorType::Rgb);
+        enc.set_depth(png::BitDepth::Eight);
+        enc.write_header().and_then(|mut wr| wr.write_image_data(rgb)).map_err(std::io::Error::other)?;
+    }
+    if !movie.sound.is_empty() {
+        let spec = hound::WavSpec {
+            channels: 2,
+            sample_rate: RATE,
+            bits_per_sample: 16,
+            sample_format: hound::SampleFormat::Int,
+        };
+        let mut w = hound::WavWriter::create(out.join(format!("{name}.wav")), spec).map_err(std::io::Error::other)?;
+        for &(l, r) in &movie.sound {
+            w.write_sample(l).and_then(|()| w.write_sample(r)).map_err(std::io::Error::other)?;
+        }
+        w.finalize().map_err(std::io::Error::other)?;
+    }
+    Ok(())
 }
 
 /// Decodes the video track, sending each picture with its time.

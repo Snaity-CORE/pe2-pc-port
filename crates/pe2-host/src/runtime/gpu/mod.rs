@@ -1258,9 +1258,6 @@ pub fn latch() {
             f.vram.extend((0..row_words).map(|i| row[(x0 + i) % VRAM_WIDTH]));
         }
     }
-    if d.rgb24 {
-        crate::mods::movies::observe_picture(w, h, &f.vram, row_words);
-    }
 }
 
 /// Copies the displayed region of the hardware layer (or of `source`, a

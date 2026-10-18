@@ -13,7 +13,8 @@
 //! drawing's choice. Many files carry their pictures' palettes (`.pe2clut`)
 //! in the order of their columns: one 256-colour row per 8-bit column, one
 //! 16-colour row per 4-bit one. Such a sheet gets that palette (and its
-//! depth from it) to be shown with before the game draws it.
+//! depth from it) to be shown with before the game draws it. Some sheets'
+//! palettes are fixed by the game's code instead (`FIXED`).
 
 use std::collections::HashMap;
 use std::sync::OnceLock;
@@ -31,6 +32,8 @@ pub struct Sheet {
     pub rows: Vec<[u16; 64]>,
     pieces: Vec<u64>,
     pub palette: Option<Vec<u16>>,
+    /// Where that palette comes from (for the extract's index).
+    pub palette_source: &'static str,
     /// Where it was first found: `<file>/<chunk>#<column>`.
     pub origin: String,
 }
@@ -39,7 +42,7 @@ impl Sheet {
     fn new(hash: u64, rows: Vec<[u16; 64]>) -> Sheet {
         let pieces =
             rows.chunks(PIECE_ROWS).map(|c| piece_hash(c.iter().flatten().copied(), PIECE_ROWS - c.len())).collect();
-        Sheet { hash, rows, pieces, palette: None, origin: String::new() }
+        Sheet { hash, rows, pieces, palette: None, palette_source: "", origin: String::new() }
     }
 
     /// Its texel depth (0: 4 bits, 1: 8 bits): its palette's, else likely.
@@ -127,6 +130,33 @@ impl Sheet {
     }
 }
 
+/// Palettes the game's code fixes for the sheets loaded at a place: the
+/// page column (VRAM x, y), the sheets' depth, the file whose `.pe2clut`
+/// holds the palette, and where the palette is in VRAM.
+type Fixed = ((u16, u16), u32, &'static str, (usize, usize));
+const FIXED: &[Fixed] = &[
+    // Rooms' dialogue fonts: captions.c draws them from page (384, 0) with
+    // CLUT 0x3D50 (and its colour variants next to it), from the system
+    // text palettes stage 0's file 1 loads at (256, 243).
+    ((384, 0), 0, "stage0/file1", (256, 245)),
+];
+
+/// The `n` colours at (`x`, `y`) in VRAM as one of `chunks` (`.pe2clut`)
+/// loads them.
+fn palette_at(chunks: &[Vec<u8>], x: usize, y: usize, n: usize) -> Option<Vec<u16>> {
+    chunks.iter().find_map(|c| {
+        let field = |at: usize| Some(usize::from(u16::from_le_bytes([*c.get(at)?, *c.get(at + 1)?])));
+        let (cx, cy, h, w) = (field(0)?, field(2)?, field(4)?, field(6)?);
+        if !(cx..cx + w).contains(&x) || !(cy..cy + h).contains(&y) || x + n > cx + w {
+            return None;
+        }
+        let bytes = lzss(c, &mut 16);
+        let at = ((y - cy) * w + (x - cx)) * 2;
+        let row = bytes.get(at..at + n * 2)?;
+        Some(row.as_chunks::<2>().0.iter().map(|b| u16::from_le_bytes(*b)).collect())
+    })
+}
+
 /// A 15-bit colour as RGBA, 0 transparent.
 fn rgba(t: u16) -> [u8; 4] {
     let c = |s: u16| ((t >> s & 31) << 3) as u8;
@@ -190,26 +220,36 @@ impl Catalog {
                 .iter()
                 .enumerate()
                 .flat_map(|(n, p)| picture(p).into_iter().enumerate().map(move |(c, col)| (n, c, col)));
-            for (i, (n, column, Column { rows, .. })) in columns.enumerate() {
+            for (i, (n, column, Column { x, y, rows })) in columns.enumerate() {
                 if rows.is_empty() {
                     continue;
                 }
                 // Its file's palettes, in column order: 8-bit ones if any.
-                let given = [wide.as_slice(), narrow.as_slice()]
+                let mut given = [wide.as_slice(), narrow.as_slice()]
                     .into_iter()
                     .find(|p| !p.is_empty())
                     .map(|p| p[i.min(p.len() - 1)].clone());
+                let mut source = "its file's palette";
+                if given.is_none()
+                    && let Some(&(_, depth, file, (px, py))) = FIXED.iter().find(|f| f.0 == (x, y))
+                {
+                    let chunks = sources.palettes.get(file).map_or(&[][..], Vec::as_slice);
+                    given = palette_at(chunks, px, py, [16, 256][depth as usize]);
+                    source = "the palette the game's code sets";
+                }
                 let hash = sheet_hash(&rows);
                 if let Some(&known) = c.by_hash.get(&hash) {
                     let sheet = &mut c.sheets[known as usize];
                     if sheet.palette.is_none() {
                         sheet.palette = given;
+                        sheet.palette_source = source;
                     }
                     continue;
                 }
                 let index = c.sheets.len() as u32;
                 let mut sheet = Sheet::new(hash, rows);
                 sheet.palette = given;
+                sheet.palette_source = source;
                 sheet.origin = format!("{key}/{n}#{column}");
                 for (k, &piece) in sheet.pieces.iter().enumerate() {
                     c.pieces.entry(piece).or_default().push((index, k as u16));
@@ -262,7 +302,7 @@ pub fn extract(
                 let depth = sheet.depth();
                 let (width, rgba) = sheet.picture(depth);
                 let given = sheet.palette.as_ref().is_some_and(|p| p.len() == [16, 256][depth.min(1) as usize]);
-                (width, rgba, depth, if given { "its file's palette" } else { "none (grey)" })
+                (width, rgba, depth, if given { sheet.palette_source } else { "none (grey)" })
             }
         };
         if !source.starts_with("none") {

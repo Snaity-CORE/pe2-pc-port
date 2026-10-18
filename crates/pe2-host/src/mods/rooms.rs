@@ -83,9 +83,85 @@ fn sprite(r: &[u8]) -> Option<Sprite> {
     })
 }
 
-/// The sprite tables of a package's contents: runs of two or more
-/// consecutive sprite records, in order.
-fn tables(blob: &[u8]) -> Vec<Vec<Sprite>> {
+/// A sprite record as a `SpriteView` points to it: anything a sprite can
+/// be.
+fn any_sprite(r: &[u8]) -> Option<Sprite> {
+    let tpage = u16::from_le_bytes([r[0], r[1]]);
+    let clut = u16::from_le_bytes([r[2], r[3]]);
+    let (w, h, x0, y0) = (i16le(r, 4), i16le(r, 6), i16le(r, 8), i16le(r, 10));
+    let depth = u32::from((tpage >> 7) & 3);
+    let ok = tpage >> 9 == 0 && depth < 2 && (1..=256).contains(&w) && (1..=256).contains(&h);
+    ok.then(|| Sprite {
+        page_x: i32::from(tpage & 0xF) * 64,
+        page_y: i32::from((tpage >> 4) & 1) * 256,
+        depth,
+        clut_x: i32::from(clut & 0x3F) * 16,
+        clut_y: i32::from(clut >> 6),
+        w,
+        h,
+        x0,
+        y0,
+        u: i32::from(r[14]),
+        v: i32::from(r[15]),
+        semi: r[19] & 2 != 0,
+    })
+}
+
+/// The sprite tables of a package's contents as its `SpriteView` arrays
+/// give them (gameplay/sprites.h): records of three pointers into the
+/// package, to the view's sprites, its batches (8 bytes each, the last
+/// with first sprite 0xFFFF; how many sprites the view has) and its clip
+/// areas (or none). In the order of the views.
+fn views(blob: &[u8], base: u32) -> Vec<(usize, Vec<Sprite>)> {
+    let end = base.wrapping_add(blob.len() as u32);
+    let inside = |p: u32| p >= base && p < end && p.is_multiple_of(2);
+    let word = |at: usize| u32::from_le_bytes([blob[at], blob[at + 1], blob[at + 2], blob[at + 3]]);
+    let half = |at: usize| u16::from_le_bytes([blob[at], blob[at + 1]]);
+    let mut out = Vec::new();
+    let mut at = 0;
+    while at + 12 <= blob.len() {
+        let (sources, batches, areas) = (word(at), word(at + 4), word(at + 8));
+        let shaped = inside(batches) && (areas == 0 || inside(areas)) && (sources == 0 || inside(sources));
+        // Its batches: how many sprites they reach.
+        let count = shaped.then(|| {
+            let mut b = (batches - base) as usize;
+            let mut count = 0usize;
+            for _ in 0..64 {
+                if b + 8 > blob.len() {
+                    return None;
+                }
+                let (first, n) = (half(b), half(b + 2));
+                if first == 0xFFFF {
+                    return Some(count);
+                }
+                count = count.max(usize::from(first) + usize::from(n));
+                b += 8;
+            }
+            None
+        });
+        let table = count.flatten().and_then(|count| {
+            if sources == 0 || sources == batches || count == 0 {
+                return Some((0, Vec::new()));
+            }
+            let s = (sources - base) as usize;
+            let records = blob.get(s..s + count * 20)?;
+            Some((s, records.chunks(20).map(any_sprite).collect::<Option<Vec<_>>>()?))
+        });
+        match table {
+            Some(t) => {
+                out.push(t);
+                at += 12;
+            }
+            None => at += 4,
+        }
+    }
+    out.retain(|t| !t.1.is_empty());
+    out
+}
+
+/// The sprite tables of a package's contents, without its views: runs of
+/// two or more consecutive sprite records, in order.
+fn tables(blob: &[u8]) -> Vec<(usize, Vec<Sprite>)> {
     let mut found: Vec<(usize, Vec<Sprite>)> = Vec::new();
     let mut taken = vec![false; blob.len()];
     for start in 0..20 {
@@ -116,7 +192,22 @@ fn tables(blob: &[u8]) -> Vec<Vec<Sprite>> {
         }
     }
     found.sort_by_key(|t| t.0);
-    found.into_iter().map(|t| t.1).collect()
+    found
+}
+
+/// A package's sprite tables: its views', and runs of sprite records the
+/// views do not reach (each where it is in the package, in order).
+fn room_tables(blob: &[u8], base: u32) -> Vec<Vec<Sprite>> {
+    let mut all = views(blob, base);
+    let reached: Vec<(usize, usize)> = all.iter().map(|(at, t)| (*at, at + t.len() * 20)).collect();
+    for (at, t) in tables(blob) {
+        if !reached.iter().any(|&(a, b)| at < b && a < at + t.len() * 20) {
+            all.push((at, t));
+        }
+    }
+    all.sort_by_key(|t| t.0);
+    all.dedup_by_key(|t| t.0);
+    all.into_iter().map(|t| t.1).collect()
 }
 
 /// A block of palettes: where in VRAM (x, y), its width, its colours.
@@ -220,8 +311,13 @@ pub fn paint(sources: &Sources, catalog: &Catalog) -> (HashMap<u32, Painted>, us
     for (folder, mut files) in folders {
         files.sort();
         let main = format!("{folder}/file0");
-        let blobs = sources.packages.get(&main).map_or(&[][..], Vec::as_slice);
-        let room_tables: Vec<Vec<Sprite>> = blobs.iter().flat_map(|p| tables(&lzss(p, &mut 0))).collect();
+        let packages = sources.packages.get(&main).map_or(&[][..], Vec::as_slice);
+        let room_tables: Vec<Vec<Sprite>> =
+            packages.iter().flat_map(|(base, p)| room_tables(&lzss(p, &mut 0), *base)).collect();
+        if crate::runtime::trace("rooms") {
+            let with = files.iter().filter(|(_, k)| !sources.pictures[*k].is_empty()).count();
+            eprintln!("[rooms] {folder}: {} sprite tables, {with} cameras' pictures", room_tables.len());
+        }
         let blocks: Vec<Block> = sources
             .bundles
             .iter()

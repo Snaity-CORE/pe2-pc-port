@@ -452,9 +452,10 @@ pub struct Sources {
     /// ones' (palettes).
     pub pictures: HashMap<String, Vec<Vec<u8>>>,
     pub palettes: HashMap<String, Vec<Vec<u8>>>,
-    /// File key -> its code and data packages' contents (`.pe2pkg`, still
-    /// compressed), and its room backgrounds' (`.bs`).
-    pub packages: HashMap<String, Vec<Vec<u8>>>,
+    /// File key -> its code and data packages (`.pe2pkg`): where they load
+    /// in RAM, and their contents (still compressed); and its room
+    /// backgrounds' contents (`.bs`).
+    pub packages: HashMap<String, Vec<(u32, Vec<u8>)>>,
     pub backgrounds: HashMap<String, Vec<Vec<u8>>>,
     /// (file key, chunk index, contents) of each `.pe2cap2` chunk.
     pub bundles: Vec<(String, usize, Vec<u8>)>,
