@@ -96,7 +96,7 @@ fn enabled() -> bool {
 
 /// Whether what the game shows is dumped: PE2_DUMP=0/1, else pe2.toml's
 /// [mods] dump, else off.
-fn dumping() -> bool {
+pub fn dumping() -> bool {
     static ON: OnceLock<bool> = OnceLock::new();
     *ON.get_or_init(|| {
         std::env::var("PE2_DUMP").ok().map(|v| v.trim() != "0").or(crate::config::get().mods.dump).unwrap_or(false)
@@ -252,32 +252,28 @@ pub fn wants_textures() -> bool {
     dumping() || !textures().files.is_empty()
 }
 
-/// With dumping on, saves texture `key` (`w` x `h` RGBA) as
-/// `dumps/textures/<name>.png`, once, on a thread of its own. `rgba` is
-/// only called the first time.
-pub fn dump_texture(key: TextureKey, w: u32, h: u32, rgba: impl FnOnce() -> Vec<u8>) {
-    static SEEN: Mutex<Option<HashSet<TextureKey>>> = Mutex::new(None);
-    if !dumping() || !SEEN.lock().unwrap().get_or_insert_with(HashSet::new).insert(key) {
-        return;
-    }
-    let dir = crate::paths::user_file("dumps").join("textures");
-    let path = dir.join(format!("{}.png", texture_name(key)));
-    if path.exists() {
-        return;
-    }
-    let rgba = rgba();
+/// Where texture `key`'s dump is.
+fn texture_dump_path(key: TextureKey) -> PathBuf {
+    crate::paths::user_file("dumps").join("textures").join(format!("{}.png", texture_name(key)))
+}
+
+/// Saves texture `key`'s dump (256x256 RGBA), on a thread of its own,
+/// over what was there.
+pub fn save_texture_dump(key: TextureKey, rgba: Vec<u8>) {
+    let path = texture_dump_path(key);
     std::thread::spawn(move || {
-        let _ = std::fs::create_dir_all(&dir);
+        if let Some(dir) = path.parent() {
+            let _ = std::fs::create_dir_all(dir);
+        }
         let written = std::fs::File::create(&path).map_err(|e| e.to_string()).and_then(|file| {
-            let mut enc = png::Encoder::new(std::io::BufWriter::new(file), w, h);
+            let mut enc = png::Encoder::new(std::io::BufWriter::new(file), 256, 256);
             enc.set_color(png::ColorType::Rgba);
             enc.set_depth(png::BitDepth::Eight);
             let mut writer = enc.write_header().map_err(|e| e.to_string())?;
             writer.write_image_data(&rgba).map_err(|e| e.to_string())
         });
-        match written {
-            Ok(()) => eprintln!("pe2: dumped {}", path.display()),
-            Err(err) => eprintln!("pe2: dump {}: {err}", path.display()),
+        if let Err(err) = written {
+            eprintln!("pe2: dump {}: {err}", path.display());
         }
     });
 }

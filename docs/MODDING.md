@@ -88,18 +88,20 @@ texture. A texture is known by a hash of both: its file name is
 which have no palette).
 
 1. Turn on dumping (as for backgrounds) and play to where the texture shows.
-   Each texture drawn is saved once as `dumps/textures/<name>.png`: the whole
-   page as that palette shows it, 256x256, transparent where nothing was
-   loaded and where the game draws nothing.
+   Each texture drawn is saved as `dumps/textures/<name>.png`, 256x256: the
+   parts of its page the game drew with its palette, the rest transparent.
+   A dump grows as more of it is drawn (it is saved again, at most once a
+   second) and keeps what earlier sessions saw: play through more places to
+   fill it in.
 2. Make your version, at any multiple of 256x256 (1024x1024 is 4x), and save
    it as `mods/<your mod>/textures/<same name>.png`.
 
 What to know:
 
 - **One page, many things.** A page often holds several textures (Aya's
-  face, arms and hair share one), and parts of it drawn with other palettes
-  look wrong in the dump: only the parts drawn with this palette matter.
-  The other palettes have dumps of their own.
+  face, arms and hair share one), each drawn with its own palette: each
+  palette's dump shows its own parts. Paint only those; the rest of your
+  picture is never drawn with that palette.
 - **Transparency.** Your picture's transparency is used: pixels less than
   half opaque are not drawn. Whether the rest blends (semi-transparency)
   still follows the game's own texture.
