@@ -14,7 +14,7 @@
 //! the GPU. With `[mods] dump`, each such image is saved once as
 //! `dumps/backgrounds/<hash>.png`.
 
-use std::collections::{HashMap, HashSet};
+use std::collections::HashMap;
 use std::path::{Path, PathBuf};
 use std::sync::{Arc, Mutex, OnceLock};
 
@@ -337,29 +337,6 @@ fn read_png(path: &Path, alpha: bool) -> Result<Picture, String> {
     Ok(Picture { width: info.width, height: info.height, rgba })
 }
 
-/// With dumping on, saves screen image `hash` (w x h 15-bit pixels) as
-/// `dumps/backgrounds/<hash>.png` in the data folder, once, on a thread of
-/// its own.
-pub fn dump_screen(hash: u64, w: i32, h: i32, pixels: &[u16]) {
-    static SEEN: Mutex<Option<HashSet<u64>>> = Mutex::new(None);
-    if !dumping() || !SEEN.lock().unwrap().get_or_insert_with(HashSet::new).insert(hash) {
-        return;
-    }
-    let dir = crate::paths::user_file("dumps").join("backgrounds");
-    let path = dir.join(format!("{hash:016x}.png"));
-    if path.exists() {
-        return;
-    }
-    let pixels = pixels.to_vec();
-    std::thread::spawn(move || {
-        let _ = std::fs::create_dir_all(&dir);
-        match save_png(&path, w as u32, h as u32, &pixels) {
-            Ok(()) => eprintln!("pe2: dumped {}", path.display()),
-            Err(err) => eprintln!("pe2: dump {}: {err}", path.display()),
-        }
-    });
-}
-
 /// Saves 15-bit pixels as an RGB PNG (each channel's 5 bits shifted up, so
 /// the colours are the console's exactly).
 pub fn save_png(path: &Path, w: u32, h: u32, pixels: &[u16]) -> Result<(), String> {
@@ -375,10 +352,9 @@ pub fn save_png(path: &Path, w: u32, h: u32, pixels: &[u16]) -> Result<(), Strin
     writer.write_image_data(&rgb).map_err(|e| e.to_string())
 }
 
-/// Whether anything here wants screen images: mods with backgrounds, or
-/// dumping.
+/// Whether anything here wants screen images: mods with backgrounds.
 pub fn wants_screens() -> bool {
-    dumping() || !backgrounds().files.is_empty()
+    !backgrounds().files.is_empty()
 }
 
 /// `picture` resized to `w` x `h` (area average when shrinking, bilinear

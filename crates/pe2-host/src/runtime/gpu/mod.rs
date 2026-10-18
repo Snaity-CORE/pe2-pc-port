@@ -59,6 +59,46 @@ pub struct Gpu {
     latched: u64,
     /// Frames in between (interp.rs), when drawn.
     interp: Option<interp::Interp>,
+    /// The screen images a mod's pictures last replaced, by where they
+    /// went (`Shown`).
+    shown: Vec<Shown>,
+}
+
+/// A screen image a mod's picture replaced: where it went, its hash and
+/// its pixels. The game changes some such images a little before showing
+/// them again (a light on, a strip of the room captured over it); those
+/// keep the picture, with what changed drawn over it.
+struct Shown {
+    rect: (i32, i32, i32, i32),
+    hash: u64,
+    pixels: Vec<u16>,
+}
+
+impl Shown {
+    /// The tiles (x, y, w, h within the image) where `pixels` differ from
+    /// this image's, if few enough of them do for the picture to stay.
+    fn changed(&self, pixels: &[u16]) -> Option<Vec<(i32, i32, i32, i32)>> {
+        const TILE: i32 = 16;
+        let (_, _, w, h) = self.rect;
+        if pixels.len() != self.pixels.len() {
+            return None;
+        }
+        let mut tiles = Vec::new();
+        for ty in (0..h).step_by(TILE as usize) {
+            for tx in (0..w).step_by(TILE as usize) {
+                let (tw, th) = (TILE.min(w - tx), TILE.min(h - ty));
+                let differs = (ty..ty + th).any(|y| {
+                    let row = (y * w + tx) as usize..(y * w + tx + tw) as usize;
+                    pixels[row.clone()] != self.pixels[row]
+                });
+                if differs {
+                    tiles.push((tx, ty, tw, th));
+                }
+            }
+        }
+        let all = ((w + TILE - 1) / TILE) * ((h + TILE - 1) / TILE);
+        (tiles.len() as i32 * 4 <= all).then_some(tiles)
+    }
 }
 
 /// PE2_TRACE=pgxp: every few seconds, polygon vertices with and without an
@@ -169,6 +209,7 @@ pub fn start() {
         interp,
         cmd_addr: 0,
         cmd_word0: 0,
+        shown: Vec::new(),
     });
 }
 
@@ -905,14 +946,35 @@ pub extern "C" fn pcrt_LoadImage(rect: *const Rect, p: *const u16) -> i32 {
             && (on_screen(st.area_x1, st.area_y1, st.area_x2 - st.area_x1 + 1, st.area_y2 - st.area_y1 + 1)
                 || on_screen(g.display.x, g.display.y, g.display.width, g.display.height));
         let hash = screen.then(|| crate::mods::screen_hash(w, h, pixels));
-        if let Some(hash) = hash {
-            crate::mods::dump_screen(hash, w, h, pixels);
-        }
+        let rect = (x0, y0, w, h);
         let picture = hash.and_then(|hash| crate::mods::background(hash).map(|p| (hash, p)));
+        if let Some((hash, _)) = picture {
+            g.shown.retain(|s| s.rect != rect);
+            g.shown.truncate(3);
+            g.shown.insert(0, Shown { rect, hash, pixels: pixels.to_vec() });
+        }
+        // An image the mod has no picture for, changed a little from one it
+        // has: that picture, and what changed.
+        let changed = match (hash, &picture) {
+            (Some(_), None) => g.shown.iter().find(|s| s.rect == rect).and_then(|s| {
+                let p = crate::mods::background(s.hash)?;
+                Some((s.hash, p, s.changed(pixels)?))
+            }),
+            _ => None,
+        };
         if let Some(hr) = g.layer.as_mut() {
-            match picture {
-                Some((hash, p)) => hr.upload_picture(&g.vram, x0, y0, w, h, pixels, hash, &p),
-                None => hr.upload(&g.vram, x0, y0, w, h, pixels, None),
+            match (picture, changed) {
+                (Some((hash, p)), _) => hr.upload_picture(&g.vram, x0, y0, w, h, pixels, hash, &p),
+                (None, Some((hash, p, tiles))) => {
+                    hr.upload_picture(&g.vram, x0, y0, w, h, pixels, hash, &p);
+                    for (tx, ty, tw, th) in tiles {
+                        let tile: Vec<u16> = (ty..ty + th)
+                            .flat_map(|y| pixels[(y * w + tx) as usize..(y * w + tx + tw) as usize].iter().copied())
+                            .collect();
+                        hr.upload(&g.vram, x0 + tx, y0 + ty, tw, th, &tile, None);
+                    }
+                }
+                (None, None) => hr.upload(&g.vram, x0, y0, w, h, pixels, None),
             }
         }
     });

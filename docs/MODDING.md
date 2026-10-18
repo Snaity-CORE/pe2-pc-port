@@ -47,14 +47,11 @@ title and menu screens are full-screen pictures too. A mod can replace any of
 them with a picture of its own, at any resolution: 1280x960 (4x) suits most
 setups, and the picture is scaled to the internal resolution.
 
-1. Get the pictures, in `dumps/backgrounds/<hash>.png` in the data folder:
-   - **Every room background at once**: **Extract the game's files** in the
-     launcher's Mods screen (or `pe2 --extract`) decodes all of them, about
-     1,760, as the game does.
-   - **Anything else** (title and menu screens, close-ups shown when
-     examining things): turn on dumping, in the launcher's Mods screen or
-     with `[mods] dump = true` in `pe2.toml` (or `PE2_DUMP=1`), and play
-     through the places you want; each picture the game shows is saved once.
+1. Get the pictures: **Extract the game's files** in the launcher's Mods
+   screen (or `pe2 --extract`) decodes all of them from the discs, about
+   1,760 (rooms, title and menu screens, close-ups shown when examining
+   things), as the game does, into `dumps/backgrounds/<hash>.png` in the
+   data folder.
 2. Make your version of a picture (paint over it, upscale it, ...) and save it
    as `mods/<your mod>/backgrounds/<same hash>.png`.
 
@@ -68,6 +65,11 @@ What to know:
   (pillars, railings, furniture edges) are drawn separately, from texture
   memory, on top of the background: they are textures (see below), to be
   replaced to match your background.
+- **Changed pictures.** Some rooms change their picture a little before
+  showing it again (a light turning on, the room's own frame kept behind a
+  menu). Such a picture keeps your replacement, with what changed (in 16x16
+  tiles) drawn over it from the game's picture, when no more than a quarter
+  of it changed.
 - **Only the picture changes.** The game still has its own picture in video
   memory; replacing it never changes how the game plays.
 - **Hardware renderer.** Replacements show with the graphics card renderer at
