@@ -493,7 +493,8 @@ fn deliver_sector(generation: u64, at: Instant) {
         if d.mode & MODE_RT != 0 && is_audio {
             // XA-ADPCM goes to the sound processor, not to the host. With
             // the filter on, only the selected file and channel play.
-            if d.mode & MODE_SF == 0 || (file, chan) == d.filter {
+            // A mod's movie plays its own sound instead.
+            if (d.mode & MODE_SF == 0 || (file, chan) == d.filter) && !crate::mods::movies::mutes_xa() {
                 if super::trace("xa") {
                     eprintln!(
                         "[xa] disc {} lba {lba} file {file} chan {chan} submode 0x{submode:02X} coding 0x{:02X}",

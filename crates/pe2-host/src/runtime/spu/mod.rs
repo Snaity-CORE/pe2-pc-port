@@ -77,6 +77,7 @@ fn render(out: &mut Vec<(i16, i16)>, frames: usize) {
         // A mod's recording replacing the music, if one plays.
         s.music_input.clear();
         crate::mods::music::take(&mut s.music_input, frames);
+        crate::mods::movies::mix(&mut s.music_input, frames);
         out.extend((0..frames).map(|_| s.tick()));
         std::mem::take(&mut s.irq_flag)
     });

@@ -29,8 +29,9 @@ It plays as the console does and adds what a PC can, all optional:
   turn (back + run).
 - **Mods**: replace the pre-rendered backgrounds and full-screen pictures
   and the textures with your own at any resolution, the music with
-  recordings, and any of the game's files; cheats and memory patches; the
-  game's pictures, textures, music and files dumped to make them (see [docs/MODDING.md](docs/MODDING.md)).
+  recordings, the movies with video files, any of the game's files, and
+  the dialogue with translations; cheats and memory patches; the game's
+  pictures, textures, music, files and dialogue dumped to make them (see [docs/MODDING.md](docs/MODDING.md)).
 - **Comfort**: a launcher worked by mouse, keyboard or controller (English or
   Portuguese), remappable keys and controller buttons, pause, screenshots,
   borderless full screen.
@@ -103,7 +104,11 @@ runs `tools/check_no_game_data.py` and blocks them.
   [cpal](https://github.com/RustAudio/cpal), [chd-rs](https://github.com/SnowflakePowered/chd-rs),
   [iced-x86](https://github.com/icedland/iced), [rfd](https://github.com/PolyMeilex/rfd),
   [softbuffer](https://github.com/rust-windowing/softbuffer), png, image-webp, toml, toml_edit, serde,
-  pollster and windows-sys. Thanks to all their authors.
+  pollster, windows-sys, lewton, claxon and hound (mods' music),
+  [openh264](https://github.com/ralfbiedert/openh264-rs) with Cisco's
+  [OpenH264](https://github.com/cisco/openh264) (BSD-2-Clause, © Cisco Systems),
+  mp4 and [Symphonia](https://github.com/pdeljanov/Symphonia) (mods' movies).
+  Thanks to all their authors.
 
 ## Legal
 

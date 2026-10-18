@@ -7,11 +7,12 @@
 //! game's own files. What they replace is never touched in the console's
 //! VRAM: the game sees its own data, and only the picture changes.
 //!
-//! Music: music.rs; game files: files.rs; textures: runtime/gpu/textures.rs.
+//! Music: music.rs; movies: movies.rs; game files: files.rs; dialogue:
+//! dialogue.rs and translate.rs; textures: runtime/gpu/textures.rs.
 //! Backgrounds and full-screen pictures, as `backgrounds/<hash>.png`, where
 //! the hash is `screen_hash` of the 320x240 (or so) image the game sends to
-//! the GPU. With `[mods] dump`,
-//! each such image is saved once as `dumps/backgrounds/<hash>.png`.
+//! the GPU. With `[mods] dump`, each such image is saved once as
+//! `dumps/backgrounds/<hash>.png`.
 
 use std::collections::{HashMap, HashSet};
 use std::path::{Path, PathBuf};
@@ -21,6 +22,7 @@ use serde::Deserialize;
 
 pub mod dialogue;
 pub mod files;
+pub mod movies;
 pub mod music;
 pub mod translate;
 

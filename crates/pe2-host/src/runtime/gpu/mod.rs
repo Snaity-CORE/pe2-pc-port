@@ -1076,6 +1076,8 @@ struct Front {
     rgb24: bool,
     /// The picture is in HW_FRONT, on the graphics card.
     on_card: bool,
+    /// A mod's movie picture shown instead of the game's (mods::movies).
+    movie: Option<std::sync::Arc<crate::mods::movies::Picture>>,
 }
 
 /// The picture on the graphics card (hardware layer): the displayed region
@@ -1119,6 +1121,7 @@ static FRONT: Mutex<Front> = Mutex::new(Front {
     row_words: 0,
     rgb24: false,
     on_card: false,
+    movie: None,
 });
 
 /// Takes the window's picture from the displayed region. Called at the end
@@ -1164,6 +1167,8 @@ pub fn latch() {
     f.hires.clear();
     f.vram.clear();
     f.on_card = false;
+    f.movie = None;
+    crate::mods::movies::tick();
     let kept = match g.layer.as_mut() {
         Some(layer::Layer::Hardware(hw)) => hw.take_frame(),
         _ => Vec::new(),
@@ -1226,6 +1231,15 @@ pub fn latch() {
         }
         return;
     }
+    // A mod's movie, shown at its own size instead of the game's.
+    if d.rgb24
+        && d.enabled
+        && let Some(p) = crate::mods::movies::picture()
+    {
+        (f.width, f.height) = (p.width, p.height);
+        f.movie = Some(p);
+        return;
+    }
     let (w, h) = (d.width as usize, d.height as usize);
     (f.width, f.height) = (w, h);
     // Halfwords per row: three bytes per pixel in 24-bit mode.
@@ -1243,6 +1257,9 @@ pub fn latch() {
         } else {
             f.vram.extend((0..row_words).map(|i| row[(x0 + i) % VRAM_WIDTH]));
         }
+    }
+    if d.rgb24 {
+        crate::mods::movies::observe_picture(w, h, &f.vram, row_words);
     }
 }
 
@@ -1425,7 +1442,9 @@ pub fn snapshot(out: &mut Vec<u32>) -> Option<(usize, usize)> {
     if !f.enabled {
         return Some((w, h));
     }
-    if !f.hires.is_empty() {
+    if let Some(p) = &f.movie {
+        out.copy_from_slice(&p.pixels[..w * h]);
+    } else if !f.hires.is_empty() {
         let lut = hires_channel_lut();
         for (px, &p) in out.iter_mut().zip(f.hires.iter()) {
             *px = (lut[((p >> 16) & 0xFF) as usize] << 16)

@@ -143,6 +143,32 @@ looping = true      # false plays the recording once
 A recording is decoded the first time its song plays (the original plays for
 a moment meanwhile) and kept from then on.
 
+## Movies
+
+The game's movies (FMVs) stream from the disc frame by frame. A mod can
+show a video file instead: an MP4 with H.264 video and AAC sound, at any
+resolution and frame rate.
+
+1. Turn on dumping and play the movie. It is known by a hash of its first
+   frame: `dumps/movies/<hash>.png` shows a picture of it, and
+   `dumps/movies/<hash>.txt` its length in frames and seconds (written when
+   it ends).
+2. Save your video as `mods/<your mod>/movies/<same hash>.mp4`.
+
+The video must not use B-frames (the decoder does not support them). With
+ffmpeg:
+
+```
+ffmpeg -i my-movie.mkv -c:v libx264 -bf 0 -pix_fmt yuv420p -c:a aac -b:a 192k <hash>.mp4
+```
+
+The game still plays its own movie underneath: the video is shown in its
+place, at the time the game's frame gives (so it keeps pace with it, and
+stops when the game's movie ends or is skipped), and its sound replaces the
+movie's. Make it as long as the original (the `.txt` says how long). The
+decompilation's asset tools extract the original movies, for remastering
+them.
+
 ## Game files
 
 Everything else the game reads from the disc (models, textures, sound banks,
@@ -315,7 +341,7 @@ changing the game's own data in memory unless the kind is meant to.
    come: speakers' names, and the texts held in the executable (menus).
 7. **Textures** (done): dumped and replaced at any resolution, by texture page
    and palette, as above.
-8. **Movies**: FMVs replaced by video files, which needs a video decoder.
+8. **Movies** (done): FMVs replaced by MP4 files, as above.
 
 The extract saves files as the game stores them. Converting them to common
 formats (pictures to PNG, sound banks to WAV) and back is left to the

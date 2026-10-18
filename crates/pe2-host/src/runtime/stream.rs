@@ -199,20 +199,23 @@ pub extern "C" fn pcrt_StSetStream(_mode: u32, _start: u32, _end: u32, _func1: u
 #[unsafe(no_mangle)]
 pub extern "C" fn pcrt_StGetNext(addr: *mut u32, header: *mut u32) -> u32 {
     let _g = irq::guard();
-    with_ring(|r| {
+    let taken = with_ring(|r| {
         let header_base = r.base + r.data_cap();
         let base = r.base;
-        let Some(f) = r.frames.iter_mut().find(|f| f.complete && !f.handed_out && !f.dropped) else {
-            return 1;
-        };
+        let f = r.frames.iter_mut().find(|f| f.complete && !f.handed_out && !f.dropped)?;
         f.handed_out = true;
         // SAFETY: the game passes two out pointers.
         unsafe {
             *addr = base + f.data_off;
             *header = header_base + f.header_slot * HEADER;
         }
-        0
-    })
+        Some((f.number, base + f.data_off, f.len))
+    });
+    let Some((number, data, len)) = taken else { return 1 };
+    // SAFETY: the frame's data, in the ring in PSX RAM.
+    let data = unsafe { std::slice::from_raw_parts(data as *const u8, len as usize) };
+    crate::mods::movies::frame(number, data);
+    0
 }
 
 /// StFreeRing(base): releases the frame whose data starts at `base`.

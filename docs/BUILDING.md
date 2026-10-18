@@ -86,7 +86,7 @@ Debug output:
   recognized in RAM), `gpu` (command lists and display changes), `dma`, `stubs`,
   `xa` (XA audio sectors played), `files` (each game file read, by its mod
   name), `music` (songs and replacement gain), `text` (translated dialogue
-  files loaded), or `all`.
+  files loaded), `movies` (movies beginning and ending, by hash), or `all`.
 - `PE2_RECORD_AUDIO=<file.wav>:<start>:<seconds>` saves what the sound chip
   plays over that span, to check the mix without listening.
 - Performance: `PE2_TRACE=cpu` prints each thread's CPU use every 10 seconds
