@@ -61,13 +61,8 @@ fn open() -> Option<Gfx> {
     device.on_uncaptured_error(std::sync::Arc::new(|err| {
         static REPORTED: std::sync::atomic::AtomicU32 = std::sync::atomic::AtomicU32::new(0);
         if REPORTED.fetch_add(1, std::sync::atomic::Ordering::Relaxed) < 10 {
-            // The whole chain: the first line alone says little.
-            let mut text = err.to_string();
-            let mut source = std::error::Error::source(&err);
-            while let Some(e) = source {
-                text.push_str(&format!(": {e}"));
-                source = e.source();
-            }
+            // In full: its first line alone ("Validation Error") says little.
+            let text = format!("{err:?}");
             eprintln!("pe2: graphics error: {text}");
         }
     }));

@@ -94,6 +94,9 @@ pub struct Presenter {
     /// The picture's texture, its size and its bind group.
     frame: Option<(wgpu::Texture, (u32, u32), wgpu::BindGroup)>,
     pixels: Vec<u32>,
+    /// The surface wants configuring again (it said it was suboptimal):
+    /// done before the next frame, never while one of its frames is held.
+    stale: bool,
 }
 
 impl Presenter {
@@ -221,6 +224,7 @@ impl Presenter {
             sampler,
             frame: None,
             pixels: Vec::new(),
+            stale: false,
         })
     }
 
@@ -307,10 +311,13 @@ impl Presenter {
             gfx.queue.write_buffer(&self.params, 0, &params.map(f32::to_le_bytes).concat());
             self.params_now = params;
         }
+        if std::mem::take(&mut self.stale) {
+            self.surface.configure(&gfx.device, &self.config);
+        }
         let target = match self.surface.get_current_texture() {
             wgpu::CurrentSurfaceTexture::Success(t) => t,
             wgpu::CurrentSurfaceTexture::Suboptimal(t) => {
-                self.surface.configure(&gfx.device, &self.config);
+                self.stale = true;
                 t
             }
             wgpu::CurrentSurfaceTexture::Outdated | wgpu::CurrentSurfaceTexture::Lost => {
