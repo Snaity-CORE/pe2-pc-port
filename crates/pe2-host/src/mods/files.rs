@@ -520,9 +520,10 @@ pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path) -> std::io::Result<()>
     let coloured = super::sheets::extract(&catalog, &painted, &textures)?;
     eprintln!("pe2: extract: {} texture sheets ({coloured} in colour) in {}", catalog.sheets.len(), textures.display());
     eprintln!(
-        "pe2: extract: {} sheets coloured from rooms' sprites, {} glyph pages; {checked} sprite tables checked against their backgrounds, {mismatched} differ",
+        "pe2: extract: {} sheets coloured from rooms' sprites, {} from rooms' code, {} glyph pages; {checked} sprite tables checked against their backgrounds, {mismatched} differ",
         painted.values().filter(|p| p.source == "rooms' sprites").count(),
-        painted.values().filter(|p| p.source != "rooms' sprites").count()
+        painted.values().filter(|p| p.source == "rooms' code").count(),
+        painted.values().filter(|p| p.source == "the captions' palettes").count()
     );
     let music = dumps.join("music");
     let count = super::music::extract(discs, &music)?;

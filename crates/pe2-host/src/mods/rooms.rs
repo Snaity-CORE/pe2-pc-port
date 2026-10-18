@@ -138,6 +138,159 @@ impl Memory {
     }
 }
 
+/// A room folder's stage, area and room (`stage<s>/<area * 100 + room>`).
+fn place(folder: &str) -> Option<(usize, u32, u32)> {
+    let (stage, place) = folder.strip_prefix("stage")?.split_once('/')?;
+    let (stage, place) = (stage.parse::<usize>().ok()?, place.parse::<u32>().ok()?);
+    Some((stage, place / 100, place % 100))
+}
+
+/// PlayStation memory as it is while a room of `folder` is shown: its
+/// stage's map overlay, its own overlay, and the identity view map.
+fn memory(sources: &Sources, folder: &str) -> Option<Memory> {
+    let (stage, ..) = place(folder)?;
+    let overlay = |key: &str, base: u32| {
+        let packages = sources.packages.get(key)?;
+        packages.iter().find(|(b, _)| *b == base).map(|(b, p)| (*b, lzss(p, &mut 0)))
+    };
+    Some(Memory(vec![
+        overlay(&format!("stage0/file{}", 900_000 + stage), MAP_BASE)?,
+        overlay(&format!("{folder}/file0"), ROOM_BASE)?,
+        (IDENTITY_MAP, (1..=IDENTITY_VIEWS).collect()),
+    ]))
+}
+
+/// What a room's own code draws from its cameras' pictures, beside its
+/// views' sprites: a rectangle (u, v, width, height) of a texture page
+/// with a palette (GPU tpage and CLUT words), or each piece of the part
+/// lists a table of pointers in the room's overlay holds (as many lists;
+/// each piece 12 bytes: palette x, y, screen x, y, then u, v, width,
+/// height; palette x 0xFFFF ends a list).
+enum Drawn {
+    Rect { tpage: u16, clut: u16, rect: (u8, u8, u16, u16) },
+    Parts { tpage: u16, table: u32, lists: u32 },
+}
+
+/// Where a room's code's drawings get their palettes: those loaded for
+/// the camera (as its views' sprites do), or a file's `.pe2clut` loaded
+/// that many rows lower (as actors' are, by the slot they load in).
+enum Palettes {
+    Camera,
+    File(&'static str, i32),
+}
+
+/// A room's code's drawings (`Drawn`), from the cameras' files `files`.
+struct RoomCode {
+    folder: &'static str,
+    files: &'static [u32],
+    palettes: Palettes,
+    drawn: &'static [Drawn],
+}
+
+/// The rooms whose code draws from their cameras' pictures (the
+/// decompilation's room sources).
+const ROOM_CODE: &[RoomCode] = &[
+    // shelter_r47 (shelter_r47_2.c): the console's selection screen
+    // (func_shelter_r47_801820C0, the part lists func_shelter_r47_80180F38
+    // draws, and func_shelter_r47_80181F14's cursor)...
+    RoomCode {
+        folder: "stage4/4701",
+        files: &[16],
+        palettes: Palettes::Camera,
+        drawn: &[
+            Drawn::Rect { tpage: 0x96, clut: 0x4000, rect: (0, 0, 256, 240) },
+            Drawn::Rect { tpage: 0x98, clut: 0x4000, rect: (0, 0, 128, 240) },
+            Drawn::Rect { tpage: 0x8E, clut: 0x4040, rect: (0, 0, 256, 240) },
+            Drawn::Rect { tpage: 0x0D, clut: 0x3FC3, rect: (0x48, 0xB9, 0x2C, 0x0E) },
+            Drawn::Parts { tpage: 0x0D, table: 0x8018_729C, lists: 21 },
+        ],
+    },
+    // ... and its map terminal: the map, its panel, the area marks and
+    // labels (func_shelter_r47_80183484, 80183B84, 80183E24, 80183F0C,
+    // 80183FF4, 80184124), one camera per map.
+    RoomCode {
+        folder: "stage4/4701",
+        files: &[37, 38, 39, 40, 41],
+        palettes: Palettes::Camera,
+        drawn: &[
+            Drawn::Rect { tpage: 0x2D, clut: 0x3FC0, rect: (0, 0, 0xE8, 0xCE) },
+            Drawn::Rect { tpage: 0x36, clut: 0x4000, rect: (0, 0, 0xE8, 0xCE) },
+            Drawn::Rect { tpage: 0x2E, clut: 0x3FC1, rect: (0, 0, 0x50, 0x60) },
+            Drawn::Rect { tpage: 0x2F, clut: 0x3FC2, rect: (0, 0, 0x50, 0x32) },
+            Drawn::Rect { tpage: 0x2F, clut: 0x3FC3, rect: (0, 0x38, 0x50, 0x28) },
+            Drawn::Rect { tpage: 0x2F, clut: 0x3FC4, rect: (0x50, 0, 0x38, 0x10) },
+            Drawn::Rect { tpage: 0x2F, clut: 0x3FC5, rect: (0x50, 0x10, 0x38, 0x10) },
+            Drawn::Rect { tpage: 0x2F, clut: 0x3FC6, rect: (0x50, 0x20, 8, 8) },
+            Drawn::Rect { tpage: 0x2F, clut: 0x3FC7, rect: (0x58, 0x20, 8, 8) },
+        ],
+    },
+    // shelter_b2_laboratory's computer, the keypad terminal actor_143000
+    // draws (actor_143000.c): status lines, keypad, login button, result
+    // banners, typed code and cursor, marquee. Its palettes are its file's,
+    // two rows lower (CLUTs 0x3DC0-0x3DC7, row 247; the file's are 245).
+    RoomCode {
+        folder: "stage4/3101",
+        files: &[11],
+        palettes: Palettes::File("stage0/file143000", 2),
+        drawn: &[
+            Drawn::Rect { tpage: 0x16, clut: 0x3DC0, rect: (0, 0, 0xFE, 0x70) },
+            Drawn::Rect { tpage: 0x16, clut: 0x3DC1, rect: (0, 0x70, 0xD0, 0x30) },
+            Drawn::Rect { tpage: 0x16, clut: 0x3DC1, rect: (0x30, 0xB8, 0x28, 0x10) },
+            Drawn::Rect { tpage: 0x16, clut: 0x3DC3, rect: (0x70, 0xA0, 0x40, 0x18) },
+            Drawn::Rect { tpage: 0x16, clut: 0x3DC4, rect: (0x30, 0xA0, 0x40, 0x18) },
+            Drawn::Rect { tpage: 0x16, clut: 0x3DC5, rect: (0x58, 0xB8, 8, 8) },
+            Drawn::Rect { tpage: 0x16, clut: 0x3DC6, rect: (0x60, 0xB8, 8, 8) },
+            Drawn::Rect { tpage: 0x16, clut: 0x3DC7, rect: (0, 0xA0, 0x30, 0x48) },
+        ],
+    },
+];
+
+/// A sprite drawing `rect` of page `tpage` with palette `clut`.
+fn drawn_sprite(tpage: u16, clut: u16, (u, v, w, h): (u8, u8, u16, u16)) -> Sprite {
+    Sprite {
+        page_x: i32::from(tpage & 0xF) * 64,
+        page_y: i32::from((tpage >> 4) & 1) * 256,
+        depth: u32::from((tpage >> 7) & 3),
+        clut_x: i32::from(clut & 0x3F) * 16,
+        clut_y: i32::from(clut >> 6),
+        w: i32::from(w),
+        h: i32::from(h),
+        x0: 0,
+        y0: 0,
+        u: i32::from(u),
+        v: i32::from(v),
+        semi: true,
+        shade: [128; 3],
+    }
+}
+
+/// The sprites of a room's code's drawings (see `Drawn`).
+fn drawn_sprites(drawn: &[Drawn], memory: Option<&Memory>) -> Vec<Sprite> {
+    let mut out = Vec::new();
+    for d in drawn {
+        match *d {
+            Drawn::Rect { tpage, clut, rect } => out.push(drawn_sprite(tpage, clut, rect)),
+            Drawn::Parts { tpage, table, lists } => {
+                let Some(memory) = memory else { continue };
+                for l in 0..lists {
+                    let Some(mut at) = memory.word(table + l * 4) else { continue };
+                    while let Some(part) = memory.bytes(at, 12) {
+                        let half = |i: usize| u16::from_le_bytes([part[i], part[i + 1]]);
+                        if half(0) == 0xFFFF {
+                            break;
+                        }
+                        let clut = (half(2) << 6) | (half(0) >> 4);
+                        let rect = (part[8], part[9], u16::from(part[10]), u16::from(part[11]));
+                        out.push(drawn_sprite(tpage, clut, rect));
+                        at += 12;
+                    }
+                }
+            }
+        }
+    }
+    out
+}
+
 /// The sprite tables of a room's views, as the game finds them: its
 /// stage's map overlay maps the room's view to an index (gameplay/
 /// sprite_link.c Gp_GetViewIndex), which picks one of its area's sprite
@@ -148,19 +301,9 @@ impl Memory {
 /// (a room after an event): the area's views for the `others` indices, of
 /// cameras the map does not have, come too.
 fn view_tables(sources: &Sources, folder: &str, others: &[u32]) -> Option<BTreeMap<u32, (Vec<Sprite>, bool)>> {
-    let (stage, place) = folder.strip_prefix("stage")?.split_once('/')?;
-    let (stage, place) = (stage.parse::<usize>().ok()?, place.parse::<u32>().ok()?);
-    let (area, room) = (place / 100, place % 100);
+    let (stage, area, room) = place(folder)?;
     let (counts, maps, views) = *MAP_TABLES.get(stage.checked_sub(1)?)?;
-    let overlay = |key: &str, base: u32| {
-        let packages = sources.packages.get(key)?;
-        packages.iter().find(|(b, _)| *b == base).map(|(b, p)| (*b, lzss(p, &mut 0)))
-    };
-    let memory = Memory(vec![
-        overlay(&format!("stage0/file{}", 900_000 + stage), MAP_BASE)?,
-        overlay(&format!("{folder}/file0"), ROOM_BASE)?,
-        (IDENTITY_MAP, (1..=IDENTITY_VIEWS).collect()),
-    ]);
+    let memory = memory(sources, folder)?;
     let (a, r) = (area.checked_sub(1)? * 4, room.checked_sub(1)?);
     let count = memory.half(memory.word(memory.word(counts)? + a)? + r * 2)?;
     let map = memory.word(memory.word(memory.word(maps)? + a)? + r * 4)?;
@@ -271,6 +414,21 @@ fn walk(
     (error, samples)
 }
 
+/// Colours a texel of a sheet (sheet, depth, width, height, texel, colour)
+/// in `painted`, starting the sheet transparent.
+fn colour_texel(
+    painted: &mut HashMap<u32, Painted>,
+    source: &'static str,
+    (sheet, depth, width, height, texel, colour): (u32, u32, usize, usize, usize, u16),
+) {
+    let p = painted.entry(sheet).or_insert_with(|| Painted { depth, width, rgba: vec![0; width * height * 4], source });
+    if p.depth == depth {
+        let ch = |sh: u16| ((colour >> sh & 31) << 3) as u8;
+        let rgba = [ch(0), ch(5), ch(10), if colour == 0 { 0 } else { 255 }];
+        p.rgba[texel * 4..texel * 4 + 4].copy_from_slice(&rgba);
+    }
+}
+
 /// Colours the sheets rooms' sprites draw, from `sources`; answers them
 /// (by catalog index), and how many tables were checked against their
 /// backgrounds and how many of those did not match.
@@ -363,17 +521,7 @@ pub fn paint(sources: &Sources, catalog: &Catalog) -> (HashMap<u32, Painted>, us
                 }
             }
             let (e, n) = walk(table, &cameras[c], block, 1, |sheet, depth, width, height, texel, colour| {
-                let p = painted.entry(sheet).or_insert_with(|| Painted {
-                    depth,
-                    width,
-                    rgba: vec![0; width * height * 4],
-                    source: "rooms' sprites",
-                });
-                if p.depth == depth {
-                    let ch = |sh: u16| ((colour >> sh & 31) << 3) as u8;
-                    let rgba = [ch(0), ch(5), ch(10), if colour == 0 { 0 } else { 255 }];
-                    p.rgba[texel * 4..texel * 4 + 4].copy_from_slice(&rgba);
-                }
+                colour_texel(&mut painted, "rooms' sprites", (sheet, depth, width, height, texel, colour));
             });
             if n > 50 {
                 checked += 1;
@@ -384,6 +532,28 @@ pub fn paint(sources: &Sources, catalog: &Catalog) -> (HashMap<u32, Painted>, us
                         eprintln!("[rooms] {}: sprites differ from the background ({})", cameras[c].key, e / n);
                     }
                 }
+            }
+        }
+        // What the room's own code draws, with its cameras' palettes.
+        let memory = memory(sources, &folder);
+        for code in ROOM_CODE.iter().filter(|r| r.folder == folder) {
+            let sprites = drawn_sprites(code.drawn, memory.as_ref());
+            for &file in code.files {
+                let key = format!("{folder}/file{file}");
+                let Some(c) = cameras.iter().position(|c| c.key == key) else { continue };
+                let block = match code.palettes {
+                    Palettes::Camera => blocks.get(&(file as usize - 1)).cloned(),
+                    Palettes::File(key, rows) => sources
+                        .palettes
+                        .get(key)
+                        .and_then(|chunks| chunks.first())
+                        .and_then(|chunk| image(chunk))
+                        .map(|(x, y, w, colours)| (x, y + rows, w, colours)),
+                };
+                let Some(block) = block else { continue };
+                walk(&sprites, &cameras[c], &block, 1, |sheet, depth, width, height, texel, colour| {
+                    colour_texel(&mut painted, "rooms' code", (sheet, depth, width, height, texel, colour));
+                });
             }
         }
     }

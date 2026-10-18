@@ -107,9 +107,10 @@ each one asset. A sheet is known by a hash of its contents: its file name is
    - **Dialogue fonts**: every page of glyphs a room's dialogue uses,
      wherever it loads, with the palettes the game's code draws it with
      (the speakers' name labels with theirs).
-   - The rest (about 45 sheets: cameras' pieces that no sprite table draws,
-     drawn by rooms' own code; the credits) comes out in grey, each texel by
-     its number.
+   - **Rooms' own screens** (computer terminals, maps): with the palettes
+     the room's code draws them with.
+   - The rest (about 25 sheets: some cameras' pieces drawn by rooms' code or
+     models, the credits) comes out in grey, each texel by its number.
 2. Make your version, at any multiple of the sheet's size (4x: 1024 wide
    for a 256-texel sheet), and save it as
    `mods/<your mod>/textures/<same name>.png`.
