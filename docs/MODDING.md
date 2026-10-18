@@ -224,7 +224,41 @@ found (stage 1 folder 2101, stage 2 folder 401: 67 lines). Capital I and
 small l are the same picture in the game's font; the extract tells them
 apart by their place in words, which can be wrong now and then.
 
-Translating them, `text` read back into the game, comes next (see the plan).
+### Translating
+
+1. Copy the files you translate from `dumps/text/` into
+   `mods/<your mod>/text/` (any folders inside; the `cap` line tells which
+   dialogue file each is for).
+2. Write each line's translation in its `text`, keeping the `{...}` codes
+   where they belong: a question's choices need their `{81NN}` codes, and
+   line breaks are yours to place (a line holds about as much as the
+   original's longest).
+
+```toml
+[[line]]
+record = 0x117C
+speaker = "BALDWIN"
+original = '''
+Agent Brea, what are you doing?
+You're needed downtown now!'''
+text = '''
+Agente Brea, o que está fazendo?
+Precisam de você no centro agora!'''
+```
+
+Lines left empty keep the original, and `original` and `speaker` are only
+for you: the game reads `cap`, `record` and `text`.
+
+When the game loads a dialogue file with translated lines, it gets a copy
+with those lines' text, and the glyphs they need are added to its glyph
+picture, below the original ones. They come from the game's own dialogue
+font (collected from the disc in the few seconds after the game starts; a
+dialogue loaded before that shows the original until loaded again), and
+accented letters (á à â ã ä é è ê ë í ì î ï ó ò ô õ ö ú ù û ü ç ñ, and
+capitals) are made from it with marks drawn by PE2PC. A character the font
+does not have shows as `?`. Speakers' names stay as the game shows them:
+they are pictures of whole names. `PE2_TRACE=text` logs each translated file
+as it loads.
 
 ## Cheats and memory patches
 
@@ -277,10 +311,8 @@ changing the game's own data in memory unless the kind is meant to.
    movies.)
 5. **Game files** (done): extracted, and replaced chunk by chunk or whole,
    at any size, as above.
-6. **Dialogue**: extracted as text (done); translations read back into the
-   game as it loads each dialogue file, with the glyphs they need drawn
-   from the game's own font (accented letters made from it). The texts held
-   in the executable (menus) after.
+6. **Dialogue** (done): extracted as text and translated, as above. Still to
+   come: speakers' names, and the texts held in the executable (menus).
 7. **Textures** (done): dumped and replaced at any resolution, by texture page
    and palette, as above.
 8. **Movies**: FMVs replaced by video files, which needs a video decoder.

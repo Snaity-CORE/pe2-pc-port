@@ -22,6 +22,7 @@ use serde::Deserialize;
 pub mod dialogue;
 pub mod files;
 pub mod music;
+pub mod translate;
 
 /// A mod's `mod.toml` (every field optional).
 #[derive(Debug, Default, Deserialize)]

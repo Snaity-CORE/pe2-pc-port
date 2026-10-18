@@ -331,6 +331,22 @@ pub fn background_pixels(bs: &[u8]) -> Option<Vec<u16>> {
     Some(pixels)
 }
 
+/// The dialogue bundles of `disc` and the pictures that may hold their
+/// glyphs (see dialogue.rs).
+pub fn dialogue_sources(disc: &mut dyn Disc) -> super::dialogue::Sources {
+    let mut out = super::dialogue::Sources::default();
+    for f in layout(disc) {
+        for (k, c) in read_chunks(disc, f.lba).into_iter().enumerate() {
+            match c.header[0] {
+                1 => out.pictures.entry(f.key.clone()).or_default().push(c.payload),
+                4 => out.bundles.push((f.key.clone(), k, c.payload)),
+                _ => {}
+            }
+        }
+    }
+    out
+}
+
 /// Saves every file of the discs' file systems, chunk by chunk, under
 /// `dumps/files` (`<file>/<index>.<ext>`; a file differing on a later disc
 /// goes under `disc<n>/`), each room background as the picture the game

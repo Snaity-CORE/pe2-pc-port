@@ -459,35 +459,79 @@ fn candidates<'s>(sources: &'s Sources, key: &str) -> Vec<&'s str> {
     out
 }
 
+/// The glyph pages of CAP files, found among the pictures of `Sources`
+/// (decoded as they are first looked at).
+struct Pages<'s> {
+    sources: &'s Sources,
+    decoded: HashMap<&'s str, Vec<Column>>,
+}
+
+impl<'s> Pages<'s> {
+    fn new(sources: &'s Sources) -> Pages<'s> {
+        Pages { sources, decoded: HashMap::new() }
+    }
+
+    /// The page of CAP file `cap` of file `key`: the column where most of
+    /// its glyphs are known, if most are.
+    fn find(&mut self, key: &str, cap: &Cap) -> Option<&Column> {
+        let used = uses(cap, 300);
+        if used.is_empty() {
+            return None;
+        }
+        let mut best: Option<(&str, usize, f64)> = None;
+        'search: for k in candidates(self.sources, key) {
+            let sources = self.sources;
+            let columns =
+                self.decoded.entry(k).or_insert_with(|| sources.pictures[k].iter().flat_map(|p| picture(p)).collect());
+            for (i, column) in columns.iter().enumerate() {
+                let s = share(cap, column, &used);
+                if best.is_none_or(|b| s > b.2) {
+                    best = Some((k, i, s));
+                }
+                if s > 0.9 {
+                    break 'search;
+                }
+            }
+        }
+        best.filter(|b| b.2 > 0.5).map(|b| &self.decoded[b.0][b.1])
+    }
+}
+
+/// The game's dialogue font: for each text the glyph table knows (a
+/// character, or a speaker's name label), its glyph picture (size, then
+/// texels) as the game's pages have it.
+pub fn font(sources: &Sources) -> HashMap<&'static str, Vec<u8>> {
+    let wanted = known().values().collect::<std::collections::HashSet<_>>().len();
+    let mut pages = Pages::new(sources);
+    let mut out = HashMap::new();
+    for (key, _, payload) in &sources.bundles {
+        for bytes in caps(payload) {
+            let Some(cap) = Cap::new(bytes) else { continue };
+            let Some(page) = pages.find(key, &cap) else { continue };
+            for index in uses(&cap, usize::MAX) {
+                let shape = glyph(page, cap.cell(index));
+                if let Some(&t) = known().get(&super::fnv1a(shape.iter().copied())) {
+                    out.entry(t).or_insert(shape);
+                }
+            }
+            if out.len() == wanted {
+                return out;
+            }
+        }
+    }
+    out
+}
+
 /// Saves each CAP file's lines as `<file>/<chunk>-<n>.toml` under `out`,
 /// to be translated (see docs/MODDING.md). Answers how many files and
 /// lines.
 pub fn extract(sources: &Sources, out: &Path) -> std::io::Result<(usize, usize)> {
-    let mut decoded: HashMap<&str, Vec<Column>> = HashMap::new();
+    let mut pages = Pages::new(sources);
     let (mut files, mut lines) = (0, 0);
     for (key, chunk, payload) in &sources.bundles {
         for (n, bytes) in caps(payload).into_iter().enumerate() {
             let Some(cap) = Cap::new(bytes) else { continue };
-            let used = uses(&cap, 300);
-            // The column where most of its glyphs are known.
-            let mut best: Option<(&str, usize, f64)> = None;
-            if !used.is_empty() {
-                'search: for k in candidates(sources, key) {
-                    let columns = decoded
-                        .entry(k)
-                        .or_insert_with(|| sources.pictures[k].iter().flat_map(|p| picture(p)).collect());
-                    for (i, column) in columns.iter().enumerate() {
-                        let s = share(&cap, column, &used);
-                        if best.is_none_or(|b| s > b.2) {
-                            best = Some((k, i, s));
-                        }
-                        if s > 0.9 {
-                            break 'search;
-                        }
-                    }
-                }
-            }
-            let page = best.filter(|b| b.2 > 0.5).map(|b| &decoded[b.0][b.1]);
+            let page = pages.find(key, &cap);
             let mut toml = format!(
                 "# Dialogue file {n} of {key}, chunk {chunk}.\n\
                  # Write each line's translation in `text`; an empty one keeps the original.\n\
