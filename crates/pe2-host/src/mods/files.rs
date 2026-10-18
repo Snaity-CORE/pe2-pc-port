@@ -350,8 +350,9 @@ pub fn dialogue_sources(disc: &mut dyn Disc) -> super::dialogue::Sources {
 /// Saves every file of the discs' file systems, chunk by chunk, under
 /// `dumps/files` (`<file>/<index>.<ext>`; a file differing on a later disc
 /// goes under `disc<n>/`), each room background as the picture the game
-/// shows, as `dumps/backgrounds/<hash>.png` (see mods::background), and
-/// the dialogue as text under `dumps/text` (see dialogue.rs).
+/// shows, as `dumps/backgrounds/<hash>.png` (see mods::background), the
+/// texture sheets under `dumps/textures` (see sheets.rs), and the dialogue
+/// as text under `dumps/text` (see dialogue.rs).
 pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path) -> std::io::Result<()> {
     let out = dumps.join("files");
     let pictures = dumps.join("backgrounds");
@@ -402,6 +403,10 @@ pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path) -> std::io::Result<()>
     }
     eprintln!("pe2: extract: {files} files, {chunks} chunks, {} MB in {}", bytes >> 20, out.display());
     eprintln!("pe2: extract: {} backgrounds in {}", backgrounds.len(), pictures.display());
+    let textures = dumps.join("textures");
+    let catalog = super::sheets::Catalog::new(dialogue.pictures.values().flatten().map(Vec::as_slice));
+    let saved = super::sheets::extract(&catalog, &textures)?;
+    eprintln!("pe2: extract: {} texture sheets ({saved} new) in {}", catalog.sheets.len(), textures.display());
     let text = dumps.join("text");
     let (caps, lines) = super::dialogue::extract(&dialogue, &text)?;
     eprintln!("pe2: extract: {lines} lines of dialogue in {caps} files in {}", text.display());

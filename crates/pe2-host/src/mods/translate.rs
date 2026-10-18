@@ -13,7 +13,6 @@
 //! time the file's text is drawn, if they are not there already.
 
 use std::collections::HashMap;
-use std::path::PathBuf;
 use std::sync::{Arc, Mutex, OnceLock};
 
 use serde::Deserialize;
@@ -89,32 +88,17 @@ fn translations() -> &'static Translations {
     })
 }
 
-static DISCS: OnceLock<Vec<PathBuf>> = OnceLock::new();
 type Font = HashMap<&'static str, Vec<u8>>;
 static FONT: OnceLock<Font> = OnceLock::new();
 
-/// With translations in use, starts collecting the dialogue font from the
-/// first of `discs` (their images) on a thread of its own.
-pub fn start(discs: &[PathBuf]) {
-    let _ = DISCS.set(discs.to_vec());
-    if translations().is_empty() {
-        return;
-    }
-    let Some(image) = discs.first().cloned() else { return };
-    std::thread::spawn(move || {
-        let since = std::time::Instant::now();
-        let mut disc = match crate::disc::open(&image) {
-            Ok(d) => d,
-            Err(e) => {
-                eprintln!("pe2: mods: translations: {}: {e}", image.display());
-                return;
-            }
-        };
-        let sources = super::files::dialogue_sources(disc.as_mut());
-        let font = dialogue::font(&sources);
-        eprintln!("pe2: mods: dialogue font: {} glyphs in {:.1} s", font.len(), since.elapsed().as_secs_f32());
-        let _ = FONT.set(font);
-    });
+/// Whether any mod translates dialogue (and so wants the font).
+pub fn wanted() -> bool {
+    !translations().is_empty()
+}
+
+/// The dialogue font, collected from the disc (see mods::start).
+pub fn set_font(font: Font) {
+    let _ = FONT.set(font);
 }
 
 // ---- glyphs -------------------------------------------------------------

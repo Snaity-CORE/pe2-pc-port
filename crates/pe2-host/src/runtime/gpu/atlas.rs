@@ -1,6 +1,9 @@
 //! Mods' textures on the card: one texture array whose layers are packed
-//! with them (shelf by shelf), and a table telling the shader where each is
-//! and how large the texture memory it replaces is (see textures.rs).
+//! with them (shelf by shelf), a table telling the shader where each is and
+//! how many texels of its sheet it replaces, and the pages primitives draw:
+//! for each of a texture page's four columns, the texture replacing its
+//! sheet (table index + 1, 0: none) and the VRAM row the sheet's top is at
+//! (see textures.rs).
 
 use std::collections::HashMap;
 
@@ -11,8 +14,12 @@ use crate::mods::{Picture, TextureKey};
 const SIZE: u32 = 2048;
 /// Layers at most (16 MB each); beyond, the atlas starts over.
 const MAX_LAYERS: u32 = 8;
-/// Table entries at most; beyond, the atlas starts over.
+/// Table entries and pages at most; beyond, the atlas starts over.
 const MAX_ENTRIES: u32 = 4096;
+const MAX_PAGES: u32 = 4096;
+
+/// A page: four textures (table index + 1), then four sheet tops.
+pub type Page = [u32; 8];
 
 /// A row of a layer, filled left to right.
 struct Shelf {
@@ -29,6 +36,8 @@ pub struct Atlas {
     /// Key -> table index + 1 (what vertices carry; 0 is none).
     entries: HashMap<TextureKey, u32>,
     table: wgpu::Buffer,
+    pages: HashMap<Page, u32>,
+    page_buffer: wgpu::Buffer,
     pub layout: wgpu::BindGroupLayout,
     pub bind: wgpu::BindGroup,
 }
@@ -62,6 +71,14 @@ impl Atlas {
                         min_binding_size: None,
                     },
                 ),
+                entry(
+                    2,
+                    wgpu::BindingType::Buffer {
+                        ty: wgpu::BufferBindingType::Storage { read_only: true },
+                        has_dynamic_offset: false,
+                        min_binding_size: None,
+                    },
+                ),
             ],
         });
         let table = device.create_buffer(&wgpu::BufferDescriptor {
@@ -70,9 +87,26 @@ impl Atlas {
             usage: wgpu::BufferUsages::STORAGE | wgpu::BufferUsages::COPY_DST,
             mapped_at_creation: false,
         });
+        let page_buffer = device.create_buffer(&wgpu::BufferDescriptor {
+            label: Some("hw texture pages"),
+            size: u64::from(if wanted { MAX_PAGES } else { 1 }) * 32,
+            usage: wgpu::BufferUsages::STORAGE | wgpu::BufferUsages::COPY_DST,
+            mapped_at_creation: false,
+        });
         let texture = Self::make_texture(gfx, if wanted { SIZE } else { 1 }, 1);
-        let bind = Self::make_bind(gfx, &layout, &texture, &table);
-        Atlas { gfx, texture, layers: 1, shelves: vec![Vec::new()], entries: HashMap::new(), table, layout, bind }
+        let bind = Self::make_bind(gfx, &layout, &texture, &table, &page_buffer);
+        Atlas {
+            gfx,
+            texture,
+            layers: 1,
+            shelves: vec![Vec::new()],
+            entries: HashMap::new(),
+            table,
+            pages: HashMap::new(),
+            page_buffer,
+            layout,
+            bind,
+        }
     }
 
     fn make_texture(gfx: &Gfx, size: u32, layers: u32) -> wgpu::Texture {
@@ -93,6 +127,7 @@ impl Atlas {
         layout: &wgpu::BindGroupLayout,
         texture: &wgpu::Texture,
         table: &wgpu::Buffer,
+        pages: &wgpu::Buffer,
     ) -> wgpu::BindGroup {
         let view = texture.create_view(&wgpu::TextureViewDescriptor {
             dimension: Some(wgpu::TextureViewDimension::D2Array),
@@ -104,6 +139,7 @@ impl Atlas {
             entries: &[
                 wgpu::BindGroupEntry { binding: 0, resource: wgpu::BindingResource::TextureView(&view) },
                 wgpu::BindGroupEntry { binding: 1, resource: table.as_entire_binding() },
+                wgpu::BindGroupEntry { binding: 2, resource: pages.as_entire_binding() },
             ],
         })
     }
@@ -157,9 +193,25 @@ impl Atlas {
         Some(index + 1)
     }
 
+    /// The index + 1 of `page` in the page table; None when full.
+    pub fn page(&mut self, page: Page) -> Option<u32> {
+        if let Some(&i) = self.pages.get(&page) {
+            return Some(i);
+        }
+        let index = self.pages.len() as u32;
+        if index >= MAX_PAGES {
+            return None;
+        }
+        let bytes: Vec<u8> = page.iter().flat_map(|v| v.to_le_bytes()).collect();
+        self.gfx.queue.write_buffer(&self.page_buffer, u64::from(index) * 32, &bytes);
+        self.pages.insert(page, index + 1);
+        Some(index + 1)
+    }
+
     /// Forgets every texture (their space is reused).
     pub fn clear(&mut self) {
         self.entries.clear();
+        self.pages.clear();
         for s in &mut self.shelves {
             s.clear();
         }
@@ -197,6 +249,6 @@ impl Atlas {
         self.texture = texture;
         self.layers += 1;
         self.shelves.push(Vec::new());
-        self.bind = Self::make_bind(self.gfx, &self.layout, &self.texture, &self.table);
+        self.bind = Self::make_bind(self.gfx, &self.layout, &self.texture, &self.table, &self.page_buffer);
     }
 }

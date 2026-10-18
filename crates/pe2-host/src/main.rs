@@ -143,7 +143,7 @@ fn main() -> ExitCode {
     // values) at its PlayStation addresses; its MIPS code is never run.
     eprintln!("pe2: game data: {exe_name} from disc 1 ({} KB), loaded into PlayStation memory", exe.len() / 1024);
     eprintln!("pe2: game code: native, starting the game");
-    mods::translate::start(&images);
+    mods::start(&images);
     runtime::start(discs);
     video::start();
     gamepad::start();

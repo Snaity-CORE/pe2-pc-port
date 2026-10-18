@@ -81,34 +81,37 @@ Models (Aya, enemies, weapons), the interface (fonts, the HUD, menus) and the
 pieces of rooms drawn over backgrounds are drawn from textures, and a mod can
 replace them at a higher resolution.
 
-On the PlayStation a texture is a page of texture memory (256x256 texels)
-read through a palette: the same page drawn with another palette is another
-texture. A texture is known by a hash of both: its file name is
-`<page hash>-<palette hash>.png` (or `<page hash>.png` for 15-bit textures,
-which have no palette).
+The game's textures are stored in its `.pe2img` pictures as sheets: columns
+of texels (256 wide at 4 bits per texel, 128 at 8 bits, up to 256 tall),
+each one asset. A sheet is known by a hash of its contents: its file name is
+`<sheet>.png`, the same in every room and whatever else is loaded with it.
 
-1. Turn on dumping (as for backgrounds) and play to where the texture shows.
-   Each texture drawn is saved as `dumps/textures/<name>.png`, 256x256: the
-   parts of its page the game drew with its palette, the rest transparent.
-   A dump grows as more of it is drawn (it is saved again, at most once a
-   second) and keeps what earlier sessions saw: play through more places to
-   fill it in.
-2. Make your version, at any multiple of 256x256 (1024x1024 is 4x), and save
-   it as `mods/<your mod>/textures/<same name>.png`.
+1. Get the sheets, in `dumps/textures/` in the data folder:
+   - **All of them, from the disc**: **Extract the game's files** in the
+     launcher's Mods screen (or `pe2 --extract`) saves every sheet, about
+     2,100, whole. The disc does not say which colours a sheet is drawn with
+     (the models choose its palettes as they draw), so they come out in
+     grey: each texel's value in its palette.
+   - **In colour, by playing**: turn on dumping and play. Each sheet drawn
+     gets the colours the game draws it with, part by part (the rest stays
+     grey), saved again as more is drawn and kept from session to session.
+2. Make your version, at any multiple of the sheet's size (4x: 1024 wide
+   for a 256-texel sheet), and save it as
+   `mods/<your mod>/textures/<same name>.png`.
 
 What to know:
 
-- **One page, many things.** A page often holds several textures (Aya's
-  face, arms and hair share one), each drawn with its own palette: each
-  palette's dump shows its own parts. Paint only those; the rest of your
-  picture is never drawn with that palette.
+- **Palettes.** A sheet's parts may be drawn with different palettes (an
+  enemy in two colours): `<sheet>.png` is drawn whichever the palette.
+  `<sheet>-<palette>.png` (with a palette's hash) replaces it for that
+  palette only.
+- **Depth.** Whether a sheet's texels are 4 or 8 bits is not on the disc
+  either: the extract guesses (right about 94% of the time; a wrong guess
+  shows as noise, at the other width). Playing corrects it: the dump is
+  remade at the depth the game draws it with.
 - **Transparency.** Your picture's transparency is used: pixels less than
   half opaque are not drawn. Whether the rest blends (semi-transparency)
   still follows the game's own texture.
-- **Pages change.** The hash covers the whole page as it was loaded. If the
-  game loads something else into part of a page (another room's objects),
-  that is a new texture with a dump of its own: some textures need one
-  replacement per place they show in.
 - **Hardware renderer.** As with backgrounds, replacements show with the
   graphics card renderer; dumping needs it too.
 
@@ -181,8 +184,8 @@ replace any of them.
 1. Extract the files: **Extract the game's files** in the launcher's Mods
    screen, or `pe2 --extract`. They go to `dumps/files/` in the data folder
    (about 130 MB; both discs share them), every room background as a
-   picture to `dumps/backgrounds/` (see above), and the dialogue as text to
-   `dumps/text/` (see below).
+   picture to `dumps/backgrounds/`, every texture sheet to `dumps/textures/`
+   (see above), and the dialogue as text to `dumps/text/` (see below).
 2. Find the one you want. With `PE2_TRACE=files` the game's log names each
    file as it is read, so playing to a place shows which files it uses.
 3. Put your version in `mods/<your mod>/files/` under the same path.
@@ -341,8 +344,8 @@ changing the game's own data in memory unless the kind is meant to.
    at any size, as above.
 6. **Dialogue** (done): extracted as text and translated, as above. Still to
    come: speakers' names, and the texts held in the executable (menus).
-7. **Textures** (done): dumped and replaced at any resolution, by texture page
-   and palette, as above.
+7. **Textures** (done): extracted from the disc and dumped in colour, and
+   replaced at any resolution, by sheet, as above.
 8. **Movies** (done): FMVs replaced by MP4 files, as above.
 
 The extract saves files as the game stores them. Converting them to common

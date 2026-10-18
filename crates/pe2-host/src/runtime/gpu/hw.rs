@@ -44,6 +44,9 @@ struct Uniforms { size: vec2<f32>, scale: f32, _pad: f32 };
 // texels it replaces (w | h << 16).
 @group(1) @binding(0) var atlas: texture_2d_array<f32>;
 @group(1) @binding(1) var<storage, read> atlas_table: array<vec4<u32>>;
+// Pages primitives draw: per page column, the texture replacing its sheet
+// (table index + 1, 0: none), then the VRAM row the sheet's top is at.
+@group(1) @binding(2) var<storage, read> atlas_pages: array<vec4<u32>>;
 
 struct In {
     @location(0) pos: vec2<f32>,
@@ -55,7 +58,6 @@ struct In {
     @location(6) w: f32,
     @location(7) limits: u32,
     @location(8) repl: u32,
-    @location(9) origin: u32,
 };
 struct Out {
     @builtin(position) pos: vec4<f32>,
@@ -68,7 +70,6 @@ struct Out {
     @location(4) @interpolate(flat) window: u32,
     @location(5) @interpolate(flat) limits: u32,
     @location(6) @interpolate(flat) repl: u32,
-    @location(7) @interpolate(flat) origin: u32,
 };
 
 @vertex
@@ -86,7 +87,6 @@ fn vs(i: In) -> Out {
     o.window = i.window;
     o.limits = i.limits;
     o.repl = i.repl;
-    o.origin = i.origin;
     return o;
 }
 
@@ -121,18 +121,25 @@ fn fs(o: Out) -> @location(0) vec4<f32> {
     if (((o.mode >> 22u) & 1u) != 0u) {
         var t: u32;
         var tc: vec3<f32>;
+        // A mod's texture for the sheet this texel is of, if any (repl:
+        // the page's index + 1 in atlas_pages).
+        var texture = 0u;
+        var sheet_texel = vec2<f32>(0.0);
         if (o.repl != 0u) {
-            // A mod's texture (repl: its table index + 1; origin: where the
-            // texture memory it replaces starts, in texels, x | y << 12).
+            let per = 4u >> ((o.mode >> 20u) & 3u);
+            let width = f32(64u * per);
+            let column = min(u32(max(o.uv.x, 0.0) / width), 3u);
+            texture = atlas_pages[(o.repl - 1u) * 2u][column];
+            let top = atlas_pages[(o.repl - 1u) * 2u + 1u][column];
+            sheet_texel = vec2<f32>(o.uv.x - f32(column) * width, f32((o.mode >> 10u) & 511u) + o.uv.y - f32(top));
+        }
+        if (texture != 0u) {
             // Its colours and transparency are drawn; the game's own texel
             // still decides the mask bit.
-            let d = atlas_table[o.repl - 1u];
-            let per = f32(4u >> ((o.mode >> 20u) & 3u));
-            let page = vec2<f32>(f32(o.mode & 1023u) * per, f32((o.mode >> 10u) & 511u));
-            let p = page + o.uv - vec2<f32>(f32(o.origin & 4095u), f32(o.origin >> 12u));
+            let d = atlas_table[texture - 1u];
             let texels = vec2<f32>(f32(d.w & 0xFFFFu), f32(d.w >> 16u));
             let size = vec2<u32>(d.y & 0xFFFFu, d.y >> 16u);
-            let q = min(vec2<u32>(max(p / texels * vec2<f32>(size), vec2<f32>(0.0))), size - vec2<u32>(1u));
+            let q = min(vec2<u32>(max(sheet_texel / texels * vec2<f32>(size), vec2<f32>(0.0))), size - vec2<u32>(1u));
             let s = textureLoad(atlas, vec2<u32>(d.x & 0xFFFFu, d.x >> 16u) + q, d.z, 0);
             if (s.a < 0.5) {
                 discard;
@@ -295,10 +302,9 @@ struct GpuVertex {
     w: f32,
     /// Bilinear filtering: the polygon's texture rectangle (u0, v0, u1, v1).
     limits: u32,
-    /// A mod's texture: its atlas table index + 1 (0: none), and where the
-    /// texture memory it replaces starts, in texels (x | y << 12).
+    /// Mods' textures: the page's index + 1 in the atlas's page table (0:
+    /// none).
     repl: u32,
-    origin: u32,
 }
 
 const FILTER_BILINEAR: u32 = 1 << 28;
@@ -639,7 +645,7 @@ impl Hw {
             bind_group_layouts: &[Some(&layout), Some(&atlas.layout)],
             ..Default::default()
         });
-        let attributes = wgpu::vertex_attr_array![0 => Float32x2, 1 => Uint32, 2 => Float32x2, 3 => Uint32, 4 => Uint32, 5 => Uint32, 6 => Float32, 7 => Uint32, 8 => Uint32, 9 => Uint32];
+        let attributes = wgpu::vertex_attr_array![0 => Float32x2, 1 => Uint32, 2 => Float32x2, 3 => Uint32, 4 => Uint32, 5 => Uint32, 6 => Float32, 7 => Uint32, 8 => Uint32];
         let pipelines = [Blend::None, Blend::Average, Blend::Add, Blend::Subtract, Blend::AddQuarter]
             .iter()
             .map(|b| {
@@ -756,29 +762,48 @@ impl Hw {
         }
     }
 
-    /// The mod's texture a textured primitive with texel rectangle `uv`
-    /// draws instead, as the vertex fields (repl, origin); zeros for none.
-    fn replacement(&mut self, vram: &Vram, st: &DrawState, sh: &Shading, uv: (i32, i32, i32, i32)) -> (u32, u32) {
+    /// The mods' textures a textured primitive with texel rectangle `uv`
+    /// draws instead of its sheets, as its vertices' `repl` (0: none).
+    fn replacement(&mut self, vram: &Vram, st: &DrawState, sh: &Shading, uv: (i32, i32, i32, i32)) -> u32 {
         if !sh.textured || !crate::mods::wants_textures() {
-            return (0, 0);
+            return 0;
         }
-        let Some(f) = self.tracker.find(vram, st, sh, uv) else { return (0, 0) };
-        let origin = (f.origin_x as u32 & 4095) | ((f.origin_y as u32 & 511) << 12);
-        if let Some(i) = self.atlas.index(f.key) {
-            return (i, origin);
-        }
-        let Some(picture) = crate::mods::texture(f.key) else { return (0, 0) };
-        let added = match self.atlas.add(f.key, &picture, f.width, f.height) {
-            Some(i) => Some(i),
-            None => {
-                // Full: what was recorded runs with the textures it uses,
-                // then the atlas starts over.
-                self.flush(vram);
-                self.atlas.clear();
-                self.atlas.add(f.key, &picture, f.width, f.height)
+        let Some(f) = self.tracker.find(vram, st, sh, uv) else { return 0 };
+        let Some(catalog) = crate::mods::sheets::catalog() else { return 0 };
+        let per = [4, 2, 1][f.depth as usize];
+        let mut page = [0u32; 8];
+        for part in &f.parts {
+            let Some(sheet) = catalog.sheets.get(part.sheet as usize) else { continue };
+            let (width, height) = (64 * per, sheet.rows.len() as i32);
+            // This palette's picture of the sheet, else the one for any.
+            let mut texture = None;
+            for key in [(sheet.hash, f.palette), (sheet.hash, 0)] {
+                if let Some(i) = self.atlas.index(key) {
+                    texture = Some(i);
+                    break;
+                }
+                let Some(picture) = crate::mods::texture(key) else { continue };
+                texture = match self.atlas.add(key, &picture, width, height) {
+                    Some(i) => Some(i),
+                    None => {
+                        // Full: what was recorded runs with the textures it
+                        // uses, then the atlas starts over.
+                        self.flush(vram);
+                        self.atlas.clear();
+                        self.atlas.add(key, &picture, width, height)
+                    }
+                };
+                break;
             }
-        };
-        added.map_or((0, 0), |i| (i, origin))
+            if let Some(i) = texture {
+                page[part.column] = i;
+                page[4 + part.column] = part.top as u32;
+            }
+        }
+        if page[..4].iter().all(|&i| i == 0) {
+            return 0;
+        }
+        self.atlas.page(page).unwrap_or(0)
     }
 
     /// A textured primitive samples `page` and `clut`: they must be current.
@@ -935,9 +960,9 @@ impl Hw {
             _ => (0, 0),
         };
         let keys = v.map(|q| q.key);
-        let (repl, origin) = match sh.uv_limits {
+        let repl = match sh.uv_limits {
             Some(uv) => self.replacement(vram, st, sh, uv),
-            None => (0, 0),
+            None => 0,
         };
         self.shaded(vram, st, sh, &keys, |t| {
             v.iter()
@@ -952,7 +977,6 @@ impl Hw {
                         mode: t.mode | filter,
                         limits,
                         repl,
-                        origin,
                         ..t
                     }
                 })
@@ -1002,9 +1026,9 @@ impl Hw {
             if st.rect_flip_x { u } else { u + w - 1 },
             if st.rect_flip_y { v } else { v + h - 1 },
         );
-        let (repl, origin) = self.replacement(vram, st, sh, uv);
+        let repl = self.replacement(vram, st, sh, uv);
         self.shaded(vram, st, sh, &[], |t| {
-            Self::quad(x0, y0, x1 - 0.0, y1 - 0.0, [u0, v0], [u1, v1], GpuVertex { color: c, repl, origin, ..t })
+            Self::quad(x0, y0, x1 - 0.0, y1 - 0.0, [u0, v0], [u1, v1], GpuVertex { color: c, repl, ..t })
                 .iter()
                 .map(|q| GpuVertex { pos: [q.pos[0] - 0.5, q.pos[1] - 0.5], ..*q })
                 .collect()
@@ -1075,7 +1099,7 @@ impl Hw {
             return;
         }
         if crate::mods::wants_textures() {
-            self.tracker.upload(x, y, w, h);
+            self.tracker.upload(x, y, w, h, pixels);
         }
         if self.too_much() {
             self.flush(vram);

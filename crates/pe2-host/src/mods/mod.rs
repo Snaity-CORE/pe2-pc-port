@@ -24,6 +24,7 @@ pub mod dialogue;
 pub mod files;
 pub mod movies;
 pub mod music;
+pub mod sheets;
 pub mod translate;
 
 /// A mod's `mod.toml` (every field optional).
@@ -86,6 +87,35 @@ pub fn installed() -> Vec<Mod> {
         .collect();
     mods.sort_by(|a, b| b.priority.cmp(&a.priority).then_with(|| a.dir.cmp(&b.dir)));
     mods
+}
+
+/// When the game starts: what mods need from the first of `discs` (their
+/// images) is read on a thread of its own: the texture sheets' catalog for
+/// textures, and the dialogue font for translations.
+pub fn start(discs: &[PathBuf]) {
+    let (font, textures) = (translate::wanted(), wants_textures());
+    let Some(image) = discs.first().cloned().filter(|_| font || textures) else { return };
+    std::thread::spawn(move || {
+        let since = std::time::Instant::now();
+        let mut disc = match crate::disc::open(&image) {
+            Ok(d) => d,
+            Err(e) => {
+                eprintln!("pe2: mods: {}: {e}", image.display());
+                return;
+            }
+        };
+        let sources = files::dialogue_sources(disc.as_mut());
+        if textures {
+            let catalog = sheets::Catalog::new(sources.pictures.values().flatten().map(Vec::as_slice));
+            eprintln!("pe2: mods: {} texture sheets in {:.1} s", catalog.sheets.len(), since.elapsed().as_secs_f32());
+            sheets::set_catalog(catalog);
+        }
+        if font {
+            let f = dialogue::font(&sources);
+            eprintln!("pe2: mods: dialogue font: {} glyphs in {:.1} s", f.len(), since.elapsed().as_secs_f32());
+            translate::set_font(f);
+        }
+    });
 }
 
 /// Whether mods are used: PE2_MODS=0/1, else pe2.toml's [mods] enabled,
@@ -220,12 +250,12 @@ pub fn background(hash: u64) -> Option<Arc<Picture>> {
     backgrounds().get(hash)
 }
 
-/// A texture's key: the hash of the texture memory it is drawn from, and of
-/// the palette it is drawn with (0 for 15-bit textures, which have none).
+/// A texture's key: the hash of its sheet (sheets.rs), and of the palette
+/// it is drawn with (0: any, or none for 15-bit textures).
 pub type TextureKey = (u64, u64);
 
-/// The file name a texture is known by: `<texture>-<palette>`, or
-/// `<texture>` for 15-bit textures.
+/// The file name a texture is known by: `<sheet>-<palette>`, or `<sheet>`
+/// for any palette.
 pub fn texture_name((texture, palette): TextureKey) -> String {
     if palette == 0 { format!("{texture:016x}") } else { format!("{texture:016x}-{palette:016x}") }
 }
@@ -257,16 +287,22 @@ fn texture_dump_path(key: TextureKey) -> PathBuf {
     crate::paths::user_file("dumps").join("textures").join(format!("{}.png", texture_name(key)))
 }
 
-/// Saves texture `key`'s dump (256x256 RGBA), on a thread of its own,
+/// Texture `key`'s dump as saved before (size, RGBA), if there is one.
+pub fn read_texture_dump(key: TextureKey) -> Option<(u32, u32, Vec<u8>)> {
+    let p = read_png(&texture_dump_path(key), true).ok()?;
+    Some((p.width, p.height, p.rgba))
+}
+
+/// Saves texture `key`'s dump (`w` x `h` RGBA), on a thread of its own,
 /// over what was there.
-pub fn save_texture_dump(key: TextureKey, rgba: Vec<u8>) {
+pub fn save_texture_dump(key: TextureKey, w: u32, h: u32, rgba: Vec<u8>) {
     let path = texture_dump_path(key);
     std::thread::spawn(move || {
         if let Some(dir) = path.parent() {
             let _ = std::fs::create_dir_all(dir);
         }
         let written = std::fs::File::create(&path).map_err(|e| e.to_string()).and_then(|file| {
-            let mut enc = png::Encoder::new(std::io::BufWriter::new(file), 256, 256);
+            let mut enc = png::Encoder::new(std::io::BufWriter::new(file), w, h);
             enc.set_color(png::ColorType::Rgba);
             enc.set_depth(png::BitDepth::Eight);
             let mut writer = enc.write_header().map_err(|e| e.to_string())?;
