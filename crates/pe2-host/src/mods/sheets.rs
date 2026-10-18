@@ -34,15 +34,17 @@ pub struct Sheet {
     pub palette: Option<Vec<u16>>,
     /// Where that palette comes from (for the extract's index).
     pub palette_source: &'static str,
-    /// Where it was first found: `<file>/<chunk>#<column>`.
+    /// Where it was first found: `<file>/<chunk>#<column>`, and where in
+    /// VRAM that loads it (x, y).
     pub origin: String,
+    pub place: (u16, u16),
 }
 
 impl Sheet {
     fn new(hash: u64, rows: Vec<[u16; 64]>) -> Sheet {
         let pieces =
             rows.chunks(PIECE_ROWS).map(|c| piece_hash(c.iter().flatten().copied(), PIECE_ROWS - c.len())).collect();
-        Sheet { hash, rows, pieces, palette: None, palette_source: "", origin: String::new() }
+        Sheet { hash, rows, pieces, palette: None, palette_source: "", origin: String::new(), place: (0, 0) }
     }
 
     /// Its texel depth (0: 4 bits, 1: 8 bits): its palette's, else likely.
@@ -140,6 +142,14 @@ const FIXED: &[Fixed] = &[
     // text palettes stage 0's file 1 loads at (256, 243).
     ((384, 0), 0, "stage0/file1", (256, 245)),
 ];
+
+/// The captions' palettes (see `FIXED`), for glyph pages wherever they
+/// load (some actors move the captions' page, captions.c func_800E6D4C,
+/// and rooms keep speakers' names in pages of their own): the text's
+/// (CLUT 0x3D50), and the speakers' name labels' (0x3D93).
+const CAPTIONS: &str = "stage0/file1";
+const CAPTION_TEXT: (usize, usize) = (256, 245);
+const CAPTION_LABELS: (usize, usize) = (304, 246);
 
 /// The `n` colours at (`x`, `y`) in VRAM as one of `chunks` (`.pe2clut`)
 /// loads them.
@@ -251,6 +261,7 @@ impl Catalog {
                 sheet.palette = given;
                 sheet.palette_source = source;
                 sheet.origin = format!("{key}/{n}#{column}");
+                sheet.place = (x, y);
                 for (k, &piece) in sheet.pieces.iter().enumerate() {
                     c.pieces.entry(piece).or_default().push((index, k as u16));
                 }
@@ -264,6 +275,37 @@ impl Catalog {
     /// The sheets and piece numbers a piece of this hash is found in.
     pub fn pieces(&self, hash: u64) -> &[(u32, u16)] {
         self.pieces.get(&hash).map_or(&[], Vec::as_slice)
+    }
+
+    /// The glyph pages of `sources`' CAP files (dialogue.rs glyph_pages)
+    /// coloured as captions.c draws them: 4-bit, the text through its
+    /// palette and the speakers' name labels through theirs. By catalog
+    /// index.
+    pub fn glyph_pages(&self, sources: &Sources) -> HashMap<u32, super::rooms::Painted> {
+        let chunks = sources.palettes.get(CAPTIONS).map_or(&[][..], Vec::as_slice);
+        let (Some(text), Some(labels)) = (
+            palette_at(chunks, CAPTION_TEXT.0, CAPTION_TEXT.1, 16),
+            palette_at(chunks, CAPTION_LABELS.0, CAPTION_LABELS.1, 16),
+        ) else {
+            return HashMap::new();
+        };
+        let mut out = HashMap::new();
+        for (hash, cells) in super::dialogue::glyph_pages(sources) {
+            let Some(&i) = self.by_hash.get(&hash) else { continue };
+            let sheet = &self.sheets[i as usize];
+            let (width, mut rgba) = sheet.through(0, &text);
+            let (_, named) = sheet.through(0, &labels);
+            for [u, v, w, h] in cells {
+                for y in usize::from(v)..(usize::from(v) + usize::from(h)).min(sheet.rows.len()) {
+                    for x in usize::from(u)..(usize::from(u) + usize::from(w)).min(width) {
+                        let at = (y * width + x) * 4;
+                        rgba[at..at + 4].copy_from_slice(&named[at..at + 4]);
+                    }
+                }
+            }
+            out.insert(i, super::rooms::Painted { depth: 0, width, rgba, source: "the captions' palettes" });
+        }
+        out
     }
 
     /// The sheet of this hash (catalog index).
@@ -290,14 +332,14 @@ pub fn extract(
     std::fs::create_dir_all(dir)?;
     let mut coloured = 0;
     let mut index = String::from(
-        "# sheet, where it is on the disc (file/chunk#column), depth, colours
+        "# sheet, where it is on the disc (file/chunk#column), where it loads in VRAM, depth, colours
 ",
     );
     for (i, sheet) in catalog.sheets.iter().enumerate() {
         let name = super::texture_name((sheet.hash, 0));
         let path = dir.join(format!("{name}.png"));
         let (width, rgba, depth, source) = match painted.get(&(i as u32)) {
-            Some(p) => (p.width, p.rgba.clone(), p.depth, "rooms' sprites"),
+            Some(p) => (p.width, p.rgba.clone(), p.depth, p.source),
             None => {
                 let depth = sheet.depth();
                 let (width, rgba) = sheet.picture(depth);
@@ -309,9 +351,11 @@ pub fn extract(
             coloured += 1;
         }
         index.push_str(&format!(
-            "{name} {} {}-bit {source}
+            "{name} {} {},{} {}-bit {source}
 ",
             sheet.origin,
+            sheet.place.0,
+            sheet.place.1,
             [4, 8, 15][depth.min(2) as usize]
         ));
         let file = std::io::BufWriter::new(std::fs::File::create(&path)?);

@@ -104,9 +104,10 @@ each one asset. A sheet is known by a hash of its contents: its file name is
      differ). What no sprite draws is never shown, and is left transparent.
    - **Characters, enemies, weapons, items, maps**: their files carry their
      palettes, one per column of their pictures.
-   - **Rooms' dialogue fonts**: with the palette the game's code draws them
-     with.
-   - The rest (about 55 sheets: cameras' pieces that no sprite table draws,
+   - **Dialogue fonts**: every page of glyphs a room's dialogue uses,
+     wherever it loads, with the palettes the game's code draws it with
+     (the speakers' name labels with theirs).
+   - The rest (about 45 sheets: cameras' pieces that no sprite table draws,
      drawn by rooms' own code; the credits) comes out in grey, each texel by
      its number.
 2. Make your version, at any multiple of the sheet's size (4x: 1024 wide

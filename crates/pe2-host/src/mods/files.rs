@@ -513,12 +513,16 @@ pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path) -> std::io::Result<()>
     eprintln!("pe2: extract: {} backgrounds in {}", backgrounds.len(), pictures.display());
     let textures = dumps.join("textures");
     let catalog = super::sheets::Catalog::new(&dialogue);
-    let (painted, checked, mismatched) = super::rooms::paint(&dialogue, &catalog);
+    let (mut painted, checked, mismatched) = super::rooms::paint(&dialogue, &catalog);
+    for (sheet, page) in catalog.glyph_pages(&dialogue) {
+        painted.entry(sheet).or_insert(page);
+    }
     let coloured = super::sheets::extract(&catalog, &painted, &textures)?;
     eprintln!("pe2: extract: {} texture sheets ({coloured} in colour) in {}", catalog.sheets.len(), textures.display());
     eprintln!(
-        "pe2: extract: {} sheets coloured from rooms' sprites; {checked} sprite tables checked against their backgrounds, {mismatched} differ",
-        painted.len()
+        "pe2: extract: {} sheets coloured from rooms' sprites, {} glyph pages; {checked} sprite tables checked against their backgrounds, {mismatched} differ",
+        painted.values().filter(|p| p.source == "rooms' sprites").count(),
+        painted.values().filter(|p| p.source != "rooms' sprites").count()
     );
     let music = dumps.join("music");
     let count = super::music::extract(discs, &music)?;

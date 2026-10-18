@@ -527,6 +527,28 @@ impl<'s> Pages<'s> {
     }
 }
 
+/// The glyph pages of every CAP file (by their sheets' hashes), with the
+/// cells (u, v, width, height) of their speakers' name labels: wherever
+/// they load, the game draws them with the captions' palettes.
+pub fn glyph_pages(sources: &Sources) -> HashMap<u64, Vec<[u8; 4]>> {
+    let mut pages = Pages::new(sources);
+    let mut out: HashMap<u64, Vec<[u8; 4]>> = HashMap::new();
+    for (key, _, payload) in &sources.bundles {
+        for bytes in caps(payload) {
+            let Some(cap) = Cap::new(bytes) else { continue };
+            let Some(page) = pages.find(key, &cap) else { continue };
+            let labels = out.entry(super::sheets::sheet_hash(&page.rows)).or_default();
+            for line in cap.lines() {
+                let cell = cap.cell(usize::from(line.title).wrapping_sub(1));
+                if line.title != 0 && !labels.contains(&cell) {
+                    labels.push(cell);
+                }
+            }
+        }
+    }
+    out
+}
+
 /// The game's dialogue font: for each text the glyph table knows (a
 /// character, or a speaker's name label), its glyph picture (size, then
 /// texels) as the game's pages have it.

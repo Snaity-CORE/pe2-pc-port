@@ -25,6 +25,8 @@ pub struct Painted {
     pub depth: u32,
     pub width: usize,
     pub rgba: Vec<u8>,
+    /// What coloured it (for the extract's index).
+    pub source: &'static str,
 }
 
 /// A room sprite, as the package stores it.
@@ -361,8 +363,12 @@ pub fn paint(sources: &Sources, catalog: &Catalog) -> (HashMap<u32, Painted>, us
                 }
             }
             let (e, n) = walk(table, &cameras[c], block, 1, |sheet, depth, width, height, texel, colour| {
-                let p =
-                    painted.entry(sheet).or_insert_with(|| Painted { depth, width, rgba: vec![0; width * height * 4] });
+                let p = painted.entry(sheet).or_insert_with(|| Painted {
+                    depth,
+                    width,
+                    rgba: vec![0; width * height * 4],
+                    source: "rooms' sprites",
+                });
                 if p.depth == depth {
                     let ch = |sh: u16| ((colour >> sh & 31) << 3) as u8;
                     let rgba = [ch(0), ch(5), ch(10), if colour == 0 { 0 } else { 255 }];
