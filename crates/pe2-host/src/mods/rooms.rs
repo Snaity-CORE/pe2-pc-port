@@ -243,6 +243,43 @@ const ROOM_CODE: &[RoomCode] = &[
             Drawn::Rect { tpage: 0x16, clut: 0x3DC7, rect: (0, 0xA0, 0x30, 0x48) },
         ],
     },
+    // shelter_b1_pod_access_tunnel's view 11 opening (its 8017E3F8-style
+    // full-screen sprites, each with the 8-bit page queued after it in the
+    // same OT slot, func_shelter_b1_pod_access_tunnel_8017E66C).
+    RoomCode {
+        folder: "stage4/1701",
+        files: &[11],
+        palettes: Palettes::Camera,
+        drawn: &[
+            Drawn::Rect { tpage: 0x8D, clut: 0x3FC0, rect: (0, 0, 256, 256) },
+            Drawn::Rect { tpage: 0x8F, clut: 0x3FC0, rect: (0, 0, 64, 256) },
+            Drawn::Rect { tpage: 0x99, clut: 0x4000, rect: (0, 0, 256, 256) },
+            Drawn::Rect { tpage: 0x9B, clut: 0x4000, rect: (0, 0, 64, 256) },
+        ],
+    },
+    // dryfield_night_motel_lobby's lock digits (dryfield_night_motel_lobby_2.c,
+    // ten 24x24 digits and the blank below them).
+    RoomCode {
+        folder: "stage3/1701",
+        files: &[6],
+        palettes: Palettes::Camera,
+        drawn: &[Drawn::Rect { tpage: 0x0E, clut: 0x4000, rect: (0, 0, 240, 48) }],
+    },
+    // neo_ark_shrine's sliding-tile puzzle (func_neo_ark_shrine_8017DF7C:
+    // sixteen 32x32 tiles).
+    RoomCode {
+        folder: "stage5/2101",
+        files: &[11],
+        palettes: Palettes::Camera,
+        drawn: &[Drawn::Rect { tpage: 0x8D, clut: 0x3FC0, rect: (0, 0, 128, 128) }],
+    },
+    // neo_ark_pyramid's quad (neo_ark_pyramid.c, u and v 1 to 0xAF).
+    RoomCode {
+        folder: "stage5/3201",
+        files: &[8],
+        palettes: Palettes::Camera,
+        drawn: &[Drawn::Rect { tpage: 0x8E, clut: 0x3FC0, rect: (1, 1, 0xAF, 0xAF) }],
+    },
 ];
 
 /// A sprite drawing `rect` of page `tpage` with palette `clut`.
