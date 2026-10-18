@@ -452,8 +452,6 @@ struct Launcher {
     frames: u32,
     /// The game was started and has no window yet; why it could not start.
     starting: Arc<AtomicBool>,
-    /// The disc's files are being extracted (Mods screen).
-    extracting: Arc<AtomicBool>,
     launch_error: Arc<std::sync::Mutex<Option<String>>>,
     /// This frame's controller moves, the controller button pressed (for
     /// the Controls screen), and the left stick's last direction (x, y).
@@ -507,7 +505,6 @@ impl Launcher {
             icons,
             frames: 0,
             starting: Arc::new(AtomicBool::new(false)),
-            extracting: Arc::new(AtomicBool::new(false)),
             launch_error: Arc::new(std::sync::Mutex::new(None)),
             nav: Vec::new(),
             pad_pressed: None,
@@ -603,30 +600,6 @@ impl Launcher {
             let _ = child.wait();
             running.store(false, Ordering::SeqCst);
             show_window(window, true);
-            ctx.request_repaint();
-        });
-    }
-
-    /// Extracts the discs' files to dumps/files on a thread of its own, as
-    /// `pe2 --extract` does, and says where they went.
-    fn extract(&mut self, ctx: &egui::Context, lang: Lang) {
-        let images: Vec<PathBuf> = self.saved.discs.iter().filter(|d| !d.is_empty()).map(PathBuf::from).collect();
-        let (busy, error, ctx) = (self.extracting.clone(), self.launch_error.clone(), ctx.clone());
-        busy.store(true, Ordering::SeqCst);
-        std::thread::spawn(move || {
-            let out = crate::paths::user_file("dumps");
-            let result = images
-                .iter()
-                .map(|i| crate::disc::open(i).map_err(|e| format!("{}: {e}", i.display())))
-                .collect::<Result<Vec<_>, _>>()
-                .and_then(|mut discs| {
-                    crate::mods::files::extract(&mut discs, &out).map_err(|e| format!("{}: {e}", out.display()))
-                });
-            *error.lock().unwrap() = Some(match result {
-                Ok(()) => format!("{} {}", lang.t("Game files saved in", "Arquivos do jogo salvos em"), out.display()),
-                Err(e) => e,
-            });
-            busy.store(false, Ordering::SeqCst);
             ctx.request_repaint();
         });
     }
@@ -1287,15 +1260,6 @@ impl Launcher {
             });
         }
         ui.label(egui::RichText::new(crate::mods::mods_dir().display().to_string()).weak());
-        let extracting = self.extracting.load(Ordering::SeqCst);
-        let label = if extracting {
-            lang.t("Extracting the game's files...", "Extraindo os arquivos do jogo...")
-        } else {
-            lang.t("Extract the game's files (for making mods)", "Extrair os arquivos do jogo (para criar mods)")
-        };
-        if self.focus.button(ui, label, !extracting && !self.saved.discs[0].is_empty()) {
-            self.extract(ui.ctx(), lang);
-        }
         ui.separator();
         let mut swap = None;
         egui::ScrollArea::vertical().max_height(ui.available_height() - 90.0).show(ui, |ui| {

@@ -37,8 +37,22 @@ The launcher's **Mods** screen lists the installed mods, turns each on or
 off and sets their order (higher in the list wins), writing `enabled` and
 `priority` into each `mod.toml` and keeping the rest of the file. It also
 turns all mods off (`[mods] enabled = false` in `pe2.toml`, or `PE2_MODS=0`),
-extracts the game's files (see below), and opens the mods folder. Changes apply when the game
-starts; its log lists the mods it uses.
+and opens the mods folder. Changes apply when the game starts; its log lists
+the mods it uses.
+
+## Extracting the game's files
+
+Everything a mod replaces is extracted from your discs with a command, run
+in a terminal from the folder `pe2.exe` is in:
+
+```text
+pe2 --extract
+```
+
+It reads the discs `pe2.toml` names (or the images given after
+`--extract`) and saves what it finds in `dumps/` in the data folder: the
+files, pictures, textures, songs, movies and dialogue (see each kind
+below). It takes a minute or two.
 
 ## Backgrounds and full-screen pictures
 
@@ -47,11 +61,10 @@ title and menu screens are full-screen pictures too. A mod can replace any of
 them with a picture of its own, at any resolution: 1280x960 (4x) suits most
 setups, and the picture is scaled to the internal resolution.
 
-1. Get the pictures: **Extract the game's files** in the launcher's Mods
-   screen (or `pe2 --extract`) decodes all of them from the discs, about
-   1,760 (rooms, title and menu screens, close-ups shown when examining
-   things), as the game does, into `dumps/backgrounds/<hash>.png` in the
-   data folder.
+1. Get the pictures: the extract (`pe2 --extract`, see above) decodes all of
+   them from the discs, about 1,760 (rooms, title and menu screens, close-ups
+   shown when examining things), as the game does, into
+   `dumps/backgrounds/<hash>.png` in the data folder.
 2. Make your version of a picture (paint over it, upscale it, ...) and save it
    as `mods/<your mod>/backgrounds/<same hash>.png`.
 
@@ -88,10 +101,9 @@ of texels (256 wide at 4 bits per texel, 128 at 8 bits, up to 256 tall),
 each one asset. A sheet is known by a hash of its contents: its file name is
 `<sheet>.png`, the same in every room and whatever else is loaded with it.
 
-1. Extract the game's files (**Extract the game's files** in the launcher's
-   Mods screen, or `pe2 --extract`): every sheet, about 2,100, is saved
-   whole in `dumps/textures/`, with `index.txt` listing each one, where it
-   comes from and where its colours do.
+1. Extract the game's files (`pe2 --extract`, see above): every sheet, about
+   2,100, is saved whole in `dumps/textures/`, with `index.txt` listing each
+   one, where it comes from and where its colours do.
 
    A sheet's texels are numbers into a palette, and which palette colours
    them is chosen as the game draws. The extract finds it on the disc:
@@ -140,13 +152,13 @@ sound chip's voices, one song at a time, each known by a sequence id. A mod can
 replace a song with a recording of its own (OGG Vorbis, FLAC or WAV, any sample
 rate, mono or stereo):
 
-1. Extract the game's files (**Extract the game's files** in the launcher's
-   Mods screen, or `pe2 --extract`): every song, 69 in all, is played by the
-   game's own sequencer and saved as `dumps/music/<id>.wav` in the data
-   folder, up to where its loop repeats and a few seconds more. Next to it,
-   `<id>.txt` holds the song's loop as `music.toml` (below) takes it, in
-   seconds of that `.wav` (precise to a frame, 1/60 s, as the game places
-   notes); songs that end have `looping = false`.
+1. Extract the game's files (`pe2 --extract`, see above): every song, 69 in
+   all, is played by the game's own sequencer and saved as
+   `dumps/music/<id>.wav` in the data folder, up to where its loop repeats and
+   a few seconds more. Next to it, `<id>.txt` holds the song's loop as
+   `music.toml` (below) takes it, in seconds of that `.wav` (precise to a
+   frame, 1/60 s, as the game places notes); songs that end have `looping =
+   false`.
 2. Save your recording as `mods/<your mod>/music/<same id>.ogg` (or `.flac`,
    `.wav`). The id is two hexadecimal digits, as the file's name has it: `26`
    is the Akropolis Tower's fire escape.
@@ -176,12 +188,12 @@ The game's movies (FMVs) stream from the disc frame by frame. A mod can
 show a video file instead: an MP4 with H.264 video and AAC sound, at any
 resolution and frame rate.
 
-1. Extract the game's files (**Extract the game's files** in the launcher's
-   Mods screen, or `pe2 --extract`): every movie the game lists, 28 in all,
-   is read from the discs into `dumps/movies/`. A movie is known by a hash
-   of its first frame: `<hash>.png` shows a picture of it, `<hash>.wav` is
-   its sound (when it has its own), and `<hash>.txt` says its length in
-   frames and seconds, its frame rate, its size and where it is listed.
+1. Extract the game's files (`pe2 --extract`, see above): every movie the game
+   lists, 28 in all, is read from the discs into `dumps/movies/`. A movie is
+   known by a hash of its first frame: `<hash>.png` shows a picture of it,
+   `<hash>.wav` is its sound (when it has its own), and `<hash>.txt` says its
+   length in frames and seconds, its frame rate, its size and where it is
+   listed.
 2. Save your video as `mods/<your mod>/movies/<same hash>.mp4`.
 
 The video must not use B-frames (the decoder does not support them). With
@@ -205,12 +217,12 @@ room packages, menu texts, dialogue) lives in its own file system: the files
 of `STAGE0.CDF` and the folders of `STAGE1.CDF` to `STAGE5.CDF`. A mod can
 replace any of them.
 
-1. Extract the files: **Extract the game's files** in the launcher's Mods
-   screen, or `pe2 --extract`. They go to `dumps/files/` in the data folder
-   (about 130 MB; both discs share them), every room background as a
-   picture to `dumps/backgrounds/`, every texture sheet to `dumps/textures/`,
-   every song to `dumps/music/`, every movie to `dumps/movies/` (see above),
-   and the dialogue as text to `dumps/text/` (see below).
+1. Extract the files: `pe2 --extract` (see above). They go to `dumps/files/`
+   in the data folder (about 130 MB; both discs share them), every room
+   background as a picture to `dumps/backgrounds/`, every texture sheet to
+   `dumps/textures/`, every song to `dumps/music/`, every movie to
+   `dumps/movies/` (see above), and the dialogue as text to `dumps/text/` (see
+   below).
 2. Find the one you want. With `PE2_TRACE=files` the game's log names each
    file as it is read, so playing to a place shows which files it uses.
 3. Put your version in `mods/<your mod>/files/` under the same path.

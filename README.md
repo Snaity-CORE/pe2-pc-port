@@ -31,7 +31,8 @@ It plays as the console does and adds what a PC can, all optional:
   and the textures with your own at any resolution, the music with
   recordings, the movies with video files, any of the game's files, and
   the dialogue with translations; cheats and memory patches; the game's
-  pictures, textures, music, files and dialogue dumped to make them (see [docs/MODDING.md](docs/MODDING.md)).
+  pictures, textures, music, movies, files and dialogue extracted from your
+  discs with `pe2 --extract` to make them (see [docs/MODDING.md](docs/MODDING.md)).
 - **Comfort**: a launcher worked by mouse, keyboard or controller (English or
   Portuguese), remappable keys and controller buttons, pause, screenshots,
   borderless full screen.
