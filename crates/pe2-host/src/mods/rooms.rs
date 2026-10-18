@@ -2,19 +2,17 @@
 //! drawn over their backgrounds (what passes in front of the characters).
 //!
 //! Each camera of a room with such pieces has a file of their picture
-//! (`.pe2img`, at the texture pages of VRAM columns 896 and 960), and the
-//! room's package (its folder's file 0, `.pe2pkg`) has a table of sprites
-//! for it (`SpriteSource` in the decompilation's gameplay/sprites.h, 20
-//! bytes each): a rectangle of a texture page, the palette it is drawn
-//! with, and where on the screen. The palettes are blocks of 256-colour
-//! rows the room's dialogue bundle loads (from VRAM row 255), one per
-//! camera. So every sprite tells which palette colours which texels of
-//! which sheet, and the extract colours sheets so, exactly.
-//!
-//! Tables, cameras and blocks come in the same order, but not always one
-//! for one; the pieces are cut from the backgrounds, so each table is
-//! matched to the camera and block whose colours, placed where its sprites
-//! are drawn, match that camera's background.
+//! (`.pe2img`, at the texture pages of VRAM columns 896 and 960), and its
+//! view has a table of sprites (`SpriteSource` in the decompilation's
+//! gameplay/sprites.h, 20 bytes each): a rectangle of a texture page, the
+//! palette it is drawn with, and where on the screen. The game finds a
+//! view's table as the extract does (`view_tables`), through its stage's
+//! map overlay into the room's overlay. The palettes are blocks of
+//! 256-colour rows the room's dialogue bundle loads (from VRAM row 255), one
+//! per camera. So every sprite tells which palette colours which texels of
+//! which sheet, and the extract colours sheets so, exactly; the block is
+//! the one whose colours, placed where the sprites are drawn, match the
+//! camera's background (the pieces are cut from it).
 
 use std::collections::{BTreeMap, HashMap};
 
@@ -50,39 +48,6 @@ fn i16le(b: &[u8], at: usize) -> i32 {
     i32::from(i16::from_le_bytes([b[at], b[at + 1]]))
 }
 
-/// A 20-byte record, if it looks like a room sprite.
-fn sprite(r: &[u8]) -> Option<Sprite> {
-    let tpage = u16::from_le_bytes([r[0], r[1]]);
-    let clut = u16::from_le_bytes([r[2], r[3]]);
-    let (w, h, x0, y0) = (i16le(r, 4), i16le(r, 6), i16le(r, 8), i16le(r, 10));
-    let (u, v, rgb, flags) = (r[14], r[15], [r[16], r[17], r[18]], r[19]);
-    let depth = u32::from((tpage >> 7) & 3);
-    let clut_y = i32::from(clut >> 6);
-    let plausible = tpage >> 9 == 0
-        && depth < 2
-        && (240..512).contains(&clut_y)
-        && flags <= 3
-        && rgb == [128; 3]
-        && (1..=256).contains(&w)
-        && (1..=256).contains(&h)
-        && (-400..400).contains(&x0)
-        && (-300..300).contains(&y0);
-    plausible.then(|| Sprite {
-        page_x: i32::from(tpage & 0xF) * 64,
-        page_y: i32::from((tpage >> 4) & 1) * 256,
-        depth,
-        clut_x: i32::from(clut & 0x3F) * 16,
-        clut_y,
-        w,
-        h,
-        x0,
-        y0,
-        u: i32::from(u),
-        v: i32::from(v),
-        semi: flags & 2 != 0,
-    })
-}
-
 /// A sprite record as a `SpriteView` points to it: anything a sprite can
 /// be.
 fn any_sprite(r: &[u8]) -> Option<Sprite> {
@@ -107,107 +72,100 @@ fn any_sprite(r: &[u8]) -> Option<Sprite> {
     })
 }
 
-/// The sprite tables of a package's contents as its `SpriteView` arrays
-/// give them (gameplay/sprites.h): records of three pointers into the
-/// package, to the view's sprites, its batches (8 bytes each, the last
-/// with first sprite 0xFFFF; how many sprites the view has) and its clip
-/// areas (or none). In the order of the views.
-fn views(blob: &[u8], base: u32) -> Vec<(usize, Vec<Sprite>)> {
-    let end = base.wrapping_add(blob.len() as u32);
-    let inside = |p: u32| p >= base && p < end && p.is_multiple_of(2);
-    let word = |at: usize| u32::from_le_bytes([blob[at], blob[at + 1], blob[at + 2], blob[at + 3]]);
-    let half = |at: usize| u16::from_le_bytes([blob[at], blob[at + 1]]);
-    let mut out = Vec::new();
-    let mut at = 0;
-    while at + 12 <= blob.len() {
-        let (sources, batches, areas) = (word(at), word(at + 4), word(at + 8));
-        let shaped = inside(batches) && (areas == 0 || inside(areas)) && (sources == 0 || inside(sources));
-        // Its batches: how many sprites they reach.
-        let count = shaped.then(|| {
-            let mut b = (batches - base) as usize;
-            let mut count = 0usize;
-            for _ in 0..64 {
-                if b + 8 > blob.len() {
-                    return None;
-                }
-                let (first, n) = (half(b), half(b + 2));
-                if first == 0xFFFF {
-                    return Some(count);
-                }
-                count = count.max(usize::from(first) + usize::from(n));
-                b += 8;
-            }
-            None
-        });
-        let table = count.flatten().and_then(|count| {
-            if sources == 0 || sources == batches || count == 0 {
-                return Some((0, Vec::new()));
-            }
-            let s = (sources - base) as usize;
-            let records = blob.get(s..s + count * 20)?;
-            Some((s, records.chunks(20).map(any_sprite).collect::<Option<Vec<_>>>()?))
-        });
-        match table {
-            Some(t) => {
-                out.push(t);
-                at += 12;
-            }
-            None => at += 4,
-        }
+/// Where the stages' map overlays (STAGE0 file 900000 + stage) and the
+/// rooms' overlays (their folder's file 0) load.
+const MAP_BASE: u32 = 0x8017_9950;
+const ROOM_BASE: u32 = 0x8017_D5C0;
+
+/// Per stage, where its map overlay keeps its directories of views
+/// (decompilation: gameplay/load_screen.c Gp_ViewCountTables,
+/// Gp_ViewIndexTables, Gp_SprtTables): rooms' view counts, rooms' maps of
+/// view to sprite view, and areas' sprite views.
+const MAP_TABLES: [(u32, u32, u32); 5] = [
+    (0x8017_ABC0, 0x8017_AC68, 0x8017_AB1C),
+    (0x8017_AA28, 0x8017_ABFC, 0x8017_AC98),
+    (0x8017_A93C, 0x8017_AB10, 0x8017_ABAC),
+    (0x8017_B110, 0x8017_B548, 0x8017_B610),
+    (0x8017_AB88, 0x8017_ADB0, 0x8017_AE38),
+];
+
+/// The map of views to themselves many rooms use, and its length
+/// (gameplay/direction_input.c gViewIdentityMap: 1, 2, 3...).
+const IDENTITY_MAP: u32 = 0x8010_CAF8;
+const IDENTITY_VIEWS: u8 = 50;
+
+/// PlayStation memory as the overlays loaded fill it.
+struct Memory(Vec<(u32, Vec<u8>)>);
+
+impl Memory {
+    fn bytes(&self, addr: u32, n: usize) -> Option<&[u8]> {
+        self.0.iter().find_map(|(base, blob)| {
+            let at = usize::try_from(addr.checked_sub(*base)?).ok()?;
+            blob.get(at..at + n)
+        })
     }
-    out.retain(|t| !t.1.is_empty());
-    out
+
+    fn word(&self, addr: u32) -> Option<u32> {
+        self.bytes(addr, 4).map(|b| u32::from_le_bytes([b[0], b[1], b[2], b[3]]))
+    }
+
+    fn half(&self, addr: u32) -> Option<u16> {
+        self.bytes(addr, 2).map(|b| u16::from_le_bytes([b[0], b[1]]))
+    }
+
+    /// The sprites of the `SpriteView` at `addr` (gameplay/sprites.h): as
+    /// many as its batches reach (8 bytes each, the last with first sprite
+    /// 0xFFFF).
+    fn view(&self, addr: u32) -> Option<Vec<Sprite>> {
+        let (sources, batches) = (self.word(addr)?, self.word(addr + 4)?);
+        let mut count = 0u32;
+        for b in 0..64 {
+            let first = self.half(batches + b * 8)?;
+            if first == 0xFFFF {
+                break;
+            }
+            count = count.max(u32::from(first) + u32::from(self.half(batches + b * 8 + 2)?));
+        }
+        if count == 0 || sources == 0 || sources == batches {
+            return Some(Vec::new());
+        }
+        self.bytes(sources, count as usize * 20)?.chunks(20).map(any_sprite).collect()
+    }
 }
 
-/// The sprite tables of a package's contents, without its views: runs of
-/// two or more consecutive sprite records, in order.
-fn tables(blob: &[u8]) -> Vec<(usize, Vec<Sprite>)> {
-    let mut found: Vec<(usize, Vec<Sprite>)> = Vec::new();
-    let mut taken = vec![false; blob.len()];
-    for start in 0..20 {
-        let mut run: Vec<Sprite> = Vec::new();
-        let mut first = start;
-        let mut at = start;
-        loop {
-            let s = (at + 20 <= blob.len()).then(|| sprite(&blob[at..at + 20])).flatten();
-            match s {
-                Some(s) => {
-                    if run.is_empty() {
-                        first = at;
-                    }
-                    run.push(s);
-                }
-                None => {
-                    if run.len() >= 2 && !taken[first] {
-                        taken[first..at].fill(true);
-                        found.push((first, std::mem::take(&mut run)));
-                    }
-                    run.clear();
-                    if at + 20 > blob.len() {
-                        break;
-                    }
-                }
-            }
-            at += 20;
+/// The sprite tables of a room's views, as the game finds them: its
+/// stage's map overlay maps the room's view to one of its area's sprite
+/// views, which the room's overlay holds (gameplay/sprite_link.c
+/// Gp_LinkViewSprts). By view (1-based), for `folder` (`stage<s>/<area *
+/// 100 + room>`).
+fn view_tables(sources: &Sources, folder: &str) -> Option<BTreeMap<u32, Vec<Sprite>>> {
+    let (stage, place) = folder.strip_prefix("stage")?.split_once('/')?;
+    let (stage, place) = (stage.parse::<usize>().ok()?, place.parse::<u32>().ok()?);
+    let (area, room) = (place / 100, place % 100);
+    let (counts, maps, views) = *MAP_TABLES.get(stage.checked_sub(1)?)?;
+    let overlay = |key: &str, base: u32| {
+        let packages = sources.packages.get(key)?;
+        packages.iter().find(|(b, _)| *b == base).map(|(b, p)| (*b, lzss(p, &mut 0)))
+    };
+    let memory = Memory(vec![
+        overlay(&format!("stage0/file{}", 900_000 + stage), MAP_BASE)?,
+        overlay(&format!("{folder}/file0"), ROOM_BASE)?,
+        (IDENTITY_MAP, (1..=IDENTITY_VIEWS).collect()),
+    ]);
+    let (a, r) = (area.checked_sub(1)? * 4, room.checked_sub(1)?);
+    let count = memory.half(memory.word(memory.word(counts)? + a)? + r * 2)?;
+    let map = memory.word(memory.word(memory.word(maps)? + a)? + r * 4)?;
+    let views = memory.word(memory.word(views)? + a)?;
+    let mut out = BTreeMap::new();
+    for v in 1..=u32::from(count) {
+        let index = u32::from(*memory.bytes(map + v - 1, 1)?.first()?);
+        if index > 0
+            && let Some(table) = memory.view(views + (index - 1) * 12)
+        {
+            out.insert(v, table);
         }
     }
-    found.sort_by_key(|t| t.0);
-    found
-}
-
-/// A package's sprite tables: its views', and runs of sprite records the
-/// views do not reach (each where it is in the package, in order).
-fn room_tables(blob: &[u8], base: u32) -> Vec<Vec<Sprite>> {
-    let mut all = views(blob, base);
-    let reached: Vec<(usize, usize)> = all.iter().map(|(at, t)| (*at, at + t.len() * 20)).collect();
-    for (at, t) in tables(blob) {
-        if !reached.iter().any(|&(a, b)| at < b && a < at + t.len() * 20) {
-            all.push((at, t));
-        }
-    }
-    all.sort_by_key(|t| t.0);
-    all.dedup_by_key(|t| t.0);
-    all.into_iter().map(|t| t.1).collect()
+    Some(out)
 }
 
 /// A block of palettes: where in VRAM (x, y), its width, its colours.
@@ -311,13 +269,6 @@ pub fn paint(sources: &Sources, catalog: &Catalog) -> (HashMap<u32, Painted>, us
     for (folder, mut files) in folders {
         files.sort();
         let main = format!("{folder}/file0");
-        let packages = sources.packages.get(&main).map_or(&[][..], Vec::as_slice);
-        let room_tables: Vec<Vec<Sprite>> =
-            packages.iter().flat_map(|(base, p)| room_tables(&lzss(p, &mut 0), *base)).collect();
-        if crate::runtime::trace("rooms") {
-            let with = files.iter().filter(|(_, k)| !sources.pictures[*k].is_empty()).count();
-            eprintln!("[rooms] {folder}: {} sprite tables, {with} cameras' pictures", room_tables.len());
-        }
         let blocks: Vec<Block> = sources
             .bundles
             .iter()
@@ -340,27 +291,40 @@ pub fn paint(sources: &Sources, catalog: &Catalog) -> (HashMap<u32, Painted>, us
                     .and_then(|b| super::files::background_pixels(b)),
             })
             .collect();
-        for (t, table) in room_tables.iter().enumerate() {
-            // Its camera and block: where its sprites match the background
-            // best; when nothing tells (semi-transparent pieces), its place
-            // in the order.
-            let mut best: Option<(u64, usize, usize)> = None;
-            for (c, camera) in cameras.iter().enumerate() {
-                for (b, block) in blocks.iter().enumerate() {
-                    let (e, n) = walk(table, camera, block, 3, |_, _, _, _, _, _| {});
-                    if n < 20 {
-                        continue;
-                    }
-                    let score = e * 100 / n;
-                    let ordered = (c, b) == (t, t);
-                    if best.is_none_or(|(s, ..)| score < s || (score == s && ordered)) {
-                        best = Some((score, c, b));
-                    }
+        // The tables and their cameras as the game finds them: view N is
+        // the folder's file N.
+        let Some(views) = view_tables(sources, &folder) else {
+            if crate::runtime::trace("rooms") {
+                eprintln!("[rooms] {folder}: no view tables");
+            }
+            continue;
+        };
+        let tables: Vec<(Vec<Sprite>, usize)> = views
+            .into_iter()
+            .filter_map(|(v, table)| {
+                let key = format!("{folder}/file{v}");
+                Some((table, cameras.iter().position(|c| c.key == key)?))
+            })
+            .collect();
+        for (table, c) in &tables {
+            let c = *c;
+            // Its palettes: the block where its sprites match the
+            // background best; when nothing tells (semi-transparent
+            // pieces), its camera's place in the order.
+            let mut best: Option<(u64, usize)> = None;
+            for (b, block) in blocks.iter().enumerate() {
+                let (e, n) = walk(table, &cameras[c], block, 3, |_, _, _, _, _, _| {});
+                if n < 20 {
+                    continue;
+                }
+                let score = e * 100 / n;
+                if best.is_none_or(|(s, _)| score < s || (score == s && b == c)) {
+                    best = Some((score, b));
                 }
             }
-            let (c, b) = match best {
-                Some((_, c, b)) => (c, b),
-                None if t < cameras.len() && t < blocks.len() => (t, t),
+            let b = match best {
+                Some((_, b)) => b,
+                None if c < blocks.len() => c,
                 None => continue,
             };
             let (e, n) = walk(table, &cameras[c], &blocks[b], 1, |sheet, depth, width, height, texel, colour| {

@@ -96,18 +96,19 @@ each one asset. A sheet is known by a hash of its contents: its file name is
    A sheet's texels are numbers into a palette, and which palette colours
    them is chosen as the game draws. The extract finds it on the disc:
    - **Rooms' pieces** (what passes in front of the characters, cut from
-     the backgrounds): each room's package has, for each camera, the
-     sprites drawing them, each with its palette. Every texel they draw is
-     coloured as the game draws it, and each camera's sprites are checked
-     against its background (the extract's log says how many differ). What
-     no sprite draws is never shown, and is left transparent.
+     the backgrounds): for each camera, the game finds the sprites drawing
+     them through its stage's map and the room's package, each sprite with
+     its palette, and the extract finds them the same way. Every texel
+     they draw is coloured as the game draws it, and each camera's sprites
+     are checked against its background (the extract's log says how many
+     differ). What no sprite draws is never shown, and is left transparent.
    - **Characters, enemies, weapons, items, maps**: their files carry their
      palettes, one per column of their pictures.
    - **Rooms' dialogue fonts**: with the palette the game's code draws them
      with.
-   - The rest (about 140 sheets: cameras' pieces that no sprite table draws,
-     likely drawn by rooms' own code; the credits) comes out in grey, each
-     texel by its number.
+   - The rest (about 75 sheets: cameras' pieces that no sprite table draws,
+     drawn by rooms' own code; the credits) comes out in grey, each texel by
+     its number.
 
    With dumping on, playing also colours sheets as the game draws them,
    which can fill in those.
