@@ -152,8 +152,9 @@ replace any of them.
 
 1. Extract the files: **Extract the game's files** in the launcher's Mods
    screen, or `pe2 --extract`. They go to `dumps/files/` in the data folder
-   (about 130 MB; both discs share them), and every room background as a
-   picture to `dumps/backgrounds/` (see above).
+   (about 130 MB; both discs share them), every room background as a
+   picture to `dumps/backgrounds/` (see above), and the dialogue as text to
+   `dumps/text/` (see below).
 2. Find the one you want. With `PE2_TRACE=files` the game's log names each
    file as it is read, so playing to a place shows which files it uses.
 3. Put your version in `mods/<your mod>/files/` under the same path.
@@ -190,9 +191,40 @@ What to know:
 - **Code.** This port runs the game's code natively: the code in a package
   is not run, and changing it keeps the package from being recognized (the
   game then stops). Packages' data can change.
-- **Dialogue.** Spoken lines are not stored as text but as indices into
-  glyph pictures carried in each dialogue bundle; turning them into text,
-  and back, is not done yet (see the plan).
+- **Dialogue.** Spoken lines are not stored as text: see below.
+
+## Dialogue
+
+The game's lines are not stored as text but as glyph pictures: each
+dialogue file (a CAP file, in a `.pe2cap2` bundle) has a table of glyphs
+drawn from a picture of the letters its lines use, and its lines are
+indices into that table. The extract turns them into text, by recognizing
+each glyph picture, and saves each dialogue file's lines in
+`dumps/text/<file>/<chunk>-<n>.toml`:
+
+```toml
+cap = "1f9d66fcd224f2dd"   # the dialogue file this is for
+
+[[line]]
+record = 0x117C            # the line, in that file
+speaker = "BALDWIN"
+original = '''
+Agent Brea, what are you doing?
+You're needed downtown now!'''
+text = ''
+```
+
+In lines, `{_}` is a narrow space, `{color N}` changes the colour,
+`{81NN}` to `{83NN}` start the choices of a question and other `{XXXX}`
+are controls (camera changes, icons). A glyph that was not recognized shows
+as `{gN}`.
+
+All 8,400 lines come out, but for two files whose glyph picture was not
+found (stage 1 folder 2101, stage 2 folder 401: 67 lines). Capital I and
+small l are the same picture in the game's font; the extract tells them
+apart by their place in words, which can be wrong now and then.
+
+Translating them, `text` read back into the game, comes next (see the plan).
 
 ## Cheats and memory patches
 
@@ -244,12 +276,14 @@ changing the game's own data in memory unless the kind is meant to.
    above. (Recorded audio, the movies' and cutscenes' XA tracks, comes with
    movies.)
 5. **Game files** (done): extracted, and replaced chunk by chunk or whole,
-   at any size, as above. Still to come for translations: decoding the
-   dialogue bundles' glyph text to editable text and back, and the texts
-   held in the executable.
-6. **Textures** (done): dumped and replaced at any resolution, by texture page
+   at any size, as above.
+6. **Dialogue**: extracted as text (done); translations read back into the
+   game as it loads each dialogue file, with the glyphs they need drawn
+   from the game's own font (accented letters made from it). The texts held
+   in the executable (menus) after.
+7. **Textures** (done): dumped and replaced at any resolution, by texture page
    and palette, as above.
-7. **Movies**: FMVs replaced by video files, which needs a video decoder.
+8. **Movies**: FMVs replaced by video files, which needs a video decoder.
 
 The extract saves files as the game stores them. Converting them to common
 formats (pictures to PNG, sound banks to WAV) and back is left to the

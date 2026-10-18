@@ -333,14 +333,16 @@ pub fn background_pixels(bs: &[u8]) -> Option<Vec<u16>> {
 
 /// Saves every file of the discs' file systems, chunk by chunk, under
 /// `dumps/files` (`<file>/<index>.<ext>`; a file differing on a later disc
-/// goes under `disc<n>/`), and each room background as the picture the
-/// game shows, as `dumps/backgrounds/<hash>.png` (see mods::background).
+/// goes under `disc<n>/`), each room background as the picture the game
+/// shows, as `dumps/backgrounds/<hash>.png` (see mods::background), and
+/// the dialogue as text under `dumps/text` (see dialogue.rs).
 pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path) -> std::io::Result<()> {
     let out = dumps.join("files");
     let pictures = dumps.join("backgrounds");
     std::fs::create_dir_all(&pictures)?;
     let mut seen: HashMap<String, u64> = HashMap::new();
     let mut backgrounds = HashSet::new();
+    let mut dialogue = super::dialogue::Sources::default();
     let (mut files, mut chunks, mut bytes) = (0usize, 0usize, 0usize);
     for (n, disc) in discs.iter_mut().enumerate() {
         let layout = layout(disc.as_mut());
@@ -371,6 +373,11 @@ pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path) -> std::io::Result<()>
                         super::save_png(&path, 320, 240, &pixels).map_err(std::io::Error::other)?;
                     }
                 }
+                match c.header[0] {
+                    1 => dialogue.pictures.entry(f.key.clone()).or_default().push(c.payload.clone()),
+                    4 => dialogue.bundles.push((f.key.clone(), k, c.payload.clone())),
+                    _ => {}
+                }
                 chunks += 1;
                 bytes += c.payload.len();
             }
@@ -379,6 +386,9 @@ pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path) -> std::io::Result<()>
     }
     eprintln!("pe2: extract: {files} files, {chunks} chunks, {} MB in {}", bytes >> 20, out.display());
     eprintln!("pe2: extract: {} backgrounds in {}", backgrounds.len(), pictures.display());
+    let text = dumps.join("text");
+    let (caps, lines) = super::dialogue::extract(&dialogue, &text)?;
+    eprintln!("pe2: extract: {lines} lines of dialogue in {caps} files in {}", text.display());
     Ok(())
 }
 
