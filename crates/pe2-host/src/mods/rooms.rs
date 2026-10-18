@@ -167,8 +167,21 @@ fn memory(sources: &Sources, folder: &str) -> Option<Memory> {
 /// each piece 12 bytes: palette x, y, screen x, y, then u, v, width,
 /// height; palette x 0xFFFF ends a list).
 enum Drawn {
-    Rect { tpage: u16, clut: u16, rect: (u8, u8, u16, u16) },
-    Parts { tpage: u16, table: u32, lists: u32 },
+    Rect {
+        tpage: u16,
+        clut: u16,
+        rect: (u8, u8, u16, u16),
+    },
+    Parts {
+        tpage: u16,
+        table: u32,
+        lists: u32,
+    },
+    /// A region of VRAM (x, y, width, height) the code uses as a picture in
+    /// direct colour (15 bits): its sheets need no palette.
+    Direct {
+        region: (u16, u16, u16, u16),
+    },
 }
 
 /// Where a room's code's drawings get their palettes: those loaded for
@@ -241,6 +254,10 @@ const ROOM_CODE: &[RoomCode] = &[
             Drawn::Rect { tpage: 0x16, clut: 0x3DC5, rect: (0x58, 0xB8, 8, 8) },
             Drawn::Rect { tpage: 0x16, clut: 0x3DC6, rect: (0x60, 0xB8, 8, 8) },
             Drawn::Rect { tpage: 0x16, clut: 0x3DC7, rect: (0, 0xA0, 0x30, 0x48) },
+            // Its database pages: the strip-capture task copies them from
+            // VRAM (448, 256), 320 wide, into the screen image
+            // (func_actor_143000_80132D10 and its Actor143000CaptureArgs).
+            Drawn::Direct { region: (448, 256, 320, 256) },
         ],
     },
     // shelter_b1_pod_access_tunnel's view 11 opening (its 8017E3F8-style
@@ -307,6 +324,7 @@ fn drawn_sprites(drawn: &[Drawn], memory: Option<&Memory>) -> Vec<Sprite> {
     for d in drawn {
         match *d {
             Drawn::Rect { tpage, clut, rect } => out.push(drawn_sprite(tpage, clut, rect)),
+            Drawn::Direct { .. } => {}
             Drawn::Parts { tpage, table, lists } => {
                 let Some(memory) = memory else { continue };
                 for l in 0..lists {
@@ -587,6 +605,15 @@ pub fn paint(sources: &Sources, catalog: &Catalog) -> (HashMap<u32, Painted>, us
                         .and_then(|chunk| image(chunk))
                         .map(|(x, y, w, colours)| (x, y + rows, w, colours)),
                 };
+                for d in code.drawn {
+                    let Drawn::Direct { region: (x, y, w, h) } = *d else { continue };
+                    for (column, sheet) in &cameras[c].columns {
+                        if (x..x + w).contains(&column.x) && (y..y + h).contains(&column.y) {
+                            let (width, rgba) = catalog.sheets[*sheet as usize].picture(2);
+                            painted.insert(*sheet, Painted { depth: 2, width, rgba, source: "rooms' code" });
+                        }
+                    }
+                }
                 let Some(block) = block else { continue };
                 walk(&sprites, &cameras[c], &block, 1, |sheet, depth, width, height, texel, colour| {
                     colour_texel(&mut painted, "rooms' code", (sheet, depth, width, height, texel, colour));

@@ -109,7 +109,7 @@ each one asset. A sheet is known by a hash of its contents: its file name is
      (the speakers' name labels with theirs).
    - **Rooms' own screens** (computer terminals, maps): with the palettes
      the room's code draws them with.
-   - The rest (about 15 sheets: some cameras' pieces drawn by rooms' code or
+   - The rest (about 10 sheets: some cameras' pieces drawn by rooms' code or
      models, the credits) comes out in grey, each texel by its number.
 2. Make your version, at any multiple of the sheet's size (4x: 1024 wide
    for a 256-texel sheet), and save it as
