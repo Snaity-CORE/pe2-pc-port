@@ -280,7 +280,6 @@ struct Settings {
     integer_scaling: bool,
     /// [mods] enabled and dump.
     mods_enabled: bool,
-    mods_dump: bool,
     fullscreen: bool,
     /// Empty: the default card in memcards/ in the folder of the player's
     /// files (paths.rs).
@@ -316,7 +315,6 @@ impl Settings {
             crt: flag("video", "crt", false),
             integer_scaling: flag("video", "integer_scaling", false),
             mods_enabled: flag("mods", "enabled", true),
-            mods_dump: flag("mods", "dump", false),
             fullscreen: flag("video", "fullscreen", false),
             cards: [text("memcard", "slot1"), text("memcard", "slot2")],
             controller: get("input", "controller")
@@ -376,7 +374,10 @@ impl Settings {
         doc["video"]["crt"] = value(self.crt);
         doc["video"]["integer_scaling"] = value(self.integer_scaling);
         doc["mods"]["enabled"] = value(self.mods_enabled);
-        doc["mods"]["dump"] = value(self.mods_dump);
+        // Dumping while playing is gone: the extract saves everything.
+        if let Some(mods) = doc["mods"].as_table_mut() {
+            mods.remove("dump");
+        }
         doc["video"]["fullscreen"] = value(self.fullscreen);
         doc["input"]["controller"] = value(if self.controller.is_empty() { "auto" } else { self.controller.as_str() });
         doc["input"]["vibration"] = value(self.vibration);
@@ -1276,15 +1277,6 @@ impl Launcher {
         let lang = self.lang();
         ui.heading(lang.t("Mods", "Mods"));
         self.focus.checkbox(ui, &mut self.edit.mods_enabled, lang.t("Use mods", "Usar mods"), true);
-        self.focus.checkbox(
-            ui,
-            &mut self.edit.mods_dump,
-            lang.t(
-                "Save the game's pictures, textures and music while playing (for making mods)",
-                "Salvar as imagens, texturas e músicas do jogo enquanto joga (para criar mods)",
-            ),
-            true,
-        );
         if self.focus.button(ui, lang.t("Open the mods folder", "Abrir a pasta de mods"), true) {
             let dir = crate::mods::mods_dir();
             let _ = std::fs::create_dir_all(&dir);

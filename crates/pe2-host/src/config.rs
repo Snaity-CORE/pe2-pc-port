@@ -25,8 +25,8 @@ pub struct Config {
 pub struct Mods {
     /// Use the mods in the data folder's mods/ (default on).
     pub enabled: Option<bool>,
-    /// Save what the game shows (backgrounds) in dumps/, for making mods
-    /// (default off).
+    /// No longer used (the extract saves everything mods replace); read so
+    /// settings that still have it load.
     pub dump: Option<bool>,
 }
 

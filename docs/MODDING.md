@@ -37,7 +37,7 @@ The launcher's **Mods** screen lists the installed mods, turns each on or
 off and sets their order (higher in the list wins), writing `enabled` and
 `priority` into each `mod.toml` and keeping the rest of the file. It also
 turns all mods off (`[mods] enabled = false` in `pe2.toml`, or `PE2_MODS=0`),
-turns dumping on, and opens the mods folder. Changes apply when the game
+extracts the game's files (see below), and opens the mods folder. Changes apply when the game
 starts; its log lists the mods it uses.
 
 ## Backgrounds and full-screen pictures
@@ -109,9 +109,6 @@ each one asset. A sheet is known by a hash of its contents: its file name is
    - The rest (about 55 sheets: cameras' pieces that no sprite table draws,
      drawn by rooms' own code; the credits) comes out in grey, each texel by
      its number.
-
-   With dumping on, playing also colours sheets as the game draws them,
-   which can fill in those.
 2. Make your version, at any multiple of the sheet's size (4x: 1024 wide
    for a 256-texel sheet), and save it as
    `mods/<your mod>/textures/<same name>.png`.
@@ -122,16 +119,16 @@ What to know:
   enemy in two colours): `<sheet>.png` is drawn whichever the palette.
   `<sheet>-<palette>.png` (with a palette's hash) replaces it for that
   palette only.
-- **Depth.** Whether a sheet's texels are 4 or 8 bits comes from its
-  palette when its file has one; otherwise the extract guesses (right about
-  94% of the time; a wrong guess shows as noise, at the other width).
-  Playing corrects it: the dump is remade at the depth the game draws it
-  with.
+- **Depth.** Whether a sheet's texels are 4 or 8 bits comes from the
+  palette or the sprites that colour it; for the grey ones the extract
+  guesses (a wrong guess shows as noise, at the other width). With
+  `PE2_TRACE=textures` the game's log names each sheet as it is drawn, with
+  its depth.
 - **Transparency.** Your picture's transparency is used: pixels less than
   half opaque are not drawn. Whether the rest blends (semi-transparency)
   still follows the game's own texture.
 - **Hardware renderer.** As with backgrounds, replacements show with the
-  graphics card renderer; dumping needs it too.
+  graphics card renderer.
 
 ## Music
 

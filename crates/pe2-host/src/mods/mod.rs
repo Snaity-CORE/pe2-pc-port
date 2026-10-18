@@ -1,5 +1,6 @@
-//! Mods: folders of the player's files that change what the game shows, and
-//! dumping what the game shows so mods can be made (docs/MODDING.md).
+//! Mods: folders of the player's files that change what the game shows
+//! (docs/MODDING.md); what they replace is extracted from the discs
+//! (files.rs, `pe2 --extract`).
 //!
 //! Mods live in `mods/<name>/` in the data folder (paths.rs), each with an
 //! optional `mod.toml` (name, author, version, priority, enabled). Assets
@@ -11,7 +12,7 @@
 //! dialogue.rs and translate.rs; textures: runtime/gpu/textures.rs.
 //! Backgrounds and full-screen pictures, as `backgrounds/<hash>.png`, where
 //! the hash is `screen_hash` of the 320x240 (or so) image the game sends to
-//! the GPU. With `[mods] dump`, each such image is saved once as
+//! the GPU; the extract saves each one the discs hold as
 //! `dumps/backgrounds/<hash>.png`.
 
 use std::collections::HashMap;
@@ -123,15 +124,6 @@ pub fn start(discs: &[PathBuf]) {
 /// else on.
 fn enabled() -> bool {
     std::env::var("PE2_MODS").ok().map(|v| v.trim() != "0").or(crate::config::get().mods.enabled).unwrap_or(true)
-}
-
-/// Whether what the game shows is dumped: PE2_DUMP=0/1, else pe2.toml's
-/// [mods] dump, else off.
-pub fn dumping() -> bool {
-    static ON: OnceLock<bool> = OnceLock::new();
-    *ON.get_or_init(|| {
-        std::env::var("PE2_DUMP").ok().map(|v| v.trim() != "0").or(crate::config::get().mods.dump).unwrap_or(false)
-    })
 }
 
 /// A 64-bit FNV-1a hash: stable across builds and versions, as file names
@@ -278,41 +270,9 @@ pub fn texture(key: TextureKey) -> Option<Arc<Picture>> {
 }
 
 /// Whether anything here wants to know the textures drawn: mods with
-/// textures, or dumping.
+/// textures.
 pub fn wants_textures() -> bool {
-    dumping() || !textures().files.is_empty()
-}
-
-/// Where texture `key`'s dump is.
-fn texture_dump_path(key: TextureKey) -> PathBuf {
-    crate::paths::user_file("dumps").join("textures").join(format!("{}.png", texture_name(key)))
-}
-
-/// Texture `key`'s dump as saved before (size, RGBA), if there is one.
-pub fn read_texture_dump(key: TextureKey) -> Option<(u32, u32, Vec<u8>)> {
-    let p = read_png(&texture_dump_path(key), true).ok()?;
-    Some((p.width, p.height, p.rgba))
-}
-
-/// Saves texture `key`'s dump (`w` x `h` RGBA), on a thread of its own,
-/// over what was there.
-pub fn save_texture_dump(key: TextureKey, w: u32, h: u32, rgba: Vec<u8>) {
-    let path = texture_dump_path(key);
-    std::thread::spawn(move || {
-        if let Some(dir) = path.parent() {
-            let _ = std::fs::create_dir_all(dir);
-        }
-        let written = std::fs::File::create(&path).map_err(|e| e.to_string()).and_then(|file| {
-            let mut enc = png::Encoder::new(std::io::BufWriter::new(file), w, h);
-            enc.set_color(png::ColorType::Rgba);
-            enc.set_depth(png::BitDepth::Eight);
-            let mut writer = enc.write_header().map_err(|e| e.to_string())?;
-            writer.write_image_data(&rgba).map_err(|e| e.to_string())
-        });
-        if let Err(err) = written {
-            eprintln!("pe2: dump {}: {err}", path.display());
-        }
-    });
+    !textures().files.is_empty()
 }
 
 /// A PNG as RGBA (any colour type or depth png can expand to 8 bits),

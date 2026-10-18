@@ -15,15 +15,6 @@
 //! (drawing, copies, fills), so palettes and drawing next to textures
 //! leave them be, and a primitive is replaced only where all it reads was
 //! loaded.
-//!
-//! With dumping on, each sheet a primitive draws from is saved as
-//! `dumps/textures/<sheet>.png`: the whole sheet through the first palette
-//! it is drawn with (unless its file gave it one, or an earlier dump
-//! exists), and where primitives drew it, with their own palettes, growing
-//! as more is drawn.
-
-use std::collections::HashMap;
-use std::time::{Duration, Instant};
 
 use super::raster::{DrawState, Shading, Vram};
 use crate::mods::sheets::{self, PIECE_ROWS};
@@ -36,9 +27,6 @@ const PIECES: i32 = ROWS / PIECE_ROWS as i32;
 /// Image transfers at least this large are screen images (backgrounds,
 /// pictures), which mods replace whole (mods::background).
 const SCREEN: (i32, i32) = (256, 192);
-
-/// A growing dump is saved again at most this often.
-const RESAVE: Duration = Duration::from_secs(1);
 
 const FNV_OFFSET: u64 = 0xCBF2_9CE4_8422_2325;
 
@@ -73,20 +61,6 @@ pub struct Found {
     pub parts: Vec<Part>,
 }
 
-/// A sheet being dumped: its depth, its picture so far (RGBA), the texels
-/// drawn with their own palettes, whether the whole sheet has colours (a
-/// palette, not grey), whether it changed since it was saved, and when it
-/// was.
-struct Dump {
-    depth: u32,
-    width: usize,
-    rgba: Vec<u8>,
-    exact: Vec<bool>,
-    coloured: bool,
-    changed: bool,
-    saved: Option<Instant>,
-}
-
 pub struct Tracker {
     /// Per row, a bit per column: loaded by an image transfer.
     loaded: Vec<u16>,
@@ -94,8 +68,6 @@ pub struct Tracker {
     pieces: Vec<Option<Piece>>,
     /// Palette hashes by place and size, while unchanged.
     palettes: Vec<(i32, i32, i32, u64)>,
-    /// Sheets being dumped, by catalog index.
-    dumps: HashMap<u32, Dump>,
 }
 
 impl Default for Tracker {
@@ -104,7 +76,6 @@ impl Default for Tracker {
             loaded: vec![0; ROWS as usize],
             pieces: vec![None; (COLUMNS * PIECES) as usize],
             palettes: Vec::new(),
-            dumps: HashMap::new(),
         }
     }
 }
@@ -254,78 +225,7 @@ impl Tracker {
                 }
             }
         }
-        if crate::mods::dumping() {
-            for part in &parts {
-                self.dump(vram, part, depth, (u0, v0, u1, v1), (px, py), (sh.clut_x, sh.clut_y));
-            }
-        }
         Some(Found { depth, palette, parts })
-    }
-
-    /// Colours into sheet `part`'s dump the texels `uv` of the page at
-    /// (`px`, `py`) drew with the palette at (`cx`, `cy`), and saves it if
-    /// they changed it.
-    fn dump(
-        &mut self,
-        vram: &Vram,
-        part: &Part,
-        depth: u32,
-        uv: (i32, i32, i32, i32),
-        (px, py): (i32, i32),
-        (cx, cy): (i32, i32),
-    ) {
-        let Some(catalog) = sheets::catalog() else { return };
-        let Some(sheet) = catalog.sheets.get(part.sheet as usize) else { return };
-        let per = [4, 2, 1][depth as usize];
-        let d = self.dumps.entry(part.sheet).or_insert_with(|| new_dump(sheet, depth));
-        if d.depth != depth {
-            *d = new_dump(sheet, depth);
-        }
-        let height = d.rgba.len() / 4 / d.width;
-        // Grey until now: the whole sheet through this palette.
-        if !d.coloured {
-            let n = [16, 256, 0][depth as usize];
-            let palette: Vec<u16> = (0..n).map(|i| vram.get(cx + i, cy)).collect();
-            let (_, all) = sheet.through(depth, &palette);
-            for (i, exact) in d.exact.iter().enumerate() {
-                if !exact {
-                    d.rgba[i * 4..i * 4 + 4].copy_from_slice(&all[i * 4..i * 4 + 4]);
-                }
-            }
-            d.coloured = true;
-            d.changed = true;
-        }
-        // The part's texels: its column of the page.
-        let first = part.column as i32 * 64 * per;
-        let (u0, u1) = (uv.0.max(first), uv.2.min(first + 64 * per - 1));
-        for v in uv.1..=uv.3 {
-            let sy = py + v - part.top;
-            if sy < 0 || sy as usize >= height {
-                continue;
-            }
-            for u in u0..=u1 {
-                let word = vram.get(px + u / per, py + v);
-                let t = match depth {
-                    0 => vram.get(cx + i32::from((word >> ((u % 4) * 4)) & 0xF), cy),
-                    1 => vram.get(cx + i32::from((word >> ((u % 2) * 8)) & 0xFF), cy),
-                    _ => word,
-                };
-                let c = |s: u16| ((t >> s & 31) << 3) as u8;
-                let rgba = [c(0), c(5), c(10), if t == 0 { 0 } else { 255 }];
-                let texel = sy as usize * d.width + (u - first) as usize;
-                d.exact[texel] = true;
-                let at = texel * 4;
-                if d.rgba[at..at + 4] != rgba {
-                    d.rgba[at..at + 4].copy_from_slice(&rgba);
-                    d.changed = true;
-                }
-            }
-        }
-        if d.changed && d.saved.is_none_or(|t| t.elapsed() >= RESAVE) {
-            d.changed = false;
-            d.saved = Some(Instant::now());
-            crate::mods::save_texture_dump((sheet.hash, 0), d.width as u32, height as u32, d.rgba.clone());
-        }
     }
 
     fn palette(&mut self, vram: &Vram, x: i32, y: i32, n: i32) -> u64 {
@@ -336,22 +236,4 @@ impl Tracker {
         self.palettes.push((x, y, n, h));
         h
     }
-}
-
-/// A sheet's dump to start from: what an earlier session saved (or the
-/// extract, if through its file's palette), if of this depth's size, else
-/// the sheet through its file's palette, or in grey.
-fn new_dump(sheet: &sheets::Sheet, depth: u32) -> Dump {
-    let (width, first) = sheet.picture(depth);
-    let height = sheet.rows.len();
-    let given = sheet.palette.as_ref().is_some_and(|p| p.len() == [16, 256, 0][depth as usize]);
-    let (rgba, coloured) = match crate::mods::read_texture_dump((sheet.hash, 0)) {
-        // An earlier dump in grey (not of a given palette) gets coloured.
-        Some((w, h, rgba)) if (w as usize, h as usize) == (width, height) => {
-            let grey = rgba.as_chunks::<4>().0.iter().all(|p| p[3] == 0 || (p[0] == p[1] && p[1] == p[2]));
-            (rgba, given || !grey)
-        }
-        _ => (first, given || depth == 2),
-    };
-    Dump { depth, width, exact: vec![false; width * height], rgba, coloured, changed: false, saved: None }
 }

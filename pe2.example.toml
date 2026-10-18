@@ -81,10 +81,6 @@ scale = 4
 [mods]
 # Mods are folders in the data folder's mods/ (see docs/MODDING.md).
 # enabled = true
-# Save each background and full-screen picture the game shows, once, as
-# dumps/backgrounds/<hash>.png in the data folder: the starting point for
-# a mod's replacements.
-# dump = false
 
 [memcard]
 # Raw 128 KB memory card images (DuckStation's .mcd files work). Default:
