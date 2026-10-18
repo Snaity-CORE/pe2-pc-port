@@ -350,21 +350,29 @@ pub fn is_glyph(code: u16) -> bool {
 /// The resources of a dialogue bundle of `kind` (2: images, 3: data), in
 /// order.
 pub fn resources(payload: &[u8], kind: u8) -> Vec<&[u8]> {
+    slots(payload).into_iter().filter(|s| s.1 == kind).map(|s| s.2).collect()
+}
+
+/// A bundle's resources with their slots: the place of each in its
+/// directory, which is where the game keeps it (fs.c D_8006C338), its kind
+/// and its contents.
+pub fn slots(payload: &[u8]) -> Vec<(usize, u8, &[u8])> {
     const DIRECTORY: usize = 0x7F0;
-    let entries: Vec<(u8, usize, usize)> = (0..50)
+    let entries: Vec<(usize, u8, usize, usize)> = (0..50)
         .filter_map(|k| {
             let e = payload.get(k * 16..k * 16 + 16)?;
             if e[0] == 0 {
                 return None;
             }
-            Some((e[0], u32le(e, 4)? as usize, u32le(e, 8)? as usize))
+            Some((k, e[0], u32le(e, 4)? as usize, u32le(e, 8)? as usize))
         })
         .collect();
-    let Some(base) = entries.iter().map(|e| e.2).min() else { return Vec::new() };
+    let Some(base) = entries.iter().map(|e| e.3).min() else { return Vec::new() };
     entries
         .iter()
-        .filter(|e| e.0 == kind)
-        .filter_map(|&(_, size, dest)| payload.get(DIRECTORY + dest - base..DIRECTORY + dest - base + size))
+        .filter_map(|&(k, kind, size, dest)| {
+            Some((k, kind, payload.get(DIRECTORY + dest - base..DIRECTORY + dest - base + size)?))
+        })
         .collect()
 }
 

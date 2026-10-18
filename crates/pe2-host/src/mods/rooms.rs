@@ -7,16 +7,16 @@
 //! gameplay/sprites.h, 20 bytes each): a rectangle of a texture page, the
 //! palette it is drawn with, and where on the screen. The game finds a
 //! view's table as the extract does (`view_tables`), through its stage's
-//! map overlay into the room's overlay. The palettes are blocks of
-//! 256-colour rows the room's dialogue bundle loads (from VRAM row 255), one
-//! per camera. So every sprite tells which palette colours which texels of
-//! which sheet, and the extract colours sheets so, exactly; the block is
-//! the one whose colours, placed where the sprites are drawn, match the
-//! camera's background (the pieces are cut from it).
+//! map overlay into the room's overlay; the view's index there is also its
+//! camera's file, and the slot of its palettes (a block of 256-colour rows
+//! from VRAM row 255) in the room's bundle. So every sprite tells which
+//! palette colours which texels of which sheet, and the extract colours
+//! sheets so, exactly. The sprites are checked against the camera's
+//! background, which they are cut from (unless the room changed since).
 
 use std::collections::{BTreeMap, HashMap};
 
-use super::dialogue::{Column, Sources, lzss, picture, resources};
+use super::dialogue::{Column, Sources, lzss, picture, slots};
 use super::sheets::{Catalog, sheet_hash};
 
 /// A sheet coloured from the sprites that draw it: its depth, width in
@@ -42,6 +42,8 @@ struct Sprite {
     u: i32,
     v: i32,
     semi: bool,
+    /// The colour the GPU multiplies its texels by (128: as they are).
+    shade: [u8; 3],
 }
 
 fn i16le(b: &[u8], at: usize) -> i32 {
@@ -69,6 +71,7 @@ fn any_sprite(r: &[u8]) -> Option<Sprite> {
         u: i32::from(r[14]),
         v: i32::from(r[15]),
         semi: r[19] & 2 != 0,
+        shade: [r[16], r[17], r[18]],
     })
 }
 
@@ -134,10 +137,11 @@ impl Memory {
 }
 
 /// The sprite tables of a room's views, as the game finds them: its
-/// stage's map overlay maps the room's view to one of its area's sprite
-/// views, which the room's overlay holds (gameplay/sprite_link.c
-/// Gp_LinkViewSprts). By view (1-based), for `folder` (`stage<s>/<area *
-/// 100 + room>`).
+/// stage's map overlay maps the room's view to an index (gameplay/
+/// sprite_link.c Gp_GetViewIndex), which picks one of its area's sprite
+/// views, held by the room's overlay (Gp_LinkViewSprts). By index
+/// (1-based; it is also the camera's file, and its palettes' place in the
+/// room's bundle), for `folder` (`stage<s>/<area * 100 + room>`).
 fn view_tables(sources: &Sources, folder: &str) -> Option<BTreeMap<u32, Vec<Sprite>>> {
     let (stage, place) = folder.strip_prefix("stage")?.split_once('/')?;
     let (stage, place) = (stage.parse::<usize>().ok()?, place.parse::<u32>().ok()?);
@@ -160,9 +164,10 @@ fn view_tables(sources: &Sources, folder: &str) -> Option<BTreeMap<u32, Vec<Spri
     for v in 1..=u32::from(count) {
         let index = u32::from(*memory.bytes(map + v - 1, 1)?.first()?);
         if index > 0
+            && !out.contains_key(&index)
             && let Some(table) = memory.view(views + (index - 1) * 12)
         {
-            out.insert(v, table);
+            out.insert(index, table);
         }
     }
     Some(out)
@@ -240,7 +245,9 @@ fn walk(
                 {
                     let b = bg[(sy * 320 + sx) as usize];
                     for sh in [0, 5, 10] {
-                        let diff = i32::from(b >> sh & 31) - i32::from(colour >> sh & 31);
+                        let k = (sh / 5) as usize;
+                        let shaded = (i32::from(colour >> sh & 31) * i32::from(s.shade[k]) / 128).min(31);
+                        let diff = i32::from(b >> sh & 31) - shaded;
                         error += u64::from(diff.unsigned_abs());
                     }
                     samples += 1;
@@ -269,11 +276,20 @@ pub fn paint(sources: &Sources, catalog: &Catalog) -> (HashMap<u32, Painted>, us
     for (folder, mut files) in folders {
         files.sort();
         let main = format!("{folder}/file0");
-        let blocks: Vec<Block> = sources
+        // The room's palettes: its bundle's images, by slot (the game keeps
+        // the last bundle loaded).
+        let blocks: BTreeMap<usize, Block> = sources
             .bundles
             .iter()
-            .filter(|b| b.0 == main)
-            .flat_map(|b| resources(&b.2, 2).into_iter().filter_map(image).collect::<Vec<_>>())
+            .rfind(|b| b.0 == main)
+            .map(|b| slots(&b.2).into_iter().filter(|s| s.1 == 2).filter_map(|s| Some((s.0, image(s.2)?))).collect())
+            .unwrap_or_default();
+        // Palettes a view without its own keeps from before: the room's
+        // other blocks, and those its package loads (`.pe2clut`).
+        let kept: Vec<Block> = blocks
+            .values()
+            .cloned()
+            .chain(sources.palettes.get(&main).into_iter().flatten().filter_map(|c| image(c)))
             .collect();
         let cameras: Vec<Camera> = files
             .iter()
@@ -291,43 +307,36 @@ pub fn paint(sources: &Sources, catalog: &Catalog) -> (HashMap<u32, Painted>, us
                     .and_then(|b| super::files::background_pixels(b)),
             })
             .collect();
-        // The tables and their cameras as the game finds them: view N is
-        // the folder's file N.
+        // The tables, cameras and palettes as the game finds them: a view's
+        // index is its camera's file and its palettes' slot, the ones
+        // cd_loading.c Gp_LoadViewImages loads.
         let Some(views) = view_tables(sources, &folder) else {
             if crate::runtime::trace("rooms") {
                 eprintln!("[rooms] {folder}: no view tables");
             }
             continue;
         };
-        let tables: Vec<(Vec<Sprite>, usize)> = views
-            .into_iter()
-            .filter_map(|(v, table)| {
-                let key = format!("{folder}/file{v}");
-                Some((table, cameras.iter().position(|c| c.key == key)?))
-            })
-            .collect();
-        for (table, c) in &tables {
-            let c = *c;
-            // Its palettes: the block where its sprites match the
-            // background best; when nothing tells (semi-transparent
-            // pieces), its camera's place in the order.
-            let mut best: Option<(u64, usize)> = None;
-            for (b, block) in blocks.iter().enumerate() {
-                let (e, n) = walk(table, &cameras[c], block, 3, |_, _, _, _, _, _| {});
-                if n < 20 {
-                    continue;
+        for (index, table) in &views {
+            let key = format!("{folder}/file{index}");
+            let Some(c) = cameras.iter().position(|c| c.key == key) else { continue };
+            // A view without palettes of its own keeps those already loaded
+            // (Gp_LoadViewImages loads none): the ones its sprites match the
+            // background best with.
+            let block = match blocks.get(&(*index as usize - 1)) {
+                Some(block) => block,
+                None => {
+                    let best = kept
+                        .iter()
+                        .map(|block| (walk(table, &cameras[c], block, 3, |_, _, _, _, _, _| {}), block))
+                        .filter(|((_, n), _)| *n >= 20)
+                        .min_by_key(|((e, n), _)| e * 100 / n);
+                    match best {
+                        Some((_, block)) => block,
+                        None => continue,
+                    }
                 }
-                let score = e * 100 / n;
-                if best.is_none_or(|(s, _)| score < s || (score == s && b == c)) {
-                    best = Some((score, b));
-                }
-            }
-            let b = match best {
-                Some((_, b)) => b,
-                None if c < blocks.len() => c,
-                None => continue,
             };
-            let (e, n) = walk(table, &cameras[c], &blocks[b], 1, |sheet, depth, width, height, texel, colour| {
+            let (e, n) = walk(table, &cameras[c], block, 1, |sheet, depth, width, height, texel, colour| {
                 let p =
                     painted.entry(sheet).or_insert_with(|| Painted { depth, width, rgba: vec![0; width * height * 4] });
                 if p.depth == depth {
