@@ -106,7 +106,7 @@ each one asset. A sheet is known by a hash of its contents: its file name is
      palettes, one per column of their pictures.
    - **Rooms' dialogue fonts**: with the palette the game's code draws them
      with.
-   - The rest (about 75 sheets: cameras' pieces that no sprite table draws,
+   - The rest (about 55 sheets: cameras' pieces that no sprite table draws,
      drawn by rooms' own code; the credits) comes out in grey, each texel by
      its number.
 

@@ -141,8 +141,11 @@ impl Memory {
 /// sprite_link.c Gp_GetViewIndex), which picks one of its area's sprite
 /// views, held by the room's overlay (Gp_LinkViewSprts). By index
 /// (1-based; it is also the camera's file, and its palettes' place in the
-/// room's bundle), for `folder` (`stage<s>/<area * 100 + room>`).
-fn view_tables(sources: &Sources, folder: &str) -> Option<BTreeMap<u32, Vec<Sprite>>> {
+/// room's bundle), for `folder` (`stage<s>/<area * 100 + room>`), with
+/// whether the room's map has it from the start. Scripts change the maps
+/// (a room after an event): the area's views for the `others` indices, of
+/// cameras the map does not have, come too.
+fn view_tables(sources: &Sources, folder: &str, others: &[u32]) -> Option<BTreeMap<u32, (Vec<Sprite>, bool)>> {
     let (stage, place) = folder.strip_prefix("stage")?.split_once('/')?;
     let (stage, place) = (stage.parse::<usize>().ok()?, place.parse::<u32>().ok()?);
     let (area, room) = (place / 100, place % 100);
@@ -167,7 +170,15 @@ fn view_tables(sources: &Sources, folder: &str) -> Option<BTreeMap<u32, Vec<Spri
             && !out.contains_key(&index)
             && let Some(table) = memory.view(views + (index - 1) * 12)
         {
-            out.insert(index, table);
+            out.insert(index, (table, true));
+        }
+    }
+    for &index in others {
+        if index > 0
+            && !out.contains_key(&index)
+            && let Some(table) = memory.view(views + (index - 1) * 12)
+        {
+            out.insert(index, (table, false));
         }
     }
     Some(out)
@@ -310,13 +321,14 @@ pub fn paint(sources: &Sources, catalog: &Catalog) -> (HashMap<u32, Painted>, us
         // The tables, cameras and palettes as the game finds them: a view's
         // index is its camera's file and its palettes' slot, the ones
         // cd_loading.c Gp_LoadViewImages loads.
-        let Some(views) = view_tables(sources, &folder) else {
+        let numbers: Vec<u32> = files.iter().map(|(n, _)| *n).collect();
+        let Some(views) = view_tables(sources, &folder, &numbers) else {
             if crate::runtime::trace("rooms") {
                 eprintln!("[rooms] {folder}: no view tables");
             }
             continue;
         };
-        for (index, table) in &views {
+        for (index, (table, mapped)) in &views {
             let key = format!("{folder}/file{index}");
             let Some(c) = cameras.iter().position(|c| c.key == key) else { continue };
             // A view without palettes of its own keeps those already loaded
@@ -336,6 +348,18 @@ pub fn paint(sources: &Sources, catalog: &Catalog) -> (HashMap<u32, Painted>, us
                     }
                 }
             };
+            // A view the map does not have at first is taken only when its
+            // sprites are its camera's (they match its background).
+            if !mapped {
+                let (e, n) = walk(table, &cameras[c], block, 3, |_, _, _, _, _, _| {});
+                let matches = n >= 20 && e / n <= 6;
+                if crate::runtime::trace("rooms") {
+                    eprintln!("[rooms] {key}: outside the map, {} sprites, matches {matches}", table.len());
+                }
+                if !matches {
+                    continue;
+                }
+            }
             let (e, n) = walk(table, &cameras[c], block, 1, |sheet, depth, width, height, texel, colour| {
                 let p =
                     painted.entry(sheet).or_insert_with(|| Painted { depth, width, rgba: vec![0; width * height * 4] });
