@@ -385,10 +385,10 @@ fn view_tables(sources: &Sources, folder: &str, others: &[u32]) -> Option<BTreeM
 }
 
 /// A block of palettes: where in VRAM (x, y), its width, its colours.
-type Block = (i32, i32, usize, Vec<u16>);
+pub(super) type Block = (i32, i32, usize, Vec<u16>);
 
 /// An image chunk (x, y, height, width, then LZSS colours) as a block.
-fn image(chunk: &[u8]) -> Option<Block> {
+pub(super) fn image(chunk: &[u8]) -> Option<Block> {
     if chunk.len() < 16 {
         return None;
     }
@@ -471,7 +471,7 @@ fn walk(
 
 /// Colours a texel of a sheet (sheet, depth, width, height, texel, colour)
 /// in `painted`, starting the sheet transparent.
-fn colour_texel(
+pub(super) fn colour_texel(
     painted: &mut HashMap<u32, Painted>,
     source: &'static str,
     (sheet, depth, width, height, texel, colour): (u32, u32, usize, usize, usize, u16),

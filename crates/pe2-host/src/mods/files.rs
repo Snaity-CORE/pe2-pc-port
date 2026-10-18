@@ -517,6 +517,9 @@ pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path) -> std::io::Result<()>
     for (sheet, page) in catalog.glyph_pages(&dialogue) {
         painted.entry(sheet).or_insert(page);
     }
+    for (sheet, credit) in super::credits::paint(&dialogue, &catalog) {
+        painted.entry(sheet).or_insert(credit);
+    }
     let coloured = super::sheets::extract(&catalog, &painted, &textures)?;
     eprintln!("pe2: extract: {} texture sheets ({coloured} in colour) in {}", catalog.sheets.len(), textures.display());
     eprintln!(

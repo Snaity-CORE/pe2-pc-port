@@ -21,6 +21,7 @@ use std::sync::{Arc, Mutex, OnceLock};
 
 use serde::Deserialize;
 
+pub mod credits;
 pub mod dialogue;
 pub mod files;
 pub mod movies;
