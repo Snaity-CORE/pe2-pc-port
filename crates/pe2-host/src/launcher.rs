@@ -190,7 +190,9 @@ impl Focus {
                     to = at.checked_sub(1).unwrap_or(options.len() - 1);
                 }
                 let name = options.get(at).map_or("", |(_, n)| n.as_str());
-                ui.add_sized([230.0, 20.0], egui::Label::new(egui::RichText::new(name).strong()));
+                // As wide as there is room for, up to 230, with the arrow.
+                let width = (ui.available_width() - 48.0).clamp(120.0, 230.0);
+                ui.add_sized([width, 20.0], egui::Label::new(egui::RichText::new(name).strong()).truncate());
                 if ui.small_button("▶").clicked() {
                     to = (at + 1) % options.len();
                 }
@@ -209,6 +211,60 @@ impl Focus {
             *value = options[to].0.clone();
         }
     }
+}
+
+impl Focus {
+    /// A row of tabs, `value` the one shown: one item, whose left and right
+    /// (or A, for the next) change the tab.
+    fn tabs(&mut self, ui: &mut egui::Ui, value: &mut usize, names: &[&str]) {
+        let mut to = *value;
+        let row = ui.horizontal(|ui| {
+            for (k, name) in names.iter().enumerate() {
+                let text = egui::RichText::new(*name).size(16.0);
+                let text = if k == *value { text.color(TEAL).strong() } else { text };
+                let tab = ui.add(egui::Button::selectable(k == *value, text).min_size(egui::vec2(150.0, 32.0)));
+                if tab.clicked() {
+                    to = k;
+                }
+            }
+        });
+        if self.item(ui, &row.response, true) && !names.is_empty() {
+            if std::mem::take(&mut self.left) {
+                to = value.checked_sub(1).unwrap_or(names.len() - 1);
+            }
+            if std::mem::take(&mut self.right) || std::mem::take(&mut self.accept) {
+                to = (*value + 1) % names.len();
+            }
+        }
+        *value = to;
+    }
+}
+
+/// Pushes what follows (a screen's Save and Cancel) to the bottom of the
+/// panel.
+fn to_bottom(ui: &mut egui::Ui) {
+    let rest = ui.available_height() - 48.0;
+    if rest > 0.0 {
+        ui.add_space(rest);
+    }
+    ui.separator();
+}
+
+/// A group of a screen's settings: a framed card with its title in the
+/// accent colour, and room between its rows.
+fn card(ui: &mut egui::Ui, title: &str, add: impl FnOnce(&mut egui::Ui)) {
+    egui::Frame::new()
+        .fill(egui::Color32::from_rgba_unmultiplied(255, 255, 255, 6))
+        .stroke(egui::Stroke::new(1.0, TEAL_DEEP))
+        .corner_radius(8.0)
+        .inner_margin(egui::Margin::symmetric(16, 10))
+        .show(ui, |ui| {
+            ui.set_width(ui.available_width());
+            ui.label(egui::RichText::new(title).color(TEAL).size(16.0).strong());
+            ui.add_space(4.0);
+            ui.spacing_mut().item_spacing.y = 10.0;
+            add(ui);
+        });
 }
 
 /// The main screen's buttons.
@@ -443,6 +499,8 @@ struct Launcher {
     /// button waiting for a key or controller button (controller, index).
     pad_tab: bool,
     capture: Option<(bool, usize)>,
+    /// Settings: the tab shown (general, graphics, discs and cards).
+    settings_tab: usize,
     /// Controllers, for their names and to catch their buttons.
     gilrs: Option<gilrs::Gilrs>,
     art: Option<Art>,
@@ -499,6 +557,7 @@ impl Launcher {
             running: Arc::new(AtomicBool::new(false)),
             message: None,
             pad_tab: false,
+            settings_tab: 0,
             capture: None,
             gilrs: gilrs::Gilrs::new().ok(),
             art,
@@ -830,14 +889,16 @@ impl Launcher {
     fn files(&mut self, ui: &mut egui::Ui, cards: bool) {
         let lang = self.lang();
         for d in 0..2 {
-            ui.label(format!("{} {}", lang.t("Disc", "Disco"), d + 1));
+            ui.horizontal(|ui| {
+                ui.label(format!("{} {}", lang.t("Disc", "Disco"), d + 1));
+                ui.add_space(12.0);
+                match &self.checks[d] {
+                    Some(Ok(())) => ui.colored_label(egui::Color32::LIGHT_GREEN, lang.t("Found.", "Encontrado.")),
+                    Some(Err(e)) => ui.colored_label(egui::Color32::LIGHT_RED, e.as_str()),
+                    None => ui.label(""),
+                };
+            });
             self.path_row(ui, None, Some(d));
-            match &self.checks[d] {
-                Some(Ok(())) => ui.colored_label(egui::Color32::LIGHT_GREEN, lang.t("Found.", "Encontrado.")),
-                Some(Err(e)) => ui.colored_label(egui::Color32::LIGHT_RED, e.as_str()),
-                None => ui.label(""),
-            };
-            ui.add_space(6.0);
         }
         if cards {
             self.cards(ui);
@@ -853,12 +914,32 @@ impl Launcher {
         }
     }
 
-    fn graphics(&mut self, ui: &mut egui::Ui) {
+    /// The picture's settings: resolution, renderer, look, window.
+    fn picture(&mut self, ui: &mut egui::Ui) {
         let lang = self.lang();
         let (f, e) = (&mut self.focus, &mut self.edit);
         let scales: Vec<(i64, String)> = (1..=8).map(|s| (s, format!("{s}x ({}x{})", 320 * s, 240 * s))).collect();
         f.choice(ui, lang.t("Resolution", "Resolução"), &mut e.scale, &scales, true);
         f.checkbox(ui, &mut e.hardware, lang.t("Graphics card renderer", "Renderizar pela placa de vídeo"), true);
+        f.checkbox(ui, &mut e.crt, lang.t("CRT look (scanlines)", "Visual de TV de tubo (linhas)"), e.hardware);
+        f.checkbox(
+            ui,
+            &mut e.integer_scaling,
+            lang.t("Integer scaling (sharp, with borders)", "Escala inteira (nítida, com bordas)"),
+            e.hardware,
+        );
+        f.checkbox(
+            ui,
+            &mut e.fullscreen,
+            lang.t("Start in full screen (Alt+Enter toggles)", "Iniciar em tela cheia (Alt+Enter alterna)"),
+            true,
+        );
+    }
+
+    /// What the higher resolutions add: precision, smoothing, motion.
+    fn enhancements(&mut self, ui: &mut egui::Ui) {
+        let lang = self.lang();
+        let (f, e) = (&mut self.focus, &mut self.edit);
         let hi = e.scale > 1;
         f.checkbox(
             ui,
@@ -891,19 +972,6 @@ impl Launcher {
             lang.t("Smooth motion (60 fps)", "Movimento suave (60 fps)"),
             card && e.subpixel,
         );
-        f.checkbox(ui, &mut e.crt, lang.t("CRT look (scanlines)", "Visual de TV de tubo (linhas)"), e.hardware);
-        f.checkbox(
-            ui,
-            &mut e.integer_scaling,
-            lang.t("Integer scaling (sharp, with borders)", "Escala inteira (nítida, com bordas)"),
-            e.hardware,
-        );
-        f.checkbox(
-            ui,
-            &mut e.fullscreen,
-            lang.t("Start in full screen (Alt+Enter toggles)", "Iniciar em tela cheia (Alt+Enter alterna)"),
-            true,
-        );
     }
 
     fn language(&mut self, ui: &mut egui::Ui, label: &str) {
@@ -914,30 +982,39 @@ impl Launcher {
     fn setup_screen(&mut self, ui: &mut egui::Ui, step: u8) {
         let lang = self.lang();
         ui.heading(lang.t("Setup", "Configuração inicial"));
-        ui.label(format!("{} {} / 4", lang.t("Step", "Passo"), step + 1));
-        ui.separator();
+        ui.label(egui::RichText::new(format!("{} {} / 4", lang.t("Step", "Passo"), step + 1)).weak());
+        ui.add_space(10.0);
         match step {
-            0 => {
+            0 => card(ui, lang.t("Welcome", "Boas-vindas"), |ui| {
                 self.language(ui, lang.t("Language", "Idioma"));
-                ui.add_space(8.0);
                 ui.label(lang.t(
                     "You need your own dumps of Parasite Eve II (USA), discs 1 and 2, as .chd or .cue images.",
                     "Você precisa das suas próprias cópias do Parasite Eve II (USA), discos 1 e 2, em imagens .chd ou .cue.",
                 ));
-            }
-            1 => self.files(ui, false),
-            2 => {
+            }),
+            1 => card(ui, lang.t("Discs", "Discos"), |ui| self.files(ui, false)),
+            2 => card(ui, lang.t("Memory cards", "Memory cards"), |ui| {
                 ui.label(lang.t(
                     "Saves go to memory card images. Leave empty for the default ones in the memcards folder of PE2PC's data folder; DuckStation's .mcd cards work too.",
                     "Os saves ficam em imagens de memory card. Deixe vazio para usar as padrão na pasta memcards da pasta de dados do PE2PC; os cartões .mcd do DuckStation também funcionam.",
                 ));
-                ui.add_space(6.0);
                 self.cards(ui);
+            }),
+            _ => {
+                ui.columns(2, |cols| {
+                    card(&mut cols[0], lang.t("Picture", "Imagem"), |ui| self.picture(ui));
+                    card(&mut cols[1], lang.t("Enhancements", "Melhorias"), |ui| self.enhancements(ui));
+                });
             }
-            _ => self.graphics(ui),
         }
-        ui.add_space(12.0);
-        ui.separator();
+        if step == 1 && !self.checks[0].as_ref().is_some_and(|c| c.is_ok()) {
+            ui.add_space(8.0);
+            ui.label(lang.t(
+                "Disc 1 is needed to go on (disc 2 can be added later).",
+                "O disco 1 é necessário para continuar (o disco 2 pode ser adicionado depois).",
+            ));
+        }
+        to_bottom(ui);
         let discs_ok = self.checks[0].as_ref().is_some_and(|c| c.is_ok());
         let ready = self.saved_ready();
         let mut go = None;
@@ -959,12 +1036,6 @@ impl Launcher {
                 go = Some(Screen::Main);
             }
         });
-        if step == 1 && !discs_ok {
-            ui.label(lang.t(
-                "Disc 1 is needed to go on (disc 2 can be added later).",
-                "O disco 1 é necessário para continuar (o disco 2 pode ser adicionado depois).",
-            ));
-        }
         if let Some(screen) = go {
             self.go(screen);
         }
@@ -984,39 +1055,55 @@ impl Launcher {
     fn settings_screen(&mut self, ui: &mut egui::Ui) {
         let lang = self.lang();
         ui.heading(lang.t("Settings", "Configurações"));
-        ui.separator();
+        ui.add_space(6.0);
+        let tabs = [lang.t("General", "Geral"), lang.t("Graphics", "Gráficos"), lang.t("Discs", "Discos")];
+        let mut tab = self.settings_tab;
+        self.focus.tabs(ui, &mut tab, &tabs);
+        self.settings_tab = tab;
+        ui.add_space(10.0);
         // The panel's height, but for the buttons below.
-        egui::ScrollArea::vertical().max_height(ui.available_height() - 64.0).show(ui, |ui| {
-            ui.strong(lang.t("General", "Geral"));
-            self.language(ui, lang.t("Language", "Idioma"));
-            self.focus.checkbox(
-                ui,
-                &mut self.edit.confirm_exit,
-                lang.t("Ask before Esc quits", "Perguntar antes de Esc sair"),
-                true,
-            );
-            ui.horizontal(|ui| {
-                ui.label(lang.t(
-                    "Data folder (settings, saves, screenshots):",
-                    "Pasta de dados (configurações, saves, capturas):",
-                ));
-                if self.focus.button(ui, lang.t("Open", "Abrir"), true) {
-                    let (error, ctx) = (self.launch_error.clone(), ui.ctx().clone());
-                    crate::paths::open_user_dir(move |e| {
-                        *error.lock().unwrap() = Some(e);
-                        ctx.request_repaint();
+        egui::ScrollArea::vertical().max_height(ui.available_height() - 64.0).show(ui, |ui| match tab {
+            0 => {
+                card(ui, lang.t("Launcher", "Launcher"), |ui| {
+                    self.language(ui, lang.t("Language", "Idioma"));
+                    self.focus.checkbox(
+                        ui,
+                        &mut self.edit.confirm_exit,
+                        lang.t("Ask before Esc quits", "Perguntar antes de Esc sair"),
+                        true,
+                    );
+                });
+                ui.add_space(12.0);
+                card(ui, lang.t("Data folder", "Pasta de dados"), |ui| {
+                    ui.label(lang.t(
+                        "Settings, memory cards, screenshots, mods and what the extract saves.",
+                        "Configurações, memory cards, capturas, mods e o que a extração salva.",
+                    ));
+                    ui.horizontal(|ui| {
+                        if self.focus.button(ui, lang.t("Open", "Abrir"), true) {
+                            let (error, ctx) = (self.launch_error.clone(), ui.ctx().clone());
+                            crate::paths::open_user_dir(move |e| {
+                                *error.lock().unwrap() = Some(e);
+                                ctx.request_repaint();
+                            });
+                        }
+                        ui.label(egui::RichText::new(crate::paths::user_dir().display().to_string()).weak());
                     });
-                }
-            });
-            ui.label(egui::RichText::new(crate::paths::user_dir().display().to_string()).weak());
-            ui.add_space(8.0);
-            ui.strong(lang.t("Graphics", "Gráficos"));
-            self.graphics(ui);
-            ui.add_space(8.0);
-            ui.strong(lang.t("Discs and memory cards", "Discos e memory cards"));
-            self.files(ui, true);
+                });
+            }
+            1 => {
+                ui.columns(2, |cols| {
+                    card(&mut cols[0], lang.t("Picture", "Imagem"), |ui| self.picture(ui));
+                    card(&mut cols[1], lang.t("Enhancements", "Melhorias"), |ui| self.enhancements(ui));
+                });
+            }
+            _ => {
+                card(ui, lang.t("Discs", "Discos"), |ui| self.files(ui, false));
+                ui.add_space(12.0);
+                card(ui, lang.t("Memory cards", "Memory cards"), |ui| self.cards(ui));
+            }
         });
-        ui.separator();
+        to_bottom(ui);
         ui.horizontal(|ui| {
             if self.focus.button(ui, lang.t("Save", "Salvar"), true) {
                 self.save();
@@ -1091,79 +1178,101 @@ impl Launcher {
         self.catch(ui.ctx());
         let lang = self.lang();
         ui.heading(lang.t("Controls", "Controles"));
-        let movement = [
-            (false, lang.t("Tank (original)", "Tanque (original)").to_string()),
-            (true, lang.t("Modern (relative to the camera)", "Moderno (relativo à câmera)").to_string()),
-        ];
-        self.focus.choice(ui, lang.t("Movement", "Movimento"), &mut self.edit.modern, &movement, true);
-        let tank = !self.edit.modern;
-        self.focus.checkbox(
-            ui,
-            &mut self.edit.quick_turn,
-            lang.t("Quick turn (back + run)", "Meia-volta rápida (trás + correr)"),
-            tank,
-        );
-        ui.separator();
-        let tabs =
-            [(false, lang.t("Keyboard", "Teclado").to_string()), (true, lang.t("Controller", "Controle").to_string())];
-        let before = self.pad_tab;
-        self.focus.choice(ui, lang.t("Mapping", "Mapeamento"), &mut self.pad_tab, &tabs, self.capture.is_none());
-        if self.pad_tab != before {
+        ui.add_space(6.0);
+        let tab = [lang.t("Keyboard", "Teclado"), lang.t("Controller", "Controle")];
+        let mut at = usize::from(self.pad_tab);
+        if self.capture.is_none() {
+            self.focus.tabs(ui, &mut at, &tab);
+        }
+        if (at == 1) != self.pad_tab {
+            self.pad_tab = at == 1;
             self.capture = None;
         }
-        ui.separator();
-        if self.pad_tab {
-            let names: Vec<String> = self
-                .gilrs
-                .as_ref()
-                .map(|g| g.gamepads().map(|(_, p)| p.name().to_string()).collect())
-                .unwrap_or_default();
-            let mut options = vec![(String::new(), lang.t("Last one used", "O último usado").to_string())];
-            options.extend(names.iter().map(|n| (n.clone(), n.clone())));
-            if !self.edit.controller.is_empty() && !names.contains(&self.edit.controller) {
-                options.push((self.edit.controller.clone(), self.edit.controller.clone()));
-            }
-            self.focus.choice(ui, lang.t("Player 1", "Jogador 1"), &mut self.edit.controller, &options, true);
-            if names.is_empty() {
-                ui.label(lang.t("No controller connected.", "Nenhum controle conectado."));
-            }
-            self.focus.checkbox(ui, &mut self.edit.vibration, lang.t("Vibration", "Vibração"), true);
-        } else {
-            ui.label(
-                lang.t("Esc, P, F9-F12 and Alt keep their own jobs.", "Esc, P, F9-F12 e Alt mantêm suas funções."),
-            );
-        }
-        ui.add_space(4.0);
+        ui.add_space(10.0);
         egui::ScrollArea::vertical().max_height(ui.available_height() - 64.0).show(ui, |ui| {
-            egui::Grid::new("bindings").num_columns(2).spacing([24.0, 4.0]).show(ui, |ui| {
-                for (i, b) in BUTTONS.iter().enumerate() {
-                    ui.label(b.label);
-                    let waiting = self.capture == Some((self.pad_tab, i));
-                    let text = if waiting {
-                        if self.pad_tab {
-                            lang.t("Press a button... (Esc cancels)", "Aperte um botão... (Esc cancela)")
-                        } else {
-                            lang.t("Press a key... (Esc cancels)", "Aperte uma tecla... (Esc cancela)")
+            ui.columns(2, |cols| {
+                card(&mut cols[0], lang.t("Movement", "Movimento"), |ui| {
+                    let movement = [
+                        (false, lang.t("Tank (original)", "Tanque (original)").to_string()),
+                        (true, lang.t("Modern (camera)", "Moderno (câmera)").to_string()),
+                    ];
+                    self.focus.choice(ui, "", &mut self.edit.modern, &movement, true);
+                    let tank = !self.edit.modern;
+                    self.focus.checkbox(
+                        ui,
+                        &mut self.edit.quick_turn,
+                        lang.t("Quick turn (back + run)", "Meia-volta rápida (trás + correr)"),
+                        tank,
+                    );
+                });
+                if self.pad_tab {
+                    card(&mut cols[1], lang.t("Controller", "Controle"), |ui| {
+                        let names: Vec<String> = self
+                            .gilrs
+                            .as_ref()
+                            .map(|g| g.gamepads().map(|(_, p)| p.name().to_string()).collect())
+                            .unwrap_or_default();
+                        let mut options = vec![(String::new(), lang.t("Last one used", "O último usado").to_string())];
+                        options.extend(names.iter().map(|n| (n.clone(), n.clone())));
+                        if !self.edit.controller.is_empty() && !names.contains(&self.edit.controller) {
+                            options.push((self.edit.controller.clone(), self.edit.controller.clone()));
                         }
-                        .to_string()
-                    } else if self.pad_tab {
-                        pad_label(&self.edit.pads[i])
-                    } else {
-                        key_label(&self.edit.keys[i])
-                    };
-                    let response = ui.add(egui::Button::new(text).min_size([230.0, 0.0].into()));
-                    let pressed = self.focus.item(ui, &response, false)
-                        && self.capture.is_none()
-                        && std::mem::take(&mut self.focus.accept);
-                    if response.clicked() || pressed {
-                        self.capture = Some((self.pad_tab, i));
-                        self.message = None;
+                        self.focus.choice(ui, "", &mut self.edit.controller, &options, true);
+                        if names.is_empty() {
+                            ui.label(lang.t("No controller connected.", "Nenhum controle conectado."));
+                        }
+                        self.focus.checkbox(ui, &mut self.edit.vibration, lang.t("Vibration", "Vibração"), true);
+                    });
+                } else {
+                    card(&mut cols[1], lang.t("Keyboard", "Teclado"), |ui| {
+                        ui.label(lang.t(
+                            "Esc, P, F9-F12 and Alt keep their own jobs.",
+                            "Esc, P, F9-F12 e Alt mantêm suas funções.",
+                        ));
+                    });
+                }
+            });
+            ui.add_space(12.0);
+            card(ui, lang.t("Buttons", "Botões"), |ui| {
+                // Four columns of four buttons: the directions, the face
+                // buttons, Start, Select and the front ones, the rest.
+                let rows = BUTTONS.len().div_ceil(4);
+                egui::Grid::new("bindings").num_columns(8).spacing([10.0, 6.0]).show(ui, |ui| {
+                    for row in 0..rows {
+                        for i in (0..4).map(|c| c * rows + row) {
+                            let Some(b) = BUTTONS.get(i) else { continue };
+                            ui.label(b.label);
+                            let waiting = self.capture == Some((self.pad_tab, i));
+                            let text = if waiting {
+                                if self.pad_tab {
+                                    lang.t("Press a button...", "Aperte um botão...")
+                                } else {
+                                    lang.t("Press a key...", "Aperte uma tecla...")
+                                }
+                                .to_string()
+                            } else if self.pad_tab {
+                                pad_label(&self.edit.pads[i])
+                            } else {
+                                key_label(&self.edit.keys[i])
+                            };
+                            let response = ui.add(egui::Button::new(text).min_size([116.0, 28.0].into()));
+                            let pressed = self.focus.item(ui, &response, false)
+                                && self.capture.is_none()
+                                && std::mem::take(&mut self.focus.accept);
+                            if response.clicked() || pressed {
+                                self.capture = Some((self.pad_tab, i));
+                                self.message = None;
+                            }
+                        }
+                        ui.end_row();
                     }
-                    ui.end_row();
+                });
+                if self.capture.is_some() {
+                    ui.label(egui::RichText::new(lang.t("Esc cancels.", "Esc cancela.")).weak());
                 }
             });
         });
-        ui.separator();
+        to_bottom(ui);
         ui.horizontal(|ui| {
             if self.focus.button(ui, lang.t("Save", "Salvar"), true) {
                 self.capture = None;
@@ -1249,55 +1358,72 @@ impl Launcher {
     fn mods_screen(&mut self, ui: &mut egui::Ui) {
         let lang = self.lang();
         ui.heading(lang.t("Mods", "Mods"));
-        self.focus.checkbox(ui, &mut self.edit.mods_enabled, lang.t("Use mods", "Usar mods"), true);
-        if self.focus.button(ui, lang.t("Open the mods folder", "Abrir a pasta de mods"), true) {
-            let dir = crate::mods::mods_dir();
-            let _ = std::fs::create_dir_all(&dir);
-            let (error, ctx) = (self.launch_error.clone(), ui.ctx().clone());
-            crate::paths::open_dir(dir, move |e| {
-                *error.lock().unwrap() = Some(e);
-                ctx.request_repaint();
+        ui.add_space(10.0);
+        card(ui, lang.t("Mods folder", "Pasta de mods"), |ui| {
+            ui.horizontal(|ui| {
+                // A row as tall as its button, the checkbox centred on it.
+                ui.spacing_mut().interact_size.y = 30.0;
+                self.focus.checkbox(ui, &mut self.edit.mods_enabled, lang.t("Use mods", "Usar mods"), true);
+                ui.add_space(24.0);
+                if self.focus.button(ui, lang.t("Open the mods folder", "Abrir a pasta de mods"), true) {
+                    let dir = crate::mods::mods_dir();
+                    let _ = std::fs::create_dir_all(&dir);
+                    let (error, ctx) = (self.launch_error.clone(), ui.ctx().clone());
+                    crate::paths::open_dir(dir, move |e| {
+                        *error.lock().unwrap() = Some(e);
+                        ctx.request_repaint();
+                    });
+                }
             });
-        }
-        ui.label(egui::RichText::new(crate::mods::mods_dir().display().to_string()).weak());
-        ui.separator();
+            ui.label(egui::RichText::new(crate::mods::mods_dir().display().to_string()).weak());
+        });
+        ui.add_space(12.0);
         let mut swap = None;
-        egui::ScrollArea::vertical().max_height(ui.available_height() - 90.0).show(ui, |ui| {
-            if self.mods.is_empty() {
-                ui.label(lang.t(
-                    "No mods installed. A mod is a folder in the mods folder above (see docs/MODDING.md).",
-                    "Nenhum mod instalado. Um mod é uma pasta dentro da pasta de mods acima (veja docs/MODDING.md).",
-                ));
-            }
-            let count = self.mods.len();
-            for k in 0..count {
-                ui.horizontal(|ui| {
-                    let m = &mut self.mods[k];
-                    self.focus.checkbox(ui, &mut m.enabled, &m.name, self.edit.mods_enabled);
-                    if self.focus.button(ui, "▲", k > 0) {
-                        swap = Some(k - 1);
+        egui::ScrollArea::vertical().max_height(ui.available_height() - 64.0).show(ui, |ui| {
+            card(ui, lang.t("Installed", "Instalados"), |ui| {
+                if self.mods.is_empty() {
+                    ui.label(lang.t(
+                        "No mods installed. A mod is a folder in the mods folder above (see docs/MODDING.md).",
+                        "Nenhum mod instalado. Um mod é uma pasta dentro da pasta de mods acima (veja docs/MODDING.md).",
+                    ));
+                }
+                let count = self.mods.len();
+                for k in 0..count {
+                    if k > 0 {
+                        ui.separator();
                     }
-                    if self.focus.button(ui, "▼", k + 1 < count) {
-                        swap = Some(k);
+                    ui.horizontal(|ui| {
+                        ui.spacing_mut().interact_size.y = 30.0;
+                        let m = &mut self.mods[k];
+                        self.focus.checkbox(ui, &mut m.enabled, &m.name, self.edit.mods_enabled);
+                        ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+                            // Right to left: the lower arrow first.
+                            if self.focus.button(ui, "▼", k + 1 < count) {
+                                swap = Some(k);
+                            }
+                            if self.focus.button(ui, "▲", k > 0) {
+                                swap = Some(k - 1);
+                            }
+                        });
+                    });
+                    if !self.mods[k].about.is_empty() {
+                        ui.label(egui::RichText::new(&self.mods[k].about).weak());
                     }
-                });
-                if !self.mods[k].about.is_empty() {
-                    ui.label(egui::RichText::new(&self.mods[k].about).weak());
                 }
                 ui.add_space(4.0);
-            }
+                ui.label(
+                    egui::RichText::new(lang.t(
+                        "Higher in the list wins where two mods change the same thing. Changes apply when the game starts.",
+                        "Mais acima na lista vence quando dois mods mudam a mesma coisa. As mudanças valem quando o jogo começa.",
+                    ))
+                    .weak(),
+                );
+            });
         });
         if let Some(k) = swap {
             self.mods.swap(k, k + 1);
         }
-        ui.label(
-            egui::RichText::new(lang.t(
-                "Higher in the list wins where two mods change the same thing. Changes apply when the game starts.",
-                "Mais acima na lista vence quando dois mods mudam a mesma coisa. As mudanças valem quando o jogo começa.",
-            ))
-            .weak(),
-        );
-        ui.separator();
+        to_bottom(ui);
         ui.horizontal(|ui| {
             if self.focus.button(ui, lang.t("Save", "Salvar"), true) {
                 match self.save_mods() {
@@ -1449,12 +1575,16 @@ impl eframe::App for Launcher {
 
 impl Launcher {
     /// PE2_LAUNCHER_SHOT=<file.png> (with PE2_LAUNCHER_SCREEN=main,
-    /// settings, controls or setup): saves the launcher's picture once it
-    /// settles, and quits. For checking its looks.
+    /// settings, controls or setup, and PE2_LAUNCHER_TAB=<n> for the
+    /// settings' tab or the controller's mapping): saves the launcher's
+    /// picture once it settles, and quits. For checking its looks.
     fn debug_shot(&mut self, ctx: &egui::Context) {
         let Some(path) = std::env::var_os("PE2_LAUNCHER_SHOT") else { return };
         self.frames += 1;
         if self.frames == 1 {
+            let tab = std::env::var("PE2_LAUNCHER_TAB").ok().and_then(|t| t.parse::<usize>().ok()).unwrap_or(0);
+            self.settings_tab = tab.min(2);
+            self.pad_tab = tab == 1;
             self.screen = match std::env::var("PE2_LAUNCHER_SCREEN").as_deref() {
                 Ok("settings") => Screen::Settings,
                 Ok("controls") => Screen::Controls,
