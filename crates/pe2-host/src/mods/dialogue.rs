@@ -208,8 +208,11 @@ fn strips(stream: &[u8]) -> Vec<Vec<u8>> {
     out
 }
 
-/// A column of a picture as loaded into VRAM: its rows of 64 halfwords.
+/// A column of a picture as loaded into VRAM: where (in halfwords and
+/// rows), and its rows of 64 halfwords.
 pub struct Column {
+    pub x: u16,
+    pub y: u16,
     pub rows: Vec<[u16; 64]>,
 }
 
@@ -235,7 +238,7 @@ pub fn picture(data: &[u8]) -> Vec<Column> {
     let mut strips = strips(data.get(first..).unwrap_or_default()).into_iter();
     entries
         .iter()
-        .map(|_| {
+        .map(|&(x, y, _)| {
             let mut rows = Vec::with_capacity(height);
             for _ in 0..height.div_ceil(32) {
                 let strip = strips.next().unwrap_or_else(|| vec![0; STRIP_BYTES]);
@@ -244,7 +247,7 @@ pub fn picture(data: &[u8]) -> Vec<Column> {
                 }
             }
             rows.truncate(height);
-            Column { rows }
+            Column { x, y, rows }
         })
         .collect()
 }
@@ -344,9 +347,9 @@ pub fn is_glyph(code: u16) -> bool {
     code & 0x8000 == 0
 }
 
-/// The CAP files of a dialogue bundle (its resources of untyped data that
-/// are CAP files), in order.
-pub fn caps(payload: &[u8]) -> Vec<&[u8]> {
+/// The resources of a dialogue bundle of `kind` (2: images, 3: data), in
+/// order.
+pub fn resources(payload: &[u8], kind: u8) -> Vec<&[u8]> {
     const DIRECTORY: usize = 0x7F0;
     let entries: Vec<(u8, usize, usize)> = (0..50)
         .filter_map(|k| {
@@ -360,10 +363,15 @@ pub fn caps(payload: &[u8]) -> Vec<&[u8]> {
     let Some(base) = entries.iter().map(|e| e.2).min() else { return Vec::new() };
     entries
         .iter()
-        .filter(|e| e.0 == 3)
+        .filter(|e| e.0 == kind)
         .filter_map(|&(_, size, dest)| payload.get(DIRECTORY + dest - base..DIRECTORY + dest - base + size))
-        .filter(|b| b.starts_with(b"CAP"))
         .collect()
+}
+
+/// The CAP files of a dialogue bundle (its resources of untyped data that
+/// are CAP files), in order.
+pub fn caps(payload: &[u8]) -> Vec<&[u8]> {
+    resources(payload, 3).into_iter().filter(|b| b.starts_with(b"CAP")).collect()
 }
 
 /// Glyph picture hashes -> text.
@@ -444,6 +452,10 @@ pub struct Sources {
     /// ones' (palettes).
     pub pictures: HashMap<String, Vec<Vec<u8>>>,
     pub palettes: HashMap<String, Vec<Vec<u8>>>,
+    /// File key -> its code and data packages' contents (`.pe2pkg`, still
+    /// compressed), and its room backgrounds' (`.bs`).
+    pub packages: HashMap<String, Vec<Vec<u8>>>,
+    pub backgrounds: HashMap<String, Vec<Vec<u8>>>,
     /// (file key, chunk index, contents) of each `.pe2cap2` chunk.
     pub bundles: Vec<(String, usize, Vec<u8>)>,
 }

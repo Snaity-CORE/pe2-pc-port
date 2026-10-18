@@ -24,6 +24,7 @@ pub mod dialogue;
 pub mod files;
 pub mod movies;
 pub mod music;
+pub mod rooms;
 pub mod sheets;
 pub mod translate;
 

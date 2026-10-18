@@ -86,22 +86,26 @@ of texels (256 wide at 4 bits per texel, 128 at 8 bits, up to 256 tall),
 each one asset. A sheet is known by a hash of its contents: its file name is
 `<sheet>.png`, the same in every room and whatever else is loaded with it.
 
-1. Get the sheets, in `dumps/textures/` in the data folder:
-   - **All of them, from the disc**: **Extract the game's files** in the
-     launcher's Mods screen (or `pe2 --extract`) saves every sheet, about
-     2,100, whole. A sheet's texels are numbers into a palette, and which
-     palette colours them is chosen as the game draws (by the models, the
-     menus, each room's code). Where the sheet's own file carries its
-     palettes (weapons, items, maps, characters: about a quarter of the
-     sheets), it comes out in colour; the others (mostly rooms' textures,
-     whose palettes the rooms choose) come out in grey, each texel by its
-     number.
-   - **In colour, by playing**: turn on dumping and play. The first time a
-     sheet is drawn, it is coloured whole with that palette, and each part
-     drawn with another palette gets that palette's colours; dumps are
-     saved again as more is drawn, and kept from session to session. A part
-     not drawn yet may show the wrong colours (another part's palette)
-     until it is.
+1. Extract the game's files (**Extract the game's files** in the launcher's
+   Mods screen, or `pe2 --extract`): every sheet, about 2,100, is saved
+   whole in `dumps/textures/`, with `index.txt` listing each one, where it
+   comes from and where its colours do.
+
+   A sheet's texels are numbers into a palette, and which palette colours
+   them is chosen as the game draws. The extract finds it on the disc:
+   - **Rooms' pieces** (what passes in front of the characters, cut from
+     the backgrounds): each room's package has, for each camera, the
+     sprites drawing them, each with its palette. Every texel they draw is
+     coloured as the game draws it, and each camera's sprites are checked
+     against its background (the extract's log says how many differ). What
+     no sprite draws is never shown, and is left transparent.
+   - **Characters, enemies, weapons, items, maps**: their files carry their
+     palettes, one per column of their pictures.
+   - The rest (about 200 sheets: the rooms' dialogue fonts, a few cameras'
+     pieces, the credits) comes out in grey, each texel by its number.
+
+   With dumping on, playing also colours sheets as the game draws them,
+   which can fill in those.
 2. Make your version, at any multiple of the sheet's size (4x: 1024 wide
    for a 256-texel sheet), and save it as
    `mods/<your mod>/textures/<same name>.png`.

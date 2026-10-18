@@ -31,13 +31,15 @@ pub struct Sheet {
     pub rows: Vec<[u16; 64]>,
     pieces: Vec<u64>,
     pub palette: Option<Vec<u16>>,
+    /// Where it was first found: `<file>/<chunk>#<column>`.
+    pub origin: String,
 }
 
 impl Sheet {
     fn new(hash: u64, rows: Vec<[u16; 64]>) -> Sheet {
         let pieces =
             rows.chunks(PIECE_ROWS).map(|c| piece_hash(c.iter().flatten().copied(), PIECE_ROWS - c.len())).collect();
-        Sheet { hash, rows, pieces, palette: None }
+        Sheet { hash, rows, pieces, palette: None, origin: String::new() }
     }
 
     /// Its texel depth (0: 4 bits, 1: 8 bits): its palette's, else likely.
@@ -153,6 +155,13 @@ fn palettes(chunks: &[Vec<u8>]) -> (Vec<Vec<u16>>, Vec<Vec<u16>>) {
     (wide, narrow)
 }
 
+/// The hash a sheet is known by: its height, then its halfwords.
+pub fn sheet_hash(rows: &[[u16; 64]]) -> u64 {
+    super::fnv1a(
+        (rows.len() as u32).to_le_bytes().into_iter().chain(rows.iter().flatten().flat_map(|w| w.to_le_bytes())),
+    )
+}
+
 /// The hash of a piece: its halfwords, then `padding` rows of zeros.
 pub fn piece_hash(halfwords: impl IntoIterator<Item = u16>, padding: usize) -> u64 {
     let zeros = std::iter::repeat_n(0u16, padding * 64);
@@ -177,8 +186,11 @@ impl Catalog {
         keys.sort_unstable();
         for key in keys {
             let (wide, narrow) = palettes(sources.palettes.get(key).map_or(&[][..], Vec::as_slice));
-            let columns = sources.pictures[key].iter().flat_map(|p| picture(p));
-            for (i, Column { rows }) in columns.enumerate() {
+            let columns = sources.pictures[key]
+                .iter()
+                .enumerate()
+                .flat_map(|(n, p)| picture(p).into_iter().enumerate().map(move |(c, col)| (n, c, col)));
+            for (i, (n, column, Column { rows, .. })) in columns.enumerate() {
                 if rows.is_empty() {
                     continue;
                 }
@@ -187,12 +199,7 @@ impl Catalog {
                     .into_iter()
                     .find(|p| !p.is_empty())
                     .map(|p| p[i.min(p.len() - 1)].clone());
-                let hash = super::fnv1a(
-                    (rows.len() as u32)
-                        .to_le_bytes()
-                        .into_iter()
-                        .chain(rows.iter().flatten().flat_map(|w| w.to_le_bytes())),
-                );
+                let hash = sheet_hash(&rows);
                 if let Some(&known) = c.by_hash.get(&hash) {
                     let sheet = &mut c.sheets[known as usize];
                     if sheet.palette.is_none() {
@@ -203,6 +210,7 @@ impl Catalog {
                 let index = c.sheets.len() as u32;
                 let mut sheet = Sheet::new(hash, rows);
                 sheet.palette = given;
+                sheet.origin = format!("{key}/{n}#{column}");
                 for (k, &piece) in sheet.pieces.iter().enumerate() {
                     c.pieces.entry(piece).or_default().push((index, k as u16));
                 }
@@ -218,33 +226,62 @@ impl Catalog {
         self.pieces.get(&hash).map_or(&[], Vec::as_slice)
     }
 
+    /// The sheet of this hash (catalog index).
+    pub fn find(&self, hash: u64) -> Option<u32> {
+        self.by_hash.get(&hash).copied()
+    }
+
     /// Whether piece `k` of sheet `sheet` has this hash.
     pub fn piece_is(&self, sheet: u32, k: usize, hash: u64) -> bool {
         self.sheets.get(sheet as usize).and_then(|s| s.pieces.get(k)) == Some(&hash)
     }
 }
 
-/// Saves each sheet of `catalog` as `<sheet>.png` in `dir`, through the
-/// palette its file gives it (else in grey, at its likely depth), unless
-/// there is one already (one coloured by playing is kept). Answers how
-/// many were saved.
-pub fn extract(catalog: &Catalog, dir: &std::path::Path) -> std::io::Result<usize> {
+/// Saves each sheet of `catalog` as `<sheet>.png` in `dir`, coloured as
+/// rooms' sprites draw it (`painted`), else through the palette its file
+/// gives it, else in grey (at its likely depth); and `index.txt`, a line
+/// per sheet: its name, where it comes from, its depth and its colours'
+/// source. Answers how many sheets have colours.
+pub fn extract(
+    catalog: &Catalog,
+    painted: &HashMap<u32, super::rooms::Painted>,
+    dir: &std::path::Path,
+) -> std::io::Result<usize> {
     std::fs::create_dir_all(dir)?;
-    let mut saved = 0;
-    for sheet in &catalog.sheets {
-        let path = dir.join(format!("{}.png", super::texture_name((sheet.hash, 0))));
-        if path.exists() {
-            continue;
+    let mut coloured = 0;
+    let mut index = String::from(
+        "# sheet, where it is on the disc (file/chunk#column), depth, colours
+",
+    );
+    for (i, sheet) in catalog.sheets.iter().enumerate() {
+        let name = super::texture_name((sheet.hash, 0));
+        let path = dir.join(format!("{name}.png"));
+        let (width, rgba, depth, source) = match painted.get(&(i as u32)) {
+            Some(p) => (p.width, p.rgba.clone(), p.depth, "rooms' sprites"),
+            None => {
+                let depth = sheet.depth();
+                let (width, rgba) = sheet.picture(depth);
+                let given = sheet.palette.as_ref().is_some_and(|p| p.len() == [16, 256][depth.min(1) as usize]);
+                (width, rgba, depth, if given { "its file's palette" } else { "none (grey)" })
+            }
+        };
+        if !source.starts_with("none") {
+            coloured += 1;
         }
-        let (width, rgba) = sheet.picture(sheet.depth());
+        index.push_str(&format!(
+            "{name} {} {}-bit {source}
+",
+            sheet.origin,
+            [4, 8, 15][depth.min(2) as usize]
+        ));
         let file = std::io::BufWriter::new(std::fs::File::create(&path)?);
         let mut enc = png::Encoder::new(file, width as u32, sheet.rows.len() as u32);
         enc.set_color(png::ColorType::Rgba);
         enc.set_depth(png::BitDepth::Eight);
         enc.write_header().and_then(|mut w| w.write_image_data(&rgba)).map_err(std::io::Error::other)?;
-        saved += 1;
     }
-    Ok(saved)
+    std::fs::write(dir.join("index.txt"), index)?;
+    Ok(coloured)
 }
 
 static CATALOG: OnceLock<Catalog> = OnceLock::new();

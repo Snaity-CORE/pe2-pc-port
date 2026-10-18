@@ -240,9 +240,13 @@ impl Tracker {
                 for part in &parts {
                     if SEEN.lock().unwrap().get_or_insert_with(Default::default).insert((part.sheet, palette)) {
                         let name = crate::mods::texture_name((catalog.sheets[part.sheet as usize].hash, palette));
+                        let sheet = &catalog.sheets[part.sheet as usize];
                         eprintln!(
-                            "[textures] {name}: {}-bit sheet, palette at ({}, {})",
+                            "[textures] {name}: {}-bit sheet from {}, at ({}, {}), palette at ({}, {}), texels {u0},{v0}-{u1},{v1}",
                             [4, 8, 15][depth as usize],
+                            sheet.origin,
+                            px + part.column as i32 * 64,
+                            part.top,
                             sh.clut_x,
                             sh.clut_y
                         );
