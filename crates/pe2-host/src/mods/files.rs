@@ -520,6 +520,9 @@ pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path) -> std::io::Result<()>
         "pe2: extract: {} sheets coloured from rooms' sprites; {checked} sprite tables checked against their backgrounds, {mismatched} differ",
         painted.len()
     );
+    let music = dumps.join("music");
+    let count = super::music::extract(discs, &music)?;
+    eprintln!("pe2: extract: {count} songs in {}", music.display());
     let movies = dumps.join("movies");
     let count = super::movies::extract(discs, &movies)?;
     eprintln!("pe2: extract: {count} movies in {}", movies.display());

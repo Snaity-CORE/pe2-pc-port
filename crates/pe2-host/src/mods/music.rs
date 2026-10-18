@@ -8,8 +8,9 @@
 //! following the song's fades, mute and volume, and stopping with it. The
 //! sequencer itself runs on untouched.
 //!
-//! With dumping on, the first two minutes of each song's voices are saved
-//! as `dumps/music/<id>.wav`, to tell which id is which song.
+//! The extract renders each song of the discs with the game's own
+//! sequencer (`extract`), as `dumps/music/<id>.wav`, to tell which id is
+//! which song, with its loop in `<id>.txt`.
 
 use std::collections::{HashMap, HashSet, VecDeque};
 use std::path::{Path, PathBuf};
@@ -22,8 +23,6 @@ use crate::runtime::spu;
 /// The SPU voices the MIDI sequencer uses.
 const MIDI_VOICES: u32 = 0xFFFF;
 const RATE: u32 = 44_100;
-/// Dumps keep this much of each song.
-const DUMP_SECONDS: usize = 120;
 
 /// What pc_midi_state reports.
 #[repr(C)]
@@ -41,6 +40,8 @@ struct MidiState {
 
 unsafe extern "C" {
     fn pc_midi_state(out: *mut MidiState);
+    fn pc_music_begin(file: *const u8, sectors: i32) -> i32;
+    fn pc_music_frame(starts: *mut u32, repeats: *mut u32, ended: *mut u32) -> i32;
 }
 
 const NO_SEQUENCE: u8 = 0xFF;
@@ -212,9 +213,6 @@ struct Player {
     /// Recordings being decoded, and ready ones by sequence id.
     loading: HashSet<u8>,
     ready: HashMap<u8, Arc<Track>>,
-    /// Dumping: the song being recorded, and those already dumped.
-    recording: Option<(u8, Vec<(i16, i16)>)>,
-    dumped: HashSet<u8>,
 }
 
 static PLAYER: Mutex<Option<Player>> = Mutex::new(None);
@@ -225,9 +223,7 @@ fn with_player<R>(f: impl FnOnce(&mut Player) -> R) -> R {
 
 /// Each vertical blank, with the game stopped: follows the song.
 pub fn poll() {
-    let replacing = !index().is_empty();
-    let dumping = super::dumping();
-    if !replacing && !dumping {
+    if index().is_empty() {
         return;
     }
     let mut state = MidiState::default();
@@ -236,7 +232,7 @@ pub fn poll() {
     let sounding = state.sequence_id != NO_SEQUENCE && state.status & SOUNDING != 0;
     let id = sounding.then_some(state.sequence_id);
 
-    let (mute, capture) = with_player(|p| {
+    let mute = with_player(|p| {
         // A song starting (or another one) starts its recording over.
         if p.sequence != id {
             if crate::runtime::trace("music") {
@@ -270,15 +266,6 @@ pub fn poll() {
             }
             _ => 0.0,
         };
-        // Dumping: the song's own voices, while no recording replaces it.
-        let capture = dumping && p.track.is_none() && id.is_some_and(|i| !p.dumped.contains(&i));
-        let same = matches!((&p.recording, id), (Some((r, _)), Some(i)) if *r == i);
-        if !same {
-            finish_recording(p);
-        }
-        if capture && p.recording.is_none() {
-            p.recording = id.map(|i| (i, Vec::new()));
-        }
         if crate::runtime::trace("music") && p.track.is_some() {
             static LAST: std::sync::atomic::AtomicU32 = std::sync::atomic::AtomicU32::new(u32::MAX);
             let shown = (p.target * 100.0) as u32;
@@ -286,55 +273,9 @@ pub fn poll() {
                 eprintln!("[music] recording gain {:.2} at {:.1} s", p.target, p.position as f32 / RATE as f32);
             }
         }
-        (p.track.is_some(), capture)
+        p.track.is_some()
     });
-    spu::with_spu(|s| {
-        s.muted_voices = if mute { MIDI_VOICES } else { 0 };
-        s.captured_voices = if capture { MIDI_VOICES } else { 0 };
-        let taken = std::mem::take(&mut s.capture);
-        if capture {
-            with_player(|p| {
-                if let Some((id, buf)) = &mut p.recording {
-                    buf.extend(taken);
-                    if buf.len() >= DUMP_SECONDS * RATE as usize {
-                        let id = *id;
-                        finish_recording(p);
-                        p.dumped.insert(id);
-                    }
-                }
-            });
-        }
-    });
-}
-
-/// Saves the song being recorded, if long enough to be worth it.
-fn finish_recording(p: &mut Player) {
-    let Some((id, samples)) = p.recording.take() else { return };
-    if samples.len() < RATE as usize * 3 || p.dumped.contains(&id) {
-        return;
-    }
-    p.dumped.insert(id);
-    std::thread::spawn(move || {
-        let dir = crate::paths::user_file("dumps").join("music");
-        let _ = std::fs::create_dir_all(&dir);
-        let path = dir.join(format!("{id:02x}.wav"));
-        let spec = hound::WavSpec {
-            channels: 2,
-            sample_rate: RATE,
-            bits_per_sample: 16,
-            sample_format: hound::SampleFormat::Int,
-        };
-        let written = hound::WavWriter::create(&path, spec).map_err(|e| e.to_string()).and_then(|mut w| {
-            for (l, r) in samples {
-                w.write_sample(l).and_then(|()| w.write_sample(r)).map_err(|e| e.to_string())?;
-            }
-            w.finalize().map_err(|e| e.to_string())
-        });
-        match written {
-            Ok(()) => eprintln!("pe2: dumped {}", path.display()),
-            Err(e) => eprintln!("pe2: dump {}: {e}", path.display()),
-        }
-    });
+    spu::with_spu(|s| s.muted_voices = if mute { MIDI_VOICES } else { 0 });
 }
 
 /// Decodes a recording on a thread of its own.
@@ -380,4 +321,176 @@ pub fn take(out: &mut VecDeque<(i16, i16)>, frames: usize) {
         let g = p.gain;
         out.push_back(((f32::from(l) * g) as i16, (f32::from(r) * g) as i16));
     }
+}
+
+/// Vertical blanks per second (NTSC), each one of the game's sound work.
+const BLANKS_PER_SECOND: f64 = 59.94;
+/// The extract renders a song at most this long, and this much past its
+/// loop's first repeat (or its end).
+const RENDER_MAX_SECONDS: f64 = 600.0;
+const RENDER_AFTER_SECONDS: f64 = 6.0;
+
+/// Saves each song of the discs under `out`, rendered by the game's own
+/// sequencer (the fork's sndevt.c, pc_music_begin) on the SPU: as
+/// `<id>.wav` (its sequence id, two hexadecimal digits, the name a mod's
+/// recording takes), up to its loop's first repeat and a little more, and
+/// `<id>.txt` with its loop in `music.toml`'s terms. The songs are the
+/// STAGE0 files that are sequence banks. The game's executable must be
+/// loaded in PlayStation memory. Answers how many songs.
+pub fn extract(discs: &mut [Box<dyn crate::disc::Disc>], out: &Path) -> std::io::Result<usize> {
+    std::fs::create_dir_all(out)?;
+    spu::set_offline();
+    let mut banks: Vec<(String, Vec<u8>)> = Vec::new();
+    for disc in discs.iter_mut() {
+        let layout = super::files::layout(disc.as_mut());
+        let mut starts: Vec<u32> = layout.iter().map(|f| f.lba).collect();
+        starts.sort_unstable();
+        for f in layout.iter().filter(|f| f.key.starts_with("stage0/")) {
+            let end = starts.iter().copied().find(|&l| l > f.lba).unwrap_or(f.lba + 1);
+            if let Some(file) = sequence_bank(disc.as_mut(), f.lba, end)
+                && banks.iter().all(|(_, b)| b[4] != file[4])
+            {
+                banks.push((f.key.clone(), file));
+            }
+        }
+    }
+    for (key, file) in &banks {
+        let Some(song) = render(file, base_bank(file, &banks)) else {
+            eprintln!("pe2: extract: song in {key} did not load");
+            continue;
+        };
+        save_song(&song, key, out)?;
+    }
+    Ok(banks.len())
+}
+
+/// A sequence bank's header field: its tables' sizes (groups, layers and
+/// the sequence's bytes) and where its samples go in sound RAM (in 64-byte
+/// blocks past the sequences' place).
+fn bank_tables(file: &[u8]) -> (u8, u8, u16) {
+    (file[7], file[8], u16::from_le_bytes([file[0xE], file[0xF]]))
+}
+
+fn wave_block(file: &[u8]) -> u16 {
+    u16::from_le_bytes([file[0xA], file[0xB]])
+}
+
+/// The bank whose samples `file` needs in sound RAM: some songs are another
+/// one's sequence with a few samples of their own, loaded past the other's
+/// (a wave block offset); the game plays them after that one, whose
+/// samples stay. The other one has the same tables and its samples at the
+/// start.
+fn base_bank<'a>(file: &[u8], banks: &'a [(String, Vec<u8>)]) -> Option<&'a [u8]> {
+    if wave_block(file) == 0 {
+        return None;
+    }
+    banks.iter().map(|(_, b)| b.as_slice()).find(|b| wave_block(b) == 0 && bank_tables(b) == bank_tables(file))
+}
+
+/// The sectors from `lba` to `end` if they are a song's sequence bank
+/// (`hMPK`, a sequence's bank type, sndevt.c SndLoad_ProcessSector).
+fn sequence_bank(disc: &mut dyn crate::disc::Disc, lba: u32, end: u32) -> Option<Vec<u8>> {
+    const MAGIC: &[u8] = b"hMPK";
+    const SECTOR: usize = 2048;
+    let mut raw = [0u8; crate::disc::RAW_SECTOR_SIZE];
+    disc.read_sector(lba, &mut raw).ok()?;
+    let first = &raw[24..24 + SECTOR];
+    if &first[..4] != MAGIC || first[5] != 0xF0 || first[6] != 0 {
+        return None;
+    }
+    let mut file = first.to_vec();
+    for l in lba + 1..end.min(lba + 1024) {
+        disc.read_sector(l, &mut raw).ok()?;
+        file.extend_from_slice(&raw[24..24 + SECTOR]);
+    }
+    Some(file)
+}
+
+/// A song as rendered: its id, sound, and loop (start and end sample).
+struct Song {
+    id: u8,
+    samples: Vec<(i16, i16)>,
+    looped: Option<(usize, usize)>,
+}
+
+/// Plays `file` (a sequence bank) through the game's sound code alone, one
+/// vertical blank of its work at a time with the SPU run in between: until
+/// each track that entered an endless loop went back to its start, or the
+/// song ended, and a little more.
+fn render(file: &[u8], base: Option<&[u8]>) -> Option<Song> {
+    spu::with_spu(|s| *s = spu::core::Spu::default());
+    // SAFETY: the game's executable is loaded; the banks are whole sectors.
+    let begin = |bank: &[u8]| unsafe { pc_music_begin(bank.as_ptr(), (bank.len() / 2048) as i32) };
+    if let Some(base) = base {
+        begin(base);
+    }
+    let id = begin(file);
+    let id = u8::try_from(id).ok()?;
+    let per_blank = f64::from(RATE) / BLANKS_PER_SECOND;
+    let after = (RENDER_AFTER_SECONDS * f64::from(RATE)) as usize;
+    let most = (RENDER_MAX_SECONDS * f64::from(RATE)) as usize;
+    let (mut samples, mut owed) = (Vec::new(), 0.0);
+    // Where each track's loop began and first went back (by track).
+    let (mut began, mut back): ([Option<usize>; 32], [Option<usize>; 32]) = ([None; 32], [None; 32]);
+    let mut done = None;
+    while samples.len() < most && done.is_none_or(|at| samples.len() < at + after) {
+        let (mut starts, mut repeats, mut ended) = (0u32, 0u32, 0u32);
+        // SAFETY: the song was started by pc_music_begin.
+        let tracks = unsafe { pc_music_frame(&mut starts, &mut repeats, &mut ended) }.clamp(0, 32) as usize;
+        for t in 0..32 {
+            if starts & (1 << t) != 0 {
+                began[t].get_or_insert(samples.len());
+            }
+            if repeats & (1 << t) != 0 && began[t].is_some() {
+                back[t].get_or_insert(samples.len());
+            }
+        }
+        // Over once each track ended or went back to its loop's start.
+        let over = (0..tracks).all(|t| ended & (1 << t) != 0 || back[t].is_some());
+        if done.is_none() && over {
+            done = Some(samples.len());
+        }
+        owed += per_blank;
+        let n = owed as usize;
+        owed -= n as f64;
+        spu::with_spu(|s| samples.extend((0..n).map(|_| s.tick())));
+    }
+    let tracks: Vec<(usize, usize)> = began.iter().zip(&back).filter_map(|(b, r)| Some(((*b)?, (*r)?))).collect();
+    Some(Song { id, samples, looped: song_loop(&tracks) })
+}
+
+/// The song's loop from its tracks' (where their loop began, where it went
+/// back): as long as most tracks' loops, from when the last of those began
+/// (the song repeats from there on). The game places both on vertical
+/// blanks, so they are as precise as one.
+fn song_loop(tracks: &[(usize, usize)]) -> Option<(usize, usize)> {
+    let blank = (f64::from(RATE) / BLANKS_PER_SECOND) as usize + 1;
+    let near = |a: usize, b: usize| a.abs_diff(b) <= blank;
+    let length = tracks
+        .iter()
+        .map(|&(b, r)| r - b)
+        .max_by_key(|&len| tracks.iter().filter(|&&(b, r)| near(r - b, len)).count())?;
+    let start = tracks.iter().filter(|&&(b, r)| near(r - b, length)).map(|&(b, _)| b).max()?;
+    Some((start, start + length))
+}
+
+fn save_song(song: &Song, key: &str, out: &Path) -> std::io::Result<()> {
+    let name = format!("{:02x}", song.id);
+    let spec =
+        hound::WavSpec { channels: 2, sample_rate: RATE, bits_per_sample: 16, sample_format: hound::SampleFormat::Int };
+    let mut w = hound::WavWriter::create(out.join(format!("{name}.wav")), spec).map_err(std::io::Error::other)?;
+    for &(l, r) in &song.samples {
+        w.write_sample(l).and_then(|()| w.write_sample(r)).map_err(std::io::Error::other)?;
+    }
+    w.finalize().map_err(std::io::Error::other)?;
+    let seconds = |at: usize| at as f64 / f64::from(RATE);
+    let mut text =
+        format!("# Song {name}, from {key}: {:.1} s rendered.\n[track.\"{name}\"]\n", seconds(song.samples.len()));
+    match song.looped {
+        Some((start, end)) => {
+            text += &format!("loop_start = {:.4}\nloop_end = {:.4}\n", seconds(start), seconds(end));
+        }
+        None => text += "looping = false\n",
+    }
+    std::fs::write(out.join(format!("{name}.txt")), text)
 }

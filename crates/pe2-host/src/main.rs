@@ -98,16 +98,6 @@ fn main() -> ExitCode {
             d.total_sectors()
         );
     }
-    if extract {
-        let out = paths::user_file("dumps");
-        return match mods::files::extract(&mut discs, &out) {
-            Ok(()) => ExitCode::SUCCESS,
-            Err(e) => {
-                eprintln!("pe2: extract: {}: {e}", out.display());
-                ExitCode::FAILURE
-            }
-        };
-    }
     let disc1 = &mut discs[0];
     let (exe_name, exe) = match disc::iso9660::boot_executable(disc1.as_mut()) {
         Ok(found) => found,
@@ -128,6 +118,17 @@ fn main() -> ExitCode {
         };
         eprintln!("pe2: boot failed ({status}): {reason}");
         return ExitCode::FAILURE;
+    }
+    // The extract runs the game's sound code for its songs (music.rs).
+    if extract {
+        let out = paths::user_file("dumps");
+        return match mods::files::extract(&mut discs, &out) {
+            Ok(()) => ExitCode::SUCCESS,
+            Err(e) => {
+                eprintln!("pe2: extract: {}: {e}", out.display());
+                ExitCode::FAILURE
+            }
+        };
     }
     if let Ok(spec) = std::env::var("PE2_LIBTEST") {
         let spec = std::ffi::CString::new(spec).unwrap_or_default();

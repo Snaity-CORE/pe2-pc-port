@@ -139,11 +139,15 @@ sound chip's voices, one song at a time, each known by a sequence id. A mod can
 replace a song with a recording of its own (OGG Vorbis, FLAC or WAV, any sample
 rate, mono or stereo):
 
-1. Turn on dumping, as for backgrounds, and play to where the song plays. The
-   first two minutes of each song are saved as `dumps/music/<id>.wav` in the
-   data folder (written when the song changes, or after two minutes).
+1. Extract the game's files (**Extract the game's files** in the launcher's
+   Mods screen, or `pe2 --extract`): every song, 69 in all, is played by the
+   game's own sequencer and saved as `dumps/music/<id>.wav` in the data
+   folder, up to where its loop repeats and a few seconds more. Next to it,
+   `<id>.txt` holds the song's loop as `music.toml` (below) takes it, in
+   seconds of that `.wav` (precise to a frame, 1/60 s, as the game places
+   notes); songs that end have `looping = false`.
 2. Save your recording as `mods/<your mod>/music/<same id>.ogg` (or `.flac`,
-   `.wav`). The id is two hexadecimal digits, as the dump's name has it: `26`
+   `.wav`). The id is two hexadecimal digits, as the file's name has it: `26`
    is the Akropolis Tower's fire escape.
 
 While a replacement plays, the song's voices are left out of the mix and the
@@ -203,8 +207,9 @@ replace any of them.
 1. Extract the files: **Extract the game's files** in the launcher's Mods
    screen, or `pe2 --extract`. They go to `dumps/files/` in the data folder
    (about 130 MB; both discs share them), every room background as a
-   picture to `dumps/backgrounds/`, every texture sheet to `dumps/textures/`
-   (see above), and the dialogue as text to `dumps/text/` (see below).
+   picture to `dumps/backgrounds/`, every texture sheet to `dumps/textures/`,
+   every song to `dumps/music/`, every movie to `dumps/movies/` (see above),
+   and the dialogue as text to `dumps/text/` (see below).
 2. Find the one you want. With `PE2_TRACE=files` the game's log names each
    file as it is read, so playing to a place shows which files it uses.
 3. Put your version in `mods/<your mod>/files/` under the same path.
@@ -353,11 +358,12 @@ Mod support grows in this order. Each kind follows the same rules: found by a
 hash or a name of what it replaces, never containing the game's files, never
 changing the game's own data in memory unless the kind is meant to.
 
-1. **Backgrounds and full-screen pictures** (done): dump and replace, as above.
+1. **Backgrounds and full-screen pictures** (done): extracted and replaced, as
+   above.
 2. **A Mods screen in the launcher** (done): list, turn on and off, order.
 3. **Memory patches** (done): GameShark codes and plain writes, each frame.
-4. **Music** (done): sequenced songs dumped, and replaced by recordings, as
-   above. (Recorded audio, the movies' and cutscenes' XA tracks, comes with
+4. **Music** (done): sequenced songs rendered by the extract, and replaced by
+   recordings, as above. (Recorded audio, the movies' and cutscenes' XA tracks, comes with
    movies.)
 5. **Game files** (done): extracted, and replaced chunk by chunk or whole,
    at any size, as above.

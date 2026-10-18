@@ -9,7 +9,7 @@ pub mod core;
 pub mod libspu;
 pub mod xa;
 
-use std::sync::atomic::{AtomicU32, Ordering};
+use std::sync::atomic::{AtomicBool, AtomicU32, Ordering};
 use std::sync::{Mutex, OnceLock};
 use std::time::Instant;
 
@@ -157,9 +157,22 @@ unsafe impl Sync for Output {}
 
 static OUTPUT: OnceLock<Option<Output>> = OnceLock::new();
 
+/// Set when the SPU is run by hand (the extract renders songs with it),
+/// never by the audio device.
+static OFFLINE: AtomicBool = AtomicBool::new(false);
+
+/// From now on the SPU runs only when run by hand: no audio device pulls
+/// samples from it.
+pub fn set_offline() {
+    OFFLINE.store(true, Ordering::SeqCst);
+}
+
 /// Opens the default audio device and starts pulling samples. Without a
 /// device the game still runs; the SPU then advances with nothing heard.
 pub fn start() {
+    if OFFLINE.load(Ordering::SeqCst) {
+        return;
+    }
     OUTPUT.get_or_init(|| match open_output() {
         Ok(o) => Some(o),
         Err(e) => {

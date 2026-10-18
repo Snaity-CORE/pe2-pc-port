@@ -230,13 +230,10 @@ pub struct Spu {
     odd: bool,
     /// CD audio (XA) at 44.1 kHz, already scaled by the CD mixer.
     pub cd_input: VecDeque<(i16, i16)>,
-    /// Mods: voices left out of the mix (bit per voice), a recording mixed
-    /// in instead (as the CD input is, without reverb), and voices whose
-    /// mix is also kept in `capture` (for dumping).
+    /// Mods: voices left out of the mix (bit per voice), and a recording
+    /// mixed in instead (as the CD input is, without reverb).
     pub muted_voices: u32,
     pub music_input: VecDeque<(i16, i16)>,
-    pub captured_voices: u32,
-    pub capture: Vec<(i16, i16)>,
 }
 
 pub const CONTROL_CD_ENABLE: u16 = 1 << 0;
@@ -268,8 +265,6 @@ impl Default for Spu {
             cd_input: VecDeque::new(),
             muted_voices: 0,
             music_input: VecDeque::new(),
-            captured_voices: 0,
-            capture: Vec::new(),
         }
     }
 }
@@ -438,7 +433,6 @@ impl Spu {
     pub fn tick(&mut self) -> (i16, i16) {
         let (mut l, mut r) = (0i32, 0i32);
         let (mut rl, mut rr) = (0i32, 0i32);
-        let (mut cl, mut cr) = (0i32, 0i32);
         if self.control & CONTROL_ENABLE != 0 {
             for i in 0..VOICES {
                 let s = self.voice_sample(i);
@@ -448,10 +442,6 @@ impl Spu {
                 let v = &self.voices[i];
                 let vl = (s * fixed_volume(v.vol_l)) >> 15;
                 let vr = (s * fixed_volume(v.vol_r)) >> 15;
-                if self.captured_voices & (1 << i) != 0 {
-                    cl += vl;
-                    cr += vr;
-                }
                 if self.muted_voices & (1 << i) != 0 {
                     continue;
                 }
@@ -479,9 +469,6 @@ impl Spu {
         if let Some((ml, mr)) = self.music_input.pop_front() {
             l += i32::from(ml);
             r += i32::from(mr);
-        }
-        if self.captured_voices != 0 {
-            self.capture.push((sat(cl) as i16, sat(cr) as i16));
         }
 
         // Reverb runs at half rate, left and right on alternate ticks; its
