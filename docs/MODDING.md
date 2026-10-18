@@ -190,7 +190,8 @@ resolution and frame rate.
 
 1. Extract the game's files (`pe2 --extract`, see above): every movie the game
    lists, 28 in all, is read from the discs into `dumps/movies/`. A movie is
-   known by a hash of its first frame: `<hash>.png` shows a picture of it,
+   known by a hash of its first frame: `<hash>.str` is the movie itself, as
+   on the disc (video and sound), `<hash>.png` shows a picture of it,
    `<hash>.wav` is its sound (when it has its own), and `<hash>.txt` says its
    length in frames and seconds, its frame rate, its size and where it is
    listed.
@@ -206,9 +207,15 @@ ffmpeg -i my-movie.mkv -c:v libx264 -bf 0 -pix_fmt yuv420p -c:a aac -b:a 192k <h
 The game still plays its own movie underneath: the video is shown in its
 place, at the time the game's frame gives (so it keeps pace with it, and
 stops when the game's movie ends or is skipped), and its sound replaces the
-movie's. Make it as long as the original (the `.txt` says how long). The
-decompilation's asset tools extract the original movies, for remastering
-them.
+movie's. Make it as long as the original (the `.txt` says how long).
+
+ffmpeg reads the `.str` files, so the original movies can be converted as
+they are, to start a remaster from (ffmpeg's "I/O error" at their end is
+only it reaching the end):
+
+```
+ffmpeg -i <hash>.str -c:v libx264 -bf 0 -pix_fmt yuv420p -c:a aac <hash>.mp4
+```
 
 ## Game files
 

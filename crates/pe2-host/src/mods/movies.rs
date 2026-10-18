@@ -9,9 +9,11 @@
 //! own movie as ever underneath (its timing, skipping and ending stay as
 //! they are).
 //!
-//! The extract saves each movie of the discs (`extract`): a picture of it
-//! as `dumps/movies/<hash>.png`, its sound as `<hash>.wav` and what it is
-//! (frames, frame rate, length, size, where it is) as `<hash>.txt`.
+//! The extract saves each movie of the discs (`extract`): the movie itself
+//! as `dumps/movies/<hash>.str` (its sectors as on the disc, which video
+//! tools read), a picture of it as `<hash>.png`, its sound as `<hash>.wav`
+//! and what it is (frames, frame rate, length, size, where it is) as
+//! `<hash>.txt`.
 
 use std::collections::{HashMap, VecDeque};
 use std::path::PathBuf;
@@ -258,6 +260,9 @@ struct DiscMovieRead {
     sectors: u32,
     picture: Option<(usize, usize, Vec<u8>)>,
     sound: Vec<(i16, i16)>,
+    /// Its sectors as on the disc (2352 bytes each, video and XA sound
+    /// interleaved): an STR file.
+    raw: Vec<u8>,
 }
 
 fn read_movie(disc: &mut dyn crate::disc::Disc, m: &super::files::DiscMovie) -> Option<DiscMovieRead> {
@@ -270,16 +275,20 @@ fn read_movie(disc: &mut dyn crate::disc::Disc, m: &super::files::DiscMovie) -> 
     let mut channel = None;
     let limit = if m.frame_limit > 0 { m.frame_limit } else { u32::MAX };
     let mut idle = 0;
+    // Its sectors, kept up to the last that is its own.
+    let (mut sectors_raw, mut kept) = (Vec::new(), 0);
     for lba in m.lba.. {
         if disc.read_sector(lba, &mut raw).is_err() || idle > 64 {
             break;
         }
         sectors += 1;
+        sectors_raw.extend_from_slice(&raw);
         let (file, chan, submode) = (raw[16], raw[17], raw[18]);
         if submode & 0x04 != 0 {
             // Its sound: the first XA file and channel met.
             if *channel.get_or_insert((file, chan)) == (file, chan) {
                 sound.extend(xa.decode_sector(&raw));
+                kept = sectors_raw.len();
             }
             continue;
         }
@@ -296,6 +305,7 @@ fn read_movie(disc: &mut dyn crate::disc::Disc, m: &super::files::DiscMovie) -> 
         if number < last || number > limit || (last == 0 && number != 1) {
             break;
         }
+        kept = sectors_raw.len();
         if number != frame.0 {
             frame = (number, count, vec![0; usize::from(count) * STR_PAYLOAD], 0);
         }
@@ -325,11 +335,13 @@ fn read_movie(disc: &mut dyn crate::disc::Disc, m: &super::files::DiscMovie) -> 
             frame.3 = 0;
         }
     }
-    Some(DiscMovieRead { hash: hash?, frames: last, sectors, picture, sound })
+    sectors_raw.truncate(kept);
+    Some(DiscMovieRead { hash: hash?, frames: last, sectors, picture, sound, raw: sectors_raw })
 }
 
 fn save_movie(movie: &DiscMovieRead, m: &super::files::DiscMovie, out: &std::path::Path) -> std::io::Result<()> {
     let name = format!("{:016x}", movie.hash);
+    std::fs::write(out.join(format!("{name}.str")), &movie.raw)?;
     // The disc streams 150 sectors a second (double speed).
     let fps = f64::from(movie.frames) * 150.0 / f64::from(movie.sectors.max(1));
     let fps = if fps > 22.0 { 30.0 } else { GAME_FPS };
