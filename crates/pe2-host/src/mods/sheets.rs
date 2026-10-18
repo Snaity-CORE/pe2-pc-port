@@ -47,22 +47,32 @@ impl Sheet {
         if pairs < 64 || f64::from(high) <= f64::from(low) * 1.05 { 0 } else { 1 }
     }
 
-    /// Its texels at `depth` as grey levels (their indices), value 0
-    /// transparent: a sheet seen without its palettes.
+    /// Its texels at `depth` as grey levels, value 0 transparent: a sheet
+    /// seen without its palettes. A texel's grey is its value's place among
+    /// the values the sheet uses (an 8-bit sheet uses few of the 256, often
+    /// close together, which plain values would show as one grey).
     pub fn grey(&self, depth: u32) -> (usize, Vec<u8>) {
         let per = [4, 2, 1][depth.min(2) as usize];
         let width = 64 * per;
+        let value = |row: &[u16; 64], u: usize| -> u16 {
+            let word = row[u / per];
+            match depth {
+                0 => (word >> ((u % 4) * 4)) & 0xF,
+                1 => (word >> ((u % 2) * 8)) & 0xFF,
+                _ => word & 0x7FFF,
+            }
+        };
+        let mut used: Vec<u16> = self.rows.iter().flat_map(|r| (0..width).map(|u| value(r, u))).collect();
+        used.sort_unstable();
+        used.dedup();
+        let span = used.len().saturating_sub(1).max(1);
         let mut out = Vec::with_capacity(width * self.rows.len() * 4);
         for row in &self.rows {
             for u in 0..width {
-                let word = row[u / per];
-                let (value, max) = match depth {
-                    0 => ((word >> ((u % 4) * 4)) & 0xF, 15),
-                    1 => ((word >> ((u % 2) * 8)) & 0xFF, 255),
-                    _ => (word & 0x7FFF, 0x7FFF),
-                };
-                let g = (u32::from(value) * 255 / max) as u8;
-                out.extend_from_slice(&[g, g, g, if value == 0 { 0 } else { 255 }]);
+                let v = value(row, u);
+                let rank = used.binary_search(&v).unwrap_or(0);
+                let g = (48 + rank * 207 / span) as u8;
+                out.extend_from_slice(&[g, g, g, if v == 0 { 0 } else { 255 }]);
             }
         }
         (width, out)

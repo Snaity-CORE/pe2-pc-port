@@ -228,6 +228,23 @@ impl Tracker {
         }
         let palette =
             if depth < 2 { self.palette(vram, sh.clut_x, sh.clut_y, if depth == 0 { 16 } else { 256 }) } else { 0 };
+        if crate::runtime::trace("textures") {
+            // Each sheet and palette once: the names mods give pictures.
+            static SEEN: std::sync::Mutex<Option<std::collections::HashSet<(u32, u64)>>> = std::sync::Mutex::new(None);
+            if let Some(catalog) = sheets::catalog() {
+                for part in &parts {
+                    if SEEN.lock().unwrap().get_or_insert_with(Default::default).insert((part.sheet, palette)) {
+                        let name = crate::mods::texture_name((catalog.sheets[part.sheet as usize].hash, palette));
+                        eprintln!(
+                            "[textures] {name}: {}-bit sheet, palette at ({}, {})",
+                            [4, 8, 15][depth as usize],
+                            sh.clut_x,
+                            sh.clut_y
+                        );
+                    }
+                }
+            }
+        }
         if crate::mods::dumping() {
             for part in &parts {
                 self.dump(vram, part, depth, (u0, v0, u1, v1), (px, py), (sh.clut_x, sh.clut_y));
