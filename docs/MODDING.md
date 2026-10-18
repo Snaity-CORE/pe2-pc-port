@@ -89,12 +89,19 @@ each one asset. A sheet is known by a hash of its contents: its file name is
 1. Get the sheets, in `dumps/textures/` in the data folder:
    - **All of them, from the disc**: **Extract the game's files** in the
      launcher's Mods screen (or `pe2 --extract`) saves every sheet, about
-     2,100, whole. The disc does not say which colours a sheet is drawn with
-     (the models choose its palettes as they draw), so they come out in
-     grey: each texel's value in its palette.
-   - **In colour, by playing**: turn on dumping and play. Each sheet drawn
-     gets the colours the game draws it with, part by part (the rest stays
-     grey), saved again as more is drawn and kept from session to session.
+     2,100, whole. A sheet's texels are numbers into a palette, and which
+     palette colours them is chosen as the game draws (by the models, the
+     menus, each room's code). Where the sheet's own file carries its
+     palettes (weapons, items, maps, characters: about a quarter of the
+     sheets), it comes out in colour; the others (mostly rooms' textures,
+     whose palettes the rooms choose) come out in grey, each texel by its
+     number.
+   - **In colour, by playing**: turn on dumping and play. The first time a
+     sheet is drawn, it is coloured whole with that palette, and each part
+     drawn with another palette gets that palette's colours; dumps are
+     saved again as more is drawn, and kept from session to session. A part
+     not drawn yet may show the wrong colours (another part's palette)
+     until it is.
 2. Make your version, at any multiple of the sheet's size (4x: 1024 wide
    for a 256-texel sheet), and save it as
    `mods/<your mod>/textures/<same name>.png`.
@@ -105,10 +112,11 @@ What to know:
   enemy in two colours): `<sheet>.png` is drawn whichever the palette.
   `<sheet>-<palette>.png` (with a palette's hash) replaces it for that
   palette only.
-- **Depth.** Whether a sheet's texels are 4 or 8 bits is not on the disc
-  either: the extract guesses (right about 94% of the time; a wrong guess
-  shows as noise, at the other width). Playing corrects it: the dump is
-  remade at the depth the game draws it with.
+- **Depth.** Whether a sheet's texels are 4 or 8 bits comes from its
+  palette when its file has one; otherwise the extract guesses (right about
+  94% of the time; a wrong guess shows as noise, at the other width).
+  Playing corrects it: the dump is remade at the depth the game draws it
+  with.
 - **Transparency.** Your picture's transparency is used: pixels less than
   half opaque are not drawn. Whether the rest blends (semi-transparency)
   still follows the game's own texture.

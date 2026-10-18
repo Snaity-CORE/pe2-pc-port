@@ -339,6 +339,7 @@ pub fn dialogue_sources(disc: &mut dyn Disc) -> super::dialogue::Sources {
         for (k, c) in read_chunks(disc, f.lba).into_iter().enumerate() {
             match c.header[0] {
                 1 => out.pictures.entry(f.key.clone()).or_default().push(c.payload),
+                2 => out.palettes.entry(f.key.clone()).or_default().push(c.payload),
                 4 => out.bundles.push((f.key.clone(), k, c.payload)),
                 _ => {}
             }
@@ -392,6 +393,7 @@ pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path) -> std::io::Result<()>
                 }
                 match c.header[0] {
                     1 => dialogue.pictures.entry(f.key.clone()).or_default().push(c.payload.clone()),
+                    2 => dialogue.palettes.entry(f.key.clone()).or_default().push(c.payload.clone()),
                     4 => dialogue.bundles.push((f.key.clone(), k, c.payload.clone())),
                     _ => {}
                 }
@@ -404,7 +406,7 @@ pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path) -> std::io::Result<()>
     eprintln!("pe2: extract: {files} files, {chunks} chunks, {} MB in {}", bytes >> 20, out.display());
     eprintln!("pe2: extract: {} backgrounds in {}", backgrounds.len(), pictures.display());
     let textures = dumps.join("textures");
-    let catalog = super::sheets::Catalog::new(dialogue.pictures.values().flatten().map(Vec::as_slice));
+    let catalog = super::sheets::Catalog::new(&dialogue);
     let saved = super::sheets::extract(&catalog, &textures)?;
     eprintln!("pe2: extract: {} texture sheets ({saved} new) in {}", catalog.sheets.len(), textures.display());
     let text = dumps.join("text");

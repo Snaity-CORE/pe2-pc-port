@@ -106,7 +106,7 @@ pub fn start(discs: &[PathBuf]) {
         };
         let sources = files::dialogue_sources(disc.as_mut());
         if textures {
-            let catalog = sheets::Catalog::new(sources.pictures.values().flatten().map(Vec::as_slice));
+            let catalog = sheets::Catalog::new(&sources);
             eprintln!("pe2: mods: {} texture sheets in {:.1} s", catalog.sheets.len(), since.elapsed().as_secs_f32());
             sheets::set_catalog(catalog);
         }

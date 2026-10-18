@@ -141,9 +141,53 @@ fn u32le(b: &[u8], at: usize) -> Option<u32> {
     Some(u32::from_le_bytes(b.get(at..at + 4)?.try_into().ok()?))
 }
 
-/// The LZSS strips of a picture: each an independent stream (a 256-byte
-/// ring dictionary; flag 1: a literal byte, 0: an 8-bit offset, 0 ending
-/// the stream, and a 4-bit length + 2), up to STRIP_BYTES long.
+/// One LZSS stream from `stream[*at..]` (a 256-byte ring dictionary; flag
+/// 1: a literal byte, 0: an 8-bit offset, 0 ending the stream, and a 4-bit
+/// length + 2), `*at` left after it.
+pub fn lzss(stream: &[u8], at: &mut usize) -> Vec<u8> {
+    let (mut dict, mut next) = ([0u8; 256], 0u8);
+    let (mut byte, mut mask) = (0u8, 0u8);
+    let mut out = Vec::new();
+    let mut bits = |n: u32, at: &mut usize| -> Option<u32> {
+        let mut v = 0;
+        for _ in 0..n {
+            if mask == 0 {
+                byte = *stream.get(*at)?;
+                *at += 1;
+                mask = 0x80;
+            }
+            v = (v << 1) | u32::from(byte & mask != 0);
+            mask >>= 1;
+        }
+        Some(v)
+    };
+    while let Some(flag) = bits(1, at) {
+        if flag == 1 {
+            let Some(b) = bits(8, at) else { break };
+            dict[usize::from(next)] = b as u8;
+            next = next.wrapping_add(1);
+            out.push(b as u8);
+        } else {
+            let Some(offset) = bits(8, at) else { break };
+            if offset == 0 {
+                break;
+            }
+            let Some(len) = bits(4, at) else { break };
+            let mut from = (offset as u8).wrapping_sub(1);
+            for _ in 0..len + 2 {
+                let b = dict[usize::from(from)];
+                dict[usize::from(next)] = b;
+                next = next.wrapping_add(1);
+                out.push(b);
+                from = from.wrapping_add(1);
+            }
+        }
+    }
+    out
+}
+
+/// The LZSS strips of a picture: independent streams, each of up to
+/// STRIP_BYTES.
 fn strips(stream: &[u8]) -> Vec<Vec<u8>> {
     let mut out = Vec::new();
     let mut at = 0;
@@ -154,44 +198,7 @@ fn strips(stream: &[u8]) -> Vec<Vec<u8>> {
         if at >= stream.len() {
             break;
         }
-        let (mut dict, mut next) = ([0u8; 256], 0u8);
-        let (mut byte, mut mask) = (0u8, 0u8);
-        let mut strip = Vec::with_capacity(STRIP_BYTES);
-        let mut bits = |n: u32, at: &mut usize| -> Option<u32> {
-            let mut v = 0;
-            for _ in 0..n {
-                if mask == 0 {
-                    byte = *stream.get(*at)?;
-                    *at += 1;
-                    mask = 0x80;
-                }
-                v = (v << 1) | u32::from(byte & mask != 0);
-                mask >>= 1;
-            }
-            Some(v)
-        };
-        while let Some(flag) = bits(1, &mut at) {
-            if flag == 1 {
-                let Some(b) = bits(8, &mut at) else { break };
-                dict[usize::from(next)] = b as u8;
-                next = next.wrapping_add(1);
-                strip.push(b as u8);
-            } else {
-                let Some(offset) = bits(8, &mut at) else { break };
-                if offset == 0 {
-                    break;
-                }
-                let Some(len) = bits(4, &mut at) else { break };
-                let mut from = (offset as u8).wrapping_sub(1);
-                for _ in 0..len + 2 {
-                    let b = dict[usize::from(from)];
-                    dict[usize::from(next)] = b;
-                    next = next.wrapping_add(1);
-                    strip.push(b);
-                    from = from.wrapping_add(1);
-                }
-            }
-        }
+        let mut strip = lzss(stream, &mut at);
         if strip.is_empty() {
             break;
         }
@@ -433,8 +440,10 @@ fn fix_capital_i(s: &str) -> String {
 /// `extract` takes.
 #[derive(Default)]
 pub struct Sources {
-    /// File key -> its `.pe2img` chunks' contents.
+    /// File key -> its `.pe2img` chunks' contents, and its `.pe2clut`
+    /// ones' (palettes).
     pub pictures: HashMap<String, Vec<Vec<u8>>>,
+    pub palettes: HashMap<String, Vec<Vec<u8>>>,
     /// (file key, chunk index, contents) of each `.pe2cap2` chunk.
     pub bundles: Vec<(String, usize, Vec<u8>)>,
 }

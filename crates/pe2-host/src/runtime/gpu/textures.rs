@@ -17,9 +17,10 @@
 //! loaded.
 //!
 //! With dumping on, each sheet a primitive draws from is saved as
-//! `dumps/textures/<sheet>.png`: the sheet in grey (its texel values; see
-//! the extract), coloured where primitives drew it, with their palettes,
-//! growing as more is drawn.
+//! `dumps/textures/<sheet>.png`: the whole sheet through the first palette
+//! it is drawn with (unless its file gave it one, or an earlier dump
+//! exists), and where primitives drew it, with their own palettes, growing
+//! as more is drawn.
 
 use std::collections::HashMap;
 use std::time::{Duration, Instant};
@@ -72,12 +73,16 @@ pub struct Found {
     pub parts: Vec<Part>,
 }
 
-/// A sheet being dumped: its depth, its picture so far (RGBA), whether it
-/// changed since it was saved, and when it was.
+/// A sheet being dumped: its depth, its picture so far (RGBA), the texels
+/// drawn with their own palettes, whether the whole sheet has colours (a
+/// palette, not grey), whether it changed since it was saved, and when it
+/// was.
 struct Dump {
     depth: u32,
     width: usize,
     rgba: Vec<u8>,
+    exact: Vec<bool>,
+    coloured: bool,
     changed: bool,
     saved: Option<Instant>,
 }
@@ -273,6 +278,19 @@ impl Tracker {
             *d = new_dump(sheet, depth);
         }
         let height = d.rgba.len() / 4 / d.width;
+        // Grey until now: the whole sheet through this palette.
+        if !d.coloured {
+            let n = [16, 256, 0][depth as usize];
+            let palette: Vec<u16> = (0..n).map(|i| vram.get(cx + i, cy)).collect();
+            let (_, all) = sheet.through(depth, &palette);
+            for (i, exact) in d.exact.iter().enumerate() {
+                if !exact {
+                    d.rgba[i * 4..i * 4 + 4].copy_from_slice(&all[i * 4..i * 4 + 4]);
+                }
+            }
+            d.coloured = true;
+            d.changed = true;
+        }
         // The part's texels: its column of the page.
         let first = part.column as i32 * 64 * per;
         let (u0, u1) = (uv.0.max(first), uv.2.min(first + 64 * per - 1));
@@ -290,7 +308,9 @@ impl Tracker {
                 };
                 let c = |s: u16| ((t >> s & 31) << 3) as u8;
                 let rgba = [c(0), c(5), c(10), if t == 0 { 0 } else { 255 }];
-                let at = (sy as usize * d.width + (u - first) as usize) * 4;
+                let texel = sy as usize * d.width + (u - first) as usize;
+                d.exact[texel] = true;
+                let at = texel * 4;
                 if d.rgba[at..at + 4] != rgba {
                     d.rgba[at..at + 4].copy_from_slice(&rgba);
                     d.changed = true;
@@ -314,14 +334,20 @@ impl Tracker {
     }
 }
 
-/// A sheet's dump to start from: what an earlier session or the extract
-/// saved, if of this depth's size, else the sheet in grey.
+/// A sheet's dump to start from: what an earlier session saved (or the
+/// extract, if through its file's palette), if of this depth's size, else
+/// the sheet through its file's palette, or in grey.
 fn new_dump(sheet: &sheets::Sheet, depth: u32) -> Dump {
-    let (width, grey) = sheet.grey(depth);
+    let (width, first) = sheet.picture(depth);
     let height = sheet.rows.len();
-    let rgba = match crate::mods::read_texture_dump((sheet.hash, 0)) {
-        Some((w, h, rgba)) if (w as usize, h as usize) == (width, height) => rgba,
-        _ => grey,
+    let given = sheet.palette.as_ref().is_some_and(|p| p.len() == [16, 256, 0][depth as usize]);
+    let (rgba, coloured) = match crate::mods::read_texture_dump((sheet.hash, 0)) {
+        // An earlier dump in grey (not of a given palette) gets coloured.
+        Some((w, h, rgba)) if (w as usize, h as usize) == (width, height) => {
+            let grey = rgba.as_chunks::<4>().0.iter().all(|p| p[3] == 0 || (p[0] == p[1] && p[1] == p[2]));
+            (rgba, given || !grey)
+        }
+        _ => (first, given || depth == 2),
     };
-    Dump { depth, width, rgba, changed: false, saved: None }
+    Dump { depth, width, exact: vec![false; width * height], rgba, coloured, changed: false, saved: None }
 }

@@ -8,28 +8,74 @@
 //! so that the pieces the game loads are recognized as the sheets they come
 //! from (runtime/gpu/textures.rs): mods replace sheets, and dumps are of
 //! sheets, whole (docs/MODDING.md).
+//!
+//! A sheet's texels are palette indices; which palette colours them is the
+//! drawing's choice. Many files carry their pictures' palettes (`.pe2clut`)
+//! in the order of their columns: one 256-colour row per 8-bit column, one
+//! 16-colour row per 4-bit one. Such a sheet gets that palette (and its
+//! depth from it) to be shown with before the game draws it.
 
 use std::collections::HashMap;
 use std::sync::OnceLock;
 
-use super::dialogue::{Column, picture};
+use super::dialogue::{Column, Sources, lzss, picture};
 
 /// Rows in a piece of a sheet the game loads at once.
 pub const PIECE_ROWS: usize = 32;
 
-/// A sheet: its hash, its rows of 64 halfwords, and its pieces' hashes, as
-/// the game loads them (the last one padded with zeros).
+/// A sheet: its hash, its rows of 64 halfwords, its pieces' hashes, as
+/// the game loads them (the last one padded with zeros), and the palette
+/// its file gives it, if one does (16 or 256 colours).
 pub struct Sheet {
     pub hash: u64,
     pub rows: Vec<[u16; 64]>,
     pieces: Vec<u64>,
+    pub palette: Option<Vec<u16>>,
 }
 
 impl Sheet {
     fn new(hash: u64, rows: Vec<[u16; 64]>) -> Sheet {
         let pieces =
             rows.chunks(PIECE_ROWS).map(|c| piece_hash(c.iter().flatten().copied(), PIECE_ROWS - c.len())).collect();
-        Sheet { hash, rows, pieces }
+        Sheet { hash, rows, pieces, palette: None }
+    }
+
+    /// Its texel depth (0: 4 bits, 1: 8 bits): its palette's, else likely.
+    pub fn depth(&self) -> u32 {
+        match self.palette.as_ref().map(Vec::len) {
+            Some(16) => 0,
+            Some(_) => 1,
+            None => self.likely_depth(),
+        }
+    }
+
+    /// Its texels at `depth` as RGBA: through its palette if it has one of
+    /// that depth (colour 0 transparent, as the console draws it), else in
+    /// grey (see `grey`).
+    pub fn picture(&self, depth: u32) -> (usize, Vec<u8>) {
+        match &self.palette {
+            Some(p) if p.len() == [16, 256][depth.min(1) as usize] && depth < 2 => self.through(depth, p),
+            _ => self.grey(depth),
+        }
+    }
+
+    /// Its texels at `depth` through `palette`.
+    pub fn through(&self, depth: u32, palette: &[u16]) -> (usize, Vec<u8>) {
+        let per = [4, 2, 1][depth.min(2) as usize];
+        let width = 64 * per;
+        let mut out = Vec::with_capacity(width * self.rows.len() * 4);
+        for row in &self.rows {
+            for u in 0..width {
+                let word = row[u / per];
+                let t = match depth {
+                    0 => palette.get(usize::from((word >> ((u % 4) * 4)) & 0xF)).copied().unwrap_or(0),
+                    1 => palette.get(usize::from((word >> ((u % 2) * 8)) & 0xFF)).copied().unwrap_or(0),
+                    _ => word,
+                };
+                out.extend_from_slice(&rgba(t));
+            }
+        }
+        (width, out)
     }
 
     /// Its likely texel depth (0: 4 bits, 1: 8 bits), for showing it before
@@ -79,6 +125,34 @@ impl Sheet {
     }
 }
 
+/// A 15-bit colour as RGBA, 0 transparent.
+fn rgba(t: u16) -> [u8; 4] {
+    let c = |s: u16| ((t >> s & 31) << 3) as u8;
+    [c(0), c(5), c(10), if t == 0 { 0 } else { 255 }]
+}
+
+/// The palettes of a file's `.pe2clut` chunks (an image header: x, y,
+/// height, width; then the colours, LZSS): its rows of 256 colours or more
+/// (8-bit palettes, the first 256 of each), and its 16-colour ones.
+fn palettes(chunks: &[Vec<u8>]) -> (Vec<Vec<u16>>, Vec<Vec<u16>>) {
+    let (mut wide, mut narrow) = (Vec::new(), Vec::new());
+    for c in chunks {
+        let (Some(h), Some(w)) = (c.get(4..6), c.get(6..8)) else { continue };
+        let (h, w) = (usize::from(u16::from_le_bytes([h[0], h[1]])), usize::from(u16::from_le_bytes([w[0], w[1]])));
+        let mut at = 16;
+        let bytes = lzss(c, &mut at);
+        let colours: Vec<u16> = bytes.as_chunks::<2>().0.iter().map(|b| u16::from_le_bytes(*b)).collect();
+        for row in colours.chunks(w.max(1)).take(h) {
+            if row.len() >= 256 {
+                wide.push(row[..256].to_vec());
+            } else if row.len() == 16 {
+                narrow.push(row.to_vec());
+            }
+        }
+    }
+    (wide, narrow)
+}
+
 /// The hash of a piece: its halfwords, then `padding` rows of zeros.
 pub fn piece_hash(halfwords: impl IntoIterator<Item = u16>, padding: usize) -> u64 {
     let zeros = std::iter::repeat_n(0u16, padding * 64);
@@ -95,25 +169,40 @@ pub struct Catalog {
 }
 
 impl Catalog {
-    /// The catalog of the sheets of `pictures` (`.pe2img` contents).
-    pub fn new<'a>(pictures: impl Iterator<Item = &'a [u8]>) -> Catalog {
+    /// The catalog of the sheets of the pictures (`.pe2img`) of `sources`,
+    /// with the palettes their files give them.
+    pub fn new(sources: &Sources) -> Catalog {
         let mut c = Catalog::default();
-        for p in pictures {
-            for Column { rows } in picture(p) {
+        let mut keys: Vec<&String> = sources.pictures.keys().collect();
+        keys.sort_unstable();
+        for key in keys {
+            let (wide, narrow) = palettes(sources.palettes.get(key).map_or(&[][..], Vec::as_slice));
+            let columns = sources.pictures[key].iter().flat_map(|p| picture(p));
+            for (i, Column { rows }) in columns.enumerate() {
                 if rows.is_empty() {
                     continue;
                 }
+                // Its file's palettes, in column order: 8-bit ones if any.
+                let given = [wide.as_slice(), narrow.as_slice()]
+                    .into_iter()
+                    .find(|p| !p.is_empty())
+                    .map(|p| p[i.min(p.len() - 1)].clone());
                 let hash = super::fnv1a(
                     (rows.len() as u32)
                         .to_le_bytes()
                         .into_iter()
                         .chain(rows.iter().flatten().flat_map(|w| w.to_le_bytes())),
                 );
-                if c.by_hash.contains_key(&hash) {
+                if let Some(&known) = c.by_hash.get(&hash) {
+                    let sheet = &mut c.sheets[known as usize];
+                    if sheet.palette.is_none() {
+                        sheet.palette = given;
+                    }
                     continue;
                 }
                 let index = c.sheets.len() as u32;
-                let sheet = Sheet::new(hash, rows);
+                let mut sheet = Sheet::new(hash, rows);
+                sheet.palette = given;
                 for (k, &piece) in sheet.pieces.iter().enumerate() {
                     c.pieces.entry(piece).or_default().push((index, k as u16));
                 }
@@ -135,9 +224,10 @@ impl Catalog {
     }
 }
 
-/// Saves each sheet of `catalog` as `<sheet>.png` in `dir`, in grey at its
-/// likely depth, unless there is one already (one coloured by playing is
-/// kept). Answers how many were saved.
+/// Saves each sheet of `catalog` as `<sheet>.png` in `dir`, through the
+/// palette its file gives it (else in grey, at its likely depth), unless
+/// there is one already (one coloured by playing is kept). Answers how
+/// many were saved.
 pub fn extract(catalog: &Catalog, dir: &std::path::Path) -> std::io::Result<usize> {
     std::fs::create_dir_all(dir)?;
     let mut saved = 0;
@@ -146,7 +236,7 @@ pub fn extract(catalog: &Catalog, dir: &std::path::Path) -> std::io::Result<usiz
         if path.exists() {
             continue;
         }
-        let (width, rgba) = sheet.grey(sheet.likely_depth());
+        let (width, rgba) = sheet.picture(sheet.depth());
         let file = std::io::BufWriter::new(std::fs::File::create(&path)?);
         let mut enc = png::Encoder::new(file, width as u32, sheet.rows.len() as u32);
         enc.set_color(png::ColorType::Rgba);
