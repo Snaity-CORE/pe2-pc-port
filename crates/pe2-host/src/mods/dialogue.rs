@@ -310,8 +310,9 @@ impl<'a> Cap<'a> {
     }
 
     pub fn cell(&self, index: usize) -> [u8; 4] {
-        let at = self.glyphs + index * 4;
-        self.bytes.get(at..at + 4).and_then(|c| c.try_into().ok()).unwrap_or([0; 4])
+        let Some(at) = index.checked_mul(4).and_then(|n| self.glyphs.checked_add(n)) else { return [0; 4] };
+        let Some(end) = at.checked_add(4) else { return [0; 4] };
+        self.bytes.get(at..end).and_then(|c| c.try_into().ok()).unwrap_or([0; 4])
     }
 
     /// Its lines, as Gp_RelocCapFile walks the records: `count` of them,
@@ -627,6 +628,13 @@ pub fn extract(sources: &Sources, out: &Path) -> std::io::Result<(usize, usize)>
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn invalid_glyph_index_cannot_wrap_into_another_cell() {
+        let cap = Cap { bytes: &[1, 2, 3, 4], glyphs: 0, sequences: 0, commands: 0 };
+        assert_eq!(cap.cell(0), [1, 2, 3, 4]);
+        assert_eq!(cap.cell(usize::MAX), [0; 4]);
+    }
 
     /// Capital I comes back where the shared glyph stands for it.
     #[test]

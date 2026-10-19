@@ -215,9 +215,49 @@ pub struct Catalog {
     pub sheets: Vec<Sheet>,
     pieces: HashMap<u64, Vec<(u32, u16)>>,
     by_hash: HashMap<u64, u32>,
+    ui_palettes: Vec<Vec<u16>>,
 }
 
 impl Catalog {
+    /// The UI font uses a resident 16-colour CLUT, not its file's 256-colour
+    /// title-image palette. The USA main executable stores it at 800609B0.
+    pub fn apply_ui_font_palette(&mut self, executable: &[u8]) {
+        if executable.get(..8) != Some(b"PS-X EXE") {
+            return;
+        }
+        let Some(base) = executable.get(0x18..0x1C).and_then(|b| b.try_into().ok()).map(u32::from_le_bytes) else {
+            return;
+        };
+        let Some(at) = 0x800609B0u32.checked_sub(base).map(|o| o as usize + 0x800) else { return };
+        let Some(bytes) = executable.get(at..at + 96) else { return };
+        self.ui_palettes = bytes
+            .chunks_exact(32)
+            .map(|row| row.chunks_exact(2).map(|b| u16::from_le_bytes([b[0], b[1]])).collect())
+            .collect();
+        let palette = &self.ui_palettes[0];
+        for sheet in &mut self.sheets {
+            if sheet.origin == "stage0/file1/0#0" && sheet.place == (960, 256) {
+                sheet.palette = Some(palette.clone());
+                sheet.palette_source = "resident UI font fill palette (4-bit)";
+            }
+        }
+    }
+
+    /// Merge another disc's catalog without changing existing sheet indices.
+    pub fn extend(&mut self, other: Catalog) {
+        for sheet in other.sheets {
+            if self.by_hash.contains_key(&sheet.hash) {
+                continue;
+            }
+            let index = self.sheets.len() as u32;
+            for (k, &piece) in sheet.pieces.iter().enumerate() {
+                self.pieces.entry(piece).or_default().push((index, k as u16));
+            }
+            self.by_hash.insert(sheet.hash, index);
+            self.sheets.push(sheet);
+        }
+    }
+
     /// The catalog of the sheets of the pictures (`.pe2img`) of `sources`,
     /// with the palettes their files give them.
     pub fn new(sources: &Sources) -> Catalog {
@@ -336,6 +376,26 @@ pub fn extract(
 ",
     );
     for (i, sheet) in catalog.sheets.iter().enumerate() {
+        // The fill and two outline passes use different CLUTs. Export
+        // palette-specific replacements so one pass cannot erase another.
+        if sheet.origin == "stage0/file1/0#0" && !catalog.ui_palettes.is_empty() {
+            for palette in &catalog.ui_palettes {
+                let hash = super::fnv1a(palette.iter().flat_map(|w| w.to_le_bytes()));
+                let name = super::texture_name((sheet.hash, hash));
+                let (width, rgba) = sheet.through(0, palette);
+                let file = std::io::BufWriter::new(std::fs::File::create(dir.join(format!("{name}.png")))?);
+                let mut enc = png::Encoder::new(file, width as u32, sheet.rows.len() as u32);
+                enc.set_color(png::ColorType::Rgba);
+                enc.set_depth(png::BitDepth::Eight);
+                enc.write_header().and_then(|mut w| w.write_image_data(&rgba)).map_err(std::io::Error::other)?;
+                index.push_str(&format!(
+                    "{name} {} {},{} 4-bit resident UI font palette\n",
+                    sheet.origin, sheet.place.0, sheet.place.1
+                ));
+            }
+            coloured += 1;
+            continue;
+        }
         let name = super::texture_name((sheet.hash, 0));
         let path = dir.join(format!("{name}.png"));
         let (width, rgba, depth, source) = match painted.get(&(i as u32)) {
@@ -382,6 +442,43 @@ pub fn set_catalog(c: Catalog) {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn ui_font_uses_resident_four_bit_palette() {
+        let mut exe = vec![0; 0x860];
+        exe[..8].copy_from_slice(b"PS-X EXE");
+        exe[0x18..0x1C].copy_from_slice(&0x800609B0u32.to_le_bytes());
+        for i in 0..16 {
+            exe[0x800 + i * 2..0x802 + i * 2].copy_from_slice(&(i as u16).to_le_bytes());
+        }
+        let mut sheet = Sheet::new(1, vec![[0x1234; 64]; 256]);
+        sheet.origin = "stage0/file1/0#0".into();
+        sheet.place = (960, 256);
+        sheet.palette = Some(vec![0; 256]);
+        let mut catalog = Catalog::default();
+        catalog.sheets.push(sheet);
+        catalog.apply_ui_font_palette(&exe);
+        assert_eq!(catalog.sheets[0].depth(), 0);
+        assert_eq!(catalog.sheets[0].picture(0).0, 256);
+        assert_eq!(catalog.sheets[0].palette.as_ref().unwrap().len(), 16);
+    }
+
+    #[test]
+    fn merge_disc_catalogs_keeps_indices_and_piece_lookup() {
+        let mut first = Catalog::default();
+        let mut second = Catalog::default();
+        first.sheets.push(Sheet::new(10, vec![[1; 64]; 32]));
+        second.sheets.push(Sheet::new(10, vec![[1; 64]; 32]));
+        second.sheets.push(Sheet::new(20, vec![[2; 64]; 32]));
+        let mut merged = Catalog::default();
+        merged.extend(first);
+        merged.extend(second);
+        assert_eq!(merged.sheets.len(), 2);
+        assert_eq!(merged.find(10), Some(0));
+        assert_eq!(merged.find(20), Some(1));
+        let hash = piece_hash(std::iter::repeat_n(2, 64 * 32), 0);
+        assert_eq!(merged.pieces(hash), &[(1, 0)]);
+    }
 
     /// A sheet's pieces are hashed as the game loads them, padded.
     #[test]

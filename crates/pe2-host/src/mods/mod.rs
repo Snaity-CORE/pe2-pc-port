@@ -97,26 +97,42 @@ pub fn installed() -> Vec<Mod> {
 /// textures, and the dialogue font for translations.
 pub fn start(discs: &[PathBuf]) {
     let (font, textures) = (translate::wanted(), wants_textures());
-    let Some(image) = discs.first().cloned().filter(|_| font || textures) else { return };
+    if discs.is_empty() || !(font || textures) {
+        return;
+    }
+    let images = discs.to_vec();
     std::thread::spawn(move || {
         let since = std::time::Instant::now();
-        let mut disc = match crate::disc::open(&image) {
-            Ok(d) => d,
-            Err(e) => {
-                eprintln!("pe2: mods: {}: {e}", image.display());
-                return;
+        let mut catalog = sheets::Catalog::default();
+        for (number, image) in images.iter().enumerate() {
+            let mut disc = match crate::disc::open(image) {
+                Ok(d) => d,
+                Err(e) => {
+                    eprintln!("pe2: mods: {}: {e}", image.display());
+                    continue;
+                }
+            };
+            let sources = files::dialogue_sources(disc.as_mut());
+            if textures {
+                catalog.extend(sheets::Catalog::new(&sources));
             }
-        };
-        let sources = files::dialogue_sources(disc.as_mut());
-        if textures {
-            let catalog = sheets::Catalog::new(&sources);
-            eprintln!("pe2: mods: {} texture sheets in {:.1} s", catalog.sheets.len(), since.elapsed().as_secs_f32());
-            sheets::set_catalog(catalog);
+            if font && number == 0 {
+                let f = dialogue::font(&sources);
+                eprintln!("pe2: mods: dialogue font: {} glyphs in {:.1} s", f.len(), since.elapsed().as_secs_f32());
+                translate::set_font(f);
+            }
+            if !textures {
+                break;
+            }
         }
-        if font {
-            let f = dialogue::font(&sources);
-            eprintln!("pe2: mods: dialogue font: {} glyphs in {:.1} s", f.len(), since.elapsed().as_secs_f32());
-            translate::set_font(f);
+        if textures {
+            eprintln!(
+                "pe2: mods: {} texture sheets from {} discs in {:.1} s",
+                catalog.sheets.len(),
+                images.len(),
+                since.elapsed().as_secs_f32()
+            );
+            sheets::set_catalog(catalog);
         }
     });
 }
@@ -252,6 +268,24 @@ pub type TextureKey = (u64, u64);
 /// for any palette.
 pub fn texture_name((texture, palette): TextureKey) -> String {
     if palette == 0 { format!("{texture:016x}") } else { format!("{texture:016x}-{palette:016x}") }
+}
+
+/// A replacement must keep the native sheet's aspect ratio at any scale.
+pub fn texture_dimensions_match(w: u32, h: u32, native_w: i32, native_h: i32) -> bool {
+    w > 0 && h > 0 && native_w > 0 && native_h > 0 && u64::from(w) * native_h as u64 == u64::from(h) * native_w as u64
+}
+
+#[cfg(test)]
+mod texture_size_tests {
+    use super::texture_dimensions_match;
+
+    #[test]
+    fn rejects_wrong_depth_export_and_accepts_scaled_sheet() {
+        assert!(texture_dimensions_match(1024, 1024, 256, 256));
+        assert!(texture_dimensions_match(512, 1024, 128, 256));
+        assert!(!texture_dimensions_match(512, 1024, 256, 256));
+        assert!(!texture_dimensions_match(0, 1024, 256, 256));
+    }
 }
 
 fn textures() -> &'static Library<TextureKey> {

@@ -55,7 +55,8 @@ pub fn has_console() -> bool {
 fn main() -> ExitCode {
     drop_own_console();
     let mut images: Vec<PathBuf> = std::env::args_os().skip(1).map(PathBuf::from).collect();
-    let extract = images.first().is_some_and(|a| a.as_os_str() == "--extract");
+    let visuals = images.first().is_some_and(|a| a.as_os_str() == "--extract-visuals");
+    let extract = visuals || images.first().is_some_and(|a| a.as_os_str() == "--extract");
     if extract {
         images.remove(0);
     }
@@ -122,7 +123,7 @@ fn main() -> ExitCode {
     // The extract runs the game's sound code for its songs (music.rs).
     if extract {
         let out = paths::user_file("dumps");
-        return match mods::files::extract(&mut discs, &out) {
+        return match mods::files::extract(&mut discs, &out, !visuals) {
             Ok(()) => ExitCode::SUCCESS,
             Err(e) => {
                 eprintln!("pe2: extract: {}: {e}", out.display());

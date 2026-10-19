@@ -778,11 +778,29 @@ impl Hw {
             // This palette's picture of the sheet, else the one for any.
             let mut texture = None;
             for key in [(sheet.hash, f.palette), (sheet.hash, 0)] {
+                let Some(picture) = crate::mods::texture(key) else { continue };
+                // Exported at the wrong texel depth, a sheet has half/twice
+                // the correct width. Do not stretch it onto this primitive.
+                if !crate::mods::texture_dimensions_match(picture.width, picture.height, width, height) {
+                    static WARNED: std::sync::Mutex<Option<std::collections::HashSet<crate::mods::TextureKey>>> =
+                        std::sync::Mutex::new(None);
+                    if WARNED.lock().unwrap().get_or_insert_with(Default::default).insert(key) {
+                        eprintln!(
+                            "pe2: mods: ignored texture {}: {}x{} does not match {}x{} sheet ({}-bit); check extraction depth",
+                            crate::mods::texture_name(key),
+                            picture.width,
+                            picture.height,
+                            width,
+                            height,
+                            [4, 8, 15][f.depth as usize]
+                        );
+                    }
+                    continue;
+                }
                 if let Some(i) = self.atlas.index(key) {
                     texture = Some(i);
                     break;
                 }
-                let Some(picture) = crate::mods::texture(key) else { continue };
                 texture = match self.atlas.add(key, &picture, width, height) {
                     Some(i) => Some(i),
                     None => {

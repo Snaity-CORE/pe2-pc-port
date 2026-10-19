@@ -456,7 +456,7 @@ pub fn dialogue_sources(disc: &mut dyn Disc) -> super::dialogue::Sources {
 /// shows, as `dumps/backgrounds/<hash>.png` (see mods::background), the
 /// texture sheets under `dumps/textures` (see sheets.rs), and the dialogue
 /// as text under `dumps/text` (see dialogue.rs).
-pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path) -> std::io::Result<()> {
+pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path, full: bool) -> std::io::Result<()> {
     let out = dumps.join("files");
     let pictures = dumps.join("backgrounds");
     std::fs::create_dir_all(&pictures)?;
@@ -512,7 +512,12 @@ pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path) -> std::io::Result<()>
     eprintln!("pe2: extract: {files} files, {chunks} chunks, {} MB in {}", bytes >> 20, out.display());
     eprintln!("pe2: extract: {} backgrounds in {}", backgrounds.len(), pictures.display());
     let textures = dumps.join("textures");
-    let catalog = super::sheets::Catalog::new(&dialogue);
+    let mut catalog = super::sheets::Catalog::new(&dialogue);
+    if let Some(disc) = discs.first_mut()
+        && let Ok((_, executable)) = iso9660::boot_executable(disc.as_mut())
+    {
+        catalog.apply_ui_font_palette(&executable);
+    }
     let (mut painted, checked, mismatched) = super::rooms::paint(&dialogue, &catalog);
     for (sheet, page) in catalog.glyph_pages(&dialogue) {
         painted.entry(sheet).or_insert(page);
@@ -528,6 +533,9 @@ pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path) -> std::io::Result<()>
         painted.values().filter(|p| p.source == "rooms' code").count(),
         painted.values().filter(|p| p.source == "the captions' palettes").count()
     );
+    if !full {
+        return Ok(());
+    }
     let music = dumps.join("music");
     let count = super::music::extract(discs, &music)?;
     eprintln!("pe2: extract: {count} songs in {}", music.display());

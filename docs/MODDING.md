@@ -49,6 +49,18 @@ in a terminal from the folder `pe2.exe` is in:
 pe2 --extract
 ```
 
+For backgrounds and texture sheets only, without rendering music or decoding
+movies and dialogue, use `pe2 --extract-visuals [disc1.chd disc2.chd]`.
+It also writes the raw files needed to trace each picture's source.
+
+The UI font at `stage0/file1/0#0` is a 256-pixel-wide 4-bit sheet, using
+the resident executable's font palette. Older dumps could export it as a
+128-pixel-wide 8-bit image with the title picture's palette. Regenerate that
+dump before upscaling it. The hardware renderer rejects replacement images
+whose aspect ratio does not match the sheet at the depth being drawn, logging
+the name and expected dimensions; this preserves the original in that case.
+The runtime texture catalog includes both configured discs.
+
 It reads the discs `pe2.toml` names (or the images given after
 `--extract`) and saves what it finds in `dumps/` in the data folder: the
 files, pictures, textures, songs, movies and dialogue (see each kind
