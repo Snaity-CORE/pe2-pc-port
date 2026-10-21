@@ -271,6 +271,136 @@ fn decode_values(bytes: &[u8]) -> Result<(u32, u32, Vec<u8>), String> {
     Ok((w, h, values))
 }
 
+/// The grey level index `index` is shown as in a ramp picture: spread over
+/// the whole range, 17 apart at 4 bits, 1 apart at 8 (index 0 black).
+pub fn ramp_level(index: u8, depth: u32) -> u8 {
+    if depth == 0 { (index & 0xF) * 17 } else { index }
+}
+
+/// `indexed` as a ramp picture (RGBA, opaque): each index its own grey,
+/// for an upscaler to enlarge where a palette's colours would not tell the
+/// indices apart (a font whose fill and outline look alike in each of its
+/// palettes).
+pub fn ramp(indexed: &Indexed) -> Vec<u8> {
+    indexed
+        .indices
+        .iter()
+        .flat_map(|&i| {
+            let g = ramp_level(i, indexed.depth);
+            [g, g, g, 255]
+        })
+        .collect()
+}
+
+/// Saves `indexed`'s ramp picture as `<sheet>-<4|8>bit.png` in `dir`.
+pub fn write_ramp(dir: &Path, indexed: &Indexed) -> Result<PathBuf, String> {
+    std::fs::create_dir_all(dir).map_err(|e| e.to_string())?;
+    let path = dir.join(format!("{}.png", stem(indexed.sheet, indexed.depth)));
+    let file = std::fs::File::create(&path).map_err(|e| e.to_string())?;
+    let mut enc = png::Encoder::new(std::io::BufWriter::new(file), indexed.size.0, indexed.size.1);
+    enc.set_color(png::ColorType::Grayscale);
+    enc.set_depth(png::BitDepth::Eight);
+    let levels: Vec<u8> = indexed.indices.iter().map(|&i| ramp_level(i, indexed.depth)).collect();
+    enc.write_header().and_then(|mut w| w.write_image_data(&levels)).map_err(|e| e.to_string())?;
+    Ok(path)
+}
+
+/// An RGBA picture: its size and pixels.
+pub struct Rgba<'a> {
+    pub width: u32,
+    pub height: u32,
+    pub pixels: &'a [u8],
+}
+
+/// The indices of an enlarged picture of the sheet `native` (say, its
+/// colour preview made larger by an AI upscaler), at the enlarged
+/// picture's size, a whole multiple of the sheet's.
+///
+/// `preview` is the picture of the sheet the enlarged one was made from,
+/// at the sheet's size: it tells which colour each index stands for in it
+/// (an index's mean colour where the preview shows it). Each enlarged pixel
+/// then takes, of the indices of its own texel and the eight around it in
+/// the sheet, the one whose colour is nearest its own (transparent pixels
+/// nearest transparent ones; a tie keeps its own texel's index). So the
+/// upscaler decides where edges go, and the indices stay the sheet's: an
+/// index whose colour a palette repeats keeps its place, and no index
+/// appears that is not near it in the original.
+pub fn from_upscale(native: &Indexed, preview: &Rgba, upscaled: &Rgba) -> Result<Indexed, String> {
+    let (w, h) = native.size;
+    if native.size != native.native {
+        return Err("the indexed sheet must be at its own size (as extracted)".into());
+    }
+    if (preview.width, preview.height) != (w, h) || preview.pixels.len() != (w * h * 4) as usize {
+        return Err(format!(
+            "the preview is {}x{}, but the {}-bit sheet is {w}x{h} (a preview of the other depth?)",
+            preview.width,
+            preview.height,
+            [4, 8][native.depth as usize]
+        ));
+    }
+    let scale = upscaled.width / w;
+    if scale == 0 || upscaled.width != w * scale || upscaled.height != h * scale {
+        return Err(format!(
+            "the enlarged picture is {}x{}, not a whole multiple of {w}x{h} (the same on both sides)",
+            upscaled.width, upscaled.height
+        ));
+    }
+    if upscaled.pixels.len() != (upscaled.width * upscaled.height * 4) as usize
+        || upscaled.width > MAX_SIDE
+        || upscaled.height > MAX_SIDE
+    {
+        return Err(format!("the enlarged picture is larger than {MAX_SIDE} on a side, or incomplete"));
+    }
+    // Each index's colour in the preview (RGB and alpha), where it shows.
+    let mut sums = vec![[0u64; 5]; 256];
+    for (i, &index) in native.indices.iter().enumerate() {
+        let p = &preview.pixels[i * 4..i * 4 + 4];
+        let s = &mut sums[usize::from(index)];
+        for c in 0..4 {
+            s[c] += u64::from(p[c]);
+        }
+        s[4] += 1;
+    }
+    let colour: Vec<Option<[i64; 4]>> =
+        sums.iter().map(|s| (s[4] > 0).then(|| [0, 1, 2, 3].map(|c| (s[c] / s[4]) as i64))).collect();
+    let distance = |a: [i64; 4], b: &[u8]| -> i64 {
+        // Transparent and opaque never mix: alpha weighs as much as all of
+        // the colour.
+        let rgb: i64 = (0..3).map(|c| (a[c] - i64::from(b[c])).pow(2)).sum();
+        rgb + 3 * (a[3] - i64::from(b[3])).pow(2)
+    };
+    let (uw, uh) = (upscaled.width, upscaled.height);
+    let mut indices = Vec::with_capacity((uw * uh) as usize);
+    for y in 0..uh {
+        for x in 0..uw {
+            let (u, v) = (x / scale, y / scale);
+            let own = native.indices[(v * w + u) as usize];
+            let pixel = &upscaled.pixels[((y * uw + x) * 4) as usize..((y * uw + x) * 4 + 4) as usize];
+            let mut best = (i64::MAX, own);
+            let mut consider = |index: u8| {
+                if let Some(c) = colour[usize::from(index)] {
+                    let d = distance(c, pixel);
+                    if d < best.0 {
+                        best = (d, index);
+                    }
+                }
+            };
+            // Its own texel's index first, so a tie keeps it.
+            consider(own);
+            for dv in -1i32..=1 {
+                for du in -1i32..=1 {
+                    let (nu, nv) = (u as i32 + du, v as i32 + dv);
+                    if (0..w as i32).contains(&nu) && (0..h as i32).contains(&nv) {
+                        consider(native.indices[(nv as u32 * w + nu as u32) as usize]);
+                    }
+                }
+            }
+            indices.push(best.1);
+        }
+    }
+    Ok(Indexed { size: (uw, uh), indices, ..native.clone() })
+}
+
 /// `indexed` made `factor` times larger, each texel repeated (nearest): the
 /// values stay the same indices.
 pub fn upscale(indexed: &Indexed, factor: u32) -> Result<Indexed, String> {
@@ -406,6 +536,107 @@ mod tests {
         enc.set_depth(png::BitDepth::Eight);
         enc.write_header().unwrap().write_image_data(&[1, 2, 3, 255]).unwrap();
         assert!(decode_values(&bytes).is_err());
+    }
+
+    /// A sheet of `w` x `h` from rows of indices, and its preview through
+    /// `palette` (RGBA per index).
+    fn sheet_and_preview(rows: &[&[u8]], palette: &[[u8; 4]]) -> (Indexed, Vec<u8>) {
+        let (w, h) = (rows[0].len() as u32, rows.len() as u32);
+        let indices: Vec<u8> = rows.iter().flat_map(|r| r.iter().copied()).collect();
+        let preview = indices.iter().flat_map(|&i| palette[usize::from(i)]).collect();
+        (Indexed { sheet: 1, depth: 0, native: (w, h), size: (w, h), indices }, preview)
+    }
+
+    #[test]
+    fn an_upscale_by_repeating_gives_the_indices_back() {
+        let palette = [[0, 0, 0, 0], [200, 30, 30, 255], [30, 200, 30, 255], [30, 30, 200, 255]];
+        let (sheet, preview) = sheet_and_preview(&[&[0, 1, 2], &[3, 2, 1]], &palette);
+        let big = upscale(&sheet, 3).unwrap();
+        let pixels: Vec<u8> = big.indices.iter().flat_map(|&i| palette[usize::from(i)]).collect();
+        let prev = Rgba { width: 3, height: 2, pixels: &preview };
+        let up = Rgba { width: 9, height: 6, pixels: &pixels };
+        assert_eq!(from_upscale(&sheet, &prev, &up).unwrap().indices, big.indices);
+    }
+
+    #[test]
+    fn a_repeated_colour_keeps_each_texels_own_index() {
+        // Indices 1 and 2 are the same colour (as palettes often repeat a
+        // black): each enlarged texel keeps its own.
+        let palette = [[0, 0, 0, 0], [10, 10, 10, 255], [10, 10, 10, 255]];
+        let (sheet, preview) = sheet_and_preview(&[&[1, 2]], &palette);
+        let pixels: Vec<u8> = (0..4 * 2).flat_map(|_| [10, 10, 10, 255]).collect();
+        let prev = Rgba { width: 2, height: 1, pixels: &preview };
+        let up = Rgba { width: 4, height: 2, pixels: &pixels };
+        assert_eq!(from_upscale(&sheet, &prev, &up).unwrap().indices, vec![1, 1, 2, 2, 1, 1, 2, 2]);
+    }
+
+    #[test]
+    fn smoothed_edges_take_the_nearest_index_around() {
+        // Between a red and a blue texel the upscaler put a reddish, a
+        // purple and a bluish pixel: nearest wins; a colour of no index near
+        // (green, index 3, is far away) never appears.
+        let palette = [[0, 0, 0, 0], [255, 0, 0, 255], [0, 0, 255, 255], [0, 255, 0, 255]];
+        let (sheet, preview) = sheet_and_preview(&[&[1, 2], &[1, 2], &[3, 3]], &palette);
+        let row = |a: [u8; 4], b: [u8; 4], c: [u8; 4], d: [u8; 4]| [a, b, c, d];
+        let (red, blue) = ([255, 0, 0, 255], [0, 0, 255, 255]);
+        let mut pixels = Vec::new();
+        for _ in 0..4 {
+            pixels.extend(row(red, [200, 0, 60, 255], [60, 0, 200, 255], blue).iter().flatten());
+        }
+        for _ in 0..2 {
+            pixels.extend(row([0, 255, 0, 255], [0, 255, 0, 255], [0, 255, 0, 255], [0, 255, 0, 255]).iter().flatten());
+        }
+        let prev = Rgba { width: 2, height: 3, pixels: &preview };
+        let up = Rgba { width: 4, height: 6, pixels: &pixels };
+        let out = from_upscale(&sheet, &prev, &up).unwrap();
+        assert_eq!(&out.indices[..4], &[1, 1, 2, 2]);
+        assert!(out.indices[..16].iter().all(|&i| i != 3));
+    }
+
+    #[test]
+    fn a_smoothed_ramp_gives_clean_indices_back() {
+        // Fill (index 15) next to outline (index 5) next to nothing: as a
+        // ramp, then blurred across each edge, as an upscaler would.
+        let sheet = Indexed { sheet: 1, depth: 0, native: (3, 1), size: (3, 1), indices: vec![0, 5, 15] };
+        let preview = ramp(&sheet);
+        let levels = [0u8, 0, 30, 85, 85, 140, 255, 255];
+        let pixels: Vec<u8> = levels.iter().flat_map(|&g| [g, g, g, 255]).collect();
+        // 8 pixels wide would not be a whole multiple of 3: use 6.
+        let pixels = &pixels[..6 * 4];
+        let out = from_upscale(
+            &sheet,
+            &Rgba { width: 3, height: 1, pixels: &preview },
+            &Rgba { width: 6, height: 2, pixels: &[pixels, pixels].concat() },
+        )
+        .unwrap();
+        // Each blurred grey takes the nearest index's: 30 is nearer black
+        // (0) than the outline's 85, 140 nearer 85 than the fill's 255.
+        assert_eq!(&out.indices[..6], &[0, 0, 0, 5, 5, 5]);
+        assert_eq!(ramp_level(15, 0), 255);
+        assert_eq!(ramp_level(200, 1), 200);
+    }
+
+    #[test]
+    fn mismatched_pictures_are_refused() {
+        let palette = [[0, 0, 0, 0], [255, 255, 255, 255]];
+        let (sheet, preview) = sheet_and_preview(&[&[1, 0]], &palette);
+        let prev = Rgba { width: 2, height: 1, pixels: &preview };
+        // Not a whole multiple, or not the same on both sides.
+        let bad = vec![0u8; 3 * 1 * 4];
+        assert!(from_upscale(&sheet, &prev, &Rgba { width: 3, height: 1, pixels: &bad }).is_err());
+        let bad = vec![0u8; 4 * 1 * 4];
+        assert!(from_upscale(&sheet, &prev, &Rgba { width: 4, height: 1, pixels: &bad }).is_err());
+        // A preview of another size (the other depth).
+        let wrong = vec![0u8; 4 * 4];
+        let up = vec![0u8; 4 * 2 * 4];
+        assert!(
+            from_upscale(
+                &sheet,
+                &Rgba { width: 4, height: 1, pixels: &wrong },
+                &Rgba { width: 4, height: 2, pixels: &up }
+            )
+            .is_err()
+        );
     }
 
     #[test]

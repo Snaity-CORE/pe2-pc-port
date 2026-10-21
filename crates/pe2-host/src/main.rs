@@ -33,7 +33,10 @@ const USAGE: &str = "usage: pe2 [disc 1 image] [disc 2 image]\n\
                      to dumps/files in the data folder, for making mods.\n\
                      --indexed-check <file.idx.png>... checks indexed texture replacements;\n\
                      --indexed-scale <file.idx.png> <factor> <folder> enlarges one, each\n\
-                     texel repeated (its values stay the same palette indices).";
+                     texel repeated (its values stay the same palette indices);\n\
+                     --indexed-from-upscale <picture or folder> <folder> turns enlarged\n\
+                     colour previews (dumps/textures/<name>.png made larger, by an AI\n\
+                     upscaler say) into indexed replacements.";
 
 /// Started from Explorer, the process is alone on a console of its own:
 /// let it go, so no empty console window stays behind the game. Started
@@ -100,12 +103,97 @@ fn indexed_tool(args: &[PathBuf]) -> Option<ExitCode> {
                 }
             }
         }
-        "--indexed-check" | "--indexed-scale" => {
+        "--indexed-from-upscale" if args.len() == 3 => {
+            let (done, failed) = from_upscale(&args[1], &args[2]);
+            println!("{done} indexed replacements written in {}, {failed} failed", args[2].display());
+            Some(if failed > 0 || done == 0 { ExitCode::FAILURE } else { ExitCode::SUCCESS })
+        }
+        "--indexed-check" | "--indexed-scale" | "--indexed-from-upscale" => {
             eprintln!("{USAGE}");
             Some(ExitCode::FAILURE)
         }
         _ => None,
     }
+}
+
+/// `--indexed-from-upscale`: each enlarged picture at `source` (a picture,
+/// or a folder of them) made an indexed replacement in `out`. A picture
+/// named as a ramp picture of `dumps/textures-ramp/` (`<sheet>-<4|8>bit.png`)
+/// is read against that ramp; one named as a colour preview of
+/// `dumps/textures/` (`<sheet>.png`, `<sheet>-<palette>.png`) against that
+/// preview, at its depth (its width: 256 4-bit, 128 8-bit). The sheet's
+/// indices come from `dumps/textures-indexed/`. One replacement per sheet
+/// and depth: the first picture of it wins. Answers how many were written
+/// and how many failed.
+fn from_upscale(source: &std::path::Path, out: &std::path::Path) -> (usize, usize) {
+    use mods::indexed;
+    let dumps = paths::user_dir().join("dumps");
+    let mut pictures: Vec<PathBuf> = if source.is_dir() {
+        std::fs::read_dir(source).map(|d| d.flatten().map(|e| e.path()).collect()).unwrap_or_default()
+    } else {
+        vec![source.to_path_buf()]
+    };
+    pictures.retain(|p| {
+        p.extension().is_some_and(|x| x.eq_ignore_ascii_case("png"))
+            && !p.to_string_lossy().to_ascii_lowercase().ends_with(".idx.png")
+    });
+    pictures.sort();
+    let (mut done, mut failed) = (0, 0);
+    let mut sheets = std::collections::HashSet::new();
+    for picture in pictures {
+        let Some(name) = picture.file_stem().and_then(|s| s.to_str()) else { continue };
+        let result = (|| -> Result<Option<PathBuf>, String> {
+            let read_native = |sheet: u64, depth: u32| {
+                indexed::read(&dumps.join("textures-indexed").join(format!("{}.idx.png", indexed::stem(sheet, depth))))
+            };
+            // A ramp picture's colours are its sheet's indices' greys; a
+            // colour preview's are read from it.
+            let (native, preview) = match indexed::parse_stem(name) {
+                Some((sheet, depth)) => {
+                    let native = read_native(sheet, depth)?;
+                    let ramp = indexed::ramp(&native);
+                    (native, ramp)
+                }
+                None => {
+                    let sheet = u64::from_str_radix(name.split('-').next().unwrap_or(""), 16).map_err(|_| {
+                        "not named as a sheet (<sheet>-<4|8>bit.png, <sheet>.png or <sheet>-<palette>.png)".to_string()
+                    })?;
+                    let preview = mods::read_png(&dumps.join("textures").join(format!("{name}.png")), true)
+                        .map_err(|e| format!("its preview dumps/textures/{name}.png: {e} (extract first)"))?;
+                    let depth = match preview.width {
+                        256 => 0,
+                        128 => 1,
+                        w => return Err(format!("its preview is {w} wide: not a 4- or 8-bit sheet")),
+                    };
+                    (read_native(sheet, depth)?, preview.rgba)
+                }
+            };
+            let key = (native.sheet, native.depth);
+            if sheets.contains(&key) {
+                return Ok(None);
+            }
+            let upscaled = mods::read_png(&picture, true)?;
+            let made = indexed::from_upscale(
+                &native,
+                &indexed::Rgba { width: native.size.0, height: native.size.1, pixels: &preview },
+                &indexed::Rgba { width: upscaled.width, height: upscaled.height, pixels: &upscaled.rgba },
+            )?;
+            sheets.insert(key);
+            indexed::write(out, &made, Some(&format!("from the enlarged {name}.png"))).map(Some)
+        })();
+        match result {
+            Ok(Some(path)) => {
+                done += 1;
+                println!("{}", path.display());
+            }
+            Ok(None) => println!("{}: skipped, its sheet is already done", picture.display()),
+            Err(e) => {
+                failed += 1;
+                println!("{}: {e}", picture.display());
+            }
+        }
+    }
+    (done, failed)
 }
 
 fn main() -> ExitCode {

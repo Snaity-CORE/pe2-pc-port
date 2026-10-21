@@ -131,17 +131,41 @@ An indexed replacement wins where both exist for a sheet.
    8-bit picture is also the menus' 4-bit frames); the header's
    `depth_source` says which depth the game is known to draw it at
    ("drawn so: ...") and which is the other one.
-2. Enlarge the one you want by a whole factor, each texel repeated, so its
-   values stay the same indices:
+2. Make it larger, in one of two ways:
+   - **With an upscaler (AI or other), in bulk.** An upscaler cannot work
+     on indices themselves (an index between two others is another palette
+     entry, not a colour between them), so it enlarges a picture of the
+     sheet, and PE2PC turns the result back into indices. Two pictures of
+     each sheet are saved for that:
+     - `dumps/textures-ramp/<sheet>-<4|8>bit.png`, the sheet as a ramp:
+       each index its own grey (17 apart at 4 bits). Best for fonts, the
+       interface and anything drawn with several palettes, whose colours
+       may look alike in each palette (the UI font's fill and outline do).
+     - `dumps/textures/<sheet>.png` (or `-<palette>.png`), the sheet in
+       colours. Best for pictures (rooms' pieces, characters) whose
+       palette tells its indices apart, where an upscaler does better on
+       natural colours.
 
-   ```text
-   pe2 --indexed-scale dumps/textures-indexed/7f1ed755e0e1401a-4bit.idx.png 4 mods/my-mod/textures
-   ```
+     Enlarge the ones you want by a whole factor (4x: a 256 x 256 sheet to
+     1024 x 1024), keep their names, and put them in one folder. Then:
 
-   Then draw your detail into the enlarged file with the indices the
-   sheet uses (an editor's pencil on a grey or indexed PNG, no
-   antialiasing, no smoothing, no AI upscaler: an index between two others
-   is a different palette entry, not a colour between them).
+     ```text
+     pe2 --indexed-from-upscale my-upscaled-folder mods/my-mod/textures
+     ```
+
+     Each enlarged pixel becomes, of the indices of its own texel and the
+     eight around it in the original, the one whose colour (or grey) is
+     nearest its own; a tie keeps its own texel's. The upscaler decides
+     where edges go; the indices stay the sheet's, even where a palette
+     repeats a colour, and no index appears that was not near.
+   - **By hand.** Enlarge by a whole factor, each texel repeated, so its
+     values stay the same indices, and draw your detail into it with the
+     indices the sheet uses (a pencil on a grey or indexed PNG, no
+     antialiasing):
+
+     ```text
+     pe2 --indexed-scale dumps/textures-indexed/7f1ed755e0e1401a-4bit.idx.png 4 mods/my-mod/textures
+     ```
 3. Check it (and any you made yourself):
 
    ```text
@@ -182,9 +206,14 @@ What to know:
 - **Nearest only.** Indices are not filtered: the bilinear option smooths
   the game's own textures, not indexed replacements. The detail is what
   you draw at the higher resolution.
-- **Checked against the game.** Unchanged and enlarged copies of the UI
-  font, the menus' 4-bit frames and a dialogue page draw exactly as the
-  originals do (screen captures compared pixel by pixel, at 4x internal
+- **Checked against the game.** The UI font's ramp, enlarged 4x (with a
+  smooth resampler standing in for an upscaler) and turned back into
+  indices, draws clean letters with the game's fill and outline colours;
+  its colour preview, made larger the same way, did not (in each of the
+  font's palettes its fill and outline indices look alike, and the
+  result was speckled): use ramps for such sheets. Unchanged and enlarged
+  copies of the UI font, the menus' 4-bit frames and a dialogue page draw
+  exactly as the originals do (screen captures compared pixel by pixel, at 4x internal
   resolution, in the Load Game screen and the first captions of a new
   game), and changed indices show in the game's own colours, in each of
   the palettes the sheet is drawn with. Semi-transparent passes (the

@@ -335,7 +335,7 @@ pub fn wants_textures() -> bool {
 
 /// A PNG as RGBA (any colour type or depth png can expand to 8 bits),
 /// opaque unless `alpha`.
-fn read_png(path: &Path, alpha: bool) -> Result<Picture, String> {
+pub fn read_png(path: &Path, alpha: bool) -> Result<Picture, String> {
     let file = std::fs::File::open(path).map_err(|e| e.to_string())?;
     let mut decoder = png::Decoder::new(std::io::BufReader::new(file));
     decoder.set_transformations(png::Transformations::normalize_to_color8());

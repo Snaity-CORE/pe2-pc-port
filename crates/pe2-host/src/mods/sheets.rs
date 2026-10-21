@@ -448,11 +448,14 @@ pub fn extract(
 /// header says what is known of its depth: the one the game draws it at
 /// where that is known (rooms' sprites and code, the captions, its file's
 /// palette, the UI font), else the likely one, and the other as such.
-/// Answers how many sheets, and how many of a guessed depth.
+/// Each sheet's ramp picture, at its drawn depth, goes in `ramps`
+/// (indexed.rs `ramp`). Answers how many sheets, and how many of a guessed
+/// depth.
 pub fn extract_indexed(
     catalog: &Catalog,
     painted: &HashMap<u32, super::rooms::Painted>,
     dir: &std::path::Path,
+    ramps: &std::path::Path,
 ) -> std::io::Result<(usize, usize)> {
     std::fs::create_dir_all(dir)?;
     let (mut written, mut guessed) = (0, 0);
@@ -472,6 +475,7 @@ pub fn extract_indexed(
         }
         for d in [0, 1] {
             let (width, indices) = super::indexed::sheet_indices(&sheet.rows, d);
+            let is_drawn = d == depth;
             let rows = sheet.rows.len() as u32;
             let replacement = super::indexed::Indexed {
                 sheet: sheet.hash,
@@ -480,8 +484,12 @@ pub fn extract_indexed(
                 size: (width, rows),
                 indices,
             };
-            let note = if d == depth { format!("drawn so: {source}") } else { format!("the other depth ({source})") };
+            let note = if is_drawn { format!("drawn so: {source}") } else { format!("the other depth ({source})") };
             super::indexed::write(dir, &replacement, Some(&note)).map_err(std::io::Error::other)?;
+            // The ramp picture to enlarge, at the depth it is drawn.
+            if is_drawn {
+                super::indexed::write_ramp(ramps, &replacement).map_err(std::io::Error::other)?;
+            }
         }
         written += 1;
     }
