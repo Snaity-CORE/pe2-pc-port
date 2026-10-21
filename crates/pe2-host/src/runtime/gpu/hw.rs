@@ -47,6 +47,9 @@ struct Uniforms { size: vec2<f32>, scale: f32, _pad: f32 };
 // Pages primitives draw: per page column, the texture replacing its sheet
 // (table index + 1, 0: none), then the VRAM row the sheet's top is at.
 @group(1) @binding(2) var<storage, read> atlas_pages: array<vec4<u32>>;
+// Indexed replacements' values (a table entry's layer with bit 31 set):
+// palette indices, read as stored and looked up in the primitive's CLUT.
+@group(1) @binding(3) var atlas_indices: texture_2d_array<u32>;
 
 struct In {
     @location(0) pos: vec2<f32>,
@@ -128,19 +131,43 @@ fn fs(o: Out) -> @location(0) vec4<f32> {
         if (o.repl != 0u) {
             let per = 4u >> ((o.mode >> 20u) & 3u);
             let width = f32(64u * per);
-            let column = min(u32(max(o.uv.x, 0.0) / width), 3u);
+            // The texel the game reads (the polygon's clamp, the texture
+            // window), and where in it this pixel is: the finer texels of a
+            // larger replacement keep the game's texel coordinates.
+            var at = vec2<i32>(floor(o.uv));
+            if (((o.mode >> 29u) & 1u) != 0u) {
+                let lo = vec2<i32>(i32(o.limits & 0xFFu), i32((o.limits >> 8u) & 0xFFu));
+                let hi = vec2<i32>(i32((o.limits >> 16u) & 0xFFu), i32((o.limits >> 24u) & 0xFFu));
+                at = clamp(at, lo, hi);
+            }
+            let within = clamp(o.uv - floor(o.uv), vec2<f32>(0.0), vec2<f32>(0.999));
+            let uv = vec2<f32>(windowed(o.window, at)) + within;
+            let column = min(u32(uv.x / width), 3u);
             texture = atlas_pages[(o.repl - 1u) * 2u][column];
             let top = atlas_pages[(o.repl - 1u) * 2u + 1u][column];
-            sheet_texel = vec2<f32>(o.uv.x - f32(column) * width, f32((o.mode >> 10u) & 511u) + o.uv.y - f32(top));
+            sheet_texel = vec2<f32>(uv.x - f32(column) * width, f32((o.mode >> 10u) & 511u) + uv.y - f32(top));
         }
-        if (texture != 0u) {
+        let d = atlas_table[max(texture, 1u) - 1u];
+        let texels = vec2<f32>(f32(d.w & 0xFFFFu), f32(d.w >> 16u));
+        let size = vec2<u32>(max(d.y & 0xFFFFu, 1u), max(d.y >> 16u, 1u));
+        let q = min(vec2<u32>(max(sheet_texel / texels * vec2<f32>(size), vec2<f32>(0.0))), size - vec2<u32>(1u));
+        let place = vec2<u32>(d.x & 0xFFFFu, d.x >> 16u) + q;
+        if (texture != 0u && (d.z & 0x80000000u) != 0u) {
+            // An indexed replacement: its value is the texel's palette
+            // index, looked up in the CLUT the game set for this
+            // primitive, as the console looks the game's own up (colour 0
+            // transparent, the colour's bit 15 its mask bit).
+            let depth = (o.mode >> 20u) & 3u;
+            let index = textureLoad(atlas_indices, place, d.z & 0x7FFFFFFFu, 0).r & select(0xFFu, 0xFu, depth == 0u);
+            t = vram_at((o.clut & 1023u) + index, (o.clut >> 10u) & 511u);
+            if (t == 0u) {
+                discard;
+            }
+            tc = texel_rgb(t);
+        } else if (texture != 0u) {
             // Its colours and transparency are drawn; the game's own texel
             // still decides the mask bit.
-            let d = atlas_table[texture - 1u];
-            let texels = vec2<f32>(f32(d.w & 0xFFFFu), f32(d.w >> 16u));
-            let size = vec2<u32>(d.y & 0xFFFFu, d.y >> 16u);
-            let q = min(vec2<u32>(max(sheet_texel / texels * vec2<f32>(size), vec2<f32>(0.0))), size - vec2<u32>(1u));
-            let s = textureLoad(atlas, vec2<u32>(d.x & 0xFFFFu, d.x >> 16u) + q, d.z, 0);
+            let s = textureLoad(atlas, place, d.z, 0);
             if (s.a < 0.5) {
                 discard;
             }
@@ -213,15 +240,24 @@ fn fs(o: Out) -> @location(0) vec4<f32> {
     return vec4<f32>(min(c, vec3<f32>(255.0)) / 255.0, 1.0);
 }
 
-// The 15-bit texel at (u, v) of the primitive's texture page, through its
-// texture window and CLUT.
-fn texel(mode: u32, clut: u32, window: u32, u_in: i32, v_in: i32) -> u32 {
+// Texel coordinates (u, v) through the texture window.
+fn windowed(window: u32, at: vec2<i32>) -> vec2<u32> {
     let mx = window & 31u;
     let my = (window >> 5u) & 31u;
     let ox = (window >> 10u) & 31u;
     let oy = (window >> 15u) & 31u;
-    let tu = ((u32(u_in) & ~(mx * 8u)) | ((ox & mx) * 8u)) & 0xFFu;
-    let tv = ((u32(v_in) & ~(my * 8u)) | ((oy & my) * 8u)) & 0xFFu;
+    return vec2<u32>(
+        ((u32(at.x) & ~(mx * 8u)) | ((ox & mx) * 8u)) & 0xFFu,
+        ((u32(at.y) & ~(my * 8u)) | ((oy & my) * 8u)) & 0xFFu,
+    );
+}
+
+// The 15-bit texel at (u, v) of the primitive's texture page, through its
+// texture window and CLUT.
+fn texel(mode: u32, clut: u32, window: u32, u_in: i32, v_in: i32) -> u32 {
+    let w = windowed(window, vec2<i32>(u_in, v_in));
+    let tu = w.x;
+    let tv = w.y;
     let px = mode & 1023u;
     let py = (mode >> 10u) & 511u;
     let depth = (mode >> 20u) & 3u;
@@ -354,6 +390,9 @@ fn smooth_uploads() -> bool {
 const SMOOTH_UPLOAD_MIN: i32 = 64;
 
 const KIND_UPLOAD: u32 = 1 << 26;
+/// The atlas key's palette for indexed replacements, less the depth (no
+/// palette's hash).
+const INDEXED_KEY: u64 = u64::MAX;
 const UPLOAD_SMOOTH: u32 = 1 << 28;
 const KIND_COPY: u32 = 2 << 26;
 
@@ -775,9 +814,13 @@ impl Hw {
         for part in &f.parts {
             let Some(sheet) = catalog.sheets.get(part.sheet as usize) else { continue };
             let (width, height) = (64 * per, sheet.rows.len() as i32);
-            // This palette's picture of the sheet, else the one for any.
-            let mut texture = None;
+            // An indexed replacement of the sheet (whatever its palette),
+            // else this palette's picture of it, else the one for any.
+            let mut texture = self.indexed(vram, sheet.hash, f.depth, (width as u32, height as u32));
             for key in [(sheet.hash, f.palette), (sheet.hash, 0)] {
+                if texture.is_some() {
+                    break;
+                }
                 let Some(picture) = crate::mods::texture(key) else { continue };
                 // Exported at the wrong texel depth, a sheet has half/twice
                 // the correct width. Do not stretch it onto this primitive.
@@ -822,6 +865,44 @@ impl Hw {
             return 0;
         }
         self.atlas.page(page).unwrap_or(0)
+    }
+
+    /// The atlas entry (index + 1) of the indexed replacement of `sheet`, if
+    /// a mod has one that fits how the game draws it: at `depth` (0: 4
+    /// bits, 1: 8), `native` texels.
+    fn indexed(&mut self, vram: &Vram, sheet: u64, depth: u32, native: (u32, u32)) -> Option<u32> {
+        if depth > 1 {
+            return None;
+        }
+        let replacement = crate::mods::indexed_texture(sheet, depth)?;
+        if replacement.depth != depth || replacement.native != native {
+            static WARNED: std::sync::Mutex<Option<std::collections::HashSet<u64>>> = std::sync::Mutex::new(None);
+            if WARNED.lock().unwrap().get_or_insert_with(Default::default).insert(sheet) {
+                eprintln!(
+                    "pe2: mods: ignored indexed texture {sheet:016x}: {}-bit {}x{}, but the game draws it {}-bit {}x{}",
+                    [4, 8][replacement.depth as usize],
+                    replacement.native.0,
+                    replacement.native.1,
+                    [4, 8][depth as usize],
+                    native.0,
+                    native.1
+                );
+            }
+            return None;
+        }
+        // Its own key: one replacement serves every palette.
+        let key = (sheet, INDEXED_KEY - u64::from(depth));
+        if let Some(i) = self.atlas.index(key) {
+            return Some(i);
+        }
+        match self.atlas.add_indexed(key, &replacement) {
+            Some(i) => Some(i),
+            None => {
+                self.flush(vram);
+                self.atlas.clear();
+                self.atlas.add_indexed(key, &replacement)
+            }
+        }
     }
 
     /// A textured primitive samples `page` and `clut`: they must be current.

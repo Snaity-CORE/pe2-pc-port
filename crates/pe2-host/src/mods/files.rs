@@ -527,6 +527,9 @@ pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path, full: bool) -> std::io
     }
     let coloured = super::sheets::extract(&catalog, &painted, &textures)?;
     eprintln!("pe2: extract: {} texture sheets ({coloured} in colour) in {}", catalog.sheets.len(), textures.display());
+    let indexed = dumps.join("textures-indexed");
+    let (written, guessed) = super::sheets::extract_indexed(&catalog, &painted, &indexed)?;
+    eprintln!("pe2: extract: {written} indexed sheets ({guessed} of a guessed depth) in {}", indexed.display());
     eprintln!(
         "pe2: extract: {} sheets coloured from rooms' sprites, {} from rooms' code, {} glyph pages; {checked} sprite tables checked against their backgrounds, {mismatched} differ",
         painted.values().filter(|p| p.source == "rooms' sprites").count(),

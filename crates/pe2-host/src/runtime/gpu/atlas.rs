@@ -4,10 +4,17 @@
 //! for each of a texture page's four columns, the texture replacing its
 //! sheet (table index + 1, 0: none) and the VRAM row the sheet's top is at
 //! (see textures.rs).
+//!
+//! Indexed replacements (mods/indexed.rs) are packed the same way into a
+//! second texture array of the same size, of unsigned 8-bit values read as
+//! they are (no filtering, no colour conversion): their table entries have
+//! bit 31 of the layer set, and the shader looks their values up in the
+//! CLUT the primitive is drawn with.
 
 use std::collections::HashMap;
 
 use crate::gfx::Gfx;
+use crate::mods::indexed::Indexed;
 use crate::mods::{Picture, TextureKey};
 
 /// Layers are this many pixels square; a texture larger is reduced to fit.
@@ -21,6 +28,9 @@ const MAX_PAGES: u32 = 4096;
 /// A page: four textures (table index + 1), then four sheet tops.
 pub type Page = [u32; 8];
 
+/// A table entry's layer bit telling its texture is indexed.
+pub const INDEXED: u32 = 1 << 31;
+
 /// A row of a layer, filled left to right.
 struct Shelf {
     y: u32,
@@ -31,6 +41,8 @@ struct Shelf {
 pub struct Atlas {
     gfx: &'static Gfx,
     texture: wgpu::Texture,
+    /// The indexed replacements' values, packed as `texture` is.
+    indices: wgpu::Texture,
     layers: u32,
     shelves: Vec<Vec<Shelf>>,
     /// Key -> table index + 1 (what vertices carry; 0 is none).
@@ -79,6 +91,14 @@ impl Atlas {
                         min_binding_size: None,
                     },
                 ),
+                entry(
+                    3,
+                    wgpu::BindingType::Texture {
+                        sample_type: wgpu::TextureSampleType::Uint,
+                        view_dimension: wgpu::TextureViewDimension::D2Array,
+                        multisampled: false,
+                    },
+                ),
             ],
         });
         let table = device.create_buffer(&wgpu::BufferDescriptor {
@@ -93,11 +113,14 @@ impl Atlas {
             usage: wgpu::BufferUsages::STORAGE | wgpu::BufferUsages::COPY_DST,
             mapped_at_creation: false,
         });
-        let texture = Self::make_texture(gfx, if wanted { SIZE } else { 1 }, 1);
-        let bind = Self::make_bind(gfx, &layout, &texture, &table, &page_buffer);
+        let size = if wanted { SIZE } else { 1 };
+        let texture = Self::make_texture(gfx, size, 1, wgpu::TextureFormat::Rgba8Unorm);
+        let indices = Self::make_texture(gfx, size, 1, wgpu::TextureFormat::R8Uint);
+        let bind = Self::make_bind(gfx, &layout, &texture, &indices, &table, &page_buffer);
         Atlas {
             gfx,
             texture,
+            indices,
             layers: 1,
             shelves: vec![Vec::new()],
             entries: HashMap::new(),
@@ -109,14 +132,14 @@ impl Atlas {
         }
     }
 
-    fn make_texture(gfx: &Gfx, size: u32, layers: u32) -> wgpu::Texture {
+    fn make_texture(gfx: &Gfx, size: u32, layers: u32, format: wgpu::TextureFormat) -> wgpu::Texture {
         gfx.device.create_texture(&wgpu::TextureDescriptor {
             label: Some("hw textures"),
             size: wgpu::Extent3d { width: size, height: size, depth_or_array_layers: layers },
             mip_level_count: 1,
             sample_count: 1,
             dimension: wgpu::TextureDimension::D2,
-            format: wgpu::TextureFormat::Rgba8Unorm,
+            format,
             usage: wgpu::TextureUsages::TEXTURE_BINDING | wgpu::TextureUsages::COPY_DST | wgpu::TextureUsages::COPY_SRC,
             view_formats: &[],
         })
@@ -126,13 +149,14 @@ impl Atlas {
         gfx: &Gfx,
         layout: &wgpu::BindGroupLayout,
         texture: &wgpu::Texture,
+        indices: &wgpu::Texture,
         table: &wgpu::Buffer,
         pages: &wgpu::Buffer,
     ) -> wgpu::BindGroup {
-        let view = texture.create_view(&wgpu::TextureViewDescriptor {
-            dimension: Some(wgpu::TextureViewDimension::D2Array),
-            ..Default::default()
-        });
+        let array =
+            wgpu::TextureViewDescriptor { dimension: Some(wgpu::TextureViewDimension::D2Array), ..Default::default() };
+        let view = texture.create_view(&array);
+        let index_view = indices.create_view(&array);
         gfx.device.create_bind_group(&wgpu::BindGroupDescriptor {
             label: Some("hw textures"),
             layout,
@@ -140,6 +164,7 @@ impl Atlas {
                 wgpu::BindGroupEntry { binding: 0, resource: wgpu::BindingResource::TextureView(&view) },
                 wgpu::BindGroupEntry { binding: 1, resource: table.as_entire_binding() },
                 wgpu::BindGroupEntry { binding: 2, resource: pages.as_entire_binding() },
+                wgpu::BindGroupEntry { binding: 3, resource: wgpu::BindingResource::TextureView(&index_view) },
             ],
         })
     }
@@ -184,13 +209,50 @@ impl Atlas {
             wgpu::TexelCopyBufferLayout { offset: 0, bytes_per_row: Some(w * 4), rows_per_image: Some(h) },
             wgpu::Extent3d { width: w, height: h, depth_or_array_layers: 1 },
         );
+        Some(self.enter(
+            key,
+            [x | (y << 16), w | (h << 16), layer, (width as u32 & 0xFFFF) | ((height as u32 & 0xFFFF) << 16)],
+        ))
+    }
+
+    /// Adds indexed replacement `indexed` as texture `key`, replacing its
+    /// sheet's texels; None when full (as `add`), or when larger than a
+    /// layer. Its values go in as they are.
+    pub fn add_indexed(&mut self, key: TextureKey, indexed: &Indexed) -> Option<u32> {
+        let (w, h) = indexed.size;
+        if self.entries.len() as u32 >= MAX_ENTRIES || w > SIZE || h > SIZE || w == 0 || h == 0 {
+            return None;
+        }
+        let (layer, x, y) = match self.place(w, h) {
+            Some(at) => at,
+            None if self.layers < MAX_LAYERS => {
+                self.grow();
+                self.place(w, h)?
+            }
+            None => return None,
+        };
+        self.gfx.queue.write_texture(
+            wgpu::TexelCopyTextureInfo {
+                texture: &self.indices,
+                mip_level: 0,
+                origin: wgpu::Origin3d { x, y, z: layer },
+                aspect: wgpu::TextureAspect::All,
+            },
+            &indexed.indices,
+            wgpu::TexelCopyBufferLayout { offset: 0, bytes_per_row: Some(w), rows_per_image: Some(h) },
+            wgpu::Extent3d { width: w, height: h, depth_or_array_layers: 1 },
+        );
+        let (nw, nh) = indexed.native;
+        Some(self.enter(key, [x | (y << 16), w | (h << 16), layer | INDEXED, (nw & 0xFFFF) | ((nh & 0xFFFF) << 16)]))
+    }
+
+    /// Writes table entry `entry` for `key`; answers its index + 1.
+    fn enter(&mut self, key: TextureKey, entry: [u32; 4]) -> u32 {
         let index = self.entries.len() as u32;
-        let entry: [u32; 4] =
-            [x | (y << 16), w | (h << 16), layer, (width as u32 & 0xFFFF) | ((height as u32 & 0xFFFF) << 16)];
         let bytes: Vec<u8> = entry.iter().flat_map(|v| v.to_le_bytes()).collect();
         self.gfx.queue.write_buffer(&self.table, u64::from(index) * 16, &bytes);
         self.entries.insert(key, index + 1);
-        Some(index + 1)
+        index + 1
     }
 
     /// The index + 1 of `page` in the page table; None when full.
@@ -236,19 +298,20 @@ impl Atlas {
         None
     }
 
-    /// One layer more, the others copied over.
+    /// One layer more (in both arrays), the others copied over.
     fn grow(&mut self) {
-        let texture = Self::make_texture(self.gfx, SIZE, self.layers + 1);
+        let texture = Self::make_texture(self.gfx, SIZE, self.layers + 1, wgpu::TextureFormat::Rgba8Unorm);
+        let indices = Self::make_texture(self.gfx, SIZE, self.layers + 1, wgpu::TextureFormat::R8Uint);
         let mut encoder = self.gfx.device.create_command_encoder(&Default::default());
-        encoder.copy_texture_to_texture(
-            self.texture.as_image_copy(),
-            texture.as_image_copy(),
-            wgpu::Extent3d { width: SIZE, height: SIZE, depth_or_array_layers: self.layers },
-        );
+        let extent = wgpu::Extent3d { width: SIZE, height: SIZE, depth_or_array_layers: self.layers };
+        encoder.copy_texture_to_texture(self.texture.as_image_copy(), texture.as_image_copy(), extent);
+        encoder.copy_texture_to_texture(self.indices.as_image_copy(), indices.as_image_copy(), extent);
         self.gfx.queue.submit([encoder.finish()]);
         self.texture = texture;
+        self.indices = indices;
         self.layers += 1;
         self.shelves.push(Vec::new());
-        self.bind = Self::make_bind(self.gfx, &self.layout, &self.texture, &self.table, &self.page_buffer);
+        self.bind =
+            Self::make_bind(self.gfx, &self.layout, &self.texture, &self.indices, &self.table, &self.page_buffer);
     }
 }

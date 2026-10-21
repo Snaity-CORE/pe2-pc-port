@@ -53,14 +53,6 @@ For backgrounds and texture sheets only, without rendering music or decoding
 movies and dialogue, use `pe2 --extract-visuals [disc1.chd disc2.chd]`.
 It also writes the raw files needed to trace each picture's source.
 
-The UI font at `stage0/file1/0#0` is a 256-pixel-wide 4-bit sheet, using
-the resident executable's font palette. Older dumps could export it as a
-128-pixel-wide 8-bit image with the title picture's palette. Regenerate that
-dump before upscaling it. The hardware renderer rejects replacement images
-whose aspect ratio does not match the sheet at the depth being drawn, logging
-the name and expected dimensions; this preserves the original in that case.
-The runtime texture catalog includes both configured discs.
-
 It reads the discs `pe2.toml` names (or the images given after
 `--extract`) and saves what it finds in `dumps/` in the data folder: the
 files, pictures, textures, songs, movies and dialogue (see each kind
@@ -110,12 +102,104 @@ replace them at a higher resolution.
 
 The game's textures are stored in its `.pe2img` pictures as sheets: columns
 of texels (256 wide at 4 bits per texel, 128 at 8 bits, up to 256 tall),
-each one asset. A sheet is known by a hash of its contents: its file name is
-`<sheet>.png`, the same in every room and whatever else is loaded with it.
+each one asset. A sheet is known by a hash of its contents, the same in
+every room and whatever else is loaded with it.
+
+Most sheets are 4- or 8-bit: their texels are not colours but indices into
+a palette (a CLUT), and the game picks the palette each time it draws, so
+one sheet is often drawn in several: the UI font's fill and its outlines,
+the dialogue text and the speakers' labels, an enemy's colour variants. A
+mod can replace a sheet in two ways:
+
+- **Indexed** (`<sheet>-<4|8>bit.idx.png`, below): the replacement keeps
+  indices too, and the game's palettes colour them as they colour the
+  original, whichever palette each primitive is drawn with. This is the
+  way for 4- and 8-bit sheets.
+- **In colours** (`<sheet>.png`, `<sheet>-<palette>.png`, further below): a
+  picture with its colours fixed, for one palette or any. The way for
+  15-bit (direct colour) sheets, and what earlier mods use.
+
+An indexed replacement wins where both exist for a sheet.
+
+### Indexed replacements
+
+1. Extract (`pe2 --extract` or `pe2 --extract-visuals`, see above): every
+   4- and 8-bit sheet, about 2,090, is saved in `dumps/textures-indexed/`
+   at its own size, as indices, at both depths:
+   `<sheet>-4bit.idx.png` and `<sheet>-8bit.idx.png`, each with its header
+   (`.idx.toml`). The game may draw one sheet at either depth (the title's
+   8-bit picture is also the menus' 4-bit frames); the header's
+   `depth_source` says which depth the game is known to draw it at
+   ("drawn so: ...") and which is the other one.
+2. Enlarge the one you want by a whole factor, each texel repeated, so its
+   values stay the same indices:
+
+   ```text
+   pe2 --indexed-scale dumps/textures-indexed/7f1ed755e0e1401a-4bit.idx.png 4 mods/my-mod/textures
+   ```
+
+   Then draw your detail into the enlarged file with the indices the
+   sheet uses (an editor's pencil on a grey or indexed PNG, no
+   antialiasing, no smoothing, no AI upscaler: an index between two others
+   is a different palette entry, not a colour between them).
+3. Check it (and any you made yourself):
+
+   ```text
+   pe2 --indexed-check mods/my-mod/textures/7f1ed755e0e1401a-4bit.idx.png
+   ```
+
+The game draws it wherever it draws the sheet at that depth: each
+replacement texel's index is looked up in the CLUT the game set for the
+primitive, in the shader, as the console looks up the original's. Index
+colour 0 is transparent, the colour's bit 15 still decides
+semi-transparency, and the primitive's blending, shading (its vertex
+colours) and texture window apply as before.
+
+The format, version 1. `<sheet>-<4|8>bit.idx.png` holds one value per
+texel: a grey or indexed PNG of 8 bits per pixel or fewer, without alpha;
+its stored values are the indices (no palette, gamma or colour conversion
+is applied when it is read). Rows go top to bottom, texels left to right:
+the sheet's texel (u, v) is the block at (u, v) times the scale. Its
+header, `<sheet>-<4|8>bit.idx.toml`:
+
+| Field | Value |
+|---|---|
+| `format` | `"pe2pc-indexed-texture"` |
+| `version` | `1` |
+| `sheet` | the sheet's hash, 16 hexadecimal digits, as in the file name |
+| `depth` | `4` or `8`, as in the file name |
+| `native_width`, `native_height` | the sheet in texels: 256 (4-bit) or 128 (8-bit) wide, 1 to 512 high |
+| `width`, `height` | the PNG's size: the native size times one whole factor (the same on both sides), at most 2048 |
+| `layout` | `"sheet-rows"` |
+| `depth_source` | optional, written by the extract, not read |
+
+A replacement is refused (logged, the original drawn) when any of these is
+off, when a 4-bit file holds a value above 15, or when the game draws the
+sheet at the other depth or another size than the header says.
+
+What to know:
+
+- **Nearest only.** Indices are not filtered: the bilinear option smooths
+  the game's own textures, not indexed replacements. The detail is what
+  you draw at the higher resolution.
+- **Checked against the game.** Unchanged and enlarged copies of the UI
+  font, the menus' 4-bit frames and a dialogue page draw exactly as the
+  originals do (screen captures compared pixel by pixel, at 4x internal
+  resolution, in the Load Game screen and the first captions of a new
+  game), and changed indices show in the game's own colours, in each of
+  the palettes the sheet is drawn with. Semi-transparent passes (the
+  captions' shadow) drew identically, but no test isolated a
+  semi-transparent primitive by itself.
+- **Hardware renderer.** As with every replacement, only the graphics card
+  renderer draws them.
+
+### Replacements in colours
 
 1. Extract the game's files (`pe2 --extract`, see above): every sheet, about
-   2,100, is saved whole in `dumps/textures/`, with `index.txt` listing each
-   one, where it comes from and where its colours do.
+   2,100, is saved whole in colours in `dumps/textures/`, with `index.txt`
+   listing each one, where it comes from and where its colours do. These
+   pictures are also the way to look at the sheets: the indexed ones are
+   numbers.
 
    A sheet's texels are numbers into a palette, and which palette colours
    them is chosen as the game draws. The extract finds it on the disc:
@@ -145,7 +229,12 @@ What to know:
 - **Palettes.** A sheet's parts may be drawn with different palettes (an
   enemy in two colours): `<sheet>.png` is drawn whichever the palette.
   `<sheet>-<palette>.png` (with a palette's hash) replaces it for that
-  palette only.
+  palette only. The UI font (`stage0/file1/0#0`, 4-bit) is saved once per
+  palette it is drawn with: the four fill palettes and the three outline
+  ones the game loads from its executable (`Text_LoadClutImages`).
+- **Shape.** A picture whose proportions do not match the sheet at the
+  depth the game draws it is refused (logged with the expected size): the
+  original shows.
 - **Depth.** Whether a sheet's texels are 4 or 8 bits comes from the
   palette or the sprites that colour it; for the grey ones the extract
   guesses (a wrong guess shows as noise, at the other width). With
@@ -153,7 +242,10 @@ What to know:
   its depth.
 - **Transparency.** Your picture's transparency is used: pixels less than
   half opaque are not drawn. Whether the rest blends (semi-transparency)
-  still follows the game's own texture.
+  still follows the game's own texture. A picture in colours fixes one
+  palette: where the game draws the sheet with another (a font's outline
+  pass, a colour variant), use `<sheet>-<palette>.png` per palette, or an
+  indexed replacement.
 - **Hardware renderer.** As with backgrounds, replacements show with the
   graphics card renderer.
 

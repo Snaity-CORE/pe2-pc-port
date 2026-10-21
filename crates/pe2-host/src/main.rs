@@ -30,7 +30,10 @@ const USAGE: &str = "usage: pe2 [disc 1 image] [disc 2 image]\n\
                      Images are your own Parasite Eve II (USA) dumps, as .cue or .chd.\n\
                      Without arguments, the launcher opens; with --play, pe2.toml's [discs]\n\
                      disc1 and disc2 are played. --extract [images] saves the discs' files\n\
-                     to dumps/files in the data folder, for making mods.";
+                     to dumps/files in the data folder, for making mods.\n\
+                     --indexed-check <file.idx.png>... checks indexed texture replacements;\n\
+                     --indexed-scale <file.idx.png> <factor> <folder> enlarges one, each\n\
+                     texel repeated (its values stay the same palette indices).";
 
 /// Started from Explorer, the process is alone on a console of its own:
 /// let it go, so no empty console window stays behind the game. Started
@@ -52,9 +55,65 @@ pub fn has_console() -> bool {
     unsafe { !windows_sys::Win32::System::Console::GetConsoleWindow().is_null() }
 }
 
+/// `--indexed-check` and `--indexed-scale` (mods/indexed.rs): answers the
+/// exit code, or None for other arguments.
+fn indexed_tool(args: &[PathBuf]) -> Option<ExitCode> {
+    use mods::indexed;
+    match args.first()?.to_str()? {
+        "--indexed-check" if args.len() > 1 => {
+            let mut failed = false;
+            for path in &args[1..] {
+                match indexed::read(path) {
+                    Ok(t) => println!(
+                        "{}: ok, sheet {:016x}, {}-bit, {}x{} texels, {}x{} ({}x)",
+                        path.display(),
+                        t.sheet,
+                        [4, 8][t.depth as usize],
+                        t.native.0,
+                        t.native.1,
+                        t.size.0,
+                        t.size.1,
+                        t.scale()
+                    ),
+                    Err(e) => {
+                        println!("{}: {e}", path.display());
+                        failed = true;
+                    }
+                }
+            }
+            Some(if failed { ExitCode::FAILURE } else { ExitCode::SUCCESS })
+        }
+        "--indexed-scale" if args.len() == 4 => {
+            let factor = args[2].to_str().and_then(|f| f.parse::<u32>().ok());
+            let result = indexed::read(&args[1]).and_then(|t| match factor {
+                Some(f) => indexed::upscale(&t, f),
+                None => Err(format!("{} is no whole factor", args[2].display())),
+            });
+            match result.and_then(|t| indexed::write(&args[3], &t, None)) {
+                Ok(out) => {
+                    println!("{}", out.display());
+                    Some(ExitCode::SUCCESS)
+                }
+                Err(e) => {
+                    eprintln!("pe2: {}: {e}", args[1].display());
+                    Some(ExitCode::FAILURE)
+                }
+            }
+        }
+        "--indexed-check" | "--indexed-scale" => {
+            eprintln!("{USAGE}");
+            Some(ExitCode::FAILURE)
+        }
+        _ => None,
+    }
+}
+
 fn main() -> ExitCode {
     drop_own_console();
     let mut images: Vec<PathBuf> = std::env::args_os().skip(1).map(PathBuf::from).collect();
+    if let Some(code) = indexed_tool(&images) {
+        return code;
+    }
     let visuals = images.first().is_some_and(|a| a.as_os_str() == "--extract-visuals");
     let extract = visuals || images.first().is_some_and(|a| a.as_os_str() == "--extract");
     if extract {

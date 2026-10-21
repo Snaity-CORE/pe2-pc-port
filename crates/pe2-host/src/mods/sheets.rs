@@ -219,21 +219,35 @@ pub struct Catalog {
 }
 
 impl Catalog {
-    /// The UI font uses a resident 16-colour CLUT, not its file's 256-colour
-    /// title-image palette. The USA main executable stores it at 800609B0.
+    /// The UI font uses resident 16-colour CLUTs, not its file's 256-colour
+    /// title-image palette: Text_LoadClutImages (main/textutil.c) loads the
+    /// fill palettes (Text_FillClutPixels, 0x80060910 in the USA main
+    /// executable, 4 CLUTs) at (256, 243) and the outline ones
+    /// (Text_OutlineClutPixels, 0x800609B0, 3 CLUTs) at (0x3D0, 0x1FF). The
+    /// sheet's preview takes the first fill palette.
     pub fn apply_ui_font_palette(&mut self, executable: &[u8]) {
+        const FILL: (u32, usize) = (0x8006_0910, 4);
+        const OUTLINE: (u32, usize) = (0x8006_09B0, 3);
         if executable.get(..8) != Some(b"PS-X EXE") {
             return;
         }
         let Some(base) = executable.get(0x18..0x1C).and_then(|b| b.try_into().ok()).map(u32::from_le_bytes) else {
             return;
         };
-        let Some(at) = 0x800609B0u32.checked_sub(base).map(|o| o as usize + 0x800) else { return };
-        let Some(bytes) = executable.get(at..at + 96) else { return };
-        self.ui_palettes = bytes
-            .chunks_exact(32)
-            .map(|row| row.chunks_exact(2).map(|b| u16::from_le_bytes([b[0], b[1]])).collect())
-            .collect();
+        let table = |(address, count): (u32, usize)| -> Option<Vec<Vec<u16>>> {
+            let at = address.checked_sub(base)? as usize + 0x800;
+            let bytes = executable.get(at..at + count * 32)?;
+            Some(
+                bytes
+                    .as_chunks::<32>()
+                    .0
+                    .iter()
+                    .map(|row| row.as_chunks::<2>().0.iter().map(|b| u16::from_le_bytes(*b)).collect())
+                    .collect(),
+            )
+        };
+        let (Some(fill), Some(outline)) = (table(FILL), table(OUTLINE)) else { return };
+        self.ui_palettes = fill.into_iter().chain(outline).collect();
         let palette = &self.ui_palettes[0];
         for sheet in &mut self.sheets {
             if sheet.origin == "stage0/file1/0#0" && sheet.place == (960, 256) {
@@ -428,6 +442,52 @@ pub fn extract(
     Ok(coloured)
 }
 
+/// Saves each 4- and 8-bit sheet of `catalog` as indexed replacements at
+/// its own size in `dir` (indexed.rs): its texels as indices, no palette
+/// applied, at both depths (the game may draw a sheet either way). Each
+/// header says what is known of its depth: the one the game draws it at
+/// where that is known (rooms' sprites and code, the captions, its file's
+/// palette, the UI font), else the likely one, and the other as such.
+/// Answers how many sheets, and how many of a guessed depth.
+pub fn extract_indexed(
+    catalog: &Catalog,
+    painted: &HashMap<u32, super::rooms::Painted>,
+    dir: &std::path::Path,
+) -> std::io::Result<(usize, usize)> {
+    std::fs::create_dir_all(dir)?;
+    let (mut written, mut guessed) = (0, 0);
+    for (i, sheet) in catalog.sheets.iter().enumerate() {
+        let (depth, source) = if sheet.origin == "stage0/file1/0#0" && !catalog.ui_palettes.is_empty() {
+            (0, "the UI font")
+        } else if let Some(p) = painted.get(&(i as u32)) {
+            (p.depth, p.source)
+        } else if let Some(p) = &sheet.palette {
+            (if p.len() == 16 { 0 } else { 1 }, sheet.palette_source)
+        } else {
+            guessed += 1;
+            (sheet.likely_depth(), "guessed")
+        };
+        if depth > 1 {
+            continue;
+        }
+        for d in [0, 1] {
+            let (width, indices) = super::indexed::sheet_indices(&sheet.rows, d);
+            let rows = sheet.rows.len() as u32;
+            let replacement = super::indexed::Indexed {
+                sheet: sheet.hash,
+                depth: d,
+                native: (width, rows),
+                size: (width, rows),
+                indices,
+            };
+            let note = if d == depth { format!("drawn so: {source}") } else { format!("the other depth ({source})") };
+            super::indexed::write(dir, &replacement, Some(&note)).map_err(std::io::Error::other)?;
+        }
+        written += 1;
+    }
+    Ok((written, guessed))
+}
+
 static CATALOG: OnceLock<Catalog> = OnceLock::new();
 
 /// The catalog, once read from the disc (see mods::start).
@@ -445,11 +505,17 @@ mod tests {
 
     #[test]
     fn ui_font_uses_resident_four_bit_palette() {
-        let mut exe = vec![0; 0x860];
+        // The fill palettes (4) and the outline ones (3) where the
+        // executable holds them (Text_FillClut's record between them); each
+        // colour its CLUT's number, 1 to 7.
+        let mut exe = vec![0; 0x800 + 0xA0 + 3 * 32];
         exe[..8].copy_from_slice(b"PS-X EXE");
-        exe[0x18..0x1C].copy_from_slice(&0x800609B0u32.to_le_bytes());
-        for i in 0..16 {
-            exe[0x800 + i * 2..0x802 + i * 2].copy_from_slice(&(i as u16).to_le_bytes());
+        exe[0x18..0x1C].copy_from_slice(&0x8006_0910u32.to_le_bytes());
+        for clut in 0..7 {
+            for i in 0..16 {
+                let at = 0x800 + if clut < 4 { clut * 32 } else { 0xA0 + (clut - 4) * 32 } + i * 2;
+                exe[at..at + 2].copy_from_slice(&(clut as u16 + 1).to_le_bytes());
+            }
         }
         let mut sheet = Sheet::new(1, vec![[0x1234; 64]; 256]);
         sheet.origin = "stage0/file1/0#0".into();
@@ -460,7 +526,10 @@ mod tests {
         catalog.apply_ui_font_palette(&exe);
         assert_eq!(catalog.sheets[0].depth(), 0);
         assert_eq!(catalog.sheets[0].picture(0).0, 256);
-        assert_eq!(catalog.sheets[0].palette.as_ref().unwrap().len(), 16);
+        // The preview takes the first fill palette, not an outline one.
+        assert_eq!(catalog.sheets[0].palette.as_deref(), Some(&[1u16; 16][..]));
+        assert_eq!(catalog.ui_palettes.len(), 7);
+        assert_eq!(catalog.ui_palettes[4][0], 5);
     }
 
     #[test]

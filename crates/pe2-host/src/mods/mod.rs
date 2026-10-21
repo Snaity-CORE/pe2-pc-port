@@ -24,6 +24,7 @@ use serde::Deserialize;
 pub mod credits;
 pub mod dialogue;
 pub mod files;
+pub mod indexed;
 pub mod movies;
 pub mod music;
 pub mod rooms;
@@ -163,24 +164,28 @@ pub struct Picture {
     pub rgba: Vec<u8>,
 }
 
-enum Slot {
+enum Slot<T> {
     Loading,
-    Ready(Arc<Picture>),
+    Ready(Arc<T>),
     Failed,
 }
 
-/// The pictures mods supply of one kind (in `<mod>/<dir>/<name>.png`), by
-/// the key their file name gives, loaded when first wanted.
-struct Library<K> {
+/// The files mods supply of one kind (`<mod>/<dir>/<name><suffix>`), by
+/// the key their name gives, loaded (by `load`) when first wanted.
+struct Library<K, T = Picture> {
     /// Key -> the file of the mod that wins for it.
     files: HashMap<K, PathBuf>,
-    loaded: Mutex<HashMap<K, Slot>>,
-    /// Whether the pictures' transparency is kept (else opaque).
-    alpha: bool,
+    loaded: Mutex<HashMap<K, Slot<T>>>,
+    load: fn(&Path) -> Result<T, String>,
 }
 
-impl<K: std::hash::Hash + Eq + Copy + Send + Sync + 'static> Library<K> {
-    fn scan(dir: &str, key: impl Fn(&str) -> Option<K>, alpha: bool) -> Library<K> {
+impl<K: std::hash::Hash + Eq + Copy + Send + Sync + 'static, T: Send + Sync + 'static> Library<K, T> {
+    fn scan(
+        dir: &str,
+        suffix: &str,
+        key: impl Fn(&str) -> Option<K>,
+        load: fn(&Path) -> Result<T, String>,
+    ) -> Library<K, T> {
         let mut files = HashMap::new();
         if enabled() {
             // Lowest priority first, so the highest overwrites it.
@@ -189,9 +194,13 @@ impl<K: std::hash::Hash + Eq + Copy + Send + Sync + 'static> Library<K> {
                 for e in entries.flatten() {
                     let path = e.path();
                     let found = path
-                        .file_stem()
+                        .file_name()
                         .and_then(|s| s.to_str())
-                        .filter(|_| path.extension().is_some_and(|x| x.eq_ignore_ascii_case("png")))
+                        .filter(|n| n.len() > suffix.len() && n.is_char_boundary(n.len() - suffix.len()))
+                        .and_then(|n| {
+                            let (stem, end) = n.split_at(n.len() - suffix.len());
+                            end.eq_ignore_ascii_case(suffix).then_some(stem)
+                        })
                         .and_then(&key);
                     if let Some(k) = found {
                         files.insert(k, path);
@@ -199,13 +208,13 @@ impl<K: std::hash::Hash + Eq + Copy + Send + Sync + 'static> Library<K> {
                 }
             }
         }
-        Library { files, loaded: Mutex::new(HashMap::new()), alpha }
+        Library { files, loaded: Mutex::new(HashMap::new()), load }
     }
 
-    /// The picture for `key`, once loaded: the first call starts loading it
-    /// on a thread of its own and answers None (the game's own shows until
-    /// it is ready).
-    fn get(&'static self, key: K) -> Option<Arc<Picture>> {
+    /// What is loaded for `key`, once loaded: the first call starts loading
+    /// it on a thread of its own and answers None (the game's own shows
+    /// until it is ready).
+    fn get(&'static self, key: K) -> Option<Arc<T>> {
         let path = self.files.get(&key)?;
         let mut loaded = self.loaded.lock().unwrap();
         match loaded.get(&key) {
@@ -216,7 +225,7 @@ impl<K: std::hash::Hash + Eq + Copy + Send + Sync + 'static> Library<K> {
         loaded.insert(key, Slot::Loading);
         let path = path.clone();
         std::thread::spawn(move || {
-            let slot = match read_png(&path, self.alpha) {
+            let slot = match (self.load)(&path) {
                 Ok(p) => Slot::Ready(Arc::new(p)),
                 Err(err) => {
                     eprintln!("pe2: mods: {}: {err}", path.display());
@@ -232,7 +241,7 @@ impl<K: std::hash::Hash + Eq + Copy + Send + Sync + 'static> Library<K> {
 fn backgrounds() -> &'static Library<u64> {
     static INDEX: OnceLock<Library<u64>> = OnceLock::new();
     INDEX.get_or_init(|| {
-        let library = Library::scan("backgrounds", |s| u64::from_str_radix(s, 16).ok(), false);
+        let library = Library::scan("backgrounds", ".png", |s| u64::from_str_radix(s, 16).ok(), |p| read_png(p, false));
         if enabled() {
             let mods: Vec<Mod> = installed().into_iter().filter(|m| m.enabled).collect();
             for m in &mods {
@@ -243,10 +252,11 @@ fn backgrounds() -> &'static Library<u64> {
             }
             if !mods.is_empty() {
                 eprintln!(
-                    "pe2: mods: {} on, {} backgrounds, {} textures",
+                    "pe2: mods: {} on, {} backgrounds, {} textures, {} indexed textures",
                     mods.len(),
                     library.files.len(),
-                    textures().files.len()
+                    textures().files.len(),
+                    indexed_textures().files.len()
                 );
             }
         }
@@ -295,7 +305,7 @@ fn textures() -> &'static Library<TextureKey> {
             let (t, p) = s.split_once('-').unwrap_or((s, "0"));
             Some((u64::from_str_radix(t, 16).ok()?, u64::from_str_radix(p, 16).ok()?))
         };
-        Library::scan("textures", key, true)
+        Library::scan("textures", ".png", key, |p| read_png(p, true))
     })
 }
 
@@ -304,10 +314,23 @@ pub fn texture(key: TextureKey) -> Option<Arc<Picture>> {
     textures().get(key)
 }
 
+/// Indexed replacements (indexed.rs: `textures/<sheet>-<4|8>bit.idx.png`
+/// and its header), by sheet and depth (0: 4 bits, 1: 8).
+fn indexed_textures() -> &'static Library<(u64, u32), indexed::Indexed> {
+    static INDEX: OnceLock<Library<(u64, u32), indexed::Indexed>> = OnceLock::new();
+    INDEX.get_or_init(|| Library::scan("textures", ".idx.png", indexed::parse_stem, indexed::read))
+}
+
+/// The indexed replacement a mod supplies for `sheet` drawn at `depth` (0:
+/// 4 bits, 1: 8), once loaded (see Library::get).
+pub fn indexed_texture(sheet: u64, depth: u32) -> Option<Arc<indexed::Indexed>> {
+    indexed_textures().get((sheet, depth))
+}
+
 /// Whether anything here wants to know the textures drawn: mods with
 /// textures.
 pub fn wants_textures() -> bool {
-    !textures().files.is_empty()
+    !textures().files.is_empty() || !indexed_textures().files.is_empty()
 }
 
 /// A PNG as RGBA (any colour type or depth png can expand to 8 bits),
