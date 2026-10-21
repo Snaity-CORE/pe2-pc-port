@@ -17,6 +17,8 @@ pub mod layer;
 pub mod raster;
 mod textures;
 
+pub use textures::host as host_texture;
+
 use std::sync::Mutex;
 
 use raster::{DrawState, Shading, VRAM_HEIGHT, VRAM_WIDTH, Vertex, Vram};

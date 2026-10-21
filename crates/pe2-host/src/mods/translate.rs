@@ -264,12 +264,34 @@ fn glyph_for(font: &Font, c: char) -> Option<Glyph> {
 // ---- translated CAP files -----------------------------------------------
 
 /// A CAP file with translated lines, as built (unrelocated), and the glyphs
-/// it adds to its page: `rows` rows of 64 halfwords from row `top`.
+/// it adds to its page: `rows` rows of 64 halfwords from row `top`, and
+/// when drawn from a mod's font, the same finer (capfont.rs).
 struct Translated {
     words: Vec<u32>,
     top: u16,
     rows: u16,
     block: Vec<u16>,
+    fine: Option<Arc<super::indexed::Indexed>>,
+}
+
+/// Where the glyphs of a built file come from: the game's dialogue font
+/// (with accents made here), or a mod's font.
+enum Source<'a> {
+    Game(&'a Font),
+    Mod,
+}
+
+impl Source<'_> {
+    /// The glyph of `c` and, from a mod's font, its finer texels.
+    fn glyph(&self, c: char) -> Option<(Glyph, Option<Arc<super::capfont::Drawn>>)> {
+        match self {
+            Source::Game(font) => glyph_for(font, c).map(|g| (g, None)),
+            Source::Mod => super::capfont::glyph(c).map(|d| {
+                let g = Glyph { w: d.w, h: d.h, texels: d.texels.clone() };
+                (g, Some(d))
+            }),
+        }
+    }
 }
 
 /// Width of a 4-bit texture page, in texels; its height.
@@ -308,7 +330,9 @@ fn encode(text: &str, mut index_of: impl FnMut(char) -> u16) -> Vec<u16> {
     out
 }
 
-fn build(cap: &Cap, lines: &HashMap<usize, String>, font: &Font) -> Option<Translated> {
+/// The file `cap` with `lines` (by record) in place of its lines' text,
+/// their glyphs from `source`.
+fn build(cap: &Cap, lines: &HashMap<usize, String>, source: &Source) -> Option<Translated> {
     let originals = cap.lines();
     // The original glyph table: as long as its lines and speakers need.
     let used = originals.iter().flat_map(|l| {
@@ -326,18 +350,19 @@ fn build(cap: &Cap, lines: &HashMap<usize, String>, font: &Font) -> Option<Trans
 
     // The glyphs the translations draw, side by side in bands below it.
     let mut glyphs: Vec<Glyph> = Vec::new();
+    let mut fines: Vec<Option<Arc<super::capfont::Drawn>>> = Vec::new();
     let mut index: HashMap<char, u16> = HashMap::new();
     let mut texts: Vec<(usize, Vec<u16>)> = Vec::new();
     for line in &originals {
         let Some(text) = lines.get(&line.record) else { continue };
         let mut codes = encode(text, |c| {
             *index.entry(c).or_insert_with(|| {
-                let g = glyph_for(font, c).or_else(|| glyph_for(font, '?')).unwrap_or(Glyph {
-                    w: 1,
-                    h: 1,
-                    texels: vec![0],
-                });
+                let (g, fine) = source
+                    .glyph(c)
+                    .or_else(|| source.glyph('?'))
+                    .unwrap_or((Glyph { w: 1, h: 1, texels: vec![0] }, None));
                 glyphs.push(g);
+                fines.push(fine);
                 (cells + glyphs.len() - 1) as u16
             })
         });
@@ -374,6 +399,27 @@ fn build(cap: &Cap, lines: &HashMap<usize, String>, font: &Font) -> Option<Trans
             }
         }
     }
+    // The finer picture of those rows, when the glyphs have one.
+    let fine = matches!(source, Source::Mod).then(|| {
+        let k = super::capfont::SCALE;
+        let width = PAGE * k;
+        let mut indices = vec![0u8; width * rows * k];
+        for (d, &(gu, gv)) in fines.iter().zip(&placed) {
+            let Some(d) = d else { continue };
+            for y in 0..d.h * k {
+                let start = ((gv - top) * k + y) * width + gu * k;
+                indices[start..start + d.w * k].copy_from_slice(&d.fine[y * d.w * k..(y + 1) * d.w * k]);
+            }
+        }
+        let sheet = super::fnv1a(block.iter().flat_map(|w| w.to_le_bytes()).chain(*b"capfont"));
+        Arc::new(super::indexed::Indexed {
+            sheet,
+            depth: 0,
+            native: (PAGE as u32, rows as u32),
+            size: (width as u32, (rows * k) as u32),
+            indices,
+        })
+    });
 
     // The file: the original, then the longer glyph table, then the texts.
     let mut bytes = cap.bytes[..cap.len()].to_vec();
@@ -393,7 +439,7 @@ fn build(cap: &Cap, lines: &HashMap<usize, String>, font: &Font) -> Option<Trans
     }
     bytes.resize(bytes.len().next_multiple_of(4), 0);
     let words = bytes.as_chunks::<4>().0.iter().map(|w| u32::from_le_bytes(*w)).collect();
-    Some(Translated { words, top: top as u16, rows: rows as u16, block })
+    Some(Translated { words, top: top as u16, rows: rows as u16, block, fine: fine.filter(|_| rows > 0) })
 }
 
 /// The translations given to the game: by the address of the CAP file it
@@ -418,7 +464,8 @@ fn built() -> &'static Mutex<HashMap<u64, Option<Arc<Translated>>>> {
 /// translated copy, or `file` itself.
 #[unsafe(no_mangle)]
 pub extern "C" fn pc_cap_translate(file: *mut u8) -> *mut u8 {
-    if translations().is_empty() || file.is_null() {
+    let own_font = super::capfont::active();
+    if (translations().is_empty() && !own_font) || file.is_null() {
         return file;
     }
     let read = |at: usize| {
@@ -441,18 +488,50 @@ pub extern "C" fn pc_cap_translate(file: *mut u8) -> *mut u8 {
     let bytes = unsafe { std::slice::from_raw_parts(file, len) };
     let Some(cap) = Cap::new(bytes) else { return file };
     let hash = cap.hash();
-    let Some(lines) = translations().get(&hash) else { return file };
-    let Some(font) = FONT.get() else {
-        if crate::runtime::trace("text") {
-            eprintln!("[text] {hash:016x}: the dialogue font is not collected yet");
+    let translated = translations().get(&hash);
+    let source = if own_font {
+        Source::Mod
+    } else {
+        let Some(font) = FONT.get() else {
+            if crate::runtime::trace("text") {
+                eprintln!("[text] {hash:016x}: the dialogue font is not collected yet");
+            }
+            return file;
+        };
+        Source::Game(font)
+    };
+    let lines = match source {
+        // In a mod's font, every line: its translation, else its own text.
+        Source::Mod => {
+            let Some(texts) = super::capfont::texts(hash) else {
+                if crate::runtime::trace("text") {
+                    eprintln!("[text] {hash:016x}: its glyphs' characters are not known (yet)");
+                }
+                return file;
+            };
+            let mut lines: HashMap<usize, String> = HashMap::new();
+            for line in cap.lines() {
+                if !line.codes.iter().any(|&c| dialogue::is_glyph(c)) {
+                    continue;
+                }
+                let text = match translated.and_then(|t| t.get(&line.record)) {
+                    Some(t) => t.clone(),
+                    None => dialogue::text_by(&line.codes, &texts),
+                };
+                lines.insert(line.record, text);
+            }
+            lines
         }
-        return file;
+        Source::Game(_) => match translated {
+            Some(t) => t.clone(),
+            None => return file,
+        },
     };
     let translated =
-        built().lock().unwrap().entry(hash).or_insert_with(|| build(&cap, lines, font).map(Arc::new)).clone();
+        built().lock().unwrap().entry(hash).or_insert_with(|| build(&cap, &lines, &source).map(Arc::new)).clone();
     let Some(translated) = translated else { return file };
     if crate::runtime::trace("text") {
-        eprintln!("[text] {hash:016x}: {} lines translated, {} glyph rows", lines.len(), translated.rows);
+        eprintln!("[text] {hash:016x}: {} lines rebuilt, {} glyph rows", lines.len(), translated.rows);
     }
     let copy: Box<[u32]> = translated.words.clone().into_boxed_slice();
     let ptr = copy.as_ptr() as *mut u8;
@@ -465,7 +544,7 @@ pub extern "C" fn pc_cap_translate(file: *mut u8) -> *mut u8 {
 /// already are.
 #[unsafe(no_mangle)]
 pub extern "C" fn pc_cap_glyphs(file: *const u8, x: i32, y: i32) {
-    if translations().is_empty() || file.is_null() {
+    if (translations().is_empty() && !super::capfont::active()) || file.is_null() {
         return;
     }
     let live = live().lock().unwrap();
@@ -478,6 +557,9 @@ pub extern "C" fn pc_cap_glyphs(file: *const u8, x: i32, y: i32) {
     }
     use crate::runtime::gpu::{Rect, pcrt_LoadImage, pcrt_StoreImage};
     let rect = Rect::new(x as i16, (y + i32::from(t.top)) as i16, 64, t.rows as i16);
+    if let Some(fine) = &t.fine {
+        crate::runtime::gpu::host_texture(x, y + i32::from(t.top), 64, i32::from(t.rows), &t.block, fine.clone());
+    }
     let mut now = vec![0u16; t.block.len()];
     pcrt_StoreImage(&rect, now.as_mut_ptr());
     if now != t.block {

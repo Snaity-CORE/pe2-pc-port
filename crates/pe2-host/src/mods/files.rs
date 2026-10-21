@@ -531,6 +531,9 @@ pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path, full: bool) -> std::io
     let ramps = dumps.join("textures-ramp");
     let (written, guessed) = super::sheets::extract_indexed(&catalog, &painted, &indexed, &ramps)?;
     eprintln!("pe2: extract: {written} indexed sheets ({guessed} of a guessed depth) in {}", indexed.display());
+    let glyphs = dumps.join("textures-glyphs");
+    let maps = write_glyph_maps(&super::dialogue::glyph_maps(&dialogue), &glyphs)?;
+    eprintln!("pe2: extract: {maps} glyph pages' maps in {}", glyphs.display());
     eprintln!(
         "pe2: extract: {} sheets coloured from rooms' sprites, {} from rooms' code, {} glyph pages; {checked} sprite tables checked against their backgrounds, {mismatched} differ",
         painted.values().filter(|p| p.source == "rooms' sprites").count(),
@@ -550,6 +553,27 @@ pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path, full: bool) -> std::io
     let (caps, lines) = super::dialogue::extract(&dialogue, &text)?;
     eprintln!("pe2: extract: {lines} lines of dialogue in {caps} files in {}", text.display());
     Ok(())
+}
+
+/// Saves each dialogue glyph page's map (dialogue.rs `glyph_maps`) as
+/// `<sheet>-4bit.toml` in `dir`, beside the page's indexed sheet of that
+/// name in `dumps/textures-indexed`. Answers how many.
+fn write_glyph_maps(maps: &HashMap<u64, Vec<([u8; 4], &str)>>, dir: &Path) -> std::io::Result<usize> {
+    std::fs::create_dir_all(dir)?;
+    for (sheet, cells) in maps {
+        let mut toml = format!(
+            "# The cells of dialogue glyph page {sheet:016x} (4-bit) and what each shows:\n\
+             # cell = [u, v, width, height] in texels; text \"[NAME]\" is a speaker's name\n\
+             # label, empty text a glyph not known. The `l` glyph also draws capital I.\n\
+             sheet = \"{sheet:016x}\"\ndepth = 4\n"
+        );
+        for ([u, v, w, h], text) in cells {
+            let text = text.replace('\\', "\\\\").replace('"', "\\\"");
+            toml.push_str(&format!("\n[[glyph]]\ncell = [{u}, {v}, {w}, {h}]\ntext = \"{text}\"\n"));
+        }
+        std::fs::write(dir.join(format!("{sheet:016x}-4bit.toml")), toml)?;
+    }
+    Ok(maps.len())
 }
 
 #[cfg(test)]

@@ -406,6 +406,11 @@ fn share(cap: &Cap, column: &Column, uses: &[usize]) -> f64 {
 /// narrow space, `{color N}` where the colour changes, `{XXXX}` for the
 /// other controls and `{gN}` for a glyph not known.
 pub fn text(cap: &Cap, page: Option<&Column>, codes: &[u16]) -> String {
+    text_by(codes, |index| page.and_then(|p| known().get(&super::fnv1a(glyph(p, cap.cell(index))))).copied())
+}
+
+/// A line's text (as `text`), each glyph index's text from `glyph_text`.
+pub fn text_by(codes: &[u16], glyph_text: impl Fn(usize) -> Option<&'static str>) -> String {
     let mut out = String::new();
     let mut color = 0;
     for &c in codes {
@@ -418,7 +423,7 @@ pub fn text(cap: &Cap, page: Option<&Column>, codes: &[u16]) -> String {
                     out.push_str(&format!("{{color {color}}}"));
                 }
                 let index = usize::from(c & 0x3FF);
-                match page.and_then(|p| known().get(&super::fnv1a(glyph(p, cap.cell(index))))) {
+                match glyph_text(index) {
                     Some(t) => out.push_str(t),
                     None => out.push_str(&format!("{{g{index}}}")),
                 }
@@ -545,6 +550,60 @@ pub fn glyph_pages(sources: &Sources) -> HashMap<u64, Vec<[u8; 4]>> {
                     labels.push(cell);
                 }
             }
+        }
+    }
+    out
+}
+
+/// The glyph pages of every CAP file (by their sheets' hashes), with each
+/// cell (u, v, width, height) their lines draw and the text it shows (a
+/// character, `[NAME]` for a speaker's name label, empty when not known),
+/// sorted by row, then column: a map of the page for font makers. The game
+/// draws capital I with the `l` glyph.
+pub fn glyph_maps(sources: &Sources) -> HashMap<u64, Vec<([u8; 4], &'static str)>> {
+    let mut pages = Pages::new(sources);
+    let mut out: HashMap<u64, Vec<([u8; 4], &'static str)>> = HashMap::new();
+    for (key, _, payload) in &sources.bundles {
+        for bytes in caps(payload) {
+            let Some(cap) = Cap::new(bytes) else { continue };
+            let Some(page) = pages.find(key, &cap) else { continue };
+            let cells = out.entry(super::sheets::sheet_hash(&page.rows)).or_default();
+            let titles = cap.lines().into_iter().filter(|l| l.title != 0).map(|l| usize::from(l.title) - 1);
+            for index in uses(&cap, usize::MAX).into_iter().chain(titles) {
+                let cell = cap.cell(index);
+                if cell[2] == 0 || cell[3] == 0 || cells.iter().any(|c| c.0 == cell) {
+                    continue;
+                }
+                cells.push((cell, known().get(&super::fnv1a(glyph(page, cell))).copied().unwrap_or("")));
+            }
+        }
+    }
+    for cells in out.values_mut() {
+        cells.sort_by_key(|(c, _)| (c[1], c[0]));
+    }
+    out
+}
+
+/// Each CAP file's glyphs' texts (by its hash; by glyph index, None where
+/// not known or not drawn by its lines): what a mod's font draws instead
+/// (mods/capfont.rs).
+pub fn cap_texts(sources: &Sources) -> HashMap<u64, Vec<Option<&'static str>>> {
+    let mut pages = Pages::new(sources);
+    let mut out = HashMap::new();
+    for (key, _, payload) in &sources.bundles {
+        for bytes in caps(payload) {
+            let Some(cap) = Cap::new(bytes) else { continue };
+            let hash = cap.hash();
+            if out.contains_key(&hash) {
+                continue;
+            }
+            let Some(page) = pages.find(key, &cap) else { continue };
+            let used = uses(&cap, usize::MAX);
+            let mut texts = vec![None; used.iter().max().map_or(0, |m| m + 1)];
+            for index in used {
+                texts[index] = known().get(&super::fnv1a(glyph(page, cap.cell(index)))).copied();
+            }
+            out.insert(hash, texts);
         }
     }
     out

@@ -21,6 +21,7 @@ use std::sync::{Arc, Mutex, OnceLock};
 
 use serde::Deserialize;
 
+pub mod capfont;
 pub mod credits;
 pub mod dialogue;
 pub mod files;
@@ -95,16 +96,19 @@ pub fn installed() -> Vec<Mod> {
 
 /// When the game starts: what mods need from the first of `discs` (their
 /// images) is read on a thread of its own: the texture sheets' catalog for
-/// textures, and the dialogue font for translations.
+/// textures, the dialogue font for translations, and what character each
+/// dialogue glyph is for a mod's font (from every disc).
 pub fn start(discs: &[PathBuf]) {
-    let (font, textures) = (translate::wanted(), wants_textures());
-    if discs.is_empty() || !(font || textures) {
+    let texts = capfont::active();
+    let (font, textures) = (translate::wanted() && !texts, wants_textures());
+    if discs.is_empty() || !(font || textures || texts) {
         return;
     }
     let images = discs.to_vec();
     std::thread::spawn(move || {
         let since = std::time::Instant::now();
         let mut catalog = sheets::Catalog::default();
+        let mut known = std::collections::HashMap::new();
         for (number, image) in images.iter().enumerate() {
             let mut disc = match crate::disc::open(image) {
                 Ok(d) => d,
@@ -122,9 +126,22 @@ pub fn start(discs: &[PathBuf]) {
                 eprintln!("pe2: mods: dialogue font: {} glyphs in {:.1} s", f.len(), since.elapsed().as_secs_f32());
                 translate::set_font(f);
             }
-            if !textures {
+            if texts {
+                for (hash, t) in dialogue::cap_texts(&sources) {
+                    known.entry(hash).or_insert(t);
+                }
+            }
+            if !textures && !texts {
                 break;
             }
+        }
+        if texts {
+            eprintln!(
+                "pe2: mods: characters of {} dialogue files in {:.1} s",
+                known.len(),
+                since.elapsed().as_secs_f32()
+            );
+            capfont::set_texts(std::mem::take(&mut known));
         }
         if textures {
             eprintln!(

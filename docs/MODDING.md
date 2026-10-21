@@ -468,6 +468,43 @@ does not have shows as `?`. Speakers' names stay as the game shows them:
 they are pictures of whole names. `PE2_TRACE=text` logs each translated file
 as it loads.
 
+### Dialogue in your own font
+
+A mod's `fonts/captions.ttf` (or `.otf`) draws all the dialogue instead of
+the game's glyph pictures, its translations included (and then any
+character the font has, accents and all, with no marks drawn by PE2PC). The
+highest-priority enabled mod that has one is used. An optional
+`fonts/captions.toml` tunes it:
+
+```toml
+cap_height = 9.0   # a capital's height in the game's pixels (the game's: 9)
+tracking = 0       # pixels added between letters (may be negative)
+weight = 0.0       # pixels the strokes grow (negative: thinner)
+```
+
+Each dialogue file the game loads gets a copy whose lines use glyphs drawn
+from the font, added to its glyph picture below the original ones, in the
+same palette entries as the game's glyphs (a dark outline a pixel wide,
+the fill, the shades between at the edges). So the game itself still lays
+the lines out (with the font's widths: lines are centred on them, and
+their box fits them), colours them, draws their shadow and reveals them
+letter by letter. The glyphs are drawn twice: at the game's resolution,
+into the glyph picture, for any renderer and scale; and 8 times finer,
+which the hardware renderer draws instead, so the text is sharp at any
+scale.
+
+Which character each of the game's glyphs is comes from the discs,
+collected in the seconds after the game starts (a dialogue loaded before
+that shows the original until loaded again). Glyphs not recognized and
+speakers' names stay the game's pictures. Lines take the font's widths, so
+a wide font may need `tracking` or a smaller `cap_height` to keep long
+lines inside the screen.
+
+For mods that redraw the glyph pictures instead (indexed replacements of
+the pages, see Textures), the extract also writes
+`dumps/textures-glyphs/<sheet>-4bit.toml`: for each dialogue glyph page,
+each cell (`[u, v, width, height]`) and the text it shows.
+
 ## Cheats and memory patches
 
 A mod's `patches.toml` changes the game's memory each frame, as a cheat

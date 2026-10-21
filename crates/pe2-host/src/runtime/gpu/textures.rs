@@ -15,9 +15,67 @@
 //! (drawing, copies, fills), so palettes and drawing next to textures
 //! leave them be, and a primitive is replaced only where all it reads was
 //! loaded.
+//!
+//! Textures the host makes while the game runs (dialogue glyphs drawn from
+//! a mod's font, mods/capfont.rs) are not in the catalog: the host gives
+//! each its high-resolution picture as it loads it (`host`), and the rows
+//! that image transfer loads are known as that hosted sheet until written
+//! over.
+
+use std::collections::VecDeque;
+use std::sync::{Arc, Mutex};
 
 use super::raster::{DrawState, Shading, Vram};
+use crate::mods::indexed::Indexed;
 use crate::mods::sheets::{self, PIECE_ROWS};
+
+/// A `Part`'s sheet with this bit is a hosted one (its id below it), not a
+/// catalog index.
+pub const HOSTED: u32 = 1 << 31;
+
+/// Hosted textures kept: the most recent ones (each a page's worth of
+/// high-resolution indices).
+const HOSTED_KEPT: usize = 8;
+
+/// A texture the host made: the image transfer that places it (where, and
+/// its pixels' hash), and its picture.
+struct Hosted {
+    id: u32,
+    at: (i32, i32, i32, i32),
+    hash: u64,
+    indexed: Arc<Indexed>,
+}
+
+fn registry() -> &'static Mutex<(u32, VecDeque<Hosted>)> {
+    static REGISTRY: Mutex<(u32, VecDeque<Hosted>)> = Mutex::new((0, VecDeque::new()));
+    &REGISTRY
+}
+
+fn pixels_hash(pixels: &[u16]) -> u64 {
+    pixels.iter().fold(FNV_OFFSET, |h, &p| fnv(h, p))
+}
+
+/// The host is about to load `pixels` at `x, y, w, h` (a whole 64-halfword
+/// column, 4-bit texels), whose picture at a higher resolution is
+/// `indexed`: what that transfer loads draws it.
+pub fn host(x: i32, y: i32, w: i32, h: i32, pixels: &[u16], indexed: Arc<Indexed>) {
+    let hash = pixels_hash(pixels);
+    let mut r = registry().lock().unwrap();
+    if r.1.iter().any(|e| e.at == (x, y, w, h) && e.hash == hash) {
+        return;
+    }
+    r.0 = (r.0 + 1) & !HOSTED;
+    let id = r.0;
+    r.1.push_back(Hosted { id, at: (x, y, w, h), hash, indexed });
+    while r.1.len() > HOSTED_KEPT {
+        r.1.pop_front();
+    }
+}
+
+/// The picture of hosted sheet `id`, while kept.
+pub fn hosted(id: u32) -> Option<Arc<Indexed>> {
+    registry().lock().unwrap().1.iter().find(|e| e.id == id).map(|e| e.indexed.clone())
+}
 
 /// Columns of 64 halfwords; rows; rows of pieces.
 const COLUMNS: i32 = 16;
@@ -68,6 +126,8 @@ pub struct Tracker {
     pieces: Vec<Option<Piece>>,
     /// Palette hashes by place and size, while unchanged.
     palettes: Vec<(i32, i32, i32, u64)>,
+    /// Rows of a column a hosted texture was loaded to: (x, y, rows, id).
+    hosted: Vec<(i32, i32, i32, u32)>,
 }
 
 impl Default for Tracker {
@@ -76,6 +136,7 @@ impl Default for Tracker {
             loaded: vec![0; ROWS as usize],
             pieces: vec![None; (COLUMNS * PIECES) as usize],
             palettes: Vec::new(),
+            hosted: Vec::new(),
         }
     }
 }
@@ -103,6 +164,7 @@ impl Tracker {
         }
         let hits = |px: i32, py: i32, pw: i32, ph: i32| px < x + w && x < px + pw && py < y + h && y < py + ph;
         self.palettes.retain(|&(px, py, n, _)| !hits(px, py, n, 1));
+        self.hosted.retain(|&(hx, hy, hh, _)| !hits(hx, hy, 64, hh));
     }
 
     /// An image transfer of `pixels` to `x, y, w, h` (after `write`): the
@@ -118,6 +180,13 @@ impl Tracker {
         }
         if w >= SCREEN.0 && h >= SCREEN.1 {
             return;
+        }
+        if w == 64 && x % 64 == 0 {
+            let hash = pixels_hash(&pixels[..pixels.len().min((w * h) as usize)]);
+            let r = registry().lock().unwrap();
+            if let Some(e) = r.1.iter().rev().find(|e| e.at == (x, y, w, h) && e.hash == hash) {
+                self.hosted.push((x, y, h, e.id));
+            }
         }
         let (c0, c1) = ((x + 63) / 64, (x + w) / 64);
         if c1 > c0 && c0 >= 0 && c1 <= COLUMNS {
@@ -191,6 +260,12 @@ impl Tracker {
         let rows_per = PIECE_ROWS as i32;
         let mut parts = Vec::new();
         for c in x0 / 64..=x1 / 64 {
+            if let Some(&(_, hy, _, id)) =
+                self.hosted.iter().find(|&&(hx, hy, hh, _)| hx == c * 64 && hy <= y0 && y1 < hy + hh)
+            {
+                parts.push(Part { column: (c - px / 64) as usize, sheet: HOSTED | id, top: hy });
+                continue;
+            }
             let mut at = None;
             for p in y0 / rows_per..=y1 / rows_per {
                 let r = self.resolve(c, p)?;
@@ -208,7 +283,7 @@ impl Tracker {
             // Each sheet and palette once: the names mods give pictures.
             static SEEN: std::sync::Mutex<Option<std::collections::HashSet<(u32, u64)>>> = std::sync::Mutex::new(None);
             if let Some(catalog) = sheets::catalog() {
-                for part in &parts {
+                for part in parts.iter().filter(|p| p.sheet & HOSTED == 0) {
                     if SEEN.lock().unwrap().get_or_insert_with(Default::default).insert((part.sheet, palette)) {
                         let name = crate::mods::texture_name((catalog.sheets[part.sheet as usize].hash, palette));
                         let sheet = &catalog.sheets[part.sheet as usize];

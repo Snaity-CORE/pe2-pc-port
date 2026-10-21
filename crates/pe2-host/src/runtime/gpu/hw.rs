@@ -23,6 +23,7 @@ use std::sync::atomic::{AtomicU64, Ordering};
 
 use super::interp;
 use super::raster::{DrawState, Shading, VRAM_HEIGHT, VRAM_WIDTH, Vertex as NativeVertex, Vram};
+use super::textures;
 use crate::gfx::Gfx;
 
 /// PE2_TRACE=cpu: flushes, and native VRAM halfwords sent to the card.
@@ -804,15 +805,22 @@ impl Hw {
     /// The mods' textures a textured primitive with texel rectangle `uv`
     /// draws instead of its sheets, as its vertices' `repl` (0: none).
     fn replacement(&mut self, vram: &Vram, st: &DrawState, sh: &Shading, uv: (i32, i32, i32, i32)) -> u32 {
-        if !sh.textured || !crate::mods::wants_textures() {
+        if !sh.textured || !(crate::mods::wants_textures() || crate::mods::capfont::active()) {
             return 0;
         }
         let Some(f) = self.tracker.find(vram, st, sh, uv) else { return 0 };
-        let Some(catalog) = crate::mods::sheets::catalog() else { return 0 };
+        let catalog = crate::mods::sheets::catalog();
         let per = [4, 2, 1][f.depth as usize];
         let mut page = [0u32; 8];
         for part in &f.parts {
-            let Some(sheet) = catalog.sheets.get(part.sheet as usize) else { continue };
+            if part.sheet & textures::HOSTED != 0 {
+                if let Some(i) = self.hosted(vram, part.sheet & !textures::HOSTED, f.depth) {
+                    page[part.column] = i;
+                    page[4 + part.column] = part.top as u32;
+                }
+                continue;
+            }
+            let Some(sheet) = catalog.and_then(|c| c.sheets.get(part.sheet as usize)) else { continue };
             let (width, height) = (64 * per, sheet.rows.len() as i32);
             // An indexed replacement of the sheet (whatever its palette),
             // else this palette's picture of it, else the one for any.
@@ -892,6 +900,27 @@ impl Hw {
         }
         // Its own key: one replacement serves every palette.
         let key = (sheet, INDEXED_KEY - u64::from(depth));
+        if let Some(i) = self.atlas.index(key) {
+            return Some(i);
+        }
+        match self.atlas.add_indexed(key, &replacement) {
+            Some(i) => Some(i),
+            None => {
+                self.flush(vram);
+                self.atlas.clear();
+                self.atlas.add_indexed(key, &replacement)
+            }
+        }
+    }
+
+    /// The atlas entry (index + 1) of hosted texture `id` (textures.rs
+    /// `host`), drawn at `depth` (only 4 bits are hosted).
+    fn hosted(&mut self, vram: &Vram, id: u32, depth: u32) -> Option<u32> {
+        let replacement = textures::hosted(id)?;
+        if depth != replacement.depth {
+            return None;
+        }
+        let key = (replacement.sheet, INDEXED_KEY - u64::from(depth));
         if let Some(i) = self.atlas.index(key) {
             return Some(i);
         }

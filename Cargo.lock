@@ -2631,6 +2631,7 @@ dependencies = [
 name = "pe2-host"
 version = "0.1.0"
 dependencies = [
+ "ab_glyph",
  "chd",
  "claxon",
  "cpal",

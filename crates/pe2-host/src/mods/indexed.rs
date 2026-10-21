@@ -622,9 +622,9 @@ mod tests {
         let (sheet, preview) = sheet_and_preview(&[&[1, 0]], &palette);
         let prev = Rgba { width: 2, height: 1, pixels: &preview };
         // Not a whole multiple, or not the same on both sides.
-        let bad = vec![0u8; 3 * 1 * 4];
+        let bad = vec![0u8; 3 * 4];
         assert!(from_upscale(&sheet, &prev, &Rgba { width: 3, height: 1, pixels: &bad }).is_err());
-        let bad = vec![0u8; 4 * 1 * 4];
+        let bad = vec![0u8; 4 * 4];
         assert!(from_upscale(&sheet, &prev, &Rgba { width: 4, height: 1, pixels: &bad }).is_err());
         // A preview of another size (the other depth).
         let wrong = vec![0u8; 4 * 4];

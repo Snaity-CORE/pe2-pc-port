@@ -10,6 +10,7 @@ name = "pe2"
 path = "src/main.rs"
 
 [dependencies]
+ab_glyph = "0.2.32"
 chd = "0.3.4"
 claxon = "0.4"
 cpal = "0.15"
