@@ -976,7 +976,18 @@ pub extern "C" fn pcrt_LoadImage(rect: *const Rect, p: *const u16) -> i32 {
                         hr.upload(&g.vram, x0 + tx, y0 + ty, tw, th, &tile, None);
                     }
                 }
-                (None, None) => hr.upload(&g.vram, x0, y0, w, h, pixels, None),
+                (None, None) => {
+                    // A screen image read back before (the picture frozen
+                    // behind the menus): as the layer had it.
+                    let kept = w >= KEPT_SCREEN.0
+                        && h >= KEPT_SCREEN.1
+                        && hr.load_kept(&g.vram, x0, y0, w, h, pixels, crate::mods::screen_hash(w, h, pixels));
+                    if kept {
+                        vtrace(format_args!("LoadImage ({x0},{y0}) {w}x{h}: kept"));
+                    } else {
+                        hr.upload(&g.vram, x0, y0, w, h, pixels, None);
+                    }
+                }
             }
         }
     });
@@ -995,9 +1006,25 @@ pub extern "C" fn pcrt_StoreImage(rect: *const Rect, p: *mut u16) -> i32 {
     let n = (i32::from(rc.w) * i32::from(rc.h)).max(0) as usize;
     // SAFETY: the game passes room for w*h pixels.
     let out = unsafe { std::slice::from_raw_parts_mut(p, n) };
-    with_gpu(|g| g.vram.read_rect(i32::from(rc.x), i32::from(rc.y), i32::from(rc.w), i32::from(rc.h), out));
+    vtrace(format_args!("StoreImage ({},{}) {}x{}", rc.x, rc.y, rc.w, rc.h));
+    with_gpu(|g| {
+        let (x, y, w, h) = (i32::from(rc.x), i32::from(rc.y), i32::from(rc.w), i32::from(rc.h));
+        g.vram.read_rect(x, y, w, h, out);
+        // A screen image read back is loaded again later (behind menus and
+        // examined items): the layer keeps its higher-resolution picture.
+        if w >= KEPT_SCREEN.0
+            && h >= KEPT_SCREEN.1
+            && let Some(hr) = g.layer.as_mut()
+        {
+            hr.keep_screen(&g.vram, x, y, w, h, crate::mods::screen_hash(w, h, out));
+        }
+    });
     0
 }
+
+/// Image transfers at least this large (screen images) read back are kept
+/// by the layer at its resolution.
+const KEPT_SCREEN: (i32, i32) = (256, 192);
 
 #[unsafe(no_mangle)]
 pub extern "C" fn pcrt_StoreImage2(rect: *const Rect, p: *mut u16) -> i32 {

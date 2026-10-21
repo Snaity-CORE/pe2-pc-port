@@ -82,6 +82,24 @@ impl Layer {
         }
     }
 
+    /// The game read the screen image at `x, y, w, h` back (`hash`, of
+    /// what it read): the card's layer keeps it as it has it.
+    pub fn keep_screen(&mut self, vram: &Vram, x: i32, y: i32, w: i32, h: i32, hash: u64) {
+        if let Layer::Hardware(l) = self {
+            l.keep_screen(vram, x, y, w, h, hash);
+        }
+    }
+
+    /// A screen image loaded that the layer kept when it was read back:
+    /// shown as kept (false: not kept, load it as usual).
+    #[allow(clippy::too_many_arguments)]
+    pub fn load_kept(&mut self, vram: &Vram, x: i32, y: i32, w: i32, h: i32, pixels: &[u16], hash: u64) -> bool {
+        match self {
+            Layer::Hardware(l) => l.load_kept(vram, x, y, w, h, pixels, hash),
+            Layer::Software(_) => false,
+        }
+    }
+
     pub fn triangle(&mut self, vram: &Vram, st: &DrawState, sh: &Shading, v: [Vertex; 3]) {
         match self {
             Layer::Software(l) => l.triangle(vram, st, sh, v),

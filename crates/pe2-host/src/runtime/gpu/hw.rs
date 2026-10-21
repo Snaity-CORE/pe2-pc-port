@@ -1268,43 +1268,105 @@ impl Hw {
         hash: u64,
         picture: &crate::mods::Picture,
     ) {
-        const PICTURES_KEPT: usize = 24;
-        let s = self.scale;
-        let (px, py) = ((x * s).max(0) as u32, (y * s).max(0) as u32);
-        let (pw, ph) = ((w * s) as u32, (h * s) as u32);
-        if w <= 0 || h <= 0 || px + pw > self.width || py + ph > self.height {
-            return;
-        }
+        let Some((px, py, pw, ph)) = self.screen_rect(x, y, w, h) else { return };
         if self.too_much() {
             self.flush(vram);
         }
-        self.pictures_used += 1;
-        let used = self.pictures_used;
-        if let Some(entry) = self.pictures.get_mut(&hash) {
-            entry.1 = used;
-        } else {
-            if self.pictures.len() >= PICTURES_KEPT
-                && let Some(oldest) = self.pictures.iter().min_by_key(|(_, e)| e.1).map(|(k, _)| *k)
-            {
-                self.pictures.remove(&oldest);
-            }
-            let texture = self.gfx.device.create_texture(&wgpu::TextureDescriptor {
-                label: Some("hw mod picture"),
-                size: wgpu::Extent3d { width: pw, height: ph, depth_or_array_layers: 1 },
-                mip_level_count: 1,
-                sample_count: 1,
-                dimension: wgpu::TextureDimension::D2,
-                format: wgpu::TextureFormat::Rgba8Unorm,
-                usage: wgpu::TextureUsages::COPY_SRC | wgpu::TextureUsages::COPY_DST,
-                view_formats: &[],
-            });
+        if !self.pictures.contains_key(&hash) {
+            let texture = self.picture_texture(pw, ph);
             self.gfx.queue.write_texture(
                 texture.as_image_copy(),
                 &crate::mods::resize(picture, pw, ph),
                 wgpu::TexelCopyBufferLayout { offset: 0, bytes_per_row: Some(pw * 4), rows_per_image: Some(ph) },
                 wgpu::Extent3d { width: pw, height: ph, depth_or_array_layers: 1 },
             );
-            self.pictures.insert(hash, (texture, used));
+            self.keep_picture(hash, texture);
+        }
+        self.show_picture(hash, px, py);
+    }
+
+    /// The game read the screen image at `x, y, w, h` back (StoreImage), to
+    /// load it again later (the frozen picture behind its menus): this
+    /// layer keeps it as it has it, by the hash of what was read.
+    pub fn keep_screen(&mut self, vram: &Vram, x: i32, y: i32, w: i32, h: i32, hash: u64) {
+        let Some((px, py, pw, ph)) = self.screen_rect(x, y, w, h) else { return };
+        // What was recorded first, so the layer holds what the game read.
+        self.flush(vram);
+        let texture = self.picture_texture(pw, ph);
+        let mut encoder =
+            self.gfx.device.create_command_encoder(&wgpu::CommandEncoderDescriptor { label: Some("hw keep") });
+        encoder.copy_texture_to_texture(
+            wgpu::TexelCopyTextureInfo {
+                texture: &self.target,
+                mip_level: 0,
+                origin: wgpu::Origin3d { x: px, y: py, z: 0 },
+                aspect: wgpu::TextureAspect::All,
+            },
+            texture.as_image_copy(),
+            wgpu::Extent3d { width: pw, height: ph, depth_or_array_layers: 1 },
+        );
+        self.gfx.queue.submit([encoder.finish()]);
+        self.keep_picture(hash, texture);
+    }
+
+    /// A screen image the game loads (`hash` of its pixels) that this layer
+    /// kept when the game read it back: drawn as kept. False when not kept.
+    #[allow(clippy::too_many_arguments)]
+    pub fn load_kept(&mut self, vram: &Vram, x: i32, y: i32, w: i32, h: i32, pixels: &[u16], hash: u64) -> bool {
+        let Some((px, py, pw, ph)) = self.screen_rect(x, y, w, h) else { return false };
+        match self.pictures.get(&hash) {
+            Some((t, _)) if t.width() == pw && t.height() == ph => {}
+            _ => return false,
+        }
+        if crate::mods::wants_textures() {
+            self.tracker.upload(x, y, w, h, pixels);
+        }
+        if self.too_much() {
+            self.flush(vram);
+        }
+        self.show_picture(hash, px, py);
+        true
+    }
+
+    /// `x, y, w, h` of the VRAM in this layer's texels, if inside it.
+    fn screen_rect(&self, x: i32, y: i32, w: i32, h: i32) -> Option<(u32, u32, u32, u32)> {
+        let s = self.scale;
+        let (px, py) = ((x * s).max(0) as u32, (y * s).max(0) as u32);
+        let (pw, ph) = ((w * s) as u32, (h * s) as u32);
+        (w > 0 && h > 0 && px + pw <= self.width && py + ph <= self.height).then_some((px, py, pw, ph))
+    }
+
+    fn picture_texture(&self, w: u32, h: u32) -> wgpu::Texture {
+        self.gfx.device.create_texture(&wgpu::TextureDescriptor {
+            label: Some("hw picture"),
+            size: wgpu::Extent3d { width: w, height: h, depth_or_array_layers: 1 },
+            mip_level_count: 1,
+            sample_count: 1,
+            dimension: wgpu::TextureDimension::D2,
+            format: wgpu::TextureFormat::Rgba8Unorm,
+            usage: wgpu::TextureUsages::COPY_SRC | wgpu::TextureUsages::COPY_DST,
+            view_formats: &[],
+        })
+    }
+
+    /// Keeps `texture` as the picture of `hash` (the least recently shown
+    /// go beyond PICTURES_KEPT).
+    fn keep_picture(&mut self, hash: u64, texture: wgpu::Texture) {
+        const PICTURES_KEPT: usize = 24;
+        if !self.pictures.contains_key(&hash)
+            && self.pictures.len() >= PICTURES_KEPT
+            && let Some(oldest) = self.pictures.iter().min_by_key(|(_, e)| e.1).map(|(k, _)| *k)
+        {
+            self.pictures.remove(&oldest);
+        }
+        self.pictures_used += 1;
+        self.pictures.insert(hash, (texture, self.pictures_used));
+    }
+
+    fn show_picture(&mut self, hash: u64, px: u32, py: u32) {
+        self.pictures_used += 1;
+        if let Some(entry) = self.pictures.get_mut(&hash) {
+            entry.1 = self.pictures_used;
         }
         self.ops.push(Op::Picture { hash, x: px, y: py });
     }
