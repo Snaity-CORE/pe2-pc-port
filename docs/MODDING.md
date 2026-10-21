@@ -503,6 +503,31 @@ does not have shows as `?`. Speakers' names stay as the game shows them:
 they are pictures of whole names. `PE2_TRACE=text` logs each translated file
 as it loads.
 
+### A translation from another version's discs
+
+The extract reads the dialogue of translated discs too (the Brazilian
+Portuguese fan translation, for one): their glyph pictures are the game's
+own letters framed otherwise in their cells, plus the letters they add,
+and their cells may hold whole syllables, with the space between words in
+the cell; glyphs are recognized by their shape (the game's letters, and
+the translation's accented ones, labelled by eye), and a cell of several
+letters is read letter by letter. Cells that point at no glyph (left by
+editing the discs by hand) stay `{gN}`.
+
+`tools/import_dialogue.py` makes a translation mod of it: extract the
+game's discs and the translated ones, each with its own data folder, and
+
+```text
+python tools/import_dialogue.py <game's dumps/text> <translated dumps/text> mods/my-translation --name "My translation"
+```
+
+puts each translated line into the `text` of the game's line in the same
+place (same file, same order: translated files' records are moved), where
+both have the same controls. `report.txt` lists what was left out (files
+with another number of lines, lines whose controls differ) and lines with
+glyphs not read (shown as `?`). Drawn in a mod's font (below), any accent
+shows.
+
 ### Dialogue in your own font
 
 A mod's `fonts/captions.ttf` (or `.otf`) draws all the dialogue instead of

@@ -108,7 +108,7 @@ pub fn active() -> bool {
     loaded().is_some()
 }
 
-type Texts = HashMap<u64, Vec<Option<&'static str>>>;
+type Texts = HashMap<u64, Vec<Option<String>>>;
 static TEXTS: OnceLock<Texts> = OnceLock::new();
 
 /// Each CAP file's glyphs' texts, collected from the discs (mods::start).
@@ -121,7 +121,7 @@ pub fn set_texts(texts: Texts) {
 /// collected.
 pub fn texts(cap: u64) -> Option<impl Fn(usize) -> Option<&'static str>> {
     let texts = TEXTS.get()?.get(&cap)?;
-    Some(move |index: usize| texts.get(index).copied().flatten().filter(|t| !t.starts_with('[')))
+    Some(move |index: usize| texts.get(index).and_then(|t| t.as_deref()).filter(|t| !t.starts_with('[')))
 }
 
 /// A glyph drawn from the font: its cell size, its texels (4-bit palette

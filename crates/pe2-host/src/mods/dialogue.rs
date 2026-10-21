@@ -389,6 +389,254 @@ fn known() -> &'static HashMap<u64, &'static str> {
     MAP.get_or_init(|| GLYPHS.iter().copied().collect())
 }
 
+/// Glyph shape hash (`shape_hash`) -> the text it shows: glyphs drawn as
+/// the game's own but framed otherwise in their cells (the Brazilian
+/// Portuguese translation's discs), and the letters they add. Made from the
+/// game's glyphs and by eye; it holds no pictures.
+const SHAPES: &[(u64, &str)] = &[
+    // The game's glyphs (from their pictures in the game).
+    (0x005337A725BED058, "[K.MADIGAN]"),
+    (0x01259546E302B6F9, "!"),
+    (0x05306F5FF6FB6947, "e"),
+    (0x05BDD9B17FD80272, "C"),
+    (0x08327A07B4EB5823, " "),
+    (0x08328807B4EB6FED, ""),
+    (0x0BBB2271C14641A9, "0"),
+    (0x0DEF4422477696F1, "[STAFF]"),
+    (0x14708AB2652BB40D, "[SERGEANT]"),
+    (0x16F43C48FCEC6D0D, "[CREATURE]"),
+    (0x1824C9A91892EB6D, "j"),
+    (0x1835920BF0DDF535, "\""),
+    (0x1BEFB4DDCD56FEA7, "m"),
+    (0x1E1AAD364A0676E7, "U"),
+    (0x21235D6E7C56D764, "R"),
+    (0x2168B720F238DEC6, "K"),
+    (0x23013C6A91DFA7EC, "[POLICE OFFICER]"),
+    (0x27F40198C25F2194, "[SWAT OFFICER]"),
+    (0x2967825901F81365, "Z"),
+    (0x2A4F5AF206FA7878, "N"),
+    (0x2EB3946B1A5DF32D, "[PIERCE]"),
+    (0x30624E17A0D57C8A, "z"),
+    (0x33655C34958B66D4, "[PRIVATE]"),
+    (0x34E3C199399B737D, "[WARNING]"),
+    (0x39D5285A6A4139F8, "2"),
+    (0x3B511F6C40586A1E, "O"),
+    (0x3E9BAA1639ABCFD3, ":"),
+    (0x4771640C3C9CE413, "i"),
+    (0x4925E9E31D396002, "/"),
+    (0x4F79D4C4F726A2F5, "q"),
+    (0x500681E81661A362, "]"),
+    (0x502D83E8FED03105, "="),
+    (0x5453DDCE1B1E93E3, "[RUPERT]"),
+    (0x56E32E6A073B5C72, "P"),
+    (0x6184BD6C57C3408E, "("),
+    (0x622A690E3E6D402B, "[BALDWIN]"),
+    (0x63D40860332FD421, "b"),
+    (0x64310DAB543CE41C, "a"),
+    (0x651DBEE984781851, "d"),
+    (0x683D0DDC77F208E9, "E"),
+    (0x69A5BD2385888089, "[DOUGLAS]"),
+    (0x6DCCDE5DB0055AC0, "H"),
+    (0x6E22B8C63195CD82, "s"),
+    (0x6E55349383ED334F, "G"),
+    (0x71B1C224FBF9F294, "[2ND LIEUTENANT]"),
+    (0x779B2DAC6BEC39FF, ";"),
+    (0x78400378F8F271AA, "D"),
+    (0x7A143AD555DB4BD3, "c"),
+    (0x7BDA00A949632B16, "[EVE]"),
+    (0x8037A87DA9D0AB5F, "L"),
+    (0x820124B00FE99214, "?"),
+    (0x8522C9FB6D85C6BA, "&"),
+    (0x8F457F15B2422E44, "-"),
+    (0x91AC593DBCB628D1, "[PRESIDENT]"),
+    (0x972D4FAF0A925284, "7"),
+    (0x976CB677AE2C1723, "X"),
+    (0x98BB04C523D9AADB, "*"),
+    (0x9A5A0C40D14F68CF, "'"),
+    (0x9F46BB56F8BEFA8F, "Y"),
+    (0xA17439C73B9CC341, "W"),
+    (0xA6F8FBA7F614C33A, "[KYLE]"),
+    (0xA8E240D7CDE88A6C, "Q"),
+    (0xA9D8DC4AA5A4DF75, "%"),
+    (0xB09AC2A68F7A67B7, "o"),
+    (0xB478677EE281F59A, "4"),
+    (0xB760230A87EAAF1B, "u"),
+    (0xB9C9CC374FCBEF46, "[TELEGRAPHIST]"),
+    (0xB9EAB239F7043AA9, "A"),
+    (0xBA012C087562963A, ","),
+    (0xBA9C35A8A1B44D19, "."),
+    (0xBB1B2F3E0F08610B, "f"),
+    (0xBB36F6F51B885579, "M"),
+    (0xBE491597D195013F, "l"),
+    (0xBF15B04261AF09C2, "x"),
+    (0xC12380D304FBE78C, "3"),
+    (0xC17852982D218F31, "F"),
+    (0xC17F8BF73E18BF11, "n"),
+    (0xC2644D3CB1951537, "5"),
+    (0xC4E7EE88E1C9B3DD, ">"),
+    (0xCDAA17F206FFC0E3, "8"),
+    (0xD0B579D5DD30D211, "v"),
+    (0xD137A3B2C6778248, "[WARNING]"),
+    (0xD16CE8720827D60F, "6"),
+    (0xD1B690280896BE3C, "9"),
+    (0xD219CBE158BF8800, "y"),
+    (0xD520B46B09F57BF1, "[MALE VOICE]"),
+    (0xD5F7480ABED28AF8, "g"),
+    (0xD905BE5444D2A6E0, "r"),
+    (0xDA147A233BB2905B, "#"),
+    (0xDE2D495570599AD4, "[AYA]"),
+    (0xDE9D89207FD4B651, "V"),
+    (0xDEB0D9CFB417F55B, "J"),
+    (0xDEEF11DC83EA2E9D, "S"),
+    (0xE55AF89C92F4F9C6, "["),
+    (0xE56BB28F2116DDFA, "[POLICE SGT.]"),
+    (0xE5B745B6BE3D9838, "[???]"),
+    (0xE643753D3435D511, "1"),
+    (0xE9B36F447D51DF4D, "p"),
+    (0xED9936A36A82493B, "No.9"),
+    (0xF063541E96263D7F, "T"),
+    (0xF1F2F321B0B43DDF, "[JODIE]"),
+    (0xF292C1FF24A8C768, "B"),
+    (0xF29E555E8F75E10E, "h"),
+    (0xF390A247E3635327, "k"),
+    (0xF78D478490E096A9, "w"),
+    (0xF7EEBC37CC242746, "t"),
+    (0xFB3A3FE99DE2CFE2, ")"),
+    // The Brazilian Portuguese translation's letters (by eye).
+    (0xF129FD3D8D573064, "á"),
+    (0xCD1EFC8101830F24, "ã"),
+    (0x6226768F418F0BBF, "é"),
+    (0x9E19E6F3D52CC6CB, "ç"),
+    (0x83AA67318EBEEA71, "S"),
+    (0x252FC300159A1527, "ê"),
+    (0xF72E31B11E00F18F, "ó"),
+    (0xC3D62BF8456337C8, "-"),
+    (0x3A4E05F7C1BD8740, "í"),
+    (0xE498984445825B59, "["),
+    (0x80E405FF8EBD7CCD, "]"),
+    (0x1E512C8DA92B3977, "õ"),
+    (0x329AD6DD24A08C85, "É"),
+    (0x0780C1DCBE6D1763, "ú"),
+    (0xBBC4F6C57257B254, "à"),
+    (0xD09A1646AE191397, "ô"),
+    (0x30B0FF3F93188BDF, "K"),
+    (0x12A80FF08775176C, "â"),
+    (0x8C6AB49A68409C81, "Ê"),
+    (0x4D57BF7F4CF5AD10, "]"),
+    (0x018E18965D6876EC, "º"),
+    (0xB3E0E5ACB9C204F0, "'"),
+    (0x617B185D7C497E6E, "Ó"),
+    (0x87F193D12BC8520E, "Ó"),
+    (0x93DD1F9A9FBF83A1, "Ã"),
+    (0xAF6A984E5495FB51, "í"),
+    (0x5FA8DEA31AAB3DB7, "i"),
+    (0x9F3802867E91720B, "."),
+    (0x56FBA095806687A3, "Á"),
+    (0x4727A5973B996538, "Z"),
+    (0xDA35179DB7674D6A, "X"),
+    (0x5745FDB4B4901C9F, "<"),
+    (0x84A09BC4C26E804C, "("),
+];
+
+fn shapes() -> &'static HashMap<u64, &'static str> {
+    static MAP: std::sync::OnceLock<HashMap<u64, &'static str>> = std::sync::OnceLock::new();
+    MAP.get_or_init(|| SHAPES.iter().copied().collect())
+}
+
+/// A glyph picture's (`glyph`) shape: its texels without the empty columns
+/// at its sides (its height kept, so marks stay where they are).
+pub fn shape_hash(picture: &[u8]) -> u64 {
+    let (w, h) = (usize::from(picture[0]), usize::from(picture[1]));
+    let texels = &picture[2..];
+    let used = |x: usize| (0..h).any(|y| texels[y * w + x] != 0);
+    let Some(x0) = (0..w).find(|&x| used(x)) else { return super::fnv1a([0, picture[1]]) };
+    let x1 = (0..w).rev().find(|&x| used(x)).unwrap_or(x0);
+    let rows = (0..h).flat_map(|y| texels[y * w + x0..=y * w + x1].iter().copied());
+    super::fnv1a([(x1 - x0 + 1) as u8, picture[1]].into_iter().chain(rows))
+}
+
+/// What a glyph picture shows: by its hash, else by its shape, else read
+/// as a run of letters (`read`). Pictures recur (the same glyphs in many
+/// files, and pages tried for each), so what each shows is kept.
+fn recognize(picture: &[u8]) -> Option<std::borrow::Cow<'static, str>> {
+    let hash = super::fnv1a(picture.iter().copied());
+    if let Some(&t) = known().get(&hash) {
+        return Some(t.into());
+    }
+    static SEEN: std::sync::OnceLock<std::sync::Mutex<HashMap<u64, Option<String>>>> = std::sync::OnceLock::new();
+    let seen = SEEN.get_or_init(Default::default);
+    if let Some(t) = seen.lock().unwrap().get(&hash) {
+        return t.clone().map(Into::into);
+    }
+    let text = shapes().get(&shape_hash(picture)).map(|t| t.to_string()).or_else(|| read(picture)).map(|t| {
+        // Wide blanks at its sides are spaces (the translation's cells
+        // carry the space between words).
+        let (before, after) = blank_sides(picture);
+        let space = |n: usize| if n >= SPACE_COLUMNS && !t.trim().is_empty() { " " } else { "" };
+        format!("{}{t}{}", space(before), space(after))
+    });
+    seen.lock().unwrap().insert(hash, text.clone());
+    text.map(Into::into)
+}
+
+/// The blank columns at a glyph picture's left and right.
+fn blank_sides(picture: &[u8]) -> (usize, usize) {
+    let (w, h) = (usize::from(picture[0]), usize::from(picture[1]));
+    let used = |x: usize| (0..h).any(|y| picture[2 + y * w + x] != 0);
+    match (0..w).find(|&x| used(x)) {
+        Some(first) => (first, w - 1 - (0..w).rev().find(|&x| used(x)).unwrap_or(first)),
+        None => (0, 0),
+    }
+}
+
+/// Columns of blank between two letters of a picture that make a space.
+const SPACE_COLUMNS: usize = 4;
+
+/// The widest letter a picture of several is read with, in texels.
+const LETTER_COLUMNS: usize = 16;
+
+/// Columns `x0..x1` of a glyph picture, as a picture.
+fn columns(picture: &[u8], x0: usize, x1: usize) -> Vec<u8> {
+    let (w, h) = (usize::from(picture[0]), usize::from(picture[1]));
+    let mut out = vec![(x1 - x0) as u8, picture[1]];
+    out.extend((0..h).flat_map(|y| picture[2 + y * w + x0..2 + y * w + x1].iter().copied()));
+    out
+}
+
+/// A glyph picture of several letters (the translation's discs put whole
+/// syllables in one cell, their letters at times touching), read from the
+/// left: at each place the widest run of columns that is a known letter;
+/// a wide gap is a space. The letters, or the column reading stopped at.
+fn read_letters(picture: &[u8]) -> Result<String, usize> {
+    let (w, h) = (usize::from(picture[0]), usize::from(picture[1]));
+    let used: Vec<bool> = (0..w).map(|x| (0..h).any(|y| picture[2 + y * w + x] != 0)).collect();
+    let (mut out, mut x, mut gap, mut letters) = (String::new(), 0, 0, 0);
+    while x < w {
+        if !used[x] {
+            gap += 1;
+            x += 1;
+            continue;
+        }
+        let found = (1..=LETTER_COLUMNS.min(w - x))
+            .rev()
+            .filter(|&k| used[x + k - 1])
+            .find_map(|k| shapes().get(&shape_hash(&columns(picture, x, x + k))).map(|t| (k, *t)));
+        let Some((k, t)) = found else { return Err(x) };
+        if letters > 0 && gap >= SPACE_COLUMNS {
+            out.push(' ');
+        }
+        out.push_str(t);
+        (x, gap, letters) = (x + k, 0, letters + 1);
+    }
+    // Two apostrophes side by side are the translation's quotes.
+    if letters < 2 { Err(w) } else { Ok(out.replace("''", "\"")) }
+}
+
+/// A glyph picture of several letters as text (`read_letters`).
+fn read(picture: &[u8]) -> Option<String> {
+    read_letters(picture).ok()
+}
+
 /// The glyph indices a CAP file's lines draw (up to `limit`).
 fn uses(cap: &Cap, limit: usize) -> Vec<usize> {
     let lines = cap.lines();
@@ -396,21 +644,34 @@ fn uses(cap: &Cap, limit: usize) -> Vec<usize> {
     codes.filter(|&&c| is_glyph(c)).map(|&c| usize::from(c & 0x3FF)).take(limit).collect()
 }
 
-/// The share of `uses` whose glyph pictures in `column` are known.
+/// The share of `uses` whose glyph pictures in `column` are known, of
+/// those not blank: blank glyphs (spaces) do not tell a page, a wrong one
+/// being blank there too. A page knowing fewer than a third of all of them
+/// is not it.
 fn share(cap: &Cap, column: &Column, uses: &[usize]) -> f64 {
-    let hits = uses.iter().filter(|&&i| known().contains_key(&super::fnv1a(glyph(column, cap.cell(i))))).count();
-    hits as f64 / uses.len().max(1) as f64
+    let (mut hits, mut blank) = (0, 0);
+    for &i in uses {
+        match recognize(&glyph(column, cap.cell(i))) {
+            Some(t) if t.trim().is_empty() => blank += 1,
+            Some(_) => hits += 1,
+            None => {}
+        }
+    }
+    if hits * 3 < uses.len() {
+        return 0.0;
+    }
+    hits as f64 / (uses.len() - blank).max(1) as f64
 }
 
 /// A line's text: glyphs as their characters, line breaks, `{_}` for the
 /// narrow space, `{color N}` where the colour changes, `{XXXX}` for the
 /// other controls and `{gN}` for a glyph not known.
 pub fn text(cap: &Cap, page: Option<&Column>, codes: &[u16]) -> String {
-    text_by(codes, |index| page.and_then(|p| known().get(&super::fnv1a(glyph(p, cap.cell(index))))).copied())
+    text_by(codes, |index| page.and_then(|p| recognize(&glyph(p, cap.cell(index)))))
 }
 
 /// A line's text (as `text`), each glyph index's text from `glyph_text`.
-pub fn text_by(codes: &[u16], glyph_text: impl Fn(usize) -> Option<&'static str>) -> String {
+pub fn text_by<S: AsRef<str>>(codes: &[u16], glyph_text: impl Fn(usize) -> Option<S>) -> String {
     let mut out = String::new();
     let mut color = 0;
     for &c in codes {
@@ -424,7 +685,7 @@ pub fn text_by(codes: &[u16], glyph_text: impl Fn(usize) -> Option<&'static str>
                 }
                 let index = usize::from(c & 0x3FF);
                 match glyph_text(index) {
-                    Some(t) => out.push_str(t),
+                    Some(t) => out.push_str(t.as_ref()),
                     None => out.push_str(&format!("{{g{index}}}")),
                 }
             }
@@ -435,12 +696,13 @@ pub fn text_by(codes: &[u16], glyph_text: impl Fn(usize) -> Option<&'static str>
 }
 
 /// Capital I and small l are one glyph: an `l` alone, before an
-/// apostrophe, next to capitals, or starting a word as I does (In, It, If,
-/// Is) is an I.
+/// apostrophe, after a capital (not before a small letter: Ele), before
+/// one, or starting a word as I does (In, It, If, Is) is an I.
 fn fix_capital_i(s: &str) -> String {
     let chars: Vec<char> = s.chars().collect();
     let letter = |i: usize| chars.get(i).is_some_and(|c| c.is_alphabetic());
     let upper = |i: usize| chars.get(i).is_some_and(|c| c.is_uppercase());
+    let lower = |i: usize| chars.get(i).is_some_and(|c| c.is_lowercase());
     (0..chars.len())
         .map(|i| {
             if chars[i] != 'l' {
@@ -451,7 +713,7 @@ fn fix_capital_i(s: &str) -> String {
             let is_i = (starts && !letter(i + 1))
                 || (starts && next == Some('\''))
                 || (starts && matches!(next, Some('n' | 't' | 'f' | 's')) && !letter(i + 2))
-                || (i > 0 && upper(i - 1))
+                || (i > 0 && upper(i - 1) && !lower(i + 1))
                 || (starts && upper(i + 1));
             if is_i { 'I' } else { 'l' }
         })
@@ -560,9 +822,9 @@ pub fn glyph_pages(sources: &Sources) -> HashMap<u64, Vec<[u8; 4]>> {
 /// character, `[NAME]` for a speaker's name label, empty when not known),
 /// sorted by row, then column: a map of the page for font makers. The game
 /// draws capital I with the `l` glyph.
-pub fn glyph_maps(sources: &Sources) -> HashMap<u64, Vec<([u8; 4], &'static str)>> {
+pub fn glyph_maps(sources: &Sources) -> HashMap<u64, Vec<([u8; 4], String)>> {
     let mut pages = Pages::new(sources);
-    let mut out: HashMap<u64, Vec<([u8; 4], &'static str)>> = HashMap::new();
+    let mut out: HashMap<u64, Vec<([u8; 4], String)>> = HashMap::new();
     for (key, _, payload) in &sources.bundles {
         for bytes in caps(payload) {
             let Some(cap) = Cap::new(bytes) else { continue };
@@ -574,7 +836,7 @@ pub fn glyph_maps(sources: &Sources) -> HashMap<u64, Vec<([u8; 4], &'static str)
                 if cell[2] == 0 || cell[3] == 0 || cells.iter().any(|c| c.0 == cell) {
                     continue;
                 }
-                cells.push((cell, known().get(&super::fnv1a(glyph(page, cell))).copied().unwrap_or("")));
+                cells.push((cell, recognize(&glyph(page, cell)).map(|t| t.into_owned()).unwrap_or_default()));
             }
         }
     }
@@ -587,7 +849,7 @@ pub fn glyph_maps(sources: &Sources) -> HashMap<u64, Vec<([u8; 4], &'static str)
 /// Each CAP file's glyphs' texts (by its hash; by glyph index, None where
 /// not known or not drawn by its lines): what a mod's font draws instead
 /// (mods/capfont.rs).
-pub fn cap_texts(sources: &Sources) -> HashMap<u64, Vec<Option<&'static str>>> {
+pub fn cap_texts(sources: &Sources) -> HashMap<u64, Vec<Option<String>>> {
     let mut pages = Pages::new(sources);
     let mut out = HashMap::new();
     for (key, _, payload) in &sources.bundles {
@@ -601,7 +863,7 @@ pub fn cap_texts(sources: &Sources) -> HashMap<u64, Vec<Option<&'static str>>> {
             let used = uses(&cap, usize::MAX);
             let mut texts = vec![None; used.iter().max().map_or(0, |m| m + 1)];
             for index in used {
-                texts[index] = known().get(&super::fnv1a(glyph(page, cap.cell(index)))).copied();
+                texts[index] = recognize(&glyph(page, cap.cell(index))).map(|t| t.into_owned());
             }
             out.insert(hash, texts);
         }
@@ -703,6 +965,24 @@ mod tests {
             "I've seen it. Is it? It's all, I think. OK IT"
         );
         assert_eq!(fix_capital_i("lots of lines fill the hall"), "lots of lines fill the hall");
+        // After a capital, before a small letter: an l (All, Ele, Please).
+        assert_eq!(fix_capital_i("All. Ele. Please. MlST"), "All. Ele. Please. MIST");
+    }
+
+    /// A glyph's shape is its picture without the blank columns at its
+    /// sides: the same letter framed otherwise in its cell is the same.
+    #[test]
+    fn shapes_ignore_blank_sides() {
+        // 3 x 2 with the letter in the middle column; 4 x 2 with it first.
+        let centred = [3, 2, 0, 5, 0, 0, 6, 0];
+        let left = [4, 2, 5, 0, 0, 0, 6, 0, 0, 0];
+        assert_eq!(shape_hash(&centred), shape_hash(&left));
+        assert_eq!(blank_sides(&centred), (1, 1));
+        assert_eq!(blank_sides(&left), (0, 3));
+        // Another height is another shape (a comma is not an apostrophe).
+        assert_ne!(shape_hash(&centred), shape_hash(&[3, 1, 0, 5, 0]));
+        // Columns cut out as a picture of their own.
+        assert_eq!(columns(&left, 0, 1), vec![1, 2, 5, 6]);
     }
 
     /// A strip decodes literals and back-references into its dictionary.

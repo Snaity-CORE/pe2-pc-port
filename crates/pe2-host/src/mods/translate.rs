@@ -545,22 +545,26 @@ pub extern "C" fn pc_cap_translate(file: *mut u8) -> *mut u8 {
         Source::Game(font)
     };
     let texts = match source {
-        Source::Mod => {
-            let Some(texts) = super::capfont::texts(hash) else {
-                trace("its glyphs' characters are not known yet");
-                return file;
-            };
-            Some(texts)
-        }
-        Source::Game(_) if translation.is_none() => return file,
+        Source::Mod => super::capfont::texts(hash),
         Source::Game(_) => None,
     };
-    let translated = built()
-        .lock()
-        .unwrap()
-        .entry(hash)
-        .or_insert_with(|| build(&cap, &new_lines(&cap, translation, texts), &source).map(Arc::new))
-        .clone();
+    // In a mod's font before its glyphs' characters are known: its
+    // translated lines only, not kept (a later load gets them all).
+    let complete = texts.is_some() || matches!(source, Source::Game(_));
+    if translation.is_none() && !complete {
+        trace("its glyphs' characters are not known yet");
+        return file;
+    }
+    if translation.is_none() && matches!(source, Source::Game(_)) {
+        return file;
+    }
+    let make = || build(&cap, &new_lines(&cap, translation, texts), &source).map(Arc::new);
+    let translated = if complete {
+        built().lock().unwrap().entry(hash).or_insert_with(make).clone()
+    } else {
+        trace("its glyphs' characters are not known yet: its translated lines only");
+        make()
+    };
     let Some(translated) = translated else { return file };
     trace(&format!("a copy with {} glyph rows", translated.rows));
     let copy: Box<[u32]> = translated.words.clone().into_boxed_slice();
