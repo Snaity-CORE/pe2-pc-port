@@ -222,6 +222,41 @@ What to know:
 - **Hardware renderer.** As with every replacement, only the graphics card
   renderer draws them.
 
+#### Text redrawn from fonts
+
+The game's pictures of text are better redrawn than enlarged. The extract
+writes a map of each in `dumps/textures-glyphs/<sheet>-<4|8>bit.toml`: its
+`kind`, its `sheets` (side by side) and each glyph's `cell` (`[u, v,
+width, height]` in texels) and `text` (`{name}` for an icon or logo, empty
+when not known); the UI font's also give each glyph's `face` and
+`baseline` (the cell row its letters stand on). The kinds:
+
+| `kind` | What |
+|---|---|
+| `ui-font` | the menus' font: three faces (medium, large, small), from the executable's metrics |
+| `loading` | the loading screen's captions (date and place) |
+| `title` | the title screen: PRESS START BUTTON, the copyright and logo, New Game, Continue, Option; its `palette` file under the dumps |
+| `dialogue` | each dialogue glyph page (the `l` glyph also draws capital I); a mod's font does this better, see Dialogue |
+
+`tools/hd_fonts.py` redraws the first three from fonts of your choice
+(needs Python with numpy, pillow and scipy):
+
+```text
+python tools/hd_fonts.py ui      <dumps> DejaVuSans-Bold.ttf mods/my-mod/textures
+python tools/hd_fonts.py loading <dumps> DejaVuSerif.ttf mods/my-mod/textures
+python tools/hd_fonts.py title   <dumps> CourierPrime-Regular.ttf CourierPrime-Bold.ttf mods/my-mod/textures --serif DejaVuSerif.ttf --logo logo.svg
+```
+
+Each glyph is drawn 8 times finer (`--factor`) in its cell, in the indices
+the game's glyphs use, so the game's palettes still colour it; `--weight`
+makes strokes thicker or thinner (in the game's pixels). The UI font's
+letters share one scale per face and stand on their records' baselines,
+as the game lays them out (pairs the game kerns together, as Wr or MM,
+overlap as in the original). Without `--serif` or `--logo` the title keeps
+those as they were, only smoother. A logo is drawn from an SVG's shapes
+left of x = 320 (in its units: the Squaresoft wordmark's SQUARE); a
+company's logo is its trademark, so keep such mods to yourself.
+
 ### Replacements in colours
 
 1. Extract the game's files (`pe2 --extract`, see above): every sheet, about
@@ -501,9 +536,8 @@ a wide font may need `tracking` or a smaller `cap_height` to keep long
 lines inside the screen.
 
 For mods that redraw the glyph pictures instead (indexed replacements of
-the pages, see Textures), the extract also writes
-`dumps/textures-glyphs/<sheet>-4bit.toml`: for each dialogue glyph page,
-each cell (`[u, v, width, height]`) and the text it shows.
+the pages), the extract also maps each dialogue glyph page: see "Text
+redrawn from fonts" under Textures.
 
 ## Cheats and memory patches
 

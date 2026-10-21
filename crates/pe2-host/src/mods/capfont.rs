@@ -146,6 +146,8 @@ pub fn glyph(c: char) -> Option<Arc<Drawn>> {
     drawn
 }
 
+/// `c` drawn from `font` in a cell of the game's (its bottom at the pen),
+/// at the page's resolution and SCALE times finer.
 fn draw(font: &Loaded, c: char) -> Option<Drawn> {
     let id = font.font.glyph_id(c);
     if id.0 == 0 && !c.is_whitespace() {
@@ -154,10 +156,10 @@ fn draw(font: &Loaded, c: char) -> Option<Drawn> {
         }
         return None;
     }
-    let scaled = font.font.as_scaled(PxScale::from(font.px));
     let Some(outline) = font.font.outline_glyph(id.with_scale(font.px)) else {
         // Nothing drawn (a space): as wide as it advances.
-        let w = (scaled.h_advance(id).round() as i32 + font.tracking).max(1) as usize + 1;
+        let advance = font.font.as_scaled(PxScale::from(font.px)).h_advance(id);
+        let w = (advance.round() as i32 + font.tracking).max(1) as usize + 1;
         return Some(Drawn {
             w,
             h: CELL_ROWS,

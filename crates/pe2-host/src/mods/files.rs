@@ -513,11 +513,12 @@ pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path, full: bool) -> std::io
     eprintln!("pe2: extract: {} backgrounds in {}", backgrounds.len(), pictures.display());
     let textures = dumps.join("textures");
     let mut catalog = super::sheets::Catalog::new(&dialogue);
-    if let Some(disc) = discs.first_mut()
-        && let Ok((_, executable)) = iso9660::boot_executable(disc.as_mut())
-    {
-        catalog.apply_ui_font_palette(&executable);
-    }
+    let executable = discs
+        .first_mut()
+        .and_then(|disc| iso9660::boot_executable(disc.as_mut()).ok())
+        .map(|(_, bytes)| bytes)
+        .unwrap_or_default();
+    catalog.apply_ui_font_palette(&executable);
     let (mut painted, checked, mismatched) = super::rooms::paint(&dialogue, &catalog);
     for (sheet, page) in catalog.glyph_pages(&dialogue) {
         painted.entry(sheet).or_insert(page);
@@ -532,8 +533,12 @@ pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path, full: bool) -> std::io
     let (written, guessed) = super::sheets::extract_indexed(&catalog, &painted, &indexed, &ramps)?;
     eprintln!("pe2: extract: {written} indexed sheets ({guessed} of a guessed depth) in {}", indexed.display());
     let glyphs = dumps.join("textures-glyphs");
-    let maps = write_glyph_maps(&super::dialogue::glyph_maps(&dialogue), &glyphs)?;
-    eprintln!("pe2: extract: {maps} glyph pages' maps in {}", glyphs.display());
+    let mut maps = super::glyphmaps::dialogue(&dialogue);
+    maps.extend(super::glyphmaps::ui_font(&catalog, &executable));
+    maps.extend(super::glyphmaps::loading(&catalog, &executable));
+    maps.extend(super::glyphmaps::title(&catalog));
+    let count = super::glyphmaps::write(&maps, &glyphs)?;
+    eprintln!("pe2: extract: {count} maps of pictures of text in {}", glyphs.display());
     eprintln!(
         "pe2: extract: {} sheets coloured from rooms' sprites, {} from rooms' code, {} glyph pages; {checked} sprite tables checked against their backgrounds, {mismatched} differ",
         painted.values().filter(|p| p.source == "rooms' sprites").count(),
@@ -553,27 +558,6 @@ pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path, full: bool) -> std::io
     let (caps, lines) = super::dialogue::extract(&dialogue, &text)?;
     eprintln!("pe2: extract: {lines} lines of dialogue in {caps} files in {}", text.display());
     Ok(())
-}
-
-/// Saves each dialogue glyph page's map (dialogue.rs `glyph_maps`) as
-/// `<sheet>-4bit.toml` in `dir`, beside the page's indexed sheet of that
-/// name in `dumps/textures-indexed`. Answers how many.
-fn write_glyph_maps(maps: &HashMap<u64, Vec<([u8; 4], &str)>>, dir: &Path) -> std::io::Result<usize> {
-    std::fs::create_dir_all(dir)?;
-    for (sheet, cells) in maps {
-        let mut toml = format!(
-            "# The cells of dialogue glyph page {sheet:016x} (4-bit) and what each shows:\n\
-             # cell = [u, v, width, height] in texels; text \"[NAME]\" is a speaker's name\n\
-             # label, empty text a glyph not known. The `l` glyph also draws capital I.\n\
-             sheet = \"{sheet:016x}\"\ndepth = 4\n"
-        );
-        for ([u, v, w, h], text) in cells {
-            let text = text.replace('\\', "\\\\").replace('"', "\\\"");
-            toml.push_str(&format!("\n[[glyph]]\ncell = [{u}, {v}, {w}, {h}]\ntext = \"{text}\"\n"));
-        }
-        std::fs::write(dir.join(format!("{sheet:016x}-4bit.toml")), toml)?;
-    }
-    Ok(maps.len())
 }
 
 #[cfg(test)]

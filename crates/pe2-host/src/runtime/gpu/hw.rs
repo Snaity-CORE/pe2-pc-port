@@ -898,19 +898,7 @@ impl Hw {
             }
             return None;
         }
-        // Its own key: one replacement serves every palette.
-        let key = (sheet, INDEXED_KEY - u64::from(depth));
-        if let Some(i) = self.atlas.index(key) {
-            return Some(i);
-        }
-        match self.atlas.add_indexed(key, &replacement) {
-            Some(i) => Some(i),
-            None => {
-                self.flush(vram);
-                self.atlas.clear();
-                self.atlas.add_indexed(key, &replacement)
-            }
-        }
+        self.atlas_indexed(vram, &replacement)
     }
 
     /// The atlas entry (index + 1) of hosted texture `id` (textures.rs
@@ -920,16 +908,24 @@ impl Hw {
         if depth != replacement.depth {
             return None;
         }
-        let key = (replacement.sheet, INDEXED_KEY - u64::from(depth));
+        self.atlas_indexed(vram, &replacement)
+    }
+
+    /// The atlas entry (index + 1) of `replacement`, added if not there yet.
+    fn atlas_indexed(&mut self, vram: &Vram, replacement: &crate::mods::indexed::Indexed) -> Option<u32> {
+        // Its own key: one replacement serves every palette.
+        let key = (replacement.sheet, INDEXED_KEY - u64::from(replacement.depth));
         if let Some(i) = self.atlas.index(key) {
             return Some(i);
         }
-        match self.atlas.add_indexed(key, &replacement) {
+        match self.atlas.add_indexed(key, replacement) {
             Some(i) => Some(i),
             None => {
+                // Full: what was recorded runs with the textures it uses,
+                // then the atlas starts over.
                 self.flush(vram);
                 self.atlas.clear();
-                self.atlas.add_indexed(key, &replacement)
+                self.atlas.add_indexed(key, replacement)
             }
         }
     }

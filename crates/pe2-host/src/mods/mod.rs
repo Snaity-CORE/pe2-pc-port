@@ -25,6 +25,7 @@ pub mod capfont;
 pub mod credits;
 pub mod dialogue;
 pub mod files;
+pub mod glyphmaps;
 pub mod indexed;
 pub mod movies;
 pub mod music;
@@ -159,6 +160,17 @@ pub fn start(discs: &[PathBuf]) {
 /// else on.
 fn enabled() -> bool {
     std::env::var("PE2_MODS").ok().map(|v| v.trim() != "0").or(crate::config::get().mods.enabled).unwrap_or(true)
+}
+
+/// `len` bytes at RAM address `address` of a PS-X EXE (its header, then
+/// its text from the load address in its header).
+fn exe_at(exe: &[u8], address: u32, len: usize) -> Option<&[u8]> {
+    if exe.get(..8) != Some(b"PS-X EXE") {
+        return None;
+    }
+    let base = u32::from_le_bytes(exe.get(0x18..0x1C)?.try_into().ok()?);
+    let at = address.checked_sub(base)? as usize + 0x800;
+    exe.get(at..at.checked_add(len)?)
 }
 
 /// A 64-bit FNV-1a hash: stable across builds and versions, as file names

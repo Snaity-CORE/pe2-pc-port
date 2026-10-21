@@ -11,6 +11,10 @@
 //! when the game starts (dialogue::font); accented letters are made from
 //! it, with marks drawn here. pc_cap_glyphs puts them into the page each
 //! time the file's text is drawn, if they are not there already.
+//!
+//! When a mod's font draws the dialogue (capfont.rs), every CAP file gets
+//! such a copy, all its lines (translated or not) in glyphs drawn from that
+//! font, which the renderer also gets finer.
 
 use std::collections::HashMap;
 use std::sync::{Arc, Mutex, OnceLock};
@@ -263,7 +267,7 @@ fn glyph_for(font: &Font, c: char) -> Option<Glyph> {
 
 // ---- translated CAP files -----------------------------------------------
 
-/// A CAP file with translated lines, as built (unrelocated), and the glyphs
+/// A CAP file with new lines' text, as built (unrelocated), and the glyphs
 /// it adds to its page: `rows` rows of 64 halfwords from row `top`, and
 /// when drawn from a mod's font, the same finer (capfont.rs).
 struct Translated {
@@ -460,8 +464,30 @@ fn built() -> &'static Mutex<HashMap<u64, Option<Arc<Translated>>>> {
     BUILT.get_or_init(Default::default)
 }
 
+/// The text of the lines of `cap`'s copy, by record: with its glyphs'
+/// characters (`texts`, a mod's font draws them), every line, its
+/// `translation` else its own text; else the translated lines only.
+fn new_lines(
+    cap: &Cap,
+    translation: Option<&HashMap<usize, String>>,
+    texts: Option<impl Fn(usize) -> Option<&'static str>>,
+) -> HashMap<usize, String> {
+    let Some(texts) = texts else { return translation.cloned().unwrap_or_default() };
+    cap.lines()
+        .into_iter()
+        .filter(|line| line.codes.iter().any(|&c| dialogue::is_glyph(c)))
+        .map(|line| {
+            let text = match translation.and_then(|t| t.get(&line.record)) {
+                Some(t) => t.clone(),
+                None => dialogue::text_by(&line.codes, &texts),
+            };
+            (line.record, text)
+        })
+        .collect()
+}
+
 /// The CAP file the game should use for the one it loaded at `file`: a
-/// translated copy, or `file` itself.
+/// copy, translated or in a mod's font, or `file` itself.
 #[unsafe(no_mangle)]
 pub extern "C" fn pc_cap_translate(file: *mut u8) -> *mut u8 {
     let own_font = super::capfont::active();
@@ -488,51 +514,41 @@ pub extern "C" fn pc_cap_translate(file: *mut u8) -> *mut u8 {
     let bytes = unsafe { std::slice::from_raw_parts(file, len) };
     let Some(cap) = Cap::new(bytes) else { return file };
     let hash = cap.hash();
-    let translated = translations().get(&hash);
+    let translation = translations().get(&hash);
+    let trace = |why: &str| {
+        if crate::runtime::trace("text") {
+            eprintln!("[text] {hash:016x}: {why}");
+        }
+    };
+    // Nothing to build yet (not cached: it may be later).
     let source = if own_font {
         Source::Mod
     } else {
         let Some(font) = FONT.get() else {
-            if crate::runtime::trace("text") {
-                eprintln!("[text] {hash:016x}: the dialogue font is not collected yet");
-            }
+            trace("the dialogue font is not collected yet");
             return file;
         };
         Source::Game(font)
     };
-    let lines = match source {
-        // In a mod's font, every line: its translation, else its own text.
+    let texts = match source {
         Source::Mod => {
             let Some(texts) = super::capfont::texts(hash) else {
-                if crate::runtime::trace("text") {
-                    eprintln!("[text] {hash:016x}: its glyphs' characters are not known (yet)");
-                }
+                trace("its glyphs' characters are not known yet");
                 return file;
             };
-            let mut lines: HashMap<usize, String> = HashMap::new();
-            for line in cap.lines() {
-                if !line.codes.iter().any(|&c| dialogue::is_glyph(c)) {
-                    continue;
-                }
-                let text = match translated.and_then(|t| t.get(&line.record)) {
-                    Some(t) => t.clone(),
-                    None => dialogue::text_by(&line.codes, &texts),
-                };
-                lines.insert(line.record, text);
-            }
-            lines
+            Some(texts)
         }
-        Source::Game(_) => match translated {
-            Some(t) => t.clone(),
-            None => return file,
-        },
+        Source::Game(_) if translation.is_none() => return file,
+        Source::Game(_) => None,
     };
-    let translated =
-        built().lock().unwrap().entry(hash).or_insert_with(|| build(&cap, &lines, &source).map(Arc::new)).clone();
+    let translated = built()
+        .lock()
+        .unwrap()
+        .entry(hash)
+        .or_insert_with(|| build(&cap, &new_lines(&cap, translation, texts), &source).map(Arc::new))
+        .clone();
     let Some(translated) = translated else { return file };
-    if crate::runtime::trace("text") {
-        eprintln!("[text] {hash:016x}: {} lines rebuilt, {} glyph rows", lines.len(), translated.rows);
-    }
+    trace(&format!("a copy with {} glyph rows", translated.rows));
     let copy: Box<[u32]> = translated.words.clone().into_boxed_slice();
     let ptr = copy.as_ptr() as *mut u8;
     live.insert(file as usize, Live { translated, copy });
@@ -540,8 +556,8 @@ pub extern "C" fn pc_cap_translate(file: *mut u8) -> *mut u8 {
 }
 
 /// Before the text of CAP file `file` is drawn from the glyph page at
-/// (`x`, `y`): the glyphs its translation adds are put there, unless they
-/// already are.
+/// (`x`, `y`): the glyphs its copy adds are put there, unless they already
+/// are (and their finer picture given to the renderer).
 #[unsafe(no_mangle)]
 pub extern "C" fn pc_cap_glyphs(file: *const u8, x: i32, y: i32) {
     if (translations().is_empty() && !super::capfont::active()) || file.is_null() {

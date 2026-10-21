@@ -228,15 +228,8 @@ impl Catalog {
     pub fn apply_ui_font_palette(&mut self, executable: &[u8]) {
         const FILL: (u32, usize) = (0x8006_0910, 4);
         const OUTLINE: (u32, usize) = (0x8006_09B0, 3);
-        if executable.get(..8) != Some(b"PS-X EXE") {
-            return;
-        }
-        let Some(base) = executable.get(0x18..0x1C).and_then(|b| b.try_into().ok()).map(u32::from_le_bytes) else {
-            return;
-        };
         let table = |(address, count): (u32, usize)| -> Option<Vec<Vec<u16>>> {
-            let at = address.checked_sub(base)? as usize + 0x800;
-            let bytes = executable.get(at..at + count * 32)?;
+            let bytes = super::exe_at(executable, address, count * 32)?;
             Some(
                 bytes
                     .as_chunks::<32>()
