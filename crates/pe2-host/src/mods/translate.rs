@@ -301,6 +301,11 @@ impl Source<'_> {
 /// Width of a 4-bit texture page, in texels; its height.
 const PAGE: usize = 256;
 
+/// How far a glyph cell may reach in a page (exclusive): the game draws a
+/// cell from u to u + width (and v to v + height) in bytes, so a cell
+/// ending at 256 would wrap to 0 and draw the whole row squeezed.
+const CELL_END: usize = PAGE - 1;
+
 /// A translated line's codes: `{_}` a narrow space, `{color N}`, `{XXXX}`
 /// a control, `{gN}` glyph N; characters through `index_of`.
 fn encode(text: &str, mut index_of: impl FnMut(char) -> u16) -> Vec<u16> {
@@ -332,6 +337,25 @@ fn encode(text: &str, mut index_of: impl FnMut(char) -> u16) -> Vec<u16> {
         }
     }
     out
+}
+
+/// Places glyphs of `sizes` (width, height) side by side in bands from row
+/// `top` of a page, each band as high as the tallest, each glyph at its
+/// band's bottom: their (u, v), and the rows used. None when they do not
+/// fit inside CELL_END.
+fn pack(sizes: &[(usize, usize)], top: usize) -> Option<(Vec<(usize, usize)>, usize)> {
+    let band = sizes.iter().map(|s| s.1).max().unwrap_or(0);
+    let mut placed = Vec::new();
+    let (mut u, mut v) = (0, top);
+    for &(w, h) in sizes {
+        if u + w > CELL_END {
+            (u, v) = (0, v + band);
+        }
+        placed.push((u, v + band - h));
+        u += w;
+    }
+    let rows = if sizes.is_empty() { 0 } else { v + band - top };
+    (top + rows <= CELL_END && sizes.iter().all(|s| s.0 <= CELL_END)).then_some((placed, rows))
 }
 
 /// The file `cap` with `lines` (by record) in place of its lines' text,
@@ -379,21 +403,11 @@ fn build(cap: &Cap, lines: &HashMap<usize, String>, source: &Source) -> Option<T
     if cells + glyphs.len() > 0x400 {
         return None;
     }
-    let band = glyphs.iter().map(|g| g.h).max().unwrap_or(0);
-    let mut placed = Vec::new();
-    let (mut u, mut v) = (0, top);
-    for g in &glyphs {
-        if u + g.w > PAGE {
-            (u, v) = (0, v + band);
-        }
-        placed.push((u, v + band - g.h));
-        u += g.w;
-    }
-    let rows = if glyphs.is_empty() { 0 } else { v + band - top };
-    if top + rows > PAGE {
-        eprintln!("pe2: mods: a translation needs more glyphs than its page holds");
+    let sizes: Vec<(usize, usize)> = glyphs.iter().map(|g| (g.w, g.h)).collect();
+    let Some((placed, rows)) = pack(&sizes, top) else {
+        eprintln!("pe2: mods: a dialogue file needs more glyphs than its page holds");
         return None;
-    }
+    };
     let mut block = vec![0u16; 64 * rows];
     for (g, &(gu, gv)) in glyphs.iter().zip(&placed) {
         for y in 0..g.h {
@@ -586,6 +600,20 @@ pub extern "C" fn pc_cap_glyphs(file: *const u8, x: i32, y: i32) {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    /// Cells end before the page's 256th texel (the game's byte
+    /// coordinates would wrap), across and down.
+    #[test]
+    fn glyphs_stay_inside_byte_coordinates() {
+        // 247 + 9 would end at 256: the third glyph starts a new band.
+        let (placed, rows) = pack(&[(240, 14), (7, 14), (9, 14)], 43).unwrap();
+        assert_eq!(placed, vec![(0, 43), (240, 43), (0, 57)]);
+        assert_eq!(rows, 28);
+        assert!(placed.iter().zip([240, 7, 9]).all(|(&(u, _), w)| u + w <= 255));
+        // Rows: a band ending at 256 does not fit.
+        assert!(pack(&[(10, 14)], 242).is_none());
+        assert!(pack(&[(10, 14)], 241).is_some());
+    }
 
     /// Tokens, colours and characters become codes.
     #[test]
