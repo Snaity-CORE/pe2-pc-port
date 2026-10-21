@@ -950,6 +950,10 @@ pub extern "C" fn pcrt_LoadImage(rect: *const Rect, p: *const u16) -> i32 {
         let hash = screen.then(|| crate::mods::screen_hash(w, h, pixels));
         let rect = (x0, y0, w, h);
         let picture = hash.and_then(|hash| crate::mods::background(hash).map(|p| (hash, p)));
+        if let Some(hash) = hash {
+            let has = if picture.is_some() { "a mod's picture" } else { "no picture (yet)" };
+            vtrace(format_args!("screen image {hash:016x} at ({x0},{y0}) {w}x{h}: {has}"));
+        }
         if let Some((hash, _)) = picture {
             g.shown.retain(|s| s.rect != rect);
             g.shown.truncate(3);

@@ -26,6 +26,13 @@ use super::raster::{DrawState, Shading, VRAM_HEIGHT, VRAM_WIDTH, Vertex as Nativ
 use super::textures;
 use crate::gfx::Gfx;
 
+/// The key a screen image read back is kept by among the pictures: not
+/// its hash, which a mod's picture of the same image is known by (the game
+/// reads back screens that are a background as it is).
+fn kept_key(hash: u64) -> u64 {
+    hash.rotate_left(17) ^ 0x6B65_7074_5F73_6372
+}
+
 /// PE2_TRACE=cpu: flushes, and native VRAM halfwords sent to the card.
 pub static FLUSHES: AtomicU64 = AtomicU64::new(0);
 pub static VRAM_SENT: AtomicU64 = AtomicU64::new(0);
@@ -1306,7 +1313,7 @@ impl Hw {
             wgpu::Extent3d { width: pw, height: ph, depth_or_array_layers: 1 },
         );
         self.gfx.queue.submit([encoder.finish()]);
-        self.keep_picture(hash, texture);
+        self.keep_picture(kept_key(hash), texture);
     }
 
     /// A screen image the game loads (`hash` of its pixels) that this layer
@@ -1314,7 +1321,7 @@ impl Hw {
     #[allow(clippy::too_many_arguments)]
     pub fn load_kept(&mut self, vram: &Vram, x: i32, y: i32, w: i32, h: i32, pixels: &[u16], hash: u64) -> bool {
         let Some((px, py, pw, ph)) = self.screen_rect(x, y, w, h) else { return false };
-        match self.pictures.get(&hash) {
+        match self.pictures.get(&kept_key(hash)) {
             Some((t, _)) if t.width() == pw && t.height() == ph => {}
             _ => return false,
         }
@@ -1324,7 +1331,7 @@ impl Hw {
         if self.too_much() {
             self.flush(vram);
         }
-        self.show_picture(hash, px, py);
+        self.show_picture(kept_key(hash), px, py);
         true
     }
 
