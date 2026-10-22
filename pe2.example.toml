@@ -85,7 +85,7 @@ scale = 4
 # enabled = true
 
 [memcard]
-# Raw 128 KB memory card images (DuckStation's .mcd files work). Default:
-# memcards/pe2_card1.mcd and pe2_card2.mcd in the data folder.
+# A raw 128 KB memory card image (DuckStation's .mcd files work), in
+# port 1: the game saves there only. Default: memcards/pe2_card1.mcd in the
+# data folder.
 # slot1 = "memcards/pe2_card1.mcd"
-# slot2 = "memcards/pe2_card2.mcd"

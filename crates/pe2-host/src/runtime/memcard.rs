@@ -1,6 +1,6 @@
 //! Memory cards: the libmcrd calls the game makes, over card images on disk.
 //!
-//! Each slot holds a raw 128 KB card image, the `.mcd` / `.mcr` layout most
+//! The card is a raw 128 KB card image, the `.mcd` / `.mcr` layout most
 //! emulators use, so saves can move between them. Layout (psx-spx): sixteen
 //! 8 KB blocks of 128-byte frames; block 0 holds the "MC" header frame and
 //! one directory frame per data block (1-15):
@@ -14,11 +14,12 @@
 //!   0x7F u8   XOR of bytes 0x00-0x7E
 //! ```
 //!
-//! Images live in `memcards/` in the folder of the player's files
-//! (paths.rs: `pe2_card1.mcd`, `pe2_card2.mcd`), or wherever PE2_MEMCARD1 /
-//! PE2_MEMCARD2 or pe2.toml's [memcard] slot1 / slot2 point. A slot
-//! without an image file holds a freshly formatted card; the file is written
-//! on the first save.
+//! Only port 1 holds a card: the game saves and loads there alone (mc.c
+//! fixes the channel to the first port), so port 2 reports none. The image
+//! is `memcards/pe2_card1.mcd` in the folder of the player's files
+//! (paths.rs), or wherever PE2_MEMCARD1 or pe2.toml's [memcard] slot1
+//! points. Without an image file the card is freshly formatted; the file is
+//! written on the first save.
 //!
 //! The asynchronous calls (Exist, Accept, ReadData, WriteData, WriteFile)
 //! finish at once; MemCardSync reports the result once, then -1 ("nothing
@@ -62,33 +63,28 @@ struct Card {
     new_card: bool,
 }
 
-struct OpenFile {
-    port: usize,
-    first: usize,
-}
-
 struct State {
-    cards: [Card; 2],
-    open: Option<OpenFile>,
+    card: Card,
+    /// The open file's first block.
+    open: Option<usize>,
     /// Result of the last asynchronous call, until MemCardSync reports it.
     pending: Option<(i32, i32)>,
 }
 
 static STATE: Mutex<Option<State>> = Mutex::new(None);
 
-fn image_path(slot: usize) -> PathBuf {
-    if let Some(p) = std::env::var_os(format!("PE2_MEMCARD{}", slot + 1)) {
+fn image_path() -> PathBuf {
+    if let Some(p) = std::env::var_os("PE2_MEMCARD1") {
         return PathBuf::from(p);
     }
-    let cfg = &crate::config::get().memcard;
-    if let Some(p) = [&cfg.slot1, &cfg.slot2][slot] {
+    if let Some(p) = &crate::config::get().memcard.slot1 {
         return p.clone();
     }
-    crate::paths::user_dir().join("memcards").join(format!("pe2_card{}.mcd", slot + 1))
+    crate::paths::user_dir().join("memcards").join("pe2_card1.mcd")
 }
 
-fn load(slot: usize) -> Card {
-    let path = image_path(slot);
+fn load() -> Card {
+    let path = image_path();
     let data = match std::fs::read(&path) {
         Ok(d) if d.len() == CARD_SIZE => d,
         Ok(d) => {
@@ -102,7 +98,7 @@ fn load(slot: usize) -> Card {
 
 fn with_state<R>(f: impl FnOnce(&mut State) -> R) -> R {
     let mut s = STATE.lock().unwrap();
-    f(s.get_or_insert_with(|| State { cards: [load(0), load(1)], open: None, pending: None }))
+    f(s.get_or_insert_with(|| State { card: load(), open: None, pending: None }))
 }
 
 fn set_checksum(frame: &mut [u8]) {
@@ -247,14 +243,10 @@ impl Card {
     }
 }
 
-/// Slot for a libmcrd channel: 0x00 is port 1, 0x10 port 2. Multitap slots
-/// (low nibble) hold no card.
-fn port(chan: i32) -> Option<usize> {
-    match chan {
-        0x00 => Some(0),
-        0x10 => Some(1),
-        _ => None,
-    }
+/// Whether a libmcrd channel holds the card: 0x00, port 1 (0x10 is port 2;
+/// the low nibble, multitap slots).
+fn connected(chan: i32) -> bool {
+    chan == 0x00
 }
 
 /// Reads a NUL-terminated file name from PSX memory.
@@ -316,10 +308,12 @@ pub extern "C" fn pcrt_MemCardClose() {
 pub extern "C" fn pcrt_MemCardExist(chan: i32) -> i32 {
     let _g = irq::guard();
     with_state(|s| {
-        let result = match port(chan) {
-            None => MC_ERR_CARD_NOT_EXIST,
-            Some(p) if s.cards[p].new_card => MC_ERR_NEW_CARD,
-            Some(_) => MC_ERR_NONE,
+        let result = if !connected(chan) {
+            MC_ERR_CARD_NOT_EXIST
+        } else if s.card.new_card {
+            MC_ERR_NEW_CARD
+        } else {
+            MC_ERR_NONE
         };
         finish(s, MC_FUNC_EXIST, result)
     })
@@ -331,18 +325,17 @@ pub extern "C" fn pcrt_MemCardExist(chan: i32) -> i32 {
 pub extern "C" fn pcrt_MemCardAccept(chan: i32) -> i32 {
     let _g = irq::guard();
     with_state(|s| {
-        let result = match port(chan) {
-            None => MC_ERR_CARD_NOT_EXIST,
-            Some(p) => {
-                let card = &mut s.cards[p];
-                let was_new = std::mem::take(&mut card.new_card);
-                if !card.is_formatted() {
-                    MC_ERR_NOT_FORMAT
-                } else if was_new {
-                    MC_ERR_NEW_CARD
-                } else {
-                    MC_ERR_NONE
-                }
+        let result = if !connected(chan) {
+            MC_ERR_CARD_NOT_EXIST
+        } else {
+            let card = &mut s.card;
+            let was_new = std::mem::take(&mut card.new_card);
+            if !card.is_formatted() {
+                MC_ERR_NOT_FORMAT
+            } else if was_new {
+                MC_ERR_NEW_CARD
+            } else {
+                MC_ERR_NONE
             }
         };
         finish(s, MC_FUNC_ACCEPT, result)
@@ -355,14 +348,16 @@ pub extern "C" fn pcrt_MemCardOpen(chan: i32, file: *const u8, _flag: i32) -> i3
     let _g = irq::guard();
     let name = c_name(file);
     with_state(|s| {
-        let Some(p) = port(chan) else { return MC_ERR_CARD_NOT_EXIST };
-        let card = &s.cards[p];
+        if !connected(chan) {
+            return MC_ERR_CARD_NOT_EXIST;
+        }
+        let card = &s.card;
         if !card.is_formatted() {
             return MC_ERR_NOT_FORMAT;
         }
         let result = match card.find(&name) {
             Some(first) => {
-                s.open = Some(OpenFile { port: p, first });
+                s.open = Some(first);
                 MC_ERR_NONE
             }
             None => MC_ERR_FILE_NOT_EXIST,
@@ -374,7 +369,7 @@ pub extern "C" fn pcrt_MemCardOpen(chan: i32, file: *const u8, _flag: i32) -> i3
 
 fn data_io(func: i32, adrs: *mut u8, ofs: i32, bytes: i32, write: bool) -> i32 {
     with_state(|s| {
-        let Some(OpenFile { port, first }) = s.open.as_ref().map(|o| OpenFile { port: o.port, first: o.first }) else {
+        let Some(first) = s.open else {
             return 0;
         };
         if ofs < 0 || bytes < 0 {
@@ -382,7 +377,7 @@ fn data_io(func: i32, adrs: *mut u8, ofs: i32, bytes: i32, write: bool) -> i32 {
         }
         // SAFETY: the game passes `bytes` bytes of PSX RAM at `adrs`.
         let buf = unsafe { std::slice::from_raw_parts_mut(adrs, bytes as usize) };
-        let card = &mut s.cards[port];
+        let card = &mut s.card;
         if !card.file_io(first, ofs as usize, buf, write) {
             return 0;
         }
@@ -414,8 +409,10 @@ pub extern "C" fn pcrt_MemCardWriteFile(chan: i32, file: *const u8, adrs: *mut u
     let _g = irq::guard();
     let name = c_name(file);
     with_state(|s| {
-        let Some(p) = port(chan) else { return finish(s, MC_FUNC_WRITE_FILE, MC_ERR_CARD_NOT_EXIST) };
-        let card = &mut s.cards[p];
+        if !connected(chan) {
+            return finish(s, MC_FUNC_WRITE_FILE, MC_ERR_CARD_NOT_EXIST);
+        }
+        let card = &mut s.card;
         let Some(first) = card.find(&name) else { return finish(s, MC_FUNC_WRITE_FILE, MC_ERR_FILE_NOT_EXIST) };
         if ofs < 0 || bytes < 0 {
             return 0;
@@ -436,8 +433,10 @@ pub extern "C" fn pcrt_MemCardCreateFile(chan: i32, file: *const u8, blocks: i32
     let _g = irq::guard();
     let name = c_name(file);
     with_state(|s| {
-        let Some(p) = port(chan) else { return MC_ERR_CARD_NOT_EXIST };
-        let card = &mut s.cards[p];
+        if !connected(chan) {
+            return MC_ERR_CARD_NOT_EXIST;
+        }
+        let card = &mut s.card;
         if !card.is_formatted() {
             return MC_ERR_NOT_FORMAT;
         }
@@ -455,12 +454,14 @@ pub extern "C" fn pcrt_MemCardCreateFile(chan: i32, file: *const u8, blocks: i32
 pub extern "C" fn pcrt_MemCardFormat(chan: i32) -> i32 {
     let _g = irq::guard();
     with_state(|s| {
-        let Some(p) = port(chan) else { return MC_ERR_CARD_NOT_EXIST };
+        if !connected(chan) {
+            return MC_ERR_CARD_NOT_EXIST;
+        }
         s.open = None;
-        let card = &mut s.cards[p];
+        let card = &mut s.card;
         card.data = formatted();
         card.save();
-        trace(format_args!("format port {}", p + 1));
+        trace(format_args!("format"));
         MC_ERR_NONE
     })
 }
@@ -488,11 +489,11 @@ pub extern "C" fn pcrt_MemCardGetDirentry(
                 unsafe { *files = n };
             }
         };
-        let Some(p) = port(chan) else {
+        if !connected(chan) {
             set_files(0);
             return MC_ERR_CARD_NOT_EXIST;
-        };
-        let card = &s.cards[p];
+        }
+        let card = &s.card;
         if !card.is_formatted() {
             set_files(0);
             return MC_ERR_NOT_FORMAT;

@@ -340,7 +340,7 @@ struct Settings {
     hide_cursor: bool,
     /// Empty: the default card in memcards/ in the folder of the player's
     /// files (paths.rs).
-    cards: [String; 2],
+    card: String,
     /// Player 1's controller by name; empty: the one last used.
     controller: String,
     vibration: bool,
@@ -374,7 +374,7 @@ impl Settings {
             mods_enabled: flag("mods", "enabled", true),
             fullscreen: flag("video", "fullscreen", false),
             hide_cursor: flag("video", "hide_cursor", true),
-            cards: [text("memcard", "slot1"), text("memcard", "slot2")],
+            card: text("memcard", "slot1"),
             controller: get("input", "controller")
                 .and_then(|v| v.as_str())
                 .filter(|n| *n != "auto")
@@ -420,8 +420,9 @@ impl Settings {
         };
         path("discs", "disc1", &self.discs[0]);
         path("discs", "disc2", &self.discs[1]);
-        path("memcard", "slot1", &self.cards[0]);
-        path("memcard", "slot2", &self.cards[1]);
+        path("memcard", "slot1", &self.card);
+        // Port 2 is gone: the game never used it.
+        path("memcard", "slot2", "");
         doc["video"]["scale"] = value(self.scale);
         doc["video"]["renderer"] = value(if self.hardware { "hardware" } else { "software" });
         doc["video"]["subpixel"] = value(self.subpixel);
@@ -853,32 +854,28 @@ impl Launcher {
         }
     }
 
-    /// A disc's or memory card's path: a text field and a Browse button
-    /// (the item the controller focuses; A browses).
-    fn path_row(&mut self, ui: &mut egui::Ui, card: Option<usize>, disc: Option<usize>) {
+    /// A disc's path, or the memory card's (`disc` None): a text field and a
+    /// Browse button (the item the controller focuses; A browses).
+    fn path_row(&mut self, ui: &mut egui::Ui, disc: Option<usize>) {
         let lang = self.lang();
         ui.horizontal(|ui| {
-            let (text, hint) = match (card, disc) {
-                (Some(s), _) => {
-                    (&mut self.edit.cards[s], lang.t("default (memcards folder)", "padrão (pasta memcards)"))
-                }
-                (_, Some(d)) => (&mut self.edit.discs[d], ""),
-                _ => return,
+            let (text, hint) = match disc {
+                None => (&mut self.edit.card, lang.t("default (memcards folder)", "padrão (pasta memcards)")),
+                Some(d) => (&mut self.edit.discs[d], ""),
             };
             let changed = ui.add(egui::TextEdit::singleline(text).hint_text(hint).desired_width(520.0)).changed();
             if self.focus.button(ui, lang.t("Browse...", "Procurar..."), true) {
-                let picked = match card {
-                    Some(_) => rfd::FileDialog::new().add_filter("Memory card", &["mcd", "mcr"]).save_file(),
-                    None => rfd::FileDialog::new().add_filter("CD image", &["chd", "cue"]).pick_file(),
+                let picked = match disc {
+                    None => rfd::FileDialog::new().add_filter("Memory card", &["mcd", "mcr"]).save_file(),
+                    Some(_) => rfd::FileDialog::new().add_filter("CD image", &["chd", "cue"]).pick_file(),
                 };
                 if let Some(p) = picked {
-                    match (card, disc) {
-                        (Some(s), _) => self.edit.cards[s] = p.display().to_string(),
-                        (_, Some(d)) => {
+                    match disc {
+                        None => self.edit.card = p.display().to_string(),
+                        Some(d) => {
                             self.edit.discs[d] = p.display().to_string();
                             self.checks[d] = Some(check_disc(&self.edit.discs[d], d, lang));
                         }
-                        _ => {}
                     }
                 }
             }
@@ -901,20 +898,18 @@ impl Launcher {
                     None => ui.label(""),
                 };
             });
-            self.path_row(ui, None, Some(d));
+            self.path_row(ui, Some(d));
         }
         if cards {
             self.cards(ui);
         }
     }
 
-    /// The memory card pickers.
+    /// The memory card picker (port 1, the only one the game uses).
     fn cards(&mut self, ui: &mut egui::Ui) {
         let lang = self.lang();
-        for s in 0..2 {
-            ui.label(format!("{} {}", lang.t("Memory card, slot", "Memory card, slot"), s + 1));
-            self.path_row(ui, Some(s), None);
-        }
+        ui.label(lang.t("Memory card", "Memory card"));
+        self.path_row(ui, None);
     }
 
     /// The picture's settings: resolution, renderer, look, window.
@@ -1004,8 +999,8 @@ impl Launcher {
             1 => card(ui, lang.t("Discs", "Discos"), |ui| self.files(ui, false)),
             2 => card(ui, lang.t("Memory cards", "Memory cards"), |ui| {
                 ui.label(lang.t(
-                    "Saves go to memory card images. Leave empty for the default ones in the memcards folder of PE2PC's data folder; DuckStation's .mcd cards work too.",
-                    "Os saves ficam em imagens de memory card. Deixe vazio para usar as padrão na pasta memcards da pasta de dados do PE2PC; os cartões .mcd do DuckStation também funcionam.",
+                    "Saves go to a memory card image. Leave empty for the default one in the memcards folder of PE2PC's data folder; DuckStation's .mcd cards work too.",
+                    "Os saves ficam numa imagem de memory card. Deixe vazio para usar a padrão na pasta memcards da pasta de dados do PE2PC; os cartões .mcd do DuckStation também funcionam.",
                 ));
                 self.cards(ui);
             }),
@@ -1792,7 +1787,7 @@ mod tests {
         s.bilinear = true;
         s.fullscreen = true;
         s.hide_cursor = false;
-        s.cards = [String::new(), "cards/two.mcd".into()];
+        s.card = "cards/one.mcd".into();
         s.controller = "Xbox 360 Controller".into();
         s.vibration = false;
         s.keys[4] = "KeyJ".into(); // cross
@@ -1809,7 +1804,8 @@ mod tests {
         assert_eq!(config.video.subpixel, Some(false));
         assert_eq!(config.video.texture_filter.as_deref(), Some("bilinear"));
         assert_eq!(config.video.hide_cursor, Some(false));
-        assert_eq!(config.memcard.slot2.as_deref(), Some(Path::new("cards/two.mcd")));
+        assert_eq!(config.memcard.slot1.as_deref(), Some(Path::new("cards/one.mcd")));
+        assert!(config.memcard.slot2.is_none(), "port 2 dropped");
         assert_eq!(config.input.controller.as_deref(), Some("Xbox 360 Controller"));
         assert_eq!(config.input.vibration, Some(false));
         assert_eq!(config.input.keyboard.get("cross").map(String::as_str), Some("KeyJ"));

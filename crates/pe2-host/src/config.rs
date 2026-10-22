@@ -99,7 +99,10 @@ pub struct General {
 #[serde(default, deny_unknown_fields)]
 pub struct Memcard {
     pub slot1: Option<PathBuf>,
-    pub slot2: Option<PathBuf>,
+    /// No longer used (the game saves on the card in port 1 only); still
+    /// read, so older settings files load.
+    #[allow(dead_code)]
+    pub slot2: Option<serde::de::IgnoredAny>,
 }
 
 static CONFIG: OnceLock<Config> = OnceLock::new();
@@ -129,7 +132,7 @@ fn load() -> Config {
     match toml::from_str::<Config>(&text) {
         Ok(mut c) => {
             let base = path.parent().map(Path::to_path_buf).unwrap_or_default();
-            for p in [&mut c.discs.disc1, &mut c.discs.disc2, &mut c.memcard.slot1, &mut c.memcard.slot2]
+            for p in [&mut c.discs.disc1, &mut c.discs.disc2, &mut c.memcard.slot1]
                 .into_iter()
                 .flatten()
             {
