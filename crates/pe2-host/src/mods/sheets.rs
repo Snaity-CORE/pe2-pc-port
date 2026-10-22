@@ -220,7 +220,7 @@ pub struct Catalog {
 
 impl Catalog {
     /// The UI font uses resident 16-colour CLUTs, not its file's 256-colour
-    /// title-image palette: Text_LoadClutImages (main/textutil.c) loads the
+    /// title-image palette: textUploadPalettes (main/textutil.c) loads the
     /// fill palettes (Text_FillClutPixels, 0x80060910 in the USA main
     /// executable, 4 CLUTs) at (256, 243) and the outline ones
     /// (Text_OutlineClutPixels, 0x800609B0, 3 CLUTs) at (0x3D0, 0x1FF). The

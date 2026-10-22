@@ -41,8 +41,9 @@ def parse_defines(flags: str) -> dict[str, str | None]:
     defines: dict[str, str | None] = {}
     for tok in shlex.split(flags):
         if tok.startswith("-D"):
-            name, _, value = tok[2:].partition("=")
-            defines[name] = value or None
+            # -DNAME (defined as 1) is None; -DNAME= (defined empty) is "".
+            name, eq, value = tok[2:].partition("=")
+            defines[name] = value if eq else None
     return defines
 
 
@@ -62,7 +63,9 @@ def parse_units(build_ninja: Path) -> list[dict]:
             units.append(current)
         elif current is not None and (m := VAR_RE.match(line)):
             name, value = m.groups()
-            if name in ("VERSION", "PKGID", "NONMATCHINGFLAG", "SKIPASMFLAG"):
+            # PACKAGE_DEFINES: a shared source's per-package parameters
+            # (WEAPON_INDEX, ...); PKGID and NONMATCHINGFLAG: older builds.
+            if name in ("VERSION", "PACKAGE_DEFINES", "PKGID", "NONMATCHINGFLAG", "SKIPASMFLAG"):
                 current["defines"].update(parse_defines(value))
         else:
             current = None

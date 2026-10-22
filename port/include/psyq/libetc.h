@@ -12,6 +12,14 @@
 #define PADRdown  (1 << 6)
 #define PADRleft  (1 << 7)
 #define PADRright (1 << 5)
+#define PADL1     (1 << 2)
+#define PADL2     (1 << 0)
+#define PADR1     (1 << 3)
+#define PADR2     (1 << 1)
+#define PADi      (1 << 9)  /* L3 */
+#define PADj      (1 << 10) /* R3 */
+#define PADselect (1 << 8)
+#define PADstart  (1 << 11)
 
 #define MODE_NTSC 0
 #define MODE_PAL  1

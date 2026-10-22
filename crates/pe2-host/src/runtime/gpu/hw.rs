@@ -108,8 +108,8 @@ fn vram_at(x: u32, y: u32) -> u32 {
 // mode: bits 0-9 texture page x, 10-18 page y, 20-21 depth, 22 textured,
 // 23 raw texture, 24-25 pass (0 all texels, 1 those without bit 15, 2
 // those with it), 26-27 kind (0 primitive, 1 upload, 2 copy), 28 bilinear
-// filtering, 29 texel clamping (limits: the polygon's u, v minimum and
-// maximum, a byte each).
+// filtering (a copy: the game's grey negative of it), 29 texel clamping
+// (limits: the polygon's u, v minimum and maximum, a byte each).
 @fragment
 fn fs(o: Out) -> @location(0) vec4<f32> {
     let kind = (o.mode >> 26u) & 3u;
@@ -126,7 +126,15 @@ fn fs(o: Out) -> @location(0) vec4<f32> {
         return vec4<f32>(rgb15(px), 1.0);
     }
     if (kind == 2u) {
-        return vec4<f32>(textureLoad(scratch, vec2<u32>(floor(o.uv)), 0).rgb, 1.0);
+        let c = textureLoad(scratch, vec2<u32>(floor(o.uv)), 0).rgb;
+        if (((o.mode >> 28u) & 1u) != 0u) {
+            // As the game's screen negative: 31 - (3R + 4G + B) / 8 in
+            // 5-bit colour, grey (shared/screen_negative_filter.inc.c).
+            let v = c * 255.0 / 8.0;
+            let grey = 31.0 - floor((3.0 * v.r + 4.0 * v.g + v.b) / 8.0);
+            return vec4<f32>(vec3<f32>(max(grey, 0.0) * 8.0 / 255.0), 1.0);
+        }
+        return vec4<f32>(c, 1.0);
     }
     var c = floor(o.color);
     if (((o.mode >> 22u) & 1u) != 0u) {
@@ -403,6 +411,8 @@ const KIND_UPLOAD: u32 = 1 << 26;
 const INDEXED_KEY: u64 = u64::MAX;
 const UPLOAD_SMOOTH: u32 = 1 << 28;
 const KIND_COPY: u32 = 2 << 26;
+/// A copy drawn as the game's grey screen negative of what it copies.
+const COPY_NEGATIVE: u32 = 1 << 28;
 
 /// Fixed-function blending for the four semi-transparency modes, or none.
 #[derive(Clone, Copy, PartialEq, Eq)]
@@ -452,6 +462,9 @@ enum Op {
     ToScratch { x: u32, y: u32, w: u32, h: u32 },
     /// Copies a mod's picture (by its screen image's hash) to (x, y).
     Picture { hash: u64, x: u32, y: u32 },
+    /// Copies a picture to (x, y) of the scratch texture (for the Draw
+    /// after it).
+    PictureToScratch { hash: u64, x: u32, y: u32 },
 }
 
 /// A native VRAM rectangle, inclusive.
@@ -1335,6 +1348,57 @@ impl Hw {
         true
     }
 
+    /// A screen image the game loads that is its grey negative (the screen
+    /// negative effect) of one this layer kept when the game read it back
+    /// (`hash`, of what was read): drawn so from the kept one. False when
+    /// not kept.
+    #[allow(clippy::too_many_arguments)]
+    pub fn load_kept_negative(
+        &mut self,
+        vram: &Vram,
+        x: i32,
+        y: i32,
+        w: i32,
+        h: i32,
+        pixels: &[u16],
+        hash: u64,
+    ) -> bool {
+        let Some((px, py, pw, ph)) = self.screen_rect(x, y, w, h) else { return false };
+        let key = kept_key(hash);
+        match self.pictures.get(&key) {
+            Some((t, _)) if t.width() == pw && t.height() == ph => {}
+            _ => return false,
+        }
+        if crate::mods::wants_textures() {
+            self.tracker.upload(x, y, w, h, pixels);
+        }
+        if self.too_much() {
+            self.flush(vram);
+        }
+        self.pictures_used += 1;
+        if let Some(entry) = self.pictures.get_mut(&key) {
+            entry.1 = self.pictures_used;
+        }
+        self.ops.push(Op::PictureToScratch { hash: key, x: px, y: py });
+        let (x0, y0) = (px as f32 - 0.5, py as f32 - 0.5);
+        let verts = Self::quad(
+            x0,
+            y0,
+            x0 + pw as f32,
+            y0 + ph as f32,
+            [px as f32, py as f32],
+            [(px + pw) as f32, (py + ph) as f32],
+            GpuVertex { mode: KIND_COPY | COPY_NEGATIVE, ..Default::default() },
+        );
+        let full = self.full();
+        let first = self.vertices.len() as u32;
+        self.vertices.extend_from_slice(&verts);
+        self.keys.resize(self.vertices.len(), 0);
+        // Never merged with a previous draw: the scratch copy comes between.
+        self.ops.push(Op::Draw { blend: Blend::None, scissor: full, first, count: 6 });
+        true
+    }
+
     /// `x, y, w, h` of the VRAM in this layer's texels, if inside it.
     fn screen_rect(&self, x: i32, y: i32, w: i32, h: i32) -> Option<(u32, u32, u32, u32)> {
         let s = self.scale;
@@ -1516,6 +1580,22 @@ impl Hw {
                     at(&self.scratch),
                     wgpu::Extent3d { width: w, height: h, depth_or_array_layers: 1 },
                 );
+                i += 1;
+                continue;
+            }
+            if let Op::PictureToScratch { hash, x, y } = ops[i] {
+                if let Some((picture, _)) = self.pictures.get(&hash) {
+                    encoder.copy_texture_to_texture(
+                        picture.as_image_copy(),
+                        wgpu::TexelCopyTextureInfo {
+                            texture: &self.scratch,
+                            mip_level: 0,
+                            origin: wgpu::Origin3d { x, y, z: 0 },
+                            aspect: wgpu::TextureAspect::All,
+                        },
+                        picture.size(),
+                    );
+                }
                 i += 1;
                 continue;
             }

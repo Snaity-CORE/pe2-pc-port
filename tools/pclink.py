@@ -122,6 +122,13 @@ class ImageSymbols:
             return None
         defined = [s for s in cands if not s.is_abs]
         pool = defined or cands
+        # Another unit's local symbol is not this unit's: a static the PSX
+        # build inlined here has no symbol of its own (only another unit's
+        # static of the same name has one).
+        if unit_stem:
+            pool = [s for s in pool if not (s.is_local and s.file and Path(s.file).stem != unit_stem)]
+            if not pool:
+                return None
         if len(pool) == 1:
             return pool[0]
         if unit_stem:

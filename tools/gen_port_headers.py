@@ -31,13 +31,10 @@ HEADERS = [
 
 # GTE macros the decomp defines locally inside .c files rather than in a
 # header: (source file, macro name, output header it is appended to). The fork
-# guards those local definitions with `#ifndef PC_PORT`, so the translated copy
-# here is the one native builds see. gte_RotTransLV has four identical copies
-# (actor_render.c, ending.c, model_lighting.c, model_objects.c); the last one
-# spells its command words as "i" operands, with the same values.
-EXTRA_MACROS = [
-    ("src/gameplay/actor_render.c", "gte_RotTransLV", "gte.h"),
-]
+# guards such local definitions with `#ifndef PC_PORT`, so the translated copy
+# here is the one native builds see. None today: gte_RotTransLV, once copied
+# into four sources, is in gte.h.
+EXTRA_MACROS: list[tuple[str, str, str]] = []
 
 DEFINE_RE = re.compile(r"#define\s+(\w+)\s*\(([^)]*)\)\s*__asm__\s*(?:volatile|__volatile__)?\s*\(", re.S)
 # offset(base): the offset is a literal or an "i" operand (%n).

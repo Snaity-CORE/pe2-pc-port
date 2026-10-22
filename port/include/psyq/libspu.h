@@ -18,8 +18,13 @@
 #define SPU_ALLCH      (0xFFFFFFL)
 
 /* SpuVoiceAttr mask bits. */
+#define SPU_VOICE_VOLL       (0x01 << 0)
+#define SPU_VOICE_VOLR       (0x01 << 1)
+#define SPU_VOICE_VOLMODEL   (0x01 << 2)
+#define SPU_VOICE_VOLMODER   (0x01 << 3)
 #define SPU_VOICE_PITCH      (0x01 << 4)
 #define SPU_VOICE_WDSA       (0x01 << 7)
+#define SPU_VOICE_LSAX       (0x01 << 16)
 #define SPU_VOICE_ADSR_ADSR1 (0x01 << 17)
 #define SPU_VOICE_ADSR_ADSR2 (0x01 << 18)
 #define SPU_VOICE_DIRECT     0
@@ -32,7 +37,8 @@
 #define SPU_REV_MODE      (0x01 << 0)
 #define SPU_REV_DEPTHL    (0x01 << 1)
 #define SPU_REV_DEPTHR    (0x01 << 2)
-#define SPU_REV_MODE_OFF  0
+#define SPU_REV_MODE_OFF      0
+#define SPU_REV_MODE_STUDIO_B 3
 
 typedef struct {
     short left;

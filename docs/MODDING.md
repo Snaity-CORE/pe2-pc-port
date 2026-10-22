@@ -295,7 +295,7 @@ What to know:
   `<sheet>-<palette>.png` (with a palette's hash) replaces it for that
   palette only. The UI font (`stage0/file1/0#0`, 4-bit) is saved once per
   palette it is drawn with: the four fill palettes and the three outline
-  ones the game loads from its executable (`Text_LoadClutImages`).
+  ones the game loads from its executable (`textUploadPalettes`).
 - **Shape.** A picture whose proportions do not match the sheet at the
   depth the game draws it is refused (logged with the expected size): the
   original shows.

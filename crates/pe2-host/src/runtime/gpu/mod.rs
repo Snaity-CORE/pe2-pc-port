@@ -64,6 +64,11 @@ pub struct Gpu {
     /// The screen images a mod's pictures last replaced, by where they
     /// went (`Shown`).
     shown: Vec<Shown>,
+    /// The last screen images read back (their hash and pixels, most
+    /// recent last), and screen images loaded that are the grey negative of
+    /// one of them (by hash: that one's hash).
+    read_back: Vec<(u64, Vec<u16>)>,
+    negatives: Vec<(u64, u64)>,
 }
 
 /// A screen image a mod's picture replaced: where it went, its hash and
@@ -212,6 +217,8 @@ pub fn start() {
         cmd_addr: 0,
         cmd_word0: 0,
         shown: Vec::new(),
+        read_back: Vec::new(),
+        negatives: Vec::new(),
     });
 }
 
@@ -983,11 +990,33 @@ pub extern "C" fn pcrt_LoadImage(rect: *const Rect, p: *const u16) -> i32 {
                 (None, None) => {
                     // A screen image read back before (the picture frozen
                     // behind the menus): as the layer had it.
-                    let kept = w >= KEPT_SCREEN.0
-                        && h >= KEPT_SCREEN.1
-                        && hr.load_kept(&g.vram, x0, y0, w, h, pixels, crate::mods::screen_hash(w, h, pixels));
+                    let screen = w >= KEPT_SCREEN.0 && h >= KEPT_SCREEN.1;
+                    let hash = screen.then(|| crate::mods::screen_hash(w, h, pixels));
+                    let kept = hash.is_some_and(|hash| hr.load_kept(&g.vram, x0, y0, w, h, pixels, hash));
+                    // The grey negative of one read back (the screen
+                    // negative effect, made on the CPU): drawn so from it.
+                    let negative_of = hash.filter(|_| !kept).and_then(|hash| {
+                        if let Some(&(_, of)) = g.negatives.iter().find(|n| n.0 == hash) {
+                            return Some(of);
+                        }
+                        let of = g.read_back.iter().rev().find(|r| is_negative_of(&r.1, pixels))?.0;
+                        g.negatives.push((hash, of));
+                        if g.negatives.len() > READ_BACKS_KEPT * 4 {
+                            g.negatives.remove(0);
+                        }
+                        Some(of)
+                    });
+                    let negative =
+                        negative_of.is_some_and(|of| hr.load_kept_negative(&g.vram, x0, y0, w, h, pixels, of));
                     if kept {
                         vtrace(format_args!("LoadImage ({x0},{y0}) {w}x{h}: kept"));
+                    } else if negative {
+                        vtrace(format_args!("LoadImage ({x0},{y0}) {w}x{h}: kept, as its negative"));
+                    } else if screen && trace("vram") {
+                        if let Some((_, old)) = g.read_back.last().filter(|o| o.1.len() == pixels.len()) {
+                            vtrace(format_args!("  vs last read back: {}", compare(old, pixels, w as usize)));
+                        }
+                        hr.upload(&g.vram, x0, y0, w, h, pixels, None);
                     } else {
                         hr.upload(&g.vram, x0, y0, w, h, pixels, None);
                     }
@@ -1020,10 +1049,67 @@ pub extern "C" fn pcrt_StoreImage(rect: *const Rect, p: *mut u16) -> i32 {
             && h >= KEPT_SCREEN.1
             && let Some(hr) = g.layer.as_mut()
         {
-            hr.keep_screen(&g.vram, x, y, w, h, crate::mods::screen_hash(w, h, out));
+            let hash = crate::mods::screen_hash(w, h, out);
+            hr.keep_screen(&g.vram, x, y, w, h, hash);
+            g.read_back.retain(|r| r.0 != hash);
+            g.read_back.push((hash, out.to_vec()));
+            if g.read_back.len() > READ_BACKS_KEPT {
+                g.read_back.remove(0);
+            }
         }
     });
     0
+}
+
+/// Screen images read back kept, as their pixels, to tell images made
+/// from them.
+const READ_BACKS_KEPT: usize = 2;
+
+/// A screen negative's pixel (shared/screen_negative_filter.inc.c): the
+/// grey 31 - (3R + 4G + B) / 8, without the mask bit.
+fn screen_negative(px: u16) -> u16 {
+    let (r, g, b) = (px & 31, (px >> 5) & 31, (px >> 10) & 31);
+    let grey = 31 - ((3 * r + 4 * g + b) >> 3);
+    grey | grey << 5 | grey << 10
+}
+
+/// Whether `new` is the screen negative of `old`, pixel for pixel.
+fn is_negative_of(old: &[u16], new: &[u16]) -> bool {
+    old.len() == new.len() && old.iter().zip(new).all(|(&o, &n)| screen_negative(o) == n)
+}
+
+/// PE2_TRACE=vram: how screen image `new` differs from `old` (both `w`
+/// wide): how many pixels, where, a few of them, and whether it is `old`
+/// moved up or down.
+fn compare(old: &[u16], new: &[u16], w: usize) -> String {
+    let diff: Vec<usize> = (0..old.len()).filter(|&i| old[i] != new[i]).collect();
+    if diff.is_empty() {
+        return "the same".into();
+    }
+    let (x0, x1) = diff.iter().fold((w, 0), |(a, b), &i| (a.min(i % w), b.max(i % w)));
+    let (y0, y1) = (diff[0] / w, diff[diff.len() - 1] / w);
+    let samples: Vec<String> = diff
+        .iter()
+        .step_by((diff.len() / 6).max(1))
+        .take(6)
+        .map(|&i| format!("{:04X}>{:04X}", old[i], new[i]))
+        .collect();
+    let h = old.len() / w;
+    let moved = (-24i32..=24)
+        .filter(|&d| d != 0)
+        .map(|d| {
+            let same = (0..h as i32)
+                .filter(|&y| (0..h as i32).contains(&(y + d)))
+                .filter(|&y| old[y as usize * w..][..w] == new[(y + d) as usize * w..][..w])
+                .count();
+            (same, d)
+        })
+        .max()
+        .filter(|&(same, _)| same > h / 2)
+        .map(|(same, d)| format!(", moved {d} rows ({same} rows match)"))
+        .unwrap_or_default();
+    let changed = old.iter().zip(new).filter(|(a, b)| a != b).count();
+    format!("{changed} pixels differ in ({x0},{y0})-({x1},{y1}), e.g. {}{moved}", samples.join(" "))
 }
 
 /// Image transfers at least this large (screen images) read back are kept
@@ -1578,4 +1664,20 @@ fn rgb15_lut() -> &'static [u32] {
         let c = |v: u32| (v & 0x1F) * 255 / 31;
         (0..0x8000u32).map(|px| (c(px) << 16) | (c(px >> 5) << 8) | c(px >> 10)).collect()
     })
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    /// The screen negative as the game makes it (pairs seen in the game:
+    /// read back, then loaded).
+    #[test]
+    fn screen_negative_matches_the_games() {
+        for (old, new) in [(0x0421, 0x7BDE), (0x18E7, 0x6739), (0xB1CF, 0x4631), (0x8CC4, 0x6F7B)] {
+            assert_eq!(screen_negative(old), new, "{old:04X}");
+        }
+        assert!(is_negative_of(&[0x0421, 0x18E7], &[0x7BDE, 0x6739]));
+        assert!(!is_negative_of(&[0x0421, 0x18E7], &[0x7BDE, 0x6738]));
+    }
 }

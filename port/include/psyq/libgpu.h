@@ -68,9 +68,11 @@ typedef struct {
 /* Primitive set-up: packet length and command code. */
 #define setPolyF3(p)  setlen(p, 4), setcode(p, 0x20)
 #define setPolyF4(p)  setlen(p, 5), setcode(p, 0x28)
+#define setPolyFT3(p) setlen(p, 7), setcode(p, 0x24)
 #define setPolyFT4(p) setlen(p, 9), setcode(p, 0x2c)
 #define setPolyG3(p)  setlen(p, 6), setcode(p, 0x30)
 #define setPolyG4(p)  setlen(p, 8), setcode(p, 0x38)
+#define setPolyGT3(p) setlen(p, 9), setcode(p, 0x34)
 #define setPolyGT4(p) setlen(p, 12), setcode(p, 0x3c)
 #define setLineF2(p)  setlen(p, 3), setcode(p, 0x40)
 #define setLineF3(p)  setlen(p, 5), setcode(p, 0x48), (p)->pad = 0x55555555
@@ -78,6 +80,7 @@ typedef struct {
 #define setLineG3(p)  setlen(p, 7), setcode(p, 0x58), (p)->pad = 0x55555555, (p)->p2 = 0
 #define setTile1(p)   setlen(p, 2), setcode(p, 0x68)
 #define setTile(p)    setlen(p, 3), setcode(p, 0x60)
+#define setSprt8(p)   setlen(p, 3), setcode(p, 0x74)
 #define setSprt(p)    setlen(p, 4), setcode(p, 0x64)
 
 /* Drawing-mode packets: texture page (GP0 E1) and texture window (E2). */

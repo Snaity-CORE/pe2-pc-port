@@ -65,6 +65,7 @@ typedef void (*CdlCB)(u_char, u_char*);
 
 /* Interrupt / command results. */
 #define CdlNoIntr    0x00
+#define CdlDataReady 0x01
 #define CdlComplete  0x02
 #define CdlDiskError 0x05
 

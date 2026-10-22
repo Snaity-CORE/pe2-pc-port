@@ -52,6 +52,11 @@ INCLUDES = [
 #                     the code type-puns freely and may touch address 0
 #   -fdata-sections   one section per data object, so pclink can attribute
 #                     every section-relative data reference
+#   -Dsection(x)=     drops the decomp's __attribute__((section(".data"))),
+#                     which keeps const tables in .data to match the PSX
+#                     layout: here it would merge objects -fdata-sections
+#                     keeps apart, and clang refuses mixing const and
+#                     writable objects in one section
 #   -mno-sse -mno-mmx globals live at their PSX addresses, which are only as
 #                     aligned as the PSX build made them; clang would assume
 #                     its own (16-byte) alignment and emit aligned SSE moves.
@@ -60,7 +65,7 @@ GAME_CFLAGS = [
     f"--target={TARGET}", "-O2", "-g0",
     "-funsigned-char", "-fwrapv", "-fno-strict-aliasing", "-fno-delete-null-pointer-checks",
     "-fdata-sections", "-fno-builtin", "-mno-sse", "-mno-mmx",
-    "-D_LANGUAGE_C", "-DPC_PORT",
+    "-D_LANGUAGE_C", "-DPC_PORT", "-Dsection(x)=",
     "-w",
     # GCC 2.8 accepted these; on i686 cdecl they are harmless.
     "-Wno-error=incompatible-function-pointer-types", "-Wno-error=int-conversion",

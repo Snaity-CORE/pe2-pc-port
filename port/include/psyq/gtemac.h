@@ -17,6 +17,24 @@
         gte_stszotz(r5);                                                                              \
     }
 
+/* Rotate and translate v (r1): VECTOR result (r2) and flags (r3). */
+#define gte_RotTrans(r1, r2, r3)                                                                      \
+    {                                                                                                 \
+        gte_ldv0(r1);                                                                                 \
+        gte_rt();                                                                                     \
+        gte_stlvnl(r2);                                                                               \
+        gte_stflg(r3);                                                                                \
+    }
+
+/* r1's rotation applied to SVECTOR r2, as a VECTOR (r3). */
+#define gte_ApplyMatrix(r1, r2, r3)                                                                   \
+    {                                                                                                 \
+        gte_SetRotMatrix(r1);                                                                         \
+        gte_ldv0(r2);                                                                                 \
+        gte_rtv0();                                                                                   \
+        gte_stlvnl(r3);                                                                               \
+    }
+
 /* r2 = r1's rotation applied to SVECTOR r2's source (r2 -> r3). */
 #define gte_ApplyMatrixSV(r1, r2, r3)                                                                 \
     {                                                                                                 \

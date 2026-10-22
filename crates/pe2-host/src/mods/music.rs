@@ -388,7 +388,7 @@ fn base_bank<'a>(file: &[u8], banks: &'a [(String, Vec<u8>)]) -> Option<&'a [u8]
 }
 
 /// The sectors from `lba` to `end` if they are a song's sequence bank
-/// (`hMPK`, a sequence's bank type, sndevt.c SndLoad_ProcessSector).
+/// (`hMPK`, a sequence's bank type, sndevt.c sndLoadProcessSector).
 fn sequence_bank(disc: &mut dyn crate::disc::Disc, lba: u32, end: u32) -> Option<Vec<u8>> {
     const MAGIC: &[u8] = b"hMPK";
     const SECTOR: usize = 2048;

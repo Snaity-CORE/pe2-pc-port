@@ -100,6 +100,25 @@ impl Layer {
         }
     }
 
+    /// A screen image loaded that is the grey negative of one the layer
+    /// kept (`hash`, of what was read): drawn so from it (false: not kept).
+    #[allow(clippy::too_many_arguments)]
+    pub fn load_kept_negative(
+        &mut self,
+        vram: &Vram,
+        x: i32,
+        y: i32,
+        w: i32,
+        h: i32,
+        pixels: &[u16],
+        hash: u64,
+    ) -> bool {
+        match self {
+            Layer::Hardware(l) => l.load_kept_negative(vram, x, y, w, h, pixels, hash),
+            Layer::Software(_) => false,
+        }
+    }
+
     pub fn triangle(&mut self, vram: &Vram, st: &DrawState, sh: &Shading, v: [Vertex; 3]) {
         match self {
             Layer::Software(l) => l.triangle(vram, st, sh, v),
