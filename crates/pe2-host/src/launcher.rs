@@ -337,6 +337,7 @@ struct Settings {
     /// [mods] enabled and dump.
     mods_enabled: bool,
     fullscreen: bool,
+    hide_cursor: bool,
     /// Empty: the default card in memcards/ in the folder of the player's
     /// files (paths.rs).
     cards: [String; 2],
@@ -372,6 +373,7 @@ impl Settings {
             integer_scaling: flag("video", "integer_scaling", false),
             mods_enabled: flag("mods", "enabled", true),
             fullscreen: flag("video", "fullscreen", false),
+            hide_cursor: flag("video", "hide_cursor", true),
             cards: [text("memcard", "slot1"), text("memcard", "slot2")],
             controller: get("input", "controller")
                 .and_then(|v| v.as_str())
@@ -435,6 +437,7 @@ impl Settings {
             mods.remove("dump");
         }
         doc["video"]["fullscreen"] = value(self.fullscreen);
+        doc["video"]["hide_cursor"] = value(self.hide_cursor);
         doc["input"]["controller"] = value(if self.controller.is_empty() { "auto" } else { self.controller.as_str() });
         doc["input"]["vibration"] = value(self.vibration);
         doc["input"]["movement"] = value(if self.modern { "modern" } else { "tank" });
@@ -932,6 +935,12 @@ impl Launcher {
             ui,
             &mut e.fullscreen,
             lang.t("Start in full screen (Alt+Enter toggles)", "Iniciar em tela cheia (Alt+Enter alterna)"),
+            true,
+        );
+        f.checkbox(
+            ui,
+            &mut e.hide_cursor,
+            lang.t("Hide the mouse cursor in full screen", "Esconder o cursor do mouse em tela cheia"),
             true,
         );
     }
@@ -1782,6 +1791,7 @@ mod tests {
         s.subpixel = false;
         s.bilinear = true;
         s.fullscreen = true;
+        s.hide_cursor = false;
         s.cards = [String::new(), "cards/two.mcd".into()];
         s.controller = "Xbox 360 Controller".into();
         s.vibration = false;
@@ -1798,6 +1808,7 @@ mod tests {
         assert_eq!(config.video.scale, Some(6));
         assert_eq!(config.video.subpixel, Some(false));
         assert_eq!(config.video.texture_filter.as_deref(), Some("bilinear"));
+        assert_eq!(config.video.hide_cursor, Some(false));
         assert_eq!(config.memcard.slot2.as_deref(), Some(Path::new("cards/two.mcd")));
         assert_eq!(config.input.controller.as_deref(), Some("Xbox 360 Controller"));
         assert_eq!(config.input.vibration, Some(false));

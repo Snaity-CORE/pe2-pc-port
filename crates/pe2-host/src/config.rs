@@ -69,6 +69,8 @@ pub struct Video {
     pub perspective: Option<bool>,
     /// Start in full screen (Alt+Enter toggles it; default off).
     pub fullscreen: Option<bool>,
+    /// Hide the mouse cursor over the picture in full screen (default on).
+    pub hide_cursor: Option<bool>,
     /// 3D textures: "nearest" (the default) or "bilinear".
     pub texture_filter: Option<String>,
     /// Pre-rendered backgrounds and full-screen pictures: "nearest" (the

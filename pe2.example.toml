@@ -57,6 +57,8 @@ scale = 4
 # Start in borderless full screen (a window without borders covering the
 # monitor, no mode change); Alt+Enter toggles it at any time.
 # fullscreen = false
+# Hide the mouse cursor over the picture in full screen.
+# hide_cursor = true
 
 [input]
 # Player 1's controller: "auto" (the one last used) or its name, as the

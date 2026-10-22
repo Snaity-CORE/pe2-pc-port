@@ -112,7 +112,8 @@ Debug output:
 
 Keyboard: arrows = d-pad, Z/X/A/S = Cross/Circle/Square/Triangle,
 Enter = Start, Backspace = Select, Q/W/E/R = L1/R1/L2/R2, Alt+Enter toggles
-borderless full screen (`fullscreen = true` in pe2.toml starts in it), Esc asks to
+borderless full screen (`fullscreen = true` in pe2.toml starts in it; the mouse
+cursor is hidden there unless `hide_cursor = false`), Esc asks to
 quit (`[general] confirm_exit = false` quits at once), P pauses and resumes, F9
 saves a screenshot at the internal resolution in `screenshots/` in the data
 folder.

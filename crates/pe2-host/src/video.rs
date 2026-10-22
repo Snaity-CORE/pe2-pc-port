@@ -92,6 +92,13 @@ fn fullscreen_mode(on: bool) -> Option<winit::window::Fullscreen> {
     on.then_some(winit::window::Fullscreen::Borderless(None))
 }
 
+/// Full screen on or off, hiding the mouse cursor in it unless
+/// `hide_cursor = false`.
+fn set_fullscreen(w: &Window, on: bool) {
+    w.set_fullscreen(fullscreen_mode(on));
+    w.set_cursor_visible(!(on && crate::config::get().video.hide_cursor.unwrap_or(true)));
+}
+
 impl ApplicationHandler for App {
     fn resumed(&mut self, event_loop: &ActiveEventLoop) {
         if self.window.is_some() {
@@ -105,9 +112,9 @@ impl ApplicationHandler for App {
             .with_inner_size(winit::dpi::LogicalSize::new(960, 720))
             // Scripted (unattended) runs must not steal focus from whatever
             // the user is typing in.
-            .with_active(!scripted())
-            .with_fullscreen(fullscreen_mode(crate::config::get().video.fullscreen.unwrap_or(false) && !scripted()));
+            .with_active(!scripted());
         let window = Arc::new(event_loop.create_window(attrs).expect("create window"));
+        set_fullscreen(&window, crate::config::get().video.fullscreen.unwrap_or(false) && !scripted());
         self.hardware = crate::gfx::get().and_then(|gfx| crate::present::Presenter::new(gfx, window.clone()));
         if self.hardware.is_none() {
             let context = softbuffer::Context::new(window.clone()).expect("softbuffer context");
@@ -135,7 +142,7 @@ impl ApplicationHandler for App {
                             && !event.repeat
                             && let Some(w) = &self.window
                         {
-                            w.set_fullscreen(fullscreen_mode(w.fullscreen().is_none()));
+                            set_fullscreen(w, w.fullscreen().is_none());
                         }
                         return;
                     }
