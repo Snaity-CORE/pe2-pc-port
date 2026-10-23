@@ -109,6 +109,10 @@ fn record(samples: &[(i16, i16)]) {
     if *done || since.elapsed().as_secs_f64() < *start {
         return;
     }
+    if buf.is_empty() {
+        // The time base of trace lines and of PE2_SCREENSHOT captures.
+        eprintln!("[spu {:8.3}] recording audio", stamp());
+    }
     buf.extend_from_slice(samples);
     if buf.len() as f64 >= len * f64::from(self::core::SAMPLE_RATE) {
         *done = true;

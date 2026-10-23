@@ -1,6 +1,7 @@
 //! Input recordings, to bring the game back to a place for debugging.
 //!
-//! Every session records the controller as the game reads it, into
+//! With `[debug] record_input = true` in pe2.toml (off by default), each
+//! session records the controller as the game reads it, into
 //! `recordings/<date>_<time>.txt` in the folder of the player's files, with
 //! the memory card as it was at power-on beside it (`.mcd`). With
 //! `PE2_REPLAY=<recording>.txt`, the game plays it back from power-on with
@@ -121,13 +122,14 @@ pub fn start() {
                 return;
             }
         },
-        None => match record() {
+        None if crate::config::get().debug.record_input.unwrap_or(false) => match record() {
             Ok(recorder) => Mode::Record(recorder),
             Err(e) => {
                 eprintln!("pe2: recording input: {e}");
                 return;
             }
         },
+        None => return,
     };
     STATE.lock().unwrap().mode = mode;
 }

@@ -122,6 +122,20 @@ pub extern "C" fn pcrt_VSync(mode: i32) -> i32 {
     ret
 }
 
+/// PE2_TRACE=scene: a paced scene's frame (gamemain.c in the fork): the
+/// scanlines it has accumulated since its sound started, its deadline, and
+/// what this frame measured.
+#[unsafe(no_mangle)]
+pub extern "C" fn pc_trace_scene_timing(accumulated: u32, deadline: u32, elapsed: i32) {
+    if super::trace("scene") {
+        eprintln!(
+            "[scene {:8.3}] {accumulated} lines ({:.3} s), deadline {deadline}, frame {elapsed}",
+            super::spu::stamp(),
+            f64::from(accumulated) / HSYNC_HZ
+        );
+    }
+}
+
 /// VSyncCallback(func): runs `func` at every vertical blank (0 removes it).
 #[unsafe(no_mangle)]
 pub extern "C" fn pcrt_VSyncCallback(func: u32) -> i32 {

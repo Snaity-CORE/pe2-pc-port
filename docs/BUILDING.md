@@ -98,9 +98,9 @@ Debug output:
   true colour without dithering (24-bit movies stay at their own
   resolution). The game reads back what the graphics card drew, one
   console pixel per block.
-- Every session records the controller (`recordings/<date>_<time>.txt` in
-  the data folder, the last ten, each with the memory card it started
-  with). `PE2_REPLAY=<recording>.txt` plays one back from power-on on a
+- With `[debug] record_input = true` in pe2.toml (off by default), each
+  session records the controller (`recordings/<date>_<time>.txt` in the
+  data folder, the last ten, each with the memory card it started with). `PE2_REPLAY=<recording>.txt` plays one back from power-on on a
   copy of that card, the same way, update for update, then pauses where it
   ended (P resumes with the controls) and saves a screenshot: a way to get
   back to a place to debug it.

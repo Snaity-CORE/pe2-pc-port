@@ -18,6 +18,23 @@ pub struct Config {
     pub input: Input,
     pub memcard: Memcard,
     pub mods: Mods,
+    pub cheats: Cheats,
+    pub debug: Debug,
+}
+
+#[derive(Debug, Default, Deserialize)]
+#[serde(default, deny_unknown_fields)]
+pub struct Debug {
+    /// Record each session's input into recordings/ (runtime/replay.rs;
+    /// default off).
+    pub record_input: Option<bool>,
+}
+
+#[derive(Debug, Default, Deserialize)]
+#[serde(default, deny_unknown_fields)]
+pub struct Cheats {
+    /// Every weapon hit is a critical hit (default off).
+    pub always_critical: Option<bool>,
 }
 
 #[derive(Debug, Default, Deserialize)]

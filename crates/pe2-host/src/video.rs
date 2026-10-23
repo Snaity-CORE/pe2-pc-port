@@ -357,6 +357,8 @@ fn start_screenshots() {
         for n in 0..u32::MAX {
             std::thread::sleep(every);
             let Some((w, h)) = gpu::snapshot(&mut frame) else { continue };
+            // When it was taken, on the time base of the sound trace.
+            eprintln!("[shot {:8.3}] frame_{n:03}", crate::runtime::spu::stamp());
             let rgb: Vec<u8> = frame.iter().flat_map(|p| [(p >> 16) as u8, (p >> 8) as u8, *p as u8]).collect();
             let path = dir.join(format!("frame_{n:03}.png"));
             let Ok(file) = std::fs::File::create(&path) else { continue };

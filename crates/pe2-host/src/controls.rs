@@ -131,6 +131,14 @@ pub extern "C" fn pc_input_options() -> u32 {
     })
 }
 
+/// Cheats ([cheats] always_critical): every weapon hit is a critical hit
+/// (damage.c in the fork).
+#[unsafe(no_mangle)]
+pub extern "C" fn pc_cheat_always_critical() -> i32 {
+    static ON: std::sync::OnceLock<bool> = std::sync::OnceLock::new();
+    i32::from(*ON.get_or_init(|| crate::config::get().cheats.always_critical.unwrap_or(false)))
+}
+
 /// PE2_TRACE=move: the stick (or d-pad) direction, the yaw it asks for,
 /// the player's yaw and position, each tick of modern movement.
 #[unsafe(no_mangle)]

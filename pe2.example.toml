@@ -86,3 +86,13 @@ scale = 4
 # port 1: the game saves there only. Default: memcards/pe2_card1.mcd in the
 # data folder.
 # slot1 = "memcards/pe2_card1.mcd"
+
+[cheats]
+# Every weapon hit is a critical hit.
+# always_critical = false
+
+[debug]
+# Record each session's controller input into recordings/ in the data
+# folder, with the memory card it started with, to play it back later with
+# PE2_REPLAY (docs/BUILDING.md).
+# record_input = false
