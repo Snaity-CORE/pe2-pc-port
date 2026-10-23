@@ -326,7 +326,6 @@ struct Settings {
     confirm_exit: bool,
     discs: [String; 2],
     scale: i64,
-    hardware: bool,
     subpixel: bool,
     perspective: bool,
     bilinear: bool,
@@ -363,7 +362,6 @@ impl Settings {
             confirm_exit: flag("general", "confirm_exit", true),
             discs: [text("discs", "disc1"), text("discs", "disc2")],
             scale: get("video", "scale").and_then(|v| v.as_integer()).unwrap_or(1).clamp(1, 8),
-            hardware: get("video", "renderer").and_then(|v| v.as_str()) != Some("software"),
             subpixel: flag("video", "subpixel", true),
             perspective: flag("video", "perspective", true),
             bilinear: get("video", "texture_filter").and_then(|v| v.as_str()) == Some("bilinear"),
@@ -424,7 +422,10 @@ impl Settings {
         // Port 2 is gone: the game never used it.
         path("memcard", "slot2", "");
         doc["video"]["scale"] = value(self.scale);
-        doc["video"]["renderer"] = value(if self.hardware { "hardware" } else { "software" });
+        // Everything is drawn on the graphics card now.
+        if let Some(video) = doc["video"].as_table_mut() {
+            video.remove("renderer");
+        }
         doc["video"]["subpixel"] = value(self.subpixel);
         doc["video"]["perspective"] = value(self.perspective);
         doc["video"]["texture_filter"] = value(if self.bilinear { "bilinear" } else { "nearest" });
@@ -912,19 +913,18 @@ impl Launcher {
         self.path_row(ui, None);
     }
 
-    /// The picture's settings: resolution, renderer, look, window.
+    /// The picture's settings: resolution, look, window.
     fn picture(&mut self, ui: &mut egui::Ui) {
         let lang = self.lang();
         let (f, e) = (&mut self.focus, &mut self.edit);
         let scales: Vec<(i64, String)> = (1..=8).map(|s| (s, format!("{s}x ({}x{})", 320 * s, 240 * s))).collect();
         f.choice(ui, lang.t("Resolution", "Resolução"), &mut e.scale, &scales, true);
-        f.checkbox(ui, &mut e.hardware, lang.t("Graphics card renderer", "Renderizar pela placa de vídeo"), true);
-        f.checkbox(ui, &mut e.crt, lang.t("CRT look (scanlines)", "Visual de TV de tubo (linhas)"), e.hardware);
+        f.checkbox(ui, &mut e.crt, lang.t("CRT look (scanlines)", "Visual de TV de tubo (linhas)"), true);
         f.checkbox(
             ui,
             &mut e.integer_scaling,
             lang.t("Integer scaling (sharp, with borders)", "Escala inteira (nítida, com bordas)"),
-            e.hardware,
+            true,
         );
         f.checkbox(
             ui,
@@ -957,24 +957,18 @@ impl Launcher {
             lang.t("Perspective-correct textures", "Texturas com correção de perspectiva"),
             hi && e.subpixel,
         );
-        let card = hi && e.hardware;
-        f.checkbox(
-            ui,
-            &mut e.bilinear,
-            lang.t("Smooth 3D textures (bilinear)", "Suavizar texturas 3D (bilinear)"),
-            card,
-        );
+        f.checkbox(ui, &mut e.bilinear, lang.t("Smooth 3D textures (bilinear)", "Suavizar texturas 3D (bilinear)"), hi);
         f.checkbox(
             ui,
             &mut e.smooth_backgrounds,
             lang.t("Smooth backgrounds (bicubic)", "Suavizar cenários (bicúbico)"),
-            card,
+            hi,
         );
         f.checkbox(
             ui,
             &mut e.interpolation,
             lang.t("Smooth motion (60 fps)", "Movimento suave (60 fps)"),
-            card && e.subpixel,
+            hi && e.subpixel,
         );
     }
 
@@ -1782,7 +1776,6 @@ mod tests {
         s.confirm_exit = false;
         s.discs = [r"D:\Games\PE2 (Disc 1).chd".into(), String::new()];
         s.scale = 6;
-        s.hardware = true;
         s.subpixel = false;
         s.bilinear = true;
         s.fullscreen = true;

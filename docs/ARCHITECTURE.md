@@ -153,12 +153,16 @@ inside them and may call into one as soon as the interrupt returns.
 
 ## GPU, MDEC and streaming
 
-The GPU is emulated in software at the command level (`runtime/gpu`):
-a 1024x512 15-bit VRAM, GP0 polygons, lines, rectangles, textures with
-CLUTs and texture windows, semi-transparency, dithering and mask bits, fed
-by the native libgpu calls (ordering tables, image transfers, drawing and
-display environments). The display area is shown in a host window
-(`video.rs`), with keyboard input mapped to the controller.
+The GPU is emulated at the command level (`runtime/gpu`) and drawn on the
+graphics card with wgpu (`hw.rs`): GP0 polygons, lines, rectangles,
+textures with CLUTs and texture windows, semi-transparency and mask bits,
+into a VRAM-sized texture at the internal resolution, fed by the native
+libgpu calls (ordering tables, image transfers, drawing and display
+environments). The CPU keeps the 1024x512 15-bit VRAM the game sends from
+the CPU (`vram.rs`), which textures and palettes come from; what only the
+card drew is read back, one console pixel per block, when the game reads
+it or uses it as indexed texels. The display area is shown in a host window
+(`video.rs`, `present.rs`), with keyboard input mapped to the controller.
 
 The MDEC decodes macroblocks from the run-length data libpress sends it
 (`runtime/mdec.rs`). STR movies are streamed with a native CdRead2 and St*

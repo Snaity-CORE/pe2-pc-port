@@ -8,8 +8,7 @@
 //! Model vertices are matched between frames by their keys (Vertex::key:
 //! the model part and the vertex, from the game's TMD renderer). The
 //! pre-rendered backgrounds, the interface and anything drawn by other
-//! code stay as the new frame has them. Needs the hardware renderer and
-//! sub-pixel positions (the keys travel with the exact positions).
+//! code stay as the new frame has them. Needs sub-pixel positions (the keys travel with the exact positions).
 
 use std::collections::HashMap;
 

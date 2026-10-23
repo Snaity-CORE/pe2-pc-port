@@ -61,8 +61,10 @@ pub struct Discs {
 pub struct Video {
     /// Internal resolution, a multiple of the console's (1-8).
     pub scale: Option<i32>,
-    /// "hardware" (the graphics card, the default) or "software".
-    pub renderer: Option<String>,
+    /// No longer used (everything is drawn on the graphics card); still
+    /// read, so older settings files load.
+    #[allow(dead_code)]
+    pub renderer: Option<serde::de::IgnoredAny>,
     /// Exact (sub-pixel) vertex positions at higher resolutions (default on).
     pub subpixel: Option<bool>,
     /// Perspective-correct textures and colours (with subpixel; default on).
@@ -74,9 +76,9 @@ pub struct Video {
     /// 3D textures: "nearest" (the default) or "bilinear".
     pub texture_filter: Option<String>,
     /// Pre-rendered backgrounds and full-screen pictures: "nearest" (the
-    /// default) or "bicubic" (hardware renderer).
+    /// default) or "bicubic".
     pub background_filter: Option<String>,
-    /// Frames in between at 60 fps (hardware renderer, subpixel; default on).
+    /// Frames in between at 60 fps (with subpixel; default on).
     pub frame_interpolation: Option<bool>,
     /// The look of a CRT television: scanlines and an aperture grille
     /// (graphics card presentation; default off).
@@ -132,10 +134,7 @@ fn load() -> Config {
     match toml::from_str::<Config>(&text) {
         Ok(mut c) => {
             let base = path.parent().map(Path::to_path_buf).unwrap_or_default();
-            for p in [&mut c.discs.disc1, &mut c.discs.disc2, &mut c.memcard.slot1]
-                .into_iter()
-                .flatten()
-            {
+            for p in [&mut c.discs.disc1, &mut c.discs.disc2, &mut c.memcard.slot1].into_iter().flatten() {
                 if p.is_relative() {
                     *p = base.join(&*p);
                 }

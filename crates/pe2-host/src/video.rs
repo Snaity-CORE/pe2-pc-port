@@ -2,7 +2,6 @@
 //! into controller state. It runs its own event loop on a separate thread;
 //! the game keeps the main thread.
 
-use std::num::NonZeroU32;
 use std::sync::Arc;
 use std::sync::atomic::{AtomicU16, Ordering};
 use std::time::{Duration, Instant};
@@ -71,13 +70,8 @@ fn scripted() -> bool {
 
 struct App {
     window: Option<Arc<Window>>,
-    /// The graphics card's presenter, or else a CPU-drawn surface.
+    /// What draws the picture into the window, on the graphics card.
     hardware: Option<crate::present::Presenter>,
-    surface: Option<softbuffer::Surface<Arc<Window>, Arc<Window>>>,
-    frame: Vec<u32>,
-    /// Source column of each window column, for the current scale.
-    columns: Vec<usize>,
-    columns_for: (usize, usize),
     next_redraw: Instant,
     /// Alt is held (Alt+Enter toggles full screen).
     alt: bool,
@@ -117,8 +111,7 @@ impl ApplicationHandler for App {
         set_fullscreen(&window, crate::config::get().video.fullscreen.unwrap_or(false) && !scripted());
         self.hardware = crate::gfx::get().and_then(|gfx| crate::present::Presenter::new(gfx, window.clone()));
         if self.hardware.is_none() {
-            let context = softbuffer::Context::new(window.clone()).expect("softbuffer context");
-            self.surface = Some(softbuffer::Surface::new(&context, window.clone()).expect("softbuffer surface"));
+            eprintln!("pe2: video: cannot draw into the window");
         }
         self.window = Some(window);
     }
@@ -181,10 +174,11 @@ impl ApplicationHandler for App {
                     hw.resize(size.width, size.height);
                 }
             }
-            WindowEvent::RedrawRequested => match self.hardware.as_mut() {
-                Some(hw) => hw.present(),
-                None => self.present(),
-            },
+            WindowEvent::RedrawRequested => {
+                if let Some(hw) = self.hardware.as_mut() {
+                    hw.present();
+                }
+            }
             _ => {}
         }
     }
@@ -285,55 +279,13 @@ impl App {
         (self.title_at, self.title_frames) = (now, frames);
         let Some(window) = &self.window else { return };
         let (w, h) = gpu::picture_size();
-        let renderer = match (crate::gfx::get(), &self.hardware) {
-            (Some(gfx), Some(_)) => format!("{:?}", gfx.adapter.get_info().backend),
-            _ => "software".to_string(),
-        };
+        let renderer =
+            crate::gfx::get().map_or_else(String::new, |gfx| format!("{:?}", gfx.adapter.get_info().backend));
         if crate::runtime::irq::PAUSED.load(Ordering::SeqCst) {
             window.set_title(&format!("Parasite Eve II — Paused (P) — {w}×{h} — {renderer}"));
         } else {
             window.set_title(&format!("Parasite Eve II — {fps:.0} fps — {w}×{h} — {renderer}"));
         }
-    }
-
-    fn present(&mut self) {
-        let (Some(window), Some(surface)) = (&self.window, &mut self.surface) else { return };
-        let size = window.inner_size();
-        let (Some(ww), Some(wh)) = (NonZeroU32::new(size.width), NonZeroU32::new(size.height)) else { return };
-        let Some((fw, fh)) = gpu::snapshot(&mut self.frame) else { return };
-        if surface.resize(ww, wh).is_err() {
-            return;
-        }
-        let Ok(mut buf) = surface.buffer_mut() else { return };
-        let (ww, wh) = (ww.get() as usize, wh.get() as usize);
-
-        // Fit a 4:3 picture into the window, letterboxed.
-        let (pw, ph) = if ww * 3 > wh * 4 { (wh * 4 / 3, wh) } else { (ww, ww * 3 / 4) };
-        let (ox, oy) = ((ww - pw) / 2, (wh - ph) / 2);
-        if self.columns_for != (fw, pw) {
-            self.columns = (0..pw).map(|x| x * fw / pw).collect();
-            self.columns_for = (fw, pw);
-        }
-        buf[..oy * ww].fill(0);
-        buf[(oy + ph) * ww..].fill(0);
-        let mut previous_sy = usize::MAX;
-        for y in 0..ph {
-            let line = (oy + y) * ww;
-            buf[line..line + ox].fill(0);
-            buf[line + ox + pw..line + ww].fill(0);
-            let sy = y * fh / ph;
-            if sy == previous_sy {
-                // Same source row as the line above.
-                buf.copy_within(line - ww + ox..line - ww + ox + pw, line + ox);
-                continue;
-            }
-            previous_sy = sy;
-            let src = &self.frame[sy * fw..(sy + 1) * fw];
-            for (px, &sx) in buf[line + ox..line + ox + pw].iter_mut().zip(&self.columns) {
-                *px = src[sx];
-            }
-        }
-        let _ = buf.present();
     }
 }
 
@@ -498,10 +450,6 @@ pub fn start() {
             let mut app = App {
                 window: None,
                 hardware: None,
-                surface: None,
-                frame: Vec::new(),
-                columns: Vec::new(),
-                columns_for: (0, 0),
                 alt: false,
                 title_at: Instant::now(),
                 title_frames: 0,

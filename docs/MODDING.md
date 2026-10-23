@@ -89,8 +89,7 @@ What to know:
   of it changed.
 - **Only the picture changes.** The game still has its own picture in video
   memory; replacing it never changes how the game plays.
-- **Hardware renderer.** Replacements show with the graphics card renderer at
-  any internal resolution; with the software renderer the original shows.
+- **Any resolution.** Replacements show at any internal resolution.
 - **Loading.** A picture is read the first time its room shows (the original
   shows for a frame or two meanwhile) and kept while it is in use.
 

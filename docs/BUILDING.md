@@ -94,9 +94,10 @@ Debug output:
   every millisecond into `pe2-prof.bin`, summarized by function with
   `python tools/profile_report.py pe2-prof.bin [--skip SECONDS]` (release
   build: uses `target/i686-pc-windows-msvc/release/deps/pe2.map`).
-- `PE2_SCALE=2..8` renders at that multiple of the console's resolution, in
+- `PE2_SCALE=1..8` renders at that multiple of the console's resolution, in
   true colour without dithering (24-bit movies stay at their own
-  resolution). The game still sees exactly the console's VRAM.
+  resolution). The game reads back what the graphics card drew, one
+  console pixel per block.
 - `PE2_SCREENSHOT=<dir>` saves the displayed picture as a PNG every two
   seconds. Screenshots show your game's content; keep them out of the
   repository.

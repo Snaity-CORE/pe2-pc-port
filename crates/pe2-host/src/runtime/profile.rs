@@ -251,7 +251,7 @@ fn cpu_monitor() {
                 ms(BLOCKED_NS.swap(0, Relaxed)),
                 ms(HANDLER_NS.swap(0, Relaxed))
             );
-            use super::gpu::hw::{DRAWS, FLUSHES, PASSES, VERTICES, VRAM_SENT};
+            use super::gpu::hw::{DRAWS, FLUSHES, PASSES, SYNCED, VERTICES, VRAM_SENT};
             use super::gpu::{EXACT_VERTICES, POLY_VERTICES};
             let (all, exact) = (POLY_VERTICES.swap(0, Relaxed), EXACT_VERTICES.swap(0, Relaxed));
             if all > 0 {
@@ -262,9 +262,10 @@ fn cpu_monitor() {
                 );
             }
             eprintln!(
-                "[cpu]   graphics card: {:.0} flushes/s, {:.0} KB/s of VRAM sent, {:.0} passes/s, {:.0} draws/s, {:.0} vertices/s",
+                "[cpu]   graphics card: {:.0} flushes/s, {:.0} KB/s of VRAM sent, {:.0} KB/s read back, {:.0} passes/s, {:.0} draws/s, {:.0} vertices/s",
                 FLUSHES.swap(0, Relaxed) as f64 / wall,
                 VRAM_SENT.swap(0, Relaxed) as f64 * 2.0 / 1024.0 / wall,
+                SYNCED.swap(0, Relaxed) as f64 * 2.0 / 1024.0 / wall,
                 PASSES.swap(0, Relaxed) as f64 / wall,
                 DRAWS.swap(0, Relaxed) as f64 / wall,
                 VERTICES.swap(0, Relaxed) as f64 / wall

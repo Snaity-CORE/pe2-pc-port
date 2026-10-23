@@ -25,7 +25,7 @@
 use std::collections::VecDeque;
 use std::sync::{Arc, Mutex};
 
-use super::raster::{DrawState, Shading, Vram};
+use super::vram::{DrawState, Shading, Vram};
 use crate::mods::indexed::Indexed;
 use crate::mods::sheets::{self, PIECE_ROWS};
 

@@ -24,12 +24,9 @@
 # disc2 = 'D:\Games\PSX\Parasite Eve II (USA) (Disc 2).chd'
 
 [video]
-# Internal resolution, a multiple of the console's 320x240: 1 is the
-# console's picture (with its dithering); 2-8 render in true colour.
+# Internal resolution, a multiple of the console's 320x240 (1-8), drawn
+# on the graphics card in true colour.
 scale = 4
-# "hardware" (the graphics card, the default) or "software" (everything on
-# the CPU; also used when no graphics adapter works).
-# renderer = "hardware"
 # Exact vertex positions from the game's 3D projections at scales above 1,
 # instead of whole console pixels: no wobbling or gaps between polygons.
 # subpixel = true
@@ -41,11 +38,11 @@ scale = 4
 # texture_filter = "nearest"
 # Pre-rendered backgrounds and full-screen pictures at scales above 1:
 # "nearest" (blocks of console pixels, as now) or "bicubic" (enlarged
-# smoothly; text and the interface stay sharp). Hardware renderer.
+# smoothly; text and the interface stay sharp).
 # background_filter = "nearest"
 # Smooth motion: where the game runs at 30 fps, frames in between at 60,
 # with the 3D models halfway (backgrounds and the interface are unchanged).
-# No added delay. Needs the hardware renderer and subpixel.
+# No added delay. Needs subpixel.
 # frame_interpolation = true
 # The look of a CRT television: scanlines (the console's 240 lines) and an
 # aperture grille. Best with the window at least 720 pixels high.

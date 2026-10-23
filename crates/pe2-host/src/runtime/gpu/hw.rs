@@ -1,13 +1,24 @@
-//! The higher-resolution layer on the graphics card: what hires.rs does on
-//! the CPU, rendered with wgpu into a texture `scale` times the VRAM's size.
+//! The renderer, on the graphics card: the VRAM drawn with wgpu into a
+//! texture `scale` times its size, which holds the whole VRAM as the
+//! console would (everything the game draws, loads, fills and copies).
 //!
 //! Operations are recorded in order (draws as vertices, uploads as data,
 //! copies) and run on the card at each `flush`. Textures and CLUTs are
-//! sampled, in the shader, from a copy of the native VRAM: it is sent again
-//! before a primitive samples an area the native VRAM changed since the
-//! last copy, and before the native VRAM changes an area that recorded
-//! primitives sample, so each primitive sees the VRAM as it was when the
-//! game drew it.
+//! sampled, in the shader, from a copy of the CPU's VRAM (vram.rs: what the
+//! game sent from the CPU): it is sent again before a primitive samples an
+//! area the CPU's VRAM changed since the last copy, and before the CPU's
+//! VRAM changes an area that recorded primitives sample, so each primitive
+//! sees the VRAM as it was when the game drew it.
+//!
+//! What only the card drew is tracked by 16x16 tiles: `stale`, where the
+//! CPU's VRAM lacks it, and `hires`, where the card has it finer than the
+//! CPU's VRAM can. The CPU's VRAM gets the card's pixels back (`sync`, one
+//! console pixel per `scale` x `scale` block) when the game reads an area
+//! (StoreImage) or uses one as a 4 or 8-bit texture or as a palette;
+//! 15-bit textures in `hires` areas are sampled from the card itself, at
+//! its resolution (a copy of the area in the scratch texture, as it was
+//! when the primitive was drawn). The mask bit is kept in the alpha
+//! channel.
 //!
 //! With frame interpolation, everything run for a frame is also kept, so
 //! the frame can be drawn again with its model vertices moved (interp.rs):
@@ -15,15 +26,14 @@
 //! drawing again samples textures as each part of the frame did (the game
 //! may load other glyphs into the same place between two lines of text).
 //!
-//! The game never tests the mask bit when drawing (it only sets it), and
-//! textures come from the native VRAM, where the bit is exact; this layer
-//! keeps no mask bit.
+//! The game never tests the mask bit when drawing (it only sets it): the
+//! card sets it, and does not test it.
 
 use std::sync::atomic::{AtomicU64, Ordering};
 
 use super::interp;
-use super::raster::{DrawState, Shading, VRAM_HEIGHT, VRAM_WIDTH, Vertex as NativeVertex, Vram};
 use super::textures;
+use super::vram::{DrawState, Shading, VRAM_HEIGHT, VRAM_WIDTH, Vertex as NativeVertex, Vram};
 use crate::gfx::Gfx;
 
 /// The key a screen image read back is kept by among the pictures: not
@@ -36,6 +46,8 @@ fn kept_key(hash: u64) -> u64 {
 /// PE2_TRACE=cpu: flushes, and native VRAM halfwords sent to the card.
 pub static FLUSHES: AtomicU64 = AtomicU64::new(0);
 pub static VRAM_SENT: AtomicU64 = AtomicU64::new(0);
+/// PE2_TRACE=cpu: console pixels read back from the card.
+pub static SYNCED: AtomicU64 = AtomicU64::new(0);
 /// PE2_TRACE=cpu: draw calls, render passes and vertices sent.
 pub static DRAWS: AtomicU64 = AtomicU64::new(0);
 pub static PASSES: AtomicU64 = AtomicU64::new(0);
@@ -87,7 +99,7 @@ struct Out {
 fn vs(i: In) -> Out {
     var o: Out;
     // Pixel (x, y) is covered when its integer position is inside, as in
-    // the CPU rasterizers: shift by half a pixel to the GPU's centres.
+    // the console's GPU: shift by half a pixel to the card's centres.
     let p = (i.pos + vec2<f32>(0.5, 0.5)) / u.size * 2.0 - 1.0;
     let w = select(1.0, i.w, i.w > 0.0);
     o.pos = vec4<f32>(p.x * w, -p.y * w, 0.0, w);
@@ -105,38 +117,43 @@ fn vram_at(x: u32, y: u32) -> u32 {
     return textureLoad(vram, vec2<u32>(x & 1023u, y & 511u), 0).r;
 }
 
-// mode: bits 0-9 texture page x, 10-18 page y, 20-21 depth, 22 textured,
-// 23 raw texture, 24-25 pass (0 all texels, 1 those without bit 15, 2
-// those with it), 26-27 kind (0 primitive, 1 upload, 2 copy), 28 bilinear
-// filtering (a copy: the game's grey negative of it), 29 texel clamping
-// (limits: the polygon's u, v minimum and maximum, a byte each).
+// mode: bits 0-9 texture page x, 10-18 page y, 19 a 15-bit texture read
+// from the scratch texture (the card's own pixels), 20-21 depth, 22
+// textured, 23 raw texture, 24-25 pass (0 all texels, 1 those without bit
+// 15, 2 those with it), 26-27 kind (0 primitive, 1 upload, 2 copy), 28
+// bilinear filtering (a copy: the game's grey negative of it), 29 texel
+// clamping (limits: the polygon's u, v minimum and maximum, a byte each),
+// 30 set the mask bit. Alpha is the mask bit written.
 @fragment
 fn fs(o: Out) -> @location(0) vec4<f32> {
     let kind = (o.mode >> 26u) & 3u;
     if (kind == 1u) {
         // Upload: clut = first halfword in `uploads`, window = row width,
         // limits = rows; bit 28: smoothed (bicubic) rather than blocks.
-        if (((o.mode >> 28u) & 1u) != 0u) {
-            return vec4<f32>(upload_bicubic(o.clut, o.window, o.limits, o.uv), 1.0);
-        }
         let n = vec2<u32>(floor(o.uv));
         let index = o.clut + n.y * o.window + n.x;
         let word = uploads[index >> 1u];
         let px = (word >> ((index & 1u) * 16u)) & 0xFFFFu;
-        return vec4<f32>(rgb15(px), 1.0);
+        let mask = f32(px >> 15u);
+        if (((o.mode >> 28u) & 1u) != 0u) {
+            return vec4<f32>(upload_bicubic(o.clut, o.window, o.limits, o.uv), mask);
+        }
+        return vec4<f32>(rgb15(px), mask);
     }
     if (kind == 2u) {
-        let c = textureLoad(scratch, vec2<u32>(floor(o.uv)), 0).rgb;
+        let c = textureLoad(scratch, vec2<u32>(floor(o.uv)), 0);
         if (((o.mode >> 28u) & 1u) != 0u) {
             // As the game's screen negative: 31 - (3R + 4G + B) / 8 in
             // 5-bit colour, grey (shared/screen_negative_filter.inc.c).
-            let v = c * 255.0 / 8.0;
+            let v = c.rgb * 255.0 / 8.0;
             let grey = 31.0 - floor((3.0 * v.r + 4.0 * v.g + v.b) / 8.0);
-            return vec4<f32>(vec3<f32>(max(grey, 0.0) * 8.0 / 255.0), 1.0);
+            return vec4<f32>(vec3<f32>(max(grey, 0.0) * 8.0 / 255.0), 0.0);
         }
-        return vec4<f32>(c, 1.0);
+        return c;
     }
     var c = floor(o.color);
+    var written_mask = (o.mode >> 30u) & 1u;
+    let from_layer = ((o.mode >> 19u) & 1u) != 0u && ((o.mode >> 20u) & 3u) >= 2u;
     if (((o.mode >> 22u) & 1u) != 0u) {
         var t: u32;
         var tc: vec3<f32>;
@@ -195,7 +212,7 @@ fn fs(o: Out) -> @location(0) vec4<f32> {
                 at = clamp(at, lo, hi);
             }
             t = texel(o.mode, o.clut, o.window, at.x, at.y);
-        } else if (((o.mode >> 28u) & 1u) != 0u) {
+        } else if (((o.mode >> 28u) & 1u) != 0u && !from_layer) {
             // Bilinear: the four texels around the sample point, kept inside
             // the polygon's own texture rectangle (`limits`, so neighbours
             // in the texture page do not bleed in). Transparent texels
@@ -236,24 +253,43 @@ fn fs(o: Out) -> @location(0) vec4<f32> {
                 let hi = vec2<i32>(i32((o.limits >> 16u) & 0xFFu), i32((o.limits >> 24u) & 0xFFu));
                 at = clamp(at, lo, hi);
             }
-            t = texel(o.mode, o.clut, o.window, at.x, at.y);
+            if (from_layer) {
+                // The card's pixel under this point of the texel: finer
+                // than the console's.
+                let w = windowed(o.window, at);
+                let base = vec2<f32>(f32(((o.mode & 1023u) + w.x) & 1023u), f32((((o.mode >> 10u) & 511u) + w.y) & 511u));
+                let within = clamp(o.uv - floor(o.uv), vec2<f32>(0.0), vec2<f32>(0.999));
+                let s = textureLoad(scratch, vec2<u32>((base + within) * u.scale), 0);
+                t = word15(s);
+                tc = floor(s.rgb * 255.0);
+            } else {
+                t = texel(o.mode, o.clut, o.window, at.x, at.y);
+                tc = texel_rgb(t);
+            }
             if (t == 0u) {
                 discard;
             }
-            tc = texel_rgb(t);
         }
         let pass_ = (o.mode >> 24u) & 3u;
         let mask = (t >> 15u) & 1u;
         if ((pass_ == 1u && mask == 1u) || (pass_ == 2u && mask == 0u)) {
             discard;
         }
+        written_mask = written_mask | mask;
         if (((o.mode >> 23u) & 1u) != 0u) {
             c = tc;
         } else {
             c = floor(tc * c / 128.0);
         }
     }
-    return vec4<f32>(min(c, vec3<f32>(255.0)) / 255.0, 1.0);
+    return vec4<f32>(min(c, vec3<f32>(255.0)) / 255.0, f32(written_mask));
+}
+
+// A pixel of the card as the console's 15-bit value (5 bits a channel,
+// the mask bit from alpha).
+fn word15(s: vec4<f32>) -> u32 {
+    let c = vec3<u32>(s.rgb * 255.0 + 0.5) >> vec3<u32>(3u);
+    return c.r | (c.g << 5u) | (c.b << 10u) | select(0u, 0x8000u, s.a > 0.5);
 }
 
 // Texel coordinates (u, v) through the texture window.
@@ -286,6 +322,10 @@ fn texel(mode: u32, clut: u32, window: u32, u_in: i32, v_in: i32) -> u32 {
     if (depth == 1u) {
         let word = vram_at(px + tu / 2u, py + tv);
         return vram_at(cx + ((word >> ((tu & 1u) * 8u)) & 0xFFu), cy);
+    }
+    if (((mode >> 19u) & 1u) != 0u) {
+        let at = vec2<f32>(f32((px + tu) & 1023u), f32((py + tv) & 511u));
+        return word15(textureLoad(scratch, vec2<u32>(at * u.scale), 0));
     }
     return vram_at(px + tu, py + tv);
 }
@@ -341,6 +381,25 @@ fn rgb15(px: u32) -> vec3<f32> {
 }
 "#;
 
+/// The card's pixels read back as the console's: one per `scale` x
+/// `scale` block, its top-left one (where the console samples coverage).
+const DOWN_SHADER: &str = r#"
+struct Uniforms { size: vec2<f32>, scale: f32, _pad: f32 };
+@group(0) @binding(0) var<uniform> u: Uniforms;
+@group(0) @binding(1) var card: texture_2d<f32>;
+
+@vertex
+fn vs(@builtin(vertex_index) i: u32) -> @builtin(position) vec4<f32> {
+    let p = vec2<f32>(f32((i << 1u) & 2u), f32(i & 2u));
+    return vec4<f32>(p * 2.0 - 1.0, 0.0, 1.0);
+}
+
+@fragment
+fn fs(@builtin(position) pos: vec4<f32>) -> @location(0) vec4<f32> {
+    return textureLoad(card, vec2<u32>(floor(pos.xy)) * u32(u.scale), 0);
+}
+"#;
+
 #[repr(C)]
 #[derive(Clone, Copy, Default)]
 struct GpuVertex {
@@ -361,6 +420,9 @@ struct GpuVertex {
 
 const FILTER_BILINEAR: u32 = 1 << 28;
 const UV_CLAMP: u32 = 1 << 29;
+/// A 15-bit texture sampled from the card's pixels (in the scratch texture).
+const FROM_CARD: u32 = 1 << 19;
+const SET_MASK: u32 = 1 << 30;
 
 /// Whether 3D polygons' textures are filtered: PE2_TEXTURE_FILTER, else
 /// pe2.toml's [video] texture_filter ("nearest", the default, or
@@ -523,6 +585,14 @@ impl Areas {
         self.0.iter().any(|b| b.hits(a))
     }
 
+    fn covers(&self, a: Area) -> bool {
+        self.0.iter().any(|b| b.contains(a))
+    }
+
+    fn remove_hits(&mut self, a: Area) {
+        self.0.retain(|b| !b.hits(a));
+    }
+
     fn bounds(&self) -> Area {
         self.0.iter().fold(Area::EMPTY, |u, b| u.union(*b))
     }
@@ -530,6 +600,58 @@ impl Areas {
     fn clear(&mut self) {
         self.0.clear();
     }
+}
+
+/// 16x16 tiles of the VRAM, one bit each (a row of 64 tiles per word).
+#[derive(Clone, Default)]
+struct Tiles([u64; VRAM_HEIGHT / 16]);
+
+impl Tiles {
+    /// The tiles `a` touches, clipped to the VRAM: rows, and the column
+    /// mask.
+    fn touched(a: Area) -> Option<(std::ops::RangeInclusive<usize>, u64)> {
+        let (x0, y0) = (a.x0.max(0), a.y0.max(0));
+        let (x1, y1) = (a.x1.min(VRAM_WIDTH as i32 - 1), a.y1.min(VRAM_HEIGHT as i32 - 1));
+        if x0 > x1 || y0 > y1 {
+            return None;
+        }
+        Some(((y0 >> 4) as usize..=(y1 >> 4) as usize, columns(x0 >> 4, x1 >> 4)))
+    }
+
+    fn mark(&mut self, a: Area) {
+        if let Some((rows, mask)) = Self::touched(a) {
+            for r in rows {
+                self.0[r] |= mask;
+            }
+        }
+    }
+
+    fn hits(&self, a: Area) -> bool {
+        Self::touched(a).is_some_and(|(rows, mask)| rows.into_iter().any(|r| self.0[r] & mask != 0))
+    }
+
+    fn get(&self, x: i32, y: i32) -> bool {
+        self.0[(y as usize >> 4) % self.0.len()] >> ((x as u32 >> 4) & 63) & 1 != 0
+    }
+
+    /// Clears the tiles `a` covers whole.
+    fn clear_covered(&mut self, a: Area) {
+        let (x0, y0) = ((a.x0.max(0) + 15) >> 4, (a.y0.max(0) + 15) >> 4);
+        let (x1, y1) = ((a.x1.min(VRAM_WIDTH as i32 - 1) + 1) >> 4, (a.y1.min(VRAM_HEIGHT as i32 - 1) + 1) >> 4);
+        if x0 >= x1 || y0 >= y1 {
+            return;
+        }
+        let mask = columns(x0, x1 - 1);
+        for r in y0 as usize..y1 as usize {
+            self.0[r] &= !mask;
+        }
+    }
+}
+
+/// Tile columns `c0..=c1` as a mask.
+fn columns(c0: i32, c1: i32) -> u64 {
+    let n = (c1 - c0 + 1) as u32;
+    if n >= 64 { u64::MAX } else { ((1u64 << n) - 1) << c0 }
 }
 
 /// Native VRAM sent to the card: x, y, width, height and the halfwords.
@@ -603,6 +725,14 @@ pub struct Hw {
     /// native VRAM recorded primitives sample.
     dirty: Areas,
     sampled: Areas,
+    /// What only the card drew (see the top of this file), and the areas
+    /// the scratch texture holds a copy of the card's pixels of, for
+    /// primitives sampling them.
+    stale: Tiles,
+    hires: Tiles,
+    snapped: Areas,
+    /// Reading the card back: the downscaling pass and what it draws into.
+    down: (wgpu::RenderPipeline, wgpu::BindGroup, wgpu::Texture),
     /// Mods' textures: what primitives draw from, and the replacements on
     /// the card.
     tracker: super::textures::Tracker,
@@ -741,6 +871,7 @@ impl Hw {
             })
             .collect();
         let bind = Self::make_bind(device, &layout, &uniforms, &vram, &upload_buffer, &scratch);
+        let down = Self::make_down(device, &uniforms, &target);
         Hw {
             gfx,
             scale,
@@ -768,9 +899,72 @@ impl Hw {
             vram_replay: None,
             dirty: Areas(vec![Area::new(0, 0, VRAM_WIDTH as i32, VRAM_HEIGHT as i32)]),
             sampled: Areas::default(),
+            stale: Tiles::default(),
+            hires: Tiles::default(),
+            snapped: Areas::default(),
+            down,
             tracker: Default::default(),
             atlas,
         }
+    }
+
+    /// The pass reading the card back at the console's resolution.
+    fn make_down(
+        device: &wgpu::Device,
+        uniforms: &wgpu::Buffer,
+        target: &wgpu::Texture,
+    ) -> (wgpu::RenderPipeline, wgpu::BindGroup, wgpu::Texture) {
+        let module = device.create_shader_module(wgpu::ShaderModuleDescriptor {
+            label: Some("hw down"),
+            source: wgpu::ShaderSource::Wgsl(DOWN_SHADER.into()),
+        });
+        let pipeline = device.create_render_pipeline(&wgpu::RenderPipelineDescriptor {
+            label: Some("hw down"),
+            layout: None,
+            vertex: wgpu::VertexState {
+                module: &module,
+                entry_point: Some("vs"),
+                buffers: &[],
+                compilation_options: Default::default(),
+            },
+            fragment: Some(wgpu::FragmentState {
+                module: &module,
+                entry_point: Some("fs"),
+                targets: &[Some(wgpu::ColorTargetState {
+                    format: wgpu::TextureFormat::Rgba8Unorm,
+                    blend: None,
+                    write_mask: wgpu::ColorWrites::ALL,
+                })],
+                compilation_options: Default::default(),
+            }),
+            primitive: wgpu::PrimitiveState::default(),
+            depth_stencil: None,
+            multisample: wgpu::MultisampleState::default(),
+            multiview_mask: None,
+            cache: None,
+        });
+        let bind = device.create_bind_group(&wgpu::BindGroupDescriptor {
+            label: Some("hw down"),
+            layout: &pipeline.get_bind_group_layout(0),
+            entries: &[
+                wgpu::BindGroupEntry { binding: 0, resource: uniforms.as_entire_binding() },
+                wgpu::BindGroupEntry {
+                    binding: 1,
+                    resource: wgpu::BindingResource::TextureView(&target.create_view(&Default::default())),
+                },
+            ],
+        });
+        let texture = device.create_texture(&wgpu::TextureDescriptor {
+            label: Some("hw down"),
+            size: wgpu::Extent3d { width: VRAM_WIDTH as u32, height: VRAM_HEIGHT as u32, depth_or_array_layers: 1 },
+            mip_level_count: 1,
+            sample_count: 1,
+            dimension: wgpu::TextureDimension::D2,
+            format: wgpu::TextureFormat::Rgba8Unorm,
+            usage: wgpu::TextureUsages::RENDER_ATTACHMENT | wgpu::TextureUsages::COPY_SRC,
+            view_formats: &[],
+        });
+        (pipeline, bind, texture)
     }
 
     fn make_upload_buffer(device: &wgpu::Device, size: u64) -> wgpu::Buffer {
@@ -804,22 +998,145 @@ impl Hw {
         })
     }
 
-    // ---- ordering with the native VRAM ----------------------------------
+    // ---- ordering with the CPU's VRAM -----------------------------------
 
-    /// Before the native VRAM changes `x, y, w, h`: recorded primitives
-    /// that sample it must run first.
-    pub fn before_native_write(&mut self, vram: &Vram, x: i32, y: i32, w: i32, h: i32) {
+    /// Before the CPU's VRAM changes `x, y, w, h`: recorded primitives that
+    /// sample it must run first.
+    pub fn before_cpu_write(&mut self, vram: &Vram, x: i32, y: i32, w: i32, h: i32) {
         if self.sampled.hits(Area::new(x, y, w, h)) {
             self.flush(vram);
         }
     }
 
-    /// After the native VRAM changed `x, y, w, h`.
-    pub fn after_native_write(&mut self, x: i32, y: i32, w: i32, h: i32) {
-        self.dirty.add(Area::new(x, y, w, h));
+    /// After the CPU's VRAM changed `x, y, w, h` (the same is recorded for
+    /// the card): it has what the card will draw there.
+    pub fn after_cpu_write(&mut self, x: i32, y: i32, w: i32, h: i32) {
+        let a = Area::new(x, y, w, h);
+        self.dirty.add(a);
+        self.stale.clear_covered(a);
+        self.hires.clear_covered(a);
+        self.snapped.remove_hits(a);
         if crate::mods::wants_textures() {
             self.tracker.write(x, y, w, h);
         }
+    }
+
+    /// A primitive recorded for the card changes `x, y, w, h`, which the
+    /// CPU's VRAM does not get.
+    pub fn drew(&mut self, x: i32, y: i32, w: i32, h: i32) {
+        if w <= 0 || h <= 0 {
+            return;
+        }
+        let a = Area::new(x, y, w, h);
+        self.stale.mark(a);
+        self.hires.mark(a);
+        self.snapped.remove_hits(a);
+        if crate::mods::wants_textures() {
+            self.tracker.write(x, y, w, h);
+        }
+    }
+
+    /// A VRAM-to-VRAM copy (after `after_cpu_write` of its destination):
+    /// what only the card had in the source, it has in the destination.
+    pub fn copied(&mut self, sx: i32, sy: i32, dx: i32, dy: i32, w: i32, h: i32) {
+        let (from, to) = (Area::new(sx, sy, w, h), Area::new(dx, dy, w, h));
+        if self.stale.hits(from) {
+            self.stale.mark(to);
+        }
+        if self.hires.hits(from) {
+            self.hires.mark(to);
+        }
+    }
+
+    /// The card shows `x, y, w, h` finer than the CPU's VRAM has it (a
+    /// mod's picture, a screen kept at this resolution), though the CPU's
+    /// VRAM has the game's own pixels.
+    fn finer(&mut self, x: i32, y: i32, w: i32, h: i32) {
+        self.hires.mark(Area::new(x, y, w, h));
+    }
+
+    /// Gives the CPU's VRAM the card's pixels in `x, y, w, h` where only
+    /// the card has them (one per `scale` x `scale` block): the game reads
+    /// them, or uses them as indexed texels or palettes.
+    pub fn sync(&mut self, vram: &mut Vram, x: i32, y: i32, w: i32, h: i32) {
+        let a =
+            Area::new(x.max(0), y.max(0), w.min(VRAM_WIDTH as i32 - x.max(0)), h.min(VRAM_HEIGHT as i32 - y.max(0)));
+        if a.x1 < a.x0 || a.y1 < a.y0 || !self.stale.hits(a) {
+            return;
+        }
+        self.flush(vram);
+        let Some(pixels) = self.read_down(a) else { return };
+        let w = (a.x1 - a.x0 + 1) as usize;
+        for (i, &px) in pixels.iter().enumerate() {
+            let (px_x, px_y) = (a.x0 + (i % w) as i32, a.y0 + (i / w) as i32);
+            if self.stale.get(px_x, px_y) {
+                vram.set(px_x, px_y, px);
+            }
+        }
+        SYNCED.fetch_add(pixels.len() as u64, Ordering::Relaxed);
+        self.stale.clear_covered(a);
+        self.dirty.add(a);
+        if crate::mods::wants_textures() {
+            self.tracker.write(a.x0, a.y0, a.x1 - a.x0 + 1, a.y1 - a.y0 + 1);
+        }
+    }
+
+    /// The card's pixels in `a`, at the console's resolution (waits for
+    /// the card).
+    fn read_down(&self, a: Area) -> Option<Vec<u16>> {
+        let gfx = self.gfx;
+        let (x, y, w, h) = (a.x0 as u32, a.y0 as u32, (a.x1 - a.x0 + 1) as u32, (a.y1 - a.y0 + 1) as u32);
+        let (pipeline, bind, texture) = &self.down;
+        let row = (w * 4).next_multiple_of(256);
+        let buffer = gfx.device.create_buffer(&wgpu::BufferDescriptor {
+            label: Some("hw read back"),
+            size: u64::from(row * h),
+            usage: wgpu::BufferUsages::COPY_DST | wgpu::BufferUsages::MAP_READ,
+            mapped_at_creation: false,
+        });
+        let mut encoder = gfx.device.create_command_encoder(&Default::default());
+        {
+            let view = texture.create_view(&Default::default());
+            let mut pass = encoder.begin_render_pass(&wgpu::RenderPassDescriptor {
+                label: Some("hw down"),
+                color_attachments: &[Some(wgpu::RenderPassColorAttachment {
+                    view: &view,
+                    depth_slice: None,
+                    resolve_target: None,
+                    ops: wgpu::Operations { load: wgpu::LoadOp::Load, store: wgpu::StoreOp::Store },
+                })],
+                ..Default::default()
+            });
+            pass.set_pipeline(pipeline);
+            pass.set_bind_group(0, bind, &[]);
+            pass.set_scissor_rect(x, y, w, h);
+            pass.draw(0..3, 0..1);
+        }
+        encoder.copy_texture_to_buffer(
+            wgpu::TexelCopyTextureInfo {
+                texture,
+                mip_level: 0,
+                origin: wgpu::Origin3d { x, y, z: 0 },
+                aspect: wgpu::TextureAspect::All,
+            },
+            wgpu::TexelCopyBufferInfo {
+                buffer: &buffer,
+                layout: wgpu::TexelCopyBufferLayout { offset: 0, bytes_per_row: Some(row), rows_per_image: Some(h) },
+            },
+            wgpu::Extent3d { width: w, height: h, depth_or_array_layers: 1 },
+        );
+        gfx.queue.submit([encoder.finish()]);
+        buffer.map_async(wgpu::MapMode::Read, .., |_| {});
+        gfx.device.poll(wgpu::PollType::Wait { submission_index: None, timeout: None }).ok()?;
+        let data = buffer.get_mapped_range(..).ok()?;
+        let mut out = Vec::with_capacity((w * h) as usize);
+        for line in data.chunks(row as usize).take(h as usize) {
+            out.extend(line[..w as usize * 4].as_chunks::<4>().0.iter().map(|p| {
+                let c = |v: u8| u16::from(v >> 3);
+                c(p[0]) | (c(p[1]) << 5) | (c(p[2]) << 10) | if p[3] >= 128 { 0x8000 } else { 0 }
+            }));
+        }
+        Some(out)
     }
 
     /// The mods' textures a textured primitive with texel rectangle `uv`
@@ -950,8 +1267,9 @@ impl Hw {
         }
     }
 
-    /// A textured primitive samples `page` and `clut`: they must be current.
-    fn sample(&mut self, vram: &Vram, st: &DrawState, sh: &Shading) {
+    /// A textured primitive samples `page` and `clut`: they must be
+    /// current. True when its 15-bit texels are the card's own pixels.
+    fn sample(&mut self, vram: &mut Vram, st: &DrawState, sh: &Shading) -> bool {
         let page_w = match st.tex_depth {
             0 => 64,
             1 => 128,
@@ -960,13 +1278,30 @@ impl Hw {
         let page = Area::new(st.tex_x, st.tex_y, page_w, 256);
         let clut_w = if st.tex_depth == 0 { 16 } else { 256 };
         let clut = Area::new(sh.clut_x, sh.clut_y, clut_w, 1);
+        if st.tex_depth < 2 {
+            self.sync(vram, st.tex_x, st.tex_y, page_w, 256);
+            self.sync(vram, sh.clut_x, sh.clut_y, clut_w, 1);
+        }
         if self.dirty.hits(page) || (st.tex_depth < 2 && self.dirty.hits(clut)) {
             self.flush(vram);
         }
         self.sampled.add(page);
         if st.tex_depth < 2 {
             self.sampled.add(clut);
+            return false;
         }
+        if !self.hires.hits(page) {
+            return false;
+        }
+        // The card's pixels as they are now, for this primitive.
+        if !self.snapped.covers(page) {
+            let s = self.scale;
+            let (x0, y0) = (page.x0 * s, page.y0 * s);
+            let (x1, y1) = (((page.x1 + 1) * s).min(self.width as i32), ((page.y1 + 1) * s).min(self.height as i32));
+            self.ops.push(Op::ToScratch { x: x0 as u32, y: y0 as u32, w: (x1 - x0) as u32, h: (y1 - y0) as u32 });
+            self.snapped.add(page);
+        }
+        true
     }
 
     // ---- recording ----------------------------------------------------------
@@ -1033,6 +1368,9 @@ impl Hw {
                 | (u32::from(sh.raw_texture) << 23)
                 | (pass << 24);
         }
+        if st.set_mask {
+            mode |= SET_MASK;
+        }
         GpuVertex {
             mode,
             clut: (sh.clut_x as u32 & 1023) | ((sh.clut_y as u32 & 511) << 10),
@@ -1057,7 +1395,7 @@ impl Hw {
     /// passes, since only texels with bit 15 set are blended.
     fn shaded(
         &mut self,
-        vram: &Vram,
+        vram: &mut Vram,
         st: &DrawState,
         sh: &Shading,
         keys: &[u32],
@@ -1066,25 +1404,28 @@ impl Hw {
         if self.too_much() {
             self.flush(vram);
         }
-        if sh.textured {
-            self.sample(vram, st, sh);
-        }
+        let from_card = sh.textured && self.sample(vram, st, sh);
+        let template = |pass| {
+            let t = self.template(st, sh, pass);
+            GpuVertex { mode: t.mode | if from_card { FROM_CARD } else { 0 }, ..t }
+        };
+        let (t0, t1, t2) = (template(0), template(1), template(2));
         let scissor = self.scissor(st);
         if !sh.semi_transparent {
-            let verts = make(self.template(st, sh, 0));
+            let verts = make(t0);
             self.push_draw(Blend::None, scissor, &verts, keys);
         } else if !sh.textured {
-            let verts = make(self.template(st, sh, 0));
+            let verts = make(t0);
             self.push_draw(Self::semi_blend(st), scissor, &verts, keys);
         } else {
-            let opaque = make(self.template(st, sh, 1));
+            let opaque = make(t1);
             self.push_draw(Blend::None, scissor, &opaque, keys);
-            let blended = make(self.template(st, sh, 2));
+            let blended = make(t2);
             self.push_draw(Self::semi_blend(st), scissor, &blended, keys);
         }
     }
 
-    pub fn triangle(&mut self, vram: &Vram, st: &DrawState, sh: &Shading, v: [NativeVertex; 3]) {
+    pub fn triangle(&mut self, vram: &mut Vram, st: &DrawState, sh: &Shading, v: [NativeVertex; 3]) {
         // The GPU skips polygons larger than 1023x511.
         let (min_x, max_x) = (v[0].x.min(v[1].x).min(v[2].x), v[0].x.max(v[1].x).max(v[2].x));
         let (min_y, max_y) = (v[0].y.min(v[1].y).min(v[2].y), v[0].y.max(v[1].y).max(v[2].y));
@@ -1132,7 +1473,7 @@ impl Hw {
     #[allow(clippy::too_many_arguments)]
     pub fn rectangle(
         &mut self,
-        vram: &Vram,
+        vram: &mut Vram,
         st: &DrawState,
         sh: &Shading,
         x: i32,
@@ -1179,8 +1520,8 @@ impl Hw {
         });
     }
 
-    /// A line: the native rasterizer's pixels, each a `scale` x `scale` block.
-    pub fn line(&mut self, vram: &Vram, st: &DrawState, sh: &Shading, a: NativeVertex, b: NativeVertex) {
+    /// A line: the console's pixels, each a `scale` x `scale` block.
+    pub fn line(&mut self, vram: &mut Vram, st: &DrawState, sh: &Shading, a: NativeVertex, b: NativeVertex) {
         let (dx, dy) = (b.x - a.x, b.y - a.y);
         if dx.abs() > 1023 || dy.abs() > 511 {
             return;
@@ -1292,6 +1633,7 @@ impl Hw {
         if self.too_much() {
             self.flush(vram);
         }
+        self.finer(x, y, w, h);
         if !self.pictures.contains_key(&hash) {
             let texture = self.picture_texture(pw, ph);
             self.gfx.queue.write_texture(
@@ -1344,6 +1686,7 @@ impl Hw {
         if self.too_much() {
             self.flush(vram);
         }
+        self.finer(x, y, w, h);
         self.show_picture(kept_key(hash), px, py);
         true
     }
@@ -1375,6 +1718,9 @@ impl Hw {
         if self.too_much() {
             self.flush(vram);
         }
+        self.finer(x, y, w, h);
+        // The scratch texture gets the picture, not the card's pixels.
+        self.snapped.remove_hits(Area::new(x, y, w, h));
         self.pictures_used += 1;
         if let Some(entry) = self.pictures.get_mut(&key) {
             entry.1 = self.pictures_used;
@@ -1494,6 +1840,7 @@ impl Hw {
         }
         self.dirty.clear();
         self.sampled.clear();
+        self.snapped.clear();
         if self.ops.is_empty() {
             // Kept even without work: later flushes of the frame sample it.
             if let (Some(frame), Some(update)) = (self.frame.as_mut(), sent) {
@@ -1531,7 +1878,7 @@ impl Hw {
     }
 
     /// Runs recorded operations on the card, drawing into `into`, with
-    /// textures from the native VRAM copy (`replay`: the one frames are drawn
+    /// textures from the CPU's VRAM copy (`replay`: the one frames are drawn
     /// again with). Copies read the layer itself.
     fn run(&mut self, ops: &[Op], vertices: &[GpuVertex], uploads: &[u16], into: &wgpu::Texture, replay: bool) {
         let gfx = self.gfx;

@@ -1,8 +1,6 @@
 //! The graphics card (wgpu): one device shared by the window, which
-//! presents the picture, and the renderer.
-//!
-//! `[video] renderer = "software"` (or `PE2_RENDERER=software`) keeps
-//! everything on the CPU, as does a failure to find a usable adapter.
+//! presents the picture, and the renderer. Without a usable card, the
+//! system's software adapter (WARP on Direct3D 12) stands in, slowly.
 
 use std::sync::OnceLock;
 
@@ -13,37 +11,32 @@ pub struct Gfx {
     pub queue: wgpu::Queue,
 }
 
-/// Whether the hardware renderer is wanted (the default).
-pub fn wanted() -> bool {
-    let choice = std::env::var("PE2_RENDERER").ok().or_else(|| crate::config::get().video.renderer.clone());
-    match choice.as_deref().map(str::trim) {
-        None | Some("hardware") => true,
-        Some("software") => false,
-        Some(other) => {
-            eprintln!("pe2: unknown renderer {other:?} (hardware or software); using hardware");
-            true
-        }
-    }
-}
-
 static GFX: OnceLock<Option<Gfx>> = OnceLock::new();
 
-/// The device, opened on first use; None with the software renderer or
-/// when no adapter works.
+/// The device, opened on first use; None when no adapter works.
 pub fn get() -> Option<&'static Gfx> {
-    GFX.get_or_init(|| if wanted() { open() } else { None }).as_ref()
+    GFX.get_or_init(open).as_ref()
 }
 
 fn open() -> Option<Gfx> {
     let instance = wgpu::Instance::default();
-    let options =
-        wgpu::RequestAdapterOptions { power_preference: wgpu::PowerPreference::HighPerformance, ..Default::default() };
-    let adapter = match pollster::block_on(instance.request_adapter(&options)) {
+    let options = |fallback| wgpu::RequestAdapterOptions {
+        power_preference: wgpu::PowerPreference::HighPerformance,
+        force_fallback_adapter: fallback,
+        ..Default::default()
+    };
+    let adapter = match pollster::block_on(instance.request_adapter(&options(false))) {
         Ok(a) => a,
-        Err(err) => {
-            eprintln!("pe2: no graphics adapter ({err}); using the software renderer");
-            return None;
-        }
+        Err(err) => match pollster::block_on(instance.request_adapter(&options(true))) {
+            Ok(a) => {
+                eprintln!("pe2: no graphics adapter ({err}); drawing with the software adapter");
+                a
+            }
+            Err(err) => {
+                eprintln!("pe2: no graphics adapter ({err})");
+                return None;
+            }
+        },
     };
     let info = adapter.get_info();
     let (device, queue) = match pollster::block_on(
@@ -51,7 +44,7 @@ fn open() -> Option<Gfx> {
     ) {
         Ok(d) => d,
         Err(err) => {
-            eprintln!("pe2: {}: {err}; using the software renderer", info.name);
+            eprintln!("pe2: {}: {err}", info.name);
             return None;
         }
     };
