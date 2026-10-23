@@ -19,7 +19,12 @@
 //! The file: `#` lines (the movement options, the card), then one line per
 //! change, `<update> <blanks> <buttons> <analog> <sticks>` (buttons and
 //! sticks in hex), and a lone `<update>` every HEARTBEAT updates so a
-//! replay knows how long the session ran.
+//! replay knows how long the session ran. To tell where a replay goes out
+//! of step, also `p <update> <x> <z> <yaw>` when the player moves (the
+//! fork's pad_input.c calls `pc_replay_player` in play), and
+//! `t <update> <blanks>` when the blanks an update takes change; a replay
+//! reports the first difference in where the player is, and the first few
+//! in timing.
 
 use std::io::Write;
 use std::path::Path;
@@ -42,9 +47,14 @@ const HEARTBEAT: u64 = 30;
 /// Recordings kept (the oldest go).
 const KEPT: usize = 10;
 
+/// Where the player is: x, z and yaw.
+type Place = (i32, i32, i32);
+
 struct Recorder {
     out: std::io::BufWriter<std::fs::File>,
     last: Option<PadInput>,
+    place: Option<Place>,
+    timing: Option<u32>,
 }
 
 struct Player {
@@ -53,7 +63,16 @@ struct Player {
     next: usize,
     /// The update the recording ran to.
     end: u64,
-    options: u32,
+    /// Where the player was from each update on, and the blanks updates
+    /// took from each update on (in order), with the next of each to
+    /// compare.
+    places: Vec<(u64, Place)>,
+    timings: Vec<(u64, u32)>,
+    next_place: usize,
+    next_timing: usize,
+    /// Reported: the player out of place, and timing differences.
+    out_of_place: bool,
+    timing_reports: u32,
 }
 
 enum Mode {
@@ -73,6 +92,10 @@ struct State {
 
 static STATE: Mutex<State> = Mutex::new(State { mode: Mode::Off, update: 0, blanks: 0, latched: None });
 
+/// The movement options of the recording replayed (u32::MAX: none). Not
+/// in STATE: the game asks for them without the interrupts held off.
+static OPTIONS: std::sync::atomic::AtomicU32 = std::sync::atomic::AtomicU32::new(u32::MAX);
+
 /// Set when a replay has run to its end (the window pauses the game).
 static FINISHED: AtomicBool = AtomicBool::new(false);
 
@@ -88,6 +111,9 @@ pub fn start() {
                     player.events.len(),
                     player.end
                 );
+                if player.places.is_empty() {
+                    eprintln!("pe2: replay: the recording has no places of the player to check against");
+                }
                 Mode::Replay(player)
             }
             Err(e) => {
@@ -109,10 +135,8 @@ pub fn start() {
 /// The movement options of the recording being replayed (see
 /// controls::pc_input_options).
 pub fn input_options() -> Option<u32> {
-    match &STATE.lock().unwrap().mode {
-        Mode::Replay(p) => Some(p.options),
-        _ => None,
-    }
+    let options = OPTIONS.load(Ordering::SeqCst);
+    (options != u32::MAX).then_some(options)
 }
 
 /// What the pad buffers hold now: None for the live controls.
@@ -148,7 +172,7 @@ fn record() -> std::io::Result<Recorder> {
     writeln!(out, "# options {}", crate::controls::pc_input_options())?;
     writeln!(out, "# card {card_name}")?;
     out.flush()?;
-    Ok(Recorder { out, last: None })
+    Ok(Recorder { out, last: None, place: None, timing: None })
 }
 
 /// Deletes the oldest recordings beyond KEPT (with their cards).
@@ -170,6 +194,7 @@ fn prune(dir: &Path) {
 fn load(path: &Path) -> Result<Player, String> {
     let text = std::fs::read_to_string(path).map_err(|e| e.to_string())?;
     let (mut events, mut end, mut options) = (Vec::new(), 0, None);
+    let (mut places, mut timings) = (Vec::new(), Vec::new());
     let mut card = None;
     for (n, line) in text.lines().enumerate() {
         let bad = || format!("line {}: {line:?}", n + 1);
@@ -185,6 +210,18 @@ fn load(path: &Path) -> Result<Player, String> {
             continue;
         }
         let f: Vec<&str> = line.split_whitespace().collect();
+        let number = |i: usize| f.get(i).and_then(|v| v.parse::<i64>().ok()).ok_or_else(bad);
+        match f[0] {
+            "p" => {
+                places.push((number(1)? as u64, (number(2)? as i32, number(3)? as i32, number(4)? as i32)));
+                continue;
+            }
+            "t" => {
+                timings.push((number(1)? as u64, number(2)? as u32));
+                continue;
+            }
+            _ => {}
+        }
         let update = f[0].parse::<u64>().map_err(|_| bad())?;
         end = end.max(update);
         if f.len() == 1 {
@@ -210,7 +247,18 @@ fn load(path: &Path) -> Result<Player, String> {
         }
     }
     super::memcard::set_card_path(copy);
-    Ok(Player { events, next: 0, end, options: options.ok_or("no options line")? })
+    OPTIONS.store(options.ok_or("no options line")?, Ordering::SeqCst);
+    Ok(Player {
+        events,
+        next: 0,
+        end,
+        places,
+        timings,
+        next_place: 0,
+        next_timing: 0,
+        out_of_place: false,
+        timing_reports: 0,
+    })
 }
 
 impl State {
@@ -262,7 +310,30 @@ pub extern "C" fn pc_pad_frame() {
     if matches!(s.mode, Mode::Off) {
         return;
     }
-    s.update += 1;
+    let (update, blanks) = (s.update + 1, s.blanks);
+    match &mut s.mode {
+        Mode::Record(r) if r.timing != Some(blanks) => {
+            r.timing = Some(blanks);
+            let _ = writeln!(r.out, "t {update} {blanks}");
+        }
+        Mode::Replay(p) => {
+            let mut want = None;
+            while let Some(&(u, b)) = p.timings.get(p.next_timing).filter(|t| t.0 <= update) {
+                want = Some((u, b));
+                p.next_timing += 1;
+            }
+            let want = want.map(|w| w.1).or_else(|| p.timings.get(p.next_timing.wrapping_sub(1)).map(|t| t.1));
+            if let Some(want) = want
+                && want != blanks
+                && p.timing_reports < 10
+            {
+                p.timing_reports += 1;
+                eprintln!("pe2: replay: update {update} came after {blanks} blanks, {want} when recorded");
+            }
+        }
+        _ => {}
+    }
+    s.update = update;
     s.blanks = 0;
     s.take();
     let update = s.update;
@@ -274,6 +345,36 @@ pub extern "C" fn pc_pad_frame() {
     }
     drop(s);
     super::stubs::refresh_pads();
+}
+
+/// Where the player is, at each update in play.
+#[unsafe(no_mangle)]
+pub extern "C" fn pc_replay_player(x: i32, z: i32, yaw: i32) {
+    let _g = super::irq::guard();
+    let mut s = STATE.lock().unwrap();
+    let update = s.update;
+    let place = (x, z, yaw & 0xFFF);
+    match &mut s.mode {
+        Mode::Record(r) if r.place != Some(place) => {
+            r.place = Some(place);
+            let _ = writeln!(r.out, "p {update} {} {} {}", place.0, place.1, place.2);
+        }
+        Mode::Replay(p) if !p.out_of_place => {
+            while p.places.get(p.next_place).is_some_and(|q| q.0 <= update) {
+                p.next_place += 1;
+            }
+            if let Some(&(at, want)) = p.places.get(p.next_place.wrapping_sub(1))
+                && want != place
+            {
+                p.out_of_place = true;
+                eprintln!(
+                    "pe2: replay: out of step at update {update}: the player is at {place:?} (x, z, yaw), \
+                     recorded at {want:?} (from update {at})"
+                );
+            }
+        }
+        _ => {}
+    }
 }
 
 /// A vertical blank (on the interrupt thread, before the pads refresh).
@@ -298,7 +399,17 @@ mod tests {
     fn replay_follows_the_updates() {
         let a = PadInput { held: 0x1000, analog: false, sticks: 0x8080_8080 };
         let b = PadInput { held: 0, analog: false, sticks: 0x8080_8080 };
-        let player = Player { events: vec![(3, 0, a), (5, 9, b)], next: 0, end: 7, options: 0 };
+        let player = Player {
+            events: vec![(3, 0, a), (5, 9, b)],
+            next: 0,
+            end: 7,
+            places: Vec::new(),
+            timings: Vec::new(),
+            next_place: 0,
+            next_timing: 0,
+            out_of_place: false,
+            timing_reports: 0,
+        };
         let mut s = State { mode: Mode::Replay(player), update: 0, blanks: 0, latched: None };
         let mut seen = Vec::new();
         for _ in 0..8 {
