@@ -164,8 +164,8 @@ static ACTUATORS: Mutex<Actuators> = Mutex::new(Actuators { table: 0, len: 0, al
 /// port 2 is empty. Also passes the game's vibration request on.
 pub fn refresh_pads() {
     let (b1, b2) = *PAD_BUFFERS.lock().unwrap();
-    let held = crate::video::PAD1_BUTTONS.load(Ordering::SeqCst) | crate::gamepad::BUTTONS.load(Ordering::SeqCst);
-    let analog = crate::gamepad::CONNECTED.load(Ordering::SeqCst);
+    // While input is recorded or replayed, what replay.rs took.
+    let super::replay::PadInput { held, analog, sticks } = super::replay::current().unwrap_or_else(live_pad);
     // SAFETY: the game registered buffers of at least 34 bytes.
     unsafe {
         if b1 != 0 {
@@ -175,8 +175,7 @@ pub fn refresh_pads() {
             *p.add(2) = !(held as u8);
             *p.add(3) = !((held >> 8) as u8);
             if analog {
-                let sticks = crate::gamepad::STICKS.load(Ordering::SeqCst).to_le_bytes();
-                std::ptr::copy_nonoverlapping(sticks.as_ptr(), p.add(4), 4);
+                std::ptr::copy_nonoverlapping(sticks.to_le_bytes().as_ptr(), p.add(4), 4);
             }
         }
         if b2 != 0 {
@@ -184,6 +183,15 @@ pub fn refresh_pads() {
         }
     }
     update_rumble(analog);
+}
+
+/// The keyboard and the controller as they are now.
+pub fn live_pad() -> super::replay::PadInput {
+    super::replay::PadInput {
+        held: crate::video::PAD1_BUTTONS.load(Ordering::SeqCst) | crate::gamepad::BUTTONS.load(Ordering::SeqCst),
+        analog: crate::gamepad::CONNECTED.load(Ordering::SeqCst),
+        sticks: crate::gamepad::STICKS.load(Ordering::SeqCst),
+    }
 }
 
 /// Motor 0 (small) is on or off, motor 1 (large) has a strength 0-255.

@@ -123,6 +123,9 @@ pub fn modern_movement() -> bool {
 pub extern "C" fn pc_input_options() -> u32 {
     static OPTIONS: std::sync::OnceLock<u32> = std::sync::OnceLock::new();
     *OPTIONS.get_or_init(|| {
+        if let Some(options) = crate::runtime::replay::input_options() {
+            return options;
+        }
         let quick_turn = crate::config::get().input.quick_turn.unwrap_or(true);
         u32::from(modern_movement()) | (u32::from(quick_turn) << 1)
     })

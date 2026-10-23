@@ -73,7 +73,22 @@ struct State {
 
 static STATE: Mutex<Option<State>> = Mutex::new(None);
 
+/// The card image a replay plays on (replay.rs), instead of the usual one.
+static CARD_PATH: std::sync::OnceLock<PathBuf> = std::sync::OnceLock::new();
+
+pub fn set_card_path(path: PathBuf) {
+    let _ = CARD_PATH.set(path);
+}
+
+/// The card image in use.
+pub fn card_path() -> PathBuf {
+    image_path()
+}
+
 fn image_path() -> PathBuf {
+    if let Some(p) = CARD_PATH.get() {
+        return p.clone();
+    }
     if let Some(p) = std::env::var_os("PE2_MEMCARD1") {
         return PathBuf::from(p);
     }

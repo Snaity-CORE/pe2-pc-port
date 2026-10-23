@@ -209,7 +209,8 @@ fn main() -> ExitCode {
     }
     // No arguments: the launcher, except for the unattended and test runs
     // the PE2_* variables drive. It plays with `--play`.
-    let unattended = ["PE2_INPUT", "PE2_LIBTEST", "PE2_SELFTEST"].iter().any(|v| std::env::var_os(v).is_some());
+    let unattended =
+        ["PE2_INPUT", "PE2_REPLAY", "PE2_LIBTEST", "PE2_SELFTEST"].iter().any(|v| std::env::var_os(v).is_some());
     if images.is_empty() && !unattended && !extract {
         return launcher::run();
     }
@@ -293,6 +294,7 @@ fn main() -> ExitCode {
     eprintln!("pe2: game data: {exe_name} from disc 1 ({} KB), loaded into PlayStation memory", exe.len() / 1024);
     eprintln!("pe2: game code: native, starting the game");
     mods::start(&images);
+    runtime::replay::start();
     runtime::start(discs);
     video::start();
     gamepad::start();

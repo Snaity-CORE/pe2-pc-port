@@ -50,6 +50,7 @@ fn schedule_vblank(at: Instant) {
         at,
         Box::new(move || {
             VBLANKS.fetch_add(1, Ordering::SeqCst);
+            super::replay::vblank();
             super::stubs::refresh_pads();
             super::scan_images();
             if let Some(t) = TIMING.lock().unwrap().as_mut() {

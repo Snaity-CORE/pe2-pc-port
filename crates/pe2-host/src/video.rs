@@ -199,6 +199,12 @@ impl ApplicationHandler for App {
             }
             self.next_redraw = now + FRAME;
         }
+        if crate::runtime::replay::take_finished() {
+            // Where the recording ended: held there, with a picture of it.
+            crate::runtime::irq::set_paused(true);
+            save_screenshot();
+            self.update_title(now);
+        }
         if now.duration_since(self.title_at) >= Duration::from_secs(1) {
             self.update_title(now);
         }

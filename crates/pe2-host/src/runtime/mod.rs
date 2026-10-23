@@ -11,6 +11,7 @@ pub mod mdec;
 pub mod memcard;
 pub mod mips;
 pub mod profile;
+pub mod replay;
 pub mod selftest;
 pub mod spu;
 pub mod stream;
