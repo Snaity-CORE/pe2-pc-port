@@ -953,64 +953,62 @@ pub extern "C" fn pcrt_LoadImage(rect: *const Rect, p: *const u16) -> i32 {
             g.shown.truncate(3);
             g.shown.insert(0, Shown { rect, hash, pixels: pixels.to_vec() });
         }
+        let hr = &mut g.hw;
+        if let Some((hash, p)) = picture {
+            hr.upload_picture(&g.vram, x0, y0, w, h, hash, &p);
+            return;
+        }
+        // A screen image read back before (the picture frozen behind the
+        // menus and messages): as the card had it. Before a mod's picture
+        // with what changed over it, below, which would draw what changed
+        // (the characters, the interface) at the console's resolution.
+        let screen = w >= KEPT_SCREEN.0 && h >= KEPT_SCREEN.1;
+        let kept_hash = screen.then(|| crate::mods::screen_hash(w, h, pixels));
+        if kept_hash.is_some_and(|hash| hr.load_kept(&g.vram, x0, y0, w, h, pixels, hash)) {
+            vtrace(format_args!("LoadImage ({x0},{y0}) {w}x{h}: kept"));
+            return;
+        }
+        // The grey negative of one read back (the screen negative effect,
+        // made on the CPU): drawn so from it.
+        let negative_of = kept_hash.and_then(|hash| {
+            if let Some(&(_, of)) = g.negatives.iter().find(|n| n.0 == hash) {
+                return Some(of);
+            }
+            let of = g.read_back.iter().rev().find(|r| is_negative_of(&r.1, pixels))?.0;
+            g.negatives.push((hash, of));
+            if g.negatives.len() > READ_BACKS_KEPT * 4 {
+                g.negatives.remove(0);
+            }
+            Some(of)
+        });
+        if negative_of.is_some_and(|of| hr.load_kept_negative(&g.vram, x0, y0, w, h, pixels, of)) {
+            vtrace(format_args!("LoadImage ({x0},{y0}) {w}x{h}: kept, as its negative"));
+            return;
+        }
         // An image the mod has no picture for, changed a little from one it
         // has: that picture, and what changed.
-        let changed = match (hash, &picture) {
-            (Some(_), None) => g.shown.iter().find(|s| s.rect == rect).and_then(|s| {
-                let p = crate::mods::background(s.hash)?;
-                Some((s.hash, p, s.changed(pixels)?))
-            }),
-            _ => None,
-        };
-        {
-            let hr = &mut g.hw;
-            match (picture, changed) {
-                (Some((hash, p)), _) => hr.upload_picture(&g.vram, x0, y0, w, h, hash, &p),
-                (None, Some((hash, p, tiles))) => {
-                    hr.upload_picture(&g.vram, x0, y0, w, h, hash, &p);
-                    for (tx, ty, tw, th) in tiles {
-                        let tile: Vec<u16> = (ty..ty + th)
-                            .flat_map(|y| pixels[(y * w + tx) as usize..(y * w + tx + tw) as usize].iter().copied())
-                            .collect();
-                        hr.upload_rect(&g.vram, x0 + tx, y0 + ty, tw, th, &tile);
-                    }
-                }
-                (None, None) => {
-                    // A screen image read back before (the picture frozen
-                    // behind the menus): as the layer had it.
-                    let screen = w >= KEPT_SCREEN.0 && h >= KEPT_SCREEN.1;
-                    let hash = screen.then(|| crate::mods::screen_hash(w, h, pixels));
-                    let kept = hash.is_some_and(|hash| hr.load_kept(&g.vram, x0, y0, w, h, pixels, hash));
-                    // The grey negative of one read back (the screen
-                    // negative effect, made on the CPU): drawn so from it.
-                    let negative_of = hash.filter(|_| !kept).and_then(|hash| {
-                        if let Some(&(_, of)) = g.negatives.iter().find(|n| n.0 == hash) {
-                            return Some(of);
-                        }
-                        let of = g.read_back.iter().rev().find(|r| is_negative_of(&r.1, pixels))?.0;
-                        g.negatives.push((hash, of));
-                        if g.negatives.len() > READ_BACKS_KEPT * 4 {
-                            g.negatives.remove(0);
-                        }
-                        Some(of)
-                    });
-                    let negative =
-                        negative_of.is_some_and(|of| hr.load_kept_negative(&g.vram, x0, y0, w, h, pixels, of));
-                    if kept {
-                        vtrace(format_args!("LoadImage ({x0},{y0}) {w}x{h}: kept"));
-                    } else if negative {
-                        vtrace(format_args!("LoadImage ({x0},{y0}) {w}x{h}: kept, as its negative"));
-                    } else if screen && trace("vram") {
-                        if let Some((_, old)) = g.read_back.last().filter(|o| o.1.len() == pixels.len()) {
-                            vtrace(format_args!("  vs last read back: {}", compare(old, pixels, w as usize)));
-                        }
-                        hr.upload_rect(&g.vram, x0, y0, w, h, pixels);
-                    } else {
-                        hr.upload_rect(&g.vram, x0, y0, w, h, pixels);
-                    }
-                }
+        let changed = hash.and_then(|_| {
+            let s = g.shown.iter().find(|s| s.rect == rect)?;
+            let p = crate::mods::background(s.hash)?;
+            Some((s.hash, p, s.changed(pixels)?))
+        });
+        if let Some((hash, p, tiles)) = changed {
+            hr.upload_picture(&g.vram, x0, y0, w, h, hash, &p);
+            for (tx, ty, tw, th) in tiles {
+                let tile: Vec<u16> = (ty..ty + th)
+                    .flat_map(|y| pixels[(y * w + tx) as usize..(y * w + tx + tw) as usize].iter().copied())
+                    .collect();
+                hr.upload_rect(&g.vram, x0 + tx, y0 + ty, tw, th, &tile);
             }
+            return;
         }
+        if screen
+            && trace("vram")
+            && let Some((_, old)) = g.read_back.last().filter(|o| o.1.len() == pixels.len())
+        {
+            vtrace(format_args!("  vs last read back: {}", compare(old, pixels, w as usize)));
+        }
+        hr.upload_rect(&g.vram, x0, y0, w, h, pixels);
     });
     0
 }
