@@ -819,18 +819,20 @@ fn save_vram_png(vram: &Vram, path: &str) {
     let _ = w.write_image_data(&data);
 }
 
-/// PE2_GPUDUMP=<seconds>: dumps the first command list drawn after that time.
+/// PE2_GPUDUMP=<seconds>: dumps the first command lists drawn after that
+/// time (DUMPED_LISTS of them: a frame can have more than one).
 fn dump_due() -> bool {
     use std::sync::OnceLock;
-    use std::sync::atomic::{AtomicBool, Ordering};
+    use std::sync::atomic::{AtomicU32, Ordering};
     use std::time::{Duration, Instant};
+    const DUMPED_LISTS: u32 = 4;
     static AT: OnceLock<Option<Instant>> = OnceLock::new();
-    static DONE: AtomicBool = AtomicBool::new(false);
+    static DONE: AtomicU32 = AtomicU32::new(0);
     let at = AT.get_or_init(|| {
         std::env::var("PE2_GPUDUMP").ok()?.parse::<f64>().ok().map(|s| Instant::now() + Duration::from_secs_f64(s))
     });
     match at {
-        Some(t) if Instant::now() >= *t => !DONE.swap(true, Ordering::SeqCst),
+        Some(t) if Instant::now() >= *t => DONE.fetch_add(1, Ordering::SeqCst) < DUMPED_LISTS,
         _ => false,
     }
 }
