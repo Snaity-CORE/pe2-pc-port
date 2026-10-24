@@ -137,6 +137,7 @@ static struct {
     int count;           /* bits in the buffer */
     uint16_t* out;       /* next output halfword */
     uint16_t* end;       /* end of the run-length data */
+    uint32_t size;       /* the frame's size, from its header (cost model) */
     uint16_t scale;      /* quantization scale << 10 */
     int in_block;        /* inside a block (its DC has been read) */
     int active;
@@ -236,9 +237,31 @@ int pcrt_DecDCTvlcSize2(int size)
     return old;
 }
 
+/* irq.rs: the game thread waits as long as the console's CPU would take. */
+void pc_console_cpu_time(uint32_t cycles);
+
+/* Console CPU cycles of the original routines, measured running them
+ * interpreted (PE2_LIBTEST=vlcfile) on the game's camera images and movie
+ * frames: instructions, plus 6 more cycles for each load from main RAM
+ * (DuckStation's figure). Scenes switching camera wait on this time; free,
+ * their picture ran ahead of their sound. */
+enum {
+    /* DecDCTvlcBuild: 727k instructions, 142k loads. */
+    VLC_BUILD_CYCLES = 727000 + 142000 * 6,
+};
+
+/* DecDCTvlc2 for a frame of `size` (its header's first halfword): 35.5
+ * instructions and 3.07 loads a unit, 0.9 million cycles (27 ms) for a
+ * typical 320x240 camera image. */
+static uint32_t vlc_frame_cycles(uint32_t size)
+{
+    return (355u * size + 307u * 6u * size) / 10u;
+}
+
 void pcrt_DecDCTvlcBuild(uint16_t* table)
 {
     (void)table;
+    pc_console_cpu_time(VLC_BUILD_CYCLES);
 }
 
 /* Words of run-length data a frame decodes to (its first header field). */
@@ -250,17 +273,18 @@ int pcrt_DecDCTBufSize(uint32_t* bs)
 /* Decodes the BS frame at bs into buf (or, with bs NULL, carries on with
  * the frame in progress). Returns 0 when the frame is complete, 1 when
  * DecDCTvlcSize2's limit stopped it first. */
-/* PE2_VLCDUMP=<dir>: saves the first 80 frames decoded (64 KiB from each
- * frame's start) as <dir>/bs_NNN.bin, test input for PE2_LIBTEST=vlcfile. */
+/* PE2_VLCDUMP=<dir>: saves the frames decoded (64 KiB from each frame's
+ * start) as <dir>/bs_NNN.bin, the latest 200 (bs_000 to bs_199, then over
+ * again), test input for PE2_LIBTEST=vlcfile. */
 static void dump_frame(const uint32_t* bs)
 {
     static int count;
     const char* dir = getenv("PE2_VLCDUMP");
-    if (!dir || count >= 80) {
+    if (!dir) {
         return;
     }
     char path[512];
-    snprintf(path, sizeof path, "%s/bs_%03d.bin", dir, count++);
+    snprintf(path, sizeof path, "%s/bs_%03d.bin", dir, count++ % 200);
     FILE* f = fopen(path, "wb");
     if (f) {
         uint32_t start = (uint32_t)(uintptr_t)bs, end = 0x80200000u;
@@ -281,6 +305,7 @@ int pcrt_DecDCTvlc2(uint32_t* bs, uint32_t* buf, uint16_t* table)
         dec.in = h + 4;
         dec.out = (uint16_t*)(buf + 1);
         dec.end = dec.out + 2u * h[0];
+        dec.size = h[0];
         dec.scale = (uint16_t)(h[2] << 10);
         dec.version3 = h[3] >= 3;
         dec.block = 1;
@@ -293,8 +318,14 @@ int pcrt_DecDCTvlc2(uint32_t* bs, uint32_t* buf, uint16_t* table)
     if (limit > dec.end) {
         limit = dec.end;
     }
+    uint16_t* from = dec.out;
     while (dec.out < limit) {
         decode_code();
+    }
+    /* This call's share of the frame's cost. */
+    if (dec.size > 0) {
+        uint64_t share = (uint64_t)vlc_frame_cycles(dec.size) * (uint64_t)(dec.out - from) / (2u * dec.size);
+        pc_console_cpu_time((uint32_t)share);
     }
     if (dec.out < dec.end) {
         return 1;

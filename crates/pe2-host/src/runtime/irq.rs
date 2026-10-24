@@ -27,7 +27,7 @@ use windows_sys::Win32::Foundation::{DUPLICATE_SAME_ACCESS, DuplicateHandle, HAN
 use windows_sys::Win32::Media::timeBeginPeriod;
 use windows_sys::Win32::System::Diagnostics::Debug::{CONTEXT, CONTEXT_CONTROL_X86, GetThreadContext};
 use windows_sys::Win32::System::Threading::{
-    CreateEventW, GetCurrentProcess, GetCurrentThread, INFINITE, ResumeThread, SetEvent, SuspendThread,
+    CreateEventW, GetCurrentProcess, GetCurrentThread, GetCurrentThreadId, INFINITE, ResumeThread, SetEvent, SuspendThread,
     WaitForSingleObject,
 };
 
@@ -107,6 +107,7 @@ pub fn start() {
             DUPLICATE_SAME_ACCESS,
         );
         assert!(ok != 0, "DuplicateHandle failed");
+        GAME_THREAD_ID.store(GetCurrentThreadId(), Ordering::SeqCst);
         Irq {
             game_thread: SendHandle(game),
             queue: Mutex::new(BinaryHeap::new()),
@@ -198,6 +199,25 @@ pub fn set_game_masked(masked: bool) -> bool {
 /// True while an interrupt handler runs (callbacks must not block).
 pub fn in_handler() -> bool {
     IN_HANDLER.load(Ordering::SeqCst)
+}
+
+/// The game thread's id (0 before `start`).
+static GAME_THREAD_ID: AtomicU32 = AtomicU32::new(0);
+
+/// The console's CPU would take `cycles` (at 33.8688 MHz) for library work
+/// the port does at once: the game thread waits that long, with interrupts
+/// coming meanwhile as they would on the console. Only where the game's
+/// pacing counts on that time (see the callers); elsewhere (other threads,
+/// interrupt handlers) it returns at once.
+#[unsafe(no_mangle)]
+pub extern "C" fn pc_console_cpu_time(cycles: u32) {
+    // SAFETY: plain query.
+    if cycles == 0 || unsafe { GetCurrentThreadId() } != GAME_THREAD_ID.load(Ordering::SeqCst) || in_handler() {
+        return;
+    }
+    let until = Instant::now() + Duration::from_nanos(u64::from(cycles) * 1_000_000_000 / 33_868_800);
+    let _g = guard();
+    wait_until(|| Instant::now() >= until);
 }
 
 /// Blocks the game thread until `cond` holds, letting interrupts in while

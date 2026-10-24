@@ -140,6 +140,7 @@ impl Cpu {
     }
 
     fn run(&mut self) {
+        // (Counted for PE2_LIBTEST's cost reports: see `executed`.)
         while self.pc != RETURN_MAGIC {
             if matches!(self.pc, 0xA0 | 0xB0 | 0xC0) {
                 // BIOS function table call: function number in t1.
@@ -167,6 +168,14 @@ impl Cpu {
             self.pending_load = std::mem::take(&mut self.next_load);
             self.pc = self.next_pc;
             self.next_pc = self.pc.wrapping_add(4);
+            INSNS.fetch_add(1, std::sync::atomic::Ordering::Relaxed);
+            if matches!(insn >> 26, 0x20..=0x26) {
+                // Main RAM only: the scratchpad answers in a cycle.
+                let addr = self.r[((insn >> 21) & 31) as usize].wrapping_add(insn as i16 as i32 as u32);
+                if addr & 0x1FFF_FC00 != 0x1F80_0000 {
+                    LOADS.fetch_add(1, std::sync::atomic::Ordering::Relaxed);
+                }
+            }
             self.execute(insn);
             let (reg, v) = self.pending_load;
             if reg != 0 {
@@ -484,4 +493,17 @@ fn count_entry(addr: u32) {
             }
         });
     });
+}
+
+/// Instructions the interpreter has run, and how many of them were loads from main RAM
+/// (PE2_LIBTEST=vlcfile reports what the original library code costs).
+static INSNS: std::sync::atomic::AtomicU64 = std::sync::atomic::AtomicU64::new(0);
+static LOADS: std::sync::atomic::AtomicU64 = std::sync::atomic::AtomicU64::new(0);
+
+/// Instructions and loads run so far (for the C side's tests).
+#[unsafe(no_mangle)]
+pub extern "C" fn pc_mips_executed(loads: *mut u64) -> u64 {
+    // SAFETY: the caller passes a writable u64.
+    unsafe { *loads = LOADS.load(std::sync::atomic::Ordering::Relaxed) };
+    INSNS.load(std::sync::atomic::Ordering::Relaxed)
 }

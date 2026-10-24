@@ -6,7 +6,10 @@
 //! reported once and read as zero.
 //!
 //! DMA transfers complete immediately; their completion interrupt (the
-//! callback registered with DMACallback) is raised shortly after.
+//! callback registered with DMACallback) is raised shortly after, or, for
+//! the MDEC's output, once the console's MDEC would have decoded what was
+//! read: the game's pacing around image decodes (scene camera switches)
+//! counts on that time.
 
 use std::collections::HashSet;
 use std::sync::Mutex;
@@ -124,7 +127,13 @@ pub fn write32(addr: u32, v: u32) {
                 0x8 => {
                     h.dma[index].chcr = v;
                     if v & (1 << 24) != 0 {
-                        return Some(h.run_dma(index));
+                        let macroblocks = if index == 1 {
+                            let words = h.dma_words(index);
+                            words.div_ceil(h.mdec.words_per_macroblock())
+                        } else {
+                            0
+                        };
+                        return Some((h.run_dma(index), macroblocks));
                     }
                 }
                 _ => {}
@@ -136,17 +145,17 @@ pub fn write32(addr: u32, v: u32) {
             None
         }
     });
-    if let Some(channel) = completed {
-        dma_complete(channel);
+    if let Some((channel, macroblocks)) = completed {
+        dma_complete(channel, macroblocks);
     }
 }
 
 impl Hw {
-    /// Runs DMA `index` to completion; returns the channel.
-    fn run_dma(&mut self, index: usize) -> usize {
+    /// Words DMA `index` moves as set up.
+    fn dma_words(&self, index: usize) -> u32 {
         let ch = self.dma[index];
         let block = ch.bcr & 0xFFFF;
-        let words = match (ch.chcr >> 9) & 3 {
+        match (ch.chcr >> 9) & 3 {
             0 => {
                 if block == 0 {
                     0x1_0000
@@ -155,7 +164,13 @@ impl Hw {
                 }
             }
             _ => block.max(1) * (ch.bcr >> 16).max(1),
-        };
+        }
+    }
+
+    /// Runs DMA `index` to completion; returns the channel.
+    fn run_dma(&mut self, index: usize) -> usize {
+        let ch = self.dma[index];
+        let words = self.dma_words(index);
         let to_device = ch.chcr & 1 != 0;
         let step: i32 = if ch.chcr & 2 != 0 { -4 } else { 4 };
         let mut addr = ch.madr;
@@ -198,13 +213,29 @@ impl Hw {
     }
 }
 
-fn dma_complete(channel: usize) {
+/// The console's MDEC: 448 CPU cycles an 8x8 block, six blocks a
+/// macroblock (as DuckStation times it).
+const MDEC_MACROBLOCK: Duration = Duration::from_nanos(2688 * 1_000_000_000 / 33_868_800);
+
+/// When the MDEC is done with what it was given so far.
+static MDEC_DONE_AT: Mutex<Option<Instant>> = Mutex::new(None);
+
+/// Raises `channel`'s completion interrupt; for the MDEC's output, once its
+/// `macroblocks` are decoded, after what it was decoding before.
+fn dma_complete(channel: usize, macroblocks: u32) {
+    let mut at = Instant::now() + Duration::from_micros(100);
+    if channel == 1 && macroblocks > 0 {
+        let mut done = MDEC_DONE_AT.lock().unwrap();
+        let start = done.map_or(Instant::now(), |d| d.max(Instant::now()));
+        at = start + MDEC_MACROBLOCK * macroblocks;
+        *done = Some(at);
+    }
     let cb = DMA_CALLBACKS[channel].load(Ordering::SeqCst);
     if cb == 0 {
         return;
     }
     irq::schedule(
-        Instant::now() + Duration::from_micros(100),
+        at,
         Box::new(move || {
             call_psx(cb, &[]);
         }),

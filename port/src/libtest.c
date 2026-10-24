@@ -711,6 +711,7 @@ static int vlc_build(int compare)
 #define VLC_OUT_BYTES 0x40000u
 uint32_t pcrt_DecDCTvlcSize2(); uint32_t pcrt_stub_DecDCTvlcSize2();
 uint32_t pcrt_DecDCTvlc2(); uint32_t pcrt_stub_DecDCTvlc2();
+uint64_t pc_mips_executed(uint64_t* loads);
 
 static uint32_t call_lib(int original, LibFn native, LibFn stub, uint32_t a0, uint32_t a1, uint32_t a2)
 {
@@ -733,7 +734,14 @@ static int vlc_decode(int original, int size2, uint32_t rets[4096])
 {
     memset((void*)(uintptr_t)VLC_OUT, 0xCD, VLC_OUT_BYTES);
     memset((void*)(uintptr_t)VLC_TABLE, 0, VLC_TABLE_BYTES);
+    uint64_t build_loads0, build_loads1;
+    uint64_t build0 = pc_mips_executed(&build_loads0);
     call_lib(original, (LibFn)pcrt_DecDCTvlcBuild, (LibFn)pcrt_stub_DecDCTvlcBuild, VLC_TABLE, 0, 0);
+    uint64_t build1 = pc_mips_executed(&build_loads1);
+    if (original) {
+        fprintf(stderr, "[libtest] DecDCTvlcBuild: %llu instructions, %llu loads\n", (unsigned long long)(build1 - build0),
+                (unsigned long long)(build_loads1 - build_loads0));
+    }
     call_lib(original, (LibFn)pcrt_DecDCTvlcSize2, (LibFn)pcrt_stub_DecDCTvlcSize2, (uint32_t)size2, 0, 0);
     int n = 0;
     uint32_t r = call_lib(original, (LibFn)pcrt_DecDCTvlc2, (LibFn)pcrt_stub_DecDCTvlc2, VLC_BS, VLC_OUT, VLC_TABLE);
@@ -771,7 +779,13 @@ static int vlc_file(const char* spec)
     (void)len;
     static uint8_t want[VLC_OUT_BYTES];
     static uint32_t want_rets[4096], got_rets[4096];
+    uint64_t loads0, loads1;
+    uint64_t insns0 = pc_mips_executed(&loads0);
     int nw = vlc_decode(1, size2, want_rets);
+    uint64_t insns1 = pc_mips_executed(&loads1);
+    fprintf(stderr, "[libtest] vlcfile %s: original ran %llu instructions, %llu loads; %u input halfwords\n", path,
+            (unsigned long long)(insns1 - insns0), (unsigned long long)(loads1 - loads0),
+            (unsigned)((const uint16_t*)(uintptr_t)VLC_BS)[0]);
     if (!compare) {
         printf("calls %d:", nw);
         for (int i = 0; i < nw; i++) {

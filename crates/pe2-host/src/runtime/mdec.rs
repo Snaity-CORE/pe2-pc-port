@@ -197,6 +197,12 @@ impl Mdec {
         src
     }
 
+    /// Output words of one 16x16 macroblock at the current command's depth
+    /// (24 or 15 bits a pixel).
+    pub fn words_per_macroblock(&self) -> u32 {
+        if (self.command >> 27) & 3 == 2 { 192 } else { 128 }
+    }
+
     fn decode(&mut self) {
         let depth = (self.command >> 27) & 3;
         let signed = self.command & (1 << 26) != 0;
