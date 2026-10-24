@@ -201,8 +201,9 @@ impl ApplicationHandler for App {
             }
             self.next_redraw = now + FRAME;
         }
-        if crate::runtime::replay::take_finished() {
+        if crate::runtime::replay::take_finished() && std::env::var("PE2_REPLAY_PAUSE").as_deref() != Ok("0") {
             // Where the recording ended: held there, with a picture of it.
+            eprintln!("pe2: replay: paused (P resumes, with the controls)");
             crate::runtime::irq::set_paused(true);
             save_screenshot();
             self.update_title(now);

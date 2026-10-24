@@ -71,6 +71,7 @@ pub fn start(discs: Vec<Box<dyn crate::disc::Disc>>) {
     unsafe { pc_trace_images = i32::from(trace("images")) };
     lowmem::install();
     watch::install_handler();
+    watch::start_peek();
     irq::start();
     vsync::start();
     gpu::start();

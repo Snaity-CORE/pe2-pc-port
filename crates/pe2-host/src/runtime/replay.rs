@@ -6,7 +6,8 @@
 //! the memory card as it was at power-on beside it (`.mcd`). With
 //! `PE2_REPLAY=<recording>.txt`, the game plays it back from power-on with
 //! a copy of that card, then pauses (P resumes, with the controls back),
-//! saving a screenshot.
+//! saving a screenshot; with `PE2_REPLAY_PAUSE=0` it goes on instead, and
+//! with `PE2_REPLAY_EXIT=<seconds>` the game closes that long after the end.
 //!
 //! Input is tied to the game's main-loop updates (the fork's gameflow.c
 //! calls `pc_pad_frame` before sampling the buttons), not to time: a load
@@ -294,14 +295,29 @@ impl State {
                     p.next += 1;
                 }
                 if p.next == p.events.len() && update >= p.end {
-                    eprintln!("pe2: replay: done at update {update}; paused (P resumes, with the controls)");
+                    eprintln!("pe2: replay: done at update {update}");
                     self.mode = Mode::Off;
                     self.latched = None;
                     FINISHED.store(true, Ordering::SeqCst);
+                    exit_later();
                 }
             }
         }
     }
+}
+
+/// With PE2_REPLAY_EXIT=<seconds>: closes the game that long after a
+/// replay's end (unattended runs).
+fn exit_later() {
+    let Some(secs) = std::env::var("PE2_REPLAY_EXIT").ok().and_then(|v| v.trim().parse::<f64>().ok()) else {
+        return;
+    };
+    std::thread::spawn(move || {
+        std::thread::sleep(std::time::Duration::from_secs_f64(secs.max(0.0)));
+        eprintln!("pe2: replay: closing, {secs} s after the end (PE2_REPLAY_EXIT)");
+        crate::logfile::drain();
+        std::process::exit(0);
+    });
 }
 
 /// The game's main loop is about to sample the controller.

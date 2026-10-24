@@ -90,6 +90,10 @@ scale = 4
 [cheats]
 # Every weapon hit is a critical hit.
 # always_critical = false
+# The player takes no damage.
+# infinite_hp = false
+# Every hit of the player's kills.
+# one_hit_kill = false
 
 [debug]
 # Record each session's controller input into recordings/ in the data

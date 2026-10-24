@@ -103,7 +103,9 @@ Debug output:
   data folder, the last ten, each with the memory card it started with). `PE2_REPLAY=<recording>.txt` plays one back from power-on on a
   copy of that card, the same way, update for update, then pauses where it
   ended (P resumes with the controls) and saves a screenshot: a way to get
-  back to a place to debug it.
+  back to a place to debug it. `PE2_REPLAY_PAUSE=0` lets the game go on
+  past the end instead, and `PE2_REPLAY_EXIT=<seconds>` closes it that long
+  after the end.
 - `PE2_SCREENSHOT=<dir>` saves the displayed picture as a PNG every two
   seconds. Screenshots show your game's content; keep them out of the
   repository.
@@ -113,6 +115,8 @@ Debug output:
 - `PE2_WATCH=0x801D49C4[,...]` (up to four addresses) logs every write to
   those words with the writing instruction's address, using the CPU's debug
   registers.
+- `PE2_PEEK=0x80082818:0x58[,addr:len...]` prints those bytes of PSX RAM
+  every five seconds: a game's state while it seems stuck.
 - A native crash prints the faulting address and stack; map the addresses to
   game functions with `python tools/symbolize.py <addr>...` (uses the linker
   map, `target/.../deps/pe2.map`).

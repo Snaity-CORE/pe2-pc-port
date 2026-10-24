@@ -1,9 +1,12 @@
-//! Debugging aid: hardware write watchpoints on PSX addresses.
+//! Debugging aids on PSX memory.
 //!
 //! `PE2_WATCH=0x801D49C4[,addr...]` (up to four) arms the x86 debug
 //! registers on the game and IRQ threads; every write to a watched word logs
 //! the writing instruction's address and the new value. Map the address to a
 //! function with tools/symbolize.py.
+//!
+//! `PE2_PEEK=0x80082818:0x58[,addr:len...]` prints those bytes of PSX RAM
+//! every five seconds (a game's state while it seems stuck).
 
 use std::sync::OnceLock;
 
@@ -61,6 +64,33 @@ pub fn arm(thread: HANDLE) {
         SetThreadContext(thread, &ctx);
         ResumeThread(thread);
     }
+}
+
+/// Starts PE2_PEEK, if set.
+pub fn start_peek() {
+    let Ok(spec) = std::env::var("PE2_PEEK") else { return };
+    let regions: Vec<(u32, u32)> = spec
+        .split(',')
+        .filter_map(|r| {
+            let (a, l) = r.split_once(':')?;
+            let num = |v: &str| u32::from_str_radix(v.trim().trim_start_matches("0x"), 16).ok();
+            Some((num(a)?, num(l)?.min(0x400)))
+        })
+        .filter(|&(a, l)| (0x8000_0000..0x8020_0000).contains(&a) && a + l <= 0x8020_0000)
+        .collect();
+    std::thread::spawn(move || {
+        loop {
+            std::thread::sleep(std::time::Duration::from_secs(5));
+            for &(addr, len) in &regions {
+                // SAFETY: inside PSX RAM, mapped for the process's life; a
+                // racy read of bytes is fine for a look.
+                let bytes = unsafe { std::slice::from_raw_parts(addr as *const u8, len as usize) };
+                let hex: Vec<String> =
+                    bytes.chunks(4).map(|w| w.iter().map(|b| format!("{b:02X}")).collect()).collect();
+                eprintln!("[peek {:8.3}] {addr:08X}: {}", super::spu::stamp(), hex.join(" "));
+            }
+        }
+    });
 }
 
 pub fn install_handler() {

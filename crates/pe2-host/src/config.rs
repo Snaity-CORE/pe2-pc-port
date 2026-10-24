@@ -35,6 +35,10 @@ pub struct Debug {
 pub struct Cheats {
     /// Every weapon hit is a critical hit (default off).
     pub always_critical: Option<bool>,
+    /// The player takes no damage (default off).
+    pub infinite_hp: Option<bool>,
+    /// Every hit of the player's kills (default off).
+    pub one_hit_kill: Option<bool>,
 }
 
 #[derive(Debug, Default, Deserialize)]

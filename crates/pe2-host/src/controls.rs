@@ -139,6 +139,22 @@ pub extern "C" fn pc_cheat_always_critical() -> i32 {
     i32::from(*ON.get_or_init(|| crate::config::get().cheats.always_critical.unwrap_or(false)))
 }
 
+/// Cheats ([cheats] infinite_hp): the player takes no damage (damage.c in
+/// the fork).
+#[unsafe(no_mangle)]
+pub extern "C" fn pc_cheat_infinite_hp() -> i32 {
+    static ON: std::sync::OnceLock<bool> = std::sync::OnceLock::new();
+    i32::from(*ON.get_or_init(|| crate::config::get().cheats.infinite_hp.unwrap_or(false)))
+}
+
+/// Cheats ([cheats] one_hit_kill): every hit of the player's kills
+/// (damage.c in the fork).
+#[unsafe(no_mangle)]
+pub extern "C" fn pc_cheat_one_hit_kill() -> i32 {
+    static ON: std::sync::OnceLock<bool> = std::sync::OnceLock::new();
+    i32::from(*ON.get_or_init(|| crate::config::get().cheats.one_hit_kill.unwrap_or(false)))
+}
+
 /// PE2_TRACE=move: the stick (or d-pad) direction, the yaw it asks for,
 /// the player's yaw and position, each tick of modern movement.
 #[unsafe(no_mangle)]
