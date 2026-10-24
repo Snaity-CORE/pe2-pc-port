@@ -315,8 +315,7 @@ fn exit_later() {
     std::thread::spawn(move || {
         std::thread::sleep(std::time::Duration::from_secs_f64(secs.max(0.0)));
         eprintln!("pe2: replay: closing, {secs} s after the end (PE2_REPLAY_EXIT)");
-        crate::logfile::drain();
-        std::process::exit(0);
+        crate::logfile::exit(0);
     });
 }
 

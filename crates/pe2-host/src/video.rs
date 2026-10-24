@@ -120,8 +120,7 @@ impl ApplicationHandler for App {
         match event {
             WindowEvent::CloseRequested => {
                 event_loop.exit();
-                crate::logfile::drain();
-                std::process::exit(0);
+                crate::logfile::exit(0);
             }
             // In scripted runs only PE2_INPUT drives the pad: stray keys
             // (even Esc) would change the run being measured.
@@ -158,8 +157,7 @@ impl ApplicationHandler for App {
                     }
                     if code == KeyCode::Escape {
                         if event.state == ElementState::Pressed && !event.repeat && self.confirm_quit() {
-                            crate::logfile::drain();
-                            std::process::exit(0);
+                            crate::logfile::exit(0);
                         }
                         return;
                     }

@@ -5,24 +5,30 @@
 //! local time in front: `[HH:MM:SS.mmm] ...`.
 //!
 //! What is still in the pipe when the process ends would be lost: the exit
-//! paths and the crash report call `drain` first.
+//! paths and the crash report call `drain` first. It writes a mark into the
+//! pipe and waits for the thread to reach it (asking the pipe how much it
+//! holds would wait on the thread's pending read of the same handle).
 
-use std::sync::atomic::{AtomicBool, AtomicIsize, Ordering};
+use std::sync::atomic::{AtomicIsize, AtomicU32, Ordering};
 
 use windows_sys::Win32::Foundation::{DUPLICATE_SAME_ACCESS, DuplicateHandle, HANDLE, INVALID_HANDLE_VALUE};
 use windows_sys::Win32::Storage::FileSystem::{FILE_TYPE_CHAR, GetFileType, ReadFile, WriteFile};
 use windows_sys::Win32::System::Console::{GetStdHandle, STD_ERROR_HANDLE, SetStdHandle};
-use windows_sys::Win32::System::Pipes::{CreatePipe, PeekNamedPipe};
+use windows_sys::Win32::System::Pipes::CreatePipe;
 
 unsafe extern "C" {
     fn _open_osfhandle(handle: isize, flags: i32) -> i32;
     fn _dup2(from: i32, to: i32) -> i32;
 }
 
-/// The pipe's read end (0: not started), and whether the writer thread is
-/// between reading and writing a chunk.
-static READ_END: AtomicIsize = AtomicIsize::new(0);
-static BUSY: AtomicBool = AtomicBool::new(false);
+/// The pipe's write end (0: not started); the last drain mark sent, and the
+/// last one the thread has written everything up to.
+static WRITE_END: AtomicIsize = AtomicIsize::new(0);
+static MARK_SENT: AtomicU32 = AtomicU32::new(0);
+static MARK_SEEN: AtomicU32 = AtomicU32::new(0);
+
+/// A drain mark's line: this, then its number (never written to the log).
+const MARK: &[u8] = b"\x01pe2 log drain ";
 
 /// Starts stamping the error output, unless it is a console.
 pub fn start() {
@@ -49,7 +55,7 @@ pub fn start() {
             return;
         }
         SetStdHandle(STD_ERROR_HANDLE, write);
-        READ_END.store(read as isize, Ordering::SeqCst);
+        WRITE_END.store(write as isize, Ordering::SeqCst);
         let (read, out) = (read as isize, out as isize);
         std::thread::Builder::new().name("log".into()).spawn(move || copy(read, out)).expect("spawn log thread");
     }
@@ -67,18 +73,21 @@ fn copy(read: isize, out: isize) {
         if ok == 0 || n == 0 {
             return;
         }
-        BUSY.store(true, Ordering::SeqCst);
         let mut text = Vec::new();
+        let mut seen = None;
         for &b in &chunk[..n as usize] {
-            if line.is_empty() && b != b'\r' {
-                line.extend_from_slice(stamp().as_bytes());
-            }
             if b == b'\r' {
                 continue;
             }
             line.push(b);
             if b == b'\n' {
-                text.extend_from_slice(&line);
+                match line.strip_prefix(MARK) {
+                    Some(number) => seen = std::str::from_utf8(number).ok().and_then(|n| n.trim().parse().ok()),
+                    None => {
+                        text.extend_from_slice(stamp().as_bytes());
+                        text.extend_from_slice(&line);
+                    }
+                }
                 line.clear();
             }
         }
@@ -86,29 +95,22 @@ fn copy(read: isize, out: isize) {
         if !text.is_empty() {
             write_all(out, &text);
         }
-        BUSY.store(false, Ordering::SeqCst);
+        if let Some(mark) = seen {
+            MARK_SEEN.store(mark, Ordering::SeqCst);
+        }
     }
 }
 
 fn write_all(out: isize, mut bytes: &[u8]) {
     while !bytes.is_empty() {
         let mut n = 0u32;
-        // SAFETY: the original error output, from a live buffer.
+        // SAFETY: a handle of this process's, from a live buffer.
         let ok = unsafe { WriteFile(out as HANDLE, bytes.as_ptr(), bytes.len() as u32, &mut n, std::ptr::null_mut()) };
         if ok == 0 || n == 0 {
             return;
         }
         bytes = &bytes[n as usize..];
     }
-}
-
-fn pipe_empty(read: isize) -> bool {
-    let mut avail = 0u32;
-    // SAFETY: a peek at the pipe's read end.
-    let ok = unsafe {
-        PeekNamedPipe(read as HANDLE, std::ptr::null_mut(), 0, std::ptr::null_mut(), &mut avail, std::ptr::null_mut())
-    };
-    ok == 0 || avail == 0
 }
 
 /// `[HH:MM:SS.mmm] `, the local time.
@@ -124,14 +126,34 @@ fn stamp() -> String {
 
 /// Waits (a second at most) until what was written so far is in the log.
 pub fn drain() {
-    let read = READ_END.load(Ordering::SeqCst);
-    if read == 0 {
+    let write = WRITE_END.load(Ordering::SeqCst);
+    if write == 0 {
         return;
     }
+    let mark = MARK_SENT.fetch_add(1, Ordering::SeqCst) + 1;
+    let mut line = MARK.to_vec();
+    line.extend_from_slice(format!("{mark}\n").as_bytes());
+    write_all(write, &line);
     let until = std::time::Instant::now() + std::time::Duration::from_secs(1);
-    while (!pipe_empty(read) || BUSY.load(Ordering::SeqCst)) && std::time::Instant::now() < until {
-        std::thread::sleep(std::time::Duration::from_millis(5));
+    while MARK_SEEN.load(Ordering::SeqCst) < mark && std::time::Instant::now() < until {
+        std::thread::sleep(std::time::Duration::from_millis(2));
     }
+}
+
+/// Ends the game: the log first, then the process at once. Not through
+/// ExitProcess: its cleanup (DLLs, the C runtime flushing its streams) can
+/// wait forever on a lock another thread held when it was stopped, and
+/// nothing needs it (memory cards are written as they change).
+pub fn exit(code: u32) -> ! {
+    drain();
+    // SAFETY: ends this process.
+    unsafe {
+        windows_sys::Win32::System::Threading::TerminateProcess(
+            windows_sys::Win32::System::Threading::GetCurrentProcess(),
+            code,
+        );
+    }
+    std::process::exit(code as i32)
 }
 
 /// `drain` for the C side (the crash report).
