@@ -65,6 +65,14 @@ pub fn scan_images() {
     unsafe { pc_scan_images() };
 }
 
+/// Whether PE2_TRACE names `name`, for traces in the fork's C code.
+#[unsafe(no_mangle)]
+pub extern "C" fn pc_trace_enabled(name: *const std::ffi::c_char) -> i32 {
+    // SAFETY: the C side passes a NUL-terminated string literal.
+    let name = unsafe { std::ffi::CStr::from_ptr(name) };
+    name.to_str().map_or(0, |n| i32::from(trace(n)))
+}
+
 /// Starts the runtime on the game thread, before the game's main().
 pub fn start(discs: Vec<Box<dyn crate::disc::Disc>>) {
     // SAFETY: written once before any other thread starts.

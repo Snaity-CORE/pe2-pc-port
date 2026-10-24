@@ -104,6 +104,12 @@ pub extern "C" fn pcrt_VSync(mode: i32) -> i32 {
         _ => {}
     }
     let _g = irq::guard();
+    if super::trace("vsyncmode") {
+        static LAST: AtomicU32 = AtomicU32::new(u32::MAX);
+        if LAST.swap(mode as u32, Ordering::SeqCst) != mode as u32 {
+            eprintln!("[vsync {:8.3}] waits with mode {mode}", super::spu::stamp());
+        }
+    }
     let last_call_at = last_call_at();
     let last_call = TIMING.lock().unwrap().as_ref().expect("vsync not started").last_call;
     let now = VBLANKS.load(Ordering::SeqCst);
@@ -117,8 +123,19 @@ pub extern "C" fn pcrt_VSync(mode: i32) -> i32 {
         super::profile::report(last_call_at);
     }
     let ret = hsyncs_since(last_call_at) & 0xFFFF;
-    TIMING.lock().unwrap().as_mut().unwrap().last_call = VBLANKS.load(Ordering::SeqCst);
-    mark_call(Instant::now());
+    // Lines are counted from the vertical blank that ended the wait, as the
+    // console's counter is read right at it: not from when this thread got
+    // going again, which can be milliseconds later (the blank's handler
+    // hands the frame to the graphics card first). Counted from then, a
+    // scene's paced wait (VSync(1)) runs past the next blank, and every
+    // frame takes one blank more than on the console.
+    let blank_at = {
+        let mut timing = TIMING.lock().unwrap();
+        let t = timing.as_mut().unwrap();
+        t.last_call = VBLANKS.load(Ordering::SeqCst);
+        t.last_vblank_at
+    };
+    mark_call(blank_at);
     ret
 }
 

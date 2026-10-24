@@ -630,6 +630,19 @@ impl Tiles {
         Self::touched(a).is_some_and(|(rows, mask)| rows.into_iter().any(|r| self.0[r] & mask != 0))
     }
 
+    /// The tiles set in the tile rows `a` touches, as one rectangle of
+    /// whole tiles (None: none set).
+    fn bounds_in_rows(&self, a: Area) -> Option<Area> {
+        let (rows, _) = Self::touched(a)?;
+        let (r0, r1) = (*rows.start(), *rows.end());
+        let mask = self.0[r0..=r1].iter().fold(0u64, |m, r| m | r);
+        if mask == 0 {
+            return None;
+        }
+        let (c0, c1) = (mask.trailing_zeros() as i32, 63 - mask.leading_zeros() as i32);
+        Some(Area { x0: c0 * 16, y0: r0 as i32 * 16, x1: c1 * 16 + 15, y1: r1 as i32 * 16 + 15 })
+    }
+
     fn get(&self, x: i32, y: i32) -> bool {
         self.0[(y as usize >> 4) % self.0.len()] >> ((x as u32 >> 4) & 63) & 1 != 0
     }
@@ -1064,6 +1077,10 @@ impl Hw {
         if a.x1 < a.x0 || a.y1 < a.y0 || !self.stale.hits(a) {
             return;
         }
+        // Everything only the card has in these rows, at once: the game
+        // reads a picture back in narrow strips (a screen effect reads 20 a
+        // frame), and each read waits for the card.
+        let Some(a) = self.stale.bounds_in_rows(a) else { return };
         self.flush(vram);
         let Some(pixels) = self.read_down(a) else { return };
         let w = (a.x1 - a.x0 + 1) as usize;
@@ -1268,8 +1285,9 @@ impl Hw {
     }
 
     /// A textured primitive samples `page` and `clut`: they must be
-    /// current. True when its 15-bit texels are the card's own pixels.
-    fn sample(&mut self, vram: &mut Vram, st: &DrawState, sh: &Shading) -> bool {
+    /// current. True when its 15-bit texels are the card's own pixels. `uv`:
+    /// the texel rectangle it reads (u0, v0, u1, v1, inclusive), if known.
+    fn sample(&mut self, vram: &mut Vram, st: &DrawState, sh: &Shading, uv: Option<(i32, i32, i32, i32)>) -> bool {
         let page_w = match st.tex_depth {
             0 => 64,
             1 => 128,
@@ -1290,16 +1308,30 @@ impl Hw {
             self.sampled.add(clut);
             return false;
         }
-        if !self.hires.hits(page) {
+        // What it reads: its own texel rectangle, unless a texture window
+        // folds its coordinates (then the whole page).
+        let read = match uv {
+            Some((u0, v0, u1, v1)) if st.win_mask_x == 0 && st.win_mask_y == 0 => {
+                let (u0, v0) = (u0.clamp(0, 255), v0.clamp(0, 255));
+                let (u1, v1) = (u1.clamp(u0, 255), v1.clamp(v0, 255));
+                Area::new(st.tex_x + u0, st.tex_y + v0, u1 - u0 + 1, v1 - v0 + 1)
+            }
+            _ => page,
+        };
+        if !self.hires.hits(read) {
             return false;
         }
-        // The card's pixels as they are now, for this primitive.
-        if !self.snapped.covers(page) {
+        // The card's pixels as they are now, for this primitive: only what
+        // it reads (a screen effect draws hundreds of strips a frame, each
+        // reading the screen where the one before drew).
+        if !self.snapped.covers(read) {
             let s = self.scale;
-            let (x0, y0) = (page.x0 * s, page.y0 * s);
-            let (x1, y1) = (((page.x1 + 1) * s).min(self.width as i32), ((page.y1 + 1) * s).min(self.height as i32));
-            self.ops.push(Op::ToScratch { x: x0 as u32, y: y0 as u32, w: (x1 - x0) as u32, h: (y1 - y0) as u32 });
-            self.snapped.add(page);
+            let (x0, y0) = ((read.x0 * s).min(self.width as i32), (read.y0 * s).min(self.height as i32));
+            let (x1, y1) = (((read.x1 + 1) * s).min(self.width as i32), ((read.y1 + 1) * s).min(self.height as i32));
+            if x1 > x0 && y1 > y0 {
+                self.ops.push(Op::ToScratch { x: x0 as u32, y: y0 as u32, w: (x1 - x0) as u32, h: (y1 - y0) as u32 });
+            }
+            self.snapped.add(read);
         }
         true
     }
@@ -1398,13 +1430,14 @@ impl Hw {
         vram: &mut Vram,
         st: &DrawState,
         sh: &Shading,
+        uv: Option<(i32, i32, i32, i32)>,
         keys: &[u32],
         make: impl Fn(GpuVertex) -> Vec<GpuVertex>,
     ) {
         if self.too_much() {
             self.flush(vram);
         }
-        let from_card = sh.textured && self.sample(vram, st, sh);
+        let from_card = sh.textured && self.sample(vram, st, sh, uv);
         let template = |pass| {
             let t = self.template(st, sh, pass);
             GpuVertex { mode: t.mode | if from_card { FROM_CARD } else { 0 }, ..t }
@@ -1449,7 +1482,7 @@ impl Hw {
             Some(uv) => self.replacement(vram, st, sh, uv),
             None => 0,
         };
-        self.shaded(vram, st, sh, &keys, |t| {
+        self.shaded(vram, st, sh, sh.uv_limits, &keys, |t| {
             v.iter()
                 .map(|q| {
                     let c = if gouraud { q } else { &v[0] };
@@ -1512,7 +1545,7 @@ impl Hw {
             if st.rect_flip_y { v } else { v + h - 1 },
         );
         let repl = self.replacement(vram, st, sh, uv);
-        self.shaded(vram, st, sh, &[], |t| {
+        self.shaded(vram, st, sh, Some(uv), &[], |t| {
             Self::quad(x0, y0, x1 - 0.0, y1 - 0.0, [u0, v0], [u1, v1], GpuVertex { color: c, repl, ..t })
                 .iter()
                 .map(|q| GpuVertex { pos: [q.pos[0] - 0.5, q.pos[1] - 0.5], ..*q })
@@ -1529,7 +1562,7 @@ impl Hw {
         let steps = dx.abs().max(dy.abs());
         let s = self.scale as f32;
         let gouraud = sh.gouraud;
-        self.shaded(vram, st, sh, &[], |t| {
+        self.shaded(vram, st, sh, None, &[], |t| {
             let mut out = Vec::with_capacity(6 * (steps as usize + 1));
             for i in 0..=steps {
                 let lerp = |p: i32, q: i32| if steps == 0 { p } else { p + (q - p) * i / steps };

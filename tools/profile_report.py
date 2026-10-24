@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Whole-session profile from PE2_TRACE=prof samples (pe2-prof.bin).
 
-    python tools/profile_report.py [pe2-prof.bin] [--map MAP] [--top N] [--skip SECONDS]
+    python tools/profile_report.py [pe2-prof.bin] [--map MAP] [--top N] [--skip SECONDS] [--span SECONDS]
 
 The game thread is sampled about every millisecond. "self" is where it
 was; samples outside the executable (Windows waits, the C runtime) are
@@ -62,6 +62,7 @@ def main() -> None:
     parser.add_argument("--map", type=Path, default=DEFAULT_MAP)
     parser.add_argument("--top", type=int, default=30)
     parser.add_argument("--skip", type=float, default=0, help="seconds of samples to skip (boot)")
+    parser.add_argument("--span", type=float, default=0, help="seconds of samples to keep after --skip (0: all)")
     args = parser.parse_args()
 
     keys, names = load_map(args.map)
@@ -75,6 +76,8 @@ def main() -> None:
     data = args.samples.read_bytes()
     records = [RECORD.unpack_from(data, o) for o in range(0, len(data) - RECORD.size + 1, RECORD.size)]
     records = records[int(args.skip * 1000):]
+    if args.span > 0:
+        records = records[: int(args.span * 1000)]
     total = len(records)
     if not total:
         raise SystemExit("no samples")

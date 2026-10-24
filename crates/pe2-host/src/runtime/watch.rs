@@ -6,7 +6,7 @@
 //! function with tools/symbolize.py.
 //!
 //! `PE2_PEEK=0x80082818:0x58[,addr:len...]` prints those bytes of PSX RAM
-//! every five seconds (a game's state while it seems stuck).
+//! (or of the scratchpad) every five seconds (a game's state while it seems stuck).
 
 use std::sync::OnceLock;
 
@@ -76,7 +76,10 @@ pub fn start_peek() {
             let num = |v: &str| u32::from_str_radix(v.trim().trim_start_matches("0x"), 16).ok();
             Some((num(a)?, num(l)?.min(0x400)))
         })
-        .filter(|&(a, l)| (0x8000_0000..0x8020_0000).contains(&a) && a + l <= 0x8020_0000)
+        .filter(|&(a, l)| {
+            let inside = |lo: u32, hi: u32| (lo..hi).contains(&a) && a + l <= hi;
+            inside(0x8000_0000, 0x8020_0000) || inside(0x1F80_0000, 0x1F80_0400)
+        })
         .collect();
     std::thread::spawn(move || {
         loop {
