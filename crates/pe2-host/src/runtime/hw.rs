@@ -35,6 +35,10 @@ struct DmaChannel {
 #[derive(Default)]
 struct Hw {
     mdec: Mdec,
+    /// DMA 1 (the MDEC's output) was started before the MDEC had the data:
+    /// it runs once a decode provides it, as the hardware's request line
+    /// holds the transfer.
+    out_waiting: bool,
     dma: [DmaChannel; 7],
     dpcr: u32,
     dicr: u32,
@@ -100,7 +104,7 @@ pub fn write32(addr: u32, v: u32) {
     let completed = with_hw(|h| match addr {
         MDEC0 => {
             h.mdec.write_word(v);
-            None
+            h.run_waiting_output()
         }
         MDEC1 => {
             if v & (1 << 31) != 0 {
@@ -109,6 +113,7 @@ pub fn write32(addr: u32, v: u32) {
                 // completion comes for it (skipping a movie mid-frame).
                 MDEC_RESETS.fetch_add(1, Ordering::SeqCst);
                 *MDEC_DONE_AT.lock().unwrap() = None;
+                h.out_waiting = false;
             }
             h.mdec.enable_in = v & (1 << 30) != 0;
             h.mdec.enable_out = v & (1 << 29) != 0;
@@ -131,13 +136,18 @@ pub fn write32(addr: u32, v: u32) {
                 0x8 => {
                     h.dma[index].chcr = v;
                     if v & (1 << 24) != 0 {
-                        let macroblocks = if index == 1 {
-                            let words = h.dma_words(index);
-                            words.div_ceil(h.mdec.words_per_macroblock())
-                        } else {
-                            0
-                        };
-                        return Some((h.run_dma(index), macroblocks));
+                        if index == 1 {
+                            h.out_waiting = true;
+                            return h.run_waiting_output();
+                        }
+                        let channel = h.run_dma(index);
+                        // The input may complete a decode a waiting output
+                        // transfer needs; its completion comes after.
+                        if let Some(out) = h.run_waiting_output() {
+                            dma_complete(channel, 0);
+                            return Some(out);
+                        }
+                        return Some((channel, 0));
                     }
                 }
                 _ => {}
@@ -155,6 +165,18 @@ pub fn write32(addr: u32, v: u32) {
 }
 
 impl Hw {
+    /// Runs DMA 1 if it waits and the MDEC has its data now; returns its
+    /// channel and the macroblocks it carries.
+    fn run_waiting_output(&mut self) -> Option<(usize, u32)> {
+        let words = self.dma_words(1);
+        if !self.out_waiting || (self.mdec.output.len() as u32) < words {
+            return None;
+        }
+        self.out_waiting = false;
+        let macroblocks = words.div_ceil(self.mdec.words_per_macroblock());
+        Some((self.run_dma(1), macroblocks))
+    }
+
     /// Words DMA `index` moves as set up.
     fn dma_words(&self, index: usize) -> u32 {
         let ch = self.dma[index];

@@ -1,8 +1,8 @@
 //! Vertical blank timing (libetc VSync / VSyncCallback) and the game's
 //! interrupt masking (libapi EnterCriticalSection / ExitCriticalSection).
 
-use std::sync::atomic::{AtomicU32, AtomicU64, Ordering};
 use std::collections::VecDeque;
+use std::sync::atomic::{AtomicU32, AtomicU64, Ordering};
 use std::sync::{Mutex, OnceLock};
 use std::time::{Duration, Instant};
 
@@ -170,7 +170,13 @@ pub extern "C" fn pcrt_VSync(mode: i32) -> i32 {
         if recent.len() == 16 {
             recent.pop_front();
         }
-        recent.push_back(Wait { at: entered, mode, entered: now, returned: VBLANKS.load(Ordering::SeqCst), lines: lines_in });
+        recent.push_back(Wait {
+            at: entered,
+            mode,
+            entered: now,
+            returned: VBLANKS.load(Ordering::SeqCst),
+            lines: lines_in,
+        });
     }
     ret
 }

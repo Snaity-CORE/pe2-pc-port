@@ -27,8 +27,8 @@ use windows_sys::Win32::Foundation::{DUPLICATE_SAME_ACCESS, DuplicateHandle, HAN
 use windows_sys::Win32::Media::timeBeginPeriod;
 use windows_sys::Win32::System::Diagnostics::Debug::{CONTEXT, CONTEXT_CONTROL_X86, GetThreadContext};
 use windows_sys::Win32::System::Threading::{
-    CreateEventW, GetCurrentProcess, GetCurrentThread, GetCurrentThreadId, INFINITE, ResumeThread, SetEvent, SuspendThread,
-    WaitForSingleObject,
+    CreateEventW, GetCurrentProcess, GetCurrentThread, GetCurrentThreadId, INFINITE, ResumeThread, SetEvent,
+    SuspendThread, WaitForSingleObject,
 };
 
 /// Something that happens at a point in time on the IRQ thread.
