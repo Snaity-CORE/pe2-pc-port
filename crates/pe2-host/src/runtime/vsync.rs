@@ -2,6 +2,7 @@
 //! interrupt masking (libapi EnterCriticalSection / ExitCriticalSection).
 
 use std::sync::atomic::{AtomicU32, AtomicU64, Ordering};
+use std::collections::VecDeque;
 use std::sync::{Mutex, OnceLock};
 use std::time::{Duration, Instant};
 
@@ -16,7 +17,9 @@ static VBLANKS: AtomicU32 = AtomicU32::new(0);
 static CALLBACK: AtomicU32 = AtomicU32::new(0);
 
 struct Timing {
-    last_vblank_at: Instant,
+    /// When the game's own part of the latest vertical blank ended (its
+    /// callback): where the console's VSync, waiting on that blank, returns.
+    resumed_at: Instant,
     /// VBLANKS at the previous VSync(n >= 0) call.
     last_call: u32,
 }
@@ -28,11 +31,24 @@ static EPOCH: OnceLock<Instant> = OnceLock::new();
 /// EPOCH. An atomic rather than part of TIMING: VSync(1) reads it without a
 /// lock, so it needs no guard and interrupts get in while the game polls it.
 static LAST_CALL_NS: AtomicU64 = AtomicU64::new(0);
+/// Waiting VSync calls so far (PE2_TRACE=scene reports them per scene gap).
+static WAITS: AtomicU32 = AtomicU32::new(0);
+/// The latest waiting VSync calls, for the scene gap report: when each
+/// came, its mode, the blank it came at and the one it returned at, and
+/// what VSync(1) said on entry.
+struct Wait {
+    at: Instant,
+    mode: i32,
+    entered: u32,
+    returned: u32,
+    lines: i32,
+}
+static RECENT: Mutex<VecDeque<Wait>> = Mutex::new(VecDeque::new());
 
 pub fn start() {
     let now = Instant::now();
     EPOCH.get_or_init(|| now);
-    *TIMING.lock().unwrap() = Some(Timing { last_vblank_at: now, last_call: 0 });
+    *TIMING.lock().unwrap() = Some(Timing { resumed_at: now, last_call: 0 });
     schedule_vblank(now + FIELD);
 }
 
@@ -53,9 +69,6 @@ fn schedule_vblank(at: Instant) {
             super::replay::vblank();
             super::stubs::refresh_pads();
             super::scan_images();
-            if let Some(t) = TIMING.lock().unwrap().as_mut() {
-                t.last_vblank_at = at;
-            }
             // Keep the field rate regardless of delivery latency.
             let mut next = at + FIELD;
             let now = Instant::now();
@@ -73,6 +86,9 @@ fn schedule_vblank(at: Instant) {
             let cb = CALLBACK.load(Ordering::SeqCst);
             if cb != 0 {
                 call_psx(cb, &[]);
+            }
+            if let Some(t) = TIMING.lock().unwrap().as_mut() {
+                t.resumed_at = Instant::now();
             }
             // The game flips and draws in its callback: the frame is whole now.
             super::gpu::latch();
@@ -114,7 +130,18 @@ pub extern "C" fn pcrt_VSync(mode: i32) -> i32 {
     let last_call = TIMING.lock().unwrap().as_ref().expect("vsync not started").last_call;
     let now = VBLANKS.load(Ordering::SeqCst);
     let target = if mode == 0 { now + 1 } else { last_call.wrapping_add(mode as u32).max(now + 1) };
+    WAITS.fetch_add(1, Ordering::SeqCst);
+    let entered = Instant::now();
+    let lines_in = hsyncs_since(last_call_at);
     irq::wait_until(|| VBLANKS.load(Ordering::SeqCst).wrapping_sub(target) as i32 >= 0);
+    if super::trace("vsyncwait") && mode <= 4 && entered.elapsed() > FIELD * 3 {
+        eprintln!(
+            "[vsync {:8.3}] VSync({mode}) waited {} ms for blank {target} (entered at {now}, back at {})",
+            super::spu::stamp(),
+            entered.elapsed().as_millis(),
+            VBLANKS.load(Ordering::SeqCst)
+        );
+    }
     super::scan_images();
     if super::trace("spu") && last_call_at.elapsed() > FIELD * 6 {
         eprintln!("[spu {:8.3}] game frame took {} ms", super::spu::stamp(), last_call_at.elapsed().as_millis());
@@ -123,19 +150,28 @@ pub extern "C" fn pcrt_VSync(mode: i32) -> i32 {
         super::profile::report(last_call_at);
     }
     let ret = hsyncs_since(last_call_at) & 0xFFFF;
-    // Lines are counted from the vertical blank that ended the wait, as the
-    // console's counter is read right at it: not from when this thread got
-    // going again, which can be milliseconds later (the blank's handler
-    // hands the frame to the graphics card first). Counted from then, a
-    // scene's paced wait (VSync(1)) runs past the next blank, and every
-    // frame takes one blank more than on the console.
+    // Lines are counted from where the console's VSync returns: right after
+    // the blank's interrupt handler, the game's callback included (the game
+    // adds the callback's own time back itself). Not from when this thread
+    // got going again, which can be milliseconds later (the port's handler
+    // then hands the frame to the graphics card): counted from then, a
+    // scene's paced wait (VSync(1)) runs past the next blank and every frame
+    // takes one blank more. Nor from the blank itself: the callback's time
+    // would count twice and paced scenes would run ahead of their sound.
     let blank_at = {
         let mut timing = TIMING.lock().unwrap();
         let t = timing.as_mut().unwrap();
         t.last_call = VBLANKS.load(Ordering::SeqCst);
-        t.last_vblank_at
+        t.resumed_at
     };
     mark_call(blank_at);
+    if super::trace("scene") {
+        let mut recent = RECENT.lock().unwrap();
+        if recent.len() == 16 {
+            recent.pop_front();
+        }
+        recent.push_back(Wait { at: entered, mode, entered: now, returned: VBLANKS.load(Ordering::SeqCst), lines: lines_in });
+    }
     ret
 }
 
@@ -148,6 +184,35 @@ pub extern "C" fn pc_trace_scene_timing(accumulated: u32, deadline: u32, elapsed
         // Not interrupted while writing: a handler writing too would wait
         // for the log forever.
         let _g = irq::guard();
+        // A pause between two paced frames: the scene's clock does not count
+        // it. How many blanks and waiting VSync calls it took, and (with
+        // PE2_TRACE=hang) where the game spent it.
+        static PREVIOUS: Mutex<Option<(Instant, u32, u32)>> = Mutex::new(None);
+        let now = (Instant::now(), VBLANKS.load(Ordering::SeqCst), WAITS.load(Ordering::SeqCst));
+        if let Some((at, blanks, waits)) = PREVIOUS.lock().unwrap().replace(now)
+            && now.0 - at > FIELD * 5
+        {
+            eprintln!(
+                "[scene {:8.3}] gap of {} ms: {} blanks, {} waiting VSync calls",
+                super::spu::stamp(),
+                (now.0 - at).as_millis(),
+                now.1.wrapping_sub(blanks),
+                now.2.wrapping_sub(waits)
+            );
+            for w in RECENT.lock().unwrap().iter().filter(|w| w.at >= at) {
+                eprintln!(
+                    "[scene]   +{:3} ms VSync({}) at blank {} after {} lines, back at blank {}",
+                    (w.at - at).as_millis(),
+                    w.mode,
+                    w.entered,
+                    w.lines,
+                    w.returned
+                );
+            }
+            if super::trace("hang") {
+                super::profile::report(at);
+            }
+        }
         eprintln!(
             "[scene {:8.3}] {accumulated} lines ({:.3} s), deadline {deadline}, frame {elapsed}",
             super::spu::stamp(),
