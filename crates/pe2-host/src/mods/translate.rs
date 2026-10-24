@@ -504,6 +504,8 @@ fn new_lines(
 /// copy, translated or in a mod's font, or `file` itself.
 #[unsafe(no_mangle)]
 pub extern "C" fn pc_cap_translate(file: *mut u8) -> *mut u8 {
+    // Not interrupted while holding the log, a lock or the heap.
+    let _g = crate::runtime::irq::guard();
     let own_font = super::capfont::active();
     if (translations().is_empty() && !own_font) || file.is_null() {
         return file;

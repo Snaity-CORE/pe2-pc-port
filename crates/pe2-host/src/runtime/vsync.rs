@@ -128,6 +128,9 @@ pub extern "C" fn pcrt_VSync(mode: i32) -> i32 {
 #[unsafe(no_mangle)]
 pub extern "C" fn pc_trace_scene_timing(accumulated: u32, deadline: u32, elapsed: i32) {
     if super::trace("scene") {
+        // Not interrupted while writing: a handler writing too would wait
+        // for the log forever.
+        let _g = irq::guard();
         eprintln!(
             "[scene {:8.3}] {accumulated} lines ({:.3} s), deadline {deadline}, frame {elapsed}",
             super::spu::stamp(),

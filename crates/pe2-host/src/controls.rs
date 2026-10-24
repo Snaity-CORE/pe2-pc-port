@@ -160,6 +160,7 @@ pub extern "C" fn pc_cheat_one_hit_kill() -> i32 {
 #[unsafe(no_mangle)]
 pub extern "C" fn pc_trace_movement(sx: i32, sy: i32, want: i32, yaw: i32, x: i32, z: i32) {
     if crate::runtime::trace("move") {
+        let _g = crate::runtime::irq::guard();
         eprintln!("[move] stick ({sx}, {sy}) want {want} yaw {yaw} at ({x}, {z})");
     }
 }

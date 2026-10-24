@@ -42,6 +42,7 @@ static NEXT_EVENT: AtomicU32 = AtomicU32::new(0);
 
 #[unsafe(no_mangle)]
 pub extern "C" fn pcrt_OpenEvent(desc: u32, spec: i32, mode: i32, func: u32) -> i32 {
+    let _g = super::irq::guard();
     let handle = 0xF100_0000 | NEXT_EVENT.fetch_add(1, Ordering::SeqCst);
     eprintln!(
         "[stub] OpenEvent(desc 0x{desc:08X}, spec 0x{spec:X}, mode 0x{mode:X}, func 0x{func:08X}) -> 0x{handle:08X}"
