@@ -255,7 +255,7 @@ enum {
  * typical 320x240 camera image. */
 static uint32_t vlc_frame_cycles(uint32_t size)
 {
-    return (355u * size + 307u * 6u * size) / 10u;
+    return (3550u * size + 307u * 6u * size) / 100u;
 }
 
 void pcrt_DecDCTvlcBuild(uint16_t* table)

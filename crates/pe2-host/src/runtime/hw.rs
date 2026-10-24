@@ -105,6 +105,10 @@ pub fn write32(addr: u32, v: u32) {
         MDEC1 => {
             if v & (1 << 31) != 0 {
                 h.mdec.reset();
+                // A reset abandons what the MDEC was decoding: no
+                // completion comes for it (skipping a movie mid-frame).
+                MDEC_RESETS.fetch_add(1, Ordering::SeqCst);
+                *MDEC_DONE_AT.lock().unwrap() = None;
             }
             h.mdec.enable_in = v & (1 << 30) != 0;
             h.mdec.enable_out = v & (1 << 29) != 0;
@@ -219,6 +223,8 @@ const MDEC_MACROBLOCK: Duration = Duration::from_nanos(2688 * 1_000_000_000 / 33
 
 /// When the MDEC is done with what it was given so far.
 static MDEC_DONE_AT: Mutex<Option<Instant>> = Mutex::new(None);
+/// MDEC resets so far: a completion due from before the latest one is dropped.
+static MDEC_RESETS: AtomicU32 = AtomicU32::new(0);
 
 /// Raises `channel`'s completion interrupt; for the MDEC's output, once its
 /// `macroblocks` are decoded, after what it was decoding before.
@@ -234,9 +240,13 @@ fn dma_complete(channel: usize, macroblocks: u32) {
     if cb == 0 {
         return;
     }
+    let resets = MDEC_RESETS.load(Ordering::SeqCst);
     irq::schedule(
         at,
         Box::new(move || {
+            if channel <= 1 && MDEC_RESETS.load(Ordering::SeqCst) != resets {
+                return;
+            }
             call_psx(cb, &[]);
         }),
     );

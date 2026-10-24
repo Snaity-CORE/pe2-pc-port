@@ -217,7 +217,16 @@ pub extern "C" fn pc_console_cpu_time(cycles: u32) {
     }
     let until = Instant::now() + Duration::from_nanos(u64::from(cycles) * 1_000_000_000 / 33_868_800);
     let _g = guard();
+    let from = Instant::now();
     wait_until(|| Instant::now() >= until);
+    if super::trace("cputime") {
+        eprintln!(
+            "[cputime {:8.3}] {cycles} cycles: {} us, waited {} us",
+            super::spu::stamp(),
+            u64::from(cycles) * 1_000_000 / 33_868_800,
+            from.elapsed().as_micros()
+        );
+    }
 }
 
 /// Blocks the game thread until `cond` holds, letting interrupts in while
