@@ -93,6 +93,31 @@ fn set_fullscreen(w: &Window, on: bool) {
     w.set_cursor_visible(!(on && crate::config::get().video.hide_cursor.unwrap_or(true)));
 }
 
+/// [video] window_size: "<width>x<height>" in pixels; unset, "auto" or
+/// wrong, 960x720 scaled with the desktop's DPI.
+fn window_size() -> winit::dpi::Size {
+    let default = winit::dpi::LogicalSize::new(960, 720).into();
+    let text = crate::config::get().video.window_size.as_deref().unwrap_or("auto");
+    if text == "auto" {
+        return default;
+    }
+    match parse_size(text) {
+        Some((w, h)) => winit::dpi::PhysicalSize::new(w, h).into(),
+        None => {
+            eprintln!("pe2: video: window_size \"{text}\" is not <width>x<height>; using the default");
+            default
+        }
+    }
+}
+
+/// "<width>x<height>", each 160 to 8192.
+pub fn parse_size(text: &str) -> Option<(u32, u32)> {
+    let (w, h) = text.trim().split_once(['x', 'X'])?;
+    let (w, h) = (w.trim().parse().ok()?, h.trim().parse().ok()?);
+    let ok = |v: u32| (160..=8192).contains(&v);
+    (ok(w) && ok(h)).then_some((w, h))
+}
+
 impl ApplicationHandler for App {
     fn resumed(&mut self, event_loop: &ActiveEventLoop) {
         if self.window.is_some() {
@@ -103,7 +128,7 @@ impl ApplicationHandler for App {
             .with_window_icon(
                 crate::icon::rgba().and_then(|(px, side)| winit::window::Icon::from_rgba(px, side, side).ok()),
             )
-            .with_inner_size(winit::dpi::LogicalSize::new(960, 720))
+            .with_inner_size(window_size())
             // Scripted (unattended) runs must not steal focus from whatever
             // the user is typing in.
             .with_active(!scripted());
@@ -467,4 +492,18 @@ pub fn start() {
             let _ = event_loop.run_app(&mut app);
         })
         .expect("spawn window thread");
+}
+
+#[cfg(test)]
+mod tests {
+    use super::parse_size;
+
+    #[test]
+    fn window_sizes_parse() {
+        assert_eq!(parse_size("1280x960"), Some((1280, 960)));
+        assert_eq!(parse_size(" 1600 X 1200 "), Some((1600, 1200)));
+        assert_eq!(parse_size("1280"), None);
+        assert_eq!(parse_size("100x100"), None);
+        assert_eq!(parse_size("wide"), None);
+    }
 }

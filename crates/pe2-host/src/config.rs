@@ -90,6 +90,12 @@ pub struct Video {
     pub subpixel: Option<bool>,
     /// Perspective-correct textures and colours (with subpixel; default on).
     pub perspective: Option<bool>,
+    /// The graphics API: "auto" (the default: Vulkan, else OpenGL),
+    /// "vulkan" or "opengl".
+    pub graphics_api: Option<String>,
+    /// The window's size in pixels, "<width>x<height>", or "auto" (the
+    /// default: 960x720 scaled with the desktop's DPI).
+    pub window_size: Option<String>,
     /// Start in full screen (Alt+Enter toggles it; default off).
     pub fullscreen: Option<bool>,
     /// Hide the mouse cursor over the picture in full screen (default on).

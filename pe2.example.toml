@@ -51,6 +51,11 @@ scale = 4
 # borders around), rather than filling the window. Clearest at internal
 # resolutions small enough to fit at 2x or more.
 # integer_scaling = false
+# The graphics API: "auto" (Vulkan, else OpenGL), "vulkan" or "opengl".
+# graphics_api = "auto"
+# The window's size in pixels, "<width>x<height>", or "auto" (960x720
+# scaled with the desktop's DPI).
+# window_size = "auto"
 # Start in borderless full screen (a window without borders covering the
 # monitor, no mode change); Alt+Enter toggles it at any time.
 # fullscreen = false

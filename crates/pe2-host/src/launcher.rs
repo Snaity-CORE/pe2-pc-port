@@ -37,6 +37,10 @@ const LOGO: &[u8] = include_bytes!("../res/launcher_logo.webp");
 /// The window's size, the background's.
 const WINDOW: [f32; 2] = [960.0, 640.0];
 
+/// The game window sizes the launcher offers, in pixels (4:3, the
+/// picture's shape), after "auto" (960x720 scaled with the desktop's DPI).
+const WINDOW_SIZES: [&str; 6] = ["640x480", "960x720", "1280x960", "1440x1080", "1600x1200", "1920x1440"];
+
 /// The art's accent colour, and darker shades of it.
 const TEAL: egui::Color32 = egui::Color32::from_rgb(38, 200, 186);
 const TEAL_DARK: egui::Color32 = egui::Color32::from_rgb(10, 92, 88);
@@ -333,6 +337,10 @@ struct Settings {
     interpolation: bool,
     crt: bool,
     integer_scaling: bool,
+    /// [video] graphics_api: "auto", "vulkan" or "opengl".
+    graphics_api: String,
+    /// [video] window_size: "auto" or "<width>x<height>" in pixels.
+    window_size: String,
     /// [mods] enabled and dump.
     mods_enabled: bool,
     fullscreen: bool,
@@ -369,6 +377,15 @@ impl Settings {
             interpolation: flag("video", "frame_interpolation", true),
             crt: flag("video", "crt", false),
             integer_scaling: flag("video", "integer_scaling", false),
+            graphics_api: get("video", "graphics_api")
+                .and_then(|v| v.as_str())
+                .filter(|n| crate::gfx::APIS.iter().any(|(a, _)| a == n))
+                .unwrap_or("auto")
+                .to_string(),
+            window_size: get("video", "window_size")
+                .and_then(|v| v.as_str())
+                .and_then(crate::video::parse_size)
+                .map_or_else(|| "auto".to_string(), |(w, h)| format!("{w}x{h}")),
             mods_enabled: flag("mods", "enabled", true),
             fullscreen: flag("video", "fullscreen", false),
             hide_cursor: flag("video", "hide_cursor", true),
@@ -433,6 +450,8 @@ impl Settings {
         doc["video"]["frame_interpolation"] = value(self.interpolation);
         doc["video"]["crt"] = value(self.crt);
         doc["video"]["integer_scaling"] = value(self.integer_scaling);
+        doc["video"]["graphics_api"] = value(self.graphics_api.as_str());
+        doc["video"]["window_size"] = value(self.window_size.as_str());
         doc["mods"]["enabled"] = value(self.mods_enabled);
         // Dumping while playing is gone: the extract saves everything.
         if let Some(mods) = doc["mods"].as_table_mut() {
@@ -919,6 +938,22 @@ impl Launcher {
         let (f, e) = (&mut self.focus, &mut self.edit);
         let scales: Vec<(i64, String)> = (1..=8).map(|s| (s, format!("{s}x ({}x{})", 320 * s, 240 * s))).collect();
         f.choice(ui, lang.t("Resolution", "Resolução"), &mut e.scale, &scales, true);
+        // A size set by hand in pe2.toml stays among the choices.
+        let mut sizes = vec![("auto".to_string(), lang.t("Default", "Padrão").to_string())];
+        sizes.extend(WINDOW_SIZES.iter().map(|s| (s.to_string(), s.to_string())));
+        if !sizes.iter().any(|(s, _)| *s == e.window_size) {
+            sizes.push((e.window_size.clone(), e.window_size.clone()));
+        }
+        f.choice(ui, lang.t("Window size", "Tamanho da janela"), &mut e.window_size, &sizes, true);
+        let apis = [
+            (
+                "auto".to_string(),
+                lang.t("Automatic (Vulkan, else OpenGL)", "Automático (Vulkan, senão OpenGL)").to_string(),
+            ),
+            ("vulkan".to_string(), "Vulkan".to_string()),
+            ("opengl".to_string(), "OpenGL".to_string()),
+        ];
+        f.choice(ui, lang.t("Graphics API", "API gráfica"), &mut e.graphics_api, &apis, true);
         f.checkbox(ui, &mut e.crt, lang.t("CRT look (scanlines)", "Visual de TV de tubo (linhas)"), true);
         f.checkbox(
             ui,
@@ -1780,6 +1815,8 @@ mod tests {
         s.bilinear = true;
         s.fullscreen = true;
         s.hide_cursor = false;
+        s.graphics_api = "opengl".into();
+        s.window_size = "1280x960".into();
         s.card = "cards/one.mcd".into();
         s.controller = "Xbox 360 Controller".into();
         s.vibration = false;
@@ -1797,6 +1834,8 @@ mod tests {
         assert_eq!(config.video.subpixel, Some(false));
         assert_eq!(config.video.texture_filter.as_deref(), Some("bilinear"));
         assert_eq!(config.video.hide_cursor, Some(false));
+        assert_eq!(config.video.graphics_api.as_deref(), Some("opengl"));
+        assert_eq!(config.video.window_size.as_deref(), Some("1280x960"));
         assert_eq!(config.memcard.slot1.as_deref(), Some(Path::new("cards/one.mcd")));
         assert!(config.memcard.slot2.is_none(), "port 2 dropped");
         assert_eq!(config.input.controller.as_deref(), Some("Xbox 360 Controller"));
@@ -1807,5 +1846,6 @@ mod tests {
         let again = Settings::load(&doc);
         assert!(again.keys[4] == "KeyJ" && again.pads[8] == "Mode" && !again.vibration);
         assert!(again.language == Lang::Pt && again.scale == 6 && again.bilinear && !again.subpixel);
+        assert!(again.graphics_api == "opengl" && again.window_size == "1280x960");
     }
 }

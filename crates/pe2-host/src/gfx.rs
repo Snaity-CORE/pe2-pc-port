@@ -1,6 +1,11 @@
 //! The graphics card (wgpu): one device shared by the window, which
-//! presents the picture, and the renderer. Without a usable card, the
-//! system's software adapter (WARP on Direct3D 12) stands in, slowly.
+//! presents the picture, and the renderer, through Vulkan or OpenGL
+//! ([video] graphics_api).
+//!
+//! Not Direct3D 12: in a 32-bit process wgpu's pipeline descriptions are
+//! laid out with 8-byte alignment where Direct3D reads 4-byte, and every
+//! pipeline fails ("invalid parameter"). With it went the system's
+//! software adapter (WARP).
 
 use std::sync::OnceLock;
 
@@ -18,14 +23,49 @@ pub fn get() -> Option<&'static Gfx> {
     GFX.get_or_init(open).as_ref()
 }
 
+/// The APIs [video] graphics_api can name, with their wgpu backends.
+pub const APIS: [(&str, wgpu::Backends); 2] = [("vulkan", wgpu::Backends::VULKAN), ("opengl", wgpu::Backends::GL)];
+
+/// Both, Vulkan first ("auto").
+const AUTO: wgpu::Backends = wgpu::Backends::VULKAN.union(wgpu::Backends::GL);
+
+/// The backends [video] graphics_api allows.
+fn backends() -> wgpu::Backends {
+    let name = crate::config::get().video.graphics_api.as_deref().unwrap_or("auto");
+    match APIS.iter().find(|(n, _)| *n == name) {
+        Some(&(_, b)) => b,
+        None => {
+            if name != "auto" {
+                eprintln!("pe2: video: unknown graphics_api \"{name}\" (auto, vulkan or opengl); using auto");
+            }
+            AUTO
+        }
+    }
+}
+
+fn instance(backends: wgpu::Backends) -> wgpu::Instance {
+    let mut desc = wgpu::InstanceDescriptor::new_without_display_handle();
+    desc.backends = backends;
+    wgpu::Instance::new(desc)
+}
+
 fn open() -> Option<Gfx> {
-    let instance = wgpu::Instance::default();
+    let mut instance = instance(backends());
     let options = |fallback| wgpu::RequestAdapterOptions {
         power_preference: wgpu::PowerPreference::HighPerformance,
         force_fallback_adapter: fallback,
         ..Default::default()
     };
-    let adapter = match pollster::block_on(instance.request_adapter(&options(false))) {
+    let mut found = pollster::block_on(instance.request_adapter(&options(false)));
+    if let Err(err) = &found
+        && backends() != AUTO
+    {
+        // The chosen API is missing (no driver for it): the other one.
+        eprintln!("pe2: video: the chosen graphics API is not available ({err}); using auto");
+        instance = self::instance(AUTO);
+        found = pollster::block_on(instance.request_adapter(&options(false)));
+    }
+    let adapter = match found {
         Ok(a) => a,
         Err(err) => match pollster::block_on(instance.request_adapter(&options(true))) {
             Ok(a) => {
