@@ -192,6 +192,7 @@ pub fn start() {
     }
     let Some(gfx) = crate::gfx::get() else {
         eprintln!("pe2: video: no usable graphics adapter (Direct3D 12 or Vulkan); cannot draw the game");
+        crate::logfile::drain();
         std::process::exit(1);
     };
     let mut hw = Box::new(hw::Hw::new(gfx, scale));

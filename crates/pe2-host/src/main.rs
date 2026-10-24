@@ -9,6 +9,7 @@ mod gamepad;
 mod gfx;
 mod icon;
 mod launcher;
+mod logfile;
 mod mods;
 mod paths;
 mod present;
@@ -198,6 +199,7 @@ fn from_upscale(source: &std::path::Path, out: &std::path::Path) -> (usize, usiz
 
 fn main() -> ExitCode {
     drop_own_console();
+    logfile::start();
     let mut images: Vec<PathBuf> = std::env::args_os().skip(1).map(PathBuf::from).collect();
     if let Some(code) = indexed_tool(&images) {
         return code;

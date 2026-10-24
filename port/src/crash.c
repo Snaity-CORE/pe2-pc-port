@@ -8,6 +8,9 @@
 
 #include "pc/runtime.h"
 
+/* logfile.rs: waits until the log has what was written. */
+void pc_log_drain(void);
+
 static LONG CALLBACK on_exception(EXCEPTION_POINTERS* info)
 {
     const EXCEPTION_RECORD* rec = info->ExceptionRecord;
@@ -50,6 +53,9 @@ static LONG CALLBACK on_exception(EXCEPTION_POINTERS* info)
         fprintf(stderr, " %08lX", sp[i]);
     fprintf(stderr, "\n");
     fflush(stderr);
+    /* The log's time stamps go through a pipe (logfile.rs): get it all out
+     * before the process ends. */
+    pc_log_drain();
     return EXCEPTION_CONTINUE_SEARCH;
 }
 
