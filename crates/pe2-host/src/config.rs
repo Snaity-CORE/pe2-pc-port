@@ -103,9 +103,14 @@ pub struct Video {
     pub hide_cursor: Option<bool>,
     /// 3D textures: "nearest" (the default) or "bilinear".
     pub texture_filter: Option<String>,
-    /// Dialogue drawn from a high-definition font (the built-in one, or a
-    /// mod's) instead of the game's glyph pictures (default on).
-    pub hd_dialogue: Option<bool>,
+    /// The game's text drawn from high-definition fonts instead of its
+    /// pictures of text: the dialogue (the built-in font, or a mod's), the
+    /// menus and the loading captions (default on).
+    pub hd_fonts: Option<bool>,
+    /// No longer used (hd_fonts took its place); still read, so settings
+    /// that have it load.
+    #[allow(dead_code)]
+    pub hd_dialogue: Option<serde::de::IgnoredAny>,
     /// Pre-rendered backgrounds and full-screen pictures: "nearest" (the
     /// default) or "bicubic".
     pub background_filter: Option<String>,

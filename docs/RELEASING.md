@@ -40,8 +40,8 @@ the repository, the Python tools compile, Rust formatting.
 
 ## The zip
 
-`pe2.exe`, `pe2.example.toml`, `README.md`, `MODDING.md` and the license of
-the font `pe2.exe` embeds (`LICENSE-DejaVu.txt`). Players bring
+`pe2.exe`, `pe2.example.toml`, `README.md`, `MODDING.md` and the licenses of
+the fonts `pe2.exe` embeds (`LICENSE-DejaVu.txt`, `LICENSE-CourierPrime.txt`). Players bring
 their own discs; the game reads them at runtime.
 
 ## No game data

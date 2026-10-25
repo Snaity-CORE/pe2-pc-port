@@ -25,6 +25,7 @@ pub mod capfont;
 pub mod credits;
 pub mod dialogue;
 pub mod files;
+pub mod fontsheets;
 pub mod glyphmaps;
 pub mod indexed;
 pub mod movies;
@@ -110,6 +111,7 @@ pub fn start(discs: &[PathBuf]) {
         let since = std::time::Instant::now();
         let mut catalog = sheets::Catalog::default();
         let mut known = std::collections::HashMap::new();
+        let mut executable = Vec::new();
         for (number, image) in images.iter().enumerate() {
             let mut disc = match crate::disc::open(image) {
                 Ok(d) => d,
@@ -118,6 +120,9 @@ pub fn start(discs: &[PathBuf]) {
                     continue;
                 }
             };
+            if number == 0 && fontsheets::enabled() {
+                executable = crate::disc::iso9660::boot_executable(disc.as_mut()).map(|e| e.1).unwrap_or_default();
+            }
             let sources = files::dialogue_sources(disc.as_mut());
             if textures {
                 catalog.extend(sheets::Catalog::new(&sources));
@@ -151,13 +156,14 @@ pub fn start(discs: &[PathBuf]) {
                 images.len(),
                 since.elapsed().as_secs_f32()
             );
+            if fontsheets::enabled() {
+                fontsheets::build(&catalog, &executable);
+            }
             sheets::set_catalog(catalog);
         }
     });
 }
 
-/// Whether mods are used: PE2_MODS=0/1, else pe2.toml's [mods] enabled,
-/// else on.
 /// Mods are on with [general] experimental and [mods] enabled (PE2_MODS=1
 /// or 0 says instead).
 fn enabled() -> bool {
@@ -359,13 +365,13 @@ fn indexed_textures() -> &'static Library<(u64, u32), indexed::Indexed> {
 /// The indexed replacement a mod supplies for `sheet` drawn at `depth` (0:
 /// 4 bits, 1: 8), once loaded (see Library::get).
 pub fn indexed_texture(sheet: u64, depth: u32) -> Option<Arc<indexed::Indexed>> {
-    indexed_textures().get((sheet, depth))
+    indexed_textures().get((sheet, depth)).or_else(|| fontsheets::get(sheet, depth))
 }
 
 /// Whether anything here wants to know the textures drawn: mods with
-/// textures.
+/// textures, or the menus' and captions' sheets redrawn from fonts.
 pub fn wants_textures() -> bool {
-    !textures().files.is_empty() || !indexed_textures().files.is_empty()
+    !textures().files.is_empty() || !indexed_textures().files.is_empty() || fontsheets::enabled()
 }
 
 /// A PNG as RGBA (any colour type or depth png can expand to 8 bits),

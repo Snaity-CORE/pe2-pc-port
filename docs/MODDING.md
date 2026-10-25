@@ -242,6 +242,9 @@ when not known); the UI font's also give each glyph's `face` and
 | `title` | the title screen: PRESS START BUTTON, the copyright and logo, New Game, Continue, Option; its `palette` file under the dumps |
 | `dialogue` | each dialogue glyph page (the `l` glyph also draws capital I); a mod's font does this better, see Dialogue |
 
+PE2PC already redraws the menus' font (`ui-font`) and the loading captions
+from its built-in fonts by default (`[video] hd_fonts`); a mod's indexed
+replacement of the same sheet wins. To use other fonts,
 `tools/hd_fonts.py` redraws the first three from fonts of your choice
 (needs Python with numpy, pillow and scipy):
 
@@ -535,7 +538,7 @@ shows.
 ### Dialogue in your own font
 
 PE2PC draws the dialogue from a high-definition font by default, its own
-DejaVu Sans Bold (`[video] hd_dialogue`, on unless turned off). A mod's
+DejaVu Sans Bold (`[video] hd_fonts`, on unless turned off). A mod's
 `fonts/captions.ttf` (or `.otf`) replaces that font for all the dialogue,
 its translations included (and then any character the font has, accents
 and all, with no marks drawn by PE2PC). The highest-priority enabled mod

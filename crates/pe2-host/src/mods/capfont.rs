@@ -1,5 +1,5 @@
 //! Dialogue in a high-definition font: the built-in one (DejaVu Sans Bold,
-//! res/fonts, with [video] hd_dialogue, the default) or a mod's
+//! res/fonts, with [video] hd_fonts, the default) or a mod's
 //! `fonts/captions.ttf` (or `.otf`, docs/MODDING.md), which wins.
 //!
 //! The font draws the dialogue instead of the game's glyph pictures: every
@@ -32,8 +32,9 @@ const SHADES: [(u8, f32); 7] = [(8, 16.0), (7, 40.0), (6, 72.0), (5, 104.0), (4,
 /// Finer texels per page texel of the drawn glyphs.
 pub const SCALE: usize = 8;
 
-/// The built-in font (its license: res/fonts/LICENSE-DejaVu.txt).
-const BUILT_IN: &[u8] = include_bytes!("../../res/fonts/DejaVuSans-Bold.ttf");
+/// The built-in font, also the menus' (fontsheets.rs; its license:
+/// res/fonts/LICENSE-DejaVu.txt).
+pub const BUILT_IN: &[u8] = include_bytes!("../../res/fonts/DejaVuSans-Bold.ttf");
 
 /// The game's glyph cells: 14 rows, bottom at the pen. The font's baseline
 /// is 3 rows above the bottom (its descenders below, then the outline).
@@ -66,7 +67,7 @@ fn loaded() -> Option<&'static Loaded> {
         .get_or_init(|| {
             let (font, settings) = match mod_font() {
                 Some(found) => found,
-                None if crate::config::get().video.hd_dialogue.unwrap_or(true) => {
+                None if super::fontsheets::enabled() => {
                     let font = FontVec::try_from_vec(BUILT_IN.to_vec()).expect("the built-in font loads");
                     eprintln!("pe2: video: dialogue drawn in the built-in font (DejaVu Sans Bold)");
                     (font, Settings::default())

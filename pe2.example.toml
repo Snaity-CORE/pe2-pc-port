@@ -42,9 +42,11 @@ scale = 4
 # "nearest" (blocks of console pixels, as now) or "bicubic" (enlarged
 # smoothly; text and the interface stay sharp).
 # background_filter = "nearest"
-# Dialogue drawn from a high-definition font (built in: DejaVu Sans Bold; a
-# mod's own font wins) instead of the game's glyph pictures.
-# hd_dialogue = true
+# The game's text drawn from high-definition fonts instead of its small
+# pictures of text: the dialogue and the menus (built in: DejaVu Sans Bold)
+# and the loading captions (Courier Prime). A mod's font or indexed
+# texture of the same text wins.
+# hd_fonts = true
 # Smooth motion: where the game runs at 30 fps, frames in between at 60,
 # with the 3D models halfway (backgrounds and the interface are unchanged).
 # No added delay. Needs subpixel.

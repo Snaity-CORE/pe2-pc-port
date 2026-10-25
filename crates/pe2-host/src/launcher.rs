@@ -339,8 +339,8 @@ struct Settings {
     interpolation: bool,
     crt: bool,
     integer_scaling: bool,
-    /// [video] hd_dialogue.
-    hd_dialogue: bool,
+    /// [video] hd_fonts.
+    hd_fonts: bool,
     /// [video] graphics_api: "auto", "vulkan" or "opengl".
     graphics_api: String,
     /// [video] window_size: "auto" or "<width>x<height>" in pixels.
@@ -382,7 +382,7 @@ impl Settings {
             interpolation: flag("video", "frame_interpolation", true),
             crt: flag("video", "crt", false),
             integer_scaling: flag("video", "integer_scaling", false),
-            hd_dialogue: flag("video", "hd_dialogue", true),
+            hd_fonts: flag("video", "hd_fonts", true),
             graphics_api: get("video", "graphics_api")
                 .and_then(|v| v.as_str())
                 .filter(|n| crate::gfx::APIS.iter().any(|(a, _)| a == n))
@@ -457,7 +457,11 @@ impl Settings {
         doc["video"]["frame_interpolation"] = value(self.interpolation);
         doc["video"]["crt"] = value(self.crt);
         doc["video"]["integer_scaling"] = value(self.integer_scaling);
-        doc["video"]["hd_dialogue"] = value(self.hd_dialogue);
+        doc["video"]["hd_fonts"] = value(self.hd_fonts);
+        // Now part of hd_fonts.
+        if let Some(video) = doc["video"].as_table_mut() {
+            video.remove("hd_dialogue");
+        }
         doc["video"]["graphics_api"] = value(self.graphics_api.as_str());
         doc["video"]["window_size"] = value(self.window_size.as_str());
         doc["mods"]["enabled"] = value(self.mods_enabled);
@@ -1007,8 +1011,8 @@ impl Launcher {
         f.checkbox(ui, &mut e.bilinear, lang.t("Smooth 3D textures (bilinear)", "Suavizar texturas 3D (bilinear)"), hi);
         f.checkbox(
             ui,
-            &mut e.hd_dialogue,
-            lang.t("Dialogue in a high-definition font", "Diálogos em fonte de alta definição"),
+            &mut e.hd_fonts,
+            lang.t("Text in high-definition fonts", "Textos em fontes de alta definição"),
             true,
         );
         f.checkbox(
@@ -1837,7 +1841,7 @@ mod tests {
         s.language = Lang::Pt;
         s.confirm_exit = false;
         s.experimental = true;
-        s.hd_dialogue = false;
+        s.hd_fonts = false;
         s.discs = [r"D:\Games\PE2 (Disc 1).chd".into(), String::new()];
         s.scale = 6;
         s.subpixel = false;
@@ -1858,7 +1862,7 @@ mod tests {
         assert_eq!(config.general.language.as_deref(), Some("pt"));
         assert_eq!(config.general.confirm_exit, Some(false));
         assert_eq!(config.general.experimental, Some(true));
-        assert_eq!(config.video.hd_dialogue, Some(false));
+        assert_eq!(config.video.hd_fonts, Some(false));
         assert_eq!(config.discs.disc1.as_deref(), Some(Path::new(r"D:\Games\PE2 (Disc 1).chd")));
         assert_eq!(config.discs.disc2, None);
         assert_eq!(config.video.scale, Some(6));
