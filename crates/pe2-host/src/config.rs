@@ -47,9 +47,6 @@ pub struct Mods {
     /// Use the mods in the data folder's mods/ (default on, with
     /// [general] experimental).
     pub enabled: Option<bool>,
-    /// No longer used (the extract saves everything mods replace); read so
-    /// settings that still have it load.
-    pub dump: Option<bool>,
 }
 
 #[derive(Debug, Default, Deserialize)]
@@ -83,10 +80,6 @@ pub struct Discs {
 pub struct Video {
     /// Internal resolution, a multiple of the console's (1-8).
     pub scale: Option<i32>,
-    /// No longer used (everything is drawn on the graphics card); still
-    /// read, so older settings files load.
-    #[allow(dead_code)]
-    pub renderer: Option<serde::de::IgnoredAny>,
     /// Exact (sub-pixel) vertex positions at higher resolutions (default on).
     pub subpixel: Option<bool>,
     /// Perspective-correct textures and colours (with subpixel; default on).
@@ -107,10 +100,6 @@ pub struct Video {
     /// pictures of text: the dialogue (the built-in font, or a mod's), the
     /// menus and the loading captions (default on).
     pub hd_fonts: Option<bool>,
-    /// No longer used (hd_fonts took its place); still read, so settings
-    /// that have it load.
-    #[allow(dead_code)]
-    pub hd_dialogue: Option<serde::de::IgnoredAny>,
     /// Pre-rendered backgrounds and full-screen pictures: "nearest" (the
     /// default) or "bicubic".
     pub background_filter: Option<String>,
@@ -139,10 +128,6 @@ pub struct General {
 #[serde(default, deny_unknown_fields)]
 pub struct Memcard {
     pub slot1: Option<PathBuf>,
-    /// No longer used (the game saves on the card in port 1 only); still
-    /// read, so older settings files load.
-    #[allow(dead_code)]
-    pub slot2: Option<serde::de::IgnoredAny>,
 }
 
 static CONFIG: OnceLock<Config> = OnceLock::new();

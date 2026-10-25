@@ -443,13 +443,7 @@ impl Settings {
         path("discs", "disc1", &self.discs[0]);
         path("discs", "disc2", &self.discs[1]);
         path("memcard", "slot1", &self.card);
-        // Port 2 is gone: the game never used it.
-        path("memcard", "slot2", "");
         doc["video"]["scale"] = value(self.scale);
-        // Everything is drawn on the graphics card now.
-        if let Some(video) = doc["video"].as_table_mut() {
-            video.remove("renderer");
-        }
         doc["video"]["subpixel"] = value(self.subpixel);
         doc["video"]["perspective"] = value(self.perspective);
         doc["video"]["texture_filter"] = value(if self.bilinear { "bilinear" } else { "nearest" });
@@ -458,17 +452,9 @@ impl Settings {
         doc["video"]["crt"] = value(self.crt);
         doc["video"]["integer_scaling"] = value(self.integer_scaling);
         doc["video"]["hd_fonts"] = value(self.hd_fonts);
-        // Now part of hd_fonts.
-        if let Some(video) = doc["video"].as_table_mut() {
-            video.remove("hd_dialogue");
-        }
         doc["video"]["graphics_api"] = value(self.graphics_api.as_str());
         doc["video"]["window_size"] = value(self.window_size.as_str());
         doc["mods"]["enabled"] = value(self.mods_enabled);
-        // Dumping while playing is gone: the extract saves everything.
-        if let Some(mods) = doc["mods"].as_table_mut() {
-            mods.remove("dump");
-        }
         doc["video"]["fullscreen"] = value(self.fullscreen);
         doc["video"]["hide_cursor"] = value(self.hide_cursor);
         doc["input"]["controller"] = value(if self.controller.is_empty() { "auto" } else { self.controller.as_str() });
@@ -1872,7 +1858,6 @@ mod tests {
         assert_eq!(config.video.graphics_api.as_deref(), Some("opengl"));
         assert_eq!(config.video.window_size.as_deref(), Some("1280x960"));
         assert_eq!(config.memcard.slot1.as_deref(), Some(Path::new("cards/one.mcd")));
-        assert!(config.memcard.slot2.is_none(), "port 2 dropped");
         assert_eq!(config.input.controller.as_deref(), Some("Xbox 360 Controller"));
         assert_eq!(config.input.vibration, Some(false));
         assert_eq!(config.input.keyboard.get("cross").map(String::as_str), Some("KeyJ"));
