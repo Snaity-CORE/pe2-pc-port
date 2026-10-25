@@ -1,0 +1,27 @@
+# Checks that need no game discs. Building needs them (docs/BUILDING.md), so
+# builds and releases are made on a machine that has them: tools/release.py
+# (docs/RELEASING.md).
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: No game data in the repository
+        run: python tools/check_no_game_data.py
+      - name: Python tools compile
+        run: python -m compileall -q tools
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt
+      - name: Rust formatting
+        run: cargo fmt --all --check

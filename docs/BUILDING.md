@@ -60,6 +60,9 @@ launcher's windows) is `crates/pe2-host/res/icon.png`. To use a picture of
 your own instead, put a square PNG at `local/icon.png` (ignored by git) and
 build again.
 
+Releases are built the same way, by `tools/release.py`: see
+[RELEASING.md](RELEASING.md).
+
 ## 4. Run
 
 The host reads your disc images directly (`.cue` or `.chd`):

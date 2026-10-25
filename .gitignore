@@ -40,3 +40,6 @@ pe2-*-trace.txt
 
 # Game log written when started from the launcher without a console
 pe2.log
+
+# Release packages (tools/release.py)
+/dist/
