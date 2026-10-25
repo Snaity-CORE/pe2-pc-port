@@ -1,0 +1,11 @@
+/* Generated from assets/USA/pe2pkg/acropolis_fire_escape.pe2pkg; grid header at 0x4CE8. */
+    { 0, 0, 0, 0 },
+    { 0, 0, 0, 0 },
+    { -0, 0, 0, 0 },
+    { 0, -0, 0, 0 },
+    { 0, 0, 0, 0 },
+    { -0, 0, 0, 0 },
+    { 0, -0, 0, 0 },
+    { 0, 0, 0, 0 },
+    { 0, 0, -0, 0 },
+    { 0, -0, 0, 0 },

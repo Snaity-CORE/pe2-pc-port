@@ -1,0 +1,4 @@
+/* Generated from assets/USA/pe2pkg/neo_ark_power_plant_1.pe2pkg; animation at 0x1530. */
+    0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0,

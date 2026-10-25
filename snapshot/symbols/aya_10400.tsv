@@ -1,0 +1,138 @@
+_MACRO_INC_GUARD	00000001	al	build/USA/src/aya/aya_10400/aya_10400.i
+_gAya10400BodyModelSkeleton	80115774	l	build/USA/src/aya/aya_10400/aya_10400.i
+_gAya10400BodyModelPartVerts	80115A20	l	build/USA/src/aya/aya_10400/aya_10400.i
+_gAya10400BodyModelVerts	80115A6C	l	build/USA/src/aya/aya_10400/aya_10400.i
+_gAya10400BodyModelNormals	801165BC	l	build/USA/src/aya/aya_10400/aya_10400.i
+_gAya10400BodyModelStream	801171B4	l	build/USA/src/aya/aya_10400/aya_10400.i
+_gAya10400Hand0ModelSkeleton	8011B09C	l	build/USA/src/aya/aya_10400/aya_10400.i
+_gAya10400Hand0ModelPartVerts	8011B0C0	l	build/USA/src/aya/aya_10400/aya_10400.i
+_gAya10400Hand0ModelVerts	8011B0C4	l	build/USA/src/aya/aya_10400/aya_10400.i
+_gAya10400Hand0ModelNormals	8011B17C	l	build/USA/src/aya/aya_10400/aya_10400.i
+_gAya10400Hand0ModelStream	8011B234	l	build/USA/src/aya/aya_10400/aya_10400.i
+_gAya10400FirstPairHand1ModelSkeleton	8011B4F0	l	build/USA/src/aya/aya_10400/aya_10400.i
+_gAya10400FirstPairHand1ModelPartVerts	8011B514	l	build/USA/src/aya/aya_10400/aya_10400.i
+_gAya10400FirstPairHand1ModelVerts	8011B518	l	build/USA/src/aya/aya_10400/aya_10400.i
+_gAya10400FirstPairHand1ModelNormals	8011B5F0	l	build/USA/src/aya/aya_10400/aya_10400.i
+_gAya10400FirstPairHand1ModelStream	8011B6C8	l	build/USA/src/aya/aya_10400/aya_10400.i
+_gAya10400SecondPairHand1ModelSkeleton	8011B9E0	l	build/USA/src/aya/aya_10400/aya_10400.i
+_gAya10400SecondPairHand1ModelPartVerts	8011BA04	l	build/USA/src/aya/aya_10400/aya_10400.i
+_gAya10400SecondPairHand1ModelVerts	8011BA08	l	build/USA/src/aya/aya_10400/aya_10400.i
+_gAya10400SecondPairHand1ModelNormals	8011BAC0	l	build/USA/src/aya/aya_10400/aya_10400.i
+_gAya10400SecondPairHand1ModelStream	8011BB78	l	build/USA/src/aya/aya_10400/aya_10400.i
+_gAya10400Image066C4	8011BE34	l	build/USA/src/aya/aya_10400/aya_10400.i
+_gAya10400EyesOpenUploads	8011C154	l	build/USA/src/aya/aya_10400/aya_10400.i
+_gAya10400Image06A04	8011C174	l	build/USA/src/aya/aya_10400/aya_10400.i
+_gAya10400EyesHalfClosedUploads	8011C494	l	build/USA/src/aya/aya_10400/aya_10400.i
+_gAya10400Image06D44	8011C4B4	l	build/USA/src/aya/aya_10400/aya_10400.i
+_gAya10400EyesClosedUploads	8011C7D4	l	build/USA/src/aya/aya_10400/aya_10400.i
+_gAya10400Image07084	8011C7F4	l	build/USA/src/aya/aya_10400/aya_10400.i
+_gAya10400MouthClosedUploads	8011CA24	l	build/USA/src/aya/aya_10400/aya_10400.i
+_gAya10400Image072D4	8011CA44	l	build/USA/src/aya/aya_10400/aya_10400.i
+_gAya10400MouthOpenUploads	8011CC74	l	build/USA/src/aya/aya_10400/aya_10400.i
+__romPos	00007574	al	
+itemMenuInfoTask	800C5F70	a	
+aya_10400_RODATA_SIZE	00000004	a	
+D_80071072	80071072	a	
+DecDCTBufSize	8002168C	a	
+gPadMenuButtonMask	8005ED78	a	
+displaySetFrameTiming	800280F4	a	
+textItoaUnsigned	8002F18C	a	
+cdCmdSelectScene	8001D534	a	
+memMalloc	8002DABC	a	
+taskPollKill	8002D3BC	a	
+DecDCTvlcBuild	8001DE44	a	
+textDrawUiLine	8002FDCC	a	
+inventoryHasCollectedBit	800BB4BC	a	
+gItemDescriptors	8010D838	a	
+D_80072177	80072177	a	
+taskKill	8002CCB8	a	
+textDrawString	8002E53C	a	
+aya_10400_RODATA_END	80115774		
+itemMenuSpawnNotice	800D4E40	a	
+aya_10400_DATA_SIZE	00007570	a	
+aya_10400_DATA_START	80115774		
+DecDCTin	8001A9D4	a	
+DecDCToutCallback	8001AB0C	a	
+gAya10400EyesClosingSequence	8011CC9C		
+padIsStartPressed	8004ACF0	a	
+cdCmdEnqueueDisplayResource	80042364	a	
+gGpuPrimitiveBufferBytes	80068F90	a	
+cdCmdEnqueueSceneAudioStart	8001D66C	a	
+gGpuCurrentOt	800710A0	a	
+gMcDialogDescriptors	800611C8	a	
+gMcSaveData	80072168	a	
+taskSpawnFromTable	8002CFA0	a	
+gAya10400EyesOpeningSequence	8011CCAC		
+gAya10400FirstPairHand1Model	8011B9BC		
+aya_10400_RODATA_START	80115770		
+LoadImage	80017F44	a	
+gItemMenuInfoPanel	80067634	a	
+gAttachmentLevelTable	8011398C	a	
+endingSpawnReplayAwardScreen	800B2968	a	
+gAya10400Hand0Model	8011B4CC		
+taskCallExit	8002D0A4	a	
+gGameSession	8005ED64	a	
+displayConfigureFramebuffers	8003DB48	a	
+gGpuPrimitiveBufferBase	80068F88	a	
+D_80071086	80071086	a	
+D_80072A9C	80072A9C	a	
+memFreeFromHeap	8002DB4C	a	
+aya_10400_VRAM_END	8011CCE4		
+textItoaSigned	8002F020	a	
+cdCmdIsIdle	8001D344	a	
+itemSetIdentified	800BB7C0	a	
+aya_10400_DATA_END	8011CCE4		
+itemMenuDrawItemRow	800CD924	a	
+uiDrawPanelLabel	80047F40	a	
+gAya10400EyesRestSequence	8011CC94		
+gFsImageWorkspacePtr	8005C364	a	
+uiUpdateList	80048C10	a	
+gGpuPrimCursor	80071190	a	
+gPadCancelButtonMask	8005ED74	a	
+itemMenuSpawnYesNoMenuDefaultNo	800CD89C	a	
+memCalloc	8002D978	a	
+strncmp	8001EAC4	a	
+uiSizePanelForText	80048560	a	
+D_80071068	80071068	a	
+textUploadPalettes	80030074	a	
+cdCmdCancelScene	8001D588	a	
+uiSetPanelContentSize	800466E4	a	
+gAya10400EyesBlinkSequence	8011CCBC		
+padCheckButtons	8002C868	a	
+itemMenuSetPreviewItem	800CDE80	a	
+memFree	8002DB20	a	
+SetDispMask	80017C00	a	
+cdCmdEnqueueScenePlayback	8001D5CC	a	
+DecDCTvlcSize2	8002130C	a	
+aya_10400_ROM_END	00007574	a	
+DecDCTvlc2	8002133C	a	
+DecDCTReset	8001A87C	a	
+uiStartTreeClosing	80048838	a	
+taskRequestKill	8002D340	a	
+gItemKeyDescriptors	8010DE38	a	
+ClearImage	80017E1C	a	
+gPlayerStatus	80073B88	a	
+aya_10400_VRAM	80115770		
+gFsResourceSlots	8006C338	a	
+gAya10400MouthOpenSequence	8011CCDC		
+D_800729B8	800729B8	a	
+gAya10400SecondPairHand1Model	8011BE10		
+itemMenuClearPreviewItems	800CDEF4	a	
+uiSpawnObject	800486F0	a	
+sndEvtRequestMidiStop	8005132C	a	
+DecDCTout	8001AA50	a	
+uiDrawTitle	80048E38	a	
+aya_10400_ROM_START	00000000	a	
+gDisplayState	80070F68	a	
+D_80072314	80072314	a	
+mcResetSaveData	800303AC	a	
+uiGetTextRowsHeight	80048E2C	a	
+uiDrawHorizontalSeparator	80047A0C	a	
+sndEvtRequestScriptStart	8005414C	a	
+textDrawUiLines	8002FB84	a	
+streamFinishScene	800B00C4	a	
+memFillBytes	8002D894	a	
+uiFitPanelToList	80046830	a	
+D_80073B90	80073B90	a	
+gAya10400MouthRestSequence	8011CCD4		
+gAya10400BodyModel	8011B078		

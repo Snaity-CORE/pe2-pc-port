@@ -1,0 +1,7 @@
+/* Generated from assets/USA/pe2pkg/mappic_s4_03.pe2pkg; model at 0xBBC. */
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,

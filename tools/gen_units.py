@@ -25,6 +25,7 @@ import argparse
 import json
 import re
 import shlex
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -93,6 +94,16 @@ def main() -> None:
     parser.add_argument("--out", type=Path, default=ROOT / "build" / "units.json")
     args = parser.parse_args()
 
+    sys.path.insert(0, str(ROOT / "tools"))
+    import pclink
+
+    if pclink.from_snapshot():
+        # Without the decomp's PSX build: the units make_snapshot.py saved.
+        units = json.loads((pclink.SNAPSHOT / "units.json").read_text(encoding="utf-8"))
+        args.out.parent.mkdir(parents=True, exist_ok=True)
+        args.out.write_text(json.dumps(units, indent=1), encoding="utf-8")
+        print(f"wrote {args.out}: {len(units)} units, from the snapshot")
+        return
     if not args.build_ninja.exists():
         raise SystemExit(f"{args.build_ninja} not found: run `python ninja_config.py` in decomp/ first")
     units = parse_units(args.build_ninja)

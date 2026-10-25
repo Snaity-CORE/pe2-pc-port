@@ -1,0 +1,27 @@
+_MACRO_INC_GUARD	00000001	al	build/USA/src/mappic/mappic_s2_03/mappic_s2_03.i
+_gMappicS203WaterHoleShapeSkeleton	8012EF34	l	build/USA/src/mappic/mappic_s2_03/mappic_s2_03.i
+_gMappicS203WaterHoleShapePartVerts	8012EF58	l	build/USA/src/mappic/mappic_s2_03/mappic_s2_03.i
+_gMappicS203WaterHoleShapeVerts	8012EF5C	l	build/USA/src/mappic/mappic_s2_03/mappic_s2_03.i
+_gMappicS203WaterHoleShapeStream	8012EF9C	l	build/USA/src/mappic/mappic_s2_03/mappic_s2_03.i
+_gMappicS203CellarShapeSkeleton	8012EFFC	l	build/USA/src/mappic/mappic_s2_03/mappic_s2_03.i
+_gMappicS203CellarShapePartVerts	8012F020	l	build/USA/src/mappic/mappic_s2_03/mappic_s2_03.i
+_gMappicS203CellarShapeVerts	8012F024	l	build/USA/src/mappic/mappic_s2_03/mappic_s2_03.i
+_gMappicS203CellarShapeStream	8012F054	l	build/USA/src/mappic/mappic_s2_03/mappic_s2_03.i
+_gMappicS203UnderpassShapeSkeleton	8012F0A8	l	build/USA/src/mappic/mappic_s2_03/mappic_s2_03.i
+_gMappicS203UnderpassShapePartVerts	8012F0CC	l	build/USA/src/mappic/mappic_s2_03/mappic_s2_03.i
+_gMappicS203UnderpassShapeVerts	8012F0D0	l	build/USA/src/mappic/mappic_s2_03/mappic_s2_03.i
+_gMappicS203UnderpassShapeStream	8012F120	l	build/USA/src/mappic/mappic_s2_03/mappic_s2_03.i
+__romPos	00000274	al	
+mappic_s2_03_RODATA_END	8012EF34		
+mappic_s2_03_DATA_START	8012EF34		
+mappic_s2_03_RODATA_START	8012EF30		
+mappic_s2_03_ROM_START	00000000	a	
+mappic_s2_03_VRAM_END	8012F1A4		
+mappic_s2_03_ROM_END	00000274	a	
+gMappicS203UnderpassShape	8012F180		
+gMappicS203WaterHoleShape	8012EFD8		
+mappic_s2_03_DATA_END	8012F1A4		
+mappic_s2_03_RODATA_SIZE	00000004	a	
+mappic_s2_03_VRAM	8012EF30		
+mappic_s2_03_DATA_SIZE	00000270	a	
+gMappicS203CellarShape	8012F084		

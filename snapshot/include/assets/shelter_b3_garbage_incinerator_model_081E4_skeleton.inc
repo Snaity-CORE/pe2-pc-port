@@ -1,0 +1,2 @@
+/* Generated from assets/USA/pe2pkg/shelter_b3_garbage_incinerator.pe2pkg; model at 0x855C. */
+    { { { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }, { 0, 0, 0 } }, 0 },

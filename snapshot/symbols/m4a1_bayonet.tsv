@@ -1,0 +1,555 @@
+gcc2_compiled.	8011D1E4	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+__gnu_compiled_c	8011D1E4	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_MACRO_INC_GUARD	00000001	al	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gM4a1BayonetTrailTipOffset	8011DEC8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gM4a1BayonetTrailNearOffset	8011DED0	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gM4a1BayonetWeaponModelSkeleton	8011DED8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gM4a1BayonetWeaponModelPartVerts	8011DEFC	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gM4a1BayonetWeaponModelVerts	8011DF00	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gM4a1BayonetWeaponModelNormals	8011E0F8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gM4a1BayonetWeaponModelStream	8011E2F0	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaIdleClipBank1	8011EA20	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaIdleClipBank4	8011EA38	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaIdleClipRecords	8011EA58	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaIdleClipTrackStarts	8011EB88	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaUnarmedWalkClipBank1	8011EBD8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaUnarmedWalkClipBank4	8011EC68	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaUnarmedWalkClipRecords	8011EEC4	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaUnarmedWalkClipTrackStarts	8011F22C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaUnarmedWalkClip	8011F254	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaTurnLeftClipBank1	8011F27C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaTurnLeftClipBank4	8011F360	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaTurnLeftClipRecords	8011F604	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaTurnLeftClipTrackStarts	8011FA8C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaTurnLeftClip	8011FAB4	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaTurnRightClipBank1	8011FADC	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaTurnRightClipBank4	8011FBC0	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaTurnRightClipRecords	8011FE68	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaTurnRightClipTrackStarts	801202F0	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaTurnRightClip	80120318	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaItemUseClipBank1	80120340	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaItemUseClipBank4	80120364	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaItemUseClipRecords	80120478	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaItemUseClipTrackStarts	80120604	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaItemUseClip	8012062C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaStairAscentClipBank1	80120654	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaStairAscentClipBank4	801206FC	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaStairAscentClipRecords	8012096C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaStairAscentClipTrackStarts	80120D60	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaStairAscentClip	80120D88	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaStairDescentClipBank1	80120DB0	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaStairDescentClipBank4	80120E70	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaStairDescentClipRecords	8012110C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaStairDescentClipTrackStarts	801214E8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaStairDescentClip	80121510	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaStairAscentFinishOddClipBank1	80121538	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaStairAscentFinishOddClipBank4	80121580	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaStairAscentFinishOddClipRecords	80121650	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaStairAscentFinishOddClipTrackStarts	801217BC	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaStairAscentFinishOddClip	801217E4	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaStairAscentFinishEvenClipBank1	8012180C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaStairAscentFinishEvenClipBank4	80121860	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaStairAscentFinishEvenClipRecords	80121984	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaStairAscentFinishEvenClipTrackStarts	80121B4C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaStairAscentFinishEvenClip	80121B74	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaParasiteEnergyBegin0ClipBank1	80121B9C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaParasiteEnergyBegin0ClipBank4	80121C08	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaParasiteEnergyBegin0ClipRecords	80121DA8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaParasiteEnergyBegin0ClipTrackStarts	80121FD4	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaParasiteEnergyBegin0Clip	80121FFC	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaParasiteEnergyCharge0ClipBank1	80122024	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaParasiteEnergyCharge0ClipBank4	80122048	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaParasiteEnergyCharge0ClipRecords	801220A0	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaParasiteEnergyCharge0ClipTrackStarts	801221D0	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaParasiteEnergyCharge0Clip	801221F8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaParasiteEnergyCast0ClipBank1	80122220	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaParasiteEnergyCast0ClipBank4	80122268	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaParasiteEnergyCast0ClipRecords	8012234C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaParasiteEnergyCast0ClipTrackStarts	801224A8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaParasiteEnergyCast0Clip	801224D0	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaParasiteEnergyBegin1ClipBank1	801224F8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaParasiteEnergyBegin1ClipBank4	80122528	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaParasiteEnergyBegin1ClipRecords	80122604	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaParasiteEnergyBegin1ClipTrackStarts	8012274C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaParasiteEnergyBegin1Clip	80122774	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaParasiteEnergyCharge1ClipBank1	8012279C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaParasiteEnergyCharge1ClipBank4	801227C0	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaParasiteEnergyCharge1ClipRecords	8012281C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaParasiteEnergyCharge1ClipTrackStarts	8012294C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaParasiteEnergyCharge1Clip	80122974	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaParasiteEnergyCast1ClipBank1	8012299C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaParasiteEnergyCast1ClipBank4	801229FC	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaParasiteEnergyCast1ClipRecords	80122B0C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaParasiteEnergyCast1ClipTrackStarts	80122CA0	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaParasiteEnergyCast1Clip	80122CC8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaHitHeadClipBank1	80122CF0	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaHitHeadClipBank4	80122D2C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaHitHeadClipRecords	80122E08	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaHitHeadClipTrackStarts	80122F54	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaHitHeadClip	80122F7C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaHitBodyClipBank1	80122FA4	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaHitBodyClipBank4	80122FEC	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaHitBodyClipRecords	801230F4	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaHitBodyClipTrackStarts	80123274	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaHitBodyClip	8012329C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaDeathClipBank1	801232C4	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaDeathClipBank4	8012339C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaDeathClipRecords	8012367C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaDeathClipTrackStarts	80123A38	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaDeathClip	80123A60	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaHighHealthIdleClipBank1	80123A88	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaHighHealthIdleClipBank4	80123BE4	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaHighHealthIdleClipRecords	801242EC	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaHighHealthIdleClipTrackStarts	80124CD0	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaHighHealthIdleClip	80124CF8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaLowHealthIdleClipBank1	80124D20	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaLowHealthIdleClipBank4	80124DB0	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaLowHealthIdleClipRecords	801251D8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaLowHealthIdleClipTrackStarts	80125848	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaLowHealthIdleClip	80125870	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaMidHealthIdleClipBank1	80125898	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaMidHealthIdleClipBank4	80125904	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaMidHealthIdleClipRecords	80125B44	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaMidHealthIdleClipTrackStarts	80125F64	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaMidHealthIdleClip	80125F8C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaExamineEnterClipBank1	80125FB4	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaExamineEnterClipBank4	80125FFC	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaExamineEnterClipRecords	801261A8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaExamineEnterClipTrackStarts	801263E4	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaExamineEnterClip	8012640C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaExamineExitClipBank1	80126434	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaExamineExitClipBank4	80126458	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaExamineExitClipRecords	801264D8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaExamineExitClipTrackStarts	801265BC	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaExamineExitClip	801265E4	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaParasiteEnergyBegin2ClipBank1	8012660C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaParasiteEnergyBegin2ClipBank4	80126690	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaParasiteEnergyBegin2ClipRecords	80126884	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaParasiteEnergyBegin2ClipTrackStarts	80126B20	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaParasiteEnergyBegin2Clip	80126B48	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaParasiteEnergyCharge2ClipBank1	80126B70	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaParasiteEnergyCharge2ClipBank4	80126B94	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaParasiteEnergyCharge2ClipRecords	80126BE4	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaParasiteEnergyCharge2ClipTrackStarts	80126D14	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaParasiteEnergyCharge2Clip	80126D3C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaParasiteEnergyCast2ClipBank1	80126D64	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaParasiteEnergyCast2ClipBank4	80126DC4	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaParasiteEnergyCast2ClipRecords	80126F68	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaParasiteEnergyCast2ClipTrackStarts	80127194	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaParasiteEnergyCast2Clip	801271BC	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gM4a1AimIdleClipBank1	801271E4	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gM4a1AimIdleClipBank4	801271FC	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gM4a1AimIdleClipRecords	80127240	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gM4a1AimIdleClipTrackStarts	80127370	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gM4a1AimIdleClip	80127398	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gM4a1AimBackwardClipBank1	801273C0	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gM4a1AimBackwardClipBank4	80127468	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gM4a1AimBackwardClipRecords	8012775C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gM4a1AimBackwardClipTrackStarts	80127B58	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gM4a1AimBackwardClip	80127B80	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaRifleAimForwardClipBank1	80127BA8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaRifleAimForwardClipBank4	80127C8C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaRifleAimForwardClipRecords	801280C0	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaRifleAimForwardClipTrackStarts	80128600	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaRifleAimForwardClip	80128628	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gM4a1ReloadClipBank1	80128650	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gM4a1ReloadClipBank4	80128788	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gM4a1ReloadClipRecords	80128E08	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gM4a1ReloadClipTrackStarts	80129564	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gM4a1ReloadClip	8012958C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gM4a1FireClipBank1	801295B4	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gM4a1FireClipBank4	801295FC	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gM4a1FireClipRecords	8012973C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gM4a1FireClipTrackStarts	80129930	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gM4a1FireClip	80129958	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gM4a1BayonetThrustClipBank1	80129980	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gM4a1BayonetThrustClipBank4	80129A94	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gM4a1BayonetThrustClipRecords	80129FFC	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gM4a1BayonetThrustClipTrackStarts	8012A670	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gM4a1BayonetThrustClip	8012A698	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gM4a1AimEnterClipBank1	8012A6C0	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gM4a1AimEnterClipBank4	8012A75C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gM4a1AimEnterClipRecords	8012AA34	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gM4a1AimEnterClipTrackStarts	8012ADB0	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gM4a1AimEnterClip	8012ADD8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gM4a1AimExitClipBank1	8012AE00	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gM4a1AimExitClipBank4	8012AED8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gM4a1AimExitClipRecords	8012B300	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gM4a1AimExitClipTrackStarts	8012B7E0	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gM4a1AimExitClip	8012B808	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaRifleWalkClipBank1	8012B830	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaRifleWalkClipBank4	8012B908	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaRifleWalkClipRecords	8012BC2C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaRifleWalkClipTrackStarts	8012C098	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaRifleWalkClip	8012C0C0	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaRifleBackwardWalkClipBank1	8012C0E8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaRifleBackwardWalkClipBank4	8012C1A8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaRifleBackwardWalkClipRecords	8012C41C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaRifleBackwardWalkClipTrackStarts	8012C838	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaRifleBackwardWalkClip	8012C860	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaRifleRunClipBank1	8012C888	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaRifleRunClipBank4	8012C9B4	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaRifleRunClipRecords	8012CD30	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaRifleRunClipTrackStarts	8012D20C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gAyaRifleRunClip	8012D234	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gBladeTrailFirstHistory	8012D398	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_gBladeTrailSecondHistory	8012D618	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM1	8011D1E4	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM2	8011D1E4	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM3	8011D1E8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM4	8011D1EC	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM5	8011D218	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM6	8011D21C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM7	8011D220	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM8	8011D224	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM9	8011D228	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM10	8011D22C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM11	8011D234	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM12	8011D244	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM13	8011D26C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM14	8011D26C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM15	8011D270	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM16	8011D274	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM17	8011D278	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM18	8011D27C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM19	8011D280	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM20	8011D28C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM21	8011D290	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM22	8011D294	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM23	8011D298	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM24	8011D29C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM25	8011D2A0	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM26	8011D2A4	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM27	8011D2A4	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM28	8011D2AC	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM29	8011D2B8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM30	8011D2BC	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM31	8011D2C0	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM32	8011D2C4	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM33	8011D2C8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM34	8011D2CC	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM35	8011D2D0	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM36	8011D2D4	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM37	8011D2D8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM38	8011D2DC	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM39	8011D2E4	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM40	8011D300	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM41	8011D398	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM42	8011D434	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM43	8011D444	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM44	8011D44C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM45	8011D44C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM46	8011D454	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM47	8011D45C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM48	8011D460	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM49	8011D464	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM50	8011D468	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM51	8011D46C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM52	8011D470	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM53	8011D474	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM54	8011D478	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM55	8011D47C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM56	8011D480	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM57	8011D488	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM58	8011D494	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM59	8011D49C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM60	8011D54C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM61	8011D604	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM62	8011D60C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM63	8011D610	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM64	8011D614	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM65	8011D61C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM66	8011D620	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM67	8011D624	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM68	8011D62C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM69	8011D63C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+_bladeTrailDraw	8011D69C	flt	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM70	8011D64C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM71	8011D654	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM72	8011D658	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM73	8011D660	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM74	8011D66C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM75	8011D69C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM76	8011D69C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM77	8011D69C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM78	8011D6A8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM79	8011D6B0	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM80	8011D6B8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM81	8011D6BC	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM82	8011D6D8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM83	8011D6DC	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM84	8011D6E0	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM85	8011D6EC	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM86	8011D704	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM87	8011D734	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM88	8011D754	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM89	8011D760	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM90	8011D764	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM91	8011D774	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM92	8011D778	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM93	8011D77C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM94	8011D780	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM95	8011D784	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM96	8011D788	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM97	8011D78C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM98	8011D790	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM99	8011D794	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM100	8011D798	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM101	8011D79C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM102	8011D7A0	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM103	8011D7A4	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM104	8011D7A8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM105	8011D7AC	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM106	8011D7B0	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM107	8011D7B4	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM108	8011D7B8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM109	8011D7BC	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM110	8011D7C0	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM111	8011D7CC	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM112	8011D7D8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM113	8011D7DC	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM114	8011D7E0	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM115	8011D7E4	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM116	8011D7F0	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM117	8011D7FC	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM118	8011D808	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM119	8011D810	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM120	8011D81C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM121	8011D828	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM122	8011D830	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM123	8011D840	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM124	8011D848	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM125	8011D86C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM126	8011D878	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM127	8011D890	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM128	8011D8A0	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM129	8011D8B0	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM130	8011D8C0	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM131	8011D8D0	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM132	8011D900	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM133	8011D91C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM134	8011D924	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM135	8011D94C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM136	8011D968	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM137	8011D9C4	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM138	8011D9C8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM139	8011D9D4	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM140	8011D9E0	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM141	8011D9F0	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM142	8011DA08	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM143	8011DA34	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM144	8011DA34	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM145	8011DA34	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM146	8011DA40	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM147	8011DA48	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM148	8011DA5C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM149	8011DA60	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM150	8011DA64	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM151	8011DA68	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM152	8011DA70	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM153	8011DA74	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM154	8011DA78	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM155	8011DA7C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM156	8011DA80	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM157	8011DAA8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM158	8011DAA8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM159	8011DAAC	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM160	8011DAB4	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM161	8011DAB8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM162	8011DABC	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM163	8011DAC0	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM164	8011DAC4	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM165	8011DAC8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM166	8011DACC	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM167	8011DAD4	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM168	8011DAD8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM169	8011DADC	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM170	8011DAE8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM171	8011DAEC	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM172	8011DAFC	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM173	8011DB04	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM174	8011DB18	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM175	8011DB24	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM176	8011DB2C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM177	8011DB34	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM178	8011DB4C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM179	8011DB54	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM180	8011DB5C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM181	8011DB60	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM182	8011DB68	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM183	8011DB70	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM184	8011DB74	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM185	8011DB7C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM186	8011DB80	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM187	8011DB84	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM188	8011DB8C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM189	8011DB90	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM190	8011DB94	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM191	8011DB98	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM192	8011DB9C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM193	8011DBA4	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM194	8011DBB8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM195	8011DBC0	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM196	8011DBC8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM197	8011DBD4	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM198	8011DBD8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM199	8011DBE0	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM200	8011DBE4	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM201	8011DBE8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM202	8011DBEC	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM203	8011DBF0	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM204	8011DBF4	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM205	8011DBF8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM206	8011DBFC	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM207	8011DC00	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM208	8011DC04	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM209	8011DC0C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM210	8011DC0C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM211	8011DC1C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM212	8011DC24	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM213	8011DC2C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM214	8011DC34	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM215	8011DC38	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM216	8011DC3C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM217	8011DC40	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM218	8011DC44	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM219	8011DC4C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM220	8011DC50	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM221	8011DC58	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM222	8011DC5C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM223	8011DC60	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM224	8011DC64	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM225	8011DC6C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM226	8011DC7C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM227	8011DC80	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM228	8011DC94	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM229	8011DCB4	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM230	8011DCC8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM231	8011DCD0	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM232	8011DCE8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM233	8011DCF0	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM234	8011DD00	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM235	8011DD28	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM236	8011DD30	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM237	8011DD3C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM238	8011DD40	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM239	8011DD4C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM240	8011DD5C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM241	8011DD64	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM242	8011DD68	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM243	8011DD70	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM244	8011DD78	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM245	8011DD8C	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM246	8011DDAC	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM247	8011DDB4	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM248	8011DDC4	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM249	8011DDCC	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM250	8011DDD0	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM251	8011DDD8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM252	8011DDE0	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM253	8011DDF4	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM254	8011DE08	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM255	8011DE10	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM256	8011DE20	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM257	8011DE50	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM258	8011DE80	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM259	8011DE88	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM260	8011DE90	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM261	8011DEA8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+LM262	8011DEC8	fl	build/USA/src/weapons/m4a1_bayonet/m4a1_bayonet.i
+__romPos	000106D8	al	
+playerActorResetChildSlots	801038F8	a	
+m4a1_bayonet_RODATA_SIZE	00000024	a	
+m4a1_bayonet_VRAM	8011D1C0	f	
+gameGetTaskSlot	8002D22C	a	
+worldCoordGetOriginAudioPan	800D937C	a	
+worldCollisionClearContacts	800E1A6C	a	
+D_80114F94	80114F94	a	
+m4a1_bayonet_bss_VRAM	8012D898	f	
+taskSpawn	8002CFDC	a	
+gGfxViewCoord	80070F10	a	
+worldCollisionProjectGroundCoord	800EA02C	a	
+rcos	8003D108	a	
+taskKill	8002CCB8	a	
+gEffectSpriteAtlasFrames	80111E48	a	
+playerActorQueryWeaponLoads	80106264	a	
+gEffectUnitQuadCorners	80111E38	a	
+playerActorPlayChildSlotsWithBlend	80103A18	a	
+gpuSetPrimitiveBlendMode	800EC914	a	
+weaponRecordUse	80106518	a	
+ratan2	8003D9C8	a	
+D_80114F98	80114F98	a	
+m4a1_bayonet_TEXT_END	8011DEC8	f	
+worldCollisionUnlinkBody	800E1638	a	
+gGpuCurrentOt	800710A0	a	
+gMcSaveData	80072168	a	
+worldCollisionCountContactsByKind	800E1A1C	a	
+worldCollisionSurfaceClassFromMask	800E1ACC	a	
+gfxMakeRelativeTransform	800A8864	a	
+gWorldCollisionSurfacePropertiesTables	8010CBB8	a	
+playerActorReadAttackButton	801060E0	a	
+gAyaIdleClip	8011EBB0	f	
+m4a1_bayonet_DATA_SIZE	0000F9D0	a	
+gGameSession	8005ED64	a	
+gPlayerActorAttachmentParentParts	80112E04	a	
+gM4a1BayonetPlayerAnimationBank	8012D25C	f	
+m4a1_bayonet_ROM_START	00000000	a	
+sndEvtRequestScriptStop	800542D0	a	
+worldCollisionResolveResponsePushback	800E0FEC	a	
+gfxReadMatrixZAxis	8003C768	a	
+m4a1_bayonet_DATA_START	8011DEC8	f	
+worldCollisionLinkBody	800E15AC	a	
+D_80073BA9	80073BA9	a	
+effectKillTask	800EC7E4	a	
+m4a1_bayonet_DATA_END	8012D898	f	
+effectDrawGouraudDisc	800EAEB8	a	
+playerActorTrackLockTarget	80103F70	a	
+gfxRotMatrixZ	8003CB80	a	
+worldCoordPlaySound	801064A4	a	
+m4a1_bayonet_RODATA_START	8011D1C0	f	
+m4a1_bayonet_BSS_START	8012D898	f	
+gM4a1BayonetWeaponModel	8011E9FC	f	
+m4a1_bayonet_TEXT_SIZE	00000CE4	a	
+gGpuPrimCursor	80071190	a	
+worldCoordGetOriginAudioDepth	800D9340	a	
+effectDrawRaisedGlowBand	800EB9B0	a	
+memCalloc	8002D978	a	
+effectSpawn	800EA478	a	
+m4a1_bayonet_BSS_END	8012D898	f	
+playerActorSpawnGrenadeProjectile	80104490	a	
+GsWSMATRIX	80071138	a	
+D_80073BAA	80073BAA	a	
+effectDrawOuterGlowBand	800EAA0C	a	
+rsin	8003D038	a	
+worldCollisionProbeGridSegment	800DE7CC	a	
+gPlayerStatus	80073B88	a	
+equipmentConsumeWeaponLoad	800B6DA4	a	
+gRandomLcgState	80070F60	a	
+VectorNormalSS	8003D5D8	a	
+D_8007218A	8007218A	a	
+Gfx_ViewWorldMtx	80070F34	a	
+effectDrawScreenTint	800EA858	a	
+equipmentGetWeaponLoad	800BAFE0	a	
+playerActorFinishWeaponAttack	80106550	a	
+m4a1_bayonet_TEXT_START	8011D1E4	f	
+m4a1_bayonet_BSS_SIZE	00000000	a	
+gPlayerActorWeaponReaches	80112F60	a	
+worldCollisionInitContacts	800E18E0	a	
+gfxRotMatrixX	8003C788	a	
+gWorldCoordTransientPointLights	80114F30	a	
+m4a1_bayonet_RODATA_END	8011D1E4	f	
+gDisplayState	80070F68	a	
+playerActorSpawnWeaponImpact	80105BC4	a	
+playerActorIsSlotAdvancingLinearly	80105894	a	
+m4a1_bayonet_VRAM_END	8012D898	f	
+m4a1BayonetTrailTask	8011D1E4	ft	
+sndEvtRequestScriptStart	8005414C	a	
+m4a1_bayonet_ROM_END	000106D8	a	
+animationGetCurrentRecord	800B4668	a	
+memFillBytes	8002D894	a	
+RotMatrixX	8004BE58	a	
+taskReparent	8002D14C	a	
+gRoomEffectState	80115740	a	
+actorRenderComposeCoord	80098F58	a	
+m4a1BayonetAttackState	8011DA34	ft	
+playerActorSetWeaponAttackFlags	80106238	a	

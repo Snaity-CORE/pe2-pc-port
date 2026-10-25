@@ -1,0 +1,4 @@
+/* Generated from assets/USA/pe2pkg/shelter_1f_airlock.pe2pkg; grid header at 0x1278. */
+    SHELTER_1F_AIRLOCK_CELL_FACE_LIST_AT_OFFSET(0),
+    SHELTER_1F_AIRLOCK_CELL_FACE_LIST_AT_OFFSET(0),
+    SHELTER_1F_AIRLOCK_CELL_FACE_LIST_AT_OFFSET(0),

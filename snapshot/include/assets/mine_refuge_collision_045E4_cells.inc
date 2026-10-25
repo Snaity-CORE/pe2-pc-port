@@ -1,0 +1,4 @@
+/* Generated from assets/USA/pe2pkg/mine_refuge.pe2pkg; grid header at 0x45E4. */
+    0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, -0, 0,
+    0, 0, 0, 0, 0, 0, -0, 0,

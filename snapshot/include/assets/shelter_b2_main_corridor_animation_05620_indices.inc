@@ -1,0 +1,4 @@
+/* Generated from assets/USA/pe2pkg/shelter_b2_main_corridor.pe2pkg; animation at 0x5620. */
+    0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0,

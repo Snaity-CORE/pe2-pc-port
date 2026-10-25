@@ -1,0 +1,2166 @@
+gcc2_compiled.	8017D670	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+__gnu_compiled_c	8017D670	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_MACRO_INC_GUARD	00000001	al	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaStagedEventTaskDesc	801818F8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaRoomMessages	80181904	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_mineMesaResolveRoomEventMsg	8017D8F8	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_mineMesaRejectKeyItemUse	8017D8F0	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_mineMesaRoomActionMsg	8017DABC	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_mineMesaRoomCommandMsg	8017DA7C	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_mineMesaActorEventMsg	8017DBC4	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+D_mine_mesa_80181934	80181934	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaEnableDisplayScript	80181960	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaMovieTaskDescs	80181990	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_mineMesaStartMovieTask	8017E024	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaHoldBlackScreenTaskDesc	801819A8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_mineMesaHoldBlackScreenTask	8017DFC4	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation046D0Bank1	801819B4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation046D0Bank4	801819FC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation046D0Records	80181AB4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation046D0Indices	80181C68	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation046D0	80181C90	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation0494CBank1	80181CB8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation0494CBank4	80181CD0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation0494CRecords	80181D50	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation0494CIndices	80181EE4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation0494C	80181F0C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation04B54Bank1	80181F34	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation04B54Bank4	80181F64	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation04B54Records	80181FEC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation04B54Indices	801820EC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation04B54	80182114	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation04ED8Bank1	8018213C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation04ED8Bank4	80182184	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation04ED8Records	801822A0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation04ED8Indices	80182470	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation04ED8	80182498	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation0515CBank1	801824C0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation0515CBank4	801824E4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation0515CRecords	8018256C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation0515CIndices	801826F4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation0515C	8018271C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation06160Bank1	80182744	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation06160Bank4	80182894	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation06160Records	80182F30	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation06160Indices	801836F8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation06160	80183720	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation0645CBank1	80183748	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation0645CBank4	80183778	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation0645CRecords	80183858	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation0645CIndices	801839F4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation0645C	80183A1C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation065FCBank1	80183A44	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation065FCBank4	80183A5C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation065FCRecords	80183AA4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation065FCIndices	80183B94	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation065FC	80183BBC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation068E4Bank1	80183BE4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation068E4Bank4	80183C14	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation068E4Records	80183CC8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation068E4Indices	80183E7C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation068E4	80183EA4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation06B9CBank1	80183ECC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation06B9CBank4	80183EE4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation06B9CRecords	80183F80	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation06B9CIndices	80184134	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaAnimation06B9C	8018415C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaPlayerRunPath	80184184	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaSceneTaskDescriptors	801842F4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_mineMesaPlayerPathTask	8017E074	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_mineMesaPlayerHeadAimTask	8017E15C	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_mineMesaCompanionHeadAimTask	8017E2A4	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_mineMesaPlayerHeadBlendTask	8017E7B0	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_mineMesaFadeFromBlackTask	8017E3E0	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_mineMesaRunSoundCuesTask	8017E978	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaPlayerSceneAnimationSets	8018433C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaPlayerSceneBankCopyRequest	80184344	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+D_mine_mesa_8018434C	8018434C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaPlayerSceneAnimationRequest	80184360	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaPlayerIdleBlendRequest	80184374	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+D_mine_mesa_80184388	80184388	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaPlayerBattleApproachAnimationRequest	8018439C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaPlayerArrivalIdleAnimationRequest	801843B0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaPlayerBattleApproachTransform	801843C4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaPlayerBattleSkipTransform	801843DC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaPlayerSceneRestoreTransform	801843F4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+D_mine_mesa_8018440C	8018440C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaPlayerArrivalFirstVolleyTransform	80184424	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaPlayerArrivalSecondVolleyTransform	8018443C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaCompanionSceneAnimationSets	80184454	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaCompanionSceneBankCopyRequest	80184484	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+D_mine_mesa_8018448C	8018448C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaCompanionArrivalOpeningAnimationRequest	801844A0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaCompanionBattleCue1AnimationRequest	801844B4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaCompanionBattleCue2AnimationRequest	801844C8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaCompanionBattleCue4AnimationRequest	801844DC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaCompanionBattleCue5AnimationRequest	801844F0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaCompanionBattleCue3AnimationRequest	80184504	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaCompanionArrivalHoldAnimationRequest	80184518	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaCompanionDialogueEndAnimationRequest	8018452C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaCompanionDialogueAnimationRequest	80184540	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaCompanionBattleOpeningAnimationRequest	80184554	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaCompanionSceneRestoreAnimationRequest	80184568	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaCompanionFireAnimationRequest	8018457C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaCompanionBattleOpeningTransform	80184590	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaCompanionBattleSceneTransform	801845A8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaCompanionBattleFinalTurnTransform	801845C0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+D_mine_mesa_801845D8	801845D8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaCompanionSceneRestoreTransform	801845F0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaCompanionArrivalFirstVolleyTransform	80184608	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaCompanionArrivalSecondVolleyTransform	80184620	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaCompanionArrivalPostVolleyTransform	80184638	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaHideChasersCommand	80184650	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaChaserLeapInCommand	80184654	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+D_mine_mesa_80184658	80184658	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaArrivalSceneKey	8018465C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaCompanionBattleScript	80184664	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_mineMesaLockAttachmentsAndCancelEffects	8017EA78	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_mineMesaStartPlayerPath	8017E620	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_mineMesaStartRunSoundCues	8017E948	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_mineMesaStartPlayerHeadBlend	8017E760	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_mineMesaSetPlayerHeadAimMode	8017E684	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_mineMesaSetSceneCollisionLowered	8017EB54	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_mineMesaStartEnemyWave	8017DDF0	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_mineMesaDismissCompanion	8017EA24	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaCompanionBattleSkipScript	80184BA4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaFirstCompanionDialogueScript	80184D9C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_mineMesaStartPlayerHeadAim	8017E650	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_mineMesaStartCompanionHeadAim	8017E6D8	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_mineMesaSetCompanionHeadAimMode	8017E70C	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaFirstCompanionDialogueSkipScript	80184FF4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaBeginBattleScript	801850E4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaArrivalPlaybackScript	8018515C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_mineMesaStageSceneAudioStart	8017E5A0	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_mineMesaSuppressAutomaticMusic	8017E91C	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_mineMesaRequestViewRefresh	8017EAAC	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_mineMesaEnqueueScenePlayback	8017E5C0	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaArrivalVibrationCommands	80189A80	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaArrivalVibrationSegments	80189A90	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_mineMesaFinishScene	8017E5E0	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_mineMesaSelectCountdownMusicEntry	8017E93C	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaSceneRestoreScript	801852F4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_mineMesaSetFadeFromBlackState	8017E8FC	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_mineMesaCancelScene	8017E600	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaRepeatCompanionDialogueScript	801854BC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaRepeatCompanionDialogueSkipScript	801856B4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaArrivalScript	8018578C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_mineMesaStartFadeFromBlack	8017E8B0	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_mineMesaSpawnCompanionShotEffects	8017EAC0	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaArrivalSkipScript	801861DC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_mineMesaHaltVibrationScript	8017EB18	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaSceneCollisionTemplateNormals	8018641C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaSceneCollisionTemplateVerts	80186434	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaSceneCollisionTemplateFaces	80186474	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaSceneCollisionTemplateCells	80186498	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaSceneCollisionTemplateTable	801864A0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaSceneCollisionTemplate	801864A4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaFlarePositions	801864C8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gRoomVisualEffectsTwinTrailEndpointOffsets	80186528	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaCollisionGrid	8018700C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaViewBoundaryTriggers	80188E40	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaActionTriggers	801890A0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaSightOccluders	801899B4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaRoomLights	80188E28	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaViewAmbientTable	80189954	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaCollisionGridNormals	801865C8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaCollisionGridVerts	801866F0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaCollisionGridFaces	80186A98	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaCollisionGridCells	80186D14	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaCollisionGridTable	80186FCC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaView1SpriteBatches	801871BC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaView2SpriteSources	801871CC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaView2SpriteBatches	8018758C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaView3SpriteSources	801875C4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaView3SpriteBatches	801878D0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaView4SpriteSources	801878F0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaView4SpriteBatches	80187A58	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaView5SpriteSources	80187A70	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaView5SpriteBatches	80187F98	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaView6SpriteSources	80187FC8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaView6SpriteBatches	80188194	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaView7SpriteBatches	801881AC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaView8SpriteSources	801881BC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaView8SpriteBatches	80188504	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaView9SpriteSources	8018852C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaView9SpriteBatches	8018870C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaView10SpriteBatches	80188724	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaView11SpriteBatches	80188734	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaPointLights	801887C8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaConeLights	80188AC8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaUnreferencedData	80188B34	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaVariant1Resources	80189644	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaVariant2Resources	8018965C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaVariant3Resources	80189674	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaVariant4Resources	80189698	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaVariant7Resources	801896BC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaVariant11Resources	801896E0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaVariant1Placements	80189704	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaVariant2Placements	80189724	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaVariant3Placements	80189774	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaVariant4Placements	801897E4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaVariant7Placements	80189854	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaVariant11Placements	80189884	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaFootstepSounds	80189A2C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaSurfaceClass0Properties	80189A38	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaSurfaceClass1Properties	80189A40	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaSurfaceClass2Properties	80189A48	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaSurfaceClass3Properties	80189A50	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaSurfaceClass4Properties	80189A58	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaWallEdges	80189A9C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaWaveSpawnPoints	80189AFC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaEnemyWaveMessages	80189B1C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_mineMesaEnemyWaveActorEventMsg	80181800	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaEnemyWaveTaskDesc	80189B2C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_mineMesaEnemyWaveTask	80181894	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gRoomEventStagedMsg	80189B40	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaStagedEventStartAttempted	80189B48	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaEnemyWaveTask	80189B4C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaCompanionSceneLatch	80189B50	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaPlayerHeadTask	80189B54	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaCompanionHeadAimTask	80189B58	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaFadeFromBlackTask	80189B5C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaWaveKillsRemaining	80189B6C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaWaveSpawnCooldown	80189B6E	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+D_mine_mesa_80189B70	80189B70	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaWaveEnemies	80189B74	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1	8017D670	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM2	8017D670	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM3	8017D684	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM4	8017D6B4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM5	8017D6B4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM6	8017D6B8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM7	8017D6C0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM8	8017D6C8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM9	8017D6D8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM10	8017D6DC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM11	8017D6E0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM12	8017D6E8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM13	8017D6F8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM14	8017D72C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM15	8017D734	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM16	8017D748	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM17	8017D750	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM18	8017D758	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM19	8017D75C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM20	8017D764	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM21	8017D784	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM22	8017D790	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM23	8017D798	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM24	8017D7A4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM25	8017D7B4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM26	8017D7C0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM27	8017D7D0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM28	8017D7D4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM29	8017D7D8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM30	8017D7E0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM31	8017D7E4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM32	8017D7EC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM33	8017D7F4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM34	8017D808	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM35	8017D808	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM36	8017D808	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_mineMesaUpdateRoomEventsState	8017D808	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM37	8017D808	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM38	8017D810	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM39	8017D81C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM40	8017D84C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM41	8017D85C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM42	8017D86C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM43	8017D880	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM44	8017D88C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM45	8017D898	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM46	8017D8A0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM47	8017D8AC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM48	8017D8C4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM49	8017D8D8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM50	8017D8E0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM51	8017D8F0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM52	8017D8F0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM53	8017D8F0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM54	8017D8F0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM55	8017D8F8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM56	8017D8F8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM57	8017D8F8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM58	8017D90C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM59	8017D914	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM60	8017D91C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM61	8017D938	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM62	8017D940	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM63	8017D950	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM64	8017D95C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM65	8017D980	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM66	8017D988	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM67	8017D988	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM68	8017D98C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM69	8017D990	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM70	8017D994	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM71	8017D99C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM72	8017D9A0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM73	8017D9A4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM74	8017DA64	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM75	8017DA7C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM76	8017DA7C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM77	8017DA7C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM78	8017DA80	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM79	8017DA8C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM80	8017DAAC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM81	8017DAAC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM82	8017DAB0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM83	8017DAB4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM84	8017DABC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM85	8017DABC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM86	8017DABC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM87	8017DAC4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM88	8017DAE4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM89	8017DAF4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM90	8017DB04	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM91	8017DB10	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM92	8017DB1C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM93	8017DB28	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_mineMesaUnlinkBattleTriggers	8017DD44	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM94	8017DB30	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM95	8017DB38	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM96	8017DB48	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM97	8017DB58	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM98	8017DB68	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM99	8017DB7C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM100	8017DB88	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM101	8017DBA0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM102	8017DBB4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM103	8017DBB4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM104	8017DBB8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM105	8017DBBC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM106	8017DBC4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM107	8017DBC4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM108	8017DBC4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM109	8017DBC4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM110	8017DBCC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM111	8017DBE4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM112	8017DBF4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM113	8017DC04	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM114	8017DC14	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM115	8017DC24	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM116	8017DC2C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM117	8017DC34	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM118	8017DC38	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM119	8017DC40	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM120	8017DC58	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM121	8017DC64	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM122	8017DC64	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM123	8017DC74	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM124	8017DC78	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM125	8017DC80	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM126	8017DC80	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM127	8017DC80	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_mineMesaInitializeRoomState	8017DC80	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM128	8017DC8C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM129	8017DC94	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM130	8017DC98	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM131	8017DC9C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM132	8017DCA4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM133	8017DCB4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM134	8017DCC4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM135	8017DCCC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM136	8017DCE4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM137	8017DCF0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM138	8017DCF8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM139	8017DD00	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM140	8017DD08	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_mineMesaResetSceneTaskHandles	8017EB38	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM141	8017DD10	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM142	8017DD14	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_mineMesaRebuildVariantWalls	801817BC	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM143	8017DD1C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM144	8017DD2C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM145	8017DD34	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM146	8017DD3C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM147	8017DD44	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM148	8017DD44	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM149	8017DD44	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM150	8017DD48	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM151	8017DD4C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM152	8017DD50	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM153	8017DD58	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM154	8017DD5C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM155	8017DD64	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM156	8017DD70	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM157	8017DD7C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM158	8017DD88	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM159	8017DD98	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaRoomStates	8017D5D8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM160	8017DD98	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM161	8017DD98	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM162	8017DD9C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM163	8017DDA0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM164	8017DDA4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM165	8017DDC0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM166	8017DDE0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM167	8017DDF0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM168	8017DDF0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM169	8017DDF0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM170	8017DDF8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM171	8017DE04	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM172	8017DE0C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM173	8017DE28	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM174	8017DE38	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM175	8017DE38	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM176	8017DE38	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM177	8017DE44	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM178	8017DE48	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM179	8017DE4C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM180	8017DE50	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM181	8017DE54	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM182	8017DE7C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM183	8017DE84	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM184	8017DE8C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM185	8017DE94	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM186	8017DE9C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM187	8017DEA4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM188	8017DEA8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM189	8017DEC8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM190	8017DECC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM191	8017DED4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM192	8017DEE0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM193	8017DEE8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM194	8017DEF0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM195	8017DF00	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM196	8017DF08	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM197	8017DF10	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM198	8017DF24	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM199	8017DF2C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM200	8017DF44	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM201	8017DF4C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM202	8017DF54	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM203	8017DF5C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM204	8017DF70	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM205	8017DF78	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM206	8017DF84	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM207	8017DF8C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM208	8017DFA4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM209	8017DFAC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM210	8017DFB4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM211	8017DFC4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM212	8017DFC4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM213	8017DFC4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM214	8017DFD0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM215	8017DFDC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM216	8017DFE0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM217	8017DFE8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM218	8017DFF4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM219	8017DFF8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM220	8017E00C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM221	8017E014	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM222	8017E024	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM223	8017E024	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM224	8017E024	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM225	8017E030	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM226	8017E040	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM227	8017E044	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM228	8017E04C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM229	8017E054	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM230	8017E05C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM231	8017E064	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM232	8017E074	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM233	8017E074	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM234	8017E074	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM235	8017E080	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM236	8017E0AC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM237	8017E0B4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM238	8017E0BC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM239	8017E0D4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM240	8017E0F0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM241	8017E0F4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM242	8017E0F8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM243	8017E104	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM244	8017E108	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM245	8017E10C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM246	8017E110	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM247	8017E114	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM248	8017E118	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM249	8017E11C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM250	8017E124	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM251	8017E128	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM252	8017E12C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM253	8017E130	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM254	8017E14C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM255	8017E15C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM256	8017E15C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM257	8017E15C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM258	8017E168	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM259	8017E16C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM260	8017E174	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM261	8017E17C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM262	8017E180	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM263	8017E188	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM264	8017E194	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM265	8017E19C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM266	8017E1AC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM267	8017E1B4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM268	8017E1BC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM269	8017E1D4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM270	8017E1E4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM271	8017E1EC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM272	8017E1F0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM273	8017E1F4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM274	8017E1FC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM275	8017E20C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM276	8017E210	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM277	8017E26C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM278	8017E274	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM279	8017E27C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM280	8017E284	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM281	8017E28C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM282	8017E2A4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM283	8017E2A4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM284	8017E2A4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM285	8017E2B0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM286	8017E2B4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM287	8017E2BC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM288	8017E2C4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM289	8017E2D0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM290	8017E2D8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM291	8017E2E0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM292	8017E2E4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM293	8017E304	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM294	8017E314	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM295	8017E31C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM296	8017E320	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM297	8017E324	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM298	8017E32C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM299	8017E33C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM300	8017E340	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM301	8017E398	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM302	8017E3B0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM303	8017E3B8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM304	8017E3C0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM305	8017E3C8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM306	8017E3E0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM307	8017E3E0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM308	8017E3E0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM309	8017E3E4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM310	8017E3E8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM311	8017E400	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM312	8017E404	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM313	8017E408	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM314	8017E40C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM315	8017E440	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM316	8017E440	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM317	8017E444	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM318	8017E44C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM319	8017E460	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM320	8017E46C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM321	8017E474	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM322	8017E484	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM323	8017E490	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM324	8017E580	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM325	8017E5A0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM326	8017E5A0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM327	8017E5A0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM328	8017E5A8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM329	8017E5C0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM330	8017E5C0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM331	8017E5C0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM332	8017E5C8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM333	8017E5E0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM334	8017E5E0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM335	8017E5E0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM336	8017E5E8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM337	8017E600	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM338	8017E600	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM339	8017E600	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM340	8017E608	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM341	8017E620	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM342	8017E620	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM343	8017E620	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM344	8017E624	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM345	8017E634	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM346	8017E638	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM347	8017E650	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM348	8017E650	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM349	8017E650	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM350	8017E654	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM351	8017E664	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM352	8017E668	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM353	8017E684	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM354	8017E684	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM355	8017E684	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM356	8017E684	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM357	8017E68C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM358	8017E694	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM359	8017E69C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM360	8017E6A8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM361	8017E6B0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM362	8017E6B8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM363	8017E6C4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM364	8017E6C8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM365	8017E6D8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM366	8017E6D8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM367	8017E6D8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM368	8017E6DC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM369	8017E6EC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM370	8017E6F0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM371	8017E70C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM372	8017E70C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM373	8017E70C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM374	8017E70C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM375	8017E714	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM376	8017E71C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM377	8017E724	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM378	8017E730	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM379	8017E738	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM380	8017E740	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM381	8017E74C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM382	8017E750	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM383	8017E760	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM384	8017E760	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM385	8017E760	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM386	8017E768	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM387	8017E774	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM388	8017E77C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM389	8017E784	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM390	8017E7B0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM391	8017E7B0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM392	8017E7B0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM393	8017E7BC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM394	8017E7C0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM395	8017E7C4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM396	8017E7CC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM397	8017E7D0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM398	8017E7D8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM399	8017E7E4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM400	8017E7EC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM401	8017E7FC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM402	8017E800	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM403	8017E870	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM404	8017E884	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM405	8017E88C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM406	8017E894	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM407	8017E89C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM408	8017E8B0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM409	8017E8B0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM410	8017E8B0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM411	8017E8B8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM412	8017E8C4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM413	8017E8C8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM414	8017E8D4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM415	8017E8E4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM416	8017E8EC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM417	8017E8FC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM418	8017E8FC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM419	8017E8FC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM420	8017E8FC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM421	8017E910	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM422	8017E914	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM423	8017E91C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM424	8017E91C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM425	8017E91C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM426	8017E91C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM427	8017E93C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM428	8017E93C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM429	8017E93C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM430	8017E93C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM431	8017E948	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM432	8017E948	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM433	8017E948	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM434	8017E94C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM435	8017E95C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM436	8017E960	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM437	8017E978	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM438	8017E978	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM439	8017E978	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM440	8017E988	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM441	8017E994	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM442	8017E998	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM443	8017E9BC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM444	8017E9C0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM445	8017E9C8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM446	8017E9DC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM447	8017EA0C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM448	8017EA14	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM449	8017EA24	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM450	8017EA24	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM451	8017EA24	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM452	8017EA2C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM453	8017EA3C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM454	8017EA44	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM455	8017EA4C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM456	8017EA5C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM457	8017EA68	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM458	8017EA78	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM459	8017EA78	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM460	8017EA78	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM461	8017EA7C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM462	8017EA84	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM463	8017EA88	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM464	8017EA94	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM465	8017EAAC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM466	8017EAAC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM467	8017EAAC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM468	8017EAAC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM469	8017EAC0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM470	8017EAC0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM471	8017EAC0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM472	8017EAC8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM473	8017EAD0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM474	8017EAD8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM475	8017EAF4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM476	8017EB08	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM477	8017EB18	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM478	8017EB18	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM479	8017EB18	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM480	8017EB20	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM481	8017EB38	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM482	8017EB38	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM483	8017EB38	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM484	8017EB38	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM485	8017EB40	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM486	8017EB48	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM487	8017EB54	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM488	8017EB54	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM489	8017EB54	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM490	8017EB5C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM491	8017EB64	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM492	8017EB6C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM493	8017EB74	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM494	8017EB78	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM495	8017EB7C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM496	8017EB94	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM497	8017EBAC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM498	8017EBC4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM499	8017EBD4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM500	8017EBD4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM501	8017EC04	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM502	8017EC10	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM503	8017EC14	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM504	8017EC18	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM505	8017EC1C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM506	8017EC34	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM507	8017EC4C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM508	8017EC64	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM509	8017EC70	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM510	8017EC78	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM511	8017EC7C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM512	8017EC84	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM513	8017EC88	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM514	8017EC90	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM515	8017EC98	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM516	8017EC9C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM517	8017ECBC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM518	8017ECD8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM519	8017ECE8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM520	8017ECEC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM521	8017ECF4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM522	8017ED00	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM523	8017ED08	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM524	8017ED08	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM525	8017ED08	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM526	8017ED18	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM527	8017ED28	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM528	8017ED2C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM529	8017ED34	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM530	8017ED3C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM531	8017ED44	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM532	8017ED4C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM533	8017ED54	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM534	8017ED64	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM535	8017ED6C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM536	8017EDA4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM537	8017EDAC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_glowDrawFlare	8017EFA8	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM538	8017EDBC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM539	8017EDCC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM540	8017EDDC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM541	8017EDE4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM542	8017EDE4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM543	8017EDEC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM544	8017EDFC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM545	8017EE0C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM546	8017EE1C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM547	8017EE24	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM548	8017EE24	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM549	8017EE2C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM550	8017EE3C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM551	8017EE4C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM552	8017EE5C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM553	8017EE6C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM554	8017EE7C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM555	8017EE84	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM556	8017EE84	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM557	8017EE8C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM558	8017EE9C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM559	8017EEAC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM560	8017EEBC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM561	8017EEC4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM562	8017EEC4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM563	8017EEC8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM564	8017EED0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM565	8017EED0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM566	8017EED8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM567	8017EEE8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM568	8017EEF8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM569	8017EF00	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM570	8017EF00	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM571	8017EF08	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM572	8017EF18	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM573	8017EF20	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM574	8017EF20	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM575	8017EF28	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM576	8017EF38	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM577	8017EF48	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM578	8017EF58	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM579	8017EF68	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM580	8017EF78	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM581	8017EF88	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM582	8017EF98	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM583	8017EF98	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM584	8017EFA8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM585	8017EFA8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM586	8017EFA8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM587	8017EFAC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM588	8017EFB4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM589	8017EFB8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM590	8017EFBC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM591	8017EFC0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM592	8017EFCC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM593	8017EFE4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM594	8017F014	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM595	8017F01C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM596	8017F028	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM597	8017F030	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM598	8017F040	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM599	8017F050	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM600	8017F060	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM601	8017F064	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM602	8017F068	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM603	8017F06C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM604	8017F070	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM605	8017F078	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM606	8017F088	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM607	8017F08C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM608	8017F090	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM609	8017F094	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM610	8017F098	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM611	8017F09C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM612	8017F0A8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM613	8017F0CC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM614	8017F0D0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM615	8017F0D8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM616	8017F0DC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM617	8017F0E0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM618	8017F0E8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM619	8017F0F4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM620	8017F0FC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM621	8017F108	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM622	8017F114	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM623	8017F188	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM624	8017F1A0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM625	8017F1B0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM626	8017F21C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM627	8017F228	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM628	8017F230	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM629	8017F230	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM630	8017F230	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM631	8017F240	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_roomVisualEffectsDrawFlashDisc	8017F900	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_roomVisualEffectsDrawFlashRing	8017F4D4	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_roomVisualEffectsDrawBurstStar	80180804	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM632	8017F4BC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM633	8017F4D4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM634	8017F4D4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM635	8017F4D4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM636	8017F4DC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM637	8017F4E4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM638	8017F50C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM639	8017F510	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM640	8017F514	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM641	8017F51C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM642	8017F520	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM643	8017F524	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM644	8017F528	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM645	8017F52C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM646	8017F530	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM647	8017F534	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM648	8017F538	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM649	8017F53C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM650	8017F540	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM651	8017F558	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM652	8017F588	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM653	8017F594	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM654	8017F5A0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM655	8017F5A8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM656	8017F5B8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM657	8017F5C8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM658	8017F5D8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM659	8017F5DC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM660	8017F5E0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM661	8017F5E4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM662	8017F5E8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM663	8017F614	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM664	8017F618	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM665	8017F61C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM666	8017F620	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM667	8017F654	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM668	8017F658	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM669	8017F66C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM670	8017F670	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM671	8017F67C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM672	8017F684	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM673	8017F694	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM674	8017F6A0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM675	8017F6AC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM676	8017F6D0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM677	8017F6EC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM678	8017F6F0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM679	8017F704	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM680	8017F708	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM681	8017F718	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM682	8017F72C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM683	8017F730	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM684	8017F734	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM685	8017F744	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM686	8017F758	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM687	8017F75C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM688	8017F76C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM689	8017F780	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM690	8017F784	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM691	8017F794	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM692	8017F7A8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM693	8017F7AC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM694	8017F7BC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM695	8017F7D0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM696	8017F7D4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM697	8017F7E4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM698	8017F7F8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM699	8017F7FC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM700	8017F80C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM701	8017F834	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM702	8017F878	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM703	8017F87C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM704	8017F88C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM705	8017F890	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM706	8017F8A4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM707	8017F8B0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM708	8017F8BC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM709	8017F8D4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM710	8017F900	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM711	8017F900	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM712	8017F900	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM713	8017F910	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM714	8017F918	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM715	8017F938	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM716	8017F93C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM717	8017F940	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM718	8017F944	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM719	8017F948	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM720	8017F94C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM721	8017F950	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM722	8017F954	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM723	8017F958	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM724	8017F95C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM725	8017F960	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM726	8017F964	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM727	8017F968	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM728	8017F980	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM729	8017F9B0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM730	8017F9B8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM731	8017F9C4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM732	8017F9CC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM733	8017F9DC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM734	8017F9EC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM735	8017F9FC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM736	8017FA00	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM737	8017FA04	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM738	8017FA08	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM739	8017FA0C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM740	8017FA38	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM741	8017FA50	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM742	8017FA54	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM743	8017FA58	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM744	8017FA64	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM745	8017FA6C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM746	8017FA7C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM747	8017FA88	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM748	8017FA94	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM749	8017FAB0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM750	8017FAB4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM751	8017FAC0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM752	8017FAC0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM753	8017FAD4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM754	8017FAD8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM755	8017FAE8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM756	8017FAFC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM757	8017FB04	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM758	8017FB14	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM759	8017FB28	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM760	8017FB2C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM761	8017FB3C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM762	8017FB64	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM763	8017FB68	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM764	8017FB6C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM765	8017FB70	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM766	8017FB74	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM767	8017FB78	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM768	8017FB8C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM769	8017FB90	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM770	8017FBA0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM771	8017FBC8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM772	8017FC0C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM773	8017FC10	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM774	8017FC20	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM775	8017FC24	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM776	8017FC38	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM777	8017FC44	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM778	8017FC50	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM779	8017FC68	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM780	8017FC94	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM781	8017FC94	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM782	8017FC94	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM783	8017FC94	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM784	8017FC9C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM785	8017FCCC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM786	8017FCD0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM787	8017FCD4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM788	8017FCD8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM789	8017FCDC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM790	8017FCE0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM791	8017FCEC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM792	8017FCFC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM793	8017FD24	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM794	8017FD34	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM795	8017FD3C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM796	8017FD44	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM797	8017FD44	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM798	8017FD44	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM799	8017FD4C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM800	8017FD50	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM801	8017FD54	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM802	8017FD58	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM803	8017FD5C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM804	8017FD60	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM805	8017FD64	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM806	8017FD70	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM807	8017FD74	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM808	8017FD78	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM809	8017FD7C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM810	8017FD80	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM811	8017FD84	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM812	8017FD88	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM813	8017FD88	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM814	8017FD90	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM815	8017FD9C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM816	8017FDA0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM817	8017FDA4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM818	8017FDA8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM819	8017FDAC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM820	8017FDB0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM821	8017FDB4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM822	8017FDB8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM823	8017FDBC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM824	8017FDC0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM825	8017FDC4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM826	8017FDC4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM827	8017FDCC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM828	8017FDD8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM829	8017FE70	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM830	8017FF08	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM831	8017FF1C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM832	8017FF24	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM833	8017FF24	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM834	8017FF2C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM835	8017FF34	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM836	8017FF38	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM837	8017FF3C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM838	8017FF40	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM839	8017FF44	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM840	8017FF48	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM841	8017FF4C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM842	8017FF50	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM843	8017FF54	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM844	8017FF58	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM845	8017FF58	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM846	8017FF64	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM847	8017FF6C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM848	8018001C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM849	801800D4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM850	801800E0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM851	801800E4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM852	801800E8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM853	801800F0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM854	801800F4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM855	801800F8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM856	80180100	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM857	80180114	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_roomVisualEffectsDrawTwinTrail	80180184	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM858	8018012C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM859	8018014C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM860	80180154	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM861	80180184	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM862	80180184	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM863	80180184	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM864	80180198	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM865	801801A0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM866	801801B0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM867	801801B4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM868	801801CC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM869	801801D0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM870	801801D4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM871	801801E0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM872	801801F8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM873	80180228	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM874	8018022C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM875	80180240	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM876	8018024C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM877	80180250	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM878	80180260	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM879	80180264	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM880	80180268	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM881	8018026C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM882	80180270	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM883	80180274	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM884	80180278	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM885	8018027C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM886	80180280	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM887	80180284	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM888	80180288	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM889	8018028C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM890	80180290	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM891	80180294	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM892	80180298	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM893	8018029C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM894	801802A0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM895	801802A4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM896	801802A8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM897	801802AC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM898	801802B8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM899	801802C4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM900	801802C8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM901	801802CC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM902	801802D0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM903	801802DC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM904	801802E8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM905	801802F4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM906	801802FC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM907	80180308	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM908	80180310	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM909	80180334	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM910	80180340	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM911	80180358	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM912	80180368	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM913	80180378	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM914	80180388	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM915	80180398	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM916	8018039C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM917	801803B4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM918	801803C4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM919	801803C8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM920	801803D0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM921	801803E4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM922	801803E4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM923	801803E8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM924	801803EC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM925	801803F0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM926	801803F8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM927	80180400	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM928	80180404	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM929	80180408	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM930	8018040C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM931	80180410	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM932	80180414	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM933	80180418	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM934	8018041C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM935	80180420	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM936	80180424	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM937	80180428	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM938	8018042C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM939	80180430	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM940	80180434	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM941	80180438	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM942	8018043C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM943	80180440	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM944	80180444	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM945	80180448	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM946	8018044C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM947	80180458	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM948	80180464	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM949	80180470	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM950	8018047C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM951	80180488	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM952	80180494	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM953	80180498	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM954	8018049C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM955	801804A0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM956	801804A4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM957	801804A8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM958	801804AC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM959	80180518	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM960	80180524	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM961	80180528	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM962	80180534	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM963	8018054C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM964	8018057C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM965	8018057C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM966	8018057C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM967	8018058C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM968	801807E8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM969	80180804	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM970	80180804	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM971	80180804	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM972	80180814	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM973	8018081C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM974	80180840	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM975	80180844	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM976	80180848	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM977	8018084C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM978	80180850	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM979	80180854	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM980	80180858	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM981	8018085C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM982	80180860	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM983	80180864	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM984	80180868	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM985	8018086C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM986	80180870	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM987	80180888	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM988	801808B8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM989	801808C0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM990	801808CC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM991	801808D4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM992	801808E4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM993	801808F4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM994	80180904	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM995	8018090C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM996	80180910	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM997	80180914	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM998	80180918	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM999	80180944	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1000	80180948	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1001	8018094C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1002	80180978	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1003	8018097C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1004	80180990	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1005	80180994	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1006	80180998	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1007	801809A4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1008	801809AC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1009	801809F8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1010	801809FC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1011	80180A0C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1012	80180A20	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1013	80180A24	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1014	80180A34	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1015	80180A48	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1016	80180A4C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1017	80180A50	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1018	80180A60	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1019	80180A74	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1020	80180A78	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1021	80180A88	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1022	80180AB0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1023	80180AB4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1024	80180AB8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1025	80180ABC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1026	80180AC0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1027	80180AC4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1028	80180AD8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1029	80180ADC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1030	80180AEC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1031	80180B10	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1032	80180B14	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1033	80180B18	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1034	80180B68	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1035	80180B6C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1036	80180B80	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1037	80180B8C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1038	80180B98	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1039	80180BA0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1040	80180BE4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1041	80180BE8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1042	80180BF4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1043	80180C08	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1044	80180C0C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1045	80180C1C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1046	80180C30	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1047	80180C34	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1048	80180C44	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1049	80180C58	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1050	80180C5C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1051	80180C6C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1052	80180C94	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1053	80180CA0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1054	80180CA4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1055	80180CA8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1056	80180CBC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1057	80180CC0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1058	80180CD0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1059	80180CF4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1060	80180CF8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1061	80180CFC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1062	80180D38	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1063	80180D3C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1064	80180D4C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1065	80180D50	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1066	80180D64	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1067	80180D70	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1068	80180D7C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1069	80180D80	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1070	80180D98	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1071	80180DA0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1072	80180DA8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1073	80180DE4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1074	80180DE8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1075	80180DF4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1076	80180DF8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1077	80180E08	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1078	80180E1C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1079	80180E20	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1080	80180E30	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1081	80180E44	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1082	80180E48	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1083	80180E58	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1084	80180E6C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1085	80180E70	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1086	80180E80	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1087	80180EA8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1088	80180EAC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1089	80180EB0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1090	80180EB4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1091	80180EB8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1092	80180EBC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1093	80180ED0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1094	80180ED4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1095	80180EE4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1096	80180F08	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1097	80180F0C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1098	80180F10	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1099	80180F60	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1100	80180F64	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1101	80180F78	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1102	80180F84	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1103	80180F8C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1104	80180F94	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1105	80180FE0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1106	80180FE4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1107	80180FF4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1108	80181008	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1109	8018100C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1110	8018101C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1111	80181030	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1112	80181034	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1113	80181044	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1114	80181058	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1115	8018105C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1116	8018106C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1117	80181094	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1118	80181098	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1119	8018109C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1120	801810A0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1121	801810A4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1122	801810A8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1123	801810BC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1124	801810C0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1125	801810D0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1126	801810F4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1127	801810F8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1128	801810FC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1129	80181138	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1130	8018113C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1131	8018114C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1132	80181150	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1133	80181164	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1134	80181170	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1135	8018117C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1136	80181194	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1137	801811C4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1138	801811C4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1139	801811C4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1140	801811D4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1141	801811D8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1142	801811E0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1143	801811E4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1144	801811E8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1145	801811EC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1146	801811FC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1147	80181200	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1148	80181204	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1149	80181318	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1150	80181334	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1151	80181358	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1152	80181358	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1153	80181358	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_mineMesaSpawnEnemyWaveState	80181358	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1154	80181368	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1155	8018136C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1156	80181370	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1157	80181374	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1158	80181378	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1159	8018137C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1160	80181380	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1161	8018138C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1162	80181390	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1163	80181394	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1164	80181398	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1165	8018139C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1166	801813A8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1167	801813A8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1168	801813B8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1169	801813C0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1170	801813D4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1171	801813FC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1172	8018140C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1173	80181428	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1174	80181430	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1175	80181438	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1176	8018144C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1177	80181484	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1178	801814C0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1179	801814C8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1180	801814E4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1181	801814EC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1182	80181510	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1183	80181528	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1184	80181534	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1185	8018153C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1186	80181554	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1187	8018155C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1188	80181578	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1189	80181580	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1190	801815A0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1191	801815A8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1192	801815AC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1193	801815B0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1194	801815B4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1195	801815B8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1196	801815BC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1197	801815D0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1198	801815F8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1199	80181620	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1200	80181628	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1201	8018162C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1202	80181630	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1203	80181634	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1204	80181638	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1205	8018163C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1206	801816D8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1207	80181700	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1208	8018171C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1209	80181724	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1210	80181728	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1211	80181738	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1212	8018174C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1213	80181754	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1214	8018175C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1215	80181764	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1216	8018176C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1217	80181770	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1218	80181778	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1219	8018177C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1220	80181784	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1221	8018178C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1222	801817BC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1223	801817BC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1224	801817BC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1225	801817BC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1226	801817C4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1227	801817CC	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1228	801817E4	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1229	801817E8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1230	801817F0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1231	80181800	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1232	80181800	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1233	80181800	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1234	80181800	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1235	80181800	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1236	80181830	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1237	80181834	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1238	80181838	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1239	80181840	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1240	80181840	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1241	80181848	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1242	80181848	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1243	80181848	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_mineMesaInitializeEnemyWaveState	80181848	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1244	80181848	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1245	80181848	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1246	80181854	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1247	80181860	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1248	80181864	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1249	80181868	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1250	8018186C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1251	80181874	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1252	80181878	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1253	80181880	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1254	80181880	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1255	80181880	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_mineMesaFinishEnemyWaveState	80181880	flt	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1256	80181880	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1257	80181894	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+_gMineMesaEnemyWaveStates	8017D660	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1258	80181894	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1259	80181894	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1260	80181898	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1261	8018189C	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1262	801818A0	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1263	801818C8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1264	801818E8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+LM1265	801818F8	fl	build/USA/src/rooms/mine_mesa/mine_mesa.i
+__romPos	0000C5BC	al	
+equipmentGetWeaponLoadCapacity	800BB938	a	
+gActor443500ConsoleFollowupSkipScript	80142A74	a	
+D_80073BAC	80073BAC	a	
+D_80072174	80072174	a	
+areaSetCurrentObjectState	800BAC34	a	
+uiInitList	800489A0	a	
+D_80071072	80071072	a	
+CdFlush	80015AF4	a	
+gameFlagSetNibble	8004AC58	a	
+SetRotMatrix	8004ADF8	a	
+stageRequestModeTaskExit	8003F6F8	a	
+gActor503500StaffCardSceneTaskDesc	8014B958	a	
+sceneEngageBattle	800DB4E0	a	
+tmdAllocPrimitiveBuffer	80041B88	a	
+mine_mesa_VRAM_END	80189B7C	f	
+gActor335800BalconyBattleStartScript	80165720	a	
+gActor450200CompanionSceneScript	80137EE4	a	
+actor161500StartSoldierBRemark	80131E38	a	
+gCapCommandEntries	801156A0	a	
+displayAcquireMenuHold	8003E610	a	
+gPadMenuButtonMask	8005ED78	a	
+areaSetPlacementVariant	800B5B30	a	
+displayQueueModeTask	8003FB70	a	
+gameGetTaskSlot	8002D22C	a	
+GetTPage	80043938	a	
+displaySetFrameTiming	800280F4	a	
+mineMesaDrawViewFlaresTask	8017ED08	ft	
+textItoaUnsigned	8002F18C	a	
+damagePackEnemyAttackKey	800E2BF8	a	
+viewGetMappedIndex	800AD284	a	
+worldCoordGetOriginAudioPan	800D937C	a	
+gPadInputMenuUnlockUpdates	80115716	a	
+mapShelterRoomVariantResolve	80179A04	a	
+uiGetTextColor	80048E10	a	
+cdCmdSelectScene	8001D534	a	
+gActor107600TaskDescriptors	80134F94	a	
+SetDrawTPage	80043A38	a	
+D_801153F1	801153F1	a	
+printf	8001AF3C	a	
+worldCollisionClearContacts	800E1A6C	a	
+sceneReleaseBattleRefAndClearRewards	800DB630	a	
+memMalloc	8002DABC	a	
+D_80073BA0	80073BA0	a	
+gActionPromptSlots	80114D28	a	
+D_80072836	80072836	a	
+gAttachmentTrainingLevels	80114BF0	a	
+taskPollKill	8002D3BC	a	
+actor260400RestoreHeliportPlacement	80149FA4	a	
+gRoomEffectOrangeBurst2Id	80115754	a	
+stageMusicRequestAreaStop	800430E4	a	
+taskSpawn	8002CFDC	a	
+MatrixNormal	8003D6C8	a	
+gAreaRecordsByStage	8010CBCC	a	
+textDrawUiLine	8002FDCC	a	
+D_8007106C	8007106C	a	
+gActor450800NurseryIntroSkipScript	8013A33C	a	
+D_80070F6C	80070F6C	a	
+mineMesaRoomVisualEffectsTwinTrailTask	8017FC94	ft	
+capRunCommandWithTransition	800E3B60	a	
+SetSemiTrans	800439B8	a	
+gCapRoomCompletionSoundsEnabled	80115598	a	
+sndEvtRequestMidiStart	800512BC	a	
+inventoryHasCollectedBit	800BB4BC	a	
+mine_mesa_BSS_START	80189B7C	f	
+mine_mesa_TEXT_SIZE	00004288	a	
+gGfxViewCoord	80070F10	a	
+equipmentRestoreHpMp	800BC164	a	
+D_80073B8C	80073B8C	a	
+gameFlowBeginLoadScreen	8002252C	a	
+sndEvtRequestScriptMix	80054424	a	
+worldCollisionProjectGroundCoord	800EA02C	a	
+worldCollisionUnlinkTrigger	800E1708	a	
+actor215100SelectCaptionResource	8014C5E0	a	
+padScriptSpawnVariableMotorRamp	800E8D1C	a	
+gfxSetFlatLight	8003B140	a	
+gPlayerActorStateTickHeld	80115768	a	
+gItemDescriptors	8010D838	a	
+playerActorPrepareDryfieldLoadout	800BC4E4	a	
+gActor450200RoomVariantSceneScript	8013FC58	a	
+taskGetDescAt	8002D32C	a	
+rcos	8003D108	a	
+D_80072177	80072177	a	
+streamFindViewMovieSlot	8001EED8	a	
+gRoomEffectTwinTrailId	8011572C	a	
+taskKill	8002CCB8	a	
+gActor143000KeypadTaskDesc	80134564	a	
+gEffectSpriteAtlasFrames	80111E48	a	
+D_80115188	80115188	a	
+D_80072724	80072724	a	
+textDrawString	8002E53C	a	
+gDirectionInteractionRearmUpdates	80114D08	a	
+D_80071078	80071078	a	
+gRoomEffectSparkBurstId	80115750	a	
+gActor120300TaskDescriptors	80141B6C	a	
+inventoryResetIceBagTimer	800BC21C	a	
+gEffectUnitQuadCorners	80111E38	a	
+worldCoordSetActorColorMode	800D930C	a	
+gActor342400EncounterTaskDescs	8016BFE0	a	
+gActor560800ChainGlowTick	801752EC	a	
+gActor444000IncineratorEventTaskDesc	801449F4	a	
+playerActorSetScriptedControl	800E3BBC	a	
+stageMusicRequestAreaStart	80043028	a	
+itemMenuSpawnNotice	800D4E40	a	
+actor460200SetupTentSoldiers	80132210	a	
+gActor335800BalconyEntrySkipScript	80165798	a	
+D_80115124	80115124	a	
+uiStartPanelOpening	80048964	a	
+actor215100RequestGalleryAbort	8014A9A0	a	
+streamGetFrameLimit	80020414	a	
+gActor00100DesertChaserTaskDesc	8014D8A4	a	
+gActor04000HangingPoolTaskDesc	8013E51C	a	
+gActor560800CutsceneTaskDescriptors	801718F0	a	
+actor161500StartCompanionRequestReminder	801322A0	a	
+equipmentInitializeWeaponSupplies	800B6CF0	a	
+gFsActorBuffer1Base	8005C370	a	
+textFormatPlayTime	8002EB94	a	
+playerActorRestoreEquipment	801034C0	a	
+playerActorRemoveEquipment	801043F4	a	
+SetDrawMove	8004AD18	a	
+damageGetPlayerAttackEffectId	800E2D90	a	
+gMineMesaRoomViewCounts	80186554	f	
+gpuSetPrimitiveBlendMode	800EC914	a	
+worldCoordUpdateActorColor	800D8EA0	a	
+enemyTaskExit	800B0234	a	
+gfxComposeNodeWorldTransform	800B1D00	a	
+gUiPromptObject	80067694	a	
+gFsActorBuffer0Base	8005C36C	a	
+ratan2	8003D9C8	a	
+sceneFindPlacedActor	800E86FC	a	
+animationSeekSlotWithBlend	800B4114	a	
+inventoryInitializeShootingGalleryLoadout	800BA538	a	
+D_80071090	80071090	a	
+gActor450200SoloSceneScript	8013C72C	a	
+RotTransSV	8004BD58	a	
+padIsStartPressed	8004ACF0	a	
+ApplyMatrixSV	80043A68	a	
+memSelectAuxHeapRegion	8002DC08	a	
+gActor450800NurseryIntroScript	80139964	a	
+memcpy	8001AEFC	a	
+gActor151000GardenArrivalScript	801334EC	a	
+gActor341300WalkwaySceneSkipScript	80165834	a	
+gStageCountdownMusicEntry	80062735	a	
+Gp_QtyById0	8010E038	a	
+sndEvtRequestStageScriptStop	800E3E64	a	
+gActor102000PawnGolemTasks	80147DF0	a	
+gActor207000SucklercephTaskDescs	80151E60	a	
+capSetTexturePage	800E6D4C	a	
+__floatsidf	8004B5D8	a	
+SetSprt	80043A18	a	
+gActor443500MapFollowupSkipScript	801432FC	a	
+streamedScenePlay	8017DE38	ft	
+areaSyncLocationVariant	800B601C	a	
+effectDrawGroundShadow	800F68AC	a	
+cdCmdCompleteHeadRequest	8001DA48	a	
+gameFlagSetNibbleIfPresent	800E3B3C	a	
+uiSizePanelForTextDefault	800490A4	a	
+worldCollisionUnlinkBody	800E1638	a	
+gRoomEffectFlyingSparkId	80115730	a	
+playerActorWriteWeaponAnimationBankIndex	800E3CEC	a	
+gGpuCurrentOt	800710A0	a	
+streamInitMoviePlayback	8002043C	a	
+gActor150400FreezerSceneScript	80132D70	a	
+gActor450200SoloSceneSkipScript	8013CAEC	a	
+sndScriptHasActiveId	8005462C	a	
+gMcDialogDescriptors	800611C8	a	
+sndEvtRequestMidiVolume	80051460	a	
+padScriptSpawn	800E8FB0	a	
+gCapFile	8011568C	a	
+gActor450200CompanionSceneSkipScript	80138694	a	
+sceneReleaseBattleRef	800DB6B4	a	
+gMcSaveData	80072168	a	
+gameSetTaskSlot	8002D214	a	
+taskSpawnFromTable	8002CFA0	a	
+gActor142900ElevatorFirstVisitSkipScript	801380F8	a	
+gActor503500BossPhaseTransitionScript	8014D158	a	
+inventoryGetItemQuantity	800BB6FC	a	
+gRoomEventFade	80189B38	f	
+cdCmdRequestCancel	8001C970	a	
+actor450900HandleDepartureTrigger	80132834	a	
+D_80070F70	80070F70	a	
+gActor160600SceneWithoutCompanionScript	80135AC0	a	
+displayResumeGameLoop	8003E540	a	
+tmdFreePrimitiveBuffer	80041B4C	a	
+actor460200TalkToSoldierC	801322B8	a	
+itemMenuOpenHotspotCommands	800D4E78	a	
+gfxMakeRelativeTransform	800A8864	a	
+gWorldCollisionSurfacePropertiesTables	8010CBB8	a	
+streamPollGameRestore	8001EF9C	a	
+areaClearMapMark	800AED24	a	
+mine_mesa_DATA_SIZE	00008284	a	
+gItemMenuInfoPanel	80067634	a	
+cdCmdIsSlotEmpty	8001D37C	a	
+gActor05700RookGolemTasks	801611F8	a	
+mine_mesa_RODATA_SIZE	000000B0	a	
+D_8007107C	8007107C	a	
+gActor461800NeoArkSceneSkipScript	80134470	a	
+itemMenuDrawTaskPrompt	800CE4F4	a	
+MargePrim	800422B8	a	
+mineMesaBuildWalls	801811C4	ft	
+worldCoordSetModelLighting	800D7A9C	a	
+streamResetGameRestore	80020388	a	
+gfxReadMatrixYAxis	8003C748	a	
+actor503500ClearFadeFromBlackHandle	80132F58	a	
+displayReleaseMenuHold	8003E64C	a	
+taskCallExit	8002D0A4	a	
+RotMatrixZYX	80044408	a	
+actor341300ResetScriptTaskHandle	8016268C	a	
+mine_mesa_RODATA_END	8017D670	f	
+modelObjectAttachTmd	8009902C	a	
+gActor161500CompleteCompanionRequestTaskDesc	80136CDC	a	
+gGameSession	8005ED64	a	
+D_80071076	80071076	a	
+__adddf3	8004AFE8	a	
+gRoomEffectFlashId	80115758	a	
+gActor443500TourOpeningSkipScript	80141C1C	a	
+actor215100FinishGalleryCourse	8014A908	a	
+animationAimHeadAtPoint	800B0CF4	a	
+mapAkropolisOpenKeyItemMenu	80179FC8	a	
+areaSetObjectState	800BB8E8	a	
+gItemMenuPanelDescriptors	8010EAB4	a	
+SquareRoot0	8003B8A0	a	
+gameFlagSetPackedByte	800E3FAC	a	
+gAttachmentState	80114C08	a	
+gMineMesaSurfacePropertiesByClass	80189A60	f	
+displayConfigureFramebuffers	8003DB48	a	
+gfxBuildOrthonormalBasis	8003CEC4	a	
+gActor342100EncounterBlazeTaskDescriptors	80164B78	a	
+gActor535700PawnGolemEncounterScript	80133898	a	
+sndEvtRequestScriptStop	800542D0	a	
+SetShadeTex	800439E8	a	
+sceneReleaseBattleRefWithRewards	800DB558	a	
+capRunCommand	800E34D8	a	
+gFsActorBuffer2Base	8005C374	a	
+capReset	800E6DF4	a	
+mine_mesa_VRAM	8017D5C0	f	
+gActor341300WalkwaySceneScript	80165354	a	
+gEquipmentWeaponPrimaryLoadOptions	8010E238	a	
+gfxReadMatrixZAxis	8003C768	a	
+gActor102500Tasks	801379A8	a	
+mine_mesa_ROM_END	0000C5BC	a	
+D_80071086	80071086	a	
+gfxRotMatrixY	8003C98C	a	
+gPadScriptTransitionCommands	80114A24	a	
+viewApplyCamera	800A8A48	a	
+RotTransPers4	8004C358	a	
+D_8011540E	8011540E	a	
+gPadScriptTransitionSegments	80114A34	a	
+mapDryfieldFullResolveRoomVariant	80179954	a	
+inventoryRestoreCarriedLoadout	800BA75C	a	
+mineMesaRoomTask	8017DD98	ft	
+D_80072176	80072176	a	
+gStreamInterFile	8006AC30	a	
+playerActorPrepareAcropolisLoadout	800BC4BC	a	
+mapAkropolisWasDryfieldMapSelected	8017A038	a	
+gStageMusicTaskDesc	80062774	a	
+gMdecMovieOutputSlot	8005EAEE	a	
+gActor451100SubmarineTunnelSceneSkipScript	80135FD0	a	
+gStageRoomMusicSequence	80062737	a	
+worldCollisionFindContactIndex	800E19B8	a	
+worldCollisionLinkBody	800E15AC	a	
+D_80073BA9	80073BA9	a	
+midiIsSequenceBusy	800514F8	a	
+memCopyBytes	8002D7A8	a	
+effectKillTask	800EC7E4	a	
+inventoryCountOccupiedRows	800BAF5C	a	
+itemMenuGetPrimaryPreviewItem	800CF27C	a	
+sceneSetPlacedActorDrawMode	800E3C6C	a	
+__fixdfsi	8004B4D8	a	
+effectDrawGouraudDisc	800EAEB8	a	
+cdCmdStageSceneAudioStart	8001D6B8	a	
+D_80072A94	80072A94	a	
+textItoaSigned	8002F020	a	
+cdCmdIsIdle	8001D344	a	
+actor215100CheckGalleryExitInput	8014A398	a	
+D_80072729	80072729	a	
+sceneQueueBattleEscapeResult	800A7A64	a	
+capStartSequenceSlot	800E6C70	a	
+gActor215100GalleryTrainingActive	8014D038	a	
+worldCollisionReadActionHit	800E1BF0	a	
+SetTransMatrix	8004AE28	a	
+gameFlagGetNibble	8004ACAC	a	
+D_801153F4	801153F4	a	
+gRoomEffectHaloId	80115744	a	
+AddPrim	80043978	a	
+gCapPreserveActorControl	80115690	a	
+uiSetListSystemCursorSound	8004917C	a	
+itemSetIdentified	800BB7C0	a	
+gfxRotMatrixZ	8003CB80	a	
+worldTargetAddReadoutAmount	800DA6E8	a	
+inventoryGetConsumableStackQuantity	800BB26C	a	
+SetDrawOffset	80018AA4	a	
+D_8007272D	8007272D	a	
+gSceneCombatState	801153F0	a	
+itemMenuDrawItemRow	800CD924	a	
+effectDrawSpinningBillboard	800EB2C8	a	
+uiDrawPanelLabel	80047F40	a	
+gGameMainPersistentState	800710A8	a	
+enemySpawnFromTable	800B01AC	a	
+gfxRotMatrixYXZ	8003BD34	a	
+D_8011540A	8011540A	a	
+effectDrawModulatedBillboard	800EB6E8	a	
+equipmentHasCarriedWeaponSupply	800BBDDC	a	
+gActor461800NeoArkSceneScript	80133F90	a	
+uiPositionRowDialog	80049024	a	
+actor260400StartHeliportConversation	80149E38	a	
+evsStartScriptWithSkip	800E8634	a	
+gMineMesaWarpEntries	80186558	f	
+gEquipmentModeBaseStats	8010D328	a	
+gFsImageWorkspacePtr	8005C364	a	
+actor160700StartMeetingScript	80131E70	a	
+evsStartScript	800E8614	a	
+loadingRequestViewGraphicsRestore	800A99B4	a	
+gMineMesaSpriteViews	80188744	f	
+actor450200InitializeObservatoryCompanion	801322F8	a	
+StoreImage	80017FA4	a	
+D_80114C12	80114C12	a	
+MoveImage	80018004	a	
+func_807245E4	807245E4	a	
+uiUpdateList	80048C10	a	
+streamGetSlot	80020278	a	
+textAppendString	8002F588	a	
+gActor310100Officer1TaskDescriptors	801798FC	a	
+capGetVariantKey	800E6D3C	a	
+gActor143900ObservatoryEntrySkipScript	80133860	a	
+gActor503500BossDefeatSkipScript	8014CAF8	a	
+attachmentIsTrainingMode	800A74C4	a	
+gGpuPrimCursor	80071190	a	
+capIsBusy	800E6CE0	a	
+worldCoordGetOriginAudioDepth	800D9340	a	
+gfxRotMatrixXYZ	8003B960	a	
+actor161500StartSoldierBShopConversation	80132110	a	
+shopOpenSession	800D4D2C	a	
+gPadCancelButtonMask	8005ED74	a	
+gPadStates	80071620	a	
+SetDrawArea	80018A24	a	
+D_80071075	80071075	a	
+RotTransPers3	8004C1E8	a	
+actor460200TalkToSoldierA	80132390	a	
+animationInitContext	800B3F84	a	
+gActor450200RoomVariantSceneSkipScript	80140078	a	
+equipmentFindNextCarriedWeaponSupply	800BBD40	a	
+gActor535700PawnGolemEncounterSkipScript	801341E0	a	
+uiDrawBeveledRect	80046B34	a	
+rand	80037164	a	
+gActor450900EntrySkipScript	80136308	a	
+D_80115410	80115410	a	
+companionSetDrawMode	800E3EB0	a	
+inventoryGiveItem	800BAD08	a	
+gActor560800MovieTaskDescriptors	8016EA28	a	
+roomEventStagedTask	8017D670	ft	
+gActor342000IncineratorEventTaskDescs	80164FF8	a	
+D_8010E138	8010E138	a	
+effectSpawnHit	800FDB18	a	
+gInventoryContainerRanges	8010D550	a	
+mine_mesa_BSS_SIZE	00000000	a	
+gActor143400CompanionEntryScript	801350BC	a	
+memCalloc	8002D978	a	
+effectSpawn	800EA478	a	
+gActor450900EntryScript	80136110	a	
+strncmp	8001EAC4	a	
+gMineMesaRoomViewMaps	80186548	f	
+gInventoryConsumableStacks	8010E3B8	a	
+gActor105500MaggotCaterpillarTasks	8013A8DC	a	
+itemMenuDrawDefaultItemIcon	800CE5D0	a	
+actor161500StartSoldierBTalkB	80132038	a	
+D_80071068	80071068	a	
+gRoomEffectWaterSprayId	80115738	a	
+gActor450800NurseryShootingSkipScript	8013BA84	a	
+gMdecMovieInputSlot	8005EAEC	a	
+gActor443500ConsoleFollowupScript	80141D9C	a	
+actor150400SpawnSlidingModels	80131FB8	a	
+D_800691CA	800691CA	a	
+gActor503500SceneEffectTaskDescs	8014B964	a	
+D_80114C0B	80114C0B	a	
+gRoomEffectMoteId	80115728	a	
+areaApplySavedUpdates	800AE62C	a	
+cdCmdCancelScene	8001D588	a	
+func_800AC000	800AC000	a	
+uiSetPanelContentSize	800466E4	a	
+GsWSMATRIX	80071138	a	
+gActor101600ScavengerTaskDesc	801445DC	a	
+uiObjectTaskExit	800488B8	a	
+cdSyncPollCommand	8001E6AC	a	
+gActor443500MapFollowupScript	80142C24	a	
+gItemMenuTransferPanelDescriptors	8010D6F4	a	
+cdCmdEnqueue	8001D2B0	a	
+D_801150C0	801150C0	a	
+padCheckButtons	8002C868	a	
+itemMenuDrawPreview	800C7AE8	a	
+gActor160600SceneWithCompanionScript	80135D78	a	
+gCapChoiceRowStride	80115680	a	
+taskSpawnFromTableOnDefaultList	8003E4BC	a	
+SetDrawStp	80042288	a	
+gActor143900ObservatoryEntryScript	80133560	a	
+playerActorSetDrawMode	800E3B80	a	
+actor450800StartNurseryCompanionDialogue	80132000	a	
+gActor215100PierceStoryScript	80153274	a	
+itemMenuSetPreviewItem	800CDE80	a	
+equipmentRecalculateMaxMp	800B7930	a	
+effectDrawOuterGlowBand	800EAA0C	a	
+stageEnsureHeapTaskPrimitiveBuffer	8003F9AC	a	
+actor215100HandleGalleryAction	8014AB6C	a	
+RotMatrixZ	8004AE48	a	
+SetDispMask	80017C00	a	
+SetTile	80042344	a	
+func_80724608	80724608	a	
+cdCmdEnqueueScenePlayback	8001D5CC	a	
+__muldf3	8004B828	a	
+rsin	8003D038	a	
+viewFindLogicalIndex	800ACEBC	a	
+inventoryInitializeStarterLoadout	800B7D18	a	
+gPadConfirmButtonMask	8005ED70	a	
+areaIsSavedPoseRestoreEnabled	800B59A8	a	
+gActor361100PodSceneScript	80165F48	a	
+areaGetVariant	800B5CE8	a	
+gActor443500TourOpeningScript	8014152C	a	
+gGameFlagNibbleBanks	80073980	a	
+actor450800PrepareNurseryKyleMadigan	80132028	a	
+worldCoordSetAmbientColorOverride	800D94B8	a	
+gActor460200TentArrivalSkipScript	80137890	a	
+worldTargetDisableNodeLockOn	800DACF8	a	
+D_80072170	80072170	a	
+D_80070F87	80070F87	a	
+D_80072310	80072310	a	
+worldCollisionProbeGridSegment	800DE7CC	a	
+D_8011540C	8011540C	a	
+memset	800420F8	a	
+companionWriteAnimationBankIndex	800E3D24	a	
+D_80073BAE	80073BAE	a	
+gMineMesaRoomCollisionResources	80186538	f	
+gActor215100GalleryTaskDescs	8014E13C	a	
+gActor136300GarageCompanionSceneSkipScript	8013C388	a	
+streamPrepareMovieWorkspace	80020298	a	
+gActor136300CompanionGaragePlacement	8013B570	a	
+srand	80037194	a	
+gActor203700BatTaskDesc	80151DAC	a	
+viewQueueCurrentCameraAndPackets	800A8B6C	a	
+ApplyMatrixLV	80042128	a	
+taskMessageDispatch	800AC464	a	
+uiStartTreeClosing	80048838	a	
+animationResetSlot	800B3FA8	a	
+actor215100CapCaptionSelectRecord	8014B2B8	a	
+taskRequestKill	8002D340	a	
+D_8007107A	8007107A	a	
+actor161500RestoreCompanionRequestScene	8013230C	a	
+actor215100ResolveGalleryExit	8014AA54	a	
+gPlayerStatus	80073B88	a	
+inventoryGetRangeTable	800BB500	a	
+gMineMesaRoomLighting	8018654C	f	
+gActor142600IncineratorArrivalSkipScript	80136804	a	
+gPlayerActorTasks	80115760	a	
+gActor548100PanelTaskDesc	801358D8	a	
+equipmentConsumeWeaponLoad	800B6DA4	a	
+inventoryResetCarriedRange	800BC490	a	
+enemyDestroy	800B01F0	a	
+gFsResourceSlots	8006C338	a	
+mine_mesa_TEXT_START	8017D670	f	
+gRandomLcgState	80070F60	a	
+actor160700RestoreMeetingAnimation	80131E24	a	
+func_800ABFF8	800ABFF8	a	
+gActor146300IceBagHandoverTaskDesc	8013788C	a	
+areaSpawnPlacements	800B4AF8	a	
+itemMenuDrawMeter	800C0E20	a	
+gameFlagGetPackedByte	800E3FCC	a	
+equipmentLoadWeaponConsumable	800B715C	a	
+displaySetShakeY	8003DE78	a	
+inventoryHasAttachedItem	800BC3F8	a	
+sndEvtRequestStageScriptStart	800E3DD8	a	
+equipmentRecalculateMaxHp	800BC0C0	a	
+gRoomEventLatched	80189B60	f	
+gMineMesaAreaVariants	801898F4	f	
+RotTransPers	8004C198	a	
+D_8007216D	8007216D	a	
+gActor146300WaterTankEventScript	80137C28	a	
+roomEffectRequestCancelPe	800FC6C0	a	
+gpuUploadImages	800DB31C	a	
+gDirectionActionActive	80114CF8	a	
+D_80072830	80072830	a	
+sndEvtRequestScriptVolume	800544B8	a	
+worldCollisionLinkTrigger	800E1688	a	
+actor450800StartNurseryInteraction	80131E2C	a	
+gActor215100PierceStorySkipScript	80153D6C	a	
+mine_mesa_DATA_START	801818F8	f	
+gActor136300TaskTable	8013B11C	a	
+gStageMusicParams	8007A39C	a	
+VectorNormalSS	8003D5D8	a	
+gActor160900TaskDescriptors	8013FB50	a	
+D_80072A93	80072A93	a	
+gWorldCollisionActiveGrid	80115448	a	
+mine_mesa_bss_VRAM	80189B7C	f	
+D_80072A92	80072A92	a	
+roomEffectRequestCancelAll	800EC868	a	
+mine_mesa_TEXT_END	801818F8	f	
+gActor310100Officer2TaskDescriptors	80179920	a	
+actorRenderDrawGroundShadow	800B4E54	a	
+D_8007218A	8007218A	a	
+capSelectLoadedFile	800E6D60	a	
+cdCmdDropQueuedTail	8001D424	a	
+Gfx_ViewWorldMtx	80070F34	a	
+actor161500StartSoldierBTalkA	80131FBC	a	
+gActor01500MindSucklerTaskDesc	80153E28	a	
+gActor503500BossDefeatScript	8014C540	a	
+tmdBuildBufferHalf	800410F0	a	
+effectDrawScreenTint	800EA858	a	
+gActor146000WaterHoleSceneTasks	801351FC	a	
+tmdResetAuxHeapAndRestoreBuffers	80041EB4	a	
+gActor120500EmptyPlacementTaskDesc	8013843C	a	
+equipmentGetWeaponLoad	800BAFE0	a	
+DrawSync	80017C98	a	
+damageComputePlayerAttack	800E1FEC	a	
+itemMenuClearPreviewItems	800CDEF4	a	
+actor215100StartPierceConversation	8014AF0C	a	
+actor450900StartCompanionConversation	801327A8	a	
+damageRollCriticalHit	800E25F8	a	
+gActor151000GardenArrivalSkipScript	80133954	a	
+animationTickSlot	800B4514	a	
+sceneAcquireBattleRef	800DB53C	a	
+gActor143400CompanionEntrySkipScript	801359D4	a	
+companionRemoveEquipment	8010B674	a	
+gMineMesaViewCameras	80187030	f	
+sndScriptResolveStageId	800E3E30	a	
+actor146300RestoreHandoverPose	8013224C	a	
+gActor150400FreezerSceneSkipScript	80133088	a	
+companionSetScriptedControl	800E3EF0	a	
+gCapInlineIconCells	8010FB70	a	
+streamPollMoviePlayback	8001FAE0	a	
+gPlayerActorWeaponReaches	80112F60	a	
+D_80072728	80072728	a	
+damagePackAttackKey	800E2C40	a	
+uiSpawnObject	800486F0	a	
+worldCollisionInitContacts	800E18E0	a	
+sndEvtRequestMidiStop	8005132C	a	
+gActor503500BossIntroSkipScript	8014C288	a	
+RotMatrix	80043AC8	a	
+D_80114C11	80114C11	a	
+memConfigureImageMemory	800144F8	a	
+mine_mesa_ROM_START	00000000	a	
+viewQueueCamera	800A8A1C	a	
+displaySpawnTaskFromTable	8003E324	a	
+uiStartPanelHiding	800488F8	a	
+actor260500RestoreHeliportPlacement	80149E80	a	
+gActor04400MadChaserTaskDescs	80142604	a	
+actor450200StartCompanionTalk	80132220	a	
+gpuBlendRgb555ClutRow	800B27C4	a	
+D_80072834	80072834	a	
+actor361100ClearHeadAimTaskHandle	80162B0C	a	
+gCapConfirmedChoiceIndex	801156A8	a	
+itemGetText	800B8EB0	a	
+gActor451100SubmarineTunnelEntryScript	80136108	a	
+ScaleMatrix	8004A98C	a	
+uiDrawTitle	80048E38	a	
+playerActorEndScripted	80104838	a	
+gfxRotMatrixX	8003C788	a	
+D_80071071	80071071	a	
+gRoomEffectSparkEmitterId	80115720	a	
+MulMatrix0	80044208	a	
+D_80114FF8	80114FF8	a	
+gActor450900Tasks	80135E78	a	
+itemMenuIsHotspotActionConfirmed	800D4EC0	a	
+inventoryClearItems	800BAC8C	a	
+gCapRestoreView	80115694	a	
+D_801153F6	801153F6	a	
+gWorldCoordTransientPointLights	80114F30	a	
+gActor443500PowerPlantProgressDialogueScript	80143494	a	
+capSpawnEventIfIdle	800E3D8C	a	
+gDisplayState	80070F68	a	
+itemMenuSetItemDescriptionPrompt	800CEB40	a	
+D_8007217B	8007217B	a	
+gActor136300GarageCompanionSceneScript	8013B590	a	
+ApplyTransposeMatrixLV	80044050	a	
+gSpriteAreaTables	8010CB68	a	
+inventoryCanAddItem	800B8988	a	
+sceneFindEnemyByPlaceKey	800B584C	a	
+gMidiMusicVolume	8007A396	a	
+inventoryMeltIceBagIfExpired	800BC254	a	
+gteMIMefunc	8004AD78	a	
+inventoryGetItemSortKey	800BC18C	a	
+uiGetTextRowsHeight	80048E2C	a	
+gCapControlFlags	801156A4	a	
+gFsActorBufferWrittenBytes	8006D860	a	
+gActor142600IncineratorArrivalScript	801360E4	a	
+playerActorEnterLocomotion	801066DC	a	
+D_8007218B	8007218B	a	
+uiDrawHorizontalSeparator	80047A0C	a	
+sndEvtRequestScriptStart	8005414C	a	
+mine_mesa_BSS_END	80189B7C	f	
+actor215100CapCaptionDrawCurrent	8014B0D4	a	
+gActor335800BalconyEntryScript	80165060	a	
+stageReleaseTaskPrimitiveBuffer	8003F9F4	a	
+equipmentGetWeaponSupply	800BBDC8	a	
+animationAimHeadAt	800B17D4	a	
+gRoomEffectOrangeBurstId	8011573C	a	
+viewGetMappedCamera	800A8C08	a	
+gCdCmdQueue	80068FA0	a	
+mine_mesa_RODATA_START	8017D5C0	f	
+gActor146300WaterTankEventSkipScript	80138570	a	
+capAbortPlayback	800E6CF0	a	
+textDrawUiLines	8002FB84	a	
+streamFinishScene	800B00C4	a	
+loadingEnqueueEquippedWeaponResources	800A9BE4	a	
+gActor503500BossIntroScript	8014BD48	a	
+gActor207000SlouchTaskDescs	801575F0	a	
+companionRestoreFullHp	800E3D78	a	
+textItoaPadded	8002F44C	a	
+playerStateRestoreFullHpMp	800E3D5C	a	
+gRoomEffectWaterRippleId	8011574C	a	
+mineMesaRoomVisualEffectsSparkBurstTask	8018057C	ft	
+memFillBytes	8002D894	a	
+D_8007106B	8007106B	a	
+gActor450800NurseryShootingScript	8013AF8C	a	
+uiFitPanelToList	80046830	a	
+uiSetPromptText	80049D34	a	
+RotMatrixX	8004BE58	a	
+worldCoordSetModelAmbientColor	800D9550	a	
+worldTargetLinkNode	800DABEC	a	
+damageAccumulateLifeDrainHp	800E2C78	a	
+gActor451100SubmarineTunnelSceneScript	80135220	a	
+taskReparent	8002D14C	a	
+gActor160600SceneSkipScript	80136258	a	
+playerActorTurnToYaw	80104E00	a	
+gRoomEffectState	80115740	a	
+TransposeMatrix	800420B8	a	
+worldCollisionProjectGroundPoint	800EA1A8	a	
+inventoryClearCollectedBit	800BAEC0	a	
+D_8007216C	8007216C	a	
+uiSpawnOptionDialog	800480A0	a	
+actorRenderComposeCoord	80098F58	a	
+GetClut	80042AE0	a	
+gRoomEffectGlowDiscId	80115734	a	
+itemMenuDrawQuantity	800CDBEC	a	
+areaGetCurrentObjectState	800BB470	a	
+gActor341900GluttonEntranceTaskDescs	80164190	a	
+gWorldCollisionActionTriggerListHead	8011556C	a	
+actor260500StartHeliportConversation	80149EBC	a	
+fadeDrawOverlay	8002BA9C	a	
+worldCollisionResolvePushback	800E0C10	a	
+equipmentEquipCarriedArmor	800B7A50	a	
+__subdf3	8004BC28	a	
+D_80072A98	80072A98	a	
+padInputChangeSuppression	800E9BDC	a	
+gActor450800NurseryReentryScript	8013A84C	a	
+gEvsPlaybackPaused	801156F9	a	
+gActor460200TentArrivalScript	801362B8	a	
+RotMatrixY	8004BFF8	a	
+gActor361100PodSceneSkipScript	80166848	a	
+streamFindMovieSlot	8001EDC8	a	
+gActor310100PlayerAnimationSets	801797FC	a	
+gActor142900ElevatorFirstVisitScript	801378D0	a	
+inventoryIsItemLimitReached	800B7420	a	
+streamSetExternalScenePayloadBuffer	800B015C	a	
+gActor141000FlightTasks	801348D8	a	
+mineMesaRoomVisualEffectsFlashTask	8017F230	ft	
+mapNeoArkResolveRoomVariant	80179B14	a	
+gViewIdentityMap	8010CAF8	a	
+mine_mesa_DATA_END	80189B7C	f	
+gpuResetAndInvalidateModelBuffers	80041E4C	a	
+animationAimHeadAtTask	800B0928	a	
+gItemMenuEmptyPromptText	8010F8D0	a	
+padScriptHalt	800E8F68	a	
+gWorldCollisionSurfacePushbackSuppression	80115428	a	

@@ -1,0 +1,6137 @@
+[
+ {
+  "object": "main/main",
+  "source": "src/main/main.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "main"
+  ]
+ },
+ {
+  "object": "main/gpuext",
+  "source": "src/main/gpuext.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "main"
+  ]
+ },
+ {
+  "object": "main/boot",
+  "source": "src/main/boot.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "main"
+  ]
+ },
+ {
+  "object": "main/cdcmd",
+  "source": "src/main/cdcmd.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "main"
+  ]
+ },
+ {
+  "object": "main/cdsync",
+  "source": "src/main/cdsync.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "main"
+  ]
+ },
+ {
+  "object": "main/stream",
+  "source": "src/main/stream.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "main"
+  ]
+ },
+ {
+  "object": "main/bootload",
+  "source": "src/main/bootload.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "main"
+  ]
+ },
+ {
+  "object": "main/fs",
+  "source": "src/main/fs.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "main"
+  ]
+ },
+ {
+  "object": "main/cdvol",
+  "source": "src/main/cdvol.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "main"
+  ]
+ },
+ {
+  "object": "main/gamemain",
+  "source": "src/main/gamemain.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "main"
+  ]
+ },
+ {
+  "object": "main/pad",
+  "source": "src/main/pad.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "main"
+  ]
+ },
+ {
+  "object": "main/gameflow",
+  "source": "src/main/gameflow.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "main"
+  ]
+ },
+ {
+  "object": "main/padutil",
+  "source": "src/main/padutil.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "main"
+  ]
+ },
+ {
+  "object": "main/task",
+  "source": "src/main/task.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "main"
+  ]
+ },
+ {
+  "object": "main/mem",
+  "source": "src/main/mem.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "main"
+  ]
+ },
+ {
+  "object": "main/textdraw",
+  "source": "src/main/textdraw.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "main"
+  ]
+ },
+ {
+  "object": "main/textutil",
+  "source": "src/main/textutil.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "main"
+  ]
+ },
+ {
+  "object": "main/mc",
+  "source": "src/main/mc.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "main"
+  ]
+ },
+ {
+  "object": "main/mcmenu",
+  "source": "src/main/mcmenu.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "main"
+  ]
+ },
+ {
+  "object": "main/gfxlight",
+  "source": "src/main/gfxlight.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "main"
+  ]
+ },
+ {
+  "object": "main/gfxmtx",
+  "source": "src/main/gfxmtx.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "main"
+  ]
+ },
+ {
+  "object": "main/displaymode",
+  "source": "src/main/displaymode.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "main"
+  ]
+ },
+ {
+  "object": "main/otutil",
+  "source": "src/main/otutil.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "main"
+  ]
+ },
+ {
+  "object": "main/stage",
+  "source": "src/main/stage.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "main"
+  ]
+ },
+ {
+  "object": "main/tmd",
+  "source": "src/main/tmd.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "main"
+  ]
+ },
+ {
+  "object": "main/taskutil",
+  "source": "src/main/taskutil.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "main"
+  ]
+ },
+ {
+  "object": "main/loadui",
+  "source": "src/main/loadui.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "main"
+  ]
+ },
+ {
+  "object": "main/stage_music",
+  "source": "src/main/stage_music.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "main"
+  ]
+ },
+ {
+  "object": "main/caption_draw",
+  "source": "src/main/caption_draw.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "main"
+  ]
+ },
+ {
+  "object": "main/ui",
+  "source": "src/main/ui.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "main"
+  ]
+ },
+ {
+  "object": "main/gameflag",
+  "source": "src/main/gameflag.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "main"
+  ]
+ },
+ {
+  "object": "main/wipsyscfg",
+  "source": "src/main/wipsyscfg.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "main"
+  ]
+ },
+ {
+  "object": "main/sndbank",
+  "source": "src/main/sndbank.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "main"
+  ]
+ },
+ {
+  "object": "main/spu",
+  "source": "src/main/spu.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "main"
+  ]
+ },
+ {
+  "object": "main/sndevt",
+  "source": "src/main/sndevt.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "main"
+  ]
+ },
+ {
+  "object": "main/sndscript",
+  "source": "src/main/sndscript.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "main"
+  ]
+ },
+ {
+  "object": "main/cdaudio",
+  "source": "src/main/cdaudio.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "main"
+  ]
+ },
+ {
+  "object": "main/cdstream",
+  "source": "src/main/cdstream.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "main"
+  ]
+ },
+ {
+  "object": "main/taskbank",
+  "source": "src/main/taskbank.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "main"
+  ]
+ },
+ {
+  "object": "title/title",
+  "source": "src/title/title.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "title"
+  ]
+ },
+ {
+  "object": "gameplay/item_catalog",
+  "source": "src/gameplay/item_catalog.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/actor_render",
+  "source": "src/gameplay/actor_render.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/model_objects",
+  "source": "src/gameplay/model_objects.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/model_lighting",
+  "source": "src/gameplay/model_lighting.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/ending",
+  "source": "src/gameplay/ending.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/area_entry",
+  "source": "src/gameplay/area_entry.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/attachments",
+  "source": "src/gameplay/attachments.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/attachment_stats",
+  "source": "src/gameplay/attachment_stats.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/attach_combo",
+  "source": "src/gameplay/attach_combo.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/linked_actors",
+  "source": "src/gameplay/linked_actors.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/hud_sprites",
+  "source": "src/gameplay/hud_sprites.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/view_load",
+  "source": "src/gameplay/view_load.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/view_image",
+  "source": "src/gameplay/view_image.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/cd_loading",
+  "source": "src/gameplay/cd_loading.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/area_cd",
+  "source": "src/gameplay/area_cd.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/load_screen",
+  "source": "src/gameplay/load_screen.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/companion_load",
+  "source": "src/gameplay/companion_load.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/sprite_link",
+  "source": "src/gameplay/sprite_link.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/direction_input",
+  "source": "src/gameplay/direction_input.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/direction_facing",
+  "source": "src/gameplay/direction_facing.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/area_transitions",
+  "source": "src/gameplay/area_transitions.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/scene_runtime",
+  "source": "src/gameplay/scene_runtime.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/item_publish",
+  "source": "src/gameplay/item_publish.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/item_notice",
+  "source": "src/gameplay/item_notice.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/item_placement",
+  "source": "src/gameplay/item_placement.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/equipment",
+  "source": "src/gameplay/equipment.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/starter_inventory",
+  "source": "src/gameplay/starter_inventory.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/item_inventory",
+  "source": "src/gameplay/item_inventory.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/item_sort",
+  "source": "src/gameplay/item_sort.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/item_boost",
+  "source": "src/gameplay/item_boost.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/item_collect",
+  "source": "src/gameplay/item_collect.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/item_move_check",
+  "source": "src/gameplay/item_move_check.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/item_menu",
+  "source": "src/gameplay/item_menu.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/menu_root",
+  "source": "src/gameplay/menu_root.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/menu_prompt",
+  "source": "src/gameplay/menu_prompt.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/menu_armor",
+  "source": "src/gameplay/menu_armor.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/item_stats",
+  "source": "src/gameplay/item_stats.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/weapon_stats",
+  "source": "src/gameplay/weapon_stats.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/attachment_menu",
+  "source": "src/gameplay/attachment_menu.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/item_panels",
+  "source": "src/gameplay/item_panels.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/pickup_dispatch",
+  "source": "src/gameplay/pickup_dispatch.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/menu_actions",
+  "source": "src/gameplay/menu_actions.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/item_use",
+  "source": "src/gameplay/item_use.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/world_coords",
+  "source": "src/gameplay/world_coords.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/world_targets",
+  "source": "src/gameplay/world_targets.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/world_collision",
+  "source": "src/gameplay/world_collision.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/collision_grid",
+  "source": "src/gameplay/collision_grid.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/object_lists",
+  "source": "src/gameplay/object_lists.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/damage",
+  "source": "src/gameplay/damage.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/object_fields",
+  "source": "src/gameplay/object_fields.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/object_task",
+  "source": "src/gameplay/object_task.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/cap_commands",
+  "source": "src/gameplay/cap_commands.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/cap_reloc",
+  "source": "src/gameplay/cap_reloc.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/cap_start",
+  "source": "src/gameplay/cap_start.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/captions",
+  "source": "src/gameplay/captions.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/cap_script",
+  "source": "src/gameplay/cap_script.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/cap_control",
+  "source": "src/gameplay/cap_control.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/evs_scripts",
+  "source": "src/gameplay/evs_scripts.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/pad_scripts",
+  "source": "src/gameplay/pad_scripts.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/pad_input",
+  "source": "src/gameplay/pad_input.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/room_effects",
+  "source": "src/gameplay/room_effects.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/effect_tasks",
+  "source": "src/gameplay/effect_tasks.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/effect_attach",
+  "source": "src/gameplay/effect_attach.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/player_actor",
+  "source": "src/gameplay/player_actor.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "gameplay/player_state",
+  "source": "src/gameplay/player_state.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gameplay"
+  ]
+ },
+ {
+  "object": "weapons/as12/as12",
+  "source": "src/weapons/as12/as12.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "as12"
+  ]
+ },
+ {
+  "object": "weapons/grenade_pistol/grenade_pistol",
+  "source": "src/weapons/grenade_pistol/grenade_pistol.c",
+  "defines": {
+   "VER_USA": null,
+   "GRENADE_PISTOL_VARIANT": "0"
+  },
+  "overlays": [
+   "grenade_pistol"
+  ]
+ },
+ {
+  "object": "weapons/mm1/grenade_pistol",
+  "source": "src/weapons/grenade_pistol/grenade_pistol.c",
+  "defines": {
+   "VER_USA": null,
+   "GRENADE_PISTOL_VARIANT": "1",
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(grenadePistolAttackState,mm1AttackState);DEFINE_ALIAS(grenadePistolShellTask,mm1ShellTask);"
+  },
+  "overlays": [
+   "mm1"
+  ]
+ },
+ {
+  "object": "weapons/gunblade/gunblade",
+  "source": "src/weapons/gunblade/gunblade.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "gunblade"
+  ]
+ },
+ {
+  "object": "weapons/hypervelocity/hypervelocity",
+  "source": "src/weapons/hypervelocity/hypervelocity.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "hypervelocity"
+  ]
+ },
+ {
+  "object": "weapons/m249/m249",
+  "source": "src/weapons/m249/m249.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "m249"
+  ]
+ },
+ {
+  "object": "weapons/m4a1/m4a1",
+  "source": "src/weapons/m4a1/m4a1.c",
+  "defines": {
+   "VER_USA": null,
+   "WEAPON_INDEX": "16"
+  },
+  "overlays": [
+   "m4a1"
+  ]
+ },
+ {
+  "object": "weapons/m4a1_p1/m4a1",
+  "source": "src/weapons/m4a1/m4a1.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(m4a1AttackState,m4a1P1AttackState);",
+   "WEAPON_INDEX": "20"
+  },
+  "overlays": [
+   "m4a1_p1"
+  ]
+ },
+ {
+  "object": "weapons/m4a1_p2/m4a1",
+  "source": "src/weapons/m4a1/m4a1.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(m4a1AttackState,m4a1P2AttackState);",
+   "WEAPON_INDEX": "21"
+  },
+  "overlays": [
+   "m4a1_p2"
+  ]
+ },
+ {
+  "object": "weapons/m4a1_bayonet/m4a1_bayonet",
+  "source": "src/weapons/m4a1_bayonet/m4a1_bayonet.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "m4a1_bayonet"
+  ]
+ },
+ {
+  "object": "weapons/m4a1_grenade/m4a1_grenade",
+  "source": "src/weapons/m4a1_grenade/m4a1_grenade.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "m4a1_grenade"
+  ]
+ },
+ {
+  "object": "weapons/m4a1_hammer/m4a1_hammer",
+  "source": "src/weapons/m4a1_hammer/m4a1_hammer.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "m4a1_hammer"
+  ]
+ },
+ {
+  "object": "weapons/m4a1_javelin/m4a1_javelin",
+  "source": "src/weapons/m4a1_javelin/m4a1_javelin.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "m4a1_javelin"
+  ]
+ },
+ {
+  "object": "weapons/m4a1_pyke/m4a1_pyke",
+  "source": "src/weapons/m4a1_pyke/m4a1_pyke.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "m4a1_pyke"
+  ]
+ },
+ {
+  "object": "weapons/m93r/m93r",
+  "source": "src/weapons/m93r/m93r.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "m93r"
+  ]
+ },
+ {
+  "object": "weapons/m950/m950",
+  "source": "src/weapons/m950/m950.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "m950"
+  ]
+ },
+ {
+  "object": "weapons/mp5a5/mp5a5",
+  "source": "src/weapons/mp5a5/mp5a5.c",
+  "defines": {
+   "VER_USA": null,
+   "WEAPON_INDEX": "30"
+  },
+  "overlays": [
+   "mp5a5"
+  ]
+ },
+ {
+  "object": "weapons/mp5a5_p1/mp5a5",
+  "source": "src/weapons/mp5a5/mp5a5.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(mp5a5AttackState,func_mp5a5_p1_8011DDA4);",
+   "WEAPON_INDEX": "31"
+  },
+  "overlays": [
+   "mp5a5_p1"
+  ]
+ },
+ {
+  "object": "weapons/mp5a5_p2/mp5a5",
+  "source": "src/weapons/mp5a5/mp5a5.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(mp5a5AttackState,func_mp5a5_p2_8011DDA4);",
+   "WEAPON_INDEX": "32"
+  },
+  "overlays": [
+   "mp5a5_p2"
+  ]
+ },
+ {
+  "object": "weapons/p08/p08",
+  "source": "src/weapons/p08/p08.c",
+  "defines": {
+   "VER_USA": null,
+   "P08_MUZZLE_FLASH_EFFECT": "EFFECT_HANDGUN_MUZZLE_FLASH",
+   "P08_MUZZLE_FLASH_PROFILE": "P08_FLASH_PROFILE_HANDGUN",
+   "P08_RECOVERY_COOLDOWN_TICKS": "12",
+   "WEAPON_INDEX": "4"
+  },
+  "overlays": [
+   "p08"
+  ]
+ },
+ {
+  "object": "weapons/p08_snail/p08",
+  "source": "src/weapons/p08/p08.c",
+  "defines": {
+   "VER_USA": null,
+   "P08_MUZZLE_FLASH_EFFECT": "EFFECT_HANDGUN_MUZZLE_FLASH",
+   "P08_MUZZLE_FLASH_PROFILE": "P08_FLASH_PROFILE_HANDGUN",
+   "P08_RECOVERY_COOLDOWN_TICKS": "12",
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(p08AttackState,func_p08_snail_8011D1D8);",
+   "WEAPON_INDEX": "1"
+  },
+  "overlays": [
+   "p08_snail"
+  ]
+ },
+ {
+  "object": "weapons/mongoose/p08",
+  "source": "src/weapons/p08/p08.c",
+  "defines": {
+   "VER_USA": null,
+   "P08_MUZZLE_FLASH_EFFECT": "EFFECT_ACTOR_MUZZLE_FLASH",
+   "P08_MUZZLE_FLASH_PROFILE": "P08_FLASH_PROFILE_MONGOOSE",
+   "P08_RECOVERY_COOLDOWN_TICKS": "15",
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(p08AttackState,func_mongoose_8011D1D8);",
+   "WEAPON_INDEX": "9"
+  },
+  "overlays": [
+   "mongoose"
+  ]
+ },
+ {
+  "object": "weapons/p229/p229",
+  "source": "src/weapons/p229/p229.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "p229"
+  ]
+ },
+ {
+  "object": "weapons/pa3/pa3",
+  "source": "src/weapons/pa3/pa3.c",
+  "defines": {
+   "VER_USA": null,
+   "PA3_ATTACK_CANCEL_TICKS": "32",
+   "WEAPON_INDEX": "13"
+  },
+  "overlays": [
+   "pa3"
+  ]
+ },
+ {
+  "object": "weapons/sp12/pa3",
+  "source": "src/weapons/pa3/pa3.c",
+  "defines": {
+   "VER_USA": null,
+   "PA3_ATTACK_CANCEL_TICKS": "36",
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(pa3AttackState,func_sp12_8011D1DC);",
+   "WEAPON_INDEX": "14"
+  },
+  "overlays": [
+   "sp12"
+  ]
+ },
+ {
+  "object": "weapons/tonfa_baton/tonfa_baton",
+  "source": "src/weapons/tonfa_baton/tonfa_baton.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "tonfa_baton"
+  ]
+ },
+ {
+  "object": "weapons/unused_85/unused_85",
+  "source": "src/weapons/unused_85/unused_85.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "unused_85"
+  ]
+ },
+ {
+  "object": "weapons/unused_86/unused_86",
+  "source": "src/weapons/unused_86/unused_86.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "unused_86",
+   "unused_87",
+   "unused_89",
+   "unused_91",
+   "unused_97"
+  ]
+ },
+ {
+  "object": "aya/aya_10200/aya_10200",
+  "source": "src/aya/aya_10200/aya_10200.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "aya_10200"
+  ]
+ },
+ {
+  "object": "aya/aya_10300/aya_10300",
+  "source": "src/aya/aya_10300/aya_10300.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "aya_10300"
+  ]
+ },
+ {
+  "object": "aya/aya_10400/aya_10400",
+  "source": "src/aya/aya_10400/aya_10400.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "aya_10400"
+  ]
+ },
+ {
+  "object": "aya/aya_10500/aya_10500",
+  "source": "src/aya/aya_10500/aya_10500.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "aya_10500"
+  ]
+ },
+ {
+  "object": "aya/ending/ending",
+  "source": "src/aya/ending/ending.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "ending"
+  ]
+ },
+ {
+  "object": "aya/ending/ending_2",
+  "source": "src/aya/ending/ending_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "ending"
+  ]
+ },
+ {
+  "object": "aya/game_over/game_over",
+  "source": "src/aya/game_over/game_over.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "game_over"
+  ]
+ },
+ {
+  "object": "kyle/kyle_800101/kyle_800101",
+  "source": "src/kyle/kyle_800101/kyle_800101.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "kyle_800101"
+  ]
+ },
+ {
+  "object": "kyle/kyle_800102/kyle_800102",
+  "source": "src/kyle/kyle_800102/kyle_800102.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "kyle_800102"
+  ]
+ },
+ {
+  "object": "kyle/kyle_800103/kyle_800103",
+  "source": "src/kyle/kyle_800103/kyle_800103.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "kyle_800103"
+  ]
+ },
+ {
+  "object": "kyle/kyle_800104/kyle_800104",
+  "source": "src/kyle/kyle_800104/kyle_800104.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "kyle_800104"
+  ]
+ },
+ {
+  "object": "mapui/map_akropolis/map_akropolis",
+  "source": "src/mapui/map_akropolis/map_akropolis.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "map_akropolis"
+  ]
+ },
+ {
+  "object": "mapui/map_dryfield/map_dryfield",
+  "source": "src/mapui/map_dryfield/map_dryfield.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "map_dryfield"
+  ]
+ },
+ {
+  "object": "mapui/map_dryfield_full/map_dryfield_full",
+  "source": "src/mapui/map_dryfield_full/map_dryfield_full.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "map_dryfield_full"
+  ]
+ },
+ {
+  "object": "mapui/map_neo_ark/map_neo_ark",
+  "source": "src/mapui/map_neo_ark/map_neo_ark.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "map_neo_ark"
+  ]
+ },
+ {
+  "object": "mapui/map_shelter/map_shelter",
+  "source": "src/mapui/map_shelter/map_shelter.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "map_shelter"
+  ]
+ },
+ {
+  "object": "mappic/mappic_s1_00/mappic_s1_00",
+  "source": "src/mappic/mappic_s1_00/mappic_s1_00.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "mappic_s1_00"
+  ]
+ },
+ {
+  "object": "mappic/mappic_s1_02/mappic_s1_02",
+  "source": "src/mappic/mappic_s1_02/mappic_s1_02.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "mappic_s1_02"
+  ]
+ },
+ {
+  "object": "mappic/mappic_s2_00/mappic_s2_00",
+  "source": "src/mappic/mappic_s2_00/mappic_s2_00.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "mappic_s2_00"
+  ]
+ },
+ {
+  "object": "mappic/mappic_s2_02/mappic_s2_02",
+  "source": "src/mappic/mappic_s2_02/mappic_s2_02.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "mappic_s2_02"
+  ]
+ },
+ {
+  "object": "mappic/mappic_s2_03/mappic_s2_03",
+  "source": "src/mappic/mappic_s2_03/mappic_s2_03.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "mappic_s2_03"
+  ]
+ },
+ {
+  "object": "mappic/mappic_s3_00/mappic_s3_00",
+  "source": "src/mappic/mappic_s3_00/mappic_s3_00.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "mappic_s3_00"
+  ]
+ },
+ {
+  "object": "mappic/mappic_s3_02/mappic_s3_02",
+  "source": "src/mappic/mappic_s3_02/mappic_s3_02.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "mappic_s3_02"
+  ]
+ },
+ {
+  "object": "mappic/mappic_s3_03/mappic_s3_03",
+  "source": "src/mappic/mappic_s3_03/mappic_s3_03.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "mappic_s3_03"
+  ]
+ },
+ {
+  "object": "mappic/mappic_s4_00/mappic_s4_00",
+  "source": "src/mappic/mappic_s4_00/mappic_s4_00.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "mappic_s4_00"
+  ]
+ },
+ {
+  "object": "mappic/mappic_s4_02/mappic_s4_02",
+  "source": "src/mappic/mappic_s4_02/mappic_s4_02.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "mappic_s4_02"
+  ]
+ },
+ {
+  "object": "mappic/mappic_s4_03/mappic_s4_03",
+  "source": "src/mappic/mappic_s4_03/mappic_s4_03.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "mappic_s4_03"
+  ]
+ },
+ {
+  "object": "mappic/mappic_s4_04/mappic_s4_04",
+  "source": "src/mappic/mappic_s4_04/mappic_s4_04.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "mappic_s4_04"
+  ]
+ },
+ {
+  "object": "mappic/mappic_s4_05/mappic_s4_05",
+  "source": "src/mappic/mappic_s4_05/mappic_s4_05.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "mappic_s4_05"
+  ]
+ },
+ {
+  "object": "mappic/mappic_s4_06/mappic_s4_06",
+  "source": "src/mappic/mappic_s4_06/mappic_s4_06.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "mappic_s4_06"
+  ]
+ },
+ {
+  "object": "mappic/mappic_s5_00/mappic_s5_00",
+  "source": "src/mappic/mappic_s5_00/mappic_s5_00.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "mappic_s5_00"
+  ]
+ },
+ {
+  "object": "mappic/mappic_s5_02/mappic_s5_02",
+  "source": "src/mappic/mappic_s5_02/mappic_s5_02.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "mappic_s5_02"
+  ]
+ },
+ {
+  "object": "mappic/mappic_s5_03/mappic_s5_03",
+  "source": "src/mappic/mappic_s5_03/mappic_s5_03.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "mappic_s5_03"
+  ]
+ },
+ {
+  "object": "options/options/options",
+  "source": "src/options/options/options.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "options"
+  ]
+ },
+ {
+  "object": "debug/nmc_names/nmc_names",
+  "source": "src/debug/nmc_names/nmc_names.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "nmc_names"
+  ]
+ },
+ {
+  "object": "rooms/acropolis_bridge/acropolis_bridge",
+  "source": "src/rooms/acropolis_bridge/acropolis_bridge.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "acropolis_bridge"
+  ]
+ },
+ {
+  "object": "rooms/acropolis_cafeteria/acropolis_cafeteria",
+  "source": "src/rooms/acropolis_cafeteria/acropolis_cafeteria.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "acropolis_cafeteria"
+  ]
+ },
+ {
+  "object": "rooms/acropolis_cafeteria/acropolis_cafeteria_2",
+  "source": "src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "acropolis_cafeteria"
+  ]
+ },
+ {
+  "object": "rooms/acropolis_east_elevator_hall/acropolis_east_elevator_hall",
+  "source": "src/rooms/acropolis_east_elevator_hall/acropolis_east_elevator_hall.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "acropolis_east_elevator_hall"
+  ]
+ },
+ {
+  "object": "rooms/acropolis_fire_escape/acropolis_fire_escape",
+  "source": "src/rooms/acropolis_fire_escape/acropolis_fire_escape.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "acropolis_fire_escape"
+  ]
+ },
+ {
+  "object": "rooms/acropolis_forked_road/acropolis_forked_road",
+  "source": "src/rooms/acropolis_forked_road/acropolis_forked_road.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "acropolis_forked_road"
+  ]
+ },
+ {
+  "object": "rooms/acropolis_forked_road/acropolis_forked_road_2",
+  "source": "src/rooms/acropolis_forked_road/acropolis_forked_road_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "acropolis_forked_road"
+  ]
+ },
+ {
+  "object": "rooms/acropolis_fountain/acropolis_fountain",
+  "source": "src/rooms/acropolis_fountain/acropolis_fountain.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "acropolis_fountain"
+  ]
+ },
+ {
+  "object": "rooms/acropolis_fountain/acropolis_fountain_2",
+  "source": "src/rooms/acropolis_fountain/acropolis_fountain_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "acropolis_fountain"
+  ]
+ },
+ {
+  "object": "rooms/acropolis_hallway/acropolis_hallway",
+  "source": "src/rooms/acropolis_hallway/acropolis_hallway.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "acropolis_hallway"
+  ]
+ },
+ {
+  "object": "rooms/acropolis_helicopter_landing_pad/acropolis_helicopter_landing_pad",
+  "source": "src/rooms/acropolis_helicopter_landing_pad/acropolis_helicopter_landing_pad.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "acropolis_helicopter_landing_pad"
+  ]
+ },
+ {
+  "object": "rooms/acropolis_helicopter_landing_pad/acropolis_helicopter_landing_pad_2",
+  "source": "src/rooms/acropolis_helicopter_landing_pad/acropolis_helicopter_landing_pad_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "acropolis_helicopter_landing_pad"
+  ]
+ },
+ {
+  "object": "rooms/acropolis_helicopter_landing_pad/acropolis_helicopter_landing_pad_3",
+  "source": "src/rooms/acropolis_helicopter_landing_pad/acropolis_helicopter_landing_pad_3.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "acropolis_helicopter_landing_pad"
+  ]
+ },
+ {
+  "object": "rooms/acropolis_observatory/acropolis_observatory",
+  "source": "src/rooms/acropolis_observatory/acropolis_observatory.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "acropolis_observatory"
+  ]
+ },
+ {
+  "object": "rooms/acropolis_observatory/acropolis_observatory_2",
+  "source": "src/rooms/acropolis_observatory/acropolis_observatory_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "acropolis_observatory"
+  ]
+ },
+ {
+  "object": "rooms/acropolis_observatory/acropolis_observatory_3",
+  "source": "src/rooms/acropolis_observatory/acropolis_observatory_3.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "acropolis_observatory"
+  ]
+ },
+ {
+  "object": "rooms/acropolis_patio/acropolis_patio",
+  "source": "src/rooms/acropolis_patio/acropolis_patio.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "acropolis_patio"
+  ]
+ },
+ {
+  "object": "rooms/acropolis_plaza/acropolis_plaza",
+  "source": "src/rooms/acropolis_plaza/acropolis_plaza.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "acropolis_plaza"
+  ]
+ },
+ {
+  "object": "rooms/acropolis_promenade/acropolis_promenade",
+  "source": "src/rooms/acropolis_promenade/acropolis_promenade.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "acropolis_promenade"
+  ]
+ },
+ {
+  "object": "rooms/acropolis_roof_garden/acropolis_roof_garden",
+  "source": "src/rooms/acropolis_roof_garden/acropolis_roof_garden.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "acropolis_roof_garden"
+  ]
+ },
+ {
+  "object": "rooms/acropolis_sanctuary/acropolis_sanctuary",
+  "source": "src/rooms/acropolis_sanctuary/acropolis_sanctuary.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "acropolis_sanctuary"
+  ]
+ },
+ {
+  "object": "rooms/acropolis_security_room/acropolis_security_room",
+  "source": "src/rooms/acropolis_security_room/acropolis_security_room.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "acropolis_security_room"
+  ]
+ },
+ {
+  "object": "rooms/acropolis_west_elevator_hall/acropolis_west_elevator_hall",
+  "source": "src/rooms/acropolis_west_elevator_hall/acropolis_west_elevator_hall.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "acropolis_west_elevator_hall"
+  ]
+ },
+ {
+  "object": "rooms/akropolis_square/square",
+  "source": "src/stages/akropolis/rooms/square/square.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "akropolis_square"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_back_street/dryfield_back_street",
+  "source": "src/rooms/dryfield_back_street/dryfield_back_street.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_back_street"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_breezeway/dryfield_breezeway",
+  "source": "src/rooms/dryfield_breezeway/dryfield_breezeway.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_breezeway"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_breezeway/dryfield_breezeway_2",
+  "source": "src/rooms/dryfield_breezeway/dryfield_breezeway_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_breezeway"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_cellar/dryfield_cellar",
+  "source": "src/rooms/dryfield_cellar/dryfield_cellar.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_cellar"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_dilapidated_house/dryfield_dilapidated_house",
+  "source": "src/rooms/dryfield_dilapidated_house/dryfield_dilapidated_house.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_dilapidated_house"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_driveway/dryfield_driveway",
+  "source": "src/rooms/dryfield_driveway/dryfield_driveway.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_driveway"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_g_r_kitchen/dryfield_g_r_kitchen",
+  "source": "src/rooms/dryfield_g_r_kitchen/dryfield_g_r_kitchen.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_g_r_kitchen"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_garage/dryfield_garage",
+  "source": "src/rooms/dryfield_garage/dryfield_garage.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_garage"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_gas_station/dryfield_gas_station",
+  "source": "src/rooms/dryfield_gas_station/dryfield_gas_station.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_gas_station"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_gas_station/dryfield_gas_station_2",
+  "source": "src/rooms/dryfield_gas_station/dryfield_gas_station_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_gas_station"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_gas_station/dryfield_gas_station_3",
+  "source": "src/rooms/dryfield_gas_station/dryfield_gas_station_3.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_gas_station"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_general_store/dryfield_general_store",
+  "source": "src/rooms/dryfield_general_store/dryfield_general_store.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_general_store"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_junk_yard/dryfield_junk_yard",
+  "source": "src/rooms/dryfield_junk_yard/dryfield_junk_yard.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_junk_yard"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_main_street/dryfield_main_street",
+  "source": "src/rooms/dryfield_main_street/dryfield_main_street.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_main_street"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_motel_balcony/dryfield_motel_balcony",
+  "source": "src/rooms/dryfield_motel_balcony/dryfield_motel_balcony.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_motel_balcony"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_motel_lobby/dryfield_motel_lobby",
+  "source": "src/rooms/dryfield_motel_lobby/dryfield_motel_lobby.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_motel_lobby"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_motel_loft/dryfield_motel_loft",
+  "source": "src/rooms/dryfield_motel_loft/dryfield_motel_loft.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_motel_loft"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_motel_room_1/dryfield_motel_room_1",
+  "source": "src/rooms/dryfield_motel_room_1/dryfield_motel_room_1.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_motel_room_1"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_motel_room_1/dryfield_motel_room_1_2",
+  "source": "src/rooms/dryfield_motel_room_1/dryfield_motel_room_1_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_motel_room_1"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_motel_room_2/dryfield_motel_room_2",
+  "source": "src/rooms/dryfield_motel_room_2/dryfield_motel_room_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_motel_room_2"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_motel_room_3/dryfield_motel_room_3",
+  "source": "src/rooms/dryfield_motel_room_3/dryfield_motel_room_3.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_motel_room_3"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_motel_room_4/dryfield_motel_room_4",
+  "source": "src/rooms/dryfield_motel_room_4/dryfield_motel_room_4.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_motel_room_4"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_motel_room_5/dryfield_motel_room_5",
+  "source": "src/rooms/dryfield_motel_room_5/dryfield_motel_room_5.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_motel_room_5"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_motel_room_6/dryfield_motel_room_6",
+  "source": "src/rooms/dryfield_motel_room_6/dryfield_motel_room_6.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_motel_room_6"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_back_street/dryfield_night_back_street",
+  "source": "src/rooms/dryfield_night_back_street/dryfield_night_back_street.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_back_street"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_breezeway/dryfield_night_breezeway",
+  "source": "src/rooms/dryfield_night_breezeway/dryfield_night_breezeway.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_breezeway"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_cellar/dryfield_night_cellar",
+  "source": "src/rooms/dryfield_night_cellar/dryfield_night_cellar.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_cellar"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_dilapidated_house/dryfield_night_dilapidated_house",
+  "source": "src/rooms/dryfield_night_dilapidated_house/dryfield_night_dilapidated_house.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_dilapidated_house"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_dilapidated_house/dryfield_night_dilapidated_house_2",
+  "source": "src/rooms/dryfield_night_dilapidated_house/dryfield_night_dilapidated_house_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_dilapidated_house"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_driveway/dryfield_night_driveway",
+  "source": "src/rooms/dryfield_night_driveway/dryfield_night_driveway.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_driveway"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_g_r_kitchen/dryfield_night_g_r_kitchen",
+  "source": "src/rooms/dryfield_night_g_r_kitchen/dryfield_night_g_r_kitchen.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_g_r_kitchen"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_garage/dryfield_night_garage",
+  "source": "src/rooms/dryfield_night_garage/dryfield_night_garage.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_garage"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_garage/dryfield_night_garage_2",
+  "source": "src/rooms/dryfield_night_garage/dryfield_night_garage_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_garage"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_gas_station/dryfield_night_gas_station",
+  "source": "src/rooms/dryfield_night_gas_station/dryfield_night_gas_station.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_gas_station"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_general_store/dryfield_night_general_store",
+  "source": "src/rooms/dryfield_night_general_store/dryfield_night_general_store.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_general_store"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_general_store/dryfield_night_general_store_2",
+  "source": "src/rooms/dryfield_night_general_store/dryfield_night_general_store_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_general_store"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_junk_yard/dryfield_night_junk_yard",
+  "source": "src/rooms/dryfield_night_junk_yard/dryfield_night_junk_yard.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_junk_yard"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_junk_yard/dryfield_night_junk_yard_2",
+  "source": "src/rooms/dryfield_night_junk_yard/dryfield_night_junk_yard_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_junk_yard"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_main_street/dryfield_night_main_street",
+  "source": "src/rooms/dryfield_night_main_street/dryfield_night_main_street.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_main_street"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_motel_balcony/dryfield_night_motel_balcony",
+  "source": "src/rooms/dryfield_night_motel_balcony/dryfield_night_motel_balcony.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_motel_balcony"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_motel_balcony/dryfield_night_motel_balcony_2",
+  "source": "src/rooms/dryfield_night_motel_balcony/dryfield_night_motel_balcony_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_motel_balcony"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_motel_balcony/dryfield_night_motel_balcony_3",
+  "source": "src/rooms/dryfield_night_motel_balcony/dryfield_night_motel_balcony_3.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_motel_balcony"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_motel_balcony/dryfield_night_motel_balcony_4",
+  "source": "src/rooms/dryfield_night_motel_balcony/dryfield_night_motel_balcony_4.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_motel_balcony"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_motel_lobby/dryfield_night_motel_lobby",
+  "source": "src/rooms/dryfield_night_motel_lobby/dryfield_night_motel_lobby.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_motel_lobby"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_motel_lobby/dryfield_night_motel_lobby_2",
+  "source": "src/rooms/dryfield_night_motel_lobby/dryfield_night_motel_lobby_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_motel_lobby"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_motel_loft/dryfield_night_motel_loft",
+  "source": "src/rooms/dryfield_night_motel_loft/dryfield_night_motel_loft.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_motel_loft"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_motel_loft/dryfield_night_motel_loft_2",
+  "source": "src/rooms/dryfield_night_motel_loft/dryfield_night_motel_loft_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_motel_loft"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_motel_room_1/dryfield_night_motel_room_1",
+  "source": "src/rooms/dryfield_night_motel_room_1/dryfield_night_motel_room_1.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_motel_room_1"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_motel_room_1/dryfield_night_motel_room_1_2",
+  "source": "src/rooms/dryfield_night_motel_room_1/dryfield_night_motel_room_1_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_motel_room_1"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_motel_room_2/dryfield_night_motel_room_2",
+  "source": "src/rooms/dryfield_night_motel_room_2/dryfield_night_motel_room_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_motel_room_2"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_motel_room_3/dryfield_night_motel_room_3",
+  "source": "src/rooms/dryfield_night_motel_room_3/dryfield_night_motel_room_3.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_motel_room_3"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_motel_room_3/dryfield_night_motel_room_3_2",
+  "source": "src/rooms/dryfield_night_motel_room_3/dryfield_night_motel_room_3_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_motel_room_3"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_motel_room_4/dryfield_night_motel_room_4",
+  "source": "src/rooms/dryfield_night_motel_room_4/dryfield_night_motel_room_4.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_motel_room_4"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_motel_room_5/dryfield_night_motel_room_5",
+  "source": "src/rooms/dryfield_night_motel_room_5/dryfield_night_motel_room_5.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_motel_room_5"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_motel_room_5/dryfield_night_motel_room_5_2",
+  "source": "src/rooms/dryfield_night_motel_room_5/dryfield_night_motel_room_5_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_motel_room_5"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_motel_room_6/dryfield_night_motel_room_6",
+  "source": "src/rooms/dryfield_night_motel_room_6/dryfield_night_motel_room_6.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_motel_room_6"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_parking_lot/dryfield_night_parking_lot",
+  "source": "src/rooms/dryfield_night_parking_lot/dryfield_night_parking_lot.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_parking_lot"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_parking_lot/dryfield_night_parking_lot_2",
+  "source": "src/rooms/dryfield_night_parking_lot/dryfield_night_parking_lot_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_parking_lot"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_r08/dryfield_night_r08",
+  "source": "src/rooms/dryfield_night_r08/dryfield_night_r08.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_r08"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_r08/dryfield_night_r08_2",
+  "source": "src/rooms/dryfield_night_r08/dryfield_night_r08_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_r08"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_saloon_g_r/dryfield_night_saloon_g_r",
+  "source": "src/rooms/dryfield_night_saloon_g_r/dryfield_night_saloon_g_r.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_saloon_g_r"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_souvenir_shop/dryfield_night_souvenir_shop",
+  "source": "src/rooms/dryfield_night_souvenir_shop/dryfield_night_souvenir_shop.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_souvenir_shop"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_toilet/dryfield_night_toilet",
+  "source": "src/rooms/dryfield_night_toilet/dryfield_night_toilet.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_toilet"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_trailer_coach/dryfield_night_trailer_coach",
+  "source": "src/rooms/dryfield_night_trailer_coach/dryfield_night_trailer_coach.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_trailer_coach"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_trailer_coach/dryfield_night_trailer_coach_2",
+  "source": "src/rooms/dryfield_night_trailer_coach/dryfield_night_trailer_coach_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_trailer_coach"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_underpass/dryfield_night_underpass",
+  "source": "src/rooms/dryfield_night_underpass/dryfield_night_underpass.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_underpass"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_warehouse/dryfield_night_warehouse",
+  "source": "src/rooms/dryfield_night_warehouse/dryfield_night_warehouse.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_warehouse"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_water_hole/dryfield_night_water_hole",
+  "source": "src/rooms/dryfield_night_water_hole/dryfield_night_water_hole.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_water_hole"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_water_tank/dryfield_night_water_tank",
+  "source": "src/rooms/dryfield_night_water_tank/dryfield_night_water_tank.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_water_tank"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_water_tower/dryfield_night_water_tower",
+  "source": "src/rooms/dryfield_night_water_tower/dryfield_night_water_tower.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_water_tower"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_water_tower/dryfield_night_water_tower_2",
+  "source": "src/rooms/dryfield_night_water_tower/dryfield_night_water_tower_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_night_water_tower"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_parking_lot/dryfield_parking_lot",
+  "source": "src/rooms/dryfield_parking_lot/dryfield_parking_lot.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_parking_lot"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_r04/dryfield_r04",
+  "source": "src/rooms/dryfield_r04/dryfield_r04.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_r04"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_r04/dryfield_r04_2",
+  "source": "src/rooms/dryfield_r04/dryfield_r04_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_r04"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_r08/dryfield_r08",
+  "source": "src/rooms/dryfield_r08/dryfield_r08.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_r08"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_saloon_g_r/dryfield_saloon_g_r",
+  "source": "src/rooms/dryfield_saloon_g_r/dryfield_saloon_g_r.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_saloon_g_r"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_souvenir_shop/dryfield_souvenir_shop",
+  "source": "src/rooms/dryfield_souvenir_shop/dryfield_souvenir_shop.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_souvenir_shop"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_toilet/dryfield_toilet",
+  "source": "src/rooms/dryfield_toilet/dryfield_toilet.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_toilet"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_toilet/dryfield_toilet_2",
+  "source": "src/rooms/dryfield_toilet/dryfield_toilet_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_toilet"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_trailer_coach/dryfield_trailer_coach",
+  "source": "src/rooms/dryfield_trailer_coach/dryfield_trailer_coach.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_trailer_coach"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_underpass/dryfield_underpass",
+  "source": "src/rooms/dryfield_underpass/dryfield_underpass.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_underpass"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_warehouse/dryfield_warehouse",
+  "source": "src/rooms/dryfield_warehouse/dryfield_warehouse.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_warehouse"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_warehouse/dryfield_warehouse_2",
+  "source": "src/rooms/dryfield_warehouse/dryfield_warehouse_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_warehouse"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_water_hole/dryfield_water_hole",
+  "source": "src/rooms/dryfield_water_hole/dryfield_water_hole.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_water_hole"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_water_hole/dryfield_water_hole_2",
+  "source": "src/rooms/dryfield_water_hole/dryfield_water_hole_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_water_hole"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_water_tank/dryfield_water_tank",
+  "source": "src/rooms/dryfield_water_tank/dryfield_water_tank.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_water_tank"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_water_tank/dryfield_water_tank_2",
+  "source": "src/rooms/dryfield_water_tank/dryfield_water_tank_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_water_tank"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_water_tower/dryfield_water_tower",
+  "source": "src/rooms/dryfield_water_tower/dryfield_water_tower.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_water_tower"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_water_tower/dryfield_water_tower_2",
+  "source": "src/rooms/dryfield_water_tower/dryfield_water_tower_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "dryfield_water_tower"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_factory/factory",
+  "source": "src/stages/dryfield/rooms/factory/factory.c",
+  "defines": {
+   "VER_USA": null,
+   "DRYFIELD_TIME": "1"
+  },
+  "overlays": [
+   "dryfield_factory"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_factory/factory_lift",
+  "source": "src/stages/dryfield/rooms/factory/factory_lift.c",
+  "defines": {
+   "VER_USA": null,
+   "DRYFIELD_TIME": "1"
+  },
+  "overlays": [
+   "dryfield_factory"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_factory/factory_panel",
+  "source": "src/stages/dryfield/rooms/factory/factory_panel.c",
+  "defines": {
+   "VER_USA": null,
+   "DRYFIELD_TIME": "1"
+  },
+  "overlays": [
+   "dryfield_factory"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_factory/factory_lift",
+  "source": "src/stages/dryfield/rooms/factory/factory_lift.c",
+  "defines": {
+   "VER_USA": null,
+   "DRYFIELD_TIME": "2"
+  },
+  "overlays": [
+   "dryfield_night_factory"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_factory/factory",
+  "source": "src/stages/dryfield/rooms/factory/factory.c",
+  "defines": {
+   "VER_USA": null,
+   "DRYFIELD_TIME": "2"
+  },
+  "overlays": [
+   "dryfield_night_factory"
+  ]
+ },
+ {
+  "object": "rooms/dryfield_night_factory/factory_panel",
+  "source": "src/stages/dryfield/rooms/factory/factory_panel.c",
+  "defines": {
+   "VER_USA": null,
+   "DRYFIELD_TIME": "2"
+  },
+  "overlays": [
+   "dryfield_night_factory"
+  ]
+ },
+ {
+  "object": "rooms/mine_cavern/mine_cavern",
+  "source": "src/rooms/mine_cavern/mine_cavern.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "mine_cavern"
+  ]
+ },
+ {
+  "object": "rooms/mine_cavern/mine_cavern_2",
+  "source": "src/rooms/mine_cavern/mine_cavern_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "mine_cavern"
+  ]
+ },
+ {
+  "object": "rooms/mine_forked_tunnel/mine_forked_tunnel",
+  "source": "src/rooms/mine_forked_tunnel/mine_forked_tunnel.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "mine_forked_tunnel"
+  ]
+ },
+ {
+  "object": "rooms/mine_gorge/mine_gorge",
+  "source": "src/rooms/mine_gorge/mine_gorge.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "mine_gorge"
+  ]
+ },
+ {
+  "object": "rooms/mine_gorge/mine_gorge_2",
+  "source": "src/rooms/mine_gorge/mine_gorge_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "mine_gorge"
+  ]
+ },
+ {
+  "object": "rooms/mine_mesa/mine_mesa",
+  "source": "src/rooms/mine_mesa/mine_mesa.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "mine_mesa"
+  ]
+ },
+ {
+  "object": "rooms/mine_refuge/mine_refuge",
+  "source": "src/rooms/mine_refuge/mine_refuge.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "mine_refuge"
+  ]
+ },
+ {
+  "object": "rooms/mine_secret_passage/mine_secret_passage",
+  "source": "src/rooms/mine_secret_passage/mine_secret_passage.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "mine_secret_passage"
+  ]
+ },
+ {
+  "object": "rooms/mine_secret_passage/mine_secret_passage_2",
+  "source": "src/rooms/mine_secret_passage/mine_secret_passage_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "mine_secret_passage"
+  ]
+ },
+ {
+  "object": "rooms/mine_tunnel/mine_tunnel",
+  "source": "src/rooms/mine_tunnel/mine_tunnel.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "mine_tunnel"
+  ]
+ },
+ {
+  "object": "rooms/mine_tunnel/mine_tunnel_2",
+  "source": "src/rooms/mine_tunnel/mine_tunnel_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "mine_tunnel"
+  ]
+ },
+ {
+  "object": "rooms/mine_tunnel_entrance/mine_tunnel_entrance",
+  "source": "src/rooms/mine_tunnel_entrance/mine_tunnel_entrance.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "mine_tunnel_entrance"
+  ]
+ },
+ {
+  "object": "rooms/mist_parking/mist_parking",
+  "source": "src/rooms/mist_parking/mist_parking.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "mist_parking"
+  ]
+ },
+ {
+  "object": "rooms/mist_parking/mist_parking_2",
+  "source": "src/rooms/mist_parking/mist_parking_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "mist_parking"
+  ]
+ },
+ {
+  "object": "rooms/mist_parking/mist_parking_3",
+  "source": "src/rooms/mist_parking/mist_parking_3.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "mist_parking"
+  ]
+ },
+ {
+  "object": "rooms/mist_parking/mist_parking_4",
+  "source": "src/rooms/mist_parking/mist_parking_4.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "mist_parking"
+  ]
+ },
+ {
+  "object": "rooms/mist_parking/mist_parking_5",
+  "source": "src/rooms/mist_parking/mist_parking_5.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "mist_parking"
+  ]
+ },
+ {
+  "object": "rooms/mist_r18/mist_r18",
+  "source": "src/rooms/mist_r18/mist_r18.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "mist_r18"
+  ]
+ },
+ {
+  "object": "rooms/mist_r21/mist_r21",
+  "source": "src/rooms/mist_r21/mist_r21.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "mist_r21"
+  ]
+ },
+ {
+  "object": "rooms/mist_shooting_gallery/mist_shooting_gallery",
+  "source": "src/rooms/mist_shooting_gallery/mist_shooting_gallery.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "mist_shooting_gallery"
+  ]
+ },
+ {
+  "object": "rooms/mist_shooting_gallery/mist_shooting_gallery_2",
+  "source": "src/rooms/mist_shooting_gallery/mist_shooting_gallery_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "mist_shooting_gallery"
+  ]
+ },
+ {
+  "object": "rooms/neo_ark_altar/neo_ark_altar",
+  "source": "src/rooms/neo_ark_altar/neo_ark_altar.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "neo_ark_altar"
+  ]
+ },
+ {
+  "object": "rooms/neo_ark_altar/neo_ark_altar_2",
+  "source": "src/rooms/neo_ark_altar/neo_ark_altar_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "neo_ark_altar"
+  ]
+ },
+ {
+  "object": "rooms/neo_ark_bridge/neo_ark_bridge",
+  "source": "src/rooms/neo_ark_bridge/neo_ark_bridge.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "neo_ark_bridge"
+  ]
+ },
+ {
+  "object": "rooms/neo_ark_bridge/neo_ark_bridge_2",
+  "source": "src/rooms/neo_ark_bridge/neo_ark_bridge_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "neo_ark_bridge"
+  ]
+ },
+ {
+  "object": "rooms/neo_ark_eve_access_tunnel/neo_ark_eve_access_tunnel",
+  "source": "src/rooms/neo_ark_eve_access_tunnel/neo_ark_eve_access_tunnel.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "neo_ark_eve_access_tunnel"
+  ]
+ },
+ {
+  "object": "rooms/neo_ark_eve_access_tunnel/neo_ark_eve_access_tunnel_2",
+  "source": "src/rooms/neo_ark_eve_access_tunnel/neo_ark_eve_access_tunnel_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "neo_ark_eve_access_tunnel"
+  ]
+ },
+ {
+  "object": "rooms/neo_ark_eve_elevator/neo_ark_eve_elevator",
+  "source": "src/rooms/neo_ark_eve_elevator/neo_ark_eve_elevator.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "neo_ark_eve_elevator"
+  ]
+ },
+ {
+  "object": "rooms/neo_ark_forest_zone/neo_ark_forest_zone",
+  "source": "src/rooms/neo_ark_forest_zone/neo_ark_forest_zone.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "neo_ark_forest_zone"
+  ]
+ },
+ {
+  "object": "rooms/neo_ark_forest_zone/neo_ark_forest_zone_2",
+  "source": "src/rooms/neo_ark_forest_zone/neo_ark_forest_zone_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "neo_ark_forest_zone"
+  ]
+ },
+ {
+  "object": "rooms/neo_ark_garden/neo_ark_garden",
+  "source": "src/rooms/neo_ark_garden/neo_ark_garden.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "neo_ark_garden"
+  ]
+ },
+ {
+  "object": "rooms/neo_ark_garden/neo_ark_garden_2",
+  "source": "src/rooms/neo_ark_garden/neo_ark_garden_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "neo_ark_garden"
+  ]
+ },
+ {
+  "object": "rooms/neo_ark_island/neo_ark_island",
+  "source": "src/rooms/neo_ark_island/neo_ark_island.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "neo_ark_island"
+  ]
+ },
+ {
+  "object": "rooms/neo_ark_island/neo_ark_island_2",
+  "source": "src/rooms/neo_ark_island/neo_ark_island_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "neo_ark_island"
+  ]
+ },
+ {
+  "object": "rooms/neo_ark_north_promenade/neo_ark_north_promenade",
+  "source": "src/rooms/neo_ark_north_promenade/neo_ark_north_promenade.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "neo_ark_north_promenade"
+  ]
+ },
+ {
+  "object": "rooms/neo_ark_observatory/neo_ark_observatory",
+  "source": "src/rooms/neo_ark_observatory/neo_ark_observatory.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "neo_ark_observatory"
+  ]
+ },
+ {
+  "object": "rooms/neo_ark_pavilion/neo_ark_pavilion",
+  "source": "src/rooms/neo_ark_pavilion/neo_ark_pavilion.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "neo_ark_pavilion"
+  ]
+ },
+ {
+  "object": "rooms/neo_ark_power_plant_1/neo_ark_power_plant_1",
+  "source": "src/rooms/neo_ark_power_plant_1/neo_ark_power_plant_1.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "neo_ark_power_plant_1"
+  ]
+ },
+ {
+  "object": "rooms/neo_ark_power_plant_1/neo_ark_power_plant_1_2",
+  "source": "src/rooms/neo_ark_power_plant_1/neo_ark_power_plant_1_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "neo_ark_power_plant_1"
+  ]
+ },
+ {
+  "object": "rooms/neo_ark_power_plant_2/neo_ark_power_plant_2",
+  "source": "src/rooms/neo_ark_power_plant_2/neo_ark_power_plant_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "neo_ark_power_plant_2"
+  ]
+ },
+ {
+  "object": "rooms/neo_ark_pyramid/neo_ark_pyramid",
+  "source": "src/rooms/neo_ark_pyramid/neo_ark_pyramid.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "neo_ark_pyramid"
+  ]
+ },
+ {
+  "object": "rooms/neo_ark_r26/neo_ark_r26",
+  "source": "src/rooms/neo_ark_r26/neo_ark_r26.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "neo_ark_r26"
+  ]
+ },
+ {
+  "object": "rooms/neo_ark_r31/neo_ark_r31",
+  "source": "src/rooms/neo_ark_r31/neo_ark_r31.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "neo_ark_r31"
+  ]
+ },
+ {
+  "object": "rooms/neo_ark_savanna_zone/neo_ark_savanna_zone",
+  "source": "src/rooms/neo_ark_savanna_zone/neo_ark_savanna_zone.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "neo_ark_savanna_zone"
+  ]
+ },
+ {
+  "object": "rooms/neo_ark_shrine/neo_ark_shrine",
+  "source": "src/rooms/neo_ark_shrine/neo_ark_shrine.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "neo_ark_shrine"
+  ]
+ },
+ {
+  "object": "rooms/neo_ark_shrine/neo_ark_shrine_2",
+  "source": "src/rooms/neo_ark_shrine/neo_ark_shrine_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "neo_ark_shrine"
+  ]
+ },
+ {
+  "object": "rooms/neo_ark_south_promenade/neo_ark_south_promenade",
+  "source": "src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "neo_ark_south_promenade"
+  ]
+ },
+ {
+  "object": "rooms/neo_ark_submarine_gallery/neo_ark_submarine_gallery",
+  "source": "src/rooms/neo_ark_submarine_gallery/neo_ark_submarine_gallery.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "neo_ark_submarine_gallery"
+  ]
+ },
+ {
+  "object": "rooms/neo_ark_submarine_gallery/neo_ark_submarine_gallery_2",
+  "source": "src/rooms/neo_ark_submarine_gallery/neo_ark_submarine_gallery_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "neo_ark_submarine_gallery"
+  ]
+ },
+ {
+  "object": "rooms/neo_ark_submarine_tunnel/neo_ark_submarine_tunnel",
+  "source": "src/rooms/neo_ark_submarine_tunnel/neo_ark_submarine_tunnel.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "neo_ark_submarine_tunnel"
+  ]
+ },
+ {
+  "object": "rooms/neo_ark_submarine_tunnel/neo_ark_submarine_tunnel_2",
+  "source": "src/rooms/neo_ark_submarine_tunnel/neo_ark_submarine_tunnel_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "neo_ark_submarine_tunnel"
+  ]
+ },
+ {
+  "object": "rooms/neo_ark_substation/neo_ark_substation",
+  "source": "src/rooms/neo_ark_substation/neo_ark_substation.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "neo_ark_substation"
+  ]
+ },
+ {
+  "object": "rooms/neo_ark_woodland_path/neo_ark_woodland_path",
+  "source": "src/rooms/neo_ark_woodland_path/neo_ark_woodland_path.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "neo_ark_woodland_path"
+  ]
+ },
+ {
+  "object": "rooms/neo_ark_woodland_path/neo_ark_woodland_path_2",
+  "source": "src/rooms/neo_ark_woodland_path/neo_ark_woodland_path_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "neo_ark_woodland_path"
+  ]
+ },
+ {
+  "object": "rooms/shelter_1f_airlock/shelter_1f_airlock",
+  "source": "src/rooms/shelter_1f_airlock/shelter_1f_airlock.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_1f_airlock"
+  ]
+ },
+ {
+  "object": "rooms/shelter_1f_bulwark/shelter_1f_bulwark",
+  "source": "src/rooms/shelter_1f_bulwark/shelter_1f_bulwark.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_1f_bulwark"
+  ]
+ },
+ {
+  "object": "rooms/shelter_1f_guardroom/shelter_1f_guardroom",
+  "source": "src/rooms/shelter_1f_guardroom/shelter_1f_guardroom.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_1f_guardroom"
+  ]
+ },
+ {
+  "object": "rooms/shelter_1f_heliport/shelter_1f_heliport",
+  "source": "src/rooms/shelter_1f_heliport/shelter_1f_heliport.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_1f_heliport"
+  ]
+ },
+ {
+  "object": "rooms/shelter_1f_heliport_s4/shelter_1f_heliport_s4",
+  "source": "src/rooms/shelter_1f_heliport_s4/shelter_1f_heliport_s4.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_1f_heliport_s4"
+  ]
+ },
+ {
+  "object": "rooms/shelter_1f_parking_garage/shelter_1f_parking_garage",
+  "source": "src/rooms/shelter_1f_parking_garage/shelter_1f_parking_garage.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_1f_parking_garage"
+  ]
+ },
+ {
+  "object": "rooms/shelter_1f_tent/shelter_1f_tent",
+  "source": "src/rooms/shelter_1f_tent/shelter_1f_tent.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_1f_tent"
+  ]
+ },
+ {
+  "object": "rooms/shelter_1f_tent/shelter_1f_tent_2",
+  "source": "src/rooms/shelter_1f_tent/shelter_1f_tent_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_1f_tent"
+  ]
+ },
+ {
+  "object": "rooms/shelter_1f_vehicular_airlock/shelter_1f_vehicular_airlock",
+  "source": "src/rooms/shelter_1f_vehicular_airlock/shelter_1f_vehicular_airlock.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_1f_vehicular_airlock"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b1_access_tunnel/shelter_b1_access_tunnel",
+  "source": "src/rooms/shelter_b1_access_tunnel/shelter_b1_access_tunnel.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b1_access_tunnel"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b1_armory/shelter_b1_armory",
+  "source": "src/rooms/shelter_b1_armory/shelter_b1_armory.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b1_armory"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b1_armory/shelter_b1_armory_2",
+  "source": "src/rooms/shelter_b1_armory/shelter_b1_armory_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b1_armory"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b1_control_room/shelter_b1_control_room",
+  "source": "src/rooms/shelter_b1_control_room/shelter_b1_control_room.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b1_control_room"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b1_control_room/shelter_b1_control_room_2",
+  "source": "src/rooms/shelter_b1_control_room/shelter_b1_control_room_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b1_control_room"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b1_control_room/shelter_b1_control_room_3",
+  "source": "src/rooms/shelter_b1_control_room/shelter_b1_control_room_3.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b1_control_room"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b1_control_room_access_tunnel/shelter_b1_control_room_access_tunnel",
+  "source": "src/rooms/shelter_b1_control_room_access_tunnel/shelter_b1_control_room_access_tunnel.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b1_control_room_access_tunnel"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b1_control_room_access_tunnel/shelter_b1_control_room_access_tunnel_2",
+  "source": "src/rooms/shelter_b1_control_room_access_tunnel/shelter_b1_control_room_access_tunnel_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b1_control_room_access_tunnel"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b1_elevator_hall/shelter_b1_elevator_hall",
+  "source": "src/rooms/shelter_b1_elevator_hall/shelter_b1_elevator_hall.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b1_elevator_hall"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b1_elevator_hall/shelter_b1_elevator_hall_2",
+  "source": "src/rooms/shelter_b1_elevator_hall/shelter_b1_elevator_hall_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b1_elevator_hall"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b1_golem_freezer_1/shelter_b1_golem_freezer_1",
+  "source": "src/rooms/shelter_b1_golem_freezer_1/shelter_b1_golem_freezer_1.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b1_golem_freezer_1"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b1_main_corridor/shelter_b1_main_corridor",
+  "source": "src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b1_main_corridor"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b1_north_maintenance_walkway/shelter_b1_north_maintenance_walkway",
+  "source": "src/rooms/shelter_b1_north_maintenance_walkway/shelter_b1_north_maintenance_walkway.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b1_north_maintenance_walkway"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b1_north_maintenance_walkway/shelter_b1_north_maintenance_walkway_2",
+  "source": "src/rooms/shelter_b1_north_maintenance_walkway/shelter_b1_north_maintenance_walkway_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b1_north_maintenance_walkway"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b1_pod_access_tunnel/shelter_b1_pod_access_tunnel",
+  "source": "src/rooms/shelter_b1_pod_access_tunnel/shelter_b1_pod_access_tunnel.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b1_pod_access_tunnel"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b1_pod_service_gantry/shelter_b1_pod_service_gantry",
+  "source": "src/rooms/shelter_b1_pod_service_gantry/shelter_b1_pod_service_gantry.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b1_pod_service_gantry"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b1_pod_service_gantry/shelter_b1_pod_service_gantry_2",
+  "source": "src/rooms/shelter_b1_pod_service_gantry/shelter_b1_pod_service_gantry_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b1_pod_service_gantry"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b1_sleeping_quarters/shelter_b1_sleeping_quarters",
+  "source": "src/rooms/shelter_b1_sleeping_quarters/shelter_b1_sleeping_quarters.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b1_sleeping_quarters"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b1_sleeping_quarters/shelter_b1_sleeping_quarters_2",
+  "source": "src/rooms/shelter_b1_sleeping_quarters/shelter_b1_sleeping_quarters_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b1_sleeping_quarters"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b1_sleeping_quarters/shelter_b1_sleeping_quarters_3",
+  "source": "src/rooms/shelter_b1_sleeping_quarters/shelter_b1_sleeping_quarters_3.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b1_sleeping_quarters"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b1_south_maintenance_walkway/shelter_b1_south_maintenance_walkway",
+  "source": "src/rooms/shelter_b1_south_maintenance_walkway/shelter_b1_south_maintenance_walkway.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b1_south_maintenance_walkway"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b1_sterilization_room/shelter_b1_sterilization_room",
+  "source": "src/rooms/shelter_b1_sterilization_room/shelter_b1_sterilization_room.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b1_sterilization_room"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b1_sterilization_room/shelter_b1_sterilization_room_2",
+  "source": "src/rooms/shelter_b1_sterilization_room/shelter_b1_sterilization_room_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b1_sterilization_room"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b1_storeroom/shelter_b1_storeroom",
+  "source": "src/rooms/shelter_b1_storeroom/shelter_b1_storeroom.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b1_storeroom"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b1_storeroom/shelter_b1_storeroom_2",
+  "source": "src/rooms/shelter_b1_storeroom/shelter_b1_storeroom_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b1_storeroom"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b1_transfer_tunnel/shelter_b1_transfer_tunnel",
+  "source": "src/rooms/shelter_b1_transfer_tunnel/shelter_b1_transfer_tunnel.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b1_transfer_tunnel"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b1_underground_parking/shelter_b1_underground_parking",
+  "source": "src/rooms/shelter_b1_underground_parking/shelter_b1_underground_parking.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b1_underground_parking"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b2_breeding_room/shelter_b2_breeding_room",
+  "source": "src/rooms/shelter_b2_breeding_room/shelter_b2_breeding_room.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b2_breeding_room"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b2_breeding_room/shelter_b2_breeding_room_2",
+  "source": "src/rooms/shelter_b2_breeding_room/shelter_b2_breeding_room_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b2_breeding_room"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b2_breeding_room/shelter_b2_breeding_room_3",
+  "source": "src/rooms/shelter_b2_breeding_room/shelter_b2_breeding_room_3.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b2_breeding_room"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b2_elevator/shelter_b2_elevator",
+  "source": "src/rooms/shelter_b2_elevator/shelter_b2_elevator.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b2_elevator"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b2_elevator_hall/shelter_b2_elevator_hall",
+  "source": "src/rooms/shelter_b2_elevator_hall/shelter_b2_elevator_hall.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b2_elevator_hall"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b2_laboratory/shelter_b2_laboratory",
+  "source": "src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b2_laboratory"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b2_main_corridor/shelter_b2_main_corridor",
+  "source": "src/rooms/shelter_b2_main_corridor/shelter_b2_main_corridor.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b2_main_corridor"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b2_north_maintenance_walkway/shelter_b2_north_maintenance_walkway",
+  "source": "src/rooms/shelter_b2_north_maintenance_walkway/shelter_b2_north_maintenance_walkway.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b2_north_maintenance_walkway"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b2_north_maintenance_walkway/shelter_b2_north_maintenance_walkway_2",
+  "source": "src/rooms/shelter_b2_north_maintenance_walkway/shelter_b2_north_maintenance_walkway_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b2_north_maintenance_walkway"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b2_operating_room/shelter_b2_operating_room",
+  "source": "src/rooms/shelter_b2_operating_room/shelter_b2_operating_room.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b2_operating_room"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b2_pod_access_tunnel/shelter_b2_pod_access_tunnel",
+  "source": "src/rooms/shelter_b2_pod_access_tunnel/shelter_b2_pod_access_tunnel.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b2_pod_access_tunnel"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b2_pod_access_tunnel/shelter_b2_pod_access_tunnel_2",
+  "source": "src/rooms/shelter_b2_pod_access_tunnel/shelter_b2_pod_access_tunnel_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b2_pod_access_tunnel"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b2_pod_bottom/shelter_b2_pod_bottom",
+  "source": "src/rooms/shelter_b2_pod_bottom/shelter_b2_pod_bottom.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b2_pod_bottom"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b2_pod_bottom/shelter_b2_pod_bottom_2",
+  "source": "src/rooms/shelter_b2_pod_bottom/shelter_b2_pod_bottom_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b2_pod_bottom"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b2_septic_tank/shelter_b2_septic_tank",
+  "source": "src/rooms/shelter_b2_septic_tank/shelter_b2_septic_tank.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b2_septic_tank"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b2_south_maintenance_walkway/shelter_b2_south_maintenance_walkway",
+  "source": "src/rooms/shelter_b2_south_maintenance_walkway/shelter_b2_south_maintenance_walkway.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b2_south_maintenance_walkway"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b3_dumping_hole/shelter_b3_dumping_hole",
+  "source": "src/rooms/shelter_b3_dumping_hole/shelter_b3_dumping_hole.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b3_dumping_hole"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b3_dumping_hole/shelter_b3_dumping_hole_2",
+  "source": "src/rooms/shelter_b3_dumping_hole/shelter_b3_dumping_hole_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b3_dumping_hole"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b3_elevator_hall/shelter_b3_elevator_hall",
+  "source": "src/rooms/shelter_b3_elevator_hall/shelter_b3_elevator_hall.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b3_elevator_hall"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b3_elevator_hall/shelter_b3_elevator_hall_2",
+  "source": "src/rooms/shelter_b3_elevator_hall/shelter_b3_elevator_hall_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b3_elevator_hall"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b3_garbage_incinerator/shelter_b3_garbage_incinerator",
+  "source": "src/rooms/shelter_b3_garbage_incinerator/shelter_b3_garbage_incinerator.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b3_garbage_incinerator"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b3_garbage_incinerator/shelter_b3_garbage_incinerator_2",
+  "source": "src/rooms/shelter_b3_garbage_incinerator/shelter_b3_garbage_incinerator_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b3_garbage_incinerator"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b3_garbage_incinerator/shelter_b3_garbage_incinerator_3",
+  "source": "src/rooms/shelter_b3_garbage_incinerator/shelter_b3_garbage_incinerator_3.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b3_garbage_incinerator"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b3_incinerator_control_room/shelter_b3_incinerator_control_room",
+  "source": "src/rooms/shelter_b3_incinerator_control_room/shelter_b3_incinerator_control_room.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b3_incinerator_control_room"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b3_incinerator_control_room/shelter_b3_incinerator_control_room_2",
+  "source": "src/rooms/shelter_b3_incinerator_control_room/shelter_b3_incinerator_control_room_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b3_incinerator_control_room"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer",
+  "source": "src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b4_lower_sewer"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2",
+  "source": "src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b4_lower_sewer"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b4_reservoir/shelter_b4_reservoir",
+  "source": "src/rooms/shelter_b4_reservoir/shelter_b4_reservoir.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b4_reservoir"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b4_upper_sewer/shelter_b4_upper_sewer",
+  "source": "src/rooms/shelter_b4_upper_sewer/shelter_b4_upper_sewer.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b4_upper_sewer"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b4_water_supply/shelter_b4_water_supply",
+  "source": "src/rooms/shelter_b4_water_supply/shelter_b4_water_supply.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b4_water_supply"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b6_corridor/shelter_b6_corridor",
+  "source": "src/rooms/shelter_b6_corridor/shelter_b6_corridor.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b6_corridor"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b6_growth_room/shelter_b6_growth_room",
+  "source": "src/rooms/shelter_b6_growth_room/shelter_b6_growth_room.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b6_growth_room"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b6_growth_room/shelter_b6_growth_room_2",
+  "source": "src/rooms/shelter_b6_growth_room/shelter_b6_growth_room_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b6_growth_room"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b6_nursery/shelter_b6_nursery",
+  "source": "src/rooms/shelter_b6_nursery/shelter_b6_nursery.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b6_nursery"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b6_training_room/shelter_b6_training_room",
+  "source": "src/rooms/shelter_b6_training_room/shelter_b6_training_room.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b6_training_room"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b6_training_room/shelter_b6_training_room_2",
+  "source": "src/rooms/shelter_b6_training_room/shelter_b6_training_room_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b6_training_room"
+  ]
+ },
+ {
+  "object": "rooms/shelter_b6_training_room/shelter_b6_training_room_3",
+  "source": "src/rooms/shelter_b6_training_room/shelter_b6_training_room_3.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_b6_training_room"
+  ]
+ },
+ {
+  "object": "rooms/shelter_r36/shelter_r36",
+  "source": "src/rooms/shelter_r36/shelter_r36.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_r36"
+  ]
+ },
+ {
+  "object": "rooms/shelter_r36/shelter_r36_2",
+  "source": "src/rooms/shelter_r36/shelter_r36_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_r36"
+  ]
+ },
+ {
+  "object": "rooms/shelter_r37/shelter_r37",
+  "source": "src/rooms/shelter_r37/shelter_r37.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_r37"
+  ]
+ },
+ {
+  "object": "rooms/shelter_r47/shelter_r47",
+  "source": "src/rooms/shelter_r47/shelter_r47.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_r47"
+  ]
+ },
+ {
+  "object": "rooms/shelter_r47/shelter_r47_2",
+  "source": "src/rooms/shelter_r47/shelter_r47_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_r47"
+  ]
+ },
+ {
+  "object": "rooms/shelter_r47/shelter_r47_3",
+  "source": "src/rooms/shelter_r47/shelter_r47_3.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_r47"
+  ]
+ },
+ {
+  "object": "rooms/shelter_r48/shelter_r48",
+  "source": "src/rooms/shelter_r48/shelter_r48.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_r48"
+  ]
+ },
+ {
+  "object": "rooms/shelter_r49/shelter_r49",
+  "source": "src/rooms/shelter_r49/shelter_r49.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_r49"
+  ]
+ },
+ {
+  "object": "rooms/shelter_r49/shelter_r49_2",
+  "source": "src/rooms/shelter_r49/shelter_r49_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shelter_r49"
+  ]
+ },
+ {
+  "object": "actors/actor_00100/actor_00100",
+  "source": "src/actors/actor_00100/actor_00100.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_400100",
+   "actor_407500"
+  ]
+ },
+ {
+  "object": "actors/actor_100300/actor_00300",
+  "source": "src/actors/actor_00300/actor_00300.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(gActor00300Tasks,gActor100300Tasks);"
+  },
+  "overlays": [
+   "actor_100300"
+  ]
+ },
+ {
+  "object": "actors/actor_200300/actor_00300",
+  "source": "src/actors/actor_00300/actor_00300.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(gActor00300Tasks,gActor200300Tasks);"
+  },
+  "overlays": [
+   "actor_200300"
+  ]
+ },
+ {
+  "object": "actors/actor_100400/actor_00400",
+  "source": "src/actors/actor_00400/actor_00400.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(gActor00400Tasks,gActor100400Tasks);"
+  },
+  "overlays": [
+   "actor_100400"
+  ]
+ },
+ {
+  "object": "actors/actor_200400/actor_00400",
+  "source": "src/actors/actor_00400/actor_00400.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(gActor00400Tasks,gActor200400Tasks);"
+  },
+  "overlays": [
+   "actor_200400"
+  ]
+ },
+ {
+  "object": "actors/actor_100700/actor_00700",
+  "source": "src/actors/actor_00700/actor_00700.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": ""
+  },
+  "overlays": [
+   "actor_100700"
+  ]
+ },
+ {
+  "object": "actors/actor_200700/actor_00700",
+  "source": "src/actors/actor_00700/actor_00700.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(gActor00700RatTaskDesc,gActor200700RatTaskDesc);"
+  },
+  "overlays": [
+   "actor_200700"
+  ]
+ },
+ {
+  "object": "actors/actor_101100/actor_01100",
+  "source": "src/actors/actor_01100/actor_01100.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(gActor01100Tasks,gActor101100Tasks);"
+  },
+  "overlays": [
+   "actor_101100"
+  ]
+ },
+ {
+  "object": "actors/actor_201100/actor_01100",
+  "source": "src/actors/actor_01100/actor_01100.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(gActor01100Tasks,gActor201100Tasks);"
+  },
+  "overlays": [
+   "actor_201100"
+  ]
+ },
+ {
+  "object": "actors/actor_301100/actor_01100",
+  "source": "src/actors/actor_01100/actor_01100.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(gActor01100Tasks,gActor301100Tasks);"
+  },
+  "overlays": [
+   "actor_301100"
+  ]
+ },
+ {
+  "object": "actors/actor_104900/actor_01100",
+  "source": "src/actors/actor_01100/actor_01100.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": ""
+  },
+  "overlays": [
+   "actor_104900"
+  ]
+ },
+ {
+  "object": "actors/actor_204900/actor_01100",
+  "source": "src/actors/actor_01100/actor_01100.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": ""
+  },
+  "overlays": [
+   "actor_204900"
+  ]
+ },
+ {
+  "object": "actors/actor_101200/actor_01200",
+  "source": "src/actors/actor_01200/actor_01200.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(gActor01200BoneSucklerTaskDesc,gActor101200BoneSucklerTaskDesc);"
+  },
+  "overlays": [
+   "actor_101200"
+  ]
+ },
+ {
+  "object": "actors/actor_201200/actor_01200",
+  "source": "src/actors/actor_01200/actor_01200.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(gActor01200BoneSucklerTaskDesc,gActor201200BoneSucklerTaskDesc);"
+  },
+  "overlays": [
+   "actor_201200"
+  ]
+ },
+ {
+  "object": "actors/actor_301200/actor_01200",
+  "source": "src/actors/actor_01200/actor_01200.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(gActor01200BoneSucklerTaskDesc,gActor301200BoneSucklerTaskDesc);"
+  },
+  "overlays": [
+   "actor_301200"
+  ]
+ },
+ {
+  "object": "actors/actor_01500/actor_01500",
+  "source": "src/actors/actor_01500/actor_01500.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_101500",
+   "actor_201500",
+   "actor_301500"
+  ]
+ },
+ {
+  "object": "actors/actor_101600/actor_01600",
+  "source": "src/actors/actor_01600/actor_01600.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(gActor01600ScavengerTaskDesc,gActor101600ScavengerTaskDesc);"
+  },
+  "overlays": [
+   "actor_101600"
+  ]
+ },
+ {
+  "object": "actors/actor_201600/actor_01600",
+  "source": "src/actors/actor_01600/actor_01600.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": ""
+  },
+  "overlays": [
+   "actor_201600"
+  ]
+ },
+ {
+  "object": "actors/actor_301600/actor_01600",
+  "source": "src/actors/actor_01600/actor_01600.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(gActor01600ScavengerTaskDesc,gActor301600ScavengerTaskDesc);"
+  },
+  "overlays": [
+   "actor_301600"
+  ]
+ },
+ {
+  "object": "actors/actor_101900/actor_01900",
+  "source": "src/actors/actor_01900/actor_01900.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(gActor01900GrinningStrangerTaskDesc,gActor101900GrinningStrangerTaskDesc);"
+  },
+  "overlays": [
+   "actor_101900"
+  ]
+ },
+ {
+  "object": "actors/actor_301900/actor_01900",
+  "source": "src/actors/actor_01900/actor_01900.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(gActor01900GrinningStrangerTaskDesc,gActor301900GrinningStrangerTaskDesc);"
+  },
+  "overlays": [
+   "actor_301900"
+  ]
+ },
+ {
+  "object": "actors/actor_102000/actor_102000_text",
+  "source": "src/actors/actor_02000/actor_102000_text.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(gActor02000PawnGolemTasks,gActor102000PawnGolemTasks);"
+  },
+  "overlays": [
+   "actor_102000"
+  ]
+ },
+ {
+  "object": "actors/actor_202000/actor_102000_text",
+  "source": "src/actors/actor_02000/actor_102000_text.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(gActor02000PawnGolemTasks,gActor202000PawnGolemTasks);"
+  },
+  "overlays": [
+   "actor_202000"
+  ]
+ },
+ {
+  "object": "actors/actor_302000/actor_102000_text",
+  "source": "src/actors/actor_02000/actor_102000_text.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(gActor02000PawnGolemTasks,gActor302000PawnGolemTasks);"
+  },
+  "overlays": [
+   "actor_302000"
+  ]
+ },
+ {
+  "object": "actors/actor_102100/actor_102100_text",
+  "source": "src/actors/actor_02100/actor_102100_text.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(gActor02100WatcherTaskDesc,gActor102100WatcherTaskDesc);"
+  },
+  "overlays": [
+   "actor_102100"
+  ]
+ },
+ {
+  "object": "actors/actor_202100/actor_102100_text",
+  "source": "src/actors/actor_02100/actor_102100_text.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(gActor02100WatcherTaskDesc,gActor202100WatcherTaskDesc);"
+  },
+  "overlays": [
+   "actor_202100"
+  ]
+ },
+ {
+  "object": "actors/actor_102300/actor_02300",
+  "source": "src/actors/actor_02300/actor_02300.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(gActor02300RookGolemTasks,gActor102300RookGolemTasks);"
+  },
+  "overlays": [
+   "actor_102300"
+  ]
+ },
+ {
+  "object": "actors/actor_202300/actor_02300",
+  "source": "src/actors/actor_02300/actor_02300.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(gActor02300RookGolemTasks,gActor202300RookGolemTasks);"
+  },
+  "overlays": [
+   "actor_202300"
+  ]
+ },
+ {
+  "object": "actors/actor_102400/actor_02400",
+  "source": "src/actors/actor_02400/actor_02400.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(gActor02400Tasks,gActor102400Tasks);"
+  },
+  "overlays": [
+   "actor_102400"
+  ]
+ },
+ {
+  "object": "actors/actor_202400/actor_02400",
+  "source": "src/actors/actor_02400/actor_02400.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(gActor02400Tasks,gActor202400Tasks);"
+  },
+  "overlays": [
+   "actor_202400"
+  ]
+ },
+ {
+  "object": "actors/actor_102500/actor_02500",
+  "source": "src/actors/actor_02500/actor_02500.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(gActor02500Tasks,gActor102500Tasks);"
+  },
+  "overlays": [
+   "actor_102500"
+  ]
+ },
+ {
+  "object": "actors/actor_202500/actor_02500",
+  "source": "src/actors/actor_02500/actor_02500.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": ""
+  },
+  "overlays": [
+   "actor_202500"
+  ]
+ },
+ {
+  "object": "actors/actor_302500/actor_02500",
+  "source": "src/actors/actor_02500/actor_02500.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": ""
+  },
+  "overlays": [
+   "actor_302500"
+  ]
+ },
+ {
+  "object": "actors/actor_02600/actor_02600",
+  "source": "src/actors/actor_02600/actor_02600.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_102600",
+   "actor_202600",
+   "actor_302600"
+  ]
+ },
+ {
+  "object": "actors/actor_103700/actor_03700",
+  "source": "src/actors/actor_03700/actor_03700.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(gActor03700BatTaskDesc,gActor103700BatTaskDesc);"
+  },
+  "overlays": [
+   "actor_103700"
+  ]
+ },
+ {
+  "object": "actors/actor_203700/actor_03700",
+  "source": "src/actors/actor_03700/actor_03700.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(gActor03700BatTaskDesc,gActor203700BatTaskDesc);"
+  },
+  "overlays": [
+   "actor_203700"
+  ]
+ },
+ {
+  "object": "actors/actor_103800/actor_03800",
+  "source": "src/actors/actor_03800/actor_03800.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(gActor03800BlackBeetleTaskDesc,gActor103800BlackBeetleTaskDesc);"
+  },
+  "overlays": [
+   "actor_103800"
+  ]
+ },
+ {
+  "object": "actors/actor_203800/actor_03800",
+  "source": "src/actors/actor_03800/actor_03800.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(gActor03800BlackBeetleTaskDesc,gActor203800BlackBeetleTaskDesc);"
+  },
+  "overlays": [
+   "actor_203800"
+  ]
+ },
+ {
+  "object": "actors/actor_104000/actor_04000",
+  "source": "src/actors/actor_04000/actor_04000.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": ""
+  },
+  "overlays": [
+   "actor_104000"
+  ]
+ },
+ {
+  "object": "actors/actor_204000/actor_04000",
+  "source": "src/actors/actor_04000/actor_04000.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(gActor04000BloodSucklerTaskDesc,gActor204000BloodSucklerTaskDesc);"
+  },
+  "overlays": [
+   "actor_204000"
+  ]
+ },
+ {
+  "object": "actors/actor_304000/actor_04000",
+  "source": "src/actors/actor_04000/actor_04000.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(gActor04000BloodSucklerTaskDesc,gActor304000BloodSucklerTaskDesc);"
+  },
+  "overlays": [
+   "actor_304000"
+  ]
+ },
+ {
+  "object": "actors/actor_04400/actor_04400",
+  "source": "src/actors/actor_04400/actor_04400.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_104400",
+   "actor_342200"
+  ]
+ },
+ {
+  "object": "actors/actor_104600/actor_04600",
+  "source": "src/actors/actor_04600/actor_04600.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(gActor04600SucklercephTaskDesc,gActor104600SucklercephTaskDesc);DEFINE_ALIAS(gActor04600SkullStalkerTaskDesc,gActor104600SkullStalkerTaskDesc);"
+  },
+  "overlays": [
+   "actor_104600"
+  ]
+ },
+ {
+  "object": "actors/actor_204600/actor_04600",
+  "source": "src/actors/actor_04600/actor_04600.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(gActor04600SucklercephTaskDesc,gActor204600SucklercephTaskDesc);DEFINE_ALIAS(gActor04600SkullStalkerTaskDesc,gActor204600SkullStalkerTaskDesc);"
+  },
+  "overlays": [
+   "actor_204600"
+  ]
+ },
+ {
+  "object": "actors/actor_105500/actor_05500",
+  "source": "src/actors/actor_05500/actor_05500.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(gActor05500MaggotCaterpillarTasks,gActor105500MaggotCaterpillarTasks);"
+  },
+  "overlays": [
+   "actor_105500"
+  ]
+ },
+ {
+  "object": "actors/actor_205500/actor_05500",
+  "source": "src/actors/actor_05500/actor_05500.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(gActor05500MaggotCaterpillarTasks,gActor205500MaggotCaterpillarTasks);"
+  },
+  "overlays": [
+   "actor_205500"
+  ]
+ },
+ {
+  "object": "actors/actor_105600/actor_05600",
+  "source": "src/actors/actor_05600/actor_05600.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(gActor05600PawnGolemTasks,gActor105600PawnGolemTasks);"
+  },
+  "overlays": [
+   "actor_105600"
+  ]
+ },
+ {
+  "object": "actors/actor_205600/actor_05600",
+  "source": "src/actors/actor_05600/actor_05600.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(gActor05600PawnGolemTasks,gActor205600PawnGolemTasks);"
+  },
+  "overlays": [
+   "actor_205600"
+  ]
+ },
+ {
+  "object": "actors/actor_05700/actor_05700",
+  "source": "src/actors/actor_05700/actor_05700.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_105700",
+   "actor_205700"
+  ]
+ },
+ {
+  "object": "actors/actor_107000/actor_07000",
+  "source": "src/actors/actor_07000/actor_07000.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(gActor07000SucklercephTaskDescs,gActor107000SucklercephTaskDescs);DEFINE_ALIAS(gActor07000SlouchTaskDescs,gActor107000SlouchTaskDescs);"
+  },
+  "overlays": [
+   "actor_107000"
+  ]
+ },
+ {
+  "object": "actors/actor_207000/actor_07000",
+  "source": "src/actors/actor_07000/actor_07000.c",
+  "defines": {
+   "VER_USA": null,
+   "PACKAGE_ALIASES": "DEFINE_ALIAS(gActor07000SucklercephTaskDescs,gActor207000SucklercephTaskDescs);DEFINE_ALIAS(gActor07000SlouchTaskDescs,gActor207000SlouchTaskDescs);"
+  },
+  "overlays": [
+   "actor_207000"
+  ]
+ },
+ {
+  "object": "actors/actor_105100/actor_105100",
+  "source": "src/actors/actor_105100/actor_105100.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_105100"
+  ]
+ },
+ {
+  "object": "actors/actor_105300/actor_105300",
+  "source": "src/actors/actor_105300/actor_105300.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_105300"
+  ]
+ },
+ {
+  "object": "actors/actor_105400/actor_105400",
+  "source": "src/actors/actor_105400/actor_105400.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_105400"
+  ]
+ },
+ {
+  "object": "actors/actor_107600/actor_107600",
+  "source": "src/actors/actor_107600/actor_107600.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_107600"
+  ]
+ },
+ {
+  "object": "actors/actor_110300/actor_110300",
+  "source": "src/actors/actor_110300/actor_110300.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_110300"
+  ]
+ },
+ {
+  "object": "actors/actor_110600/actor_110600",
+  "source": "src/actors/actor_110600/actor_110600.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_110600"
+  ]
+ },
+ {
+  "object": "actors/actor_110700/actor_110700",
+  "source": "src/actors/actor_110700/actor_110700.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_110700"
+  ]
+ },
+ {
+  "object": "actors/actor_110800/actor_110800",
+  "source": "src/actors/actor_110800/actor_110800.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_110800"
+  ]
+ },
+ {
+  "object": "actors/actor_111800/actor_111800",
+  "source": "src/actors/actor_111800/actor_111800.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_111800"
+  ]
+ },
+ {
+  "object": "actors/actor_113000/actor_113000",
+  "source": "src/actors/actor_113000/actor_113000.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_113000"
+  ]
+ },
+ {
+  "object": "actors/actor_113100/actor_113100",
+  "source": "src/actors/actor_113100/actor_113100.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_113100"
+  ]
+ },
+ {
+  "object": "actors/actor_120300/actor_120300",
+  "source": "src/actors/actor_120300/actor_120300.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_120300"
+  ]
+ },
+ {
+  "object": "actors/actor_120400/actor_120400",
+  "source": "src/actors/actor_120400/actor_120400.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_120400"
+  ]
+ },
+ {
+  "object": "actors/actor_120500/actor_120500",
+  "source": "src/actors/actor_120500/actor_120500.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_120500"
+  ]
+ },
+ {
+  "object": "actors/actor_121300/actor_121300",
+  "source": "src/actors/actor_121300/actor_121300.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_121300"
+  ]
+ },
+ {
+  "object": "actors/actor_123200/actor_123200",
+  "source": "src/actors/actor_123200/actor_123200.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_123200"
+  ]
+ },
+ {
+  "object": "actors/actor_135400/actor_135400",
+  "source": "src/actors/actor_135400/actor_135400.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_135400"
+  ]
+ },
+ {
+  "object": "actors/actor_135600/actor_135600",
+  "source": "src/actors/actor_135600/actor_135600.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_135600"
+  ]
+ },
+ {
+  "object": "actors/actor_136100/actor_136100",
+  "source": "src/actors/actor_136100/actor_136100.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_136100"
+  ]
+ },
+ {
+  "object": "actors/actor_136300/actor_136300",
+  "source": "src/actors/actor_136300/actor_136300.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_136300"
+  ]
+ },
+ {
+  "object": "actors/actor_141000/actor_141000",
+  "source": "src/actors/actor_141000/actor_141000.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_141000"
+  ]
+ },
+ {
+  "object": "actors/actor_142600/actor_142600",
+  "source": "src/actors/actor_142600/actor_142600.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_142600"
+  ]
+ },
+ {
+  "object": "actors/actor_142900/actor_142900",
+  "source": "src/actors/actor_142900/actor_142900.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_142900"
+  ]
+ },
+ {
+  "object": "actors/actor_143000/actor_143000",
+  "source": "src/actors/actor_143000/actor_143000.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_143000"
+  ]
+ },
+ {
+  "object": "actors/actor_143000/actor_143000_2",
+  "source": "src/actors/actor_143000/actor_143000_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_143000"
+  ]
+ },
+ {
+  "object": "actors/actor_143400/actor_143400",
+  "source": "src/actors/actor_143400/actor_143400.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_143400"
+  ]
+ },
+ {
+  "object": "actors/actor_143900/actor_143900",
+  "source": "src/actors/actor_143900/actor_143900.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_143900"
+  ]
+ },
+ {
+  "object": "actors/actor_146000/actor_146000",
+  "source": "src/actors/actor_146000/actor_146000.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_146000"
+  ]
+ },
+ {
+  "object": "actors/actor_146300/actor_146300",
+  "source": "src/actors/actor_146300/actor_146300.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_146300"
+  ]
+ },
+ {
+  "object": "actors/actor_150400/actor_150400",
+  "source": "src/actors/actor_150400/actor_150400.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_150400"
+  ]
+ },
+ {
+  "object": "actors/actor_151000/actor_151000",
+  "source": "src/actors/actor_151000/actor_151000.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_151000"
+  ]
+ },
+ {
+  "object": "actors/actor_160600/actor_160600",
+  "source": "src/actors/actor_160600/actor_160600.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_160600"
+  ]
+ },
+ {
+  "object": "actors/actor_160700/actor_160700",
+  "source": "src/actors/actor_160700/actor_160700.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_160700"
+  ]
+ },
+ {
+  "object": "actors/actor_160900/actor_160900",
+  "source": "src/actors/actor_160900/actor_160900.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_160900"
+  ]
+ },
+ {
+  "object": "actors/actor_161500/actor_161500",
+  "source": "src/actors/actor_161500/actor_161500.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_161500"
+  ]
+ },
+ {
+  "object": "actors/actor_202900/actor_202900",
+  "source": "src/actors/actor_202900/actor_202900.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_202900"
+  ]
+ },
+ {
+  "object": "actors/actor_205200/actor_205200",
+  "source": "src/actors/actor_205200/actor_205200.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_205200"
+  ]
+ },
+ {
+  "object": "actors/actor_205200/actor_205200_2",
+  "source": "src/actors/actor_205200/actor_205200_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_205200"
+  ]
+ },
+ {
+  "object": "actors/actor_206100/actor_206100",
+  "source": "src/actors/actor_206100/actor_206100.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_206100"
+  ]
+ },
+ {
+  "object": "actors/actor_207200/actor_207200",
+  "source": "src/actors/actor_207200/actor_207200.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_207200"
+  ]
+ },
+ {
+  "object": "actors/actor_207200/actor_207200_2",
+  "source": "src/actors/actor_207200/actor_207200_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_207200"
+  ]
+ },
+ {
+  "object": "actors/actor_210600/actor_210600",
+  "source": "src/actors/actor_210600/actor_210600.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_210600"
+  ]
+ },
+ {
+  "object": "actors/actor_210600/actor_210600_contacts",
+  "source": "src/actors/actor_210600/actor_210600_contacts.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_210600"
+  ]
+ },
+ {
+  "object": "actors/actor_210700/actor_210700",
+  "source": "src/actors/actor_210700/actor_210700.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_210700"
+  ]
+ },
+ {
+  "object": "actors/actor_213000/actor_213000",
+  "source": "src/actors/actor_213000/actor_213000.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_213000"
+  ]
+ },
+ {
+  "object": "actors/actor_213100/actor_213100",
+  "source": "src/actors/actor_213100/actor_213100.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_213100"
+  ]
+ },
+ {
+  "object": "actors/actor_215100/actor_215100",
+  "source": "src/actors/actor_215100/actor_215100.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_215100"
+  ]
+ },
+ {
+  "object": "actors/actor_215100/actor_215100_2",
+  "source": "src/actors/actor_215100/actor_215100_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_215100"
+  ]
+ },
+ {
+  "object": "actors/actor_223600/actor_223600",
+  "source": "src/actors/actor_223600/actor_223600.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_223600"
+  ]
+ },
+ {
+  "object": "actors/actor_260400/actor_260400",
+  "source": "src/actors/actor_260400/actor_260400.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_260400"
+  ]
+ },
+ {
+  "object": "actors/actor_260500/actor_260500",
+  "source": "src/actors/actor_260500/actor_260500.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_260500"
+  ]
+ },
+ {
+  "object": "actors/actor_300700/actor_300700",
+  "source": "src/actors/actor_300700/actor_300700.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_300700"
+  ]
+ },
+ {
+  "object": "actors/actor_300700/actor_300700_2",
+  "source": "src/actors/actor_300700/actor_300700_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_300700"
+  ]
+ },
+ {
+  "object": "actors/actor_303600/actor_303600",
+  "source": "src/actors/actor_303600/actor_303600.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_303600"
+  ]
+ },
+ {
+  "object": "actors/actor_310100/actor_310100",
+  "source": "src/actors/actor_310100/actor_310100.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_310100"
+  ]
+ },
+ {
+  "object": "actors/actor_310600/actor_310600",
+  "source": "src/actors/actor_310600/actor_310600.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_310600"
+  ]
+ },
+ {
+  "object": "actors/actor_311500/actor_311500",
+  "source": "src/actors/actor_311500/actor_311500.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_311500"
+  ]
+ },
+ {
+  "object": "actors/actor_311900/actor_311900",
+  "source": "src/actors/actor_311900/actor_311900.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_311900"
+  ]
+ },
+ {
+  "object": "actors/actor_312200/actor_312200",
+  "source": "src/actors/actor_312200/actor_312200.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_312200"
+  ]
+ },
+ {
+  "object": "actors/actor_317000/actor_317000",
+  "source": "src/actors/actor_317000/actor_317000.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_317000"
+  ]
+ },
+ {
+  "object": "actors/actor_323000/actor_323000",
+  "source": "src/actors/actor_323000/actor_323000.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_323000"
+  ]
+ },
+ {
+  "object": "actors/actor_323300/actor_323300",
+  "source": "src/actors/actor_323300/actor_323300.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_323300"
+  ]
+ },
+ {
+  "object": "actors/actor_323400/actor_323400",
+  "source": "src/actors/actor_323400/actor_323400.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_323400"
+  ]
+ },
+ {
+  "object": "actors/actor_335800/actor_335800",
+  "source": "src/actors/actor_335800/actor_335800.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_335800"
+  ]
+ },
+ {
+  "object": "actors/actor_341300/actor_341300",
+  "source": "src/actors/actor_341300/actor_341300.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_341300"
+  ]
+ },
+ {
+  "object": "actors/actor_341700/actor_341700",
+  "source": "src/actors/actor_341700/actor_341700.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_341700"
+  ]
+ },
+ {
+  "object": "actors/actor_341700/actor_341700_2",
+  "source": "src/actors/actor_341700/actor_341700_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_341700"
+  ]
+ },
+ {
+  "object": "actors/actor_341900/actor_341900",
+  "source": "src/actors/actor_341900/actor_341900.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_341900"
+  ]
+ },
+ {
+  "object": "actors/actor_342000/actor_342000",
+  "source": "src/actors/actor_342000/actor_342000.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_342000"
+  ]
+ },
+ {
+  "object": "actors/actor_342100/actor_342100",
+  "source": "src/actors/actor_342100/actor_342100.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_342100"
+  ]
+ },
+ {
+  "object": "actors/actor_342400/actor_342400",
+  "source": "src/actors/actor_342400/actor_342400.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_342400"
+  ]
+ },
+ {
+  "object": "actors/actor_342400/actor_342400_2",
+  "source": "src/actors/actor_342400/actor_342400_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_342400"
+  ]
+ },
+ {
+  "object": "actors/actor_350500/actor_350500",
+  "source": "src/actors/actor_350500/actor_350500.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_350500"
+  ]
+ },
+ {
+  "object": "actors/actor_350700/actor_350700",
+  "source": "src/actors/actor_350700/actor_350700.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_350700"
+  ]
+ },
+ {
+  "object": "actors/actor_356100/actor_356100",
+  "source": "src/actors/actor_356100/actor_356100.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_356100"
+  ]
+ },
+ {
+  "object": "actors/actor_361100/actor_361100",
+  "source": "src/actors/actor_361100/actor_361100.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_361100"
+  ]
+ },
+ {
+  "object": "actors/actor_400500/actor_400500",
+  "source": "src/actors/actor_400500/actor_400500.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_400500"
+  ]
+ },
+ {
+  "object": "actors/actor_400600/actor_400600",
+  "source": "src/actors/actor_400600/actor_400600.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_400600"
+  ]
+ },
+ {
+  "object": "actors/actor_401000/actor_401000",
+  "source": "src/actors/actor_401000/actor_401000.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_401000"
+  ]
+ },
+ {
+  "object": "actors/actor_401300/actor_401300",
+  "source": "src/actors/actor_401300/actor_401300.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_401300"
+  ]
+ },
+ {
+  "object": "actors/actor_401800/actor_401800",
+  "source": "src/actors/actor_401800/actor_401800.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_401800"
+  ]
+ },
+ {
+  "object": "actors/actor_402200/actor_402200",
+  "source": "src/actors/actor_402200/actor_402200.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_402200"
+  ]
+ },
+ {
+  "object": "actors/actor_403000/actor_403000",
+  "source": "src/actors/actor_403000/actor_403000.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_403000"
+  ]
+ },
+ {
+  "object": "actors/actor_403100/actor_403100",
+  "source": "src/actors/actor_403100/actor_403100.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_403100"
+  ]
+ },
+ {
+  "object": "actors/actor_403200/actor_403200",
+  "source": "src/actors/actor_403200/actor_403200.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_403200"
+  ]
+ },
+ {
+  "object": "actors/actor_403600/actor_403600",
+  "source": "src/actors/actor_403600/actor_403600.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_403600"
+  ]
+ },
+ {
+  "object": "actors/actor_403600/actor_403600_2",
+  "source": "src/actors/actor_403600/actor_403600_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_403600"
+  ]
+ },
+ {
+  "object": "actors/actor_403900/actor_403900",
+  "source": "src/actors/actor_403900/actor_403900.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_403900"
+  ]
+ },
+ {
+  "object": "actors/actor_405800/actor_405800",
+  "source": "src/actors/actor_405800/actor_405800.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_405800"
+  ]
+ },
+ {
+  "object": "actors/actor_420700/actor_420700",
+  "source": "src/actors/actor_420700/actor_420700.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_420700"
+  ]
+ },
+ {
+  "object": "actors/actor_421600/actor_421600",
+  "source": "src/actors/actor_421600/actor_421600.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_421600"
+  ]
+ },
+ {
+  "object": "actors/actor_443500/actor_443500",
+  "source": "src/actors/actor_443500/actor_443500.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_443500"
+  ]
+ },
+ {
+  "object": "actors/actor_444000/actor_444000",
+  "source": "src/actors/actor_444000/actor_444000.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_444000"
+  ]
+ },
+ {
+  "object": "actors/actor_450200/actor_450200",
+  "source": "src/actors/actor_450200/actor_450200.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_450200"
+  ]
+ },
+ {
+  "object": "actors/actor_450800/actor_450800",
+  "source": "src/actors/actor_450800/actor_450800.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_450800"
+  ]
+ },
+ {
+  "object": "actors/actor_450900/actor_450900",
+  "source": "src/actors/actor_450900/actor_450900.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_450900"
+  ]
+ },
+ {
+  "object": "actors/actor_451100/actor_451100",
+  "source": "src/actors/actor_451100/actor_451100.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_451100"
+  ]
+ },
+ {
+  "object": "actors/actor_460200/actor_460200",
+  "source": "src/actors/actor_460200/actor_460200.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_460200"
+  ]
+ },
+ {
+  "object": "actors/actor_461800/actor_461800",
+  "source": "src/actors/actor_461800/actor_461800.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_461800"
+  ]
+ },
+ {
+  "object": "actors/actor_503500/actor_503500",
+  "source": "src/actors/actor_503500/actor_503500.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_503500"
+  ]
+ },
+ {
+  "object": "actors/actor_503500/actor_503500_2",
+  "source": "src/actors/actor_503500/actor_503500_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_503500"
+  ]
+ },
+ {
+  "object": "actors/actor_503500/actor_503500_3",
+  "source": "src/actors/actor_503500/actor_503500_3.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_503500"
+  ]
+ },
+ {
+  "object": "actors/actor_503500/actor_503500_4",
+  "source": "src/actors/actor_503500/actor_503500_4.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_503500"
+  ]
+ },
+ {
+  "object": "actors/actor_503500/actor_503500_5",
+  "source": "src/actors/actor_503500/actor_503500_5.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_503500"
+  ]
+ },
+ {
+  "object": "actors/actor_510900/actor_510900",
+  "source": "src/actors/actor_510900/actor_510900.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_510900"
+  ]
+ },
+ {
+  "object": "actors/actor_510900/actor_510900_2",
+  "source": "src/actors/actor_510900/actor_510900_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_510900"
+  ]
+ },
+ {
+  "object": "actors/actor_511000/actor_511000",
+  "source": "src/actors/actor_511000/actor_511000.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_511000"
+  ]
+ },
+ {
+  "object": "actors/actor_521100/actor_521100",
+  "source": "src/actors/actor_521100/actor_521100.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_521100"
+  ]
+ },
+ {
+  "object": "actors/actor_521100/actor_521100_2",
+  "source": "src/actors/actor_521100/actor_521100_2.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_521100"
+  ]
+ },
+ {
+  "object": "actors/actor_535700/actor_535700",
+  "source": "src/actors/actor_535700/actor_535700.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_535700"
+  ]
+ },
+ {
+  "object": "actors/actor_548100/actor_548100",
+  "source": "src/actors/actor_548100/actor_548100.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_548100"
+  ]
+ },
+ {
+  "object": "actors/actor_560800/actor_560800",
+  "source": "src/actors/actor_560800/actor_560800.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_560800"
+  ]
+ },
+ {
+  "object": "actors/actor_800100/actor_800100",
+  "source": "src/actors/actor_800100/actor_800100.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_800100"
+  ]
+ },
+ {
+  "object": "actors/actor_800200/actor_800200",
+  "source": "src/actors/actor_800200/actor_800200.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_800200"
+  ]
+ },
+ {
+  "object": "actors/actor_800300/actor_800300",
+  "source": "src/actors/actor_800300/actor_800300.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "actor_800300"
+  ]
+ },
+ {
+  "object": "pe/antibody/antibody",
+  "source": "src/pe/antibody/antibody.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "antibody"
+  ]
+ },
+ {
+  "object": "pe/apobiosis/apobiosis",
+  "source": "src/pe/apobiosis/apobiosis.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "apobiosis"
+  ]
+ },
+ {
+  "object": "pe/combat_light/combat_light",
+  "source": "src/pe/combat_light/combat_light.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "combat_light"
+  ]
+ },
+ {
+  "object": "pe/combustion/combustion",
+  "source": "src/pe/combustion/combustion.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "combustion"
+  ]
+ },
+ {
+  "object": "pe/energyball/energyball",
+  "source": "src/pe/energyball/energyball.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "energyball"
+  ]
+ },
+ {
+  "object": "pe/energyshot/energyshot",
+  "source": "src/pe/energyshot/energyshot.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "energyshot"
+  ]
+ },
+ {
+  "object": "pe/flare/flare",
+  "source": "src/pe/flare/flare.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "flare"
+  ]
+ },
+ {
+  "object": "pe/healing/healing",
+  "source": "src/pe/healing/healing.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "healing"
+  ]
+ },
+ {
+  "object": "pe/inferno/inferno",
+  "source": "src/pe/inferno/inferno.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "inferno"
+  ]
+ },
+ {
+  "object": "pe/lifedrain/lifedrain",
+  "source": "src/pe/lifedrain/lifedrain.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "lifedrain"
+  ]
+ },
+ {
+  "object": "pe/metabolism/metabolism",
+  "source": "src/pe/metabolism/metabolism.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "metabolism"
+  ]
+ },
+ {
+  "object": "pe/necrosis/necrosis",
+  "source": "src/pe/necrosis/necrosis.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "necrosis"
+  ]
+ },
+ {
+  "object": "pe/pepper_spray/pepper_spray",
+  "source": "src/pe/pepper_spray/pepper_spray.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "pepper_spray"
+  ]
+ },
+ {
+  "object": "pe/plasma/plasma",
+  "source": "src/pe/plasma/plasma.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "plasma"
+  ]
+ },
+ {
+  "object": "pe/pyrokinesis/pyrokinesis",
+  "source": "src/pe/pyrokinesis/pyrokinesis.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "pyrokinesis"
+  ]
+ }
+]

@@ -1,0 +1,7 @@
+/* Generated from assets/USA/pe2pkg/neo_ark_forest_zone.pe2pkg; animation at 0x4364. */
+    { 0, 0, 0, 0, 0, 0 },
+    { 0, -0, 0, 0, 0, 0 },
+    { 0, -0, 0, 0, 0, 0 },
+    { 0, -0, 0, 0, 0, 0 },
+    { -0, -0, 0, 0, -0, -0 },
+    { -0, -0, 0, 0, -0, -0 },

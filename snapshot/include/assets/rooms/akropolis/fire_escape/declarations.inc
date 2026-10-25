@@ -1,0 +1,49 @@
+/* rooms/akropolis/fire_escape/package: written from its room instance by tools/buildsteps/gen_room_inc.py. */
+#define ROOM_CAT_(a, b) a##b
+#define ROOM_CAT(a, b) ROOM_CAT_(a, b)
+
+static s16 _gAcropolisFireEscapeGlowCircleSamples[24];
+extern WorldCollisionRoomResources gAcropolisFireEscapeCollisionRoomResources[1];
+extern u8* gAcropolisFireEscapeViewMaps[1];
+extern ViewCount gAcropolisFireEscapeViewCounts[1];
+extern WorldCoordRoomLighting gAcropolisFireEscapeRoomLightingTable[1];
+extern DirectionWarpEntry gAcropolisFireEscapeWarpEntries[3];
+extern SVECTOR gAcropolisFireEscapeCollisionGridNormals[10];
+extern SVECTOR gAcropolisFireEscapeCollisionGridVerts[55];
+extern WorldCollisionGridFace gAcropolisFireEscapeCollisionGridFaces[23];
+static s16 _gAcropolisFireEscapeCollisionGridCells[122];
+static s16* _gAcropolisFireEscapeCollisionGridTable[9];
+static WorldCollisionGrid _gAcropolisFireEscapeCollisionGrid;
+static WorldCollisionTrigger _gAcropolisFireEscapeViewBoundaryTriggers[8];
+static WorldCollisionTrigger _gAcropolisFireEscapeActionTriggers[12];
+static WorldCollisionOccluder _gAcropolisFireEscapeOccluders[2];
+static AreaResource _gAcropolisFireEscapeActorResources[2];
+extern AreaVariant gAcropolisFireEscapeAreaVariants[5];
+static WorldCoordPointLight _gAcropolisFireEscapePointLights[5];
+static WorldCoordRoomLights _gAcropolisFireEscapeRoomLights;
+static SpriteBatch _gAcropolisFireEscapeView1SpriteBatches[2];
+static SpriteBatch _gAcropolisFireEscapeView2SpriteBatches[2];
+static SpriteSource _gAcropolisFireEscapeView3SpriteSources[13];
+static SpriteBatch _gAcropolisFireEscapeView3SpriteBatches[3];
+static SpriteBatch _gAcropolisFireEscapeView4SpriteBatches[2];
+static SpriteSource _gAcropolisFireEscapeView5SpriteSources[5];
+static SpriteBatch _gAcropolisFireEscapeView5SpriteBatches[3];
+static SpriteBatch _gAcropolisFireEscapeView6SpriteBatches[2];
+static SpriteDrawArea _gAcropolisFireEscapeView6SpriteDrawAreas[2];
+static SpriteSource _gAcropolisFireEscapeView7SpriteSources[5];
+static SpriteBatch _gAcropolisFireEscapeView7SpriteBatches[3];
+static SpriteBatch _gAcropolisFireEscapeView8SpriteBatches[2];
+static SpriteBatch _gAcropolisFireEscapeViews9And10SpriteBatches[2];
+static SpriteDrawArea _gAcropolisFireEscapeView9SpriteDrawAreas[2];
+static SpriteBatch _gAcropolisFireEscapeUnusedSpriteBatches[2];
+extern SpriteView gAcropolisFireEscapeSpriteViews[10];
+extern ViewCamera gAcropolisFireEscapeViewCameras[9];
+static WorldCollisionFootstepSounds _gAcropolisFireEscapeSurfaceClass1FootstepSounds;
+static WorldCollisionFootstepSounds _gAcropolisFireEscapeSurfaceClass3FootstepSounds;
+static WorldCollisionFootstepSounds _gAcropolisFireEscapeDefaultFootstepSounds;
+static WorldCollisionSurfaceProperties _gAcropolisFireEscapeDefaultSurfaceProperties;
+static WorldCollisionSurfaceProperties _gAcropolisFireEscapeSurfaceClass1Properties;
+static WorldCollisionSurfaceProperties _gAcropolisFireEscapeSurfaceClass2Properties;
+static WorldCollisionSurfaceProperties _gAcropolisFireEscapeSurfaceClass3Properties;
+static WorldCollisionSurfaceProperties _gAcropolisFireEscapeSurfaceClass6Properties;
+extern WorldCollisionSurfaceProperties* gAcropolisFireEscapeSurfacePropertiesByClass[8];

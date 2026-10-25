@@ -1,0 +1,2 @@
+/* Generated from assets/USA/pe2pkg/dryfield_night_water_tank.pe2pkg; model at 0x1844. */
+    { { { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }, { 0, 0, 0 } }, 0 },

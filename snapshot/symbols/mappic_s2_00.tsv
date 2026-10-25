@@ -1,0 +1,37 @@
+_MACRO_INC_GUARD	00000001	al	build/USA/src/mappic/mappic_s2_00/mappic_s2_00.i
+_gMappicS200MotelRoom6ShapeSkeleton	8012EF34	l	build/USA/src/mappic/mappic_s2_00/mappic_s2_00.i
+_gMappicS200MotelRoom6ShapePartVerts	8012EF58	l	build/USA/src/mappic/mappic_s2_00/mappic_s2_00.i
+_gMappicS200MotelRoom6ShapeVerts	8012EF5C	l	build/USA/src/mappic/mappic_s2_00/mappic_s2_00.i
+_gMappicS200MotelRoom6ShapeStream	8012EF7C	l	build/USA/src/mappic/mappic_s2_00/mappic_s2_00.i
+_gMappicS200MotelBalconyShapeSkeleton	8012EFC4	l	build/USA/src/mappic/mappic_s2_00/mappic_s2_00.i
+_gMappicS200MotelBalconyShapePartVerts	8012EFE8	l	build/USA/src/mappic/mappic_s2_00/mappic_s2_00.i
+_gMappicS200MotelBalconyShapeVerts	8012EFEC	l	build/USA/src/mappic/mappic_s2_00/mappic_s2_00.i
+_gMappicS200MotelBalconyShapeStream	8012F04C	l	build/USA/src/mappic/mappic_s2_00/mappic_s2_00.i
+_gMappicS200MotelLoftShapeSkeleton	8012F0DC	l	build/USA/src/mappic/mappic_s2_00/mappic_s2_00.i
+_gMappicS200MotelLoftShapePartVerts	8012F100	l	build/USA/src/mappic/mappic_s2_00/mappic_s2_00.i
+_gMappicS200MotelLoftShapeVerts	8012F104	l	build/USA/src/mappic/mappic_s2_00/mappic_s2_00.i
+_gMappicS200MotelLoftShapeStream	8012F124	l	build/USA/src/mappic/mappic_s2_00/mappic_s2_00.i
+_gMappicS200MotelRoom5ShapeSkeleton	8012F16C	l	build/USA/src/mappic/mappic_s2_00/mappic_s2_00.i
+_gMappicS200MotelRoom5ShapePartVerts	8012F190	l	build/USA/src/mappic/mappic_s2_00/mappic_s2_00.i
+_gMappicS200MotelRoom5ShapeVerts	8012F194	l	build/USA/src/mappic/mappic_s2_00/mappic_s2_00.i
+_gMappicS200MotelRoom5ShapeStream	8012F1B4	l	build/USA/src/mappic/mappic_s2_00/mappic_s2_00.i
+_gMappicS200WaterTankShapeSkeleton	8012F1FC	l	build/USA/src/mappic/mappic_s2_00/mappic_s2_00.i
+_gMappicS200WaterTankShapePartVerts	8012F220	l	build/USA/src/mappic/mappic_s2_00/mappic_s2_00.i
+_gMappicS200WaterTankShapeVerts	8012F224	l	build/USA/src/mappic/mappic_s2_00/mappic_s2_00.i
+_gMappicS200WaterTankShapeStream	8012F274	l	build/USA/src/mappic/mappic_s2_00/mappic_s2_00.i
+__romPos	000003B0	al	
+mappic_s2_00_DATA_START	8012EF34		
+mappic_s2_00_ROM_START	00000000	a	
+mappic_s2_00_RODATA_END	8012EF34		
+mappic_s2_00_VRAM_END	8012F2E0		
+mappic_s2_00_DATA_SIZE	000003AC	a	
+gMappicS200MotelBalconyShape	8012F0B8		
+mappic_s2_00_VRAM	8012EF30		
+mappic_s2_00_RODATA_SIZE	00000004	a	
+gMappicS200MotelRoom6Shape	8012EFA0		
+gMappicS200MotelLoftShape	8012F148		
+mappic_s2_00_ROM_END	000003B0	a	
+gMappicS200MotelRoom5Shape	8012F1D8		
+mappic_s2_00_RODATA_START	8012EF30		
+mappic_s2_00_DATA_END	8012F2E0		
+gMappicS200WaterTankShape	8012F2BC		

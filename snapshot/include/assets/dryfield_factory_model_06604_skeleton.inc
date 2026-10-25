@@ -1,0 +1,2 @@
+/* Generated from assets/USA/pe2pkg/dryfield_factory.pe2pkg; model at 0x91F0. */
+    { { { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }, { 0, 0, 0 } }, 0 },

@@ -1,0 +1,2 @@
+/* Generated from assets/USA/pe2pkg/shelter_1f_heliport.pe2pkg; grid header at 0x3CEC. */
+    0, 0, 0, 0, -0, 0,

@@ -1,0 +1,2577 @@
+gcc2_compiled.	8017D660	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+__gnu_compiled_c	8017D660	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_MACRO_INC_GUARD	00000001	al	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gNeoArkPavilionWaterDistortionTaskDesc	80183858	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gNeoArkPavilionStagedEventTaskDesc	80183864	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gNeoArkPavilionRoomMessages	80183870	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_neoArkPavilionResolveRoomTransition	8017E9F4	flt	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_neoArkPavilionRejectKeyItem	8017E9EC	flt	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_neoArkPavilionIgnoreRoomAction	8017EB78	flt	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_neoArkPavilionHandleCapCommand	8017EB3C	flt	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gRoomVisualEffectsTwinTrailEndpointOffsets	80183898	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gRoomVisualEffectsGlowDiscShades	801838A8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gNeoArkPavilionCollisionGrid	801841E4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gNeoArkPavilionViewBoundaryTriggers	80187584	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gNeoArkPavilionRoom1ActionTriggers	8018772C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gNeoArkPavilionOccluders	8018798C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gNeoArkPavilionRoom2ActionTriggers	8018785C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gNeoArkPavilionRoomLights	8018756C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gNeoArkPavilionRoom2ViewMap	801838E4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gNeoArkPavilionDiverPatrolWaypoints0	801839A4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gNeoArkPavilionDiverPatrolWaypoints1	801839E4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gNeoArkPavilionDiverPatrolWaypoints2	80183A24	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gNeoArkPavilionCollisionGridNormals	80183AB4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gNeoArkPavilionCollisionGridVerts	80183AF4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gNeoArkPavilionCollisionGridFaces	80183E24	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gNeoArkPavilionCollisionGridCells	80184094	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gNeoArkPavilionCollisionGridTable	801841CC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gNeoArkPavilionView1SpriteBatches	80184304	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gNeoArkPavilionView2SpriteSources	80184314	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gNeoArkPavilionView2SpriteBatches	80184EB8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gNeoArkPavilionView3SpriteSources	80184EF8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gNeoArkPavilionView3SpriteBatches	8018568C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gNeoArkPavilionView4SpriteSources	801856BC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gNeoArkPavilionView4SpriteBatches	80186300	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gNeoArkPavilionView5SpriteSources	80186340	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gNeoArkPavilionView5SpriteBatches	80186C3C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gNeoArkPavilionView6SpriteSources	80186C6C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gNeoArkPavilionView6SpriteBatches	80186FC8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gNeoArkPavilionView7SpriteSources	80186FE0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gNeoArkPavilionView7SpriteBatches	801873A0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gNeoArkPavilionDirectionalLights	8018740C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gNeoArkPavilionVariant1Resources	8018761C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gNeoArkPavilionVariant2Resources	80187634	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gNeoArkPavilionVariant3Resources	80187658	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gNeoArkPavilionVariant4Resources	80187670	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gNeoArkPavilionVariant5Resources	80187694	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gNeoArkPavilionVariant11Resources	801876AC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gNeoArkPavilionFloorFootstepSounds	801879C8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gNeoArkPavilionSolidSurface	801879D4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gNeoArkPavilionProbePassSurface	801879DC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gNeoArkPavilionFloorSurface	801879E4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gRoomEventStagedMsg	80187A14	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gNeoArkPavilionEventStartRequested	80187A1C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+D_neo_ark_pavilion_80187A1D	80187A1D	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+D_neo_ark_pavilion_80187A1E	80187A1E	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+D_neo_ark_pavilion_80187A1F	80187A1F	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1	8017D660	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM2	8017D660	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM3	8017D66C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM4	8017D670	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM5	8017D674	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM6	8017D678	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM7	8017D67C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM8	8017D680	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM9	8017D688	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM10	8017D68C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM11	8017D690	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM12	8017D694	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM13	8017D698	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM14	8017D69C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM15	8017D6A0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM16	8017D6A4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM17	8017D6A8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM18	8017D6AC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM19	8017D6B0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM20	8017D6C0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM21	8017D6C4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM22	8017D6C8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM23	8017D6CC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM24	8017D6D0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM25	8017D6D4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM26	8017D6D8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM27	8017D6DC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM28	8017D6DC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM29	8017D6E4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM30	8017D6E8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM31	8017D6EC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM32	8017D71C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM33	8017D720	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM34	8017D724	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM35	8017D728	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM36	8017D730	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM37	8017D734	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM38	8017D738	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM39	8017D73C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM40	8017D744	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM41	8017D748	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM42	8017D74C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM43	8017D750	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM44	8017D758	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM45	8017D75C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM46	8017D760	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM47	8017D764	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM48	8017D76C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM49	8017D770	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM50	8017D774	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM51	8017D778	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM52	8017D78C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM53	8017D7C8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM54	8017D7CC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM55	8017D7D0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM56	8017D7D8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM57	8017D7DC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM58	8017D7E0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM59	8017D7E4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM60	8017D7EC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM61	8017D7F0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM62	8017D7F4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM63	8017D7F8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM64	8017D7FC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM65	8017D800	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM66	8017D804	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM67	8017D814	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM68	8017D824	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM69	8017D828	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM70	8017D82C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM71	8017D830	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM72	8017D834	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM73	8017D844	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM74	8017D848	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM75	8017D84C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM76	8017D87C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM77	8017D880	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM78	8017D884	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM79	8017D888	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM80	8017D88C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM81	8017D890	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM82	8017D898	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM83	8017D89C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM84	8017D8A0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM85	8017D8A4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM86	8017D8A8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM87	8017D8AC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM88	8017D8B4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM89	8017D8B8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM90	8017D8BC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM91	8017D8C0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM92	8017D8C8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM93	8017D8CC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM94	8017D8D4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM95	8017D8D8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM96	8017D8DC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM97	8017D8E0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM98	8017D8E8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM99	8017D8F0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM100	8017D8F8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM101	8017D904	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM102	8017D914	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM103	8017D918	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM104	8017D91C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM105	8017D920	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM106	8017D924	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM107	8017D96C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM108	8017D970	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM109	8017D974	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM110	8017D978	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM111	8017D97C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM112	8017D984	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM113	8017D988	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM114	8017D98C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM115	8017D990	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM116	8017D994	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM117	8017D998	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM118	8017D99C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM119	8017D9A0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM120	8017D9A4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM121	8017D9A8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM122	8017D9AC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM123	8017D9B0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM124	8017D9B0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM125	8017D9B8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM126	8017D9C0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM127	8017D9C4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM128	8017D9C8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM129	8017D9CC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM130	8017D9D4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM131	8017D9D8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM132	8017D9DC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM133	8017D9E0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM134	8017D9E4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM135	8017D9E8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM136	8017D9F8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM137	8017DA1C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM138	8017DA20	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM139	8017DA24	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM140	8017DA28	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM141	8017DA38	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM142	8017DA48	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM143	8017DA58	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM144	8017DA5C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM145	8017DA60	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM146	8017DA74	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM147	8017DA78	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM148	8017DA80	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM149	8017DA84	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM150	8017DA88	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM151	8017DA90	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM152	8017DA94	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM153	8017DA94	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM154	8017DA9C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM155	8017DAA4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM156	8017DAB4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM157	8017DAB4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM158	8017DAC0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM159	8017DAC8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM160	8017DAD0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM161	8017DAD8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM162	8017DADC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM163	8017DAE0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM164	8017DAE8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM165	8017DC04	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM166	8017DC40	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM167	8017DC48	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM168	8017DC4C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM169	8017DC50	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM170	8017DC54	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM171	8017DC5C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM172	8017DC68	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM173	8017DC6C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM174	8017DC70	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM175	8017DC74	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM176	8017DC7C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM177	8017DC8C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM178	8017DC94	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM179	8017DC98	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM180	8017DCA0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM181	8017DCA4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM182	8017DCB0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM183	8017DCCC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM184	8017DCD4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM185	8017DCD8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM186	8017DCE0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM187	8017DCE4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM188	8017DCFC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM189	8017DD00	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM190	8017DD04	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM191	8017DD0C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM192	8017DD10	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM193	8017DD14	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM194	8017DD34	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM195	8017DD40	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM196	8017DD44	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM197	8017DD50	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM198	8017DD54	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM199	8017DD60	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM200	8017DD6C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM201	8017DD70	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM202	8017DD8C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM203	8017DD9C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM204	8017DDD0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM205	8017DDD8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM206	8017DDDC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM207	8017DDE4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM208	8017DDE8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM209	8017DDEC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM210	8017DDF4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM211	8017DDF8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM212	8017DE04	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM213	8017DE10	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM214	8017DE18	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM215	8017DE24	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM216	8017DE30	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM217	8017DE3C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM218	8017DE40	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM219	8017DE44	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM220	8017DE54	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM221	8017DE60	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM222	8017DE6C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM223	8017DE70	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM224	8017DE74	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM225	8017DE84	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM226	8017DE90	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM227	8017DE94	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM228	8017DE98	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM229	8017DEA0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM230	8017DEA4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM231	8017DEB4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM232	8017DEB8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM233	8017DEBC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM234	8017DEC8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM235	8017DED4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM236	8017DED8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM237	8017DED8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM238	8017DF40	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM239	8017DF4C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM240	8017DF54	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM241	8017DF58	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM242	8017DF6C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM243	8017DF74	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM244	8017DF78	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM245	8017DF8C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM246	8017DF94	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM247	8017DFA0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM248	8017DFA8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM249	8017DFB0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM250	8017DFB8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM251	8017DFC0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM252	8017DFC4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM253	8017DFD4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM254	8017DFDC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM255	8017DFE0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM256	8017DFE4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM257	8017DFE8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM258	8017DFF0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM259	8017DFFC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM260	8017E000	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM261	8017E008	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM262	8017E00C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM263	8017E014	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM264	8017E01C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM265	8017E020	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM266	8017E024	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM267	8017E02C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM268	8017E034	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM269	8017E040	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM270	8017E04C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM271	8017E058	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM272	8017E064	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM273	8017E068	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM274	8017E070	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM275	8017E074	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM276	8017E078	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM277	8017E07C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM278	8017E084	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM279	8017E088	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM280	8017E08C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM281	8017E090	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM282	8017E094	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM283	8017E098	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM284	8017E09C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM285	8017E0A0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM286	8017E0A4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM287	8017E0B0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM288	8017E0B4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM289	8017E0BC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM290	8017E0C0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM291	8017E0C8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM292	8017E0D0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM293	8017E10C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM294	8017E114	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM295	8017E11C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM296	8017E128	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM297	8017E134	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM298	8017E140	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM299	8017E14C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM300	8017E150	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM301	8017E158	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM302	8017E15C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM303	8017E160	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM304	8017E164	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM305	8017E168	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM306	8017E16C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM307	8017E174	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM308	8017E178	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM309	8017E17C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM310	8017E180	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM311	8017E184	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM312	8017E188	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM313	8017E18C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM314	8017E190	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM315	8017E19C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM316	8017E1A0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM317	8017E1A8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM318	8017E1AC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM319	8017E1B4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM320	8017E1BC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM321	8017E1F8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM322	8017E20C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM323	8017E210	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM324	8017E214	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM325	8017E218	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM326	8017E220	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM327	8017E23C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM328	8017E244	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM329	8017E254	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM330	8017E26C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM331	8017E284	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM332	8017E2B4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM333	8017E2B4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM334	8017E2B4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM335	8017E2C4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM336	8017E2C8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM337	8017E2CC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM338	8017E2D0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM339	8017E2D4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM340	8017E2D8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM341	8017E2DC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM342	8017E2E0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM343	8017E2E4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM344	8017E300	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM345	8017E304	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM346	8017E308	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM347	8017E30C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM348	8017E310	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM349	8017E310	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM350	8017E318	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM351	8017E34C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM352	8017E350	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM353	8017E358	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM354	8017E35C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM355	8017E364	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM356	8017E368	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM357	8017E370	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM358	8017E374	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM359	8017E388	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM360	8017E3C4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM361	8017E3C8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM362	8017E3D0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM363	8017E3D4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM364	8017E3D8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM365	8017E3E0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM366	8017E3E4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM367	8017E3E8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM368	8017E3F0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM369	8017E400	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM370	8017E410	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM371	8017E418	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM372	8017E41C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM373	8017E420	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM374	8017E42C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM375	8017E448	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM376	8017E458	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM377	8017E460	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM378	8017E470	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM379	8017E480	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM380	8017E490	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM381	8017E494	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM382	8017E49C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM383	8017E4A0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM384	8017E4A4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM385	8017E4A8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM386	8017E4B0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM387	8017E4B8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM388	8017E4BC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM389	8017E4C0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM390	8017E4D4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM391	8017E4E4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM392	8017E4E4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM393	8017E4E8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM394	8017E4EC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM395	8017E4F0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM396	8017E4F4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM397	8017E4F8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM398	8017E508	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM399	8017E50C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM400	8017E510	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM401	8017E518	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM402	8017E520	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM403	8017E54C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM404	8017E558	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM405	8017E55C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM406	8017E560	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM407	8017E564	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM408	8017E568	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM409	8017E5B4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM410	8017E5D0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM411	8017E5D4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM412	8017E5D8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM413	8017E5E0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM414	8017E5E4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM415	8017E5E8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM416	8017E5EC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM417	8017E5EC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM418	8017E610	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM419	8017E620	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM420	8017E624	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM421	8017E628	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM422	8017E634	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM423	8017E63C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM424	8017E644	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM425	8017E648	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM426	8017E650	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM427	8017E65C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM428	8017E664	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM429	8017E668	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM430	8017E66C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM431	8017E670	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM432	8017E674	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM433	8017E678	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM434	8017E67C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM435	8017E680	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM436	8017E688	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM437	8017E68C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM438	8017E690	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM439	8017E694	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM440	8017E698	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM441	8017E69C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM442	8017E6A0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM443	8017E714	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM444	8017E71C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM445	8017E724	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM446	8017E728	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM447	8017E730	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM448	8017E734	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM449	8017E738	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM450	8017E73C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM451	8017E740	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM452	8017E744	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM453	8017E74C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM454	8017E750	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM455	8017E758	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM456	8017E75C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM457	8017E760	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM458	8017E764	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM459	8017E768	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM460	8017E76C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM461	8017E7E0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM462	8017E7E4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM463	8017E7E8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM464	8017E7F8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM465	8017E80C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM466	8017E824	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM467	8017E854	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM468	8017E854	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM469	8017E854	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM470	8017E868	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM471	8017E898	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM472	8017E898	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM473	8017E89C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM474	8017E8A4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM475	8017E8AC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM476	8017E8BC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM477	8017E8C0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM478	8017E8C4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM479	8017E8CC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM480	8017E8DC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM481	8017E910	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM482	8017E918	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM483	8017E92C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM484	8017E934	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM485	8017E93C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM486	8017E940	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM487	8017E948	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM488	8017E968	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM489	8017E974	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM490	8017E97C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM491	8017E988	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM492	8017E998	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM493	8017E9A4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM494	8017E9B4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM495	8017E9B8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM496	8017E9BC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM497	8017E9C4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM498	8017E9C8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM499	8017E9D0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM500	8017E9D8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM501	8017E9EC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM502	8017E9EC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM503	8017E9EC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM504	8017E9EC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM505	8017E9F4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM506	8017E9F4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM507	8017E9F4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM508	8017EA08	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM509	8017EA10	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM510	8017EA18	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM511	8017EA34	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM512	8017EA3C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM513	8017EA4C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM514	8017EA54	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM515	8017EA5C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM516	8017EA60	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM517	8017EA64	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM518	8017EB24	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM519	8017EB3C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM520	8017EB3C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM521	8017EB3C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM522	8017EB40	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM523	8017EB4C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM524	8017EB68	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM525	8017EB68	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM526	8017EB6C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM527	8017EB70	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM528	8017EB78	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM529	8017EB78	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM530	8017EB78	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM531	8017EB78	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM532	8017EB80	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM533	8017EB80	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM534	8017EB80	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_neoArkPavilionInitializeRoom	8017EB80	flt	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM535	8017EB8C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM536	8017EB90	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM537	8017EB98	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM538	8017EB9C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM539	8017EBA4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM540	8017EBB8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM541	8017EBCC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM542	8017EBEC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM543	8017EBEC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM544	8017EBEC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_neoArkPavilionRoomIdleState	8017EBEC	flt	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM545	8017EBEC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM546	8017EBF4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_gNeoArkPavilionRoomStates	8017D628	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM547	8017EBF4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM548	8017EBF4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM549	8017EBF8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM550	8017EBFC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM551	8017EC00	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM552	8017EC1C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM553	8017EC3C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM554	8017EC4C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM555	8017EC4C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM556	8017EC4C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM557	8017EC5C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM558	8017EC60	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM559	8017EC6C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM560	8017EC70	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM561	8017EC74	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM562	8017EC78	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM563	8017EC7C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM564	8017EC80	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM565	8017EC88	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_waterDrawSplash	8017ED98	flt	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM566	8017EC98	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM567	8017ECB4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM568	8017ECBC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM569	8017ECCC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM570	8017ED24	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM571	8017ED2C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM572	8017ED30	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM573	8017ED30	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM574	8017ED34	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM575	8017ED38	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM576	8017ED3C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM577	8017ED40	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM578	8017ED48	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM579	8017ED50	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM580	8017ED60	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM581	8017ED74	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM582	8017ED7C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM583	8017ED98	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM584	8017ED98	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM585	8017ED98	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM586	8017ED98	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM587	8017ED98	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM588	8017EDA0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM589	8017EDA4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM590	8017EDA8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM591	8017EDAC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM592	8017EDB8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM593	8017EDD0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM594	8017EDE4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM595	8017EDF0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM596	8017EDF4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM597	8017EDFC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM598	8017EE10	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM599	8017EE38	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM600	8017EE40	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM601	8017EE4C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM602	8017EE64	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM603	8017EE78	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM604	8017EE80	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM605	8017EE84	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM606	8017EE8C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM607	8017EE94	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM608	8017EE98	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM609	8017EEA0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM610	8017EF50	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM611	8017EF60	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM612	8017EF70	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM613	8017EF78	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM614	8017EF7C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM615	8017EF84	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM616	8017EF94	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM617	8017EF9C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM618	8017EFA4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM619	8017EFAC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM620	8017EFB0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM621	8017EFB4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM622	8017EFB8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM623	8017EFC4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM624	8017EFC8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM625	8017EFCC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM626	8017EFD0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM627	8017EFD4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM628	8017EFD8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM629	8017EFDC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM630	8017EFE4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM631	8017EFF0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM632	8017EFFC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM633	8017F008	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM634	8017F014	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM635	8017F018	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM636	8017F01C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM637	8017F020	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM638	8017F024	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM639	8017F028	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM640	8017F02C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM641	8017F030	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM642	8017F034	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM643	8017F038	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM644	8017F03C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM645	8017F040	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM646	8017F044	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM647	8017F0B0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM648	8017F0C4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM649	8017F0CC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM650	8017F0CC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM651	8017F0CC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM652	8017F0D8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM653	8017F0DC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM654	8017F0E8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM655	8017F0EC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM656	8017F0F0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM657	8017F0F4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM658	8017F0F8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM659	8017F0FC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM660	8017F104	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM661	8017F118	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_waterDrawSpinU16	8017F588	flt	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM662	8017F12C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM663	8017F134	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_waterDrawTileU16	8017F974	flt	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM664	8017F144	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM665	8017F154	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM666	8017F15C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM667	8017F16C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM668	8017F1A8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM669	8017F1A8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM670	8017F1B0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM671	8017F1B4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM672	8017F1B8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM673	8017F1BC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM674	8017F1C8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM675	8017F1CC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM676	8017F1D8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM677	8017F1E0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM678	8017F1E0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM679	8017F1EC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM680	8017F1F0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM681	8017F1F8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM682	8017F1FC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM683	8017F1FC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM684	8017F200	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM685	8017F204	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM686	8017F220	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM687	8017F23C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM688	8017F250	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM689	8017F258	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM690	8017F25C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM691	8017F260	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM692	8017F268	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM693	8017F294	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM694	8017F29C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM695	8017F2AC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM696	8017F2B0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM697	8017F2BC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM698	8017F2C8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM699	8017F2D4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM700	8017F2D8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM701	8017F2E0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM702	8017F2E4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM703	8017F2F0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM704	8017F2FC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM705	8017F300	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM706	8017F304	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM707	8017F308	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM708	8017F310	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM709	8017F320	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM710	8017F324	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM711	8017F330	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM712	8017F33C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM713	8017F348	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM714	8017F34C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM715	8017F35C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM716	8017F368	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM717	8017F36C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM718	8017F370	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM719	8017F374	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM720	8017F378	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM721	8017F380	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM722	8017F390	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM723	8017F394	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM724	8017F3A0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM725	8017F3AC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM726	8017F3B8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM727	8017F3BC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM728	8017F3CC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM729	8017F3D8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM730	8017F3DC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM731	8017F3E0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM732	8017F3E4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM733	8017F3F0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM734	8017F3F8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM735	8017F3FC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM736	8017F400	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM737	8017F404	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM738	8017F408	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM739	8017F40C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM740	8017F468	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM741	8017F470	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM742	8017F478	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM743	8017F48C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM744	8017F494	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM745	8017F4A4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM746	8017F4B4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM747	8017F4C8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM748	8017F4DC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM749	8017F4E4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM750	8017F4E8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM751	8017F4F0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM752	8017F500	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM753	8017F544	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM754	8017F554	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM755	8017F568	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM756	8017F570	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM757	8017F588	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM758	8017F588	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM759	8017F588	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM760	8017F590	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM761	8017F598	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM762	8017F5B0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM763	8017F5B4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM764	8017F5B8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM765	8017F5BC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM766	8017F5C0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM767	8017F5C4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM768	8017F5C8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM769	8017F5CC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM770	8017F5D0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM771	8017F5D4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM772	8017F5D8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM773	8017F5DC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM774	8017F5E0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM775	8017F5F8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM776	8017F628	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM777	8017F630	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM778	8017F63C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM779	8017F644	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM780	8017F654	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM781	8017F664	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM782	8017F674	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM783	8017F678	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM784	8017F680	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM785	8017F688	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM786	8017F690	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM787	8017F698	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM788	8017F6A0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM789	8017F6A8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM790	8017F6B0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM791	8017F6B8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM792	8017F788	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM793	8017F7A4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM794	8017F7A8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM795	8017F7BC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM796	8017F7C4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM797	8017F7C8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM798	8017F7D0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM799	8017F7DC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM800	8017F87C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM801	8017F884	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM802	8017F888	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM803	8017F898	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM804	8017F89C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM805	8017F8A4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM806	8017F8A8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM807	8017F8B0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM808	8017F8B8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM809	8017F8BC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM810	8017F8C4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM811	8017F8CC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM812	8017F8D0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM813	8017F8D8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM814	8017F944	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM815	8017F954	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM816	8017F974	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM817	8017F974	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM818	8017F974	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM819	8017F974	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM820	8017F97C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM821	8017F980	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM822	8017F984	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM823	8017F988	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM824	8017F98C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM825	8017F990	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM826	8017F994	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM827	8017F998	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM828	8017F99C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM829	8017F9A0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM830	8017F9A4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM831	8017F9A8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM832	8017F9AC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM833	8017F9B0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM834	8017F9B4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM835	8017F9CC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM836	8017F9FC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM837	8017FA04	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM838	8017FA10	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM839	8017FA18	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM840	8017FA28	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM841	8017FA38	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM842	8017FA48	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM843	8017FA54	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM844	8017FA5C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM845	8017FA64	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM846	8017FA6C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM847	8017FA74	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM848	8017FA7C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM849	8017FA80	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM850	8017FA90	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM851	8017FAA4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM852	8017FAA8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM853	8017FAAC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM854	8017FAB0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM855	8017FAB8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM856	8017FAC0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM857	8017FAC8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM858	8017FAD4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM859	8017FAE4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM860	8017FB28	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM861	8017FB40	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM862	8017FB68	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM863	8017FB90	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM864	8017FBFC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM865	8017FC08	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM866	8017FC10	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM867	8017FC10	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM868	8017FC10	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM869	8017FC14	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM870	8017FC24	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM871	8017FC28	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM872	8017FC30	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM873	8017FC38	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM874	8017FC40	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM875	8017FC48	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM876	8017FC50	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM877	8017FC58	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM878	8017FC60	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM879	8017FC68	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM880	8017FC70	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM881	8017FC78	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM882	8017FC80	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM883	8017FC88	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM884	8017FC90	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM885	8017FC98	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM886	8017FCA0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM887	8017FCA8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM888	8017FCB0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM889	8017FCB0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM890	8017FCB0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM891	8017FCC0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_roomVisualEffectsDrawFlashDisc	80180380	flt	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_roomVisualEffectsDrawFlashRing	8017FF54	flt	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_roomVisualEffectsDrawBurstStar	80181284	flt	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM892	8017FF3C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM893	8017FF54	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM894	8017FF54	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM895	8017FF54	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM896	8017FF5C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM897	8017FF64	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM898	8017FF8C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM899	8017FF90	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM900	8017FF94	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM901	8017FF9C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM902	8017FFA0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM903	8017FFA4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM904	8017FFA8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM905	8017FFAC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM906	8017FFB0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM907	8017FFB4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM908	8017FFB8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM909	8017FFBC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM910	8017FFC0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM911	8017FFD8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM912	80180008	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM913	80180014	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM914	80180020	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM915	80180028	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM916	80180038	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM917	80180048	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM918	80180058	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM919	8018005C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM920	80180060	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM921	80180064	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM922	80180068	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM923	80180094	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM924	80180098	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM925	8018009C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM926	801800A0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM927	801800D4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM928	801800D8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM929	801800EC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM930	801800F0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM931	801800FC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM932	80180104	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM933	80180114	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM934	80180120	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM935	8018012C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM936	80180150	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM937	8018016C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM938	80180170	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM939	80180184	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM940	80180188	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM941	80180198	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM942	801801AC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM943	801801B0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM944	801801B4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM945	801801C4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM946	801801D8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM947	801801DC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM948	801801EC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM949	80180200	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM950	80180204	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM951	80180214	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM952	80180228	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM953	8018022C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM954	8018023C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM955	80180250	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM956	80180254	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM957	80180264	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM958	80180278	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM959	8018027C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM960	8018028C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM961	801802B4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM962	801802F8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM963	801802FC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM964	8018030C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM965	80180310	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM966	80180324	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM967	80180330	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM968	8018033C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM969	80180354	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM970	80180380	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM971	80180380	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM972	80180380	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM973	80180390	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM974	80180398	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM975	801803B8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM976	801803BC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM977	801803C0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM978	801803C4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM979	801803C8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM980	801803CC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM981	801803D0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM982	801803D4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM983	801803D8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM984	801803DC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM985	801803E0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM986	801803E4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM987	801803E8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM988	80180400	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM989	80180430	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM990	80180438	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM991	80180444	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM992	8018044C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM993	8018045C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM994	8018046C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM995	8018047C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM996	80180480	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM997	80180484	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM998	80180488	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM999	8018048C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1000	801804B8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1001	801804D0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1002	801804D4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1003	801804D8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1004	801804E4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1005	801804EC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1006	801804FC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1007	80180508	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1008	80180514	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1009	80180530	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1010	80180534	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1011	80180540	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1012	80180540	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1013	80180554	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1014	80180558	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1015	80180568	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1016	8018057C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1017	80180584	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1018	80180594	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1019	801805A8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1020	801805AC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1021	801805BC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1022	801805E4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1023	801805E8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1024	801805EC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1025	801805F0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1026	801805F4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1027	801805F8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1028	8018060C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1029	80180610	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1030	80180620	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1031	80180648	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1032	8018068C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1033	80180690	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1034	801806A0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1035	801806A4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1036	801806B8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1037	801806C4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1038	801806D0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1039	801806E8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1040	80180714	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1041	80180714	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1042	80180714	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1043	80180714	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1044	8018071C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1045	8018074C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1046	80180750	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1047	80180754	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1048	80180758	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1049	8018075C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1050	80180760	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1051	8018076C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1052	8018077C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1053	801807A4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1054	801807B4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1055	801807BC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1056	801807C4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1057	801807C4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1058	801807C4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1059	801807CC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1060	801807D0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1061	801807D4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1062	801807D8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1063	801807DC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1064	801807E0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1065	801807E4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1066	801807F0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1067	801807F4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1068	801807F8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1069	801807FC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1070	80180800	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1071	80180804	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1072	80180808	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1073	80180808	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1074	80180810	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1075	8018081C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1076	80180820	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1077	80180824	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1078	80180828	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1079	8018082C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1080	80180830	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1081	80180834	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1082	80180838	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1083	8018083C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1084	80180840	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1085	80180844	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1086	80180844	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1087	8018084C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1088	80180858	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1089	801808F0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1090	80180988	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1091	8018099C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1092	801809A4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1093	801809A4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1094	801809AC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1095	801809B4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1096	801809B8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1097	801809BC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1098	801809C0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1099	801809C4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1100	801809C8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1101	801809CC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1102	801809D0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1103	801809D4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1104	801809D8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1105	801809D8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1106	801809E4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1107	801809EC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1108	80180A9C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1109	80180B54	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1110	80180B60	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1111	80180B64	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1112	80180B68	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1113	80180B70	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1114	80180B74	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1115	80180B78	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1116	80180B80	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1117	80180B94	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_roomVisualEffectsDrawTwinTrail	80180C04	flt	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1118	80180BAC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1119	80180BCC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1120	80180BD4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1121	80180C04	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1122	80180C04	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1123	80180C04	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1124	80180C18	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1125	80180C20	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1126	80180C30	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1127	80180C34	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1128	80180C4C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1129	80180C50	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1130	80180C54	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1131	80180C60	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1132	80180C78	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1133	80180CA8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1134	80180CAC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1135	80180CC0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1136	80180CCC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1137	80180CD0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1138	80180CE0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1139	80180CE4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1140	80180CE8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1141	80180CEC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1142	80180CF0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1143	80180CF4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1144	80180CF8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1145	80180CFC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1146	80180D00	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1147	80180D04	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1148	80180D08	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1149	80180D0C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1150	80180D10	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1151	80180D14	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1152	80180D18	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1153	80180D1C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1154	80180D20	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1155	80180D24	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1156	80180D28	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1157	80180D2C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1158	80180D38	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1159	80180D44	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1160	80180D48	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1161	80180D4C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1162	80180D50	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1163	80180D5C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1164	80180D68	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1165	80180D74	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1166	80180D7C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1167	80180D88	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1168	80180D90	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1169	80180DB4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1170	80180DC0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1171	80180DD8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1172	80180DE8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1173	80180DF8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1174	80180E08	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1175	80180E18	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1176	80180E1C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1177	80180E34	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1178	80180E44	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1179	80180E48	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1180	80180E50	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1181	80180E64	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1182	80180E64	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1183	80180E68	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1184	80180E6C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1185	80180E70	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1186	80180E78	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1187	80180E80	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1188	80180E84	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1189	80180E88	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1190	80180E8C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1191	80180E90	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1192	80180E94	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1193	80180E98	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1194	80180E9C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1195	80180EA0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1196	80180EA4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1197	80180EA8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1198	80180EAC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1199	80180EB0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1200	80180EB4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1201	80180EB8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1202	80180EBC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1203	80180EC0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1204	80180EC4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1205	80180EC8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1206	80180ECC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1207	80180ED8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1208	80180EE4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1209	80180EF0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1210	80180EFC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1211	80180F08	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1212	80180F14	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1213	80180F18	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1214	80180F1C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1215	80180F20	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1216	80180F24	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1217	80180F28	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1218	80180F2C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1219	80180F98	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1220	80180FA4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1221	80180FA8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1222	80180FB4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1223	80180FCC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1224	80180FFC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1225	80180FFC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1226	80180FFC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1227	8018100C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1228	80181268	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1229	80181284	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1230	80181284	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1231	80181284	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1232	80181294	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1233	8018129C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1234	801812C0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1235	801812C4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1236	801812C8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1237	801812CC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1238	801812D0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1239	801812D4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1240	801812D8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1241	801812DC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1242	801812E0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1243	801812E4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1244	801812E8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1245	801812EC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1246	801812F0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1247	80181308	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1248	80181338	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1249	80181340	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1250	8018134C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1251	80181354	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1252	80181364	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1253	80181374	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1254	80181384	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1255	8018138C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1256	80181390	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1257	80181394	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1258	80181398	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1259	801813C4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1260	801813C8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1261	801813CC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1262	801813F8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1263	801813FC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1264	80181410	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1265	80181414	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1266	80181418	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1267	80181424	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1268	8018142C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1269	80181478	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1270	8018147C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1271	8018148C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1272	801814A0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1273	801814A4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1274	801814B4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1275	801814C8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1276	801814CC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1277	801814D0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1278	801814E0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1279	801814F4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1280	801814F8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1281	80181508	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1282	80181530	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1283	80181534	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1284	80181538	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1285	8018153C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1286	80181540	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1287	80181544	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1288	80181558	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1289	8018155C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1290	8018156C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1291	80181590	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1292	80181594	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1293	80181598	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1294	801815E8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1295	801815EC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1296	80181600	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1297	8018160C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1298	80181618	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1299	80181620	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1300	80181664	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1301	80181668	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1302	80181674	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1303	80181688	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1304	8018168C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1305	8018169C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1306	801816B0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1307	801816B4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1308	801816C4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1309	801816D8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1310	801816DC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1311	801816EC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1312	80181714	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1313	80181720	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1314	80181724	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1315	80181728	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1316	8018173C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1317	80181740	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1318	80181750	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1319	80181774	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1320	80181778	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1321	8018177C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1322	801817B8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1323	801817BC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1324	801817CC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1325	801817D0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1326	801817E4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1327	801817F0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1328	801817FC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1329	80181800	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1330	80181818	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1331	80181820	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1332	80181828	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1333	80181864	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1334	80181868	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1335	80181874	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1336	80181878	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1337	80181888	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1338	8018189C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1339	801818A0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1340	801818B0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1341	801818C4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1342	801818C8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1343	801818D8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1344	801818EC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1345	801818F0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1346	80181900	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1347	80181928	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1348	8018192C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1349	80181930	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1350	80181934	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1351	80181938	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1352	8018193C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1353	80181950	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1354	80181954	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1355	80181964	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1356	80181988	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1357	8018198C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1358	80181990	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1359	801819E0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1360	801819E4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1361	801819F8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1362	80181A04	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1363	80181A0C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1364	80181A14	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1365	80181A60	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1366	80181A64	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1367	80181A74	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1368	80181A88	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1369	80181A8C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1370	80181A9C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1371	80181AB0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1372	80181AB4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1373	80181AC4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1374	80181AD8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1375	80181ADC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1376	80181AEC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1377	80181B14	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1378	80181B18	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1379	80181B1C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1380	80181B20	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1381	80181B24	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1382	80181B28	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1383	80181B3C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1384	80181B40	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1385	80181B50	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1386	80181B74	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1387	80181B78	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1388	80181B7C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1389	80181BB8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1390	80181BBC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1391	80181BCC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1392	80181BD0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1393	80181BE4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1394	80181BF0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1395	80181BFC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1396	80181C14	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1397	80181C44	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1398	80181C44	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1399	80181C44	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1400	80181C54	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_roomVisualEffectsDrawFlyingDisc	80182A68	flt	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_roomVisualEffectsDrawFlyingRing	80182644	flt	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1401	80182184	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1402	8018219C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1403	8018219C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1404	8018219C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1405	801821AC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_roomVisualEffectsDrawFlyingSpark	801823C0	flt	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1406	801823A8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1407	801823C0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1408	801823C0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1409	801823C0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1410	801823C4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1411	801823D0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1412	801823D4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1413	801823D8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1414	801823DC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1415	801823E0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1416	801823E4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1417	801823E8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1418	801823EC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1419	801823F0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1420	801823F4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1421	801823F8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1422	801823FC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1423	80182414	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1424	80182444	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1425	8018244C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1426	80182458	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1427	80182460	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1428	80182470	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1429	80182480	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1430	80182490	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1431	80182494	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1432	80182498	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1433	8018249C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1434	801824A4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1435	801824AC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1436	801824B4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1437	801824BC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1438	801824C4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1439	801824C8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1440	801824CC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1441	801824D0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1442	801824DC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1443	801824F8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1444	80182500	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1445	80182508	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1446	80182514	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1447	80182520	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1448	80182528	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1449	80182564	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1450	8018256C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1451	80182570	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1452	80182574	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1453	80182578	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1454	8018257C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1455	80182584	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1456	80182588	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1457	8018258C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1458	80182590	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1459	80182594	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1460	8018259C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1461	801825A0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1462	801825A4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1463	801825A8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1464	801825AC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1465	801825B4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1466	801825B8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1467	801825BC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1468	801825C0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1469	801825C4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1470	80182630	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1471	8018263C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1472	80182644	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1473	80182644	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1474	80182644	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1475	8018264C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1476	80182654	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1477	8018267C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1478	80182680	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1479	80182684	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1480	80182688	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1481	8018268C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1482	80182690	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1483	80182694	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1484	80182698	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1485	8018269C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1486	801826A0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1487	801826A4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1488	801826A8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1489	801826AC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1490	801826B0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1491	801826C8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1492	801826F8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1493	80182700	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1494	8018270C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1495	80182714	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1496	80182724	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1497	80182734	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1498	80182744	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1499	80182748	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1500	8018274C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1501	80182750	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1502	80182754	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1503	80182780	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1504	80182788	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1505	8018278C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1506	801827B8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1507	801827D0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1508	801827D4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1509	801827D8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1510	801827E4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1511	801827EC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1512	801827FC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1513	80182808	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1514	80182814	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1515	80182838	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1516	80182854	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1517	80182858	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1518	8018286C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1519	80182870	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1520	80182880	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1521	80182894	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1522	80182898	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1523	8018289C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1524	801828AC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1525	801828C0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1526	801828C4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1527	801828D4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1528	801828E8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1529	801828EC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1530	801828FC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1531	80182910	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1532	80182914	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1533	80182924	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1534	80182938	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1535	8018293C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1536	8018294C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1537	80182960	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1538	80182964	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1539	80182974	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1540	8018299C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1541	801829E0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1542	801829E4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1543	801829F4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1544	801829F8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1545	80182A0C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1546	80182A18	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1547	80182A24	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1548	80182A3C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1549	80182A68	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1550	80182A68	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1551	80182A68	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1552	80182A78	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1553	80182A80	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1554	80182AA0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1555	80182AA4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1556	80182AA8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1557	80182AAC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1558	80182AB0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1559	80182AB4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1560	80182AB8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1561	80182ABC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1562	80182AC0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1563	80182AC4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1564	80182AC8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1565	80182ACC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1566	80182AD0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1567	80182AE8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1568	80182B18	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1569	80182B20	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1570	80182B2C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1571	80182B34	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1572	80182B44	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1573	80182B54	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1574	80182B64	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1575	80182B68	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1576	80182B6C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1577	80182B70	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1578	80182B74	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1579	80182BA0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1580	80182BB8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1581	80182BBC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1582	80182BC0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1583	80182BCC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1584	80182BD4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1585	80182BE4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1586	80182BF0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1587	80182BFC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1588	80182C18	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1589	80182C1C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1590	80182C28	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1591	80182C28	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1592	80182C3C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1593	80182C40	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1594	80182C50	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1595	80182C64	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1596	80182C6C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1597	80182C7C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1598	80182C90	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1599	80182C94	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1600	80182CA4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1601	80182CCC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1602	80182CD0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1603	80182CD4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1604	80182CD8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1605	80182CDC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1606	80182CE0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1607	80182CF4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1608	80182CF8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1609	80182D08	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1610	80182D30	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1611	80182D74	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1612	80182D78	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1613	80182D88	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1614	80182D8C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1615	80182DA0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1616	80182DAC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1617	80182DB8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1618	80182DD0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1619	80182DFC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1620	80182DFC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1621	80182DFC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1622	80182E0C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_roomVisualEffectsDrawFlyingBurstGlow	80182FA8	flt	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1623	80182F90	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1624	80182FA8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1625	80182FA8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1626	80182FA8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1627	80182FB0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1628	80182FB8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1629	80182FBC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1630	80182FC4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1631	80182FC8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1632	80182FCC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1633	80182FD4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1634	80182FD8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1635	80182FE0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1636	80182FE4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1637	80182FEC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1638	80182FF8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1639	80183004	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1640	80183008	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1641	8018300C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1642	80183010	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1643	80183014	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1644	80183018	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1645	8018301C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1646	80183028	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1647	8018302C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1648	80183030	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1649	80183034	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1650	80183038	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1651	8018303C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1652	80183040	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1653	80183044	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1654	80183048	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1655	8018304C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1656	80183050	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1657	80183054	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1658	80183058	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1659	8018305C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1660	80183060	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1661	80183064	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1662	80183068	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1663	8018306C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1664	80183070	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1665	80183074	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1666	80183078	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1667	80183090	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1668	801830C0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1669	801830C8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1670	801830D4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1671	801830DC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1672	801830EC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1673	801830FC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1674	8018310C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1675	80183118	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1676	80183120	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1677	80183128	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1678	80183130	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1679	80183138	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1680	80183150	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1681	80183154	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1682	8018315C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1683	80183164	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1684	80183168	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1685	8018316C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1686	80183170	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1687	80183198	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1688	801831A0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1689	801831A4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1690	801831A8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1691	801831AC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1692	801831B8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1693	801831BC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1694	801831DC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1695	801831E4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1696	8018322C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1697	8018323C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1698	80183240	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1699	80183248	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1700	8018324C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1701	80183250	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1702	80183254	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1703	80183258	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1704	80183260	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1705	80183264	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1706	80183268	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1707	8018326C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1708	80183270	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1709	80183278	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1710	8018327C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1711	80183280	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1712	80183284	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1713	80183288	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1714	80183290	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1715	80183294	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1716	80183298	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1717	8018329C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1718	801832A0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1719	801832DC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1720	801832E0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1721	801832F4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1722	801832FC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1723	80183300	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1724	8018330C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1725	80183314	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1726	8018331C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1727	80183324	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1728	80183328	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1729	8018332C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1730	80183344	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1731	8018335C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1732	80183364	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1733	8018336C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1734	8018337C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1735	80183388	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1736	80183390	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1737	801833CC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1738	801833DC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1739	801833E0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1740	801833E4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1741	801833F4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1742	801833F8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1743	801833FC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1744	8018340C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1745	80183410	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1746	80183414	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1747	8018341C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1748	80183420	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1749	80183424	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1750	80183428	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1751	8018342C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1752	80183480	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1753	80183484	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1754	8018348C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1755	801834A0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+_roomVisualEffectsDrawFlyingBurstGroundQuad	801834D4	flt	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1756	801834AC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1757	801834C4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1758	801834D4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1759	801834D4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1760	801834D4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1761	801834D4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1762	801834D4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1763	801834DC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1764	801834E0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1765	801834E4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1766	801834E8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1767	801834F4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1768	8018350C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1769	8018351C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1770	80183528	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1771	8018352C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1772	80183534	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1773	80183548	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1774	80183578	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1775	80183580	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1776	8018358C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1777	801835A4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1778	801835B8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1779	801835C0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1780	801835C4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1781	801835CC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1782	801835D4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1783	801835D8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1784	801835E0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1785	801835EC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1786	8018361C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1787	80183624	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1788	80183630	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1789	80183638	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1790	8018365C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1791	80183668	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1792	80183680	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1793	80183690	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1794	801836A0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1795	801836B0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1796	801836B4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1797	801836B8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1798	801836BC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1799	801836C0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1800	801836C8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1801	801836D0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1802	801836D8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1803	801836EC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1804	801836F4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1805	801836FC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1806	80183700	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1807	80183708	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1808	80183714	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1809	80183718	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1810	8018371C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1811	80183720	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1812	8018372C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1813	80183730	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1814	80183734	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1815	8018373C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1816	80183748	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1817	8018374C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1818	80183750	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1819	80183754	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1820	80183760	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1821	80183764	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1822	80183770	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1823	8018377C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1824	80183788	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1825	80183794	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1826	801837A0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1827	801837AC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1828	801837B0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1829	801837B4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1830	801837B8	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1831	801837BC	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1832	801837C0	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1833	801837C4	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1834	80183830	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1835	80183844	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+LM1836	8018384C	fl	build/USA/src/rooms/neo_ark_pavilion/neo_ark_pavilion.i
+__romPos	0000A46C	al	
+equipmentGetWeaponLoadCapacity	800BB938	a	
+gActor443500ConsoleFollowupSkipScript	80142A74	a	
+D_80073BAC	80073BAC	a	
+D_80072174	80072174	a	
+areaSetCurrentObjectState	800BAC34	a	
+uiInitList	800489A0	a	
+D_80071072	80071072	a	
+CdFlush	80015AF4	a	
+gameFlagSetNibble	8004AC58	a	
+SetRotMatrix	8004ADF8	a	
+stageRequestModeTaskExit	8003F6F8	a	
+gActor503500StaffCardSceneTaskDesc	8014B958	a	
+sceneEngageBattle	800DB4E0	a	
+tmdAllocPrimitiveBuffer	80041B88	a	
+gActor335800BalconyBattleStartScript	80165720	a	
+gActor450200CompanionSceneScript	80137EE4	a	
+actor161500StartSoldierBRemark	80131E38	a	
+gCapCommandEntries	801156A0	a	
+displayAcquireMenuHold	8003E610	a	
+gPadMenuButtonMask	8005ED78	a	
+areaSetPlacementVariant	800B5B30	a	
+displayQueueModeTask	8003FB70	a	
+gameGetTaskSlot	8002D22C	a	
+GetTPage	80043938	a	
+displaySetFrameTiming	800280F4	a	
+textItoaUnsigned	8002F18C	a	
+damagePackEnemyAttackKey	800E2BF8	a	
+gNeoArkPavilionViewMaps	801838EC	f	
+viewGetMappedIndex	800AD284	a	
+worldCoordGetOriginAudioPan	800D937C	a	
+mapShelterRoomVariantResolve	80179A04	a	
+gPadInputMenuUnlockUpdates	80115716	a	
+uiGetTextColor	80048E10	a	
+cdCmdSelectScene	8001D534	a	
+gActor107600TaskDescriptors	80134F94	a	
+SetDrawTPage	80043A38	a	
+gNeoArkPavilionDiverWaterY	801839A0	f	
+D_801153F1	801153F1	a	
+gNeoArkPavilionAreaVariants	801876C4	f	
+neo_ark_pavilion_RODATA_START	8017D5C0	f	
+printf	8001AF3C	a	
+gNeoArkPavilionRoomCollisionResources	801838B4	f	
+worldCollisionClearContacts	800E1A6C	a	
+sceneReleaseBattleRefAndClearRewards	800DB630	a	
+neoArkPavilionWaterRippleTask	8017EC4C	ft	
+memMalloc	8002DABC	a	
+D_80073BA0	80073BA0	a	
+gActionPromptSlots	80114D28	a	
+D_80072836	80072836	a	
+gAttachmentTrainingLevels	80114BF0	a	
+taskPollKill	8002D3BC	a	
+actor260400RestoreHeliportPlacement	80149FA4	a	
+gRoomEffectOrangeBurst2Id	80115754	a	
+gNeoArkPavilionWaterRefractionTaskDesc	8018384C	f	
+stageMusicRequestAreaStop	800430E4	a	
+taskSpawn	8002CFDC	a	
+MatrixNormal	8003D6C8	a	
+gAreaRecordsByStage	8010CBCC	a	
+textDrawUiLine	8002FDCC	a	
+D_8007106C	8007106C	a	
+gActor450800NurseryIntroSkipScript	8013A33C	a	
+D_80070F6C	80070F6C	a	
+capRunCommandWithTransition	800E3B60	a	
+SetSemiTrans	800439B8	a	
+gCapRoomCompletionSoundsEnabled	80115598	a	
+sndEvtRequestMidiStart	800512BC	a	
+inventoryHasCollectedBit	800BB4BC	a	
+gNeoArkPavilionSurfaceProperties	801879EC	f	
+gGfxViewCoord	80070F10	a	
+equipmentRestoreHpMp	800BC164	a	
+D_80073B8C	80073B8C	a	
+gameFlowBeginLoadScreen	8002252C	a	
+sndEvtRequestScriptMix	80054424	a	
+gMapNeoArkPavilionVariant5Placements	8017B4E0	a	
+worldCollisionProjectGroundCoord	800EA02C	a	
+worldCollisionUnlinkTrigger	800E1708	a	
+actor215100SelectCaptionResource	8014C5E0	a	
+padScriptSpawnVariableMotorRamp	800E8D1C	a	
+gfxSetFlatLight	8003B140	a	
+gPlayerActorStateTickHeld	80115768	a	
+gItemDescriptors	8010D838	a	
+playerActorPrepareDryfieldLoadout	800BC4E4	a	
+gActor450200RoomVariantSceneScript	8013FC58	a	
+taskGetDescAt	8002D32C	a	
+rcos	8003D108	a	
+D_80072177	80072177	a	
+streamFindViewMovieSlot	8001EED8	a	
+gRoomEffectTwinTrailId	8011572C	a	
+taskKill	8002CCB8	a	
+gActor143000KeypadTaskDesc	80134564	a	
+gEffectSpriteAtlasFrames	80111E48	a	
+D_80115188	80115188	a	
+D_80072724	80072724	a	
+textDrawString	8002E53C	a	
+gDirectionInteractionRearmUpdates	80114D08	a	
+D_80071078	80071078	a	
+gRoomEffectSparkBurstId	80115750	a	
+gActor120300TaskDescriptors	80141B6C	a	
+inventoryResetIceBagTimer	800BC21C	a	
+gEffectUnitQuadCorners	80111E38	a	
+worldCoordSetActorColorMode	800D930C	a	
+gActor342400EncounterTaskDescs	8016BFE0	a	
+gActor560800ChainGlowTick	801752EC	a	
+gActor444000IncineratorEventTaskDesc	801449F4	a	
+playerActorSetScriptedControl	800E3BBC	a	
+stageMusicRequestAreaStart	80043028	a	
+itemMenuSpawnNotice	800D4E40	a	
+actor460200SetupTentSoldiers	80132210	a	
+gActor335800BalconyEntrySkipScript	80165798	a	
+D_80115124	80115124	a	
+uiStartPanelOpening	80048964	a	
+actor215100RequestGalleryAbort	8014A9A0	a	
+streamGetFrameLimit	80020414	a	
+gActor00100DesertChaserTaskDesc	8014D8A4	a	
+gActor04000HangingPoolTaskDesc	8013E51C	a	
+gActor560800CutsceneTaskDescriptors	801718F0	a	
+actor161500StartCompanionRequestReminder	801322A0	a	
+equipmentInitializeWeaponSupplies	800B6CF0	a	
+gFsActorBuffer1Base	8005C370	a	
+textFormatPlayTime	8002EB94	a	
+playerActorRestoreEquipment	801034C0	a	
+neo_ark_pavilion_TEXT_START	8017D660	f	
+playerActorRemoveEquipment	801043F4	a	
+SetDrawMove	8004AD18	a	
+damageGetPlayerAttackEffectId	800E2D90	a	
+gNeoArkPavilionRoomLighting	801838D4	f	
+gpuSetPrimitiveBlendMode	800EC914	a	
+worldCoordUpdateActorColor	800D8EA0	a	
+enemyTaskExit	800B0234	a	
+gfxComposeNodeWorldTransform	800B1D00	a	
+gUiPromptObject	80067694	a	
+gFsActorBuffer0Base	8005C36C	a	
+ratan2	8003D9C8	a	
+sceneFindPlacedActor	800E86FC	a	
+animationSeekSlotWithBlend	800B4114	a	
+inventoryInitializeShootingGalleryLoadout	800BA538	a	
+D_80071090	80071090	a	
+gActor450200SoloSceneScript	8013C72C	a	
+RotTransSV	8004BD58	a	
+padIsStartPressed	8004ACF0	a	
+neoArkPavilionRoomVisualEffectsFlyingSparkTask	8018219C	ft	
+ApplyMatrixSV	80043A68	a	
+memSelectAuxHeapRegion	8002DC08	a	
+gActor450800NurseryIntroScript	80139964	a	
+memcpy	8001AEFC	a	
+neoArkPavilionWaterSprayTask	8017F0CC	ft	
+gActor151000GardenArrivalScript	801334EC	a	
+gActor341300WalkwaySceneSkipScript	80165834	a	
+gStageCountdownMusicEntry	80062735	a	
+Gp_QtyById0	8010E038	a	
+sndEvtRequestStageScriptStop	800E3E64	a	
+gNeoArkPavilionDiverPatrolRings	80183A64	f	
+gActor207000SucklercephTaskDescs	80151E60	a	
+capSetTexturePage	800E6D4C	a	
+__floatsidf	8004B5D8	a	
+SetSprt	80043A18	a	
+neo_ark_pavilion_RODATA_SIZE	000000A0	a	
+gActor443500MapFollowupSkipScript	801432FC	a	
+areaSyncLocationVariant	800B601C	a	
+effectDrawGroundShadow	800F68AC	a	
+neo_ark_pavilion_DATA_SIZE	000041E0	a	
+cdCmdCompleteHeadRequest	8001DA48	a	
+gameFlagSetNibbleIfPresent	800E3B3C	a	
+uiSizePanelForTextDefault	800490A4	a	
+worldCollisionUnlinkBody	800E1638	a	
+gRoomEffectFlyingSparkId	80115730	a	
+neo_ark_pavilion_ROM_END	0000A46C	a	
+playerActorWriteWeaponAnimationBankIndex	800E3CEC	a	
+neo_ark_pavilion_DATA_END	80187A2C	f	
+gGpuCurrentOt	800710A0	a	
+streamInitMoviePlayback	8002043C	a	
+gActor150400FreezerSceneScript	80132D70	a	
+gActor450200SoloSceneSkipScript	8013CAEC	a	
+sndScriptHasActiveId	8005462C	a	
+gMcDialogDescriptors	800611C8	a	
+sndEvtRequestMidiVolume	80051460	a	
+padScriptSpawn	800E8FB0	a	
+gCapFile	8011568C	a	
+gActor450200CompanionSceneSkipScript	80138694	a	
+sceneReleaseBattleRef	800DB6B4	a	
+gMcSaveData	80072168	a	
+gameSetTaskSlot	8002D214	a	
+taskSpawnFromTable	8002CFA0	a	
+gActor142900ElevatorFirstVisitSkipScript	801380F8	a	
+gActor503500BossPhaseTransitionScript	8014D158	a	
+neo_ark_pavilion_RODATA_END	8017D660	f	
+inventoryGetItemQuantity	800BB6FC	a	
+gRoomEventFade	80187A0C	f	
+cdCmdRequestCancel	8001C970	a	
+actor450900HandleDepartureTrigger	80132834	a	
+D_80070F70	80070F70	a	
+gActor160600SceneWithoutCompanionScript	80135AC0	a	
+displayResumeGameLoop	8003E540	a	
+tmdFreePrimitiveBuffer	80041B4C	a	
+actor460200TalkToSoldierC	801322B8	a	
+itemMenuOpenHotspotCommands	800D4E78	a	
+gfxMakeRelativeTransform	800A8864	a	
+gWorldCollisionSurfacePropertiesTables	8010CBB8	a	
+streamPollGameRestore	8001EF9C	a	
+neo_ark_pavilion_VRAM	8017D5C0	f	
+areaClearMapMark	800AED24	a	
+gItemMenuInfoPanel	80067634	a	
+cdCmdIsSlotEmpty	8001D37C	a	
+gActor05700RookGolemTasks	801491F8	a	
+D_8007107C	8007107C	a	
+gActor461800NeoArkSceneSkipScript	80134470	a	
+itemMenuDrawTaskPrompt	800CE4F4	a	
+MargePrim	800422B8	a	
+worldCoordSetModelLighting	800D7A9C	a	
+streamResetGameRestore	80020388	a	
+gfxReadMatrixYAxis	8003C748	a	
+neo_ark_pavilion_DATA_START	8018384C	f	
+actor503500ClearFadeFromBlackHandle	80132F58	a	
+displayReleaseMenuHold	8003E64C	a	
+taskCallExit	8002D0A4	a	
+RotMatrixZYX	80044408	a	
+actor341300ResetScriptTaskHandle	8016268C	a	
+modelObjectAttachTmd	8009902C	a	
+gActor161500CompleteCompanionRequestTaskDesc	80136CDC	a	
+waterDistortBandTask	8017E2B4	ft	
+gGameSession	8005ED64	a	
+D_80071076	80071076	a	
+neo_ark_pavilion_VRAM_END	80187A2C	f	
+__adddf3	8004AFE8	a	
+gRoomEffectFlashId	80115758	a	
+gActor443500TourOpeningSkipScript	80141C1C	a	
+actor215100FinishGalleryCourse	8014A908	a	
+animationAimHeadAtPoint	800B0CF4	a	
+mapAkropolisOpenKeyItemMenu	80179FC8	a	
+areaSetObjectState	800BB8E8	a	
+gItemMenuPanelDescriptors	8010EAB4	a	
+SquareRoot0	8003B8A0	a	
+gameFlagSetPackedByte	800E3FAC	a	
+gAttachmentState	80114C08	a	
+gActor01100Tasks	8015F400	a	
+displayConfigureFramebuffers	8003DB48	a	
+neoArkPavilionRoomVisualEffectsSparkBurstTask	80180FFC	ft	
+gfxBuildOrthonormalBasis	8003CEC4	a	
+gActor342100EncounterBlazeTaskDescriptors	80164B78	a	
+gActor535700PawnGolemEncounterScript	80133898	a	
+sndEvtRequestScriptStop	800542D0	a	
+SetShadeTex	800439E8	a	
+neoArkPavilionRoomVisualEffectsFlyingOrangeBurstTask	80182DFC	ft	
+sceneReleaseBattleRefWithRewards	800DB558	a	
+capRunCommand	800E34D8	a	
+gFsActorBuffer2Base	8005C374	a	
+capReset	800E6DF4	a	
+neo_ark_pavilion_TEXT_END	8018384C	f	
+gActor341300WalkwaySceneScript	80165354	a	
+gEquipmentWeaponPrimaryLoadOptions	8010E238	a	
+gfxReadMatrixZAxis	8003C768	a	
+D_80071086	80071086	a	
+gfxRotMatrixY	8003C98C	a	
+gPadScriptTransitionCommands	80114A24	a	
+viewApplyCamera	800A8A48	a	
+RotTransPers4	8004C358	a	
+D_8011540E	8011540E	a	
+gPadScriptTransitionSegments	80114A34	a	
+mapDryfieldFullResolveRoomVariant	80179954	a	
+inventoryRestoreCarriedLoadout	800BA75C	a	
+D_80072176	80072176	a	
+gStreamInterFile	8006AC30	a	
+playerActorPrepareAcropolisLoadout	800BC4BC	a	
+mapAkropolisWasDryfieldMapSelected	8017A038	a	
+gStageMusicTaskDesc	80062774	a	
+gMdecMovieOutputSlot	8005EAEE	a	
+gActor451100SubmarineTunnelSceneSkipScript	80135FD0	a	
+gStageRoomMusicSequence	80062737	a	
+worldCollisionFindContactIndex	800E19B8	a	
+worldCollisionLinkBody	800E15AC	a	
+D_80073BA9	80073BA9	a	
+midiIsSequenceBusy	800514F8	a	
+memCopyBytes	8002D7A8	a	
+effectKillTask	800EC7E4	a	
+inventoryCountOccupiedRows	800BAF5C	a	
+itemMenuGetPrimaryPreviewItem	800CF27C	a	
+sceneSetPlacedActorDrawMode	800E3C6C	a	
+__fixdfsi	8004B4D8	a	
+effectDrawGouraudDisc	800EAEB8	a	
+cdCmdStageSceneAudioStart	8001D6B8	a	
+D_80072A94	80072A94	a	
+textItoaSigned	8002F020	a	
+cdCmdIsIdle	8001D344	a	
+actor215100CheckGalleryExitInput	8014A398	a	
+D_80072729	80072729	a	
+sceneQueueBattleEscapeResult	800A7A64	a	
+capStartSequenceSlot	800E6C70	a	
+gActor215100GalleryTrainingActive	8014D038	a	
+worldCollisionReadActionHit	800E1BF0	a	
+SetTransMatrix	8004AE28	a	
+neoArkPavilionRoomVisualEffectsGlowDiscTask	80181C44	ft	
+gameFlagGetNibble	8004ACAC	a	
+D_801153F4	801153F4	a	
+gRoomEffectHaloId	80115744	a	
+AddPrim	80043978	a	
+gCapPreserveActorControl	80115690	a	
+uiSetListSystemCursorSound	8004917C	a	
+itemSetIdentified	800BB7C0	a	
+gfxRotMatrixZ	8003CB80	a	
+worldTargetAddReadoutAmount	800DA6E8	a	
+inventoryGetConsumableStackQuantity	800BB26C	a	
+SetDrawOffset	80018AA4	a	
+D_8007272D	8007272D	a	
+gSceneCombatState	801153F0	a	
+itemMenuDrawItemRow	800CD924	a	
+effectDrawSpinningBillboard	800EB2C8	a	
+uiDrawPanelLabel	80047F40	a	
+gGameMainPersistentState	800710A8	a	
+enemySpawnFromTable	800B01AC	a	
+gfxRotMatrixYXZ	8003BD34	a	
+D_8011540A	8011540A	a	
+effectDrawModulatedBillboard	800EB6E8	a	
+equipmentHasCarriedWeaponSupply	800BBDDC	a	
+gActor461800NeoArkSceneScript	80133F90	a	
+uiPositionRowDialog	80049024	a	
+actor260400StartHeliportConversation	80149E38	a	
+evsStartScriptWithSkip	800E8634	a	
+gEquipmentModeBaseStats	8010D328	a	
+gFsImageWorkspacePtr	8005C364	a	
+actor160700StartMeetingScript	80131E70	a	
+evsStartScript	800E8614	a	
+loadingRequestViewGraphicsRestore	800A99B4	a	
+actor450200InitializeObservatoryCompanion	801322F8	a	
+StoreImage	80017FA4	a	
+D_80114C12	80114C12	a	
+MoveImage	80018004	a	
+func_807245E4	807245E4	a	
+uiUpdateList	80048C10	a	
+streamGetSlot	80020278	a	
+textAppendString	8002F588	a	
+gActor310100Officer1TaskDescriptors	801798FC	a	
+capGetVariantKey	800E6D3C	a	
+gActor143900ObservatoryEntrySkipScript	80133860	a	
+gActor503500BossDefeatSkipScript	8014CAF8	a	
+attachmentIsTrainingMode	800A74C4	a	
+gGpuPrimCursor	80071190	a	
+capIsBusy	800E6CE0	a	
+worldCoordGetOriginAudioDepth	800D9340	a	
+gfxRotMatrixXYZ	8003B960	a	
+actor161500StartSoldierBShopConversation	80132110	a	
+shopOpenSession	800D4D2C	a	
+gPadCancelButtonMask	8005ED74	a	
+gPadStates	80071620	a	
+SetDrawArea	80018A24	a	
+neoArkPavilionRoomTask	8017EBF4	ft	
+D_80071075	80071075	a	
+neo_ark_pavilion_ROM_START	00000000	a	
+RotTransPers3	8004C1E8	a	
+actor460200TalkToSoldierA	80132390	a	
+animationInitContext	800B3F84	a	
+gActor450200RoomVariantSceneSkipScript	80140078	a	
+equipmentFindNextCarriedWeaponSupply	800BBD40	a	
+gActor535700PawnGolemEncounterSkipScript	801341E0	a	
+uiDrawBeveledRect	80046B34	a	
+rand	80037164	a	
+gActor450900EntrySkipScript	80136308	a	
+D_80115410	80115410	a	
+companionSetDrawMode	800E3EB0	a	
+inventoryGiveItem	800BAD08	a	
+gActor560800MovieTaskDescriptors	8016EA28	a	
+roomEventStagedTask	8017E854	ft	
+gActor342000IncineratorEventTaskDescs	80164FF8	a	
+D_8010E138	8010E138	a	
+effectSpawnHit	800FDB18	a	
+gInventoryContainerRanges	8010D550	a	
+gActor143400CompanionEntryScript	801350BC	a	
+memCalloc	8002D978	a	
+effectSpawn	800EA478	a	
+gActor450900EntryScript	80136110	a	
+strncmp	8001EAC4	a	
+gInventoryConsumableStacks	8010E3B8	a	
+gActor105500MaggotCaterpillarTasks	8013A8DC	a	
+itemMenuDrawDefaultItemIcon	800CE5D0	a	
+actor161500StartSoldierBTalkB	80132038	a	
+gMapNeoArkPavilionVariant4Placements	8017B4B0	a	
+D_80071068	80071068	a	
+gRoomEffectWaterSprayId	80115738	a	
+gActor450800NurseryShootingSkipScript	8013BA84	a	
+gNeoArkPavilionDiverSurfaceSpots	80183A74	f	
+gMdecMovieInputSlot	8005EAEC	a	
+gMapNeoArkPavilionVariant3Placements	8017B470	a	
+gActor443500ConsoleFollowupScript	80141D9C	a	
+actor150400SpawnSlidingModels	80131FB8	a	
+D_800691CA	800691CA	a	
+gActor503500SceneEffectTaskDescs	8014B964	a	
+D_80114C0B	80114C0B	a	
+gRoomEffectMoteId	80115728	a	
+areaApplySavedUpdates	800AE62C	a	
+cdCmdCancelScene	8001D588	a	
+func_800AC000	800AC000	a	
+uiSetPanelContentSize	800466E4	a	
+GsWSMATRIX	80071138	a	
+uiObjectTaskExit	800488B8	a	
+cdSyncPollCommand	8001E6AC	a	
+gActor443500MapFollowupScript	80142C24	a	
+gItemMenuTransferPanelDescriptors	8010D6F4	a	
+cdCmdEnqueue	8001D2B0	a	
+D_801150C0	801150C0	a	
+padCheckButtons	8002C868	a	
+itemMenuDrawPreview	800C7AE8	a	
+gActor160600SceneWithCompanionScript	80135D78	a	
+gCapChoiceRowStride	80115680	a	
+taskSpawnFromTableOnDefaultList	8003E4BC	a	
+SetDrawStp	80042288	a	
+gActor143900ObservatoryEntryScript	80133560	a	
+playerActorSetDrawMode	800E3B80	a	
+gMapNeoArkPavilionVariant2Placements	8017B410	a	
+actor450800StartNurseryCompanionDialogue	80132000	a	
+gActor215100PierceStoryScript	80153274	a	
+waterRefractionTask	8017D660	ft	
+itemMenuSetPreviewItem	800CDE80	a	
+equipmentRecalculateMaxMp	800B7930	a	
+effectDrawOuterGlowBand	800EAA0C	a	
+stageEnsureHeapTaskPrimitiveBuffer	8003F9AC	a	
+actor215100HandleGalleryAction	8014AB6C	a	
+RotMatrixZ	8004AE48	a	
+SetDispMask	80017C00	a	
+SetTile	80042344	a	
+func_80724608	80724608	a	
+cdCmdEnqueueScenePlayback	8001D5CC	a	
+__muldf3	8004B828	a	
+rsin	8003D038	a	
+viewFindLogicalIndex	800ACEBC	a	
+inventoryInitializeStarterLoadout	800B7D18	a	
+gPadConfirmButtonMask	8005ED70	a	
+areaIsSavedPoseRestoreEnabled	800B59A8	a	
+gActor203800BlackBeetleTaskDesc	8014FD74	a	
+gActor361100PodSceneScript	80165F48	a	
+areaGetVariant	800B5CE8	a	
+gActor443500TourOpeningScript	8014152C	a	
+gGameFlagNibbleBanks	80073980	a	
+gNeoArkPavilionWarpEntries	801838F8	f	
+actor450800PrepareNurseryKyleMadigan	80132028	a	
+worldCoordSetAmbientColorOverride	800D94B8	a	
+gActor460200TentArrivalSkipScript	80137890	a	
+gNeoArkPavilionSpriteViews	801873B8	f	
+worldTargetDisableNodeLockOn	800DACF8	a	
+D_80072170	80072170	a	
+D_80070F87	80070F87	a	
+D_80072310	80072310	a	
+worldCollisionProbeGridSegment	800DE7CC	a	
+D_8011540C	8011540C	a	
+memset	800420F8	a	
+companionWriteAnimationBankIndex	800E3D24	a	
+D_80073BAE	80073BAE	a	
+gActor215100GalleryTaskDescs	8014E13C	a	
+gActor136300GarageCompanionSceneSkipScript	8013C388	a	
+streamPrepareMovieWorkspace	80020298	a	
+gActor136300CompanionGaragePlacement	8013B570	a	
+srand	80037194	a	
+viewQueueCurrentCameraAndPackets	800A8B6C	a	
+ApplyMatrixLV	80042128	a	
+taskMessageDispatch	800AC464	a	
+uiStartTreeClosing	80048838	a	
+animationResetSlot	800B3FA8	a	
+actor215100CapCaptionSelectRecord	8014B2B8	a	
+taskRequestKill	8002D340	a	
+D_8007107A	8007107A	a	
+actor161500RestoreCompanionRequestScene	8013230C	a	
+actor215100ResolveGalleryExit	8014AA54	a	
+gPlayerStatus	80073B88	a	
+inventoryGetRangeTable	800BB500	a	
+gActor142600IncineratorArrivalSkipScript	80136804	a	
+gPlayerActorTasks	80115760	a	
+gActor548100PanelTaskDesc	801358D8	a	
+equipmentConsumeWeaponLoad	800B6DA4	a	
+inventoryResetCarriedRange	800BC490	a	
+enemyDestroy	800B01F0	a	
+gFsResourceSlots	8006C338	a	
+gRandomLcgState	80070F60	a	
+actor160700RestoreMeetingAnimation	80131E24	a	
+func_800ABFF8	800ABFF8	a	
+gActor146300IceBagHandoverTaskDesc	8013788C	a	
+areaSpawnPlacements	800B4AF8	a	
+itemMenuDrawMeter	800C0E20	a	
+gameFlagGetPackedByte	800E3FCC	a	
+equipmentLoadWeaponConsumable	800B715C	a	
+displaySetShakeY	8003DE78	a	
+inventoryHasAttachedItem	800BC3F8	a	
+sndEvtRequestStageScriptStart	800E3DD8	a	
+equipmentRecalculateMaxHp	800BC0C0	a	
+gRoomEventLatched	80187A20	f	
+neoArkPavilionRoomVisualEffectsTwinTrailTask	80180714	ft	
+RotTransPers	8004C198	a	
+D_8007216D	8007216D	a	
+gActor146300WaterTankEventScript	80137C28	a	
+roomEffectRequestCancelPe	800FC6C0	a	
+gpuUploadImages	800DB31C	a	
+gDirectionActionActive	80114CF8	a	
+D_80072830	80072830	a	
+sndEvtRequestScriptVolume	800544B8	a	
+worldCollisionLinkTrigger	800E1688	a	
+actor450800StartNurseryInteraction	80131E2C	a	
+gActor215100PierceStorySkipScript	80153D6C	a	
+gActor136300TaskTable	8013B11C	a	
+gStageMusicParams	8007A39C	a	
+VectorNormalSS	8003D5D8	a	
+gActor160900TaskDescriptors	8013FB50	a	
+D_80072A93	80072A93	a	
+gWorldCollisionActiveGrid	80115448	a	
+D_80072A92	80072A92	a	
+roomEffectRequestCancelAll	800EC868	a	
+gNeoArkPavilionViewCounts	801838F4	f	
+gActor310100Officer2TaskDescriptors	80179920	a	
+actorRenderDrawGroundShadow	800B4E54	a	
+D_8007218A	8007218A	a	
+capSelectLoadedFile	800E6D60	a	
+cdCmdDropQueuedTail	8001D424	a	
+Gfx_ViewWorldMtx	80070F34	a	
+actor161500StartSoldierBTalkA	80131FBC	a	
+gActor503500BossDefeatScript	8014C540	a	
+tmdBuildBufferHalf	800410F0	a	
+effectDrawScreenTint	800EA858	a	
+gActor146000WaterHoleSceneTasks	801351FC	a	
+tmdResetAuxHeapAndRestoreBuffers	80041EB4	a	
+gActor120500EmptyPlacementTaskDesc	8013843C	a	
+equipmentGetWeaponLoad	800BAFE0	a	
+DrawSync	80017C98	a	
+damageComputePlayerAttack	800E1FEC	a	
+itemMenuClearPreviewItems	800CDEF4	a	
+actor215100StartPierceConversation	8014AF0C	a	
+actor450900StartCompanionConversation	801327A8	a	
+damageRollCriticalHit	800E25F8	a	
+gActor151000GardenArrivalSkipScript	80133954	a	
+neoArkPavilionRoomVisualEffectsFlashTask	8017FCB0	ft	
+gMapNeoArkPavilionVariant1Placements	8017B3D0	a	
+animationTickSlot	800B4514	a	
+sceneAcquireBattleRef	800DB53C	a	
+gActor143400CompanionEntrySkipScript	801359D4	a	
+companionRemoveEquipment	8010B674	a	
+sndScriptResolveStageId	800E3E30	a	
+actor146300RestoreHandoverPose	8013224C	a	
+gActor100400Tasks	80147E48	a	
+gActor150400FreezerSceneSkipScript	80133088	a	
+companionSetScriptedControl	800E3EF0	a	
+gCapInlineIconCells	8010FB70	a	
+streamPollMoviePlayback	8001FAE0	a	
+gPlayerActorWeaponReaches	80112F60	a	
+D_80072728	80072728	a	
+damagePackAttackKey	800E2C40	a	
+uiSpawnObject	800486F0	a	
+worldCollisionInitContacts	800E18E0	a	
+sndEvtRequestMidiStop	8005132C	a	
+gActor503500BossIntroSkipScript	8014C288	a	
+RotMatrix	80043AC8	a	
+D_80114C11	80114C11	a	
+memConfigureImageMemory	800144F8	a	
+viewQueueCamera	800A8A1C	a	
+displaySpawnTaskFromTable	8003E324	a	
+uiStartPanelHiding	800488F8	a	
+actor260500RestoreHeliportPlacement	80149E80	a	
+gNeoArkPavilionViewCameras	80184208	f	
+gActor04400MadChaserTaskDescs	80142604	a	
+actor450200StartCompanionTalk	80132220	a	
+gpuBlendRgb555ClutRow	800B27C4	a	
+D_80072834	80072834	a	
+actor361100ClearHeadAimTaskHandle	80162B0C	a	
+gCapConfirmedChoiceIndex	801156A8	a	
+itemGetText	800B8EB0	a	
+gActor451100SubmarineTunnelEntryScript	80136108	a	
+ScaleMatrix	8004A98C	a	
+uiDrawTitle	80048E38	a	
+playerActorEndScripted	80104838	a	
+gfxRotMatrixX	8003C788	a	
+D_80071071	80071071	a	
+gRoomEffectSparkEmitterId	80115720	a	
+MulMatrix0	80044208	a	
+D_80114FF8	80114FF8	a	
+gActor450900Tasks	80135E78	a	
+itemMenuIsHotspotActionConfirmed	800D4EC0	a	
+inventoryClearItems	800BAC8C	a	
+gCapRestoreView	80115694	a	
+D_801153F6	801153F6	a	
+gWorldCoordTransientPointLights	80114F30	a	
+gActor443500PowerPlantProgressDialogueScript	80143494	a	
+capSpawnEventIfIdle	800E3D8C	a	
+gDisplayState	80070F68	a	
+itemMenuSetItemDescriptionPrompt	800CEB40	a	
+D_8007217B	8007217B	a	
+gActor136300GarageCompanionSceneScript	8013B590	a	
+ApplyTransposeMatrixLV	80044050	a	
+gSpriteAreaTables	8010CB68	a	
+inventoryCanAddItem	800B8988	a	
+sceneFindEnemyByPlaceKey	800B584C	a	
+gMidiMusicVolume	8007A396	a	
+inventoryMeltIceBagIfExpired	800BC254	a	
+gteMIMefunc	8004AD78	a	
+inventoryGetItemSortKey	800BC18C	a	
+uiGetTextRowsHeight	80048E2C	a	
+gCapControlFlags	801156A4	a	
+gFsActorBufferWrittenBytes	8006D860	a	
+gActor142600IncineratorArrivalScript	801360E4	a	
+playerActorEnterLocomotion	801066DC	a	
+D_8007218B	8007218B	a	
+uiDrawHorizontalSeparator	80047A0C	a	
+sndEvtRequestScriptStart	8005414C	a	
+actor215100CapCaptionDrawCurrent	8014B0D4	a	
+gActor335800BalconyEntryScript	80165060	a	
+gMapNeoArkPavilionVariant11Placements	8017B530	a	
+stageReleaseTaskPrimitiveBuffer	8003F9F4	a	
+equipmentGetWeaponSupply	800BBDC8	a	
+animationAimHeadAt	800B17D4	a	
+gRoomEffectOrangeBurstId	8011573C	a	
+viewGetMappedCamera	800A8C08	a	
+gCdCmdQueue	80068FA0	a	
+gActor146300WaterTankEventSkipScript	80138570	a	
+capAbortPlayback	800E6CF0	a	
+textDrawUiLines	8002FB84	a	
+streamFinishScene	800B00C4	a	
+loadingEnqueueEquippedWeaponResources	800A9BE4	a	
+gActor503500BossIntroScript	8014BD48	a	
+gActor207000SlouchTaskDescs	801575F0	a	
+companionRestoreFullHp	800E3D78	a	
+textItoaPadded	8002F44C	a	
+playerStateRestoreFullHpMp	800E3D5C	a	
+gRoomEffectWaterRippleId	8011574C	a	
+memFillBytes	8002D894	a	
+D_8007106B	8007106B	a	
+gActor450800NurseryShootingScript	8013AF8C	a	
+uiFitPanelToList	80046830	a	
+uiSetPromptText	80049D34	a	
+RotMatrixX	8004BE58	a	
+worldCoordSetModelAmbientColor	800D9550	a	
+worldTargetLinkNode	800DABEC	a	
+damageAccumulateLifeDrainHp	800E2C78	a	
+gActor451100SubmarineTunnelSceneScript	80135220	a	
+taskReparent	8002D14C	a	
+gActor160600SceneSkipScript	80136258	a	
+playerActorTurnToYaw	80104E00	a	
+gRoomEffectState	80115740	a	
+TransposeMatrix	800420B8	a	
+worldCollisionProjectGroundPoint	800EA1A8	a	
+inventoryClearCollectedBit	800BAEC0	a	
+D_8007216C	8007216C	a	
+uiSpawnOptionDialog	800480A0	a	
+neoArkPavilionInstallRoomEffectsTask	8017FC10	ft	
+actorRenderComposeCoord	80098F58	a	
+GetClut	80042AE0	a	
+gRoomEffectGlowDiscId	80115734	a	
+itemMenuDrawQuantity	800CDBEC	a	
+neo_ark_pavilion_TEXT_SIZE	000061EC	a	
+areaGetCurrentObjectState	800BB470	a	
+gActor341900GluttonEntranceTaskDescs	80164190	a	
+gWorldCollisionActionTriggerListHead	8011556C	a	
+actor260500StartHeliportConversation	80149EBC	a	
+fadeDrawOverlay	8002BA9C	a	
+worldCollisionResolvePushback	800E0C10	a	
+equipmentEquipCarriedArmor	800B7A50	a	
+__subdf3	8004BC28	a	
+D_80072A98	80072A98	a	
+padInputChangeSuppression	800E9BDC	a	
+gActor450800NurseryReentryScript	8013A84C	a	
+gEvsPlaybackPaused	801156F9	a	
+gActor460200TentArrivalScript	801362B8	a	
+RotMatrixY	8004BFF8	a	
+gActor361100PodSceneSkipScript	80166848	a	
+streamFindMovieSlot	8001EDC8	a	
+gActor310100PlayerAnimationSets	801797FC	a	
+gActor142900ElevatorFirstVisitScript	801378D0	a	
+inventoryIsItemLimitReached	800B7420	a	
+streamSetExternalScenePayloadBuffer	800B015C	a	
+gActor141000FlightTasks	801348D8	a	
+mapNeoArkResolveRoomVariant	80179B14	a	
+gViewIdentityMap	8010CAF8	a	
+gpuResetAndInvalidateModelBuffers	80041E4C	a	
+animationAimHeadAtTask	800B0928	a	
+gItemMenuEmptyPromptText	8010F8D0	a	
+padScriptHalt	800E8F68	a	
+gWorldCollisionSurfacePushbackSuppression	80115428	a	

@@ -1,0 +1,4 @@
+/* Generated from assets/USA/pe2pkg/actor_341700.pe2pkg; model at 0x14118. */
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0,

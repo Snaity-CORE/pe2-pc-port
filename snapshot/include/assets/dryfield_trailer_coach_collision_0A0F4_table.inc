@@ -1,0 +1,4 @@
+/* Generated from assets/USA/pe2pkg/dryfield_trailer_coach.pe2pkg; grid header at 0xA0F4. */
+    DRYFIELD_TRAILER_COACH_CELL_FACE_LIST_AT_OFFSET(0),
+    DRYFIELD_TRAILER_COACH_CELL_FACE_LIST_AT_OFFSET(0),
+    DRYFIELD_TRAILER_COACH_CELL_FACE_LIST_AT_OFFSET(0),

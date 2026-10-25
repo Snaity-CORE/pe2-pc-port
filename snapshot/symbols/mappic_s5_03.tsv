@@ -1,0 +1,42 @@
+_MACRO_INC_GUARD	00000001	al	build/USA/src/mappic/mappic_s5_03/mappic_s5_03.i
+_gMappicS503ParkingGarageShapeSkeleton	8012EF34	l	build/USA/src/mappic/mappic_s5_03/mappic_s5_03.i
+_gMappicS503ParkingGarageShapePartVerts	8012EF58	l	build/USA/src/mappic/mappic_s5_03/mappic_s5_03.i
+_gMappicS503ParkingGarageShapeVerts	8012EF5C	l	build/USA/src/mappic/mappic_s5_03/mappic_s5_03.i
+_gMappicS503ParkingGarageShapeStream	8012EF7C	l	build/USA/src/mappic/mappic_s5_03/mappic_s5_03.i
+_gMappicS503VehicularAirlockShapeSkeleton	8012EFC4	l	build/USA/src/mappic/mappic_s5_03/mappic_s5_03.i
+_gMappicS503VehicularAirlockShapePartVerts	8012EFE8	l	build/USA/src/mappic/mappic_s5_03/mappic_s5_03.i
+_gMappicS503VehicularAirlockShapeVerts	8012EFEC	l	build/USA/src/mappic/mappic_s5_03/mappic_s5_03.i
+_gMappicS503VehicularAirlockShapeStream	8012F00C	l	build/USA/src/mappic/mappic_s5_03/mappic_s5_03.i
+_gMappicS503BulwarkShapeSkeleton	8012F054	l	build/USA/src/mappic/mappic_s5_03/mappic_s5_03.i
+_gMappicS503BulwarkShapePartVerts	8012F078	l	build/USA/src/mappic/mappic_s5_03/mappic_s5_03.i
+_gMappicS503BulwarkShapeVerts	8012F07C	l	build/USA/src/mappic/mappic_s5_03/mappic_s5_03.i
+_gMappicS503BulwarkShapeStream	8012F0BC	l	build/USA/src/mappic/mappic_s5_03/mappic_s5_03.i
+_gMappicS503HeliportShapeSkeleton	8012F134	l	build/USA/src/mappic/mappic_s5_03/mappic_s5_03.i
+_gMappicS503HeliportShapePartVerts	8012F158	l	build/USA/src/mappic/mappic_s5_03/mappic_s5_03.i
+_gMappicS503HeliportShapeVerts	8012F15C	l	build/USA/src/mappic/mappic_s5_03/mappic_s5_03.i
+_gMappicS503HeliportShapeStream	8012F19C	l	build/USA/src/mappic/mappic_s5_03/mappic_s5_03.i
+_gMappicS503AirlockShapeSkeleton	8012F214	l	build/USA/src/mappic/mappic_s5_03/mappic_s5_03.i
+_gMappicS503AirlockShapePartVerts	8012F238	l	build/USA/src/mappic/mappic_s5_03/mappic_s5_03.i
+_gMappicS503AirlockShapeVerts	8012F23C	l	build/USA/src/mappic/mappic_s5_03/mappic_s5_03.i
+_gMappicS503AirlockShapeStream	8012F27C	l	build/USA/src/mappic/mappic_s5_03/mappic_s5_03.i
+_gMappicS503GuardroomShapeSkeleton	8012F2DC	l	build/USA/src/mappic/mappic_s5_03/mappic_s5_03.i
+_gMappicS503GuardroomShapePartVerts	8012F300	l	build/USA/src/mappic/mappic_s5_03/mappic_s5_03.i
+_gMappicS503GuardroomShapeVerts	8012F304	l	build/USA/src/mappic/mappic_s5_03/mappic_s5_03.i
+_gMappicS503GuardroomShapeStream	8012F324	l	build/USA/src/mappic/mappic_s5_03/mappic_s5_03.i
+__romPos	0000043C	al	
+mappic_s5_03_VRAM	8012EF30		
+gMappicS503BulwarkShape	8012F110		
+mappic_s5_03_ROM_END	0000043C	a	
+mappic_s5_03_RODATA_END	8012EF34		
+mappic_s5_03_DATA_START	8012EF34		
+gMappicS503ParkingGarageShape	8012EFA0		
+mappic_s5_03_DATA_END	8012F36C		
+gMappicS503VehicularAirlockShape	8012F030		
+mappic_s5_03_ROM_START	00000000	a	
+mappic_s5_03_DATA_SIZE	00000438	a	
+gMappicS503GuardroomShape	8012F348		
+mappic_s5_03_RODATA_SIZE	00000004	a	
+gMappicS503AirlockShape	8012F2B8		
+mappic_s5_03_RODATA_START	8012EF30		
+gMappicS503HeliportShape	8012F1F0		
+mappic_s5_03_VRAM_END	8012F36C		

@@ -1,0 +1,2129 @@
+gcc2_compiled.	8017D6A4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+__gnu_compiled_c	8017D6A4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+_MACRO_INC_GUARD	00000001	al	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+_gNeoArkShrineRoomMessages	80181E34	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+_neoArkShrineResolveRoomEvent	8017D6AC	flt	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+_neoArkShrineRefuseKeyItemUse	8017D6A4	flt	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+_neoArkShrineHandleRoomAction	8017D7F0	flt	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+_neoArkShrineHandleRoomCommand	8017D740	flt	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+_gNeoArkShrinePuzzleSessionTaskDescs	80181E5C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+_neoArkShrinePuzzleSessionTask	8017D84C	flt	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+_gNeoArkShrineObjectEventVariantKey	80181E74	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+_gNeoArkShrineModel049E8Skeleton	80181E78	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+_gNeoArkShrineModel049E8PartVerts	80181E9C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+_gNeoArkShrineModel049E8Verts	80181EA0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+_gNeoArkShrineModel049E8Stream	80181FA8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+_gNeoArkShrineModel049E8	80182150	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+_gNeoArkShrineModel04C6CSkeleton	80182174	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+_gNeoArkShrineModel04C6CPartVerts	80182198	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+_gNeoArkShrineModel04C6CVerts	8018219C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+_gNeoArkShrineModel04C6CStream	8018222C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+_gNeoArkShrineModel04C6C	801823E0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+_gNeoArkShrinePuzzleCellOrigins	8018252C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+_gNeoArkShrinePuzzleTileTextureOrigins	801825AC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+_gNeoArkShrinePuzzleCellNeighbours	801825EC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM1	8017D6A4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM2	8017D6A4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM3	8017D6A4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM4	8017D6AC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM5	8017D6AC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM6	8017D6AC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM7	8017D6BC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM8	8017D6C0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM9	8017D6C4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM10	8017D6E0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM11	8017D6E8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM12	8017D6F8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM13	8017D708	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM14	8017D718	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM15	8017D724	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM16	8017D72C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM17	8017D730	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM18	8017D740	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM19	8017D740	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM20	8017D740	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM21	8017D74C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM22	8017D750	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM23	8017D758	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM24	8017D760	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM25	8017D76C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM26	8017D778	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM27	8017D788	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM28	8017D798	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM29	8017D7A0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM30	8017D7AC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM31	8017D7B8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM32	8017D7D4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM33	8017D7D4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM34	8017D7E4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM35	8017D7E8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM36	8017D7F0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM37	8017D7F0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM38	8017D7F0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM39	8017D7F8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM40	8017D808	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM41	8017D818	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM42	8017D82C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM43	8017D834	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM44	8017D83C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM45	8017D83C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM46	8017D840	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM47	8017D844	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM48	8017D84C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM49	8017D84C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM50	8017D84C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM51	8017D860	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM52	8017D880	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM53	8017D888	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM54	8017D890	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM55	8017D8A8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM56	8017D8AC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM57	8017D8B4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM58	8017D8B8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM59	8017D8C0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM60	8017D8D4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM61	8017D8D8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM62	8017D8E0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM63	8017D8F4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM64	8017D8F4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM65	8017D8F4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+_neoArkShrineInitializeRoom	8017D8F4	flt	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM66	8017D900	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM67	8017D908	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM68	8017D90C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM69	8017D910	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM70	8017D918	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM71	8017D920	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM72	8017D940	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM73	8017D940	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM74	8017D940	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+_neoArkShrineRoomIdle	8017D940	flt	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM75	8017D940	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM76	8017D948	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+_gNeoArkShrineRoomStateHandlers	8017D5C4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM77	8017D948	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM78	8017D948	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM79	8017D94C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM80	8017D950	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM81	8017D954	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM82	8017D970	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM83	8017D990	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM84	8017D9A0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM85	8017D9A0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM86	8017D9A0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM87	8017D9AC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM88	8017D9B0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM89	8017D9B4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM90	8017D9B8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM91	8017D9BC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM92	8017D9C0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM93	8017D9CC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM94	8017D9D0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM95	8017D9D8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM96	8017D9E4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM97	8017D9F4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM98	8017D9F8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM99	8017DA00	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM100	8017DA00	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM101	8017DA08	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM102	8017DA0C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM103	8017DA1C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM104	8017DA20	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM105	8017DA24	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM106	8017DA30	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM107	8017DA40	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM108	8017DA50	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM109	8017DA60	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM110	8017DA7C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM111	8017DA80	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM112	8017DA84	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM113	8017DA90	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM114	8017DA9C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM115	8017DAA4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM116	8017DAA8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM117	8017DAB4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM118	8017DABC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM119	8017DABC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM120	8017DAC0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM121	8017DAD0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM122	8017DAD0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM123	8017DAD8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM124	8017DADC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM125	8017DAEC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM126	8017DAF0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM127	8017DB10	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM128	8017DB10	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM129	8017DB10	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM130	8017DB20	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM131	8017DB38	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM132	8017DB3C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM133	8017DB44	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM134	8017DB58	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM135	8017DB74	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM136	8017DB84	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM137	8017DB98	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM138	8017DBA8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM139	8017DBB4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM140	8017DBC8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM141	8017DBCC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM142	8017DBD0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM143	8017DBD4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM144	8017DBE8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM145	8017DC08	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM146	8017DC0C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM147	8017DC18	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM148	8017DC28	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM149	8017DC2C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM150	8017DC38	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+_neoArkShrineCheckPuzzleArrangement	8017E254	flt	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM151	8017DC40	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM152	8017DC84	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM153	8017DCCC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM154	8017DCD4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM155	8017DCDC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM156	8017DCF0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM157	8017DCF8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM158	8017DD08	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM159	8017DD10	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM160	8017DD38	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM161	8017DD38	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM162	8017DD38	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+_actionPromptOutlineRectDefault	8017DD38	flt	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM163	8017DD38	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM164	8017DD38	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM165	8017DD3C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM166	8017DD40	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM167	8017DD44	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM168	8017DD48	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM169	8017DD50	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM170	8017DD68	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM171	8017DD6C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM172	8017DD78	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM173	8017DD7C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM174	8017DD88	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM175	8017DD8C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM176	8017DD98	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM177	8017DDA4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM178	8017DDA8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM179	8017DDC4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM180	8017DDC8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM181	8017DDD4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM182	8017DDDC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM183	8017DE2C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM184	8017DE30	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM185	8017DE34	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM186	8017DE38	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM187	8017DE3C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM188	8017DE58	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM189	8017DE5C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM190	8017DE68	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM191	8017DE70	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM192	8017DEC0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM193	8017DEC4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM194	8017DEC8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM195	8017DECC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM196	8017DED0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM197	8017DEEC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM198	8017DEF0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM199	8017DEFC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM200	8017DF04	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM201	8017DF30	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM202	8017DF34	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM203	8017DF48	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM204	8017DF4C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM205	8017DF50	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM206	8017DF74	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM207	8017DF7C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM208	8017DF7C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM209	8017DF7C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM210	8017DF7C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM211	8017DF7C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM212	8017DF98	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM213	8017DF9C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM214	8017DFA4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM215	8017DFB4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM216	8017DFBC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM217	8017DFBC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM218	8017DFC0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM219	8017DFCC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM220	8017DFFC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM221	8017E0E4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM222	8017E0EC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM223	8017E0F0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM224	8017E0F4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM225	8017E0FC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM226	8017E108	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM227	8017E10C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM228	8017E110	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM229	8017E164	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM230	8017E168	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM231	8017E174	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM232	8017E178	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM233	8017E180	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM234	8017E188	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM235	8017E18C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM236	8017E190	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM237	8017E194	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM238	8017E198	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM239	8017E208	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM240	8017E23C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM241	8017E24C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM242	8017E254	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM243	8017E254	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM244	8017E254	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM245	8017E258	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM246	8017E268	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM247	8017E26C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM248	8017E2B4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM249	8017E30C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM250	8017E314	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM251	8017E324	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM252	8017E32C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM253	8017E380	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM254	8017E388	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM255	8017E3DC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM256	8017E3E0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM257	8017E460	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM258	8017E4B8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM259	8017E4C0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM260	8017E50C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM261	8017E514	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM262	8017E518	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+LM263	8017E528	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine.i
+gcc2_compiled.	8017E528	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+__gnu_compiled_c	8017E528	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_MACRO_INC_GUARD	00000001	al	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrinePuzzleStates	8017D5D0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_neoArkShrineInitializePuzzle	8017ECC4	flt	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_neoArkShrinePreparePuzzleCursor	8017EDAC	flt	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_neoArkShrineOpenPuzzleCommands	8017EDE0	flt	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_neoArkShrineResolvePuzzleExamine	8017EE44	flt	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_neoArkShrineClosePuzzle	8017EED4	flt	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_neoArkShrineBeginPuzzleLayoutActivation	8017EF68	flt	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_neoArkShrineWaitPuzzleLayoutActivation	8017EFE4	flt	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_neoArkShrineBeginPuzzleEnemyRelease	8017F094	flt	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_neoArkShrineWaitToSpawnFirstFallingProp	8017F0F0	flt	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_neoArkShrineWaitToSpawnSecondFallingProp	8017F178	flt	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_neoArkShrineWaitPuzzleEnemyReveal	8017F21C	flt	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_neoArkShrineFinishPuzzleEnemyRelease	8017F274	flt	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_neoArkShrineBeginPuzzleLayoutRestoration	8017F320	flt	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_neoArkShrineWaitPuzzleLayoutRestoration	8017F398	flt	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineFirstPropStates	8017D610	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_neoArkShrineInitializeFirstFallingProp	8017F4C8	flt	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_neoArkShrineDropFirstProp	8017F578	flt	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_neoArkShrineWaitFirstPropLayoutRestore	8017F640	flt	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineSecondPropStates	8017D620	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_neoArkShrineInitializeSecondFallingProp	8017F688	flt	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_neoArkShrineDropSecondProp	8017F738	flt	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineFlarePositions	8018268C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gRoomVisualEffectsTwinTrailEndpointOffsets	80182714	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineBaseCollisionGrid	80182D2C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineViewBoundaryTriggers	80185A80	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineBaseActionTriggers	80185EA8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineSightOccluders	80186730	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineActiveCollisionGrid	801831D8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineActiveActionTriggers	80186154	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineEnemyReleaseCollisionGrid	80183698	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineEnemyReleaseActionTriggers	801863B4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineRoomLights	80185A68	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineRoom2ViewMap	801827B4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineRoom4ViewMap	801827C8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineRoom5ViewMap	801827DC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineBaseCollisionGridNormals	801828BC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineBaseCollisionGridVerts	8018290C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineBaseCollisionGridFaces	80182A7C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineBaseCollisionGridCells	80182BE4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineBaseCollisionGridTable	80182CFC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineActiveCollisionGridNormals	80182D50	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineActiveCollisionGridVerts	80182D98	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineActiveCollisionGridFaces	80182F18	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineActiveCollisionGridCells	8018308C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineActiveCollisionGridTable	801831A8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineEnemyReleaseCollisionGridNormals	801831FC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineEnemyReleaseCollisionGridVerts	80183244	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineEnemyReleaseCollisionGridFaces	801833D4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineEnemyReleaseCollisionGridCells	80183548	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineEnemyReleaseCollisionGridTable	80183668	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineView1SpriteBatches	80183944	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineView2SpriteBatches	80183954	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineView3SpriteSources	80183964	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineView3SpriteBatches	80183DD8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineView4SpriteSources	80183E10	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineView4SpriteBatches	801840E0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineView5SpriteSources	80184108	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineView5SpriteBatches	801841BC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineView6SpriteSources	801841D4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineView6SpriteBatches	80184698	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineView7SpriteBatches	801846E8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineView8SpriteSources	801846F8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineView8SpriteBatches	80184838	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineView9SpriteSources	80184850	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineView9SpriteBatches	801849B8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineView10SpriteSources	801849D0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineView10SpriteBatches	80184AE8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineView11SpriteBatches	80184B08	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineView12SpriteBatches	80184B18	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineView13SpriteSources	80184B28	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineView13SpriteBatches	80184D58	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineView14SpriteBatches	80184D78	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineView15SpriteBatches	80184D88	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineView16SpriteSources	80184D98	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineView16SpriteBatches	80185040	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineView17SpriteSources	80185068	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineView17SpriteBatches	80185180	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineView18SpriteSources	801851A0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineView18SpriteBatches	80185268	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineDirectionalLights	80185358	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrinePointLights	80185408	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineVariant1Resources	80186614	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineVariant2Resources	8018662C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineVariant3Resources	80186644	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineVariant4Resources	8018665C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineVariant5Resources	80186680	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineVariant7Resources	80186698	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineVariant11Resources	801866B0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineFootstepSounds	80186820	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineSurface0Properties	8018682C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineSurface1Properties	80186834	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_gNeoArkShrineSurface2Properties	8018683C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1	8017E528	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM2	8017E528	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_actionPromptMoveCursorsDefault	8017E528	flt	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM3	8017E554	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM4	8017E574	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM5	8017E578	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM6	8017E580	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM7	8017E584	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM8	8017E58C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM9	8017E5C4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM10	8017E5D0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM11	8017E5DC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM12	8017E5E0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM13	8017E5EC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM14	8017E5F0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM15	8017E5F4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM16	8017E5FC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM17	8017E620	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM18	8017E630	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM19	8017E640	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM20	8017E648	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM21	8017E650	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM22	8017E658	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM23	8017E65C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM24	8017E688	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM25	8017E690	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM26	8017E698	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM27	8017E6A0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM28	8017E6A4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM29	8017E6D0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM30	8017E708	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM31	8017E710	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM32	8017E718	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM33	8017E720	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM34	8017E728	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM35	8017E730	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM36	8017E738	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM37	8017E740	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM38	8017E748	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM39	8017E74C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM40	8017E758	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM41	8017E77C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM42	8017E780	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM43	8017E790	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM44	8017E824	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM45	8017E828	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM46	8017E830	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM47	8017E83C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM48	8017E854	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM49	8017E880	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM50	8017E884	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM51	8017E888	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM52	8017E890	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM53	8017E894	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM54	8017E8A0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM55	8017E8A4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM56	8017E8C0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM57	8017E8E0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM58	8017E8E8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM59	8017E8EC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM60	8017E8F0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM61	8017E8F8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM62	8017E8FC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM63	8017E904	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM64	8017E910	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM65	8017E918	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM66	8017E91C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM67	8017E920	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM68	8017E928	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM69	8017E92C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM70	8017E930	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM71	8017E934	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM72	8017E93C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_actionPromptDrawCursorDefault	8017E988	flt	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM73	8017E944	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM74	8017E958	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM75	8017E988	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM76	8017E988	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM77	8017E988	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM78	8017E988	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM79	8017E988	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM80	8017E990	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM81	8017E998	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM82	8017E9D0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM83	8017E9D8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM84	8017E9E4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM85	8017E9E8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM86	8017E9EC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM87	8017E9EC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM88	8017E9F4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM89	8017EA10	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM90	8017EA18	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM91	8017EA20	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM92	8017EA28	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM93	8017EA38	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM94	8017EA68	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM95	8017EA70	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM96	8017EA70	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM97	8017EA70	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM98	8017EA78	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_actionPromptResetDefault	8017F80C	flt	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM99	8017EA90	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM100	8017EAB0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM101	8017EAC0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM102	8017EAC0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM103	8017EAC0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM104	8017EAC8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM105	8017EAE0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM106	8017EAE0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM107	8017EAE0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM108	8017EAE8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM109	8017EB24	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM110	8017EB44	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM111	8017EB54	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM112	8017EB54	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM113	8017EB54	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM114	8017EB58	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM115	8017EB5C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM116	8017EB60	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM117	8017EB88	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM118	8017EBA8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM119	8017EBB8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM120	8017EBB8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM121	8017EBB8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM122	8017EBBC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM123	8017EBC0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM124	8017EBC4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM125	8017EBE0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM126	8017EC00	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM127	8017EC10	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM128	8017EC10	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM129	8017EC10	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM130	8017EC14	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM131	8017EC40	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM132	8017EC98	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM133	8017EC9C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM134	8017ECA4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM135	8017ECA8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM136	8017ECAC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM137	8017ECB4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM138	8017ECBC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM139	8017ECBC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM140	8017ECC4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM141	8017ECC4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM142	8017ECC4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM143	8017ECD0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM144	8017ECD8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM145	8017ECDC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM146	8017ECE8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM147	8017ECF0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM148	8017ECF8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM149	8017ED3C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM150	8017ED58	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM151	8017ED5C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM152	8017ED70	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM153	8017ED80	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM154	8017ED8C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM155	8017ED98	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM156	8017EDAC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM157	8017EDAC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM158	8017EDAC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM159	8017EDAC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM160	8017EDB4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM161	8017EDBC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM162	8017EDC4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM163	8017EDC8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM164	8017EDCC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM165	8017EDD8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM166	8017EDE0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM167	8017EDE0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM168	8017EDE0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM169	8017EDEC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM170	8017EDF0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM171	8017EDF4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM172	8017EDFC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM173	8017EE00	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM174	8017EE08	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM175	8017EE10	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM176	8017EE14	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM177	8017EE18	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM178	8017EE24	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM179	8017EE2C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM180	8017EE44	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM181	8017EE44	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM182	8017EE44	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM183	8017EE50	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM184	8017EE54	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM185	8017EE5C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM186	8017EE60	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM187	8017EE64	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM188	8017EE68	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM189	8017EE70	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM190	8017EE80	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM191	8017EE90	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM192	8017EE98	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM193	8017EEA0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM194	8017EEA0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM195	8017EEA8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM196	8017EEB0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM197	8017EEB8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM198	8017EEC0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM199	8017EED4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM200	8017EED4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM201	8017EED4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM202	8017EEE4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM203	8017EEE8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM204	8017EEEC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM205	8017EEF0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM206	8017EF3C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM207	8017EF48	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM208	8017EF54	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM209	8017EF68	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM210	8017EF68	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM211	8017EF68	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM212	8017EF74	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM213	8017EF78	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM214	8017EF7C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM215	8017EF88	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM216	8017EF90	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM217	8017EFCC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM218	8017EFE4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM219	8017EFE4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM220	8017EFE4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM221	8017EFF0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM222	8017EFF4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM223	8017EFFC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM224	8017F080	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM225	8017F094	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM226	8017F094	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM227	8017F094	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM228	8017F0A0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM229	8017F0A4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM230	8017F0AC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM231	8017F0B0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM232	8017F0B4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM233	8017F0BC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM234	8017F0C8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM235	8017F0CC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM236	8017F0DC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM237	8017F0F0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM238	8017F0F0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM239	8017F0F0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM240	8017F104	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM241	8017F108	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM242	8017F110	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM243	8017F11C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM244	8017F120	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM245	8017F130	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM246	8017F144	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM247	8017F150	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM248	8017F154	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM249	8017F164	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM250	8017F178	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM251	8017F178	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM252	8017F178	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM253	8017F188	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM254	8017F190	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM255	8017F19C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM256	8017F1A0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM257	8017F1B0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM258	8017F1B4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM259	8017F1C4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM260	8017F1D8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM261	8017F1E0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM262	8017F1E8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM263	8017F1F0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM264	8017F1F4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM265	8017F1FC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM266	8017F208	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM267	8017F20C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM268	8017F21C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM269	8017F21C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM270	8017F21C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM271	8017F21C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM272	8017F21C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM273	8017F224	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM274	8017F228	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM275	8017F22C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM276	8017F230	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM277	8017F234	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM278	8017F240	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM279	8017F248	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM280	8017F25C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM281	8017F26C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM282	8017F274	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM283	8017F274	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM284	8017F274	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM285	8017F284	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM286	8017F28C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM287	8017F290	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM288	8017F298	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM289	8017F29C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM290	8017F2A0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM291	8017F2A4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM292	8017F2A8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM293	8017F2AC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM294	8017F2B0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM295	8017F2B4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM296	8017F2B8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM297	8017F2E8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM298	8017F2F4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM299	8017F300	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM300	8017F308	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM301	8017F320	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM302	8017F320	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM303	8017F320	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM304	8017F32C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM305	8017F330	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM306	8017F334	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM307	8017F340	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM308	8017F348	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM309	8017F380	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM310	8017F398	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM311	8017F398	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM312	8017F398	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM313	8017F3A4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM314	8017F3A8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM315	8017F3B0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM316	8017F434	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM317	8017F448	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM318	8017F448	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM319	8017F448	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM320	8017F448	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM321	8017F448	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM322	8017F45C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM323	8017F464	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM324	8017F46C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM325	8017F470	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM326	8017F474	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM327	8017F478	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM328	8017F47C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM329	8017F480	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM330	8017F484	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM331	8017F490	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM332	8017F4A4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM333	8017F4A8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM334	8017F4B0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM335	8017F4B4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM336	8017F4C0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM337	8017F4C8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM338	8017F4C8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM339	8017F4C8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM340	8017F4D8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_neoArkShrineUpdateFallingPropLighting	8017F86C	flt	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM341	8017F560	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM342	8017F578	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM343	8017F578	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM344	8017F578	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM345	8017F590	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM346	8017F594	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM347	8017F598	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM348	8017F59C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM349	8017F5A0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM350	8017F5A4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM351	8017F5AC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM352	8017F5BC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM353	8017F5C8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM354	8017F620	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM355	8017F628	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM356	8017F640	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM357	8017F640	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM358	8017F640	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM359	8017F648	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM360	8017F64C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM361	8017F654	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM362	8017F668	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM363	8017F678	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM364	8017F688	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM365	8017F688	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM366	8017F688	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM367	8017F698	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM368	8017F720	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM369	8017F738	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM370	8017F738	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM371	8017F738	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM372	8017F750	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM373	8017F754	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM374	8017F758	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM375	8017F75C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM376	8017F760	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM377	8017F764	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM378	8017F76C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM379	8017F77C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM380	8017F78C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM381	8017F79C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM382	8017F7EC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM383	8017F7F4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM384	8017F80C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM385	8017F80C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM386	8017F80C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM387	8017F80C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM388	8017F814	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM389	8017F828	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM390	8017F848	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM391	8017F858	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM392	8017F864	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM393	8017F86C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM394	8017F86C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM395	8017F86C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM396	8017F87C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM397	8017F884	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM398	8017F88C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM399	8017F890	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM400	8017F898	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM401	8017F89C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM402	8017F8A0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM403	8017F8A4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM404	8017F8A8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM405	8017F8AC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM406	8017F8B0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM407	8017F8B8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM408	8017F8BC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM409	8017F8C0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM410	8017F8C8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM411	8017F8DC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM412	8017F8DC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM413	8017F8DC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM414	8017F8EC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM415	8017F8FC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM416	8017F900	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM417	8017F908	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM418	8017F910	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM419	8017F918	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM420	8017F920	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM421	8017F928	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM422	8017F930	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM423	8017F968	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM424	8017F970	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_neoArkShrineDrawFlare	8017FC14	flt	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM425	8017F980	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM426	8017F990	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM427	8017F9A0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM428	8017F9B0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM429	8017F9C0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM430	8017F9C4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM431	8017F9CC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM432	8017F9CC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM433	8017F9D4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM434	8017F9E4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM435	8017F9F4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM436	8017FA04	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM437	8017FA14	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM438	8017FA24	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM439	8017FA34	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM440	8017FA44	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM441	8017FA48	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM442	8017FA50	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM443	8017FA50	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM444	8017FA58	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM445	8017FA68	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM446	8017FA78	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM447	8017FA88	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM448	8017FA8C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM449	8017FA94	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM450	8017FA94	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM451	8017FA9C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM452	8017FAAC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM453	8017FABC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM454	8017FAC0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM455	8017FAC8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM456	8017FAC8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM457	8017FAD0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM458	8017FAE0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM459	8017FAF0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM460	8017FB00	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM461	8017FB04	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM462	8017FB0C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM463	8017FB0C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM464	8017FB14	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM465	8017FB24	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM466	8017FB28	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM467	8017FB30	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM468	8017FB30	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM469	8017FB38	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM470	8017FB48	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM471	8017FB58	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM472	8017FB5C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM473	8017FB64	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM474	8017FB64	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM475	8017FB6C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM476	8017FB7C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM477	8017FB8C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM478	8017FB90	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM479	8017FB98	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM480	8017FB98	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM481	8017FBA0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM482	8017FBB0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM483	8017FBC0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM484	8017FBD0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM485	8017FBD4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM486	8017FBDC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM487	8017FBDC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM488	8017FBE4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM489	8017FBF4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM490	8017FC04	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM491	8017FC04	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM492	8017FC14	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM493	8017FC14	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM494	8017FC14	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM495	8017FC14	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM496	8017FC14	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM497	8017FC1C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM498	8017FC20	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM499	8017FC24	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM500	8017FC28	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM501	8017FC34	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM502	8017FC4C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM503	8017FC7C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM504	8017FC84	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM505	8017FC90	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM506	8017FC98	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM507	8017FCAC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM508	8017FCB4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM509	8017FCC4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM510	8017FCD4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM511	8017FCE4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM512	8017FCF0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM513	8017FCF8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM514	8017FD08	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM515	8017FD0C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM516	8017FD14	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM517	8017FD18	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM518	8017FD24	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM519	8017FD30	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM520	8017FD34	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM521	8017FD3C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM522	8017FD40	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM523	8017FD44	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM524	8017FD48	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM525	8017FD4C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM526	8017FD50	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM527	8017FD54	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM528	8017FD60	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM529	8017FD64	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM530	8017FD68	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM531	8017FD6C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM532	8017FD70	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM533	8017FD78	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM534	8017FDF8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM535	8017FE10	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM536	8017FE20	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM537	8017FE8C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM538	8017FE98	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM539	8017FEA0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM540	8017FEA0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM541	8017FEA0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM542	8017FEB0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_roomVisualEffectsDrawFlashDisc	80180570	flt	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_roomVisualEffectsDrawFlashRing	80180144	flt	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_roomVisualEffectsDrawBurstStar	80181474	flt	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM543	8018012C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM544	80180144	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM545	80180144	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM546	80180144	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM547	8018014C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM548	80180154	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM549	8018017C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM550	80180180	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM551	80180184	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM552	8018018C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM553	80180190	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM554	80180194	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM555	80180198	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM556	8018019C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM557	801801A0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM558	801801A4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM559	801801A8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM560	801801AC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM561	801801B0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM562	801801C8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM563	801801F8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM564	80180204	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM565	80180210	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM566	80180218	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM567	80180228	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM568	80180238	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM569	80180248	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM570	8018024C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM571	80180250	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM572	80180254	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM573	80180258	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM574	80180284	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM575	80180288	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM576	8018028C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM577	80180290	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM578	801802C4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM579	801802C8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM580	801802DC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM581	801802E0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM582	801802EC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM583	801802F4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM584	80180304	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM585	80180310	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM586	8018031C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM587	80180340	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM588	8018035C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM589	80180360	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM590	80180374	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM591	80180378	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM592	80180388	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM593	8018039C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM594	801803A0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM595	801803A4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM596	801803B4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM597	801803C8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM598	801803CC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM599	801803DC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM600	801803F0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM601	801803F4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM602	80180404	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM603	80180418	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM604	8018041C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM605	8018042C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM606	80180440	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM607	80180444	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM608	80180454	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM609	80180468	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM610	8018046C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM611	8018047C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM612	801804A4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM613	801804E8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM614	801804EC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM615	801804FC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM616	80180500	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM617	80180514	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM618	80180520	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM619	8018052C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM620	80180544	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM621	80180570	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM622	80180570	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM623	80180570	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM624	80180580	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM625	80180588	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM626	801805A8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM627	801805AC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM628	801805B0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM629	801805B4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM630	801805B8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM631	801805BC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM632	801805C0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM633	801805C4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM634	801805C8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM635	801805CC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM636	801805D0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM637	801805D4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM638	801805D8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM639	801805F0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM640	80180620	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM641	80180628	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM642	80180634	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM643	8018063C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM644	8018064C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM645	8018065C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM646	8018066C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM647	80180670	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM648	80180674	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM649	80180678	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM650	8018067C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM651	801806A8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM652	801806C0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM653	801806C4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM654	801806C8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM655	801806D4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM656	801806DC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM657	801806EC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM658	801806F8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM659	80180704	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM660	80180720	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM661	80180724	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM662	80180730	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM663	80180730	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM664	80180744	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM665	80180748	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM666	80180758	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM667	8018076C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM668	80180774	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM669	80180784	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM670	80180798	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM671	8018079C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM672	801807AC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM673	801807D4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM674	801807D8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM675	801807DC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM676	801807E0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM677	801807E4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM678	801807E8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM679	801807FC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM680	80180800	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM681	80180810	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM682	80180838	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM683	8018087C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM684	80180880	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM685	80180890	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM686	80180894	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM687	801808A8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM688	801808B4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM689	801808C0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM690	801808D8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM691	80180904	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM692	80180904	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM693	80180904	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM694	80180904	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM695	8018090C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM696	8018093C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM697	80180940	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM698	80180944	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM699	80180948	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM700	8018094C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM701	80180950	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM702	8018095C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM703	8018096C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM704	80180994	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM705	801809A4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM706	801809AC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM707	801809B4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM708	801809B4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM709	801809B4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM710	801809BC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM711	801809C0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM712	801809C4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM713	801809C8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM714	801809CC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM715	801809D0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM716	801809D4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM717	801809E0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM718	801809E4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM719	801809E8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM720	801809EC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM721	801809F0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM722	801809F4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM723	801809F8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM724	801809F8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM725	80180A00	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM726	80180A0C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM727	80180A10	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM728	80180A14	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM729	80180A18	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM730	80180A1C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM731	80180A20	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM732	80180A24	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM733	80180A28	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM734	80180A2C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM735	80180A30	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM736	80180A34	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM737	80180A34	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM738	80180A3C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM739	80180A48	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM740	80180AE0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM741	80180B78	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM742	80180B8C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM743	80180B94	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM744	80180B94	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM745	80180B9C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM746	80180BA4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM747	80180BA8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM748	80180BAC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM749	80180BB0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM750	80180BB4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM751	80180BB8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM752	80180BBC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM753	80180BC0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM754	80180BC4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM755	80180BC8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM756	80180BC8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM757	80180BD4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM758	80180BDC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM759	80180C8C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM760	80180D44	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM761	80180D50	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM762	80180D54	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM763	80180D58	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM764	80180D60	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM765	80180D64	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM766	80180D68	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM767	80180D70	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM768	80180D84	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+_roomVisualEffectsDrawTwinTrail	80180DF4	flt	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM769	80180D9C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM770	80180DBC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM771	80180DC4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM772	80180DF4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM773	80180DF4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM774	80180DF4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM775	80180E08	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM776	80180E10	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM777	80180E20	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM778	80180E24	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM779	80180E3C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM780	80180E40	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM781	80180E44	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM782	80180E50	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM783	80180E68	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM784	80180E98	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM785	80180E9C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM786	80180EB0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM787	80180EBC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM788	80180EC0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM789	80180ED0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM790	80180ED4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM791	80180ED8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM792	80180EDC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM793	80180EE0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM794	80180EE4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM795	80180EE8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM796	80180EEC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM797	80180EF0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM798	80180EF4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM799	80180EF8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM800	80180EFC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM801	80180F00	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM802	80180F04	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM803	80180F08	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM804	80180F0C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM805	80180F10	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM806	80180F14	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM807	80180F18	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM808	80180F1C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM809	80180F28	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM810	80180F34	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM811	80180F38	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM812	80180F3C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM813	80180F40	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM814	80180F4C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM815	80180F58	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM816	80180F64	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM817	80180F6C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM818	80180F78	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM819	80180F80	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM820	80180FA4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM821	80180FB0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM822	80180FC8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM823	80180FD8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM824	80180FE8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM825	80180FF8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM826	80181008	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM827	8018100C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM828	80181024	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM829	80181034	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM830	80181038	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM831	80181040	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM832	80181054	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM833	80181054	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM834	80181058	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM835	8018105C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM836	80181060	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM837	80181068	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM838	80181070	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM839	80181074	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM840	80181078	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM841	8018107C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM842	80181080	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM843	80181084	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM844	80181088	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM845	8018108C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM846	80181090	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM847	80181094	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM848	80181098	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM849	8018109C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM850	801810A0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM851	801810A4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM852	801810A8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM853	801810AC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM854	801810B0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM855	801810B4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM856	801810B8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM857	801810BC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM858	801810C8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM859	801810D4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM860	801810E0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM861	801810EC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM862	801810F8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM863	80181104	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM864	80181108	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM865	8018110C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM866	80181110	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM867	80181114	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM868	80181118	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM869	8018111C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM870	80181188	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM871	80181194	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM872	80181198	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM873	801811A4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM874	801811BC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM875	801811EC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM876	801811EC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM877	801811EC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM878	801811FC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM879	80181458	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM880	80181474	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM881	80181474	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM882	80181474	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM883	80181484	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM884	8018148C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM885	801814B0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM886	801814B4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM887	801814B8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM888	801814BC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM889	801814C0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM890	801814C4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM891	801814C8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM892	801814CC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM893	801814D0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM894	801814D4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM895	801814D8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM896	801814DC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM897	801814E0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM898	801814F8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM899	80181528	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM900	80181530	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM901	8018153C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM902	80181544	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM903	80181554	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM904	80181564	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM905	80181574	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM906	8018157C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM907	80181580	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM908	80181584	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM909	80181588	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM910	801815B4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM911	801815B8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM912	801815BC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM913	801815E8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM914	801815EC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM915	80181600	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM916	80181604	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM917	80181608	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM918	80181614	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM919	8018161C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM920	80181668	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM921	8018166C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM922	8018167C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM923	80181690	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM924	80181694	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM925	801816A4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM926	801816B8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM927	801816BC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM928	801816C0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM929	801816D0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM930	801816E4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM931	801816E8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM932	801816F8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM933	80181720	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM934	80181724	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM935	80181728	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM936	8018172C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM937	80181730	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM938	80181734	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM939	80181748	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM940	8018174C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM941	8018175C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM942	80181780	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM943	80181784	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM944	80181788	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM945	801817D8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM946	801817DC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM947	801817F0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM948	801817FC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM949	80181808	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM950	80181810	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM951	80181854	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM952	80181858	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM953	80181864	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM954	80181878	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM955	8018187C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM956	8018188C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM957	801818A0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM958	801818A4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM959	801818B4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM960	801818C8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM961	801818CC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM962	801818DC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM963	80181904	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM964	80181910	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM965	80181914	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM966	80181918	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM967	8018192C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM968	80181930	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM969	80181940	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM970	80181964	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM971	80181968	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM972	8018196C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM973	801819A8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM974	801819AC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM975	801819BC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM976	801819C0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM977	801819D4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM978	801819E0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM979	801819EC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM980	801819F0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM981	80181A08	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM982	80181A10	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM983	80181A18	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM984	80181A54	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM985	80181A58	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM986	80181A64	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM987	80181A68	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM988	80181A78	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM989	80181A8C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM990	80181A90	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM991	80181AA0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM992	80181AB4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM993	80181AB8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM994	80181AC8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM995	80181ADC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM996	80181AE0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM997	80181AF0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM998	80181B18	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM999	80181B1C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1000	80181B20	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1001	80181B24	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1002	80181B28	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1003	80181B2C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1004	80181B40	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1005	80181B44	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1006	80181B54	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1007	80181B78	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1008	80181B7C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1009	80181B80	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1010	80181BD0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1011	80181BD4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1012	80181BE8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1013	80181BF4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1014	80181BFC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1015	80181C04	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1016	80181C50	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1017	80181C54	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1018	80181C64	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1019	80181C78	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1020	80181C7C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1021	80181C8C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1022	80181CA0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1023	80181CA4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1024	80181CB4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1025	80181CC8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1026	80181CCC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1027	80181CDC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1028	80181D04	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1029	80181D08	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1030	80181D0C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1031	80181D10	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1032	80181D14	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1033	80181D18	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1034	80181D2C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1035	80181D30	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1036	80181D40	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1037	80181D64	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1038	80181D68	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1039	80181D6C	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1040	80181DA8	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1041	80181DAC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1042	80181DBC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1043	80181DC0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1044	80181DD4	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1045	80181DE0	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1046	80181DEC	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1047	80181E04	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+LM1048	80181E34	fl	build/USA/src/rooms/neo_ark_shrine/neo_ark_shrine_2.i
+__romPos	0000934C	al	
+equipmentGetWeaponLoadCapacity	800BB938	a	
+gActor443500ConsoleFollowupSkipScript	80142A74	a	
+D_80073BAC	80073BAC	a	
+D_80072174	80072174	a	
+areaSetCurrentObjectState	800BAC34	a	
+uiInitList	800489A0	a	
+D_80071072	80071072	a	
+CdFlush	80015AF4	a	
+gameFlagSetNibble	8004AC58	a	
+SetRotMatrix	8004ADF8	a	
+stageRequestModeTaskExit	8003F6F8	a	
+gActor503500StaffCardSceneTaskDesc	8014B958	a	
+sceneEngageBattle	800DB4E0	a	
+tmdAllocPrimitiveBuffer	80041B88	a	
+gActor335800BalconyBattleStartScript	80165720	a	
+gActor450200CompanionSceneScript	80137EE4	a	
+actor161500StartSoldierBRemark	80131E38	a	
+gCapCommandEntries	801156A0	a	
+displayAcquireMenuHold	8003E610	a	
+gPadMenuButtonMask	8005ED78	a	
+areaSetPlacementVariant	800B5B30	a	
+displayQueueModeTask	8003FB70	a	
+gameGetTaskSlot	8002D22C	a	
+GetTPage	80043938	a	
+displaySetFrameTiming	800280F4	a	
+gNeoArkShrinePuzzleTaskDescs	80182508	f	
+textItoaUnsigned	8002F18C	a	
+damagePackEnemyAttackKey	800E2BF8	a	
+viewGetMappedIndex	800AD284	a	
+worldCoordGetOriginAudioPan	800D937C	a	
+mapShelterRoomVariantResolve	80179A04	a	
+gPadInputMenuUnlockUpdates	80115716	a	
+uiGetTextColor	80048E10	a	
+cdCmdSelectScene	8001D534	a	
+gActor107600TaskDescriptors	80134F94	a	
+SetDrawTPage	80043A38	a	
+D_801153F1	801153F1	a	
+printf	8001AF3C	a	
+worldCollisionClearContacts	800E1A6C	a	
+neoArkShrineFlareTask	8017F8DC	ft	
+sceneReleaseBattleRefAndClearRewards	800DB630	a	
+neoArkShrineResetPuzzle	8017F448	ft	
+neoArkShrineSlidePuzzleTile	8017DB10	ft	
+memMalloc	8002DABC	a	
+D_80073BA0	80073BA0	a	
+gActionPromptSlots	80114D28	a	
+D_80072836	80072836	a	
+gAttachmentTrainingLevels	80114BF0	a	
+taskPollKill	8002D3BC	a	
+actor260400RestoreHeliportPlacement	80149FA4	a	
+gRoomEffectOrangeBurst2Id	80115754	a	
+stageMusicRequestAreaStop	800430E4	a	
+taskSpawn	8002CFDC	a	
+MatrixNormal	8003D6C8	a	
+gAreaRecordsByStage	8010CBCC	a	
+textDrawUiLine	8002FDCC	a	
+D_8007106C	8007106C	a	
+gActor450800NurseryIntroSkipScript	8013A33C	a	
+D_80070F6C	80070F6C	a	
+capRunCommandWithTransition	800E3B60	a	
+SetSemiTrans	800439B8	a	
+gCapRoomCompletionSoundsEnabled	80115598	a	
+neoArkShrinePuzzleCursorTask	8017EA70	ft	
+sndEvtRequestMidiStart	800512BC	a	
+gNeoArkShrineViewCameras	801836BC	f	
+inventoryHasCollectedBit	800BB4BC	a	
+gGfxViewCoord	80070F10	a	
+equipmentRestoreHpMp	800BC164	a	
+D_80073B8C	80073B8C	a	
+gameFlowBeginLoadScreen	8002252C	a	
+sndEvtRequestScriptMix	80054424	a	
+worldCollisionProjectGroundCoord	800EA02C	a	
+worldCollisionUnlinkTrigger	800E1708	a	
+actor215100SelectCaptionResource	8014C5E0	a	
+padScriptSpawnVariableMotorRamp	800E8D1C	a	
+gfxSetFlatLight	8003B140	a	
+gPlayerActorStateTickHeld	80115768	a	
+gItemDescriptors	8010D838	a	
+playerActorPrepareDryfieldLoadout	800BC4E4	a	
+gActor450200RoomVariantSceneScript	8013FC58	a	
+taskGetDescAt	8002D32C	a	
+rcos	8003D108	a	
+D_80072177	80072177	a	
+streamFindViewMovieSlot	8001EED8	a	
+gRoomEffectTwinTrailId	8011572C	a	
+taskKill	8002CCB8	a	
+gActor143000KeypadTaskDesc	80134564	a	
+gEffectSpriteAtlasFrames	80111E48	a	
+D_80115188	80115188	a	
+D_80072724	80072724	a	
+textDrawString	8002E53C	a	
+gDirectionInteractionRearmUpdates	80114D08	a	
+D_80071078	80071078	a	
+gRoomEffectSparkBurstId	80115750	a	
+gActor120300TaskDescriptors	80141B6C	a	
+inventoryResetIceBagTimer	800BC21C	a	
+gEffectUnitQuadCorners	80111E38	a	
+worldCoordSetActorColorMode	800D930C	a	
+gActor342400EncounterTaskDescs	8016BFE0	a	
+gActor560800ChainGlowTick	801752EC	a	
+gActor444000IncineratorEventTaskDesc	801449F4	a	
+neo_ark_shrine_BSS_END	8018690C	f	
+playerActorSetScriptedControl	800E3BBC	a	
+stageMusicRequestAreaStart	80043028	a	
+itemMenuSpawnNotice	800D4E40	a	
+actor460200SetupTentSoldiers	80132210	a	
+gActor335800BalconyEntrySkipScript	80165798	a	
+D_80115124	80115124	a	
+gMapNeoArkShrineVariant7Placements	8017C050	a	
+uiStartPanelOpening	80048964	a	
+actor215100RequestGalleryAbort	8014A9A0	a	
+streamGetFrameLimit	80020414	a	
+gActor00100DesertChaserTaskDesc	8014D8A4	a	
+gActor04000HangingPoolTaskDesc	8013E51C	a	
+gActor560800CutsceneTaskDescriptors	801718F0	a	
+actor161500StartCompanionRequestReminder	801322A0	a	
+equipmentInitializeWeaponSupplies	800B6CF0	a	
+neo_ark_shrine_bss_VRAM	8018690C	f	
+gFsActorBuffer1Base	8005C370	a	
+textFormatPlayTime	8002EB94	a	
+playerActorRestoreEquipment	801034C0	a	
+neo_ark_shrine_ROM_END	0000934C	a	
+playerActorRemoveEquipment	801043F4	a	
+SetDrawMove	8004AD18	a	
+damageGetPlayerAttackEffectId	800E2D90	a	
+gpuSetPrimitiveBlendMode	800EC914	a	
+worldCoordUpdateActorColor	800D8EA0	a	
+enemyTaskExit	800B0234	a	
+gfxComposeNodeWorldTransform	800B1D00	a	
+gUiPromptObject	80067694	a	
+gFsActorBuffer0Base	8005C36C	a	
+ratan2	8003D9C8	a	
+neo_ark_shrine_BSS_SIZE	00000000	a	
+sceneFindPlacedActor	800E86FC	a	
+animationSeekSlotWithBlend	800B4114	a	
+inventoryInitializeShootingGalleryLoadout	800BA538	a	
+D_80071090	80071090	a	
+gActor450200SoloSceneScript	8013C72C	a	
+gMapNeoArkShrineVariant4Placements	8017BF90	a	
+RotTransSV	8004BD58	a	
+padIsStartPressed	8004ACF0	a	
+ApplyMatrixSV	80043A68	a	
+memSelectAuxHeapRegion	8002DC08	a	
+gActor450800NurseryIntroScript	80139964	a	
+memcpy	8001AEFC	a	
+gActor151000GardenArrivalScript	801334EC	a	
+gActor341300WalkwaySceneSkipScript	80165834	a	
+gStageCountdownMusicEntry	80062735	a	
+Gp_QtyById0	8010E038	a	
+gNeoArkShrinePuzzleLayoutActive	80186868	f	
+sndEvtRequestStageScriptStop	800E3E64	a	
+gActor102000PawnGolemTasks	80147DF0	a	
+gActor207000SucklercephTaskDescs	80151E60	a	
+capSetTexturePage	800E6D4C	a	
+__floatsidf	8004B5D8	a	
+SetSprt	80043A18	a	
+gActor443500MapFollowupSkipScript	801432FC	a	
+actionPromptHitTest	8017EC10	ft	
+areaSyncLocationVariant	800B601C	a	
+effectDrawGroundShadow	800F68AC	a	
+cdCmdCompleteHeadRequest	8001DA48	a	
+gameFlagSetNibbleIfPresent	800E3B3C	a	
+uiSizePanelForTextDefault	800490A4	a	
+worldCollisionUnlinkBody	800E1638	a	
+gRoomEffectFlyingSparkId	80115730	a	
+playerActorWriteWeaponAnimationBankIndex	800E3CEC	a	
+gGpuCurrentOt	800710A0	a	
+streamInitMoviePlayback	8002043C	a	
+gActor150400FreezerSceneScript	80132D70	a	
+gActor450200SoloSceneSkipScript	8013CAEC	a	
+sndScriptHasActiveId	8005462C	a	
+gMcDialogDescriptors	800611C8	a	
+sndEvtRequestMidiVolume	80051460	a	
+padScriptSpawn	800E8FB0	a	
+gCapFile	8011568C	a	
+gActor450200CompanionSceneSkipScript	80138694	a	
+sceneReleaseBattleRef	800DB6B4	a	
+neo_ark_shrine_TEXT_SIZE	00004790	a	
+gMcSaveData	80072168	a	
+gameSetTaskSlot	8002D214	a	
+taskSpawnFromTable	8002CFA0	a	
+gActor142900ElevatorFirstVisitSkipScript	801380F8	a	
+gActor503500BossPhaseTransitionScript	8014D158	a	
+inventoryGetItemQuantity	800BB6FC	a	
+cdCmdRequestCancel	8001C970	a	
+gNeoArkShrinePuzzleHotspots	80182430	f	
+actor450900HandleDepartureTrigger	80132834	a	
+D_80070F70	80070F70	a	
+gActor160600SceneWithoutCompanionScript	80135AC0	a	
+displayResumeGameLoop	8003E540	a	
+tmdFreePrimitiveBuffer	80041B4C	a	
+actor460200TalkToSoldierC	801322B8	a	
+gfxMakeRelativeTransform	800A8864	a	
+itemMenuOpenHotspotCommands	800D4E78	a	
+gWorldCollisionSurfacePropertiesTables	8010CBB8	a	
+streamPollGameRestore	8001EF9C	a	
+areaClearMapMark	800AED24	a	
+gMapNeoArkShrineVariant2Placements	8017BEF0	a	
+gItemMenuInfoPanel	80067634	a	
+gNeoArkShrineSpriteViews	80185280	f	
+cdCmdIsSlotEmpty	8001D37C	a	
+D_8007107C	8007107C	a	
+gActor461800NeoArkSceneSkipScript	80134470	a	
+itemMenuDrawTaskPrompt	800CE4F4	a	
+MargePrim	800422B8	a	
+worldCoordSetModelLighting	800D7A9C	a	
+streamResetGameRestore	80020388	a	
+gfxReadMatrixYAxis	8003C748	a	
+actor503500ClearFadeFromBlackHandle	80132F58	a	
+neoArkShrineAnimateAndDrawPuzzle	8017DF7C	ft	
+displayReleaseMenuHold	8003E64C	a	
+taskCallExit	8002D0A4	a	
+RotMatrixZYX	80044408	a	
+actor341300ResetScriptTaskHandle	8016268C	a	
+modelObjectAttachTmd	8009902C	a	
+gActor161500CompleteCompanionRequestTaskDesc	80136CDC	a	
+neo_ark_shrine_RODATA_END	8017D6A4	f	
+gGameSession	8005ED64	a	
+D_80071076	80071076	a	
+__adddf3	8004AFE8	a	
+gRoomEffectFlashId	80115758	a	
+neo_ark_shrine_VRAM_END	8018690C	f	
+gActor443500TourOpeningSkipScript	80141C1C	a	
+actor215100FinishGalleryCourse	8014A908	a	
+animationAimHeadAtPoint	800B0CF4	a	
+mapAkropolisOpenKeyItemMenu	80179FC8	a	
+areaSetObjectState	800BB8E8	a	
+gItemMenuPanelDescriptors	8010EAB4	a	
+SquareRoot0	8003B8A0	a	
+gameFlagSetPackedByte	800E3FAC	a	
+gAttachmentState	80114C08	a	
+displayConfigureFramebuffers	8003DB48	a	
+gfxBuildOrthonormalBasis	8003CEC4	a	
+gActor342100EncounterBlazeTaskDescriptors	80164B78	a	
+gActor535700PawnGolemEncounterScript	80133898	a	
+sndEvtRequestScriptStop	800542D0	a	
+SetShadeTex	800439E8	a	
+sceneReleaseBattleRefWithRewards	800DB558	a	
+capRunCommand	800E34D8	a	
+gFsActorBuffer2Base	8005C374	a	
+capReset	800E6DF4	a	
+gActor341300WalkwaySceneScript	80165354	a	
+gEquipmentWeaponPrimaryLoadOptions	8010E238	a	
+gfxReadMatrixZAxis	8003C768	a	
+gActor403900GolemTaskDesc	801540E0	a	
+gActor102500Tasks	801379A8	a	
+D_80071086	80071086	a	
+gfxRotMatrixY	8003C98C	a	
+gPadScriptTransitionCommands	80114A24	a	
+viewApplyCamera	800A8A48	a	
+RotTransPers4	8004C358	a	
+D_8011540E	8011540E	a	
+gPadScriptTransitionSegments	80114A34	a	
+mapDryfieldFullResolveRoomVariant	80179954	a	
+inventoryRestoreCarriedLoadout	800BA75C	a	
+D_80072176	80072176	a	
+gStreamInterFile	8006AC30	a	
+playerActorPrepareAcropolisLoadout	800BC4BC	a	
+mapAkropolisWasDryfieldMapSelected	8017A038	a	
+gStageMusicTaskDesc	80062774	a	
+gMdecMovieOutputSlot	8005EAEE	a	
+gActor451100SubmarineTunnelSceneSkipScript	80135FD0	a	
+gStageRoomMusicSequence	80062737	a	
+worldCollisionFindContactIndex	800E19B8	a	
+worldCollisionLinkBody	800E15AC	a	
+D_80073BA9	80073BA9	a	
+midiIsSequenceBusy	800514F8	a	
+memCopyBytes	8002D7A8	a	
+effectKillTask	800EC7E4	a	
+inventoryCountOccupiedRows	800BAF5C	a	
+itemMenuGetPrimaryPreviewItem	800CF27C	a	
+sceneSetPlacedActorDrawMode	800E3C6C	a	
+__fixdfsi	8004B4D8	a	
+gNeoArkShrinePuzzleControllerTask	80186864	f	
+neo_ark_shrine_RODATA_SIZE	000000E4	a	
+effectDrawGouraudDisc	800EAEB8	a	
+cdCmdStageSceneAudioStart	8001D6B8	a	
+D_80072A94	80072A94	a	
+textItoaSigned	8002F020	a	
+cdCmdIsIdle	8001D344	a	
+neoArkShrineSecondFallingPropTask	8017EBB8	ft	
+actor215100CheckGalleryExitInput	8014A398	a	
+D_80072729	80072729	a	
+sceneQueueBattleEscapeResult	800A7A64	a	
+capStartSequenceSlot	800E6C70	a	
+gActor215100GalleryTrainingActive	8014D038	a	
+worldCollisionReadActionHit	800E1BF0	a	
+SetTransMatrix	8004AE28	a	
+gameFlagGetNibble	8004ACAC	a	
+D_801153F4	801153F4	a	
+gRoomEffectHaloId	80115744	a	
+AddPrim	80043978	a	
+gCapPreserveActorControl	80115690	a	
+gNeoArkShrinePuzzleCursorTaskDescs	80182404	f	
+uiSetListSystemCursorSound	8004917C	a	
+itemSetIdentified	800BB7C0	a	
+gfxRotMatrixZ	8003CB80	a	
+worldTargetAddReadoutAmount	800DA6E8	a	
+inventoryGetConsumableStackQuantity	800BB26C	a	
+SetDrawOffset	80018AA4	a	
+D_8007272D	8007272D	a	
+neoArkShrinePuzzleIdle	8017D9A0	ft	
+gSceneCombatState	801153F0	a	
+itemMenuDrawItemRow	800CD924	a	
+effectDrawSpinningBillboard	800EB2C8	a	
+uiDrawPanelLabel	80047F40	a	
+gGameMainPersistentState	800710A8	a	
+enemySpawnFromTable	800B01AC	a	
+gfxRotMatrixYXZ	8003BD34	a	
+D_8011540A	8011540A	a	
+effectDrawModulatedBillboard	800EB6E8	a	
+equipmentHasCarriedWeaponSupply	800BBDDC	a	
+gActor461800NeoArkSceneScript	80133F90	a	
+uiPositionRowDialog	80049024	a	
+actor260400StartHeliportConversation	80149E38	a	
+evsStartScriptWithSkip	800E8634	a	
+gEquipmentModeBaseStats	8010D328	a	
+gFsImageWorkspacePtr	8005C364	a	
+actor160700StartMeetingScript	80131E70	a	
+evsStartScript	800E8614	a	
+loadingRequestViewGraphicsRestore	800A99B4	a	
+actor450200InitializeObservatoryCompanion	801322F8	a	
+StoreImage	80017FA4	a	
+D_80114C12	80114C12	a	
+MoveImage	80018004	a	
+func_807245E4	807245E4	a	
+uiUpdateList	80048C10	a	
+streamGetSlot	80020278	a	
+textAppendString	8002F588	a	
+gActor310100Officer1TaskDescriptors	801798FC	a	
+capGetVariantKey	800E6D3C	a	
+gActor143900ObservatoryEntrySkipScript	80133860	a	
+gActor503500BossDefeatSkipScript	8014CAF8	a	
+attachmentIsTrainingMode	800A74C4	a	
+gGpuPrimCursor	80071190	a	
+capIsBusy	800E6CE0	a	
+worldCoordGetOriginAudioDepth	800D9340	a	
+gfxRotMatrixXYZ	8003B960	a	
+actor161500StartSoldierBShopConversation	80132110	a	
+shopOpenSession	800D4D2C	a	
+gPadCancelButtonMask	8005ED74	a	
+gPadStates	80071620	a	
+SetDrawArea	80018A24	a	
+neo_ark_shrine_DATA_END	8018690C	f	
+D_80071075	80071075	a	
+gMapNeoArkShrineVariant3Placements	8017BF40	a	
+RotTransPers3	8004C1E8	a	
+actor460200TalkToSoldierA	80132390	a	
+animationInitContext	800B3F84	a	
+gActor450200RoomVariantSceneSkipScript	80140078	a	
+equipmentFindNextCarriedWeaponSupply	800BBD40	a	
+gActor535700PawnGolemEncounterSkipScript	801341E0	a	
+uiDrawBeveledRect	80046B34	a	
+rand	80037164	a	
+gActor450900EntrySkipScript	80136308	a	
+D_80115410	80115410	a	
+companionSetDrawMode	800E3EB0	a	
+inventoryGiveItem	800BAD08	a	
+gActor560800MovieTaskDescriptors	8016EA28	a	
+gActor342000IncineratorEventTaskDescs	80164FF8	a	
+D_8010E138	8010E138	a	
+effectSpawnHit	800FDB18	a	
+gInventoryContainerRanges	8010D550	a	
+gNeoArkShrineViewMaps	801827F0	f	
+gActor143400CompanionEntryScript	801350BC	a	
+memCalloc	8002D978	a	
+gActor103800BlackBeetleTaskDesc	80137D74	a	
+effectSpawn	800EA478	a	
+gActor450900EntryScript	80136110	a	
+strncmp	8001EAC4	a	
+gInventoryConsumableStacks	8010E3B8	a	
+gActor105500MaggotCaterpillarTasks	8013A8DC	a	
+itemMenuDrawDefaultItemIcon	800CE5D0	a	
+actor161500StartSoldierBTalkB	80132038	a	
+D_80071068	80071068	a	
+gRoomEffectWaterSprayId	80115738	a	
+gActor450800NurseryShootingSkipScript	8013BA84	a	
+gMdecMovieInputSlot	8005EAEC	a	
+gNeoArkShrineViewCounts	80182808	f	
+gActor443500ConsoleFollowupScript	80141D9C	a	
+actor150400SpawnSlidingModels	80131FB8	a	
+D_800691CA	800691CA	a	
+gActor503500SceneEffectTaskDescs	8014B964	a	
+D_80114C0B	80114C0B	a	
+gRoomEffectMoteId	80115728	a	
+areaApplySavedUpdates	800AE62C	a	
+gActor02500Tasks	8014F9A8	a	
+cdCmdCancelScene	8001D588	a	
+func_800AC000	800AC000	a	
+uiSetPanelContentSize	800466E4	a	
+GsWSMATRIX	80071138	a	
+gNeoArkShrinePuzzleTargetOrigins	801868CC	f	
+gNeoArkShrinePuzzleCellTiles	8018686C	f	
+uiObjectTaskExit	800488B8	a	
+cdSyncPollCommand	8001E6AC	a	
+gActor443500MapFollowupScript	80142C24	a	
+gItemMenuTransferPanelDescriptors	8010D6F4	a	
+cdCmdEnqueue	8001D2B0	a	
+D_801150C0	801150C0	a	
+gNeoArkShrineWarpEntries	80182814	f	
+padCheckButtons	8002C868	a	
+itemMenuDrawPreview	800C7AE8	a	
+gActor160600SceneWithCompanionScript	80135D78	a	
+gCapChoiceRowStride	80115680	a	
+taskSpawnFromTableOnDefaultList	8003E4BC	a	
+SetDrawStp	80042288	a	
+gActor143900ObservatoryEntryScript	80133560	a	
+playerActorSetDrawMode	800E3B80	a	
+actor450800StartNurseryCompanionDialogue	80132000	a	
+gActor215100PierceStoryScript	80153274	a	
+itemMenuSetPreviewItem	800CDE80	a	
+equipmentRecalculateMaxMp	800B7930	a	
+effectDrawOuterGlowBand	800EAA0C	a	
+stageEnsureHeapTaskPrimitiveBuffer	8003F9AC	a	
+actor215100HandleGalleryAction	8014AB6C	a	
+neo_ark_shrine_TEXT_START	8017D6A4	f	
+RotMatrixZ	8004AE48	a	
+SetDispMask	80017C00	a	
+SetTile	80042344	a	
+func_80724608	80724608	a	
+cdCmdEnqueueScenePlayback	8001D5CC	a	
+__muldf3	8004B828	a	
+rsin	8003D038	a	
+viewFindLogicalIndex	800ACEBC	a	
+inventoryInitializeStarterLoadout	800B7D18	a	
+gPadConfirmButtonMask	8005ED70	a	
+areaIsSavedPoseRestoreEnabled	800B59A8	a	
+gActor361100PodSceneScript	80165F48	a	
+areaGetVariant	800B5CE8	a	
+gActor443500TourOpeningScript	8014152C	a	
+gGameFlagNibbleBanks	80073980	a	
+gNeoArkShrineSurfaceProperties	80186844	f	
+gNeoArkShrineAreaVariants	801866C8	f	
+actor450800PrepareNurseryKyleMadigan	80132028	a	
+worldCoordSetAmbientColorOverride	800D94B8	a	
+neo_ark_shrine_BSS_START	8018690C	f	
+gActor460200TentArrivalSkipScript	80137890	a	
+worldTargetDisableNodeLockOn	800DACF8	a	
+D_80072170	80072170	a	
+D_80070F87	80070F87	a	
+D_80072310	80072310	a	
+worldCollisionProbeGridSegment	800DE7CC	a	
+gMapNeoArkShrineVariant5Placements	8017C020	a	
+D_8011540C	8011540C	a	
+memset	800420F8	a	
+neoArkShrineRoomVisualEffectsTwinTrailTask	80180904	ft	
+companionWriteAnimationBankIndex	800E3D24	a	
+D_80073BAE	80073BAE	a	
+gActor215100GalleryTaskDescs	8014E13C	a	
+gActor136300GarageCompanionSceneSkipScript	8013C388	a	
+gActor402200GolemTaskDesc	80154188	a	
+streamPrepareMovieWorkspace	80020298	a	
+gActor136300CompanionGaragePlacement	8013B570	a	
+srand	80037194	a	
+viewQueueCurrentCameraAndPackets	800A8B6C	a	
+ApplyMatrixLV	80042128	a	
+taskMessageDispatch	800AC464	a	
+uiStartTreeClosing	80048838	a	
+animationResetSlot	800B3FA8	a	
+actor215100CapCaptionSelectRecord	8014B2B8	a	
+taskRequestKill	8002D340	a	
+D_8007107A	8007107A	a	
+actor161500RestoreCompanionRequestScene	8013230C	a	
+actor215100ResolveGalleryExit	8014AA54	a	
+gNeoArkShrinePuzzleInitialCellTiles	80182410	f	
+gPlayerStatus	80073B88	a	
+inventoryGetRangeTable	800BB500	a	
+gActor142600IncineratorArrivalSkipScript	80136804	a	
+gPlayerActorTasks	80115760	a	
+gActor548100PanelTaskDesc	801358D8	a	
+equipmentConsumeWeaponLoad	800B6DA4	a	
+inventoryResetCarriedRange	800BC490	a	
+enemyDestroy	800B01F0	a	
+gFsResourceSlots	8006C338	a	
+neo_ark_shrine_DATA_SIZE	00004AD8	a	
+gRandomLcgState	80070F60	a	
+actor160700RestoreMeetingAnimation	80131E24	a	
+func_800ABFF8	800ABFF8	a	
+gActor146300IceBagHandoverTaskDesc	8013788C	a	
+areaSpawnPlacements	800B4AF8	a	
+itemMenuDrawMeter	800C0E20	a	
+gameFlagGetPackedByte	800E3FCC	a	
+equipmentLoadWeaponConsumable	800B715C	a	
+displaySetShakeY	8003DE78	a	
+sndEvtRequestStageScriptStart	800E3DD8	a	
+inventoryHasAttachedItem	800BC3F8	a	
+equipmentRecalculateMaxHp	800BC0C0	a	
+RotTransPers	8004C198	a	
+D_8007216D	8007216D	a	
+gActor146300WaterTankEventScript	80137C28	a	
+roomEffectRequestCancelPe	800FC6C0	a	
+gpuUploadImages	800DB31C	a	
+gDirectionActionActive	80114CF8	a	
+D_80072830	80072830	a	
+sndEvtRequestScriptVolume	800544B8	a	
+worldCollisionLinkTrigger	800E1688	a	
+actor450800StartNurseryInteraction	80131E2C	a	
+gActor215100PierceStorySkipScript	80153D6C	a	
+gNeoArkShrinePuzzleLayoutRestorePending	8018686A	a	
+gActor136300TaskTable	8013B11C	a	
+gStageMusicParams	8007A39C	a	
+VectorNormalSS	8003D5D8	a	
+gActor160900TaskDescriptors	8013FB50	a	
+D_80072A93	80072A93	a	
+gWorldCollisionActiveGrid	80115448	a	
+D_80072A92	80072A92	a	
+neo_ark_shrine_TEXT_END	80181E34	f	
+roomEffectRequestCancelAll	800EC868	a	
+gActor310100Officer2TaskDescriptors	80179920	a	
+actorRenderDrawGroundShadow	800B4E54	a	
+gMapNeoArkShrineVariant1Placements	8017BEB0	a	
+D_8007218A	8007218A	a	
+capSelectLoadedFile	800E6D60	a	
+cdCmdDropQueuedTail	8001D424	a	
+Gfx_ViewWorldMtx	80070F34	a	
+actor161500StartSoldierBTalkA	80131FBC	a	
+gActor503500BossDefeatScript	8014C540	a	
+tmdBuildBufferHalf	800410F0	a	
+effectDrawScreenTint	800EA858	a	
+gActor146000WaterHoleSceneTasks	801351FC	a	
+tmdResetAuxHeapAndRestoreBuffers	80041EB4	a	
+gActor120500EmptyPlacementTaskDesc	8013843C	a	
+equipmentGetWeaponLoad	800BAFE0	a	
+DrawSync	80017C98	a	
+damageComputePlayerAttack	800E1FEC	a	
+itemMenuClearPreviewItems	800CDEF4	a	
+actor215100StartPierceConversation	8014AF0C	a	
+actor450900StartCompanionConversation	801327A8	a	
+damageRollCriticalHit	800E25F8	a	
+gActor151000GardenArrivalSkipScript	80133954	a	
+animationTickSlot	800B4514	a	
+sceneAcquireBattleRef	800DB53C	a	
+gActor143400CompanionEntrySkipScript	801359D4	a	
+companionRemoveEquipment	8010B674	a	
+sndScriptResolveStageId	800E3E30	a	
+actor146300RestoreHandoverPose	8013224C	a	
+gActor150400FreezerSceneSkipScript	80133088	a	
+companionSetScriptedControl	800E3EF0	a	
+gCapInlineIconCells	8010FB70	a	
+streamPollMoviePlayback	8001FAE0	a	
+gPlayerActorWeaponReaches	80112F60	a	
+D_80072728	80072728	a	
+neoArkShrinePuzzleTask	8017EAE0	ft	
+damagePackAttackKey	800E2C40	a	
+uiSpawnObject	800486F0	a	
+worldCollisionInitContacts	800E18E0	a	
+sndEvtRequestMidiStop	8005132C	a	
+gActor503500BossIntroSkipScript	8014C288	a	
+RotMatrix	80043AC8	a	
+D_80114C11	80114C11	a	
+memConfigureImageMemory	800144F8	a	
+viewQueueCamera	800A8A1C	a	
+displaySpawnTaskFromTable	8003E324	a	
+uiStartPanelHiding	800488F8	a	
+actor260500RestoreHeliportPlacement	80149E80	a	
+gActor04400MadChaserTaskDescs	80142604	a	
+actor450200StartCompanionTalk	80132220	a	
+neo_ark_shrine_VRAM	8017D5C0	f	
+gpuBlendRgb555ClutRow	800B27C4	a	
+neoArkShrineDrawPuzzleFrame	8017EAC0	ft	
+D_80072834	80072834	a	
+actor361100ClearHeadAimTaskHandle	80162B0C	a	
+gCapConfirmedChoiceIndex	801156A8	a	
+itemGetText	800B8EB0	a	
+gActor451100SubmarineTunnelEntryScript	80136108	a	
+ScaleMatrix	8004A98C	a	
+uiDrawTitle	80048E38	a	
+playerActorEndScripted	80104838	a	
+gfxRotMatrixX	8003C788	a	
+neoArkShrineRoomVisualEffectsFlashTask	8017FEA0	ft	
+D_80071071	80071071	a	
+gRoomEffectSparkEmitterId	80115720	a	
+MulMatrix0	80044208	a	
+D_80114FF8	80114FF8	a	
+gActor450900Tasks	80135E78	a	
+inventoryClearItems	800BAC8C	a	
+itemMenuIsHotspotActionConfirmed	800D4EC0	a	
+gCapRestoreView	80115694	a	
+D_801153F6	801153F6	a	
+gWorldCoordTransientPointLights	80114F30	a	
+gActor443500PowerPlantProgressDialogueScript	80143494	a	
+capSpawnEventIfIdle	800E3D8C	a	
+gDisplayState	80070F68	a	
+itemMenuSetItemDescriptionPrompt	800CEB40	a	
+D_8007217B	8007217B	a	
+neo_ark_shrine_ROM_START	00000000	a	
+gActor136300GarageCompanionSceneScript	8013B590	a	
+ApplyTransposeMatrixLV	80044050	a	
+gSpriteAreaTables	8010CB68	a	
+inventoryCanAddItem	800B8988	a	
+neoArkShrineRoomTask	8017D948	ft	
+sceneFindEnemyByPlaceKey	800B584C	a	
+gMidiMusicVolume	8007A396	a	
+inventoryMeltIceBagIfExpired	800BC254	a	
+gteMIMefunc	8004AD78	a	
+inventoryGetItemSortKey	800BC18C	a	
+uiGetTextRowsHeight	80048E2C	a	
+gCapControlFlags	801156A4	a	
+gFsActorBufferWrittenBytes	8006D860	a	
+neoArkShrineRoomVisualEffectsSparkBurstTask	801811EC	ft	
+gActor142600IncineratorArrivalScript	801360E4	a	
+playerActorEnterLocomotion	801066DC	a	
+neoArkShrineFirstFallingPropTask	8017EB54	ft	
+D_8007218B	8007218B	a	
+uiDrawHorizontalSeparator	80047A0C	a	
+sndEvtRequestScriptStart	8005414C	a	
+actor215100CapCaptionDrawCurrent	8014B0D4	a	
+gActor335800BalconyEntryScript	80165060	a	
+stageReleaseTaskPrimitiveBuffer	8003F9F4	a	
+equipmentGetWeaponSupply	800BBDC8	a	
+animationAimHeadAt	800B17D4	a	
+gRoomEffectOrangeBurstId	8011573C	a	
+viewGetMappedCamera	800A8C08	a	
+gCdCmdQueue	80068FA0	a	
+gActor146300WaterTankEventSkipScript	80138570	a	
+capAbortPlayback	800E6CF0	a	
+textDrawUiLines	8002FB84	a	
+neo_ark_shrine_RODATA_START	8017D5C0	f	
+streamFinishScene	800B00C4	a	
+loadingEnqueueEquippedWeaponResources	800A9BE4	a	
+gActor503500BossIntroScript	8014BD48	a	
+gActor207000SlouchTaskDescs	801575F0	a	
+companionRestoreFullHp	800E3D78	a	
+textItoaPadded	8002F44C	a	
+playerStateRestoreFullHpMp	800E3D5C	a	
+gRoomEffectWaterRippleId	8011574C	a	
+memFillBytes	8002D894	a	
+gNeoArkShrinePuzzleInitialTileOrigins	8018256C	f	
+D_8007106B	8007106B	a	
+gActor450800NurseryShootingScript	8013AF8C	a	
+gNeoArkShrineCollisionRooms	80182724	f	
+uiFitPanelToList	80046830	a	
+uiSetPromptText	80049D34	a	
+RotMatrixX	8004BE58	a	
+worldCoordSetModelAmbientColor	800D9550	a	
+worldTargetLinkNode	800DABEC	a	
+damageAccumulateLifeDrainHp	800E2C78	a	
+gActor451100SubmarineTunnelSceneScript	80135220	a	
+taskReparent	8002D14C	a	
+gActor160600SceneSkipScript	80136258	a	
+playerActorTurnToYaw	80104E00	a	
+gRoomEffectState	80115740	a	
+TransposeMatrix	800420B8	a	
+worldCollisionProjectGroundPoint	800EA1A8	a	
+inventoryClearCollectedBit	800BAEC0	a	
+D_8007216C	8007216C	a	
+uiSpawnOptionDialog	800480A0	a	
+neo_ark_shrine_DATA_START	80181E34	f	
+actorRenderComposeCoord	80098F58	a	
+GetClut	80042AE0	a	
+gRoomEffectGlowDiscId	80115734	a	
+itemMenuDrawQuantity	800CDBEC	a	
+gMapNeoArkShrineVariant11Placements	8017C070	a	
+gNeoArkShrinePuzzleDrawnOrigins	8018688C	f	
+areaGetCurrentObjectState	800BB470	a	
+gActor341900GluttonEntranceTaskDescs	80164190	a	
+gWorldCollisionActionTriggerListHead	8011556C	a	
+actor260500StartHeliportConversation	80149EBC	a	
+fadeDrawOverlay	8002BA9C	a	
+worldCollisionResolvePushback	800E0C10	a	
+equipmentEquipCarriedArmor	800B7A50	a	
+__subdf3	8004BC28	a	
+D_80072A98	80072A98	a	
+padInputChangeSuppression	800E9BDC	a	
+gActor450800NurseryReentryScript	8013A84C	a	
+gEvsPlaybackPaused	801156F9	a	
+gActor460200TentArrivalScript	801362B8	a	
+RotMatrixY	8004BFF8	a	
+gActor361100PodSceneSkipScript	80166848	a	
+streamFindMovieSlot	8001EDC8	a	
+gActor310100PlayerAnimationSets	801797FC	a	
+gActor142900ElevatorFirstVisitScript	801378D0	a	
+inventoryIsItemLimitReached	800B7420	a	
+streamSetExternalScenePayloadBuffer	800B015C	a	
+gActor141000FlightTasks	801348D8	a	
+gViewIdentityMap	8010CAF8	a	
+mapNeoArkResolveRoomVariant	80179B14	a	
+gpuResetAndInvalidateModelBuffers	80041E4C	a	
+animationAimHeadAtTask	800B0928	a	
+gNeoArkShrineRoomLighting	80182784	f	
+gItemMenuEmptyPromptText	8010F8D0	a	
+padScriptHalt	800E8F68	a	
+gWorldCollisionSurfacePushbackSuppression	80115428	a	

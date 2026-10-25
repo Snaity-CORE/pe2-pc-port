@@ -1,0 +1,2 @@
+/* Generated from assets/USA/pe2pkg/shelter_b1_sleeping_quarters.pe2pkg; model at 0x2F34. */
+    { { { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }, { 0, 0, 0 } }, 0 },

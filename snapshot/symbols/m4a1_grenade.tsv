@@ -1,0 +1,607 @@
+gcc2_compiled.	8011D1EC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+__gnu_compiled_c	8011D1EC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_MACRO_INC_GUARD	00000001	al	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gM4a1GrenadeWeaponModelSkeleton	8011DECC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gM4a1GrenadeWeaponModelPartVerts	8011DEF0	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gM4a1GrenadeWeaponModelVerts	8011DEF4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gM4a1GrenadeWeaponModelNormals	8011E104	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gM4a1GrenadeWeaponModelStream	8011E2F4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaIdleClipBank1	8011EA50	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaIdleClipBank4	8011EA68	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaIdleClipRecords	8011EA88	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaIdleClipTrackStarts	8011EBB8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaUnarmedWalkClipBank1	8011EC08	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaUnarmedWalkClipBank4	8011EC98	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaUnarmedWalkClipRecords	8011EEF4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaUnarmedWalkClipTrackStarts	8011F25C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaUnarmedWalkClip	8011F284	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaTurnLeftClipBank1	8011F2AC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaTurnLeftClipBank4	8011F390	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaTurnLeftClipRecords	8011F634	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaTurnLeftClipTrackStarts	8011FABC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaTurnLeftClip	8011FAE4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaTurnRightClipBank1	8011FB0C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaTurnRightClipBank4	8011FBF0	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaTurnRightClipRecords	8011FE98	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaTurnRightClipTrackStarts	80120320	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaTurnRightClip	80120348	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaItemUseClipBank1	80120370	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaItemUseClipBank4	80120394	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaItemUseClipRecords	801204A8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaItemUseClipTrackStarts	80120634	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaItemUseClip	8012065C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaStairAscentClipBank1	80120684	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaStairAscentClipBank4	8012072C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaStairAscentClipRecords	8012099C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaStairAscentClipTrackStarts	80120D90	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaStairAscentClip	80120DB8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaStairDescentClipBank1	80120DE0	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaStairDescentClipBank4	80120EA0	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaStairDescentClipRecords	8012113C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaStairDescentClipTrackStarts	80121518	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaStairDescentClip	80121540	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaStairAscentFinishOddClipBank1	80121568	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaStairAscentFinishOddClipBank4	801215B0	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaStairAscentFinishOddClipRecords	80121680	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaStairAscentFinishOddClipTrackStarts	801217EC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaStairAscentFinishOddClip	80121814	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaStairAscentFinishEvenClipBank1	8012183C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaStairAscentFinishEvenClipBank4	80121890	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaStairAscentFinishEvenClipRecords	801219B4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaStairAscentFinishEvenClipTrackStarts	80121B7C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaStairAscentFinishEvenClip	80121BA4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaParasiteEnergyBegin0ClipBank1	80121BCC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaParasiteEnergyBegin0ClipBank4	80121C38	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaParasiteEnergyBegin0ClipRecords	80121DD8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaParasiteEnergyBegin0ClipTrackStarts	80122004	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaParasiteEnergyBegin0Clip	8012202C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaParasiteEnergyCharge0ClipBank1	80122054	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaParasiteEnergyCharge0ClipBank4	80122078	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaParasiteEnergyCharge0ClipRecords	801220D0	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaParasiteEnergyCharge0ClipTrackStarts	80122200	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaParasiteEnergyCharge0Clip	80122228	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaParasiteEnergyCast0ClipBank1	80122250	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaParasiteEnergyCast0ClipBank4	80122298	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaParasiteEnergyCast0ClipRecords	8012237C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaParasiteEnergyCast0ClipTrackStarts	801224D8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaParasiteEnergyCast0Clip	80122500	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaParasiteEnergyBegin1ClipBank1	80122528	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaParasiteEnergyBegin1ClipBank4	80122558	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaParasiteEnergyBegin1ClipRecords	80122634	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaParasiteEnergyBegin1ClipTrackStarts	8012277C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaParasiteEnergyBegin1Clip	801227A4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaParasiteEnergyCharge1ClipBank1	801227CC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaParasiteEnergyCharge1ClipBank4	801227F0	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaParasiteEnergyCharge1ClipRecords	8012284C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaParasiteEnergyCharge1ClipTrackStarts	8012297C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaParasiteEnergyCharge1Clip	801229A4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaParasiteEnergyCast1ClipBank1	801229CC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaParasiteEnergyCast1ClipBank4	80122A2C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaParasiteEnergyCast1ClipRecords	80122B3C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaParasiteEnergyCast1ClipTrackStarts	80122CD0	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaParasiteEnergyCast1Clip	80122CF8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaHitHeadClipBank1	80122D20	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaHitHeadClipBank4	80122D5C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaHitHeadClipRecords	80122E38	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaHitHeadClipTrackStarts	80122F84	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaHitHeadClip	80122FAC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaHitBodyClipBank1	80122FD4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaHitBodyClipBank4	8012301C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaHitBodyClipRecords	80123124	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaHitBodyClipTrackStarts	801232A4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaHitBodyClip	801232CC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaDeathClipBank1	801232F4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaDeathClipBank4	801233CC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaDeathClipRecords	801236AC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaDeathClipTrackStarts	80123A68	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaDeathClip	80123A90	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaHighHealthIdleClipBank1	80123AB8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaHighHealthIdleClipBank4	80123C14	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaHighHealthIdleClipRecords	8012431C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaHighHealthIdleClipTrackStarts	80124D00	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaHighHealthIdleClip	80124D28	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaLowHealthIdleClipBank1	80124D50	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaLowHealthIdleClipBank4	80124DE0	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaLowHealthIdleClipRecords	80125208	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaLowHealthIdleClipTrackStarts	80125878	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaLowHealthIdleClip	801258A0	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaMidHealthIdleClipBank1	801258C8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaMidHealthIdleClipBank4	80125934	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaMidHealthIdleClipRecords	80125B74	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaMidHealthIdleClipTrackStarts	80125F94	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaMidHealthIdleClip	80125FBC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaExamineEnterClipBank1	80125FE4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaExamineEnterClipBank4	8012602C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaExamineEnterClipRecords	801261D8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaExamineEnterClipTrackStarts	80126414	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaExamineEnterClip	8012643C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaExamineExitClipBank1	80126464	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaExamineExitClipBank4	80126488	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaExamineExitClipRecords	80126508	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaExamineExitClipTrackStarts	801265EC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaExamineExitClip	80126614	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaParasiteEnergyBegin2ClipBank1	8012663C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaParasiteEnergyBegin2ClipBank4	801266C0	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaParasiteEnergyBegin2ClipRecords	801268B4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaParasiteEnergyBegin2ClipTrackStarts	80126B50	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaParasiteEnergyBegin2Clip	80126B78	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaParasiteEnergyCharge2ClipBank1	80126BA0	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaParasiteEnergyCharge2ClipBank4	80126BC4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaParasiteEnergyCharge2ClipRecords	80126C14	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaParasiteEnergyCharge2ClipTrackStarts	80126D44	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaParasiteEnergyCharge2Clip	80126D6C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaParasiteEnergyCast2ClipBank1	80126D94	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaParasiteEnergyCast2ClipBank4	80126DF4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaParasiteEnergyCast2ClipRecords	80126F98	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaParasiteEnergyCast2ClipTrackStarts	801271C4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaParasiteEnergyCast2Clip	801271EC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleHipFireAimIdleClipBank1	80127214	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleHipFireAimIdleClipBank4	8012722C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleHipFireAimIdleClipRecords	8012726C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleHipFireAimIdleClipTrackStarts	8012739C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleHipFireAimIdleClip	801273C4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleHipFireAimBackwardClipBank1	801273EC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleHipFireAimBackwardClipBank4	80127494	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleHipFireAimBackwardClipRecords	8012779C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleHipFireAimBackwardClipTrackStarts	80127BDC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleHipFireAimBackwardClip	80127C04	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleAimForwardClipBank1	80127C2C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleAimForwardClipBank4	80127D10	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleAimForwardClipRecords	80128144	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleAimForwardClipTrackStarts	80128684	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleAimForwardClip	801286AC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleHipFireReloadClipBank1	801286D4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleHipFireReloadClipBank4	801287F4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleHipFireReloadClipRecords	80128E0C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleHipFireReloadClipTrackStarts	80129520	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleHipFireReloadClip	80129548	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleHipFireFireClipBank1	80129570	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleHipFireFireClipBank4	801295D0	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleHipFireFireClipRecords	80129768	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleHipFireFireClipTrackStarts	801299C4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleHipFireFireClip	801299EC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gM4a1GrenadeLaunchClipBank1	80129A14	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gM4a1GrenadeLaunchClipBank4	80129AB0	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gM4a1GrenadeLaunchClipRecords	80129D5C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gM4a1GrenadeLaunchClipTrackStarts	8012A100	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gM4a1GrenadeLaunchClip	8012A128	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gM4a1GrenadeGrenadeReloadClipBank1	8012A150	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gM4a1GrenadeGrenadeReloadClipBank4	8012A324	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gM4a1GrenadeGrenadeReloadClipRecords	8012AD04	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gM4a1GrenadeGrenadeReloadClipTrackStarts	8012B850	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gM4a1GrenadeGrenadeReloadClip	8012B878	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleHipFireAimEnterClipBank1	8012B8A0	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleHipFireAimEnterClipBank4	8012B93C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleHipFireAimEnterClipRecords	8012BBF8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleHipFireAimEnterClipTrackStarts	8012BF5C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleHipFireAimEnterClip	8012BF84	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleHipFireAimExitClipBank1	8012BFAC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleHipFireAimExitClipBank4	8012C024	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleHipFireAimExitClipRecords	8012C230	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleHipFireAimExitClipTrackStarts	8012C4D4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleHipFireAimExitClip	8012C4FC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleWalkClipBank1	8012C524	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleWalkClipBank4	8012C5FC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleWalkClipRecords	8012C920	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleWalkClipTrackStarts	8012CD8C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleWalkClip	8012CDB4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleBackwardWalkClipBank1	8012CDDC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleBackwardWalkClipBank4	8012CE9C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleBackwardWalkClipRecords	8012D110	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleBackwardWalkClipTrackStarts	8012D52C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleBackwardWalkClip	8012D554	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleRunClipBank1	8012D57C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleRunClipBank4	8012D6A8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleRunClipRecords	8012DA24	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleRunClipTrackStarts	8012DF00	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gAyaRifleRunClip	8012DF28	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gM4a1GrenadeBlastRadii	8012E08C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gM4a1GrenadeProjectileModelSkeleton	8012E094	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gM4a1GrenadeProjectileModelPartVerts	8012E0B8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gM4a1GrenadeProjectileModelVerts	8012E0BC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gM4a1GrenadeProjectileModelNormals	8012E0FC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_gM4a1GrenadeProjectileModelStream	8012E13C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM1	8011D1EC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM2	8011D1EC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM3	8011D1F8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM4	8011D200	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM5	8011D214	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM6	8011D218	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM7	8011D21C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM8	8011D220	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM9	8011D228	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM10	8011D240	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM11	8011D248	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM12	8011D24C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM13	8011D254	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM14	8011D258	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM15	8011D288	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM16	8011D288	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM17	8011D28C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM18	8011D294	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM19	8011D298	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM20	8011D29C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM21	8011D2A0	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM22	8011D2A4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM23	8011D2A8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM24	8011D2AC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM25	8011D2B4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM26	8011D2B8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM27	8011D2BC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM28	8011D2C8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM29	8011D2CC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM30	8011D2DC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM31	8011D2E4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM32	8011D2F8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM33	8011D304	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM34	8011D30C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM35	8011D314	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM36	8011D32C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM37	8011D330	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM38	8011D338	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM39	8011D340	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM40	8011D344	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM41	8011D34C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM42	8011D370	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM43	8011D390	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM44	8011D3A4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM45	8011D3B8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM46	8011D3C0	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM47	8011D3CC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM48	8011D3D0	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM49	8011D3D4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM50	8011D3D8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM51	8011D3DC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM52	8011D3E0	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM53	8011D3E8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM54	8011D3E8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM55	8011D3F8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM56	8011D400	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM57	8011D408	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM58	8011D410	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM59	8011D414	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM60	8011D41C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM61	8011D424	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM62	8011D428	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM63	8011D42C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM64	8011D434	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM65	8011D444	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM66	8011D448	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM67	8011D468	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM68	8011D488	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM69	8011D49C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM70	8011D4A4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM71	8011D4B0	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM72	8011D4B8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM73	8011D4C0	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM74	8011D4E0	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM75	8011D4E8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM76	8011D4F4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM77	8011D4F8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM78	8011D500	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM79	8011D504	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM80	8011D524	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM81	8011D534	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM82	8011D54C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM83	8011D550	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM84	8011D564	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM85	8011D58C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM86	8011D59C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM87	8011D59C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM88	8011D5AC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM89	8011D5DC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM90	8011D60C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM91	8011D614	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM92	8011D61C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM93	8011D634	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM94	8011D654	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM95	8011D654	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM96	8011D654	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_m4a1GrenadeInitProjectile	8011D654	flt	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM97	8011D664	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM98	8011D66C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM99	8011D670	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM100	8011D690	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM101	8011D694	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM102	8011D698	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM103	8011D69C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM104	8011D6A4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM105	8011D6A8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM106	8011D6B4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM107	8011D6BC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM108	8011D6C0	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM109	8011D6C4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM110	8011D6C8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM111	8011D6D0	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM112	8011D6D8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM113	8011D6D8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM114	8011D6E4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_launcherGrenadeExit	8011DE24	flt	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM115	8011D6E8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM116	8011D6EC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM117	8011D6F0	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM118	8011D6F4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM119	8011D6F8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM120	8011D6FC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM121	8011D704	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM122	8011D708	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM123	8011D70C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM124	8011D710	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM125	8011D714	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM126	8011D71C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM127	8011D724	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM128	8011D76C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM129	8011D794	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM130	8011D7AC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM131	8011D7B4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM132	8011D7C0	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM133	8011D7D0	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM134	8011D7E4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM135	8011D7E8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM136	8011D7F0	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM137	8011D7F8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM138	8011D7FC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM139	8011D800	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM140	8011D840	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM141	8011D848	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM142	8011D858	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM143	8011D864	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM144	8011D86C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM145	8011D870	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM146	8011D874	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM147	8011D878	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM148	8011D87C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM149	8011D880	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM150	8011D884	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM151	8011D888	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM152	8011D88C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM153	8011D890	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM154	8011D894	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM155	8011D898	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM156	8011D89C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM157	8011D8A4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM158	8011D8A8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM159	8011D8AC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM160	8011D8B0	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM161	8011D8B8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM162	8011D8C8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM163	8011D8CC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM164	8011D8D4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM165	8011D8DC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM166	8011D8E4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM167	8011D8E8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM168	8011D8EC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM169	8011D8F0	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM170	8011D8F4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM171	8011D8F8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM172	8011D8FC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM173	8011D900	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM174	8011D904	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM175	8011D908	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM176	8011D90C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM177	8011D910	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM178	8011D914	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM179	8011D918	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM180	8011D91C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM181	8011D920	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM182	8011D924	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM183	8011D928	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM184	8011D930	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM185	8011D934	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM186	8011D93C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM187	8011D94C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM188	8011D950	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM189	8011D954	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM190	8011D958	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM191	8011D95C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM192	8011D960	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM193	8011D964	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM194	8011D994	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM195	8011D994	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM196	8011D994	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_m4a1GrenadeFlyProjectile	8011D994	flt	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM197	8011D9A0	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM198	8011D9A8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM199	8011D9C8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM200	8011D9CC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM201	8011D9D0	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM202	8011D9D4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM203	8011D9DC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM204	8011D9E4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM205	8011D9F0	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM206	8011D9F4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM207	8011D9F8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM208	8011DA04	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM209	8011DA14	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM210	8011DA20	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM211	8011DA28	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM212	8011DA30	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM213	8011DA30	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM214	8011DA3C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM215	8011DA44	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM216	8011DA50	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM217	8011DA58	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM218	8011DA60	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM219	8011DA68	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM220	8011DA6C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM221	8011DA70	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM222	8011DA7C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM223	8011DA84	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM224	8011DA94	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM225	8011DA98	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM226	8011DA98	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM227	8011DAA0	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM228	8011DAA4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM229	8011DAA8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM230	8011DAAC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM231	8011DAB4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM232	8011DAC8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM233	8011DACC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM234	8011DAD0	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM235	8011DAD8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM236	8011DAD8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM237	8011DAE0	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM238	8011DAF4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM239	8011DB08	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM240	8011DB14	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM241	8011DB5C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM242	8011DB6C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM243	8011DB7C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM244	8011DBB8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM245	8011DBC0	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM246	8011DBD4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM247	8011DC14	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM248	8011DC54	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM249	8011DC8C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM250	8011DC90	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM251	8011DC94	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM252	8011DCA4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM253	8011DCAC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM254	8011DCB0	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM255	8011DCB8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM256	8011DCC0	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM257	8011DCC4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM258	8011DCCC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM259	8011DCD0	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM260	8011DCD4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM261	8011DCDC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM262	8011DCE0	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM263	8011DCE4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM264	8011DCE8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM265	8011DCF0	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM266	8011DD00	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM267	8011DD04	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM268	8011DD08	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM269	8011DD0C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM270	8011DD10	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM271	8011DD48	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM272	8011DD4C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM273	8011DD90	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM274	8011DDA4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM275	8011DDAC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM276	8011DDB4	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM277	8011DDCC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM278	8011DDF8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM279	8011DDF8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM280	8011DDF8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+_launcherGrenadeBlast	8011DDF8	flt	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM281	8011DDF8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM282	8011DDF8	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM283	8011DE00	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM284	8011DE0C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM285	8011DE14	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM286	8011DE1C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM287	8011DE24	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM288	8011DE24	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM289	8011DE24	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM290	8011DE38	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM291	8011DE3C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM292	8011DE44	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM293	8011DE4C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM294	8011DE54	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM295	8011DE68	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM296	8011DE68	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM297	8011DE68	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM298	8011DE6C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM299	8011DE70	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM300	8011DE74	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM301	8011DE9C	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM302	8011DEBC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+LM303	8011DECC	fl	build/USA/src/weapons/m4a1_grenade/m4a1_grenade.i
+__romPos	00011060	al	
+m4a1_grenade_TEXT_END	8011DECC	f	
+playerActorResetChildSlots	801038F8	a	
+gameGetTaskSlot	8002D22C	a	
+worldCoordGetOriginAudioPan	800D937C	a	
+worldCollisionClearContacts	800E1A6C	a	
+D_80114F94	80114F94	a	
+m4a1_grenade_VRAM	8011D1C0	f	
+m4a1_grenade_TEXT_SIZE	00000CE0	a	
+taskSpawn	8002CFDC	a	
+gGfxViewCoord	80070F10	a	
+worldCollisionProjectGroundCoord	800EA02C	a	
+m4a1GrenadeShellTask	8011DE68	ft	
+rcos	8003D108	a	
+taskKill	8002CCB8	a	
+gEffectSpriteAtlasFrames	80111E48	a	
+playerActorQueryWeaponLoads	80106264	a	
+gEffectUnitQuadCorners	80111E38	a	
+playerActorPlayChildSlotsWithBlend	80103A18	a	
+m4a1_grenade_ROM_START	00000000	a	
+m4a1_grenade_TEXT_START	8011D1EC	f	
+gpuSetPrimitiveBlendMode	800EC914	a	
+weaponRecordUse	80106518	a	
+ratan2	8003D9C8	a	
+D_80114F98	80114F98	a	
+m4a1_grenade_VRAM_END	8012E220	f	
+worldCollisionUnlinkBody	800E1638	a	
+gGpuCurrentOt	800710A0	a	
+gMcSaveData	80072168	a	
+worldCollisionCountContactsByKind	800E1A1C	a	
+m4a1GrenadeAttackState	8011D1EC	ft	
+worldCollisionSurfaceClassFromMask	800E1ACC	a	
+gfxMakeRelativeTransform	800A8864	a	
+gWorldCollisionSurfacePropertiesTables	8010CBB8	a	
+m4a1_grenade_RODATA_START	8011D1C0	f	
+playerActorReadAttackButton	801060E0	a	
+gAyaIdleClip	8011EBE0	f	
+m4a1_grenade_DATA_SIZE	00010354	a	
+gGameSession	8005ED64	a	
+gPlayerActorAttachmentParentParts	80112E04	a	
+sndEvtRequestScriptStop	800542D0	a	
+worldCollisionResolveResponsePushback	800E0FEC	a	
+gfxReadMatrixZAxis	8003C768	a	
+worldCollisionLinkBody	800E15AC	a	
+D_80073BA9	80073BA9	a	
+effectKillTask	800EC7E4	a	
+gM4a1GrenadePlayerAnimationBank	8012DF50	f	
+effectDrawGouraudDisc	800EAEB8	a	
+playerActorTrackLockTarget	80103F70	a	
+gfxRotMatrixZ	8003CB80	a	
+worldCoordPlaySound	801064A4	a	
+m4a1_grenade_RODATA_SIZE	0000002C	a	
+gGpuPrimCursor	80071190	a	
+worldCoordGetOriginAudioDepth	800D9340	a	
+m4a1_grenade_BSS_START	8012E220	f	
+gM4a1GrenadeWeaponModel	8011EA2C	f	
+effectDrawRaisedGlowBand	800EB9B0	a	
+memCalloc	8002D978	a	
+effectSpawn	800EA478	a	
+playerActorSpawnGrenadeProjectile	80104490	a	
+GsWSMATRIX	80071138	a	
+m4a1_grenade_BSS_END	8012E220	f	
+D_80073BAA	80073BAA	a	
+effectDrawOuterGlowBand	800EAA0C	a	
+rsin	8003D038	a	
+m4a1_grenade_DATA_END	8012E220	f	
+worldCollisionProbeGridSegment	800DE7CC	a	
+m4a1_grenade_RODATA_END	8011D1EC	f	
+gPlayerStatus	80073B88	a	
+equipmentConsumeWeaponLoad	800B6DA4	a	
+gRandomLcgState	80070F60	a	
+m4a1_grenade_ROM_END	00011060	a	
+VectorNormalSS	8003D5D8	a	
+D_8007218A	8007218A	a	
+Gfx_ViewWorldMtx	80070F34	a	
+effectDrawScreenTint	800EA858	a	
+equipmentGetWeaponLoad	800BAFE0	a	
+playerActorFinishWeaponAttack	80106550	a	
+gPlayerActorWeaponReaches	80112F60	a	
+worldCollisionInitContacts	800E18E0	a	
+gM4a1GrenadeProjectileModel	8012E1FC	f	
+gfxRotMatrixX	8003C788	a	
+gWorldCoordTransientPointLights	80114F30	a	
+gDisplayState	80070F68	a	
+playerActorSpawnWeaponImpact	80105BC4	a	
+playerActorIsSlotAdvancingLinearly	80105894	a	
+sndEvtRequestScriptStart	8005414C	a	
+animationGetCurrentRecord	800B4668	a	
+memFillBytes	8002D894	a	
+m4a1_grenade_bss_VRAM	8012E220	f	
+RotMatrixX	8004BE58	a	
+taskReparent	8002D14C	a	
+gRoomEffectState	80115740	a	
+actorRenderComposeCoord	80098F58	a	
+m4a1_grenade_DATA_START	8011DECC	f	
+m4a1_grenade_BSS_SIZE	00000000	a	
+playerActorSetWeaponAttackFlags	80106238	a	

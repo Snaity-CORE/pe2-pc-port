@@ -55,6 +55,27 @@ python tools/build_game.py     # game library: build/game/pe2game.lib
 cargo build                    # host executable
 ```
 
+### Without the discs
+
+Steps 1 and 2 are needed only to change the decomp or to refresh the
+snapshot. Without the decomp's PSX build, the same three commands build
+from `snapshot/` instead (or with `PE2_SNAPSHOT=1`): the units, each
+image's symbols and fingerprint, and the asset includes the compile reads
+with every value taken out (names, types and sizes only). The game reads
+its data from the player's discs at run time, so the values never mattered
+to the port's code; built from the snapshot it is the same, unit by unit.
+
+The snapshot must match the decomp commit it was made from
+(`snapshot/decomp.txt`). After changing the decomp, refresh it where the
+discs are, after a normal build:
+
+```sh
+python tools/make_snapshot.py  # saves snapshot/, then checks the code built from it is the same
+```
+
+It refuses any include that still holds a value, as does
+`tools/check_no_game_data.py` for what is committed.
+
 The icon (pe2.exe in Explorer and the taskbar, and the game's and
 launcher's windows) is `crates/pe2-host/res/icon.png`. To use a picture of
 your own instead, put a square PNG at `local/icon.png` (ignored by git) and

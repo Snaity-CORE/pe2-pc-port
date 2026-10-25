@@ -1,0 +1,2 @@
+/* Generated from assets/USA/pe2pkg/aya_10200.pe2pkg; model at 0xD50. */
+    { { { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }, { 0, 0, 0 } }, 0 },

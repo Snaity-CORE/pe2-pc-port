@@ -1,0 +1,2 @@
+/* Generated from assets/USA/pe2pkg/acropolis_cafeteria.pe2pkg; model at 0x96EC. */
+    { { { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }, { 0, 0, 0 } }, 0 },

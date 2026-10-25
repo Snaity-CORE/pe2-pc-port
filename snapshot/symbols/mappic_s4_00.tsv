@@ -1,0 +1,22 @@
+_MACRO_INC_GUARD	00000001	al	build/USA/src/mappic/mappic_s4_00/mappic_s4_00.i
+_gMappicS400CavernShapeSkeleton	8012EF34	l	build/USA/src/mappic/mappic_s4_00/mappic_s4_00.i
+_gMappicS400CavernShapePartVerts	8012EF58	l	build/USA/src/mappic/mappic_s4_00/mappic_s4_00.i
+_gMappicS400CavernShapeVerts	8012EF5C	l	build/USA/src/mappic/mappic_s4_00/mappic_s4_00.i
+_gMappicS400CavernShapeStream	8012EF8C	l	build/USA/src/mappic/mappic_s4_00/mappic_s4_00.i
+_gMappicS400SecretPassageShapeSkeleton	8012EFE0	l	build/USA/src/mappic/mappic_s4_00/mappic_s4_00.i
+_gMappicS400SecretPassageShapePartVerts	8012F004	l	build/USA/src/mappic/mappic_s4_00/mappic_s4_00.i
+_gMappicS400SecretPassageShapeVerts	8012F008	l	build/USA/src/mappic/mappic_s4_00/mappic_s4_00.i
+_gMappicS400SecretPassageShapeStream	8012F078	l	build/USA/src/mappic/mappic_s4_00/mappic_s4_00.i
+__romPos	000001CC	al	
+mappic_s4_00_ROM_START	00000000	a	
+mappic_s4_00_RODATA_START	8012EF30		
+mappic_s4_00_DATA_END	8012F0FC		
+gMappicS400CavernShape	8012EFBC		
+mappic_s4_00_DATA_START	8012EF34		
+mappic_s4_00_VRAM	8012EF30		
+mappic_s4_00_ROM_END	000001CC	a	
+gMappicS400SecretPassageShape	8012F0D8		
+mappic_s4_00_RODATA_SIZE	00000004	a	
+mappic_s4_00_RODATA_END	8012EF34		
+mappic_s4_00_VRAM_END	8012F0FC		
+mappic_s4_00_DATA_SIZE	000001C8	a	

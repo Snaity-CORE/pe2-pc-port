@@ -1,0 +1,1744 @@
+gcc2_compiled.	8017D5EC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+__gnu_compiled_c	8017D5EC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+_MACRO_INC_GUARD	00000001	al	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+_gAcropolisForkedRoadRoomTaskStates	8017D5C4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+_acropolisForkedRoadInitializeRoomTask	8017D92C	flt	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+_acropolisForkedRoadStartReturnArrivalScene	8017D970	flt	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+_gAcropolisForkedRoadRoomMessages	80180F14	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+_acropolisForkedRoadResolveTransitionMessage	8017D5EC	flt	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+_acropolisForkedRoadRejectKeyItemUse	8017D850	flt	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+_acropolisForkedRoadHandleCommandMessage	8017D858	flt	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+_acropolisForkedRoadHandleActionMessage	8017D8A8	flt	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+_gAcropolisForkedRoadReturnRideLatch	80180F3C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM1	8017D5EC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM2	8017D5EC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM3	8017D604	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM4	8017D624	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM5	8017D634	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM6	8017D658	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM7	8017D65C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM8	8017D66C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM9	8017D680	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM10	8017D690	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM11	8017D69C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM12	8017D6AC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM13	8017D6B4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM14	8017D6C8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM15	8017D6D8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM16	8017D6E8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM17	8017D6F8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM18	8017D704	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM19	8017D70C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM20	8017D71C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM21	8017D730	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM22	8017D740	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM23	8017D74C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM24	8017D754	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM25	8017D75C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM26	8017D77C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM27	8017D78C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM28	8017D790	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM29	8017D7AC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM30	8017D7BC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM31	8017D7C4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM32	8017D7CC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM33	8017D7E4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM34	8017D7F0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM35	8017D7F8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM36	8017D7FC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM37	8017D80C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM38	8017D820	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM39	8017D830	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM40	8017D838	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM41	8017D83C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM42	8017D850	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM43	8017D850	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM44	8017D850	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM45	8017D850	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM46	8017D858	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM47	8017D858	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM48	8017D858	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM49	8017D85C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM50	8017D868	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM51	8017D88C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM52	8017D890	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM53	8017D898	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM54	8017D898	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM55	8017D89C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM56	8017D8A0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM57	8017D8A8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM58	8017D8A8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM59	8017D8A8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM60	8017D8B0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM61	8017D8D4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM62	8017D8DC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM63	8017D904	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM64	8017D910	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM65	8017D91C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM66	8017D91C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM67	8017D920	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM68	8017D924	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM69	8017D92C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM70	8017D92C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM71	8017D92C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM72	8017D938	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM73	8017D940	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM74	8017D944	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM75	8017D948	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM76	8017D950	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM77	8017D970	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM78	8017D970	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM79	8017D970	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM80	8017D970	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM81	8017D978	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM82	8017D97C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM83	8017D9A0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM84	8017D9A4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM85	8017D9BC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM86	8017D9CC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM87	8017D9CC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM88	8017D9CC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM89	8017D9D0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM90	8017D9D4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM91	8017D9D8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM92	8017D9F4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM93	8017DA14	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+LM94	8017DA24	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road.i
+gcc2_compiled.	8017DA24	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+__gnu_compiled_c	8017DA24	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_MACRO_INC_GUARD	00000001	al	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_acropolisForkedRoadOutboundMoviePathTask	8017DA24	flt	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_acropolisForkedRoadReturnMoviePathTask	8017DD60	flt	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_acropolisForkedRoadSkipFadeOutTask	8017E1C0	flt	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_acropolisForkedRoadSkipFadeInTask	8017E220	flt	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadMoviePlayerPositions	80180F80	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAyaStandClipBank1	801818E0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAyaStandClipBank4	80181928	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAyaStandClipRecords	801819E0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAyaStandClipTrackStarts	80181B94	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gShelterB2NorthMaintenanceWalkwayPlayerTurnToStingerClipBank1	80181BE4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gShelterB2NorthMaintenanceWalkwayPlayerTurnToStingerClipBank4	80181C5C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gShelterB2NorthMaintenanceWalkwayPlayerTurnToStingerClipRecords	80181DD8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gShelterB2NorthMaintenanceWalkwayPlayerTurnToStingerClipTrackStarts	80182004	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gShelterB2NorthMaintenanceWalkwayPlayerTurnToStingerClip	8018202C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadLockReleaseAnimationSets	80182054	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadLockReleaseBankCopyRequest	80182060	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadUnusedBank1Animation1Request	80182068	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadLockReleasePlayerClip48Request	8018207C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadUnusedBank1AnimationRequests	80182090	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_acropolisForkedRoadReleaseMaggotCaterpillarEntrance	8017E288	flt	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadWallLampPositions	80182178	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadWallLampViewMasks	801821E8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gRoomVisualEffectsTwinTrailEndpointOffsets	80182204	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadCollisionGrid	80182BF0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadViewBoundaryTriggers	80182C14	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadActionTriggers	80182DDC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadRoom2ViewMap	80182244	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadRoom3ViewMap	80182250	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadRoomLights	80184E70	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadCollisionGridNormals	801823A0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadCollisionGridVerts	80182430	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadCollisionGridFaces	801827E0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadCollisionGridCells	801829A8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadCollisionGridTable	80182B90	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadVariant2Resources	80182FF0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadVariant3Resources	80183008	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadVariant4Resources	8018302C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadVariant7Resources	80183044	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadVariant8Resources	80183068	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadVariant9Resources	80183080	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadVariant10Resources	80183098	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadVariant11Resources	801830BC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadVariant12Resources	801830D4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadVariant13Resources	801830EC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadVariant14Resources	80183104	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadVariant15Resources	8018311C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadVariant16Resources	80183134	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadVariant20Resources	8018314C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadVariant21Resources	80183164	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadVariant22Resources	80183188	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadView1SpriteBatches	80183284	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadView2SpriteSources	80183294	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadView2SpriteBatches	80183938	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadViews3And12SpriteSources	80183998	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadViews3And12SpriteBatches	80183A10	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadView4SpriteBatches	80183A28	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadView5SpriteSources	80183A38	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadView5SpriteBatches	80183AB0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadView6SpriteBatches	80183AC8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadUnusedEmptySpriteBatches1	80183AD8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadViews7And8SpriteSources	80183AE8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadViews7And8SpriteBatches	80183F70	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadView9SpriteBatches	80183FA0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadView10SpriteBatches	80183FB0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadView11SpriteSources	80183FC0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadView11SpriteBatches	80184498	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadUnusedEmptySpriteBatches2	801844D0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadPointLights	80184570	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadReturnMovieVibrationCommands	80185038	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadReturnMovieVibrationSegments	80185050	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadOutboundMovieVibrationCommands	80185058	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadOutboundMovieVibrationSegments	80185070	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadSurfaceClass4FootstepSounds	80185078	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadDefaultSurfaceProperties	80185084	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadSurfaceClass2Properties	8018508C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadSurfaceClass3Properties	80185094	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_gAcropolisForkedRoadSurfaceClass4Properties	8018509C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM1	8017DA24	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM2	8017DA24	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM3	8017DA30	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM4	8017DA34	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM5	8017DA38	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM6	8017DA3C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM7	8017DA44	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM8	8017DA48	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM9	8017DA4C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM10	8017DA74	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM11	8017DA80	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM12	8017DA88	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM13	8017DA90	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM14	8017DA90	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM15	8017DA98	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM16	8017DA9C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM17	8017DAA4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM18	8017DAB0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM19	8017DABC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM20	8017DAC0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM21	8017DACC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM22	8017DAD0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM23	8017DAEC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM24	8017DAF4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM25	8017DB00	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM26	8017DB04	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM27	8017DB08	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM28	8017DB0C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM29	8017DB10	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM30	8017DB14	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM31	8017DB1C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM32	8017DB20	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM33	8017DB24	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM34	8017DB38	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM35	8017DB40	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM36	8017DB44	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM37	8017DB50	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM38	8017DB54	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM39	8017DB58	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM40	8017DB60	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM41	8017DB64	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM42	8017DB68	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM43	8017DB6C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM44	8017DB80	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM45	8017DB88	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM46	8017DBA4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM47	8017DBB8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM48	8017DBC4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM49	8017DBCC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM50	8017DBD4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM51	8017DBE4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM52	8017DBF4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM53	8017DBFC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM54	8017DC00	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM55	8017DC10	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM56	8017DC1C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM57	8017DC24	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM58	8017DC84	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM59	8017DCAC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM60	8017DCB8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM61	8017DCC0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM62	8017DCC8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM63	8017DCCC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM64	8017DCD4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM65	8017DCE0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM66	8017DCF0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM67	8017DCFC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM68	8017DD04	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM69	8017DD08	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM70	8017DD0C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM71	8017DD10	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM72	8017DD14	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM73	8017DD1C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM74	8017DD24	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM75	8017DD34	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM76	8017DD38	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM77	8017DD40	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM78	8017DD48	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM79	8017DD60	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM80	8017DD60	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM81	8017DD60	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM82	8017DD6C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM83	8017DD70	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM84	8017DD74	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM85	8017DD78	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM86	8017DD7C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM87	8017DD8C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM88	8017DD90	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM89	8017DD94	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM90	8017DDD4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM91	8017DDDC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM92	8017DDE4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM93	8017DDEC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM94	8017DDF4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM95	8017DDF8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM96	8017DDFC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM97	8017DE00	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM98	8017DE04	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM99	8017DE0C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM100	8017DE10	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM101	8017DE2C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM102	8017DE34	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM103	8017DE38	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM104	8017DE44	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM105	8017DE48	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM106	8017DE4C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM107	8017DE54	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM108	8017DE58	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM109	8017DE5C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM110	8017DE60	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM111	8017DE74	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM112	8017DE80	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM113	8017DE88	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM114	8017DE90	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM115	8017DEA0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM116	8017DEE8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM117	8017DEF0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM118	8017DF04	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM119	8017DF08	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM120	8017DF0C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM121	8017DF10	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM122	8017DF18	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM123	8017DF20	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM124	8017DF24	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM125	8017DF34	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM126	8017DF40	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM127	8017DF48	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM128	8017DF4C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM129	8017DF54	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM130	8017DF64	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM131	8017DF78	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM132	8017DF80	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM133	8017DFEC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM134	8017DFFC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM135	8017E010	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM136	8017E010	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM137	8017E014	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM138	8017E018	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM139	8017E01C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM140	8017E020	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM141	8017E030	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM142	8017E034	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM143	8017E038	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM144	8017E03C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM145	8017E040	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM146	8017E044	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM147	8017E058	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM148	8017E070	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM149	8017E078	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM150	8017E088	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM151	8017E0A0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM152	8017E0A4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM153	8017E0BC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM154	8017E0C0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM155	8017E0C4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM156	8017E0C8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM157	8017E0CC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM158	8017E0E4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM159	8017E0E8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM160	8017E0EC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM161	8017E100	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM162	8017E10C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM163	8017E114	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM164	8017E12C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM165	8017E13C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM166	8017E144	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM167	8017E148	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM168	8017E14C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM169	8017E168	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM170	8017E174	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM171	8017E17C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM172	8017E184	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM173	8017E188	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM174	8017E18C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM175	8017E194	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM176	8017E19C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM177	8017E1C0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM178	8017E1C0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM179	8017E1C0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM180	8017E1D0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM181	8017E1E4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM182	8017E1F0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM183	8017E1F4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM184	8017E208	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM185	8017E210	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM186	8017E220	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM187	8017E220	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM188	8017E220	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM189	8017E230	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM190	8017E234	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM191	8017E238	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM192	8017E23C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM193	8017E24C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM194	8017E258	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM195	8017E25C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM196	8017E270	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM197	8017E278	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM198	8017E288	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM199	8017E288	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM200	8017E288	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM201	8017E288	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM202	8017E298	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM203	8017E298	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM204	8017E298	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM205	8017E2B8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM206	8017E2BC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM207	8017E2C0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM208	8017E2C4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM209	8017E2CC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM210	8017E2D8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM211	8017E2F0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM212	8017E300	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM213	8017E314	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM214	8017E32C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM215	8017E33C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM216	8017E354	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM217	8017E36C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM218	8017E37C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM219	8017E38C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM220	8017E3A4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM221	8017E3B4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM222	8017E3BC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM223	8017E3C4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM224	8017E3CC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM225	8017E3D4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM226	8017E3DC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM227	8017E3E0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM228	8017E3E8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM229	8017E3F0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM230	8017E410	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM231	8017E410	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM232	8017E410	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM233	8017E410	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM234	8017E418	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM235	8017E430	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM236	8017E434	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM237	8017E438	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM238	8017E43C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM239	8017E440	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM240	8017E484	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM241	8017E48C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM242	8017E4A4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM243	8017E4AC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM244	8017E4B4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM245	8017E4D4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM246	8017E4E8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM247	8017E4F0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM248	8017E4F8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM249	8017E50C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM250	8017E51C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM251	8017E534	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM252	8017E544	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM253	8017E544	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM254	8017E550	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM255	8017E554	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM256	8017E558	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM257	8017E55C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM258	8017E560	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM259	8017E564	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM260	8017E568	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM261	8017E580	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM262	8017E5B0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM263	8017E5BC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM264	8017E5C8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM265	8017E5D4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM266	8017E5DC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM267	8017E5EC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM268	8017E5F4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM269	8017E604	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM270	8017E618	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM271	8017E624	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM272	8017E628	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM273	8017E630	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM274	8017E634	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM275	8017E63C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM276	8017E640	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM277	8017E644	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM278	8017E648	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM279	8017E64C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM280	8017E650	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM281	8017E654	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM282	8017E668	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM283	8017E66C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM284	8017E670	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM285	8017E680	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM286	8017E684	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM287	8017E688	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM288	8017E69C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM289	8017E6A0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM290	8017E6A8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM291	8017E6B8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM292	8017E6BC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM293	8017E6C0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM294	8017E6D4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM295	8017E758	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM296	8017E770	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM297	8017E780	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM298	8017E7EC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM299	8017E804	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM300	8017E81C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM301	8017E81C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM302	8017E81C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_leafDraw	8017EC70	flt	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM303	8017EC54	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM304	8017EC70	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM305	8017EC70	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM306	8017EC70	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM307	8017EC74	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM308	8017EC7C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM309	8017EC8C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM310	8017EC90	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM311	8017EC94	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM312	8017EC9C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM313	8017ECA0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM314	8017ED2C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM315	8017ED38	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM316	8017ED4C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM317	8017ED6C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM318	8017ED78	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM319	8017ED98	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM320	8017EDC8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM321	8017EDD4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM322	8017EDE0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM323	8017EDEC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM324	8017EDF4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM325	8017EE04	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM326	8017EE0C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM327	8017EE30	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM328	8017EE3C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM329	8017EE50	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM330	8017EE54	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM331	8017EE5C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM332	8017EE60	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM333	8017EE68	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM334	8017EE6C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM335	8017EE74	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM336	8017EE80	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM337	8017EE90	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM338	8017EEA4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM339	8017EEB0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM340	8017EEB4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM341	8017EEC0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM342	8017EEC8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM343	8017EED8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM344	8017EED8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM345	8017EEDC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM346	8017EEE4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM347	8017EEE8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM348	8017EEF4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM349	8017EEF8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM350	8017EF64	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM351	8017EF78	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM352	8017EF80	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM353	8017EF80	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM354	8017EF80	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM355	8017EF90	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_roomVisualEffectsDrawFlashDisc	8017F650	flt	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_roomVisualEffectsDrawFlashRing	8017F224	flt	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_roomVisualEffectsDrawBurstStar	80180554	flt	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM356	8017F20C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM357	8017F224	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM358	8017F224	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM359	8017F224	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM360	8017F22C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM361	8017F234	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM362	8017F25C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM363	8017F260	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM364	8017F264	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM365	8017F26C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM366	8017F270	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM367	8017F274	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM368	8017F278	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM369	8017F27C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM370	8017F280	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM371	8017F284	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM372	8017F288	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM373	8017F28C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM374	8017F290	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM375	8017F2A8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM376	8017F2D8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM377	8017F2E4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM378	8017F2F0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM379	8017F2F8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM380	8017F308	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM381	8017F318	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM382	8017F328	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM383	8017F32C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM384	8017F330	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM385	8017F334	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM386	8017F338	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM387	8017F364	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM388	8017F368	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM389	8017F36C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM390	8017F370	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM391	8017F3A4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM392	8017F3A8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM393	8017F3BC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM394	8017F3C0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM395	8017F3CC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM396	8017F3D4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM397	8017F3E4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM398	8017F3F0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM399	8017F3FC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM400	8017F420	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM401	8017F43C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM402	8017F440	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM403	8017F454	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM404	8017F458	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM405	8017F468	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM406	8017F47C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM407	8017F480	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM408	8017F484	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM409	8017F494	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM410	8017F4A8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM411	8017F4AC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM412	8017F4BC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM413	8017F4D0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM414	8017F4D4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM415	8017F4E4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM416	8017F4F8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM417	8017F4FC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM418	8017F50C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM419	8017F520	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM420	8017F524	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM421	8017F534	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM422	8017F548	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM423	8017F54C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM424	8017F55C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM425	8017F584	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM426	8017F5C8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM427	8017F5CC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM428	8017F5DC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM429	8017F5E0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM430	8017F5F4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM431	8017F600	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM432	8017F60C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM433	8017F624	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM434	8017F650	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM435	8017F650	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM436	8017F650	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM437	8017F660	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM438	8017F668	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM439	8017F688	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM440	8017F68C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM441	8017F690	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM442	8017F694	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM443	8017F698	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM444	8017F69C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM445	8017F6A0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM446	8017F6A4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM447	8017F6A8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM448	8017F6AC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM449	8017F6B0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM450	8017F6B4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM451	8017F6B8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM452	8017F6D0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM453	8017F700	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM454	8017F708	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM455	8017F714	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM456	8017F71C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM457	8017F72C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM458	8017F73C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM459	8017F74C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM460	8017F750	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM461	8017F754	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM462	8017F758	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM463	8017F75C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM464	8017F788	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM465	8017F7A0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM466	8017F7A4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM467	8017F7A8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM468	8017F7B4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM469	8017F7BC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM470	8017F7CC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM471	8017F7D8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM472	8017F7E4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM473	8017F800	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM474	8017F804	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM475	8017F810	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM476	8017F810	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM477	8017F824	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM478	8017F828	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM479	8017F838	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM480	8017F84C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM481	8017F854	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM482	8017F864	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM483	8017F878	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM484	8017F87C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM485	8017F88C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM486	8017F8B4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM487	8017F8B8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM488	8017F8BC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM489	8017F8C0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM490	8017F8C4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM491	8017F8C8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM492	8017F8DC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM493	8017F8E0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM494	8017F8F0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM495	8017F918	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM496	8017F95C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM497	8017F960	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM498	8017F970	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM499	8017F974	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM500	8017F988	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM501	8017F994	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM502	8017F9A0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM503	8017F9B8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM504	8017F9E4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM505	8017F9E4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM506	8017F9E4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM507	8017F9E4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM508	8017F9EC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM509	8017FA1C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM510	8017FA20	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM511	8017FA24	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM512	8017FA28	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM513	8017FA2C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM514	8017FA30	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM515	8017FA3C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM516	8017FA4C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM517	8017FA74	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM518	8017FA84	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM519	8017FA8C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM520	8017FA94	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM521	8017FA94	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM522	8017FA94	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM523	8017FA9C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM524	8017FAA0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM525	8017FAA4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM526	8017FAA8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM527	8017FAAC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM528	8017FAB0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM529	8017FAB4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM530	8017FAC0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM531	8017FAC4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM532	8017FAC8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM533	8017FACC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM534	8017FAD0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM535	8017FAD4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM536	8017FAD8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM537	8017FAD8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM538	8017FAE0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM539	8017FAEC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM540	8017FAF0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM541	8017FAF4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM542	8017FAF8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM543	8017FAFC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM544	8017FB00	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM545	8017FB04	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM546	8017FB08	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM547	8017FB0C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM548	8017FB10	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM549	8017FB14	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM550	8017FB14	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM551	8017FB1C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM552	8017FB28	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM553	8017FBC0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM554	8017FC58	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM555	8017FC6C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM556	8017FC74	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM557	8017FC74	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM558	8017FC7C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM559	8017FC84	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM560	8017FC88	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM561	8017FC8C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM562	8017FC90	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM563	8017FC94	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM564	8017FC98	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM565	8017FC9C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM566	8017FCA0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM567	8017FCA4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM568	8017FCA8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM569	8017FCA8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM570	8017FCB4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM571	8017FCBC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM572	8017FD6C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM573	8017FE24	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM574	8017FE30	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM575	8017FE34	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM576	8017FE38	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM577	8017FE40	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM578	8017FE44	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM579	8017FE48	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM580	8017FE50	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM581	8017FE64	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+_roomVisualEffectsDrawTwinTrail	8017FED4	flt	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM582	8017FE7C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM583	8017FE9C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM584	8017FEA4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM585	8017FED4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM586	8017FED4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM587	8017FED4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM588	8017FEE8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM589	8017FEF0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM590	8017FF00	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM591	8017FF04	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM592	8017FF1C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM593	8017FF20	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM594	8017FF24	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM595	8017FF30	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM596	8017FF48	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM597	8017FF78	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM598	8017FF7C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM599	8017FF90	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM600	8017FF9C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM601	8017FFA0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM602	8017FFB0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM603	8017FFB4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM604	8017FFB8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM605	8017FFBC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM606	8017FFC0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM607	8017FFC4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM608	8017FFC8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM609	8017FFCC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM610	8017FFD0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM611	8017FFD4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM612	8017FFD8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM613	8017FFDC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM614	8017FFE0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM615	8017FFE4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM616	8017FFE8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM617	8017FFEC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM618	8017FFF0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM619	8017FFF4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM620	8017FFF8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM621	8017FFFC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM622	80180008	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM623	80180014	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM624	80180018	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM625	8018001C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM626	80180020	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM627	8018002C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM628	80180038	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM629	80180044	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM630	8018004C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM631	80180058	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM632	80180060	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM633	80180084	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM634	80180090	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM635	801800A8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM636	801800B8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM637	801800C8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM638	801800D8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM639	801800E8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM640	801800EC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM641	80180104	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM642	80180114	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM643	80180118	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM644	80180120	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM645	80180134	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM646	80180134	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM647	80180138	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM648	8018013C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM649	80180140	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM650	80180148	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM651	80180150	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM652	80180154	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM653	80180158	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM654	8018015C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM655	80180160	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM656	80180164	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM657	80180168	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM658	8018016C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM659	80180170	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM660	80180174	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM661	80180178	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM662	8018017C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM663	80180180	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM664	80180184	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM665	80180188	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM666	8018018C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM667	80180190	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM668	80180194	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM669	80180198	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM670	8018019C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM671	801801A8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM672	801801B4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM673	801801C0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM674	801801CC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM675	801801D8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM676	801801E4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM677	801801E8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM678	801801EC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM679	801801F0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM680	801801F4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM681	801801F8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM682	801801FC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM683	80180268	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM684	80180274	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM685	80180278	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM686	80180284	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM687	8018029C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM688	801802CC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM689	801802CC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM690	801802CC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM691	801802DC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM692	80180538	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM693	80180554	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM694	80180554	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM695	80180554	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM696	80180564	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM697	8018056C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM698	80180590	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM699	80180594	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM700	80180598	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM701	8018059C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM702	801805A0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM703	801805A4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM704	801805A8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM705	801805AC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM706	801805B0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM707	801805B4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM708	801805B8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM709	801805BC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM710	801805C0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM711	801805D8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM712	80180608	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM713	80180610	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM714	8018061C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM715	80180624	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM716	80180634	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM717	80180644	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM718	80180654	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM719	8018065C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM720	80180660	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM721	80180664	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM722	80180668	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM723	80180694	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM724	80180698	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM725	8018069C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM726	801806C8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM727	801806CC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM728	801806E0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM729	801806E4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM730	801806E8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM731	801806F4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM732	801806FC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM733	80180748	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM734	8018074C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM735	8018075C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM736	80180770	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM737	80180774	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM738	80180784	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM739	80180798	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM740	8018079C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM741	801807A0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM742	801807B0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM743	801807C4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM744	801807C8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM745	801807D8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM746	80180800	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM747	80180804	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM748	80180808	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM749	8018080C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM750	80180810	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM751	80180814	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM752	80180828	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM753	8018082C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM754	8018083C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM755	80180860	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM756	80180864	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM757	80180868	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM758	801808B8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM759	801808BC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM760	801808D0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM761	801808DC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM762	801808E8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM763	801808F0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM764	80180934	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM765	80180938	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM766	80180944	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM767	80180958	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM768	8018095C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM769	8018096C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM770	80180980	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM771	80180984	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM772	80180994	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM773	801809A8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM774	801809AC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM775	801809BC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM776	801809E4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM777	801809F0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM778	801809F4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM779	801809F8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM780	80180A0C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM781	80180A10	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM782	80180A20	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM783	80180A44	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM784	80180A48	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM785	80180A4C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM786	80180A88	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM787	80180A8C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM788	80180A9C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM789	80180AA0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM790	80180AB4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM791	80180AC0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM792	80180ACC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM793	80180AD0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM794	80180AE8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM795	80180AF0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM796	80180AF8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM797	80180B34	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM798	80180B38	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM799	80180B44	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM800	80180B48	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM801	80180B58	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM802	80180B6C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM803	80180B70	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM804	80180B80	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM805	80180B94	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM806	80180B98	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM807	80180BA8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM808	80180BBC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM809	80180BC0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM810	80180BD0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM811	80180BF8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM812	80180BFC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM813	80180C00	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM814	80180C04	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM815	80180C08	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM816	80180C0C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM817	80180C20	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM818	80180C24	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM819	80180C34	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM820	80180C58	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM821	80180C5C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM822	80180C60	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM823	80180CB0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM824	80180CB4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM825	80180CC8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM826	80180CD4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM827	80180CDC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM828	80180CE4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM829	80180D30	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM830	80180D34	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM831	80180D44	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM832	80180D58	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM833	80180D5C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM834	80180D6C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM835	80180D80	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM836	80180D84	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM837	80180D94	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM838	80180DA8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM839	80180DAC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM840	80180DBC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM841	80180DE4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM842	80180DE8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM843	80180DEC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM844	80180DF0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM845	80180DF4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM846	80180DF8	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM847	80180E0C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM848	80180E10	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM849	80180E20	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM850	80180E44	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM851	80180E48	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM852	80180E4C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM853	80180E88	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM854	80180E8C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM855	80180E9C	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM856	80180EA0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM857	80180EB4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM858	80180EC0	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM859	80180ECC	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM860	80180EE4	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+LM861	80180F14	fl	build/USA/src/rooms/acropolis_forked_road/acropolis_forked_road_2.i
+__romPos	00007B04	al	
+equipmentGetWeaponLoadCapacity	800BB938	a	
+gActor443500ConsoleFollowupSkipScript	80142A74	a	
+D_80073BAC	80073BAC	a	
+D_80072174	80072174	a	
+areaSetCurrentObjectState	800BAC34	a	
+uiInitList	800489A0	a	
+D_80071072	80071072	a	
+CdFlush	80015AF4	a	
+gameFlagSetNibble	8004AC58	a	
+SetRotMatrix	8004ADF8	a	
+stageRequestModeTaskExit	8003F6F8	a	
+gActor503500StaffCardSceneTaskDesc	8014B958	a	
+sceneEngageBattle	800DB4E0	a	
+tmdAllocPrimitiveBuffer	80041B88	a	
+gActor335800BalconyBattleStartScript	80165720	a	
+gActor450200CompanionSceneScript	80137EE4	a	
+actor161500StartSoldierBRemark	80131E38	a	
+gCapCommandEntries	801156A0	a	
+displayAcquireMenuHold	8003E610	a	
+gPadMenuButtonMask	8005ED78	a	
+areaSetPlacementVariant	800B5B30	a	
+displayQueueModeTask	8003FB70	a	
+gameGetTaskSlot	8002D22C	a	
+GetTPage	80043938	a	
+displaySetFrameTiming	800280F4	a	
+textItoaUnsigned	8002F18C	a	
+damagePackEnemyAttackKey	800E2BF8	a	
+viewGetMappedIndex	800AD284	a	
+acropolisForkedRoadWallLampTask	8017E410	ft	
+gMapAkropolisForkedRoadVariant10Placements	8017B35C	a	
+worldCoordGetOriginAudioPan	800D937C	a	
+mapShelterRoomVariantResolve	80179A04	a	
+gPadInputMenuUnlockUpdates	80115716	a	
+uiGetTextColor	80048E10	a	
+cdCmdSelectScene	8001D534	a	
+gActor107600TaskDescriptors	80134F94	a	
+SetDrawTPage	80043A38	a	
+D_801153F1	801153F1	a	
+gActor02600MaggotCaterpillarBodyTask	8013A8D4	a	
+printf	8001AF3C	a	
+worldCollisionClearContacts	800E1A6C	a	
+sceneReleaseBattleRefAndClearRewards	800DB630	a	
+memMalloc	8002DABC	a	
+D_80073BA0	80073BA0	a	
+gActionPromptSlots	80114D28	a	
+D_80072836	80072836	a	
+gAttachmentTrainingLevels	80114BF0	a	
+taskPollKill	8002D3BC	a	
+acropolis_forked_road_RODATA_END	8017D5EB	f	
+actor260400RestoreHeliportPlacement	80149FA4	a	
+gRoomEffectOrangeBurst2Id	80115754	a	
+stageMusicRequestAreaStop	800430E4	a	
+taskSpawn	8002CFDC	a	
+MatrixNormal	8003D6C8	a	
+gAreaRecordsByStage	8010CBCC	a	
+textDrawUiLine	8002FDCC	a	
+D_8007106C	8007106C	a	
+gActor450800NurseryIntroSkipScript	8013A33C	a	
+D_80070F6C	80070F6C	a	
+capRunCommandWithTransition	800E3B60	a	
+SetSemiTrans	800439B8	a	
+gCapRoomCompletionSoundsEnabled	80115598	a	
+sndEvtRequestMidiStart	800512BC	a	
+inventoryHasCollectedBit	800BB4BC	a	
+acropolis_forked_road_bss_VRAM	801850C4	f	
+gGfxViewCoord	80070F10	a	
+equipmentRestoreHpMp	800BC164	a	
+D_80073B8C	80073B8C	a	
+gameFlowBeginLoadScreen	8002252C	a	
+sndEvtRequestScriptMix	80054424	a	
+worldCollisionProjectGroundCoord	800EA02C	a	
+worldCollisionUnlinkTrigger	800E1708	a	
+actor215100SelectCaptionResource	8014C5E0	a	
+padScriptSpawnVariableMotorRamp	800E8D1C	a	
+gfxSetFlatLight	8003B140	a	
+gPlayerActorStateTickHeld	80115768	a	
+gItemDescriptors	8010D838	a	
+playerActorPrepareDryfieldLoadout	800BC4E4	a	
+acropolis_forked_road_RODATA_SIZE	0000002B	a	
+gActor450200RoomVariantSceneScript	8013FC58	a	
+taskGetDescAt	8002D32C	a	
+rcos	8003D108	a	
+gAcropolisForkedRoadRoomCollisionResources	80182214	f	
+D_80072177	80072177	a	
+streamFindViewMovieSlot	8001EED8	a	
+gRoomEffectTwinTrailId	8011572C	a	
+taskKill	8002CCB8	a	
+acropolis_forked_road_DATA_END	801850C4	f	
+gActor143000KeypadTaskDesc	80134564	a	
+gEffectSpriteAtlasFrames	80111E48	a	
+D_80115188	80115188	a	
+D_80072724	80072724	a	
+textDrawString	8002E53C	a	
+gDirectionInteractionRearmUpdates	80114D08	a	
+D_80071078	80071078	a	
+gRoomEffectSparkBurstId	80115750	a	
+gActor120300TaskDescriptors	80141B6C	a	
+inventoryResetIceBagTimer	800BC21C	a	
+gEffectUnitQuadCorners	80111E38	a	
+worldCoordSetActorColorMode	800D930C	a	
+gActor342400EncounterTaskDescs	8016BFE0	a	
+gActor560800ChainGlowTick	801752EC	a	
+gActor444000IncineratorEventTaskDesc	801449F4	a	
+playerActorSetScriptedControl	800E3BBC	a	
+stageMusicRequestAreaStart	80043028	a	
+acropolisForkedRoadRoomVisualEffectsSparkBurstTask	801802CC	ft	
+itemMenuSpawnNotice	800D4E40	a	
+actor460200SetupTentSoldiers	80132210	a	
+gActor335800BalconyEntrySkipScript	80165798	a	
+gActor00700MothTaskDesc	801393C8	a	
+D_80115124	80115124	a	
+uiStartPanelOpening	80048964	a	
+actor215100RequestGalleryAbort	8014A9A0	a	
+gAcropolisForkedRoadSurfacePropertiesByClass	801850A4	f	
+streamGetFrameLimit	80020414	a	
+gActor00100DesertChaserTaskDesc	8014D8A4	a	
+gActor04000HangingPoolTaskDesc	8013E51C	a	
+gActor560800CutsceneTaskDescriptors	801718F0	a	
+actor161500StartCompanionRequestReminder	801322A0	a	
+acropolis_forked_road_ROM_START	00000000	a	
+equipmentInitializeWeaponSupplies	800B6CF0	a	
+gFsActorBuffer1Base	8005C370	a	
+textFormatPlayTime	8002EB94	a	
+playerActorRestoreEquipment	801034C0	a	
+playerActorRemoveEquipment	801043F4	a	
+SetDrawMove	8004AD18	a	
+damageGetPlayerAttackEffectId	800E2D90	a	
+gMapAkropolisForkedRoadVariant22Placements	8017B6AC	a	
+gpuSetPrimitiveBlendMode	800EC914	a	
+gActor107000SucklercephTaskDescs	80139E60	a	
+gAcropolisForkedRoadSpriteViews	801844E0	f	
+worldCoordUpdateActorColor	800D8EA0	a	
+enemyTaskExit	800B0234	a	
+gfxComposeNodeWorldTransform	800B1D00	a	
+gUiPromptObject	80067694	a	
+gFsActorBuffer0Base	8005C36C	a	
+ratan2	8003D9C8	a	
+sceneFindPlacedActor	800E86FC	a	
+animationSeekSlotWithBlend	800B4114	a	
+inventoryInitializeShootingGalleryLoadout	800BA538	a	
+D_80071090	80071090	a	
+gActor450200SoloSceneScript	8013C72C	a	
+RotTransSV	8004BD58	a	
+padIsStartPressed	8004ACF0	a	
+gActor401800OddStrangerTaskDesc	80155AC4	a	
+ApplyMatrixSV	80043A68	a	
+memSelectAuxHeapRegion	8002DC08	a	
+gActor450800NurseryIntroScript	80139964	a	
+memcpy	8001AEFC	a	
+gActor151000GardenArrivalScript	801334EC	a	
+gActor341300WalkwaySceneSkipScript	80165834	a	
+gStageCountdownMusicEntry	80062735	a	
+Gp_QtyById0	8010E038	a	
+sndEvtRequestStageScriptStop	800E3E64	a	
+gActor102000PawnGolemTasks	80147DF0	a	
+gActor207000SucklercephTaskDescs	80151E60	a	
+capSetTexturePage	800E6D4C	a	
+__floatsidf	8004B5D8	a	
+gActor103700BatTaskDesc	80139DAC	a	
+acropolisForkedRoadLeafFallTask	8017E81C	ft	
+SetSprt	80043A18	a	
+gActor443500MapFollowupSkipScript	801432FC	a	
+areaSyncLocationVariant	800B601C	a	
+effectDrawGroundShadow	800F68AC	a	
+cdCmdCompleteHeadRequest	8001DA48	a	
+gameFlagSetNibbleIfPresent	800E3B3C	a	
+uiSizePanelForTextDefault	800490A4	a	
+worldCollisionUnlinkBody	800E1638	a	
+gRoomEffectFlyingSparkId	80115730	a	
+gActor207200CreepingStrangerTaskDesc	80153EC8	a	
+playerActorWriteWeaponAnimationBankIndex	800E3CEC	a	
+gActor301900GrinningStrangerTaskDesc	80179120	a	
+gGpuCurrentOt	800710A0	a	
+streamInitMoviePlayback	8002043C	a	
+gActor150400FreezerSceneScript	80132D70	a	
+gActor450200SoloSceneSkipScript	8013CAEC	a	
+sndScriptHasActiveId	8005462C	a	
+gMcDialogDescriptors	800611C8	a	
+sndEvtRequestMidiVolume	80051460	a	
+acropolis_forked_road_DATA_START	80180F14	f	
+padScriptSpawn	800E8FB0	a	
+gCapFile	8011568C	a	
+gActor450200CompanionSceneSkipScript	80138694	a	
+sceneReleaseBattleRef	800DB6B4	a	
+gMcSaveData	80072168	a	
+gameSetTaskSlot	8002D214	a	
+taskSpawnFromTable	8002CFA0	a	
+gActor142900ElevatorFirstVisitSkipScript	801380F8	a	
+gActor503500BossPhaseTransitionScript	8014D158	a	
+inventoryGetItemQuantity	800BB6FC	a	
+cdCmdRequestCancel	8001C970	a	
+gMapAkropolisForkedRoadVariant11Placements	8017B41C	a	
+actor450900HandleDepartureTrigger	80132834	a	
+D_80070F70	80070F70	a	
+gActor160600SceneWithoutCompanionScript	80135AC0	a	
+displayResumeGameLoop	8003E540	a	
+acropolis_forked_road_DATA_SIZE	000041B0	a	
+tmdFreePrimitiveBuffer	80041B4C	a	
+actor460200TalkToSoldierC	801322B8	a	
+itemMenuOpenHotspotCommands	800D4E78	a	
+gfxMakeRelativeTransform	800A8864	a	
+gWorldCollisionSurfacePropertiesTables	8010CBB8	a	
+streamPollGameRestore	8001EF9C	a	
+areaClearMapMark	800AED24	a	
+gItemMenuInfoPanel	80067634	a	
+cdCmdIsSlotEmpty	8001D37C	a	
+D_8007107C	8007107C	a	
+gActor461800NeoArkSceneSkipScript	80134470	a	
+itemMenuDrawTaskPrompt	800CE4F4	a	
+MargePrim	800422B8	a	
+worldCoordSetModelLighting	800D7A9C	a	
+streamResetGameRestore	80020388	a	
+gfxReadMatrixYAxis	8003C748	a	
+actor503500ClearFadeFromBlackHandle	80132F58	a	
+displayReleaseMenuHold	8003E64C	a	
+taskCallExit	8002D0A4	a	
+RotMatrixZYX	80044408	a	
+actor341300ResetScriptTaskHandle	8016268C	a	
+modelObjectAttachTmd	8009902C	a	
+gActor161500CompleteCompanionRequestTaskDesc	80136CDC	a	
+gMapAkropolisForkedRoadVariant20Placements	8017B65C	a	
+gGameSession	8005ED64	a	
+gMapAkropolisForkedRoadVariant12Placements	8017B48C	a	
+D_80071076	80071076	a	
+acropolis_forked_road_BSS_END	801850C4	f	
+gMapAkropolisForkedRoadVariant8Placements	8017B2EC	a	
+__adddf3	8004AFE8	a	
+gRoomEffectFlashId	80115758	a	
+gActor443500TourOpeningSkipScript	80141C1C	a	
+actor215100FinishGalleryCourse	8014A908	a	
+animationAimHeadAtPoint	800B0CF4	a	
+mapAkropolisOpenKeyItemMenu	80179FC8	a	
+gAcropolisForkedRoadRoomLightingTable	80182270	f	
+areaSetObjectState	800BB8E8	a	
+gItemMenuPanelDescriptors	8010EAB4	a	
+SquareRoot0	8003B8A0	a	
+gameFlagSetPackedByte	800E3FAC	a	
+gAttachmentState	80114C08	a	
+gAcropolisForkedRoadViewCameras	80184E88	f	
+displayConfigureFramebuffers	8003DB48	a	
+gMapAkropolisForkedRoadVariant21Placements	8017B67C	a	
+gfxBuildOrthonormalBasis	8003CEC4	a	
+gActor342100EncounterBlazeTaskDescriptors	80164B78	a	
+gActor535700PawnGolemEncounterScript	80133898	a	
+sndEvtRequestScriptStop	800542D0	a	
+SetShadeTex	800439E8	a	
+sceneReleaseBattleRefWithRewards	800DB558	a	
+capRunCommand	800E34D8	a	
+gFsActorBuffer2Base	8005C374	a	
+capReset	800E6DF4	a	
+gActor341300WalkwaySceneScript	80165354	a	
+gEquipmentWeaponPrimaryLoadOptions	8010E238	a	
+gfxReadMatrixZAxis	8003C768	a	
+gActor102500Tasks	801379A8	a	
+D_80071086	80071086	a	
+gfxRotMatrixY	8003C98C	a	
+gPadScriptTransitionCommands	80114A24	a	
+viewApplyCamera	800A8A48	a	
+RotTransPers4	8004C358	a	
+gActor401000StrangerTaskDesc	80155004	a	
+gMapAkropolisForkedRoadVariant2Placements	8017B1DC	a	
+D_8011540E	8011540E	a	
+gPadScriptTransitionSegments	80114A34	a	
+mapDryfieldFullResolveRoomVariant	80179954	a	
+inventoryRestoreCarriedLoadout	800BA75C	a	
+D_80072176	80072176	a	
+gStreamInterFile	8006AC30	a	
+gMapAkropolisForkedRoadVariant3Placements	8017B1FC	a	
+playerActorPrepareAcropolisLoadout	800BC4BC	a	
+mapAkropolisWasDryfieldMapSelected	8017A038	a	
+gStageMusicTaskDesc	80062774	a	
+gMdecMovieOutputSlot	8005EAEE	a	
+gActor451100SubmarineTunnelSceneSkipScript	80135FD0	a	
+gStageRoomMusicSequence	80062737	a	
+worldCollisionFindContactIndex	800E19B8	a	
+worldCollisionLinkBody	800E15AC	a	
+D_80073BA9	80073BA9	a	
+midiIsSequenceBusy	800514F8	a	
+gMapAkropolisForkedRoadVariant14Placements	8017B54C	a	
+memCopyBytes	8002D7A8	a	
+effectKillTask	800EC7E4	a	
+inventoryCountOccupiedRows	800BAF5C	a	
+itemMenuGetPrimaryPreviewItem	800CF27C	a	
+sceneSetPlacedActorDrawMode	800E3C6C	a	
+__fixdfsi	8004B4D8	a	
+effectDrawGouraudDisc	800EAEB8	a	
+cdCmdStageSceneAudioStart	8001D6B8	a	
+gAcropolisForkedRoadViewCounts	80182268	f	
+D_80072A94	80072A94	a	
+textItoaSigned	8002F020	a	
+cdCmdIsIdle	8001D344	a	
+actor215100CheckGalleryExitInput	8014A398	a	
+D_80072729	80072729	a	
+sceneQueueBattleEscapeResult	800A7A64	a	
+capStartSequenceSlot	800E6C70	a	
+gActor215100GalleryTrainingActive	8014D038	a	
+worldCollisionReadActionHit	800E1BF0	a	
+SetTransMatrix	8004AE28	a	
+gameFlagGetNibble	8004ACAC	a	
+D_801153F4	801153F4	a	
+gRoomEffectHaloId	80115744	a	
+AddPrim	80043978	a	
+gCapPreserveActorControl	80115690	a	
+uiSetListSystemCursorSound	8004917C	a	
+itemSetIdentified	800BB7C0	a	
+gfxRotMatrixZ	8003CB80	a	
+worldTargetAddReadoutAmount	800DA6E8	a	
+inventoryGetConsumableStackQuantity	800BB26C	a	
+SetDrawOffset	80018AA4	a	
+D_8007272D	8007272D	a	
+gSceneCombatState	801153F0	a	
+gMapAkropolisForkedRoadVariant15Placements	8017B5BC	a	
+itemMenuDrawItemRow	800CD924	a	
+effectDrawSpinningBillboard	800EB2C8	a	
+uiDrawPanelLabel	80047F40	a	
+gGameMainPersistentState	800710A8	a	
+gActor104600SkullStalkerTaskDesc	801382BC	a	
+enemySpawnFromTable	800B01AC	a	
+gfxRotMatrixYXZ	8003BD34	a	
+D_8011540A	8011540A	a	
+effectDrawModulatedBillboard	800EB6E8	a	
+equipmentHasCarriedWeaponSupply	800BBDDC	a	
+gActor461800NeoArkSceneScript	80133F90	a	
+gMapAkropolisForkedRoadVariant4Placements	8017B24C	a	
+gAcropolisForkedRoadMovieTaskDescriptors	80180F44	f	
+uiPositionRowDialog	80049024	a	
+actor260400StartHeliportConversation	80149E38	a	
+evsStartScriptWithSkip	800E8634	a	
+gEquipmentModeBaseStats	8010D328	a	
+gFsImageWorkspacePtr	8005C364	a	
+actor160700StartMeetingScript	80131E70	a	
+evsStartScript	800E8614	a	
+loadingRequestViewGraphicsRestore	800A99B4	a	
+actor450200InitializeObservatoryCompanion	801322F8	a	
+StoreImage	80017FA4	a	
+D_80114C12	80114C12	a	
+MoveImage	80018004	a	
+gAcropolisForkedRoadLockReleaseScript	801820B8	f	
+func_807245E4	807245E4	a	
+uiUpdateList	80048C10	a	
+streamGetSlot	80020278	a	
+textAppendString	8002F588	a	
+gActor310100Officer1TaskDescriptors	801798FC	a	
+capGetVariantKey	800E6D3C	a	
+gActor143900ObservatoryEntrySkipScript	80133860	a	
+gActor503500BossDefeatSkipScript	8014CAF8	a	
+capIsBusy	800E6CE0	a	
+attachmentIsTrainingMode	800A74C4	a	
+gGpuPrimCursor	80071190	a	
+worldCoordGetOriginAudioDepth	800D9340	a	
+gfxRotMatrixXYZ	8003B960	a	
+actor161500StartSoldierBShopConversation	80132110	a	
+shopOpenSession	800D4D2C	a	
+gPadCancelButtonMask	8005ED74	a	
+gPadStates	80071620	a	
+SetDrawArea	80018A24	a	
+acropolis_forked_road_BSS_SIZE	00000000	a	
+D_80071075	80071075	a	
+RotTransPers3	8004C1E8	a	
+actor460200TalkToSoldierA	80132390	a	
+animationInitContext	800B3F84	a	
+gActor450200RoomVariantSceneSkipScript	80140078	a	
+equipmentFindNextCarriedWeaponSupply	800BBD40	a	
+gActor535700PawnGolemEncounterSkipScript	801341E0	a	
+uiDrawBeveledRect	80046B34	a	
+rand	80037164	a	
+gActor450900EntrySkipScript	80136308	a	
+D_80115410	80115410	a	
+gAcropolisForkedRoadWarpEntries	80182288	f	
+companionSetDrawMode	800E3EB0	a	
+inventoryGiveItem	800BAD08	a	
+gActor560800MovieTaskDescriptors	8016EA28	a	
+gActor342000IncineratorEventTaskDescs	80164FF8	a	
+D_8010E138	8010E138	a	
+acropolis_forked_road_VRAM	8017D5C0	f	
+effectSpawnHit	800FDB18	a	
+gInventoryContainerRanges	8010D550	a	
+acropolisForkedRoadRoomTask	8017D9CC	ft	
+gActor143400CompanionEntryScript	801350BC	a	
+memCalloc	8002D978	a	
+acropolis_forked_road_TEXT_END	80180F14	f	
+gActor103800BlackBeetleTaskDesc	80137D74	a	
+effectSpawn	800EA478	a	
+gActor450900EntryScript	80136110	a	
+strncmp	8001EAC4	a	
+gInventoryConsumableStacks	8010E3B8	a	
+gActor105500MaggotCaterpillarTasks	8013A8DC	a	
+itemMenuDrawDefaultItemIcon	800CE5D0	a	
+actor161500StartSoldierBTalkB	80132038	a	
+D_80071068	80071068	a	
+gRoomEffectWaterSprayId	80115738	a	
+gActor450800NurseryShootingSkipScript	8013BA84	a	
+gMdecMovieInputSlot	8005EAEC	a	
+gMapAkropolisForkedRoadVariant16Placements	8017B5EC	a	
+gActor443500ConsoleFollowupScript	80141D9C	a	
+actor150400SpawnSlidingModels	80131FB8	a	
+D_800691CA	800691CA	a	
+gAcropolisForkedRoadViewMaps	8018225C	f	
+gActor503500SceneEffectTaskDescs	8014B964	a	
+D_80114C0B	80114C0B	a	
+gRoomEffectMoteId	80115728	a	
+areaApplySavedUpdates	800AE62C	a	
+cdCmdCancelScene	8001D588	a	
+func_800AC000	800AC000	a	
+uiSetPanelContentSize	800466E4	a	
+GsWSMATRIX	80071138	a	
+gActor101600ScavengerTaskDesc	801445DC	a	
+uiObjectTaskExit	800488B8	a	
+cdSyncPollCommand	8001E6AC	a	
+gActor443500MapFollowupScript	80142C24	a	
+gItemMenuTransferPanelDescriptors	8010D6F4	a	
+cdCmdEnqueue	8001D2B0	a	
+D_801150C0	801150C0	a	
+padCheckButtons	8002C868	a	
+itemMenuDrawPreview	800C7AE8	a	
+gActor160600SceneWithCompanionScript	80135D78	a	
+gCapChoiceRowStride	80115680	a	
+taskSpawnFromTableOnDefaultList	8003E4BC	a	
+SetDrawStp	80042288	a	
+gActor143900ObservatoryEntryScript	80133560	a	
+playerActorSetDrawMode	800E3B80	a	
+actor450800StartNurseryCompanionDialogue	80132000	a	
+gActor215100PierceStoryScript	80153274	a	
+itemMenuSetPreviewItem	800CDE80	a	
+equipmentRecalculateMaxMp	800B7930	a	
+effectDrawOuterGlowBand	800EAA0C	a	
+stageEnsureHeapTaskPrimitiveBuffer	8003F9AC	a	
+gMapAkropolisForkedRoadVariant13Placements	8017B4FC	a	
+actor215100HandleGalleryAction	8014AB6C	a	
+RotMatrixZ	8004AE48	a	
+SetDispMask	80017C00	a	
+SetTile	80042344	a	
+func_80724608	80724608	a	
+cdCmdEnqueueScenePlayback	8001D5CC	a	
+__muldf3	8004B828	a	
+rsin	8003D038	a	
+viewFindLogicalIndex	800ACEBC	a	
+inventoryInitializeStarterLoadout	800B7D18	a	
+gPadConfirmButtonMask	8005ED70	a	
+areaIsSavedPoseRestoreEnabled	800B59A8	a	
+gActor361100PodSceneScript	80165F48	a	
+areaGetVariant	800B5CE8	a	
+gActor443500TourOpeningScript	8014152C	a	
+gGameFlagNibbleBanks	80073980	a	
+acropolis_forked_road_RODATA_START	8017D5C0	f	
+actor450800PrepareNurseryKyleMadigan	80132028	a	
+worldCoordSetAmbientColorOverride	800D94B8	a	
+gActor104600SucklercephTaskDesc	80137698	a	
+gActor460200TentArrivalSkipScript	80137890	a	
+worldTargetDisableNodeLockOn	800DACF8	a	
+D_80072170	80072170	a	
+D_80070F87	80070F87	a	
+D_80072310	80072310	a	
+worldCollisionProbeGridSegment	800DE7CC	a	
+D_8011540C	8011540C	a	
+memset	800420F8	a	
+companionWriteAnimationBankIndex	800E3D24	a	
+D_80073BAE	80073BAE	a	
+gActor215100GalleryTaskDescs	8014E13C	a	
+gActor136300GarageCompanionSceneSkipScript	8013C388	a	
+streamPrepareMovieWorkspace	80020298	a	
+gActor136300CompanionGaragePlacement	8013B570	a	
+srand	80037194	a	
+viewQueueCurrentCameraAndPackets	800A8B6C	a	
+acropolis_forked_road_BSS_START	801850C4	f	
+ApplyMatrixLV	80042128	a	
+taskMessageDispatch	800AC464	a	
+gActor102400Tasks	8013647C	a	
+uiStartTreeClosing	80048838	a	
+animationResetSlot	800B3FA8	a	
+actor215100CapCaptionSelectRecord	8014B2B8	a	
+taskRequestKill	8002D340	a	
+D_8007107A	8007107A	a	
+actor161500RestoreCompanionRequestScene	8013230C	a	
+actor215100ResolveGalleryExit	8014AA54	a	
+acropolis_forked_road_ROM_END	00007B04	a	
+gPlayerStatus	80073B88	a	
+inventoryGetRangeTable	800BB500	a	
+gActor107000SlouchTaskDescs	8013F5F0	a	
+gActor142600IncineratorArrivalSkipScript	80136804	a	
+gPlayerActorTasks	80115760	a	
+gActor548100PanelTaskDesc	801358D8	a	
+equipmentConsumeWeaponLoad	800B6DA4	a	
+inventoryResetCarriedRange	800BC490	a	
+enemyDestroy	800B01F0	a	
+gFsResourceSlots	8006C338	a	
+gRandomLcgState	80070F60	a	
+actor160700RestoreMeetingAnimation	80131E24	a	
+func_800ABFF8	800ABFF8	a	
+gActor146300IceBagHandoverTaskDesc	8013788C	a	
+areaSpawnPlacements	800B4AF8	a	
+itemMenuDrawMeter	800C0E20	a	
+gameFlagGetPackedByte	800E3FCC	a	
+equipmentLoadWeaponConsumable	800B715C	a	
+displaySetShakeY	8003DE78	a	
+sndEvtRequestStageScriptStart	800E3DD8	a	
+inventoryHasAttachedItem	800BC3F8	a	
+equipmentRecalculateMaxHp	800BC0C0	a	
+RotTransPers	8004C198	a	
+D_8007216D	8007216D	a	
+gActor146300WaterTankEventScript	80137C28	a	
+roomEffectRequestCancelPe	800FC6C0	a	
+gpuUploadImages	800DB31C	a	
+gDirectionActionActive	80114CF8	a	
+D_80072830	80072830	a	
+gActor00700RatTaskDesc	80138C80	a	
+sndEvtRequestScriptVolume	800544B8	a	
+worldCollisionLinkTrigger	800E1688	a	
+actor450800StartNurseryInteraction	80131E2C	a	
+gActor215100PierceStorySkipScript	80153D6C	a	
+gMapAkropolisForkedRoadVariant7Placements	8017B29C	a	
+gActor136300TaskTable	8013B11C	a	
+gStageMusicParams	8007A39C	a	
+VectorNormalSS	8003D5D8	a	
+gActor160900TaskDescriptors	8013FB50	a	
+D_80072A93	80072A93	a	
+gWorldCollisionActiveGrid	80115448	a	
+D_80072A92	80072A92	a	
+roomEffectRequestCancelAll	800EC868	a	
+gActor310100Officer2TaskDescriptors	80179920	a	
+actorRenderDrawGroundShadow	800B4E54	a	
+D_8007218A	8007218A	a	
+capSelectLoadedFile	800E6D60	a	
+cdCmdDropQueuedTail	8001D424	a	
+Gfx_ViewWorldMtx	80070F34	a	
+actor161500StartSoldierBTalkA	80131FBC	a	
+gActor01500MindSucklerTaskDesc	8013BE28	a	
+gActor503500BossDefeatScript	8014C540	a	
+tmdBuildBufferHalf	800410F0	a	
+effectDrawScreenTint	800EA858	a	
+gActor146000WaterHoleSceneTasks	801351FC	a	
+tmdResetAuxHeapAndRestoreBuffers	80041EB4	a	
+gActor120500EmptyPlacementTaskDesc	8013843C	a	
+equipmentGetWeaponLoad	800BAFE0	a	
+gAcropolisForkedRoadAreaVariants	801831C4	f	
+DrawSync	80017C98	a	
+damageComputePlayerAttack	800E1FEC	a	
+itemMenuClearPreviewItems	800CDEF4	a	
+actor215100StartPierceConversation	8014AF0C	a	
+actor450900StartCompanionConversation	801327A8	a	
+gActor200700RatTaskDesc	80150C80	a	
+damageRollCriticalHit	800E25F8	a	
+gActor151000GardenArrivalSkipScript	80133954	a	
+animationTickSlot	800B4514	a	
+sceneAcquireBattleRef	800DB53C	a	
+gActor143400CompanionEntrySkipScript	801359D4	a	
+companionRemoveEquipment	8010B674	a	
+acropolisForkedRoadRoomVisualEffectsTwinTrailTask	8017F9E4	ft	
+sndScriptResolveStageId	800E3E30	a	
+actor146300RestoreHandoverPose	8013224C	a	
+gActor150400FreezerSceneSkipScript	80133088	a	
+companionSetScriptedControl	800E3EF0	a	
+gCapInlineIconCells	8010FB70	a	
+streamPollMoviePlayback	8001FAE0	a	
+gPlayerActorWeaponReaches	80112F60	a	
+D_80072728	80072728	a	
+damagePackAttackKey	800E2C40	a	
+uiSpawnObject	800486F0	a	
+worldCollisionInitContacts	800E18E0	a	
+sndEvtRequestMidiStop	8005132C	a	
+gActor503500BossIntroSkipScript	8014C288	a	
+RotMatrix	80043AC8	a	
+acropolis_forked_road_TEXT_SIZE	00003929	a	
+D_80114C11	80114C11	a	
+memConfigureImageMemory	800144F8	a	
+viewQueueCamera	800A8A1C	a	
+displaySpawnTaskFromTable	8003E324	a	
+uiStartPanelHiding	800488F8	a	
+actor260500RestoreHeliportPlacement	80149E80	a	
+gActor04400MadChaserTaskDescs	80142604	a	
+actor450200StartCompanionTalk	80132220	a	
+gpuBlendRgb555ClutRow	800B27C4	a	
+D_80072834	80072834	a	
+actor361100ClearHeadAimTaskHandle	80162B0C	a	
+gCapConfirmedChoiceIndex	801156A8	a	
+itemGetText	800B8EB0	a	
+gActor451100SubmarineTunnelEntryScript	80136108	a	
+ScaleMatrix	8004A98C	a	
+uiDrawTitle	80048E38	a	
+playerActorEndScripted	80104838	a	
+gfxRotMatrixX	8003C788	a	
+D_80071071	80071071	a	
+gRoomEffectSparkEmitterId	80115720	a	
+MulMatrix0	80044208	a	
+D_80114FF8	80114FF8	a	
+gActor450900Tasks	80135E78	a	
+itemMenuIsHotspotActionConfirmed	800D4EC0	a	
+inventoryClearItems	800BAC8C	a	
+gCapRestoreView	80115694	a	
+gActor207200SkullStalkerTaskDesc	8014E7A4	a	
+D_801153F6	801153F6	a	
+gWorldCoordTransientPointLights	80114F30	a	
+gMapAkropolisForkedRoadVariant9Placements	8017B33C	a	
+acropolisForkedRoadRoomVisualEffectsFlashTask	8017EF80	ft	
+gActor443500PowerPlantProgressDialogueScript	80143494	a	
+capSpawnEventIfIdle	800E3D8C	a	
+gDisplayState	80070F68	a	
+itemMenuSetItemDescriptionPrompt	800CEB40	a	
+D_8007217B	8007217B	a	
+gActor136300GarageCompanionSceneScript	8013B590	a	
+ApplyTransposeMatrixLV	80044050	a	
+gSpriteAreaTables	8010CB68	a	
+inventoryCanAddItem	800B8988	a	
+sceneFindEnemyByPlaceKey	800B584C	a	
+gMidiMusicVolume	8007A396	a	
+inventoryMeltIceBagIfExpired	800BC254	a	
+gteMIMefunc	8004AD78	a	
+inventoryGetItemSortKey	800BC18C	a	
+uiGetTextRowsHeight	80048E2C	a	
+gCapControlFlags	801156A4	a	
+gFsActorBufferWrittenBytes	8006D860	a	
+gActor142600IncineratorArrivalScript	801360E4	a	
+playerActorEnterLocomotion	801066DC	a	
+D_8007218B	8007218B	a	
+uiDrawHorizontalSeparator	80047A0C	a	
+sndEvtRequestScriptStart	8005414C	a	
+actor215100CapCaptionDrawCurrent	8014B0D4	a	
+gActor335800BalconyEntryScript	80165060	a	
+stageReleaseTaskPrimitiveBuffer	8003F9F4	a	
+equipmentGetWeaponSupply	800BBDC8	a	
+acropolis_forked_road_TEXT_START	8017D5EB	f	
+animationAimHeadAt	800B17D4	a	
+gRoomEffectOrangeBurstId	8011573C	a	
+viewGetMappedCamera	800A8C08	a	
+gCdCmdQueue	80068FA0	a	
+gActor146300WaterTankEventSkipScript	80138570	a	
+capAbortPlayback	800E6CF0	a	
+textDrawUiLines	8002FB84	a	
+streamFinishScene	800B00C4	a	
+loadingEnqueueEquippedWeaponResources	800A9BE4	a	
+gAyaStandClip	80181BBC	f	
+gActor503500BossIntroScript	8014BD48	a	
+acropolis_forked_road_VRAM_END	801850C4	f	
+gActor207000SlouchTaskDescs	801575F0	a	
+companionRestoreFullHp	800E3D78	a	
+acropolisForkedRoadInitializeRoomEffectsTask	8017E298	ft	
+textItoaPadded	8002F44C	a	
+playerStateRestoreFullHpMp	800E3D5C	a	
+gRoomEffectWaterRippleId	8011574C	a	
+memFillBytes	8002D894	a	
+D_8007106B	8007106B	a	
+gActor450800NurseryShootingScript	8013AF8C	a	
+uiFitPanelToList	80046830	a	
+uiSetPromptText	80049D34	a	
+RotMatrixX	8004BE58	a	
+worldCoordSetModelAmbientColor	800D9550	a	
+worldTargetLinkNode	800DABEC	a	
+damageAccumulateLifeDrainHp	800E2C78	a	
+gActor451100SubmarineTunnelSceneScript	80135220	a	
+taskReparent	8002D14C	a	
+gActor160600SceneSkipScript	80136258	a	
+playerActorTurnToYaw	80104E00	a	
+gRoomEffectState	80115740	a	
+TransposeMatrix	800420B8	a	
+worldCollisionProjectGroundPoint	800EA1A8	a	
+inventoryClearCollectedBit	800BAEC0	a	
+D_8007216C	8007216C	a	
+uiSpawnOptionDialog	800480A0	a	
+actorRenderComposeCoord	80098F58	a	
+GetClut	80042AE0	a	
+gRoomEffectGlowDiscId	80115734	a	
+itemMenuDrawQuantity	800CDBEC	a	
+areaGetCurrentObjectState	800BB470	a	
+gActor341900GluttonEntranceTaskDescs	80164190	a	
+gWorldCollisionActionTriggerListHead	8011556C	a	
+actor260500StartHeliportConversation	80149EBC	a	
+fadeDrawOverlay	8002BA9C	a	
+worldCollisionResolvePushback	800E0C10	a	
+equipmentEquipCarriedArmor	800B7A50	a	
+__subdf3	8004BC28	a	
+D_80072A98	80072A98	a	
+padInputChangeSuppression	800E9BDC	a	
+gActor450800NurseryReentryScript	8013A84C	a	
+gEvsPlaybackPaused	801156F9	a	
+gActor460200TentArrivalScript	801362B8	a	
+RotMatrixY	8004BFF8	a	
+gActor361100PodSceneSkipScript	80166848	a	
+streamFindMovieSlot	8001EDC8	a	
+gActor310100PlayerAnimationSets	801797FC	a	
+gActor142900ElevatorFirstVisitScript	801378D0	a	
+inventoryIsItemLimitReached	800B7420	a	
+streamSetExternalScenePayloadBuffer	800B015C	a	
+gActor141000FlightTasks	801348D8	a	
+gActor300700RatTaskDesc	801693AC	a	
+mapNeoArkResolveRoomVariant	80179B14	a	
+gViewIdentityMap	8010CAF8	a	
+gpuResetAndInvalidateModelBuffers	80041E4C	a	
+animationAimHeadAtTask	800B0928	a	
+gItemMenuEmptyPromptText	8010F8D0	a	
+padScriptHalt	800E8F68	a	
+gWorldCollisionSurfacePushbackSuppression	80115428	a	

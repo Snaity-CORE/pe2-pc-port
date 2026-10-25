@@ -1,0 +1,2368 @@
+gcc2_compiled.	8017D6AC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+__gnu_compiled_c	8017D6AC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_MACRO_INC_GUARD	00000001	al	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaRoomStateHandlers	8017D5C4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_acropolisCafeteriaInitRoom	8017E348	flt	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_acropolisCafeteriaTickPlayerDebug	8017D6AC	flt	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaPlayerDebugLabel	8017D5D0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaRoomMessages	80182AA8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_acropolisCafeteriaResolveRoomTransition	8017D700	flt	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_acropolisCafeteriaHandleActionMessage	8017E154	flt	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_acropolisCafeteriaHandleCommandMessage	8017E0DC	flt	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_acropolisCafeteriaRefuseKeyItemMsg	8017E0D4	flt	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_acropolisCafeteriaPlaySoundMsg	8017E22C	flt	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_acropolisCafeteriaBattleSceneTask	8017D8F8	flt	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_acropolisCafeteriaFollowUpSceneTask	8017DD1C	flt	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_acropolisCafeteriaSettleStrangerTask	8017DF68	flt	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaPlayerAnimation1	80182B08	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaPlayerPostBattleAnimation8	80182B30	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaPlayerPostBattleAnimation9	80182B44	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaOpeningWomanAnimation1	80182B58	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaPlayerOpeningScenePlacement	80182B6C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaPlayerOpeningResumePlacement	80182B84	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaPlayerFollowUpStartPlacement	80182B9C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaPlayerBeforeRupertArrivalPlacement	80182BB4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaPlayerBattleStartPlacement	80182BCC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaPlayerFollowUpWalkStartPlacement	80182BE4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaPlayerFollowUpWalkTarget	80182BFC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaOpeningPlayerAnimationSets	80182C40	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaOpeningPlayerBankCopy	80182C44	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaPlayerOpeningAnimation47	80182C4C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaFollowUpPlayerAnimationSets	80182C60	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAkropolisCafeteriaAcropolisCafeteriaFollowUpPlayerAnim01Clip	80184CC4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaFollowUpPlayerBankCopy	80182C70	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaPlayerFollowUpAnimation47	80182C78	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaPlayerFollowUpAnimation48	80182C8C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaPlayerFollowUpAnimation49	80182CA0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaPlayerFollowUpAnimation50	80182CB4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaStrangerBattleIntroPlacement	80182CC8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaStrangerPostBattlePlacement	80182CE0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaStrangerFollowUpStartPlacement	80182CF8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaStrangerFollowUpAnimation48Placement	80182D10	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaStrangerRecoilPlacement	80182D28	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaStrangerFollowUpSlot0Placement	80182D40	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaStrangerFollowUpBurnPlacement	80182D58	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaStrangerBattleStartPlacement	80182D70	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaGrinningStrangerScenePlacement	80182D88	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaStrangerStartCommand	80182DA4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaStrangerPostBattleSlot1Command	80182DA8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaStrangerFollowUpSlot2Command	80182DAC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaStrangerRecoilCommand	80182DB0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaStrangerFollowUpSlot0Command	80182DB4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaStrangerSettleCommand	80182DB8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaStrangerFollowUpBurnCommand	80182DBC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaStrangerFollowUpClip17Command	80182DC0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaRupertArrivalPlacement	80182DC4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaRupertConversationPlacement	80182DDC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaRupertDeparturePlacement	80182DF4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaRupertShootingAnimation1	80182E0C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaRupertArrivalAnimation2	80182E20	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaRupertReloadAnimation3	80182E34	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaRupertDepartureAnimation4	80182E48	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaFollowUpSceneKey	80182E64	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaPlayerFollowUpWalkAnimations	80182E6C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaOpeningSceneScript	80182E74	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_acropolisCafeteriaCancelPeEffects	8017E2B0	flt	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_acropolisCafeteriaSetPlayerSurface	8017E27C	flt	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaOpeningSceneSkipScript	801831BC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaPostBattleSceneScript	8018330C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_acropolisCafeteriaPreparePostBattleScene	8017E310	flt	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_acropolisCafeteriaCopyPostBattleVram	8017E2D0	flt	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaPostBattleSceneSkipScript	801834D4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaFollowUpSceneScript	8018363C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaFollowUpSceneSkipScript	80183DBC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaCap13ShakeScript	80183EAC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaBattleIntroScript	80183F3C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaGrinningStrangerAppearanceScript	80184104	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaSceneProgress	80184164	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaPostBattleImageSource	80184168	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaPostBattleRowSource	80184170	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAkropolisCafeteriaAcropolisCafeteriaFollowUpPlayerAnim01ClipBank1	8018419C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAkropolisCafeteriaAcropolisCafeteriaFollowUpPlayerAnim01ClipBank4	801842B0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAkropolisCafeteriaAcropolisCafeteriaFollowUpPlayerAnim01ClipRecords	80184728	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAkropolisCafeteriaAcropolisCafeteriaFollowUpPlayerAnim01ClipTrackStarts	80184C9C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAkropolisCafeteriaAcropolisCafeteriaModel077D8Skeleton	80184D00	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAkropolisCafeteriaAcropolisCafeteriaModel077D8PartVerts	80184D24	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAkropolisCafeteriaAcropolisCafeteriaModel077D8Verts	80184D28	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAkropolisCafeteriaAcropolisCafeteriaModel077D8Normals	80184D98	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAkropolisCafeteriaAcropolisCafeteriaModel077D8Stream	80184D98	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaModel07CA8Skeleton	80184E90	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaModel07CA8PartVerts	80184EB4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaModel07CA8Verts	80184EB8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaModel07CA8Normals	80185028	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaModel07CA8Stream	80185268	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaModel08638Skeleton	801858E8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaModel08638PartVerts	8018590C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaModel08638Verts	80185910	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaModel08638Normals	80185A08	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaModel08638Stream	80185BF8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaModel09090Skeleton	80186280	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaModel09090PartVerts	801862A4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaModel09090Verts	801862A8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaModel09090Normals	80186418	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaModel09090Stream	80186650	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaModel09A20Skeleton	80186CD0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaModel09A20PartVerts	80186CF4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaModel09A20Verts	80186CF8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaModel09A20Normals	80186E20	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaModel09A20Stream	80186FE0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaCollisionGrid	801887A8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaRooms1To3ViewBoundaries	801887CC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaRoom1ActionTriggers	801891E4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaSightOccluders	80189C94	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaRooms2To4ActionTriggers	801896A4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaRoom4ViewBoundaries	80188C8C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaRooms2And3ViewMap	8018757C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaRoom4ViewMap	80187594	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaCollisionGridNormals	8018768C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaCollisionGridVerts	801877AC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaCollisionGridFaces	80187E24	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaCollisionGridCells	801883C4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaCollisionGridTable	80188784	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaOpeningSceneResources	80189D0C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaBattleSceneResources	80189D3C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaSingleOddStrangerResources	80189D6C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaPairOddStrangerResources	80189D84	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaBoneSucklerResources	80189D9C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+_gAcropolisCafeteriaRookGolemResources	80189DB4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM1	8017D6AC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM2	8017D6AC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM3	8017D6AC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM4	8017D6B4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM5	8017D6B8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM6	8017D6C0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM7	8017D6E0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM8	8017D6F0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM9	8017D700	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM10	8017D700	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM11	8017D700	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM12	8017D71C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM13	8017D73C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM14	8017D75C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM15	8017D770	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM16	8017D780	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM17	8017D78C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM18	8017D794	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM19	8017D798	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM20	8017D7A4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM21	8017D7B8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM22	8017D824	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM23	8017D82C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM24	8017D83C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM25	8017D84C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM26	8017D854	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM27	8017D874	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM28	8017D8DC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM29	8017D8E0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM30	8017D8F8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM31	8017D8F8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM32	8017D8F8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM33	8017D910	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM34	8017D918	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM35	8017D944	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM36	8017D944	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM37	8017D958	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM38	8017D964	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM39	8017D96C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM40	8017D974	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM41	8017D990	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM42	8017D998	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM43	8017D9B0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM44	8017D9BC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM45	8017D9C0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM46	8017D9C0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM47	8017D9C8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM48	8017D9E4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM49	8017D9E8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM50	8017D9E8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM51	8017D9F0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM52	8017D9F4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM53	8017D9FC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM54	8017DA04	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM55	8017DA08	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM56	8017DA08	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM57	8017DA10	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM58	8017DA1C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM59	8017DA20	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM60	8017DA24	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM61	8017DA28	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM62	8017DA2C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM63	8017DA30	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM64	8017DA34	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM65	8017DA38	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM66	8017DA3C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM67	8017DA40	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM68	8017DA48	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM69	8017DA4C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM70	8017DA4C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM71	8017DA54	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM72	8017DA68	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM73	8017DA7C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM74	8017DA84	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM75	8017DA8C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM76	8017DA94	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM77	8017DA98	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM78	8017DA9C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM79	8017DAA0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM80	8017DAA4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM81	8017DAAC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM82	8017DAC0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM83	8017DAD8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM84	8017DADC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM85	8017DAE4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM86	8017DAF8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM87	8017DB00	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM88	8017DB08	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM89	8017DB18	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM90	8017DB20	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM91	8017DB3C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM92	8017DB44	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM93	8017DB9C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM94	8017DBA4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM95	8017DBAC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM96	8017DBB4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM97	8017DBCC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM98	8017DBD4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM99	8017DBE8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM100	8017DBF8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM101	8017DBFC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM102	8017DC04	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM103	8017DC10	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM104	8017DC14	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM105	8017DC18	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM106	8017DC20	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM107	8017DC2C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM108	8017DC34	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM109	8017DC58	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM110	8017DC64	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM111	8017DC6C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM112	8017DC74	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM113	8017DD04	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM114	8017DD1C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM115	8017DD1C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM116	8017DD1C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM117	8017DD30	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM118	8017DD60	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM119	8017DD74	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM120	8017DD90	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM121	8017DD98	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM122	8017DDBC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM123	8017DDC4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM124	8017DDCC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM125	8017DDDC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM126	8017DDF0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM127	8017DE0C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM128	8017DE14	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM129	8017DE1C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM130	8017DE40	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM131	8017DE48	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM132	8017DE50	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM133	8017DE68	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM134	8017DE70	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM135	8017DE8C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM136	8017DE98	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM137	8017DF54	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM138	8017DF68	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM139	8017DF68	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM140	8017DF68	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM141	8017DF74	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM142	8017DF78	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM143	8017DF84	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM144	8017DF88	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM145	8017DF8C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM146	8017DFA4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM147	8017DFC4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM148	8017DFE4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM149	8017DFEC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM150	8017DFF8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM151	8017DFFC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM152	8017E004	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM153	8017E008	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM154	8017E0C4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM155	8017E0D4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM156	8017E0D4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM157	8017E0D4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM158	8017E0D4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM159	8017E0DC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM160	8017E0DC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM161	8017E0DC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM162	8017E0E0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM163	8017E0EC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM164	8017E114	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM165	8017E138	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM166	8017E144	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM167	8017E144	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM168	8017E148	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM169	8017E14C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM170	8017E154	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM171	8017E154	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM172	8017E154	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM173	8017E164	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM174	8017E174	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM175	8017E19C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM176	8017E1A0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM177	8017E1A8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM178	8017E1B8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM179	8017E1C0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM180	8017E1D0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM181	8017E1FC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM182	8017E200	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM183	8017E218	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM184	8017E21C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM185	8017E22C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM186	8017E22C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM187	8017E22C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM188	8017E230	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM189	8017E250	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM190	8017E254	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM191	8017E25C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM192	8017E26C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM193	8017E26C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM194	8017E270	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM195	8017E274	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM196	8017E27C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM197	8017E27C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM198	8017E27C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM199	8017E288	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM200	8017E28C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM201	8017E29C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM202	8017E2A0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM203	8017E2B0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM204	8017E2B0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM205	8017E2B0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM206	8017E2B8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM207	8017E2D0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM208	8017E2D0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM209	8017E2D0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM210	8017E2D4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM211	8017E2E0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM212	8017E2E4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM213	8017E2EC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM214	8017E300	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM215	8017E310	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM216	8017E310	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM217	8017E310	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM218	8017E318	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM219	8017E320	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM220	8017E348	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM221	8017E348	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM222	8017E348	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM223	8017E354	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM224	8017E35C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM225	8017E360	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM226	8017E364	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM227	8017E36C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM228	8017E380	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM229	8017E388	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM230	8017E394	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM231	8017E3B0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM232	8017E3B8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM233	8017E3C4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM234	8017E3D0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM235	8017E3D8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM236	8017E3DC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM237	8017E3E0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM238	8017E3E4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM239	8017E404	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM240	8017E414	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM241	8017E424	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM242	8017E424	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM243	8017E424	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM244	8017E428	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM245	8017E42C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM246	8017E430	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM247	8017E44C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM248	8017E46C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+LM249	8017E47C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria.i
+gcc2_compiled.	8017E47C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+__gnu_compiled_c	8017E47C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_MACRO_INC_GUARD	00000001	al	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaViews1And4SpriteBatches	8018AA30	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaView2SpriteSources	8018AA40	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaView2SpriteBatches	8018AD60	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaView3SpriteSources	8018ADB0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaView3SpriteBatches	8018B2EC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaUnusedBackgroundSpriteBatches1	8018B384	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaView5SpriteBatches	8018B394	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaView5DrawAreas	8018B3A4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaView6SpriteSources	8018B3B8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaView6SpriteBatches	8018B6C4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaView7SpriteBatches	8018B6F4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaView8SpriteBatches	8018B704	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaView9SpriteBatches	8018B714	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaView10SpriteBatches	8018B724	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaView11SpriteSources	8018B734	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaView11SpriteBatches	8018B7C0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaView12SpriteSources	8018B7D8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaView12SpriteBatches	8018B800	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaView13SpriteBatches	8018B818	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaViews14And22SpriteSources	8018B828	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaViews14And22SpriteBatches	8018BA94	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaView15SpriteSources	8018BB1C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaView15SpriteBatches	8018BC0C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaView16SpriteBatches	8018BC24	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaView17SpriteBatches	8018BC34	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaView18SpriteBatches	8018BC44	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaView19SpriteBatches	8018BC54	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaView20SpriteBatches	8018BC64	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaView21SpriteSources	8018BC74	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaView21SpriteBatches	8018C250	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaUnusedBackgroundSpriteBatches2	8018C2E8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaView23SpriteSources	8018C2F8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaView23SpriteBatches	8018C438	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaView24SpriteSources	8018C460	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaView24SpriteBatches	8018C474	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaSurface1FootstepSounds	8018C9E0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaSurface2FootstepSounds	8018C9EC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaSurfaces3And4FootstepSounds	8018C9F8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaSilentSurfaceProperties	8018CA04	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaSurface1Properties	8018CA0C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaSurface2Properties	8018CA14	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaSurface3Properties	8018CA1C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaSurface4Properties	8018CA24	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaModel0F7A4Skeleton	8018CA4C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaModel0F7A4PartVerts	8018CA70	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaModel0F7A4Verts	8018CA74	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaModel0F7A4Normals	8018CBBC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaModel0F7A4Stream	8018CD64	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAkropolisCafeteriaAcropolisCafeteriaModel0FDFCSkeleton	8018D254	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAkropolisCafeteriaAcropolisCafeteriaModel0FDFCPartVerts	8018D278	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAkropolisCafeteriaAcropolisCafeteriaModel0FDFCVerts	8018D27C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAkropolisCafeteriaAcropolisCafeteriaModel0FDFCNormals	8018D32C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAkropolisCafeteriaAcropolisCafeteriaModel0FDFCStream	8018D3BC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaMendelPickupColorMatrix	8018D5A0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaMendelPickupLightMatrix	8018D5C0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaStimPickupColorMatrix	8018D5E0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaStimPickupLightMatrix	8018D600	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaObject10ColorMatrix	8018D620	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaObject10LightMatrix	8018D640	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaObject11ColorMatrix	8018D660	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaObject11LightMatrix	8018D680	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1	8017E47C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM2	8017E47C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM3	8017E488	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM4	8017E48C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM5	8017E490	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM6	8017E494	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM7	8017E498	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM8	8017E4C0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM9	8017E4C8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM10	8017E4D0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM11	8017E4D8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM12	8017E4E0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM13	8017E4E8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM14	8017E4EC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM15	8017E50C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM16	8017E510	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM17	8017E518	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM18	8017E524	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM19	8017E52C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM20	8017E534	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM21	8017E544	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM22	8017E54C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM23	8017E550	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM24	8017E554	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM25	8017E55C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM26	8017E57C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM27	8017E584	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM28	8017E58C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM29	8017E5A0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM30	8017E5A8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM31	8017E5B0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM32	8017E5C0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM33	8017E5C8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM34	8017E5D0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM35	8017E5D8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM36	8017E5EC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM37	8017E5F4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM38	8017E600	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM39	8017E608	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM40	8017E620	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM41	8017E630	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM42	8017E638	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM43	8017E640	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM44	8017E648	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM45	8017E658	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM46	8017E658	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM47	8017E658	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM48	8017E664	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM49	8017E670	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM50	8017E674	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM51	8017E67C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM52	8017E688	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM53	8017E68C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM54	8017E6A0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM55	8017E6A8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM56	8017E6B8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM57	8017E6B8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM58	8017E6B8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM59	8017E6C4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM60	8017E6D4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM61	8017E6D8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM62	8017E6E0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM63	8017E6E8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM64	8017E6F0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM65	8017E708	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM66	8017E708	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM67	8017E708	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM68	8017E728	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM69	8017E72C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM70	8017E730	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM71	8017E734	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM72	8017E738	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM73	8017E740	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM74	8017E748	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM75	8017E750	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM76	8017E760	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM77	8017E764	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM78	8017E768	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM79	8017E770	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM80	8017E774	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM81	8017E778	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM82	8017E77C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM83	8017E780	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM84	8017E784	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM85	8017E78C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM86	8017E7A0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM87	8017E7A8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM88	8017E7AC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM89	8017E7B0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM90	8017E7B8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM91	8017E7CC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM92	8017E7D4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM93	8017E7D8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM94	8017E7DC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM95	8017E7E4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM96	8017E7F8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM97	8017E7FC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM98	8017E800	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM99	8017E808	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM100	8017E810	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM101	8017E814	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM102	8017E818	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM103	8017E820	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM104	8017E834	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM105	8017E83C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM106	8017E840	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM107	8017E844	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM108	8017E84C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM109	8017E854	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM110	8017E85C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM111	8017E864	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM112	8017E86C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM113	8017E874	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM114	8017E87C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM115	8017E89C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM116	8017E89C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM117	8017E89C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM118	8017E8A4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM119	8017E8A8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM120	8017E8C8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM121	8017E8CC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM122	8017E8D0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM123	8017E8D4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM124	8017E8D8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM125	8017E8E0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM126	8017E8E8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM127	8017E8F0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM128	8017E8F8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM129	8017E908	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM130	8017E910	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM131	8017E918	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM132	8017E920	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM133	8017E924	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM134	8017E928	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM135	8017E928	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM136	8017E944	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM137	8017E954	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM138	8017E998	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM139	8017E9BC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM140	8017E9C0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM141	8017E9C8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM142	8017E9FC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM143	8017EA00	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM144	8017EA38	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM145	8017EA3C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM146	8017EA44	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM147	8017EA50	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM148	8017EA68	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM149	8017EA90	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM150	8017EA90	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM151	8017EA90	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM152	8017EA9C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM153	8017EAA0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM154	8017EAB8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM155	8017EABC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM156	8017EAC0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM157	8017EAC4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM158	8017EAC8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM159	8017EAD0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM160	8017EAD8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM161	8017EAE8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM162	8017EAF0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM163	8017EAFC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM164	8017EB00	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM165	8017EB04	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM166	8017EB08	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM167	8017EB0C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM168	8017EB10	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM169	8017EB14	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM170	8017EB18	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM171	8017EB1C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM172	8017EB20	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM173	8017EB24	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM174	8017EB28	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM175	8017EB40	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM176	8017EB70	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM177	8017EB7C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM178	8017EB88	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM179	8017EB94	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM180	8017EB9C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM181	8017EBA4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM182	8017EBA8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM183	8017EBAC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM184	8017EBB0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM185	8017EBC0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM186	8017EBE4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM187	8017EBFC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM188	8017EC04	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM189	8017EC10	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM190	8017EC14	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM191	8017EC20	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM192	8017EC28	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM193	8017EC2C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM194	8017EC30	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM195	8017EC34	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM196	8017EC44	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM197	8017EC50	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM198	8017EC54	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM199	8017EC60	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM200	8017EC64	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM201	8017EC68	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM202	8017EC70	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM203	8017EC74	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM204	8017EC78	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM205	8017EC7C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM206	8017EC80	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM207	8017EC80	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM208	8017EC8C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM209	8017EC94	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM210	8017ECA8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM211	8017ECAC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM212	8017ECB8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM213	8017ECC0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM214	8017ECC4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM215	8017ECCC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM216	8017F034	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM217	8017F09C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM218	8017F0F8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM219	8017F108	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM220	8017F114	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM221	8017F118	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM222	8017F12C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM223	8017F140	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM224	8017F154	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM225	8017F1BC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM226	8017F218	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM227	8017F220	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM228	8017F224	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM229	8017F228	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM230	8017F234	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM231	8017F238	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM232	8017F240	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM233	8017F244	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM234	8017F24C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM235	8017F254	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM236	8017F258	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM237	8017F260	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM238	8017F268	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM239	8017F26C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM240	8017F274	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM241	8017F2B4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM242	8017F2B8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM243	8017F2BC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM244	8017F2C0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM245	8017F2E4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM246	8017F2E8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM247	8017F2EC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM248	8017F2F4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM249	8017F300	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM250	8017F30C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM251	8017F314	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM252	8017F328	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM253	8017F32C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM254	8017F330	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM255	8017F334	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM256	8017F33C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM257	8017F360	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM258	8017F36C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM259	8017F390	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM260	8017F390	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM261	8017F390	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM262	8017F390	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM263	8017F398	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM264	8017F3B4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM265	8017F3B8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM266	8017F3BC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM267	8017F3C0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM268	8017F3C4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM269	8017F3D0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM270	8017F3D8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM271	8017F3E0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM272	8017F3F0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM273	8017F400	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM274	8017F410	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM275	8017F420	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM276	8017F42C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM277	8017F434	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM278	8017F438	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM279	8017F43C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM280	8017F440	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM281	8017F450	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM282	8017F458	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM283	8017F460	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM284	8017F468	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM285	8017F46C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM286	8017F470	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM287	8017F474	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM288	8017F484	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM289	8017F490	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM290	8017F498	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM291	8017F4C8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM292	8017F4E4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM293	8017F4F0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM294	8017F500	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM295	8017F504	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM296	8017F508	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM297	8017F518	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM298	8017F51C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM299	8017F524	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM300	8017F548	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM301	8017F550	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM302	8017F56C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM303	8017F574	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM304	8017F57C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM305	8017F584	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM306	8017F590	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM307	8017F59C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM308	8017F5A0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM309	8017F5A8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM310	8017F5B0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM311	8017F5BC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM312	8017F5C0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM313	8017F5CC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM314	8017F5D0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM315	8017F5EC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM316	8017F5FC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM317	8017F604	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM318	8017F608	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM319	8017F62C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM320	8017F630	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM321	8017F644	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM322	8017F648	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM323	8017F650	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM324	8017F66C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM325	8017F678	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM326	8017F688	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM327	8017F68C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM328	8017F69C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM329	8017F6A0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM330	8017F6A8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM331	8017F6CC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM332	8017F6D4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM333	8017F6DC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM334	8017F6E0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM335	8017F6E8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM336	8017F708	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM337	8017F718	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM338	8017F71C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM339	8017F720	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM340	8017F728	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM341	8017F730	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM342	8017F73C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM343	8017F740	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM344	8017F748	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM345	8017F74C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM346	8017F758	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM347	8017F760	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM348	8017F760	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM349	8017F768	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM350	8017F76C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM351	8017F774	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM352	8017F778	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM353	8017F784	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM354	8017F790	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM355	8017F794	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM356	8017F794	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM357	8017F798	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM358	8017F79C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM359	8017F7C4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM360	8017F7CC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM361	8017F7D0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM362	8017F7D4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM363	8017F7F4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM364	8017F800	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM365	8017F81C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM366	8017F828	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM367	8017F844	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM368	8017F858	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM369	8017F868	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM370	8017F874	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM371	8017F87C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM372	8017F884	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM373	8017F88C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM374	8017F890	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM375	8017F894	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM376	8017F8A4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM377	8017F8B8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM378	8017F8C0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM379	8017F8C4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM380	8017F8CC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM381	8017F8E4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM382	8017F8EC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM383	8017F908	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM384	8017F908	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM385	8017F908	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM386	8017F910	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM387	8017F914	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM388	8017F91C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM389	8017F920	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM390	8017F928	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM391	8017F938	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM392	8017F938	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM393	8017F93C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM394	8017F940	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM395	8017F948	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM396	8017F948	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM397	8017F948	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM398	8017F958	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_roomVisualEffectsDrawFlashDisc	80180018	flt	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_roomVisualEffectsDrawFlashRing	8017FBEC	flt	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_roomVisualEffectsDrawBurstStar	80180F1C	flt	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM399	8017FBD4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM400	8017FBEC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM401	8017FBEC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM402	8017FBEC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM403	8017FBF4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM404	8017FBFC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM405	8017FC24	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM406	8017FC28	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM407	8017FC2C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM408	8017FC34	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM409	8017FC38	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM410	8017FC3C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM411	8017FC40	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM412	8017FC44	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM413	8017FC48	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM414	8017FC4C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM415	8017FC50	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM416	8017FC54	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM417	8017FC58	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM418	8017FC70	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM419	8017FCA0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM420	8017FCAC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM421	8017FCB8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM422	8017FCC0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM423	8017FCD0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM424	8017FCE0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM425	8017FCF0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM426	8017FCF4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM427	8017FCF8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM428	8017FCFC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM429	8017FD00	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM430	8017FD2C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM431	8017FD30	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM432	8017FD34	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM433	8017FD38	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM434	8017FD6C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM435	8017FD70	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM436	8017FD84	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM437	8017FD88	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM438	8017FD94	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM439	8017FD9C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM440	8017FDAC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM441	8017FDB8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM442	8017FDC4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM443	8017FDE8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM444	8017FE04	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM445	8017FE08	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM446	8017FE1C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM447	8017FE20	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM448	8017FE30	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM449	8017FE44	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM450	8017FE48	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM451	8017FE4C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM452	8017FE5C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM453	8017FE70	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM454	8017FE74	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM455	8017FE84	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM456	8017FE98	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM457	8017FE9C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM458	8017FEAC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM459	8017FEC0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM460	8017FEC4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM461	8017FED4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM462	8017FEE8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM463	8017FEEC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM464	8017FEFC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM465	8017FF10	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM466	8017FF14	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM467	8017FF24	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM468	8017FF4C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM469	8017FF90	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM470	8017FF94	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM471	8017FFA4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM472	8017FFA8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM473	8017FFBC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM474	8017FFC8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM475	8017FFD4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM476	8017FFEC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM477	80180018	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM478	80180018	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM479	80180018	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM480	80180028	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM481	80180030	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM482	80180050	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM483	80180054	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM484	80180058	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM485	8018005C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM486	80180060	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM487	80180064	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM488	80180068	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM489	8018006C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM490	80180070	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM491	80180074	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM492	80180078	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM493	8018007C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM494	80180080	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM495	80180098	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM496	801800C8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM497	801800D0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM498	801800DC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM499	801800E4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM500	801800F4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM501	80180104	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM502	80180114	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM503	80180118	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM504	8018011C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM505	80180120	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM506	80180124	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM507	80180150	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM508	80180168	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM509	8018016C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM510	80180170	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM511	8018017C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM512	80180184	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM513	80180194	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM514	801801A0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM515	801801AC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM516	801801C8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM517	801801CC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM518	801801D8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM519	801801D8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM520	801801EC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM521	801801F0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM522	80180200	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM523	80180214	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM524	8018021C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM525	8018022C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM526	80180240	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM527	80180244	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM528	80180254	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM529	8018027C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM530	80180280	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM531	80180284	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM532	80180288	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM533	8018028C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM534	80180290	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM535	801802A4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM536	801802A8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM537	801802B8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM538	801802E0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM539	80180324	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM540	80180328	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM541	80180338	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM542	8018033C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM543	80180350	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM544	8018035C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM545	80180368	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM546	80180380	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM547	801803AC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM548	801803AC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM549	801803AC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM550	801803AC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM551	801803B4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM552	801803E4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM553	801803E8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM554	801803EC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM555	801803F0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM556	801803F4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM557	801803F8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM558	80180404	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM559	80180414	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM560	8018043C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM561	8018044C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM562	80180454	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM563	8018045C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM564	8018045C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM565	8018045C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM566	80180464	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM567	80180468	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM568	8018046C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM569	80180470	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM570	80180474	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM571	80180478	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM572	8018047C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM573	80180488	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM574	8018048C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM575	80180490	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM576	80180494	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM577	80180498	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM578	8018049C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM579	801804A0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM580	801804A0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM581	801804A8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM582	801804B4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM583	801804B8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM584	801804BC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM585	801804C0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM586	801804C4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM587	801804C8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM588	801804CC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM589	801804D0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM590	801804D4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM591	801804D8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM592	801804DC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM593	801804DC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM594	801804E4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM595	801804F0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM596	80180588	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM597	80180620	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM598	80180634	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM599	8018063C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM600	8018063C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM601	80180644	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM602	8018064C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM603	80180650	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM604	80180654	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM605	80180658	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM606	8018065C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM607	80180660	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM608	80180664	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM609	80180668	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM610	8018066C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM611	80180670	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM612	80180670	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM613	8018067C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM614	80180684	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM615	80180734	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM616	801807EC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM617	801807F8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM618	801807FC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM619	80180800	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM620	80180808	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM621	8018080C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM622	80180810	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM623	80180818	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM624	8018082C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_roomVisualEffectsDrawTwinTrail	8018089C	flt	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM625	80180844	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM626	80180864	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM627	8018086C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM628	8018089C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM629	8018089C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM630	8018089C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM631	801808B0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM632	801808B8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM633	801808C8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM634	801808CC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM635	801808E4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM636	801808E8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM637	801808EC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM638	801808F8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM639	80180910	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM640	80180940	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM641	80180944	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM642	80180958	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM643	80180964	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM644	80180968	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM645	80180978	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM646	8018097C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM647	80180980	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM648	80180984	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM649	80180988	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM650	8018098C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM651	80180990	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM652	80180994	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM653	80180998	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM654	8018099C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM655	801809A0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM656	801809A4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM657	801809A8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM658	801809AC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM659	801809B0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM660	801809B4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM661	801809B8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM662	801809BC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM663	801809C0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM664	801809C4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM665	801809D0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM666	801809DC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM667	801809E0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM668	801809E4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM669	801809E8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM670	801809F4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM671	80180A00	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM672	80180A0C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM673	80180A14	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM674	80180A20	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM675	80180A28	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM676	80180A4C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM677	80180A58	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM678	80180A70	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM679	80180A80	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM680	80180A90	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM681	80180AA0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM682	80180AB0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM683	80180AB4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM684	80180ACC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM685	80180ADC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM686	80180AE0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM687	80180AE8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM688	80180AFC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM689	80180AFC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM690	80180B00	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM691	80180B04	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM692	80180B08	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM693	80180B10	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM694	80180B18	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM695	80180B1C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM696	80180B20	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM697	80180B24	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM698	80180B28	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM699	80180B2C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM700	80180B30	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM701	80180B34	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM702	80180B38	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM703	80180B3C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM704	80180B40	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM705	80180B44	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM706	80180B48	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM707	80180B4C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM708	80180B50	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM709	80180B54	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM710	80180B58	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM711	80180B5C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM712	80180B60	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM713	80180B64	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM714	80180B70	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM715	80180B7C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM716	80180B88	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM717	80180B94	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM718	80180BA0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM719	80180BAC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM720	80180BB0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM721	80180BB4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM722	80180BB8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM723	80180BBC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM724	80180BC0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM725	80180BC4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM726	80180C30	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM727	80180C3C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM728	80180C40	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM729	80180C4C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM730	80180C64	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM731	80180C94	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM732	80180C94	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM733	80180C94	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM734	80180CA4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM735	80180F00	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM736	80180F1C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM737	80180F1C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM738	80180F1C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM739	80180F2C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM740	80180F34	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM741	80180F58	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM742	80180F5C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM743	80180F60	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM744	80180F64	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM745	80180F68	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM746	80180F6C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM747	80180F70	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM748	80180F74	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM749	80180F78	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM750	80180F7C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM751	80180F80	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM752	80180F84	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM753	80180F88	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM754	80180FA0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM755	80180FD0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM756	80180FD8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM757	80180FE4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM758	80180FEC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM759	80180FFC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM760	8018100C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM761	8018101C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM762	80181024	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM763	80181028	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM764	8018102C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM765	80181030	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM766	8018105C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM767	80181060	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM768	80181064	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM769	80181090	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM770	80181094	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM771	801810A8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM772	801810AC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM773	801810B0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM774	801810BC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM775	801810C4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM776	80181110	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM777	80181114	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM778	80181124	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM779	80181138	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM780	8018113C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM781	8018114C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM782	80181160	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM783	80181164	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM784	80181168	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM785	80181178	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM786	8018118C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM787	80181190	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM788	801811A0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM789	801811C8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM790	801811CC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM791	801811D0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM792	801811D4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM793	801811D8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM794	801811DC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM795	801811F0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM796	801811F4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM797	80181204	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM798	80181228	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM799	8018122C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM800	80181230	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM801	80181280	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM802	80181284	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM803	80181298	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM804	801812A4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM805	801812B0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM806	801812B8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM807	801812FC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM808	80181300	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM809	8018130C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM810	80181320	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM811	80181324	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM812	80181334	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM813	80181348	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM814	8018134C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM815	8018135C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM816	80181370	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM817	80181374	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM818	80181384	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM819	801813AC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM820	801813B8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM821	801813BC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM822	801813C0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM823	801813D4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM824	801813D8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM825	801813E8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM826	8018140C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM827	80181410	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM828	80181414	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM829	80181450	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM830	80181454	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM831	80181464	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM832	80181468	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM833	8018147C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM834	80181488	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM835	80181494	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM836	80181498	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM837	801814B0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM838	801814B8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM839	801814C0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM840	801814FC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM841	80181500	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM842	8018150C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM843	80181510	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM844	80181520	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM845	80181534	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM846	80181538	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM847	80181548	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM848	8018155C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM849	80181560	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM850	80181570	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM851	80181584	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM852	80181588	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM853	80181598	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM854	801815C0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM855	801815C4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM856	801815C8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM857	801815CC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM858	801815D0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM859	801815D4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM860	801815E8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM861	801815EC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM862	801815FC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM863	80181620	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM864	80181624	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM865	80181628	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM866	80181678	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM867	8018167C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM868	80181690	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM869	8018169C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM870	801816A4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM871	801816AC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM872	801816F8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM873	801816FC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM874	8018170C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM875	80181720	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM876	80181724	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM877	80181734	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM878	80181748	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM879	8018174C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM880	8018175C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM881	80181770	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM882	80181774	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM883	80181784	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM884	801817AC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM885	801817B0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM886	801817B4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM887	801817B8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM888	801817BC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM889	801817C0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM890	801817D4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM891	801817D8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM892	801817E8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM893	8018180C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM894	80181810	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM895	80181814	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM896	80181850	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM897	80181854	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM898	80181864	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM899	80181868	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM900	8018187C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM901	80181888	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM902	80181894	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM903	801818AC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM904	801818DC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM905	801818DC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM906	801818DC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_acropolisCafeteriaLoosePropInit	801818DC	flt	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM907	801818E8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM908	801818EC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM909	801818FC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM910	80181904	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM911	80181908	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM912	80181914	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM913	8018191C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM914	80181924	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM915	8018192C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM916	8018192C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM917	80181934	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_acropolisCafeteriaLoosePropExit	80181E3C	flt	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM918	80181938	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM919	8018193C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM920	80181940	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM921	80181944	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM922	80181948	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM923	8018194C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM924	80181954	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM925	8018195C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM926	80181968	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM927	8018196C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM928	80181974	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM929	8018197C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM930	80181980	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM931	80181988	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM932	801819A0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM933	801819AC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM934	801819B0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM935	801819B4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM936	801819BC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM937	801819C0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM938	801819C4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM939	801819CC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM940	801819D4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM941	801819DC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM942	801819E4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM943	801819E8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM944	801819EC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM945	801819F0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM946	801819F4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM947	801819F8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM948	80181A00	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM949	80181A10	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM950	80181A20	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM951	80181A3C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM952	80181A3C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM953	80181A3C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_acropolisCafeteriaLoosePropUpdate	80181A3C	flt	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM954	80181A40	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM955	80181A48	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM956	80181A58	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM957	80181A60	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM958	80181A68	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM959	80181A6C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM960	80181A70	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM961	80181A74	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM962	80181A78	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM963	80181A80	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM964	80181A84	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM965	80181A88	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM966	80181A8C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM967	80181A90	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM968	80181A98	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM969	80181AD8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM970	80181AEC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM971	80181AFC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM972	80181B00	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM973	80181B40	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM974	80181B44	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM975	80181B50	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM976	80181B5C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM977	80181B64	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM978	80181B6C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM979	80181B70	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM980	80181B78	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM981	80181B7C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM982	80181B80	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM983	80181B88	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM984	80181B94	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM985	80181B9C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM986	80181BA4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM987	80181BAC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM988	80181BB4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM989	80181BC0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM990	80181BC8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM991	80181BCC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM992	80181BD0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM993	80181BD4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM994	80181BDC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM995	80181BFC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM996	80181C1C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM997	80181D04	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM998	80181D18	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM999	80181D2C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1000	80181D3C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1001	80181D44	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1002	80181D68	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1003	80181D88	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1004	80181D8C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1005	80181DAC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1006	80181DCC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1007	80181DD0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1008	80181DE8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1009	80181DEC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1010	80181DF8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1011	80181E00	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1012	80181E18	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1013	80181E30	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1014	80181E30	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1015	80181E30	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_acropolisCafeteriaLoosePropRequestExit	80181E30	flt	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1016	80181E30	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1017	80181E30	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1018	80181E34	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1019	80181E3C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1020	80181E3C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1021	80181E3C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1022	80181E4C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1023	80181E58	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1024	80181E60	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1025	80181E70	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_gAcropolisCafeteriaLoosePropStates	8017D69C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1026	80181E70	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1027	80181E70	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1028	80181E74	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1029	80181E78	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1030	80181E7C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1031	80181EA4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1032	80181EC4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1033	80181ED4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1034	80181ED4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1035	80181ED4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_actorContactApplyGridPushback	80181ED4	flt	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1036	80181EE0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1037	80181EE8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1038	80181EF4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1039	80181F00	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1040	80181F04	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1041	80181F08	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1042	80181F10	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1043	80181F14	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1044	80181F18	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1045	80181F28	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1046	80181F3C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1047	80181F50	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1048	80181F58	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1049	80181F5C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1050	80181F64	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1051	80181F68	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1052	80181F74	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1053	80181F7C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1054	80181FCC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1055	80181FD4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1056	80181FE8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1057	80181FF0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1058	80182004	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1059	8018200C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1060	80182024	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1061	80182044	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1062	80182048	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1063	80182054	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1064	80182058	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1065	80182060	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1066	80182078	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1067	80182078	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1068	80182078	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_actorContactApplyBearingPushback	80182078	flt	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1069	80182078	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1070	80182080	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1071	801820B0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1072	801820C0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1073	801820C8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1074	801820D0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1075	801820D8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1076	801820E4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1077	801820E8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1078	801820EC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1079	801820F0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1080	801820F4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1081	80182100	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1082	80182104	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1083	80182110	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1084	80182234	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1085	80182238	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1086	8018223C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1087	80182240	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1088	80182360	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1089	80182368	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1090	80182370	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1091	80182398	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1092	8018239C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1093	801823B4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1094	801823B8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1095	801823C0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1096	801823E0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1097	801823E4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1098	801823EC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1099	80182410	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1100	80182428	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1101	8018242C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1102	80182430	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1103	80182438	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1104	80182454	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1105	8018245C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1106	80182460	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1107	80182464	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1108	80182468	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1109	8018246C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1110	80182470	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1111	80182474	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1112	8018247C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1113	80182484	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1114	80182488	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1115	8018248C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1116	801824B4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1117	8018250C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1118	80182520	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1119	80182540	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1120	80182548	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1121	8018254C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1122	80182560	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1123	80182580	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1124	80182588	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1125	80182590	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1126	801825A4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1127	801825BC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1128	801825C4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1129	801825D8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1130	80182624	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1131	80182628	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1132	80182640	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1133	80182660	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1134	8018266C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1135	80182738	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1136	80182740	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1137	80182764	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1138	80182784	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1139	80182790	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1140	80182794	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1141	8018279C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1142	801827C4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1143	801827C4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1144	801827C4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1145	801827D4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1146	801827DC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1147	801827E0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1148	801827E4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1149	801827F8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1150	80182800	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1151	8018280C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1152	80182814	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1153	80182824	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1154	8018284C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1155	80182854	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1156	80182858	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1157	8018285C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1158	8018286C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1159	8018286C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1160	8018286C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1161	80182888	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1162	80182890	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1163	80182894	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1164	80182898	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1165	801828A0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1166	801828B8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1167	801828C0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1168	801828D0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1169	801828E8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1170	801828F4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1171	80182900	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1172	8018290C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1173	80182910	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1174	80182914	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1175	80182918	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1176	80182920	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1177	80182928	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1178	80182930	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1179	80182938	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1180	80182954	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1181	80182954	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1182	80182954	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_acropolisCafeteriaObject10DrawTask	80182954	flt	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1183	80182968	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1184	8018296C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1185	80182984	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1186	8018298C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1187	8018298C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1188	80182990	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1189	8018299C	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1190	801829A4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1191	801829B8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1192	801829C4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1193	801829CC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1194	801829D0	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1195	801829D4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1196	801829DC	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1197	801829F4	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1198	80182A08	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1199	80182A08	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1200	80182A08	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+_acropolisCafeteriaObject11DrawTask	80182A08	flt	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1201	80182A14	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1202	80182A18	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1203	80182A44	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1204	80182A48	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1205	80182A54	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1206	80182A60	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1207	80182A74	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1208	80182A80	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1209	80182A88	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1210	80182A90	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1211	80182A98	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+LM1212	80182AA8	fl	build/USA/src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.i
+__romPos	000100F4	al	
+gAcropolisCafeteriaPointLights	80189E24	f	
+equipmentGetWeaponLoadCapacity	800BB938	a	
+gActor443500ConsoleFollowupSkipScript	80142A74	a	
+gActor101200BoneSucklerTaskDesc	80138E98	a	
+D_80073BAC	80073BAC	a	
+D_80072174	80072174	a	
+areaSetCurrentObjectState	800BAC34	a	
+uiInitList	800489A0	a	
+D_80071072	80071072	a	
+CdFlush	80015AF4	a	
+gameFlagSetNibble	8004AC58	a	
+acropolis_cafeteria_DATA_SIZE	0000AC0C	a	
+SetRotMatrix	8004ADF8	a	
+stageRequestModeTaskExit	8003F6F8	a	
+gActor503500StaffCardSceneTaskDesc	8014B958	a	
+sceneEngageBattle	800DB4E0	a	
+tmdAllocPrimitiveBuffer	80041B88	a	
+gActor335800BalconyBattleStartScript	80165720	a	
+gActor450200CompanionSceneScript	80137EE4	a	
+gAcropolisCafeteriaSurfacePropertiesByClass	8018CA2C	f	
+actor161500StartSoldierBRemark	80131E38	a	
+gCapCommandEntries	801156A0	a	
+displayAcquireMenuHold	8003E610	a	
+gPadMenuButtonMask	8005ED78	a	
+gAcropolisCafeteriaRoomEffectMessages	80184CEC	f	
+areaSetPlacementVariant	800B5B30	a	
+displayQueueModeTask	8003FB70	a	
+gameGetTaskSlot	8002D22C	a	
+GetTPage	80043938	a	
+displaySetFrameTiming	800280F4	a	
+textItoaUnsigned	8002F18C	a	
+damagePackEnemyAttackKey	800E2BF8	a	
+gMapAkropolisCafeteriaVariant1Placements	8017AE9C	a	
+viewGetMappedIndex	800AD284	a	
+worldCoordGetOriginAudioPan	800D937C	a	
+mapShelterRoomVariantResolve	80179A04	a	
+gPadInputMenuUnlockUpdates	80115716	a	
+uiGetTextColor	80048E10	a	
+cdCmdSelectScene	8001D534	a	
+gAcropolisCafeteriaSpriteViews	8018C48C	f	
+acropolisCafeteriaPuffEmitterTask	8017E89C	ft	
+gActor107600TaskDescriptors	80134F94	a	
+SetDrawTPage	80043A38	a	
+D_801153F1	801153F1	a	
+printf	8001AF3C	a	
+worldCollisionClearContacts	800E1A6C	a	
+sceneReleaseBattleRefAndClearRewards	800DB630	a	
+memMalloc	8002DABC	a	
+D_80073BA0	80073BA0	a	
+gActionPromptSlots	80114D28	a	
+D_80072836	80072836	a	
+gAttachmentTrainingLevels	80114BF0	a	
+gAcropolisCafeteriaSpotLightStorage	8018A3C4	f	
+acropolisCafeteriaPuffTask	8017EA90	ft	
+taskPollKill	8002D3BC	a	
+acropolis_cafeteria_BSS_SIZE	00000000	a	
+actor260400RestoreHeliportPlacement	80149FA4	a	
+gAcropolisCafeteriaRoomLights	8018AA18	f	
+gRoomEffectOrangeBurst2Id	80115754	a	
+acropolis_cafeteria_BSS_END	8018D6B4	f	
+stageMusicRequestAreaStop	800430E4	a	
+taskSpawn	8002CFDC	a	
+MatrixNormal	8003D6C8	a	
+gAreaRecordsByStage	8010CBCC	a	
+textDrawUiLine	8002FDCC	a	
+D_8007106C	8007106C	a	
+gActor450800NurseryIntroSkipScript	8013A33C	a	
+D_80070F6C	80070F6C	a	
+capRunCommandWithTransition	800E3B60	a	
+SetSemiTrans	800439B8	a	
+gCapRoomCompletionSoundsEnabled	80115598	a	
+sndEvtRequestMidiStart	800512BC	a	
+inventoryHasCollectedBit	800BB4BC	a	
+gGfxViewCoord	80070F10	a	
+equipmentRestoreHpMp	800BC164	a	
+D_80073B8C	80073B8C	a	
+gameFlowBeginLoadScreen	8002252C	a	
+sndEvtRequestScriptMix	80054424	a	
+worldCollisionProjectGroundCoord	800EA02C	a	
+worldCollisionUnlinkTrigger	800E1708	a	
+actor215100SelectCaptionResource	8014C5E0	a	
+padScriptSpawnVariableMotorRamp	800E8D1C	a	
+gfxSetFlatLight	8003B140	a	
+gPlayerActorStateTickHeld	80115768	a	
+gItemDescriptors	8010D838	a	
+playerActorPrepareDryfieldLoadout	800BC4E4	a	
+gActor450200RoomVariantSceneScript	8013FC58	a	
+taskGetDescAt	8002D32C	a	
+rcos	8003D108	a	
+D_80072177	80072177	a	
+streamFindViewMovieSlot	8001EED8	a	
+gRoomEffectTwinTrailId	8011572C	a	
+taskKill	8002CCB8	a	
+gActor143000KeypadTaskDesc	80134564	a	
+gEffectSpriteAtlasFrames	80111E48	a	
+D_80115188	80115188	a	
+D_80072724	80072724	a	
+textDrawString	8002E53C	a	
+acropolis_cafeteria_VRAM	8017D5C0	f	
+gDirectionInteractionRearmUpdates	80114D08	a	
+D_80071078	80071078	a	
+gRoomEffectSparkBurstId	80115750	a	
+gActor120300TaskDescriptors	80141B6C	a	
+inventoryResetIceBagTimer	800BC21C	a	
+gEffectUnitQuadCorners	80111E38	a	
+worldCoordSetActorColorMode	800D930C	a	
+gActor342400EncounterTaskDescs	8016BFE0	a	
+gActor560800ChainGlowTick	801752EC	a	
+gActor444000IncineratorEventTaskDesc	801449F4	a	
+playerActorSetScriptedControl	800E3BBC	a	
+stageMusicRequestAreaStart	80043028	a	
+itemMenuSpawnNotice	800D4E40	a	
+actor460200SetupTentSoldiers	80132210	a	
+gActor335800BalconyEntrySkipScript	80165798	a	
+D_80115124	80115124	a	
+uiStartPanelOpening	80048964	a	
+actor215100RequestGalleryAbort	8014A9A0	a	
+streamGetFrameLimit	80020414	a	
+gActor00100DesertChaserTaskDesc	8014D8A4	a	
+gActor04000HangingPoolTaskDesc	8013E51C	a	
+gActor560800CutsceneTaskDescriptors	801718F0	a	
+actor161500StartCompanionRequestReminder	801322A0	a	
+equipmentInitializeWeaponSupplies	800B6CF0	a	
+gFsActorBuffer1Base	8005C370	a	
+textFormatPlayTime	8002EB94	a	
+playerActorRestoreEquipment	801034C0	a	
+acropolis_cafeteria_RODATA_END	8017D6AC	f	
+playerActorRemoveEquipment	801043F4	a	
+SetDrawMove	8004AD18	a	
+acropolis_cafeteria_ROM_END	000100F4	a	
+damageGetPlayerAttackEffectId	800E2D90	a	
+gpuSetPrimitiveBlendMode	800EC914	a	
+worldCoordUpdateActorColor	800D8EA0	a	
+enemyTaskExit	800B0234	a	
+gfxComposeNodeWorldTransform	800B1D00	a	
+gAcropolisCafeteriaModel0F7A4	8018D230	f	
+gUiPromptObject	80067694	a	
+gFsActorBuffer0Base	8005C36C	a	
+ratan2	8003D9C8	a	
+sceneFindPlacedActor	800E86FC	a	
+animationSeekSlotWithBlend	800B4114	a	
+inventoryInitializeShootingGalleryLoadout	800BA538	a	
+D_80071090	80071090	a	
+gActor450200SoloSceneScript	8013C72C	a	
+RotTransSV	8004BD58	a	
+padIsStartPressed	8004ACF0	a	
+gActor401800OddStrangerTaskDesc	80155AC4	a	
+ApplyMatrixSV	80043A68	a	
+memSelectAuxHeapRegion	8002DC08	a	
+gActor450800NurseryIntroScript	80139964	a	
+memcpy	8001AEFC	a	
+gActor151000GardenArrivalScript	801334EC	a	
+gAcropolisCafeteriaStrangerRecoilVelocityY	8018D6A4	f	
+gActor341300WalkwaySceneSkipScript	80165834	a	
+gStageCountdownMusicEntry	80062735	a	
+Gp_QtyById0	8010E038	a	
+sndEvtRequestStageScriptStop	800E3E64	a	
+gActor207000SucklercephTaskDescs	80151E60	a	
+capSetTexturePage	800E6D4C	a	
+__floatsidf	8004B5D8	a	
+SetSprt	80043A18	a	
+gActor443500MapFollowupSkipScript	801432FC	a	
+areaSyncLocationVariant	800B601C	a	
+effectDrawGroundShadow	800F68AC	a	
+cdCmdCompleteHeadRequest	8001DA48	a	
+gameFlagSetNibbleIfPresent	800E3B3C	a	
+gAcropolisCafeteriaPuffEnabled	80184CFC	f	
+uiSizePanelForTextDefault	800490A4	a	
+worldCollisionUnlinkBody	800E1638	a	
+gRoomEffectFlyingSparkId	80115730	a	
+playerActorWriteWeaponAnimationBankIndex	800E3CEC	a	
+gGpuCurrentOt	800710A0	a	
+acropolisCafeteriaRoomVisualEffectsTwinTrailTask	801803AC	ft	
+streamInitMoviePlayback	8002043C	a	
+gActor150400FreezerSceneScript	80132D70	a	
+gAcropolisCafeteriaViewCameras	8018C5AC	f	
+gActor450200SoloSceneSkipScript	8013CAEC	a	
+sndScriptHasActiveId	8005462C	a	
+gMcDialogDescriptors	800611C8	a	
+sndEvtRequestMidiVolume	80051460	a	
+padScriptSpawn	800E8FB0	a	
+gCapFile	8011568C	a	
+gActor450200CompanionSceneSkipScript	80138694	a	
+sceneReleaseBattleRef	800DB6B4	a	
+gMcSaveData	80072168	a	
+gameSetTaskSlot	8002D214	a	
+taskSpawnFromTable	8002CFA0	a	
+acropolisCafeteriaModelWanderTask	8017F390	ft	
+gActor142900ElevatorFirstVisitSkipScript	801380F8	a	
+gActor503500BossPhaseTransitionScript	8014D158	a	
+inventoryGetItemQuantity	800BB6FC	a	
+cdCmdRequestCancel	8001C970	a	
+actor450900HandleDepartureTrigger	80132834	a	
+D_80070F70	80070F70	a	
+gActor160600SceneWithoutCompanionScript	80135AC0	a	
+displayResumeGameLoop	8003E540	a	
+acropolis_cafeteria_TEXT_START	8017D6AC	f	
+tmdFreePrimitiveBuffer	80041B4C	a	
+actor460200TalkToSoldierC	801322B8	a	
+itemMenuOpenHotspotCommands	800D4E78	a	
+gfxMakeRelativeTransform	800A8864	a	
+gWorldCollisionSurfacePropertiesTables	8010CBB8	a	
+streamPollGameRestore	8001EF9C	a	
+gMapAkropolisCafeteriaVariant2Placements	8017AEDC	a	
+acropolisCafeteriaLoosePropTask	80181E70	ft	
+areaClearMapMark	800AED24	a	
+gItemMenuInfoPanel	80067634	a	
+gActor05700RookGolemTasks	801491F8	a	
+cdCmdIsSlotEmpty	8001D37C	a	
+gAcropolisCafeteriaModel08638	8018625C	f	
+D_8007107C	8007107C	a	
+gActor461800NeoArkSceneSkipScript	80134470	a	
+itemMenuDrawTaskPrompt	800CE4F4	a	
+MargePrim	800422B8	a	
+worldCoordSetModelLighting	800D7A9C	a	
+streamResetGameRestore	80020388	a	
+gfxReadMatrixYAxis	8003C748	a	
+actor503500ClearFadeFromBlackHandle	80132F58	a	
+displayReleaseMenuHold	8003E64C	a	
+taskCallExit	8002D0A4	a	
+RotMatrixZYX	80044408	a	
+gAcropolisCafeteriaViewAmbientColors	8018C90C	f	
+actor341300ResetScriptTaskHandle	8016268C	a	
+modelObjectAttachTmd	8009902C	a	
+gActor210600GrinningStrangerTaskDesc	8015A4EC	a	
+gActor161500CompleteCompanionRequestTaskDesc	80136CDC	a	
+gGameSession	8005ED64	a	
+D_80071076	80071076	a	
+__adddf3	8004AFE8	a	
+acropolisCafeteriaRoomVisualEffectsFlashTask	8017F948	ft	
+gRoomEffectFlashId	80115758	a	
+acropolisCafeteriaBlackoutTask	8017E658	ft	
+gActor443500TourOpeningSkipScript	80141C1C	a	
+actor215100FinishGalleryCourse	8014A908	a	
+animationAimHeadAtPoint	800B0CF4	a	
+mapAkropolisOpenKeyItemMenu	80179FC8	a	
+areaSetObjectState	800BB8E8	a	
+gItemMenuPanelDescriptors	8010EAB4	a	
+SquareRoot0	8003B8A0	a	
+gameFlagSetPackedByte	800E3FAC	a	
+gAttachmentState	80114C08	a	
+displayConfigureFramebuffers	8003DB48	a	
+gfxBuildOrthonormalBasis	8003CEC4	a	
+gActor342100EncounterBlazeTaskDescriptors	80164B78	a	
+gActor535700PawnGolemEncounterScript	80133898	a	
+sndEvtRequestScriptStop	800542D0	a	
+SetShadeTex	800439E8	a	
+sceneReleaseBattleRefWithRewards	800DB558	a	
+capRunCommand	800E34D8	a	
+gAcropolisCafeteriaModel07CA8	801858C4	f	
+gFsActorBuffer2Base	8005C374	a	
+ActorContact_ScratchPosition	8018D6AC	f	
+capReset	800E6DF4	a	
+gAcropolisCafeteriaStrangerRecoilVelocityX	8018D6A0	f	
+gActor341300WalkwaySceneScript	80165354	a	
+gEquipmentWeaponPrimaryLoadOptions	8010E238	a	
+gfxReadMatrixZAxis	8003C768	a	
+D_80071086	80071086	a	
+gfxRotMatrixY	8003C98C	a	
+gPadScriptTransitionCommands	80114A24	a	
+viewApplyCamera	800A8A48	a	
+RotTransPers4	8004C358	a	
+acropolisCafeteriaSetPuffEnabled	8017F908	ft	
+gActor110600TaskDesc	80148670	a	
+D_8011540E	8011540E	a	
+gPadScriptTransitionSegments	80114A34	a	
+mapDryfieldFullResolveRoomVariant	80179954	a	
+inventoryRestoreCarriedLoadout	800BA75C	a	
+gAcropolisCafeteriaViewCounts	801875BC	f	
+D_80072176	80072176	a	
+gStreamInterFile	8006AC30	a	
+playerActorPrepareAcropolisLoadout	800BC4BC	a	
+gAcropolisCafeteriaFollowUpAreaUpdates	8018C9D4	f	
+mapAkropolisWasDryfieldMapSelected	8017A038	a	
+gStageMusicTaskDesc	80062774	a	
+gMdecMovieOutputSlot	8005EAEE	a	
+D_acropolis_cafeteria_80182C14	80182C14	f	
+gActor451100SubmarineTunnelSceneSkipScript	80135FD0	a	
+gStageRoomMusicSequence	80062737	a	
+worldCollisionFindContactIndex	800E19B8	a	
+acropolis_cafeteria_DATA_START	80182AA8	f	
+worldCollisionLinkBody	800E15AC	a	
+D_80073BA9	80073BA9	a	
+midiIsSequenceBusy	800514F8	a	
+memCopyBytes	8002D7A8	a	
+effectKillTask	800EC7E4	a	
+inventoryCountOccupiedRows	800BAF5C	a	
+itemMenuGetPrimaryPreviewItem	800CF27C	a	
+sceneSetPlacedActorDrawMode	800E3C6C	a	
+__fixdfsi	8004B4D8	a	
+effectDrawGouraudDisc	800EAEB8	a	
+cdCmdStageSceneAudioStart	8001D6B8	a	
+D_80072A94	80072A94	a	
+textItoaSigned	8002F020	a	
+cdCmdIsIdle	8001D344	a	
+gAkropolisCafeteriaPlayerCafeteriaFollowUpStartClip	801668FC	a	
+actor215100CheckGalleryExitInput	8014A398	a	
+D_80072729	80072729	a	
+sceneQueueBattleEscapeResult	800A7A64	a	
+capStartSequenceSlot	800E6C70	a	
+gActor215100GalleryTrainingActive	8014D038	a	
+worldCollisionReadActionHit	800E1BF0	a	
+SetTransMatrix	8004AE28	a	
+gameFlagGetNibble	8004ACAC	a	
+D_801153F4	801153F4	a	
+gRoomEffectHaloId	80115744	a	
+AddPrim	80043978	a	
+gCapPreserveActorControl	80115690	a	
+uiSetListSystemCursorSound	8004917C	a	
+itemSetIdentified	800BB7C0	a	
+gfxRotMatrixZ	8003CB80	a	
+worldTargetAddReadoutAmount	800DA6E8	a	
+inventoryGetConsumableStackQuantity	800BB26C	a	
+SetDrawOffset	80018AA4	a	
+D_8007272D	8007272D	a	
+gSceneCombatState	801153F0	a	
+D_acropolis_cafeteria_80182DA0	80182DA0	f	
+itemMenuDrawItemRow	800CD924	a	
+effectDrawSpinningBillboard	800EB2C8	a	
+uiDrawPanelLabel	80047F40	a	
+gGameMainPersistentState	800710A8	a	
+enemySpawnFromTable	800B01AC	a	
+gfxRotMatrixYXZ	8003BD34	a	
+D_8011540A	8011540A	a	
+effectDrawModulatedBillboard	800EB6E8	a	
+equipmentHasCarriedWeaponSupply	800BBDDC	a	
+gActor461800NeoArkSceneScript	80133F90	a	
+acropolisCafeteriaStartMovieTask	8017E6B8	ft	
+uiPositionRowDialog	80049024	a	
+actor260400StartHeliportConversation	80149E38	a	
+evsStartScriptWithSkip	800E8634	a	
+gEquipmentModeBaseStats	8010D328	a	
+gFsImageWorkspacePtr	8005C364	a	
+actor160700StartMeetingScript	80131E70	a	
+evsStartScript	800E8614	a	
+loadingRequestViewGraphicsRestore	800A99B4	a	
+actor450200InitializeObservatoryCompanion	801322F8	a	
+StoreImage	80017FA4	a	
+D_80114C12	80114C12	a	
+MoveImage	80018004	a	
+uiUpdateList	80048C10	a	
+func_807245E4	807245E4	a	
+streamGetSlot	80020278	a	
+textAppendString	8002F588	a	
+gActor310100Officer1TaskDescriptors	801798FC	a	
+capGetVariantKey	800E6D3C	a	
+gActor143900ObservatoryEntrySkipScript	80133860	a	
+gActor503500BossDefeatSkipScript	8014CAF8	a	
+attachmentIsTrainingMode	800A74C4	a	
+capIsBusy	800E6CE0	a	
+gGpuPrimCursor	80071190	a	
+worldCoordGetOriginAudioDepth	800D9340	a	
+gfxRotMatrixXYZ	8003B960	a	
+actor161500StartSoldierBShopConversation	80132110	a	
+shopOpenSession	800D4D2C	a	
+gAcropolisCafeteriaWarps	801875E4	f	
+gPadCancelButtonMask	8005ED74	a	
+gPadStates	80071620	a	
+SetDrawArea	80018A24	a	
+D_80071075	80071075	a	
+RotTransPers3	8004C1E8	a	
+actor460200TalkToSoldierA	80132390	a	
+animationInitContext	800B3F84	a	
+gActor450200RoomVariantSceneSkipScript	80140078	a	
+equipmentFindNextCarriedWeaponSupply	800BBD40	a	
+gActor535700PawnGolemEncounterSkipScript	801341E0	a	
+uiDrawBeveledRect	80046B34	a	
+rand	80037164	a	
+gActor450900EntrySkipScript	80136308	a	
+acropolis_cafeteria_RODATA_SIZE	000000EC	a	
+D_80115410	80115410	a	
+companionSetDrawMode	800E3EB0	a	
+inventoryGiveItem	800BAD08	a	
+gActor560800MovieTaskDescriptors	8016EA28	a	
+gActor342000IncineratorEventTaskDescs	80164FF8	a	
+D_8010E138	8010E138	a	
+effectSpawnHit	800FDB18	a	
+gInventoryContainerRanges	8010D550	a	
+gActor143400CompanionEntryScript	801350BC	a	
+memCalloc	8002D978	a	
+effectSpawn	800EA478	a	
+gActor450900EntryScript	80136110	a	
+strncmp	8001EAC4	a	
+gInventoryConsumableStacks	8010E3B8	a	
+gActor105500MaggotCaterpillarTasks	8013A8DC	a	
+itemMenuDrawDefaultItemIcon	800CE5D0	a	
+actor161500StartSoldierBTalkB	80132038	a	
+acropolis_cafeteria_bss_VRAM	8018D6B4	f	
+D_80071068	80071068	a	
+gRoomEffectWaterSprayId	80115738	a	
+gActor450800NurseryShootingSkipScript	8013BA84	a	
+gMdecMovieInputSlot	8005EAEC	a	
+gActor443500ConsoleFollowupScript	80141D9C	a	
+actor150400SpawnSlidingModels	80131FB8	a	
+D_800691CA	800691CA	a	
+gActor503500SceneEffectTaskDescs	8014B964	a	
+D_80114C0B	80114C0B	a	
+gRoomEffectMoteId	80115728	a	
+areaApplySavedUpdates	800AE62C	a	
+cdCmdCancelScene	8001D588	a	
+uiSetPanelContentSize	800466E4	a	
+func_800AC000	800AC000	a	
+GsWSMATRIX	80071138	a	
+uiObjectTaskExit	800488B8	a	
+cdSyncPollCommand	8001E6AC	a	
+gActor443500MapFollowupScript	80142C24	a	
+gItemMenuTransferPanelDescriptors	8010D6F4	a	
+cdCmdEnqueue	8001D2B0	a	
+D_801150C0	801150C0	a	
+padCheckButtons	8002C868	a	
+itemMenuDrawPreview	800C7AE8	a	
+gActor160600SceneWithCompanionScript	80135D78	a	
+gCapChoiceRowStride	80115680	a	
+taskSpawnFromTableOnDefaultList	8003E4BC	a	
+SetDrawStp	80042288	a	
+gActor143900ObservatoryEntryScript	80133560	a	
+playerActorSetDrawMode	800E3B80	a	
+gMapAkropolisCafeteriaVariant4Placements	8017AF3C	a	
+gAcropolisCafeteriaRoomLightingTable	801875C4	f	
+actor450800StartNurseryCompanionDialogue	80132000	a	
+gActor215100PierceStoryScript	80153274	a	
+itemMenuSetPreviewItem	800CDE80	a	
+equipmentRecalculateMaxMp	800B7930	a	
+effectDrawOuterGlowBand	800EAA0C	a	
+stageEnsureHeapTaskPrimitiveBuffer	8003F9AC	a	
+actor215100HandleGalleryAction	8014AB6C	a	
+gAkropolisCafeteriaPlayerCafeteriaOpeningClip	8014FEB8	a	
+RotMatrixZ	8004AE48	a	
+SetDispMask	80017C00	a	
+SetTile	80042344	a	
+cdCmdEnqueueScenePlayback	8001D5CC	a	
+func_80724608	80724608	a	
+__muldf3	8004B828	a	
+acropolis_cafeteria_BSS_START	8018D6B4	f	
+rsin	8003D038	a	
+viewFindLogicalIndex	800ACEBC	a	
+inventoryInitializeStarterLoadout	800B7D18	a	
+gPadConfirmButtonMask	8005ED70	a	
+areaIsSavedPoseRestoreEnabled	800B59A8	a	
+gActor361100PodSceneScript	80165F48	a	
+areaGetVariant	800B5CE8	a	
+gActor443500TourOpeningScript	8014152C	a	
+gGameFlagNibbleBanks	80073980	a	
+actor450800PrepareNurseryKyleMadigan	80132028	a	
+worldCoordSetAmbientColorOverride	800D94B8	a	
+gActor460200TentArrivalSkipScript	80137890	a	
+worldTargetDisableNodeLockOn	800DACF8	a	
+D_80072170	80072170	a	
+D_80070F87	80070F87	a	
+D_80072310	80072310	a	
+worldCollisionProbeGridSegment	800DE7CC	a	
+D_8011540C	8011540C	a	
+memset	800420F8	a	
+companionWriteAnimationBankIndex	800E3D24	a	
+D_80073BAE	80073BAE	a	
+gActor215100GalleryTaskDescs	8014E13C	a	
+gAkropolisCafeteriaPlayerCafeteriaFollowUpEndClip	80153E70	a	
+acropolis_cafeteria_VRAM_END	8018D6B4	f	
+acropolis_cafeteria_RODATA_START	8017D5C0	f	
+gActor202900WomanTaskDescriptors	80156E24	a	
+gActor136300GarageCompanionSceneSkipScript	8013C388	a	
+streamPrepareMovieWorkspace	80020298	a	
+gActor136300CompanionGaragePlacement	8013B570	a	
+srand	80037194	a	
+viewQueueCurrentCameraAndPackets	800A8B6C	a	
+acropolisCafeteriaStimPickupTask	8018286C	ft	
+ApplyMatrixLV	80042128	a	
+taskMessageDispatch	800AC464	a	
+uiStartTreeClosing	80048838	a	
+animationResetSlot	800B3FA8	a	
+actor215100CapCaptionSelectRecord	8014B2B8	a	
+taskRequestKill	8002D340	a	
+D_8007107A	8007107A	a	
+acropolisCafeteriaRoomVisualEffectsSparkBurstTask	80180C94	ft	
+actor161500RestoreCompanionRequestScene	8013230C	a	
+actor215100ResolveGalleryExit	8014AA54	a	
+gPlayerStatus	80073B88	a	
+inventoryGetRangeTable	800BB500	a	
+D_acropolis_cafeteria_80182E5C	80182E5C	f	
+gActor142600IncineratorArrivalSkipScript	80136804	a	
+gAkropolisCafeteriaPlayerCafeteriaRupertTalkClip	80151D14	a	
+gPlayerActorTasks	80115760	a	
+gAkropolisCafeteriaAcropolisCafeteriaModel077D8	80184E5C	f	
+gActor548100PanelTaskDesc	801358D8	a	
+equipmentConsumeWeaponLoad	800B6DA4	a	
+inventoryResetCarriedRange	800BC490	a	
+enemyDestroy	800B01F0	a	
+gFsResourceSlots	8006C338	a	
+gRandomLcgState	80070F60	a	
+actor160700RestoreMeetingAnimation	80131E24	a	
+func_800ABFF8	800ABFF8	a	
+gActor146300IceBagHandoverTaskDesc	8013788C	a	
+areaSpawnPlacements	800B4AF8	a	
+itemMenuDrawMeter	800C0E20	a	
+gameFlagGetPackedByte	800E3FCC	a	
+equipmentLoadWeaponConsumable	800B715C	a	
+displaySetShakeY	8003DE78	a	
+sndEvtRequestStageScriptStart	800E3DD8	a	
+inventoryHasAttachedItem	800BC3F8	a	
+D_acropolis_cafeteria_80182B1C	80182B1C	f	
+equipmentRecalculateMaxHp	800BC0C0	a	
+RotTransPers	8004C198	a	
+D_8007216D	8007216D	a	
+gActor146300WaterTankEventScript	80137C28	a	
+roomEffectRequestCancelPe	800FC6C0	a	
+gpuUploadImages	800DB31C	a	
+gDirectionActionActive	80114CF8	a	
+D_80072830	80072830	a	
+acropolis_cafeteria_DATA_END	8018D6B4	f	
+gAcropolisCafeteriaSceneTasks	80182AD8	f	
+sndEvtRequestScriptVolume	800544B8	a	
+worldCollisionLinkTrigger	800E1688	a	
+actor450800StartNurseryInteraction	80131E2C	a	
+gActor215100PierceStorySkipScript	80153D6C	a	
+gMapAkropolisCafeteriaVariant3Placements	8017AF1C	a	
+gActor136300TaskTable	8013B11C	a	
+gStageMusicParams	8007A39C	a	
+VectorNormalSS	8003D5D8	a	
+gActor160900TaskDescriptors	8013FB50	a	
+D_80072A93	80072A93	a	
+gWorldCollisionActiveGrid	80115448	a	
+D_80072A92	80072A92	a	
+roomEffectRequestCancelAll	800EC868	a	
+gActor310100Officer2TaskDescriptors	80179920	a	
+actorRenderDrawGroundShadow	800B4E54	a	
+D_8007218A	8007218A	a	
+capSelectLoadedFile	800E6D60	a	
+cdCmdDropQueuedTail	8001D424	a	
+Gfx_ViewWorldMtx	80070F34	a	
+actor161500StartSoldierBTalkA	80131FBC	a	
+gActor503500BossDefeatScript	8014C540	a	
+tmdBuildBufferHalf	800410F0	a	
+effectDrawScreenTint	800EA858	a	
+gActor146000WaterHoleSceneTasks	801351FC	a	
+tmdResetAuxHeapAndRestoreBuffers	80041EB4	a	
+gActor120500EmptyPlacementTaskDesc	8013843C	a	
+equipmentGetWeaponLoad	800BAFE0	a	
+DrawSync	80017C98	a	
+damageComputePlayerAttack	800E1FEC	a	
+itemMenuClearPreviewItems	800CDEF4	a	
+actor215100StartPierceConversation	8014AF0C	a	
+acropolis_cafeteria_TEXT_SIZE	000053FC	a	
+acropolisCafeteriaInitRoomEffectsTask	8017E708	ft	
+actor450900StartCompanionConversation	801327A8	a	
+damageRollCriticalHit	800E25F8	a	
+gActor151000GardenArrivalSkipScript	80133954	a	
+animationTickSlot	800B4514	a	
+sceneAcquireBattleRef	800DB53C	a	
+gActor143400CompanionEntrySkipScript	801359D4	a	
+companionRemoveEquipment	8010B674	a	
+sndScriptResolveStageId	800E3E30	a	
+actor146300RestoreHandoverPose	8013224C	a	
+gActor150400FreezerSceneSkipScript	80133088	a	
+companionSetScriptedControl	800E3EF0	a	
+gCapInlineIconCells	8010FB70	a	
+streamPollMoviePlayback	8001FAE0	a	
+gPlayerActorWeaponReaches	80112F60	a	
+D_80072728	80072728	a	
+damagePackAttackKey	800E2C40	a	
+uiSpawnObject	800486F0	a	
+acropolisCafeteriaMendelPickupTask	801827C4	ft	
+worldCollisionInitContacts	800E18E0	a	
+sndEvtRequestMidiStop	8005132C	a	
+gActor503500BossIntroSkipScript	8014C288	a	
+gRoomVisualEffectsTwinTrailEndpointOffsets	80184E80	f	
+RotMatrix	80043AC8	a	
+gAkropolisCafeteriaAcropolisCafeteriaModel0FDFC	8018D57C	f	
+acropolisCafeteriaPlayMovieTask	8017E47C	ft	
+D_80114C11	80114C11	a	
+memConfigureImageMemory	800144F8	a	
+viewQueueCamera	800A8A1C	a	
+displaySpawnTaskFromTable	8003E324	a	
+uiStartPanelHiding	800488F8	a	
+actor260500RestoreHeliportPlacement	80149E80	a	
+gActor04400MadChaserTaskDescs	80142604	a	
+actor450200StartCompanionTalk	80132220	a	
+gpuBlendRgb555ClutRow	800B27C4	a	
+D_80072834	80072834	a	
+actor361100ClearHeadAimTaskHandle	80162B0C	a	
+gCapConfirmedChoiceIndex	801156A8	a	
+gAcropolisCafeteriaViewMaps	801875AC	f	
+itemGetText	800B8EB0	a	
+gActor451100SubmarineTunnelEntryScript	80136108	a	
+ScaleMatrix	8004A98C	a	
+gAcropolisCafeteriaCollisionRooms	8018753C	f	
+uiDrawTitle	80048E38	a	
+playerActorEndScripted	80104838	a	
+gfxRotMatrixX	8003C788	a	
+D_80071071	80071071	a	
+gRoomEffectSparkEmitterId	80115720	a	
+MulMatrix0	80044208	a	
+D_80114FF8	80114FF8	a	
+gActor450900Tasks	80135E78	a	
+itemMenuIsHotspotActionConfirmed	800D4EC0	a	
+inventoryClearItems	800BAC8C	a	
+gCapRestoreView	80115694	a	
+D_801153F6	801153F6	a	
+gWorldCoordTransientPointLights	80114F30	a	
+acropolis_cafeteria_TEXT_END	80182AA8	f	
+gActor443500PowerPlantProgressDialogueScript	80143494	a	
+capSpawnEventIfIdle	800E3D8C	a	
+gDisplayState	80070F68	a	
+itemMenuSetItemDescriptionPrompt	800CEB40	a	
+D_8007217B	8007217B	a	
+gActor136300GarageCompanionSceneScript	8013B590	a	
+ApplyTransposeMatrixLV	80044050	a	
+gSpriteAreaTables	8010CB68	a	
+inventoryCanAddItem	800B8988	a	
+sceneFindEnemyByPlaceKey	800B584C	a	
+gMidiMusicVolume	8007A396	a	
+inventoryMeltIceBagIfExpired	800BC254	a	
+gteMIMefunc	8004AD78	a	
+gAcropolisCafeteriaStrangerRecoilVelocityZ	8018D6A8	f	
+inventoryGetItemSortKey	800BC18C	a	
+uiGetTextRowsHeight	80048E2C	a	
+gCapControlFlags	801156A4	a	
+gFsActorBufferWrittenBytes	8006D860	a	
+gActor142600IncineratorArrivalScript	801360E4	a	
+playerActorEnterLocomotion	801066DC	a	
+D_8007218B	8007218B	a	
+uiDrawHorizontalSeparator	80047A0C	a	
+sndEvtRequestScriptStart	8005414C	a	
+gAcropolisCafeteriaMovieTasks	80184178	f	
+actor215100CapCaptionDrawCurrent	8014B0D4	a	
+gActor335800BalconyEntryScript	80165060	a	
+stageReleaseTaskPrimitiveBuffer	8003F9F4	a	
+equipmentGetWeaponSupply	800BBDC8	a	
+animationAimHeadAt	800B17D4	a	
+gRoomEffectOrangeBurstId	8011573C	a	
+viewGetMappedCamera	800A8C08	a	
+gCdCmdQueue	80068FA0	a	
+gActor146300WaterTankEventSkipScript	80138570	a	
+acropolis_cafeteria_ROM_START	00000000	a	
+capAbortPlayback	800E6CF0	a	
+textDrawUiLines	8002FB84	a	
+gAcropolisCafeteriaModel09090	80186CAC	f	
+streamFinishScene	800B00C4	a	
+loadingEnqueueEquippedWeaponResources	800A9BE4	a	
+gActor503500BossIntroScript	8014BD48	a	
+gActor207000SlouchTaskDescs	801575F0	a	
+companionRestoreFullHp	800E3D78	a	
+gAcropolisCafeteriaModel09A20	80187518	f	
+textItoaPadded	8002F44C	a	
+playerStateRestoreFullHpMp	800E3D5C	a	
+gRoomEffectWaterRippleId	8011574C	a	
+gActor310600RupertBroderickTasks	801796A4	a	
+memFillBytes	8002D894	a	
+D_8007106B	8007106B	a	
+gActor450800NurseryShootingScript	8013AF8C	a	
+uiFitPanelToList	80046830	a	
+gMapAkropolisCafeteriaVariant7Placements	8017AFCC	a	
+uiSetPromptText	80049D34	a	
+RotMatrixX	8004BE58	a	
+worldCoordSetModelAmbientColor	800D9550	a	
+worldTargetLinkNode	800DABEC	a	
+damageAccumulateLifeDrainHp	800E2C78	a	
+gActor451100SubmarineTunnelSceneScript	80135220	a	
+taskReparent	8002D14C	a	
+gActor160600SceneSkipScript	80136258	a	
+playerActorTurnToYaw	80104E00	a	
+D_acropolis_cafeteria_80182C2C	80182C2C	f	
+gRoomEffectState	80115740	a	
+TransposeMatrix	800420B8	a	
+worldCollisionProjectGroundPoint	800EA1A8	a	
+inventoryClearCollectedBit	800BAEC0	a	
+D_8007216C	8007216C	a	
+uiSpawnOptionDialog	800480A0	a	
+actorRenderComposeCoord	80098F58	a	
+acropolisCafeteriaRoomTask	8017E424	ft	
+GetClut	80042AE0	a	
+gRoomEffectGlowDiscId	80115734	a	
+itemMenuDrawQuantity	800CDBEC	a	
+areaGetCurrentObjectState	800BB470	a	
+gActor341900GluttonEntranceTaskDescs	80164190	a	
+gWorldCollisionActionTriggerListHead	8011556C	a	
+actor260500StartHeliportConversation	80149EBC	a	
+fadeDrawOverlay	8002BA9C	a	
+worldCollisionResolvePushback	800E0C10	a	
+equipmentEquipCarriedArmor	800B7A50	a	
+__subdf3	8004BC28	a	
+D_80072A98	80072A98	a	
+gMapAkropolisCafeteriaVariant5Placements	8017AF6C	a	
+padInputChangeSuppression	800E9BDC	a	
+gActor450800NurseryReentryScript	8013A84C	a	
+gEvsPlaybackPaused	801156F9	a	
+gActor460200TentArrivalScript	801362B8	a	
+RotMatrixY	8004BFF8	a	
+gActor361100PodSceneSkipScript	80166848	a	
+streamFindMovieSlot	8001EDC8	a	
+gActor310100PlayerAnimationSets	801797FC	a	
+gActor142900ElevatorFirstVisitScript	801378D0	a	
+inventoryIsItemLimitReached	800B7420	a	
+gAcropolisCafeteriaAreaVariants	80189DCC	f	
+streamSetExternalScenePayloadBuffer	800B015C	a	
+gActor141000FlightTasks	801348D8	a	
+mapNeoArkResolveRoomVariant	80179B14	a	
+gViewIdentityMap	8010CAF8	a	
+gpuResetAndInvalidateModelBuffers	80041E4C	a	
+animationAimHeadAtTask	800B0928	a	
+gItemMenuEmptyPromptText	8010F8D0	a	
+padScriptHalt	800E8F68	a	
+gWorldCollisionSurfacePushbackSuppression	80115428	a	

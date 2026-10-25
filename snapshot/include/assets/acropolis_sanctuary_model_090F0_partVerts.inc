@@ -1,0 +1,2 @@
+/* Generated from assets/USA/pe2pkg/acropolis_sanctuary.pe2pkg; model at 0x9448. */
+    0, 0, 0,

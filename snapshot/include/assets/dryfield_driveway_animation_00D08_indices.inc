@@ -1,0 +1,4 @@
+/* Generated from assets/USA/pe2pkg/dryfield_driveway.pe2pkg; animation at 0xD08. */
+    0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0,

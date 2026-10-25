@@ -1,0 +1,2 @@
+/* Generated from assets/USA/pe2pkg/dryfield_water_tower.pe2pkg; model at 0x445C. */
+    0,

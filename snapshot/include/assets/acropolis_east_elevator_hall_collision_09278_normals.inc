@@ -1,0 +1,11 @@
+/* Generated from assets/USA/pe2pkg/acropolis_east_elevator_hall.pe2pkg; grid header at 0x9278. */
+    { 0, 0, 0, 0 },
+    { 0, -0, 0, 0 },
+    { 0, 0, -0, 0 },
+    { 0, 0, 0, 0 },
+    { 0, 0, 0, 0 },
+    { 0, 0, 0, 0 },
+    { -0, 0, 0, 0 },
+    { -0, 0, -0, 0 },
+    { -0, 0, 0, 0 },
+    { -0, 0, 0, 0 },

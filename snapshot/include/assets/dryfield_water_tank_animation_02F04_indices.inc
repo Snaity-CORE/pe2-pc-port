@@ -1,0 +1,4 @@
+/* Generated from assets/USA/pe2pkg/dryfield_water_tank.pe2pkg; animation at 0x2F04. */
+    0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0,

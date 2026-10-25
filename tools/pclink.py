@@ -153,6 +153,65 @@ def image_file(image: str) -> Path:
 
 
 # --------------------------------------------------------------------------
+# The snapshot: what tools/make_snapshot.py keeps of the decomp's PSX build
+# (symbols, the linker's function list, the images' fingerprints), so that
+# the port builds without the discs.
+
+SNAPSHOT = ROOT / "snapshot"
+# A symbol's flags in snapshot/symbols/<image>.tsv, one letter each.
+SYMBOL_FLAGS = (("f", "is_func"), ("a", "is_abs"), ("l", "is_local"), ("t", "typed_func"))
+
+
+def from_snapshot() -> bool:
+    """Whether to build from snapshot/ rather than the decomp's PSX build:
+    PE2_SNAPSHOT=1 (or 0) says, else when that build is not there."""
+    v = os.environ.get("PE2_SNAPSHOT")
+    if v is not None:
+        return v.strip() not in ("", "0")
+    return not image_file(MAIN).exists()
+
+
+def symbol_line(s: ElfSym) -> str:
+    flags = "".join(c for c, field_name in SYMBOL_FLAGS if getattr(s, field_name))
+    return f"{s.name}\t{s.addr:08X}\t{flags}\t{s.file}\n"
+
+
+def elf_symbols(image: str) -> list[ElfSym]:
+    """`image`'s symbols: from its ELF, or from the snapshot."""
+    if not from_snapshot():
+        return read_elf_symbols(image_file(image))
+    out = []
+    for line in (SNAPSHOT / "symbols" / f"{image}.tsv").read_text(encoding="utf-8").splitlines():
+        name, addr, flags, file = line.split("\t")
+        out.append(ElfSym(name, int(addr, 16), "f" in flags, "a" in flags, "l" in flags, file, "t" in flags))
+    return out
+
+
+def linker_functions_file() -> Path:
+    """The decomp's list of the main image's functions known by address."""
+    if from_snapshot():
+        return SNAPSHOT / "undefined_funcs_auto.main.txt"
+    return DECOMP / "linkers" / "USA" / "undefined_funcs_auto.main.txt"
+
+
+FINGERPRINTS = "images.tsv"
+
+
+def snapshot_fingerprints() -> dict[str, tuple[int, int, int, int, int, str]]:
+    """snapshot/images.tsv: each image's fingerprint and its thunks' digest."""
+    out = {}
+    for line in (SNAPSHOT / FINGERPRINTS).read_text(encoding="utf-8").splitlines():
+        image, load, size, code, prefix, full, digest = line.split("\t")
+        out[image] = (int(load, 16), int(size, 16), int(code, 16), int(prefix, 16), int(full, 16), digest)
+    return out
+
+
+def thunks_digest(thunk_addrs: list[int]) -> str:
+    """What an image's fingerprint depends on besides its bytes: its thunks."""
+    return f"{masked_fnv(b''.join(a.to_bytes(4, 'little') for a in sorted(thunk_addrs)), 0, 4 * len(thunk_addrs), []):016X}"
+
+
+# --------------------------------------------------------------------------
 # COFF objects
 
 
@@ -330,7 +389,7 @@ class Linker:
         self.route_calls = route_calls
         images = sorted({img for u in units for img in u["overlays"]})
         with concurrent.futures.ThreadPoolExecutor(os.cpu_count()) as pool:
-            self.elf = dict(zip(images, pool.map(lambda i: ImageSymbols(read_elf_symbols(image_file(i))), images)))
+            self.elf = dict(zip(images, pool.map(lambda i: ImageSymbols(elf_symbols(i)), images)))
         # Which images define each global natively (from the objects themselves).
         self.native: dict[str, set[str]] = collections.defaultdict(set)
         self.objects: dict[str, Coff] = {}
@@ -377,7 +436,7 @@ class Linker:
         (undefined_funcs_auto) qualify. Its data symbols (undefined_syms_auto)
         include the library's lookup tables (rsin_tbl, SQRT, ratan_tbl...):
         a thunk written over one of those corrupts every result that uses it."""
-        funcs_file = DECOMP / "linkers" / "USA" / "undefined_funcs_auto.main.txt"
+        funcs_file = linker_functions_file()
         declared = set(re.findall(r"^(\w+)\s*=", funcs_file.read_text(encoding="utf-8"), re.M))
         # The decomp lists a few functions among its data symbols (callback
         # setters such as DMACallback). Those the port implements natively are
@@ -582,7 +641,14 @@ def masked_fnv(data: bytes, start: int, end: int, masked: list[tuple[int, int]])
 def image_fingerprint(linker: "Linker", image: str, thunk_addrs: list[int]) -> tuple[int, int, int, int, int]:
     """Load address, size, the size of its constant part and the two hashes
     the runtime uses to recognize `image` in PSX RAM (only hashes reach the
-    binary, never image bytes)."""
+    binary, never image bytes). From the snapshot, as make_snapshot.py saved
+    them, if `image` still has the same thunks."""
+    if from_snapshot():
+        row = snapshot_fingerprints().get(image)
+        if row is None or row[5] != thunks_digest(thunk_addrs):
+            raise SystemExit(f"snapshot/ does not fit image {image} (its functions changed): "
+                             "run tools/make_snapshot.py where the discs are")
+        return row[:5]
     elf = linker.elf[image]
     if image == MAIN:
         load = elf.address("main_VRAM")
@@ -631,11 +697,14 @@ def write_outputs(results: list[Result], linker: "Linker") -> None:
                 f.write(f"    {{0x{addr:08X}u, {fn[1:]}}},\n")
             f.write("};\n")
         f.write("\nconst PcImageThunks pc_image_thunks[] = {\n")
+        fingerprints = []
         for image, thunks in sorted(by_image.items()):
-            load, size, code_size, prefix_hash, full_hash = image_fingerprint(
-                linker, image, sorted({a for a, _ in thunks}))
+            addrs = sorted({a for a, _ in thunks})
+            load, size, code_size, prefix_hash, full_hash = image_fingerprint(linker, image, addrs)
             f.write(f'    {{"{image}", thunks_{image}, {len(set(thunks))}, 0x{load:08X}u, 0x{size:X}u, '
                     f'0x{code_size:X}u, 0x{prefix_hash:016X}ull, 0x{full_hash:016X}ull}},\n')
+            fingerprints.append(f"{image}\t{load:08X}\t{size:X}\t{code_size:X}\t{prefix_hash:016X}\t"
+                                f"{full_hash:016X}\t{thunks_digest(addrs)}\n")
         f.write("};\n")
         f.write(f"const unsigned pc_image_thunk_count = {len(by_image)};\n")
 
@@ -660,6 +729,9 @@ def write_outputs(results: list[Result], linker: "Linker") -> None:
                 f"    0x{bss_start:08X}u,\n"
                 f"    0x{bss_end:08X}u,\n"
                 f"}};\n")
+
+    # For make_snapshot.py.
+    (LINK_DIR / FINGERPRINTS).write_text("".join(fingerprints), encoding="utf-8", newline="\n")
 
     # Runtime functions: those the C code calls, plus every other library
     # routine in the main image, so that a native implementation of any of

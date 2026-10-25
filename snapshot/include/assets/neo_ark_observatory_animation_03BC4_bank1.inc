@@ -1,0 +1,7 @@
+/* Generated from assets/USA/pe2pkg/neo_ark_observatory.pe2pkg; animation at 0x3BC4. */
+    { 0, 0, 0, 0, 0, 0 },
+    { 0, -0, 0, 0, 0, 0 },
+    { 0, -0, 0, 0, 0, 0 },
+    { 0, -0, 0, 0, 0, 0 },
+    { -0, -0, 0, 0, -0, -0 },
+    { -0, -0, 0, 0, -0, -0 },

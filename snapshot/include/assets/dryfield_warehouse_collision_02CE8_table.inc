@@ -1,0 +1,3 @@
+/* Generated from assets/USA/pe2pkg/dryfield_warehouse.pe2pkg; grid header at 0x2CE8. */
+    DRYFIELD_WAREHOUSE_CELL_FACE_LIST_AT_OFFSET(0),
+    DRYFIELD_WAREHOUSE_CELL_FACE_LIST_AT_OFFSET(0),

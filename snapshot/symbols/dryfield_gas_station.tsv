@@ -1,0 +1,2047 @@
+gcc2_compiled.	8017D6F8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+__gnu_compiled_c	8017D6F8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_MACRO_INC_GUARD	00000001	al	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_gTelephoneSaveMenuLabel	80181AF8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_gTelephonePlayDataMenuLabel	80181B00	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_gTelephoneWeaponDataMenuLabel	80181B0C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_gTelephonePeDataMenuLabel	80181B18	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_gTelephonePlayTimeLabel	80181B20	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_gTelephoneBattlesWonLabel	80181B28	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_gTelephoneBattlesEscapedLabel	80181B2C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_gTelephoneWinPercentageLabel	80181B34	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_gTelephoneExterminationPercentageLabel	80181B40	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_gTelephoneSaveCountLabel	80181B50	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_gTelephoneClearCountLabel	80181B58	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_gTelephoneMaxExpLabel	80181B60	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_gTelephoneMaxBpLabel	80181B68	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_gTelephoneTimesSuffix	80181B70	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_gTelephonePercentSuffix	80181B78	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_gTelephonePlayTimeHelpText	80181B7C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_gTelephoneSaveCountHelpText	80181BA8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_gTelephoneBattlesWonHelpText	80181BCC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_gTelephoneBattlesEscapedHelpText	80181BFC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_gTelephoneWinPercentageHelpText	80181C30	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_gTelephoneExterminationPercentageHelpText	80181C64	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_gTelephoneClearCountHelpText	80181C9C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_gTelephoneMaxExpHelpText	80181CD0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_gTelephoneMaxBpHelpText	80181D08	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_gTelephonePlayDataRowCallbacks	80181D40	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_telephoneDrawPlayDataRow	8017D6F8	flt	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_gTelephonePlayDataList	80181D44	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_gTelephoneUsageRowCallbacks	80181D68	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_telephoneDrawUsageRow	8017DEC4	flt	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_gTelephoneUsageList	80181D6C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_gTelephoneHelpPanelDescriptor	80181D90	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_telephonePromptTask	8017ED88	flt	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_gTelephonePlayDataPanelDescriptor	80181DAC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_telephonePlayDataTask	8017EF48	flt	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_gTelephoneUsagePanelDescriptor	80181DC8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_telephoneUsageTask	8017E8DC	flt	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_gTelephoneMenuRowCallbacks	80181DE4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_telephoneSaveMenuRow	8017F13C	flt	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_telephonePlayDataMenuRow	8017F220	flt	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_telephoneWeaponDataMenuRow	8017F2E8	flt	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_telephonePeDataMenuRow	8017F3B0	flt	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_gTelephoneMenuList	80181DF4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_gRoomCutsceneTaskDescs	80181E18	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_roomCutsceneTask	8017F4B4	flt	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_roomCutsceneSoundTask	8017FCBC	flt	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_gDryfieldGasStationArrivalSupervisorTaskDescs	80181E3C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_dryfieldGasStationArrivalSupervisorTask	8017FE20	flt	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_gDryfieldGasStationRoomMessages	80181E54	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_roomVariantGasStationMsg	8017FA20	flt	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_dryfieldGasStationRejectKeyItemUse	8017FD4C	flt	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_dryfieldGasStationHandleRoomCommand	8017FD54	flt	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_gasStationCueSoundMsg	8017FB94	flt	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM1	8017D6F8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM2	8017D6F8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM3	8017D710	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM4	8017D71C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM5	8017D738	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM6	8017D74C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM7	8017D794	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM8	8017D7B0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM9	8017D7B0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM10	8017D7E0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM11	8017D7E0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM12	8017D838	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM13	8017D848	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM14	8017D84C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM15	8017D854	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM16	8017D854	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM17	8017D854	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM18	8017D8AC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM19	8017D8BC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM20	8017D8CC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM21	8017D8D0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM22	8017D8D8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM23	8017D8D8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM24	8017D8D8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM25	8017D930	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM26	8017D940	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM27	8017D950	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM28	8017D954	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM29	8017D95C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM30	8017D95C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM31	8017D95C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM32	8017D9B4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM33	8017D9C4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM34	8017D9D4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM35	8017D9D8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM36	8017D9E0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM37	8017D9E0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM38	8017D9E0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM39	8017DA38	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM40	8017DA50	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM41	8017DAA8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM42	8017DAB4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM43	8017DABC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM44	8017DAC4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM45	8017DACC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM46	8017DAD0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM47	8017DAD4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM48	8017DADC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM49	8017DB2C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM50	8017DB38	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM51	8017DB3C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM52	8017DB44	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM53	8017DB48	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM54	8017DB50	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM55	8017DB50	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM56	8017DB50	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM57	8017DB50	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM58	8017DB80	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM59	8017DB84	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM60	8017DB88	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM61	8017DB8C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM62	8017DBB0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM63	8017DBCC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM64	8017DBCC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM65	8017DBD4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM66	8017DBDC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM67	8017DC28	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM68	8017DC34	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM69	8017DC3C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM70	8017DC44	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM71	8017DC4C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM72	8017DC50	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM73	8017DC54	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM74	8017DC5C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM75	8017DCAC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM76	8017DCB8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM77	8017DCBC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM78	8017DCC4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM79	8017DCF4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM80	8017DD0C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM81	8017DD18	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM82	8017DD20	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM83	8017DD20	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM84	8017DD20	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM85	8017DD78	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM86	8017DD88	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM87	8017DD98	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM88	8017DD9C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM89	8017DDA4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM90	8017DDA4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM91	8017DDA4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM92	8017DDFC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM93	8017DE04	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM94	8017DE0C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM95	8017DE0C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM96	8017DE0C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM97	8017DE64	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM98	8017DEA4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM99	8017DEA4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM100	8017DEC4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_gTelephonePlayDataTitle	8017D610	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_gTelephoneFullUsageShareText	8017D61C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM101	8017DEC4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM102	8017DEC4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM103	8017DEDC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM104	8017DEE0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM105	8017DEE4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM106	8017DEFC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM107	8017DF00	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM108	8017DF04	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM109	8017DF08	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM110	8017DF0C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM111	8017DF10	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM112	8017DF14	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM113	8017DF20	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM114	8017DF24	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM115	8017DF34	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM116	8017DF38	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM117	8017DF3C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM118	8017DF48	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM119	8017DF4C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM120	8017DF50	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM121	8017DF54	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM122	8017DF5C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM123	8017DF60	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM124	8017DF64	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM125	8017DF68	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM126	8017DF6C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM127	8017DF70	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM128	8017DF78	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM129	8017DF7C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM130	8017DF90	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM131	8017DFA4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM132	8017DFB0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM133	8017DFB8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM134	8017E078	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM135	8017E0A8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM136	8017E0AC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM137	8017E0B0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM138	8017E0B4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM139	8017E0B8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM140	8017E0BC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM141	8017E0C8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM142	8017E0CC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM143	8017E0D0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM144	8017E0DC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM145	8017E0E4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM146	8017E1D4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM147	8017E1E8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM148	8017E1EC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM149	8017E200	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM150	8017E21C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM151	8017E230	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM152	8017E238	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM153	8017E240	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM154	8017E250	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM155	8017E264	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM156	8017E270	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM157	8017E28C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM158	8017E290	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM159	8017E2C0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM160	8017E2C0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM161	8017E2C0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_telephoneBuildWeaponUsageList	8017E2C0	flt	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM162	8017E2D0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM163	8017E2D4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM164	8017E2D8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM165	8017E2DC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM166	8017E2E0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM167	8017E2E4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM168	8017E2E8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM169	8017E2EC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM170	8017E300	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM171	8017E304	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM172	8017E308	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM173	8017E30C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM174	8017E310	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM175	8017E314	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM176	8017E318	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM177	8017E328	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM178	8017E350	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM179	8017E358	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM180	8017E360	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM181	8017E364	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM182	8017E368	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM183	8017E36C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM184	8017E37C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM185	8017E388	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM186	8017E3A0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM187	8017E3A8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM188	8017E3B8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM189	8017E3C8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM190	8017E428	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM191	8017E430	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM192	8017E440	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM193	8017E450	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM194	8017E458	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM195	8017E45C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM196	8017E460	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM197	8017E478	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM198	8017E490	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM199	8017E494	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM200	8017E498	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM201	8017E49C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM202	8017E4A8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM203	8017E4BC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM204	8017E514	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM205	8017E528	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM206	8017E534	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM207	8017E56C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM208	8017E570	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM209	8017E574	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM210	8017E580	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM211	8017E584	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM212	8017E588	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM213	8017E58C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM214	8017E5BC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM215	8017E5BC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM216	8017E5BC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_telephoneBuildPeUsageList	8017E5BC	flt	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM217	8017E5C4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM218	8017E5C8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM219	8017E5CC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM220	8017E5D0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM221	8017E5E4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM222	8017E5E8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM223	8017E5EC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM224	8017E5F0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM225	8017E5F4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM226	8017E5F8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM227	8017E5FC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM228	8017E5FC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM229	8017E604	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM230	8017E60C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM231	8017E610	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM232	8017E620	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM233	8017E634	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM234	8017E638	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM235	8017E63C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM236	8017E640	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM237	8017E644	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM238	8017E644	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM239	8017E644	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM240	8017E658	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM241	8017E664	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM242	8017E684	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM243	8017E694	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM244	8017E6A0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM245	8017E6AC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM246	8017E6BC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM247	8017E6D8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM248	8017E72C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM249	8017E734	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM250	8017E744	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM251	8017E754	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM252	8017E75C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM253	8017E76C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM254	8017E770	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM255	8017E774	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM256	8017E778	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM257	8017E780	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM258	8017E788	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM259	8017E794	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM260	8017E7AC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM261	8017E7B0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM262	8017E7B4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM263	8017E7B8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM264	8017E7C4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM265	8017E7E0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM266	8017E7FC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM267	8017E848	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM268	8017E864	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM269	8017E86C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM270	8017E878	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM271	8017E8B0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM272	8017E8B4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM273	8017E8B8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM274	8017E8C4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM275	8017E8C8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM276	8017E8CC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM277	8017E8D0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM278	8017E8DC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_gTelephoneWeaponUsageTitle	8017D624	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_gTelephonePeUsageTitle	8017D630	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM279	8017E8DC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM280	8017E8DC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM281	8017E900	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM282	8017E904	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM283	8017E908	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM284	8017E90C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM285	8017E914	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM286	8017E91C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM287	8017E924	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM288	8017E92C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM289	8017E940	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM290	8017E950	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM291	8017E95C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM292	8017E964	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM293	8017E974	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM294	8017E978	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM295	8017E980	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM296	8017E990	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM297	8017E998	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM298	8017E9A0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM299	8017E9A8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM300	8017E9B4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM301	8017E9BC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM302	8017E9C0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM303	8017E9C8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM304	8017E9D8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM305	8017E9E4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM306	8017EA0C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM307	8017EA10	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM308	8017EA20	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM309	8017EA24	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM310	8017EA2C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM311	8017EA34	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM312	8017EA38	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM313	8017EA3C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM314	8017EA4C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM315	8017EA58	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM316	8017EA5C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM317	8017EA60	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM318	8017EA64	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM319	8017EA6C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM320	8017EA90	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_gTelephoneMenuTitle	8017D638	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM321	8017EA90	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM322	8017EA90	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM323	8017EAA0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM324	8017ED68	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM325	8017ED88	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM326	8017ED88	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM327	8017ED88	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM328	8017ED94	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM329	8017ED9C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM330	8017EDA0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM331	8017EDB0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM332	8017EDB4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_telephonePromptTaskExit	8017F478	flt	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM333	8017EDB8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM334	8017EDBC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM335	8017EDC4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM336	8017EDCC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM337	8017EDD4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM338	8017EDE4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM339	8017EDE4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM340	8017EDE4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_telephoneInsertDecimalPoint	8017EDE4	flt	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM341	8017EDE4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM342	8017EDE4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM343	8017EDEC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM344	8017EE4C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM345	8017EE54	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM346	8017EE54	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM347	8017EE54	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_telephoneFormatPercentage	8017EE54	flt	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM348	8017EE68	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM349	8017EE6C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM350	8017EE70	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM351	8017EE70	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM352	8017EE78	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM353	8017EE80	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM354	8017EE8C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM355	8017EE98	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM356	8017EEA0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM357	8017EEA8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM358	8017EEB0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM359	8017EEB4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM360	8017EEB8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM361	8017EEC0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM362	8017EF20	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM363	8017EF30	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM364	8017EF34	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM365	8017EF48	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM366	8017EF48	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM367	8017EF48	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM368	8017EF54	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM369	8017EF5C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM370	8017EF60	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM371	8017EF6C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM372	8017EF70	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM373	8017EF74	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM374	8017EF78	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM375	8017EF80	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM376	8017EF90	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM377	8017EFAC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM378	8017EFB8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM379	8017EFBC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM380	8017EFC0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM381	8017EFC4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM382	8017EFCC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM383	8017EFD0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM384	8017EFD8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM385	8017EFE8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM386	8017EFF4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM387	8017F01C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM388	8017F020	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM389	8017F038	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM390	8017F038	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM391	8017F038	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_telephoneDrawGaugeFill	8017F038	flt	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM392	8017F048	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM393	8017F05C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM394	8017F060	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM395	8017F064	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM396	8017F068	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM397	8017F070	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM398	8017F074	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM399	8017F078	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM400	8017F07C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM401	8017F084	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM402	8017F08C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM403	8017F090	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM404	8017F094	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM405	8017F098	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM406	8017F09C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM407	8017F0A0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM408	8017F0A4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM409	8017F0A8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM410	8017F0AC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM411	8017F0B0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM412	8017F0B4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM413	8017F0BC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM414	8017F0C0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM415	8017F0C4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM416	8017F0C8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM417	8017F0CC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM418	8017F0D0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM419	8017F0D4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM420	8017F0DC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM421	8017F0E0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM422	8017F0E4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM423	8017F134	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM424	8017F13C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM425	8017F13C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM426	8017F13C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM427	8017F150	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM428	8017F15C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM429	8017F164	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM430	8017F184	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM431	8017F18C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM432	8017F1C0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM433	8017F1CC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM434	8017F1E0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM435	8017F1EC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM436	8017F1F4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM437	8017F1F8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM438	8017F1FC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM439	8017F200	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM440	8017F204	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM441	8017F208	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM442	8017F220	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM443	8017F220	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM444	8017F220	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM445	8017F234	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM446	8017F240	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM447	8017F248	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM448	8017F268	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM449	8017F290	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM450	8017F29C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM451	8017F2B8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM452	8017F2BC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM453	8017F2C4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM454	8017F2C8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM455	8017F2CC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM456	8017F2D0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM457	8017F2E8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM458	8017F2E8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM459	8017F2E8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM460	8017F2FC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM461	8017F308	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM462	8017F310	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM463	8017F330	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM464	8017F358	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM465	8017F364	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM466	8017F380	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM467	8017F384	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM468	8017F38C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM469	8017F390	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM470	8017F394	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM471	8017F398	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM472	8017F3B0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM473	8017F3B0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM474	8017F3B0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM475	8017F3C4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM476	8017F3D0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM477	8017F3D8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM478	8017F3F8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM479	8017F420	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM480	8017F42C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM481	8017F448	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM482	8017F44C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM483	8017F454	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM484	8017F458	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM485	8017F45C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM486	8017F460	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM487	8017F478	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM488	8017F478	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM489	8017F478	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM490	8017F47C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM491	8017F480	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM492	8017F484	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM493	8017F488	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM494	8017F498	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM495	8017F49C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM496	8017F4A4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM497	8017F4B4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM498	8017F4B4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM499	8017F4B4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM500	8017F4CC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM501	8017F4D0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM502	8017F4D4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM503	8017F4FC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM504	8017F4FC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM505	8017F500	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM506	8017F504	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM507	8017F50C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM508	8017F514	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM509	8017F524	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM510	8017F52C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM511	8017F53C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM512	8017F548	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM513	8017F54C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM514	8017F554	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM515	8017F55C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM516	8017F568	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM517	8017F56C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM518	8017F570	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM519	8017F574	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM520	8017F578	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM521	8017F57C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM522	8017F580	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM523	8017F588	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM524	8017F590	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM525	8017F5A0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM526	8017F5A8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM527	8017F5AC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM528	8017F5B4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM529	8017F5B8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM530	8017F5C0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM531	8017F5D0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM532	8017F5D4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM533	8017F5E0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM534	8017F5E8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM535	8017F5F0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM536	8017F5F8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM537	8017F5FC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM538	8017F604	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM539	8017F614	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM540	8017F61C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM541	8017F620	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM542	8017F628	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM543	8017F640	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM544	8017F644	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM545	8017F64C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM546	8017F658	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM547	8017F65C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM548	8017F664	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM549	8017F68C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM550	8017F698	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM551	8017F6A8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM552	8017F6AC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM553	8017F6CC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM554	8017F6D0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM555	8017F6D8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM556	8017F6E0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM557	8017F6E4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM558	8017F6EC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM559	8017F6FC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM560	8017F708	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM561	8017F714	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM562	8017F71C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM563	8017F724	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM564	8017F72C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM565	8017F73C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM566	8017F74C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM567	8017F754	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM568	8017F760	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM569	8017F76C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM570	8017F77C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM571	8017F788	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM572	8017F790	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM573	8017F7A4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM574	8017F7B8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM575	8017F7C0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM576	8017F7CC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM577	8017F7E8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM578	8017F7F0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM579	8017F7FC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM580	8017F800	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM581	8017F808	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM582	8017F818	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM583	8017F83C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM584	8017F844	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM585	8017F84C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM586	8017F858	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM587	8017F85C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM588	8017F864	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM589	8017F874	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM590	8017F878	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM591	8017F880	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM592	8017F884	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM593	8017F88C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM594	8017F894	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM595	8017F89C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM596	8017F8AC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM597	8017F8B0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM598	8017F8B8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM599	8017F8BC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM600	8017F8C4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM601	8017F934	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM602	8017F940	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM603	8017F948	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM604	8017F950	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM605	8017F964	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM606	8017F968	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM607	8017F970	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM608	8017F980	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM609	8017F984	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM610	8017F98C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM611	8017F9B8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM612	8017F9C0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM613	8017F9C4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM614	8017F9CC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM615	8017F9D8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM616	8017F9DC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM617	8017F9E4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM618	8017F9EC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM619	8017F9F4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM620	8017FA04	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM621	8017FA08	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM622	8017FA20	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM623	8017FA20	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM624	8017FA20	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM625	8017FA38	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM626	8017FA58	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM627	8017FA78	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM628	8017FA80	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM629	8017FA8C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM630	8017FA98	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM631	8017FA9C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM632	8017FAAC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM633	8017FAE4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM634	8017FAF4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM635	8017FAFC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM636	8017FB04	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM637	8017FB14	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM638	8017FB24	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM639	8017FB2C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM640	8017FB38	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM641	8017FB40	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM642	8017FB50	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM643	8017FB64	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM644	8017FB74	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM645	8017FB7C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM646	8017FB80	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM647	8017FB94	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM648	8017FB94	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM649	8017FB94	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM650	8017FB98	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM651	8017FC34	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM652	8017FC3C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM653	8017FC40	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM654	8017FC48	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM655	8017FC4C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM656	8017FC54	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM657	8017FC5C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM658	8017FC60	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM659	8017FC68	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM660	8017FC6C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM661	8017FC74	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM662	8017FC78	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM663	8017FC80	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM664	8017FC84	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM665	8017FC8C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM666	8017FC9C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM667	8017FCAC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM668	8017FCAC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM669	8017FCB0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM670	8017FCB4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM671	8017FCBC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM672	8017FCBC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM673	8017FCBC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM674	8017FCCC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM675	8017FD04	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM676	8017FD14	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM677	8017FD1C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM678	8017FD24	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM679	8017FD2C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM680	8017FD3C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM681	8017FD4C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM682	8017FD4C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM683	8017FD4C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM684	8017FD4C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM685	8017FD54	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM686	8017FD54	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM687	8017FD54	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM688	8017FD60	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM689	8017FD64	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM690	8017FD6C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM691	8017FD7C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM692	8017FD88	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM693	8017FD90	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM694	8017FD98	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM695	8017FDAC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM696	8017FDB4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM697	8017FDB4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM698	8017FDB8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM699	8017FDC0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM700	8017FDC8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM701	8017FDD0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM702	8017FDDC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM703	8017FDEC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM704	8017FDF0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM705	8017FDF4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM706	8017FDF8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM707	8017FDFC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM708	8017FE00	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM709	8017FE04	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM710	8017FE08	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM711	8017FE10	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM712	8017FE20	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM713	8017FE20	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM714	8017FE20	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM715	8017FE30	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM716	8017FE6C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM717	8017FE80	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM718	8017FE84	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM719	8017FE8C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM720	8017FE90	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM721	8017FE98	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM722	8017FEB0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM723	8017FEBC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM724	8017FEC4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM725	8017FECC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM726	8017FEDC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM727	8017FEDC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM728	8017FEDC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_dryfieldGasStationInitRoomTask	8017FEDC	flt	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM729	8017FEE8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM730	8017FEEC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM731	8017FEF4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM732	8017FEF8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM733	8017FF00	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM734	8017FF14	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM735	8017FF28	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM736	8017FF34	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM737	8017FF40	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM738	8017FF4C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM739	8017FF54	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM740	8017FF5C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM741	8017FF5C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM742	8017FF5C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM743	8017FF60	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM744	8017FF64	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM745	8017FF6C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM746	8017FF74	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM747	8017FF7C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM748	8017FF84	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM749	8017FF84	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM750	8017FF84	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_dryfieldGasStationIdleRoomTask	8017FF84	flt	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM751	8017FF84	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM752	8017FF8C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+_gDryfieldGasStationRoomTaskStates	8017D6A4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM753	8017FF8C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM754	8017FF8C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM755	8017FF90	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM756	8017FF94	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM757	8017FF98	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM758	8017FFB4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM759	8017FFD4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+LM760	8017FFE4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station.i
+gcc2_compiled.	8017FFE4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+__gnu_compiled_c	8017FFE4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+_MACRO_INC_GUARD	00000001	al	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM1	8017FFE4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM2	8017FFE4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM3	8017FFF0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM4	8017FFF4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM5	8017FFF8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM6	8017FFFC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM7	80180000	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM8	80180028	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM9	80180030	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM10	80180038	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM11	80180040	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM12	80180048	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM13	80180050	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM14	80180054	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM15	80180074	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM16	80180078	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM17	80180080	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM18	8018008C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM19	80180094	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM20	8018009C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM21	801800AC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM22	801800B0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM23	801800B8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM24	801800C0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM25	801800E0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM26	801800E4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM27	801800EC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM28	80180100	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM29	80180108	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM30	80180110	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM31	80180120	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM32	80180130	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM33	80180138	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM34	80180140	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM35	80180148	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM36	80180150	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM37	80180164	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM38	8018016C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM39	80180178	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM40	80180180	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM41	80180198	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM42	801801AC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM43	801801B4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM44	801801CC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM45	801801D4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM46	801801E4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM47	801801E4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM48	801801E4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM49	801801F8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM50	801801FC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM51	80180200	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM52	80180218	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM53	80180224	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM54	8018022C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM55	80180230	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM56	80180238	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM57	8018023C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM58	80180240	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM59	80180250	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM60	80180294	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM61	8018029C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM62	801802A4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM63	801802AC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM64	801802C0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM65	801802C0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM66	801802C0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM67	801802D4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM68	801802D8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM69	801802DC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM70	80180304	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM71	80180310	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM72	80180318	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM73	80180320	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM74	80180350	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM75	80180358	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM76	80180370	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM77	80180378	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM78	80180384	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM79	8018038C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM80	801803A0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM81	801803AC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+LM82	801803C0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_2.i
+gcc2_compiled.	801803C0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+__gnu_compiled_c	801803C0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_MACRO_INC_GUARD	00000001	al	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationAnimation04A70Bank1	80181EA0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationAnimation04A70Bank4	80181EB8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationAnimation04A70Records	80181ED8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationAnimation04A70Indices	80182008	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationAnimation04A70	80182030	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationAnimation05210Bank1	80182058	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationAnimation05210Bank4	801820F4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationAnimation05210Records	801823C0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationAnimation05210Indices	801827A8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationAnimation05210	801827D0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationAnimation055A4Bank1	801827F8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationAnimation055A4Bank4	8018284C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationAnimation055A4Records	80182950	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationAnimation055A4Indices	80182B3C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationAnimation055A4	80182B64	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationAnimation05848Bank1	80182B8C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationAnimation05848Bank4	80182BA4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationAnimation05848Records	80182C64	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationAnimation05848Indices	80182DE0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationAnimation05848	80182E08	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationArrivalAnimationSets	80182E30	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationArrivalPlayerPlacements	80182E44	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationArrivalScript	80182E8C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_dryfieldGasStationSuppressPlayerEquipment	80180944	flt	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_dryfieldGasStationSetCutsceneCommand	80180B2C	flt	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationArrivalSkipScript	8018303C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_dryfieldGasStationRestorePlayerAndShow	80180A60	flt	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_dryfieldGasStationArrivalCutsceneTask	801807E0	flt	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_screenFadeInTask	80180984	flt	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationGlowLocalPoint	80183144	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationCollisionGrid	80183EA4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationViewBoundaryTriggers	80184350	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationActionTriggers	80184694	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationRoomLights	80184B48	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationCollisionGridNormals	80183214	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationCollisionGridVerts	80183314	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationCollisionGridFaces	80183704	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationCollisionGridCells	801839F8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationCollisionGridTable	80183DE4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationView1SpriteBatches	801840C0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationView2SpriteSources	801840D0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationView2SpriteBatches	80184148	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationView3SpriteSources	80184160	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationView3SpriteBatches	801841D8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationView4SpriteBatches	801841F8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationView5SpriteBatches	80184208	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationView6SpriteBatches	80184218	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationView7SpriteBatches	80184228	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationView8SpriteBatches	80184238	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationView9SpriteBatches	80184248	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationView10SpriteBatches	80184258	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationView11SpriteBatches	80184268	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationView12SpriteBatches	80184278	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationView13SpriteBatches	80184288	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationView14SpriteBatches	80184298	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationVariant1Resources	8018498C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationVariant9MadChaserResources	80184998	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationVariant9MadChaserPlacements	801849B0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationVariant10DesertChaserResources	80184A00	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationVariant10DesertChaserPlacements	80184A18	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationDirectionalLights	80184A98	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationSurfaceClass4FootstepSounds	80184B60	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationSurfaceClass2FootstepSounds	80184B6C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationSurfaceClass3FootstepSounds	80184B78	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationBlockingSilentSurface	80184B84	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationSurfaceClass4Properties	80184B8C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationSurfaceClass2Properties	80184B94	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationSurfaceClass3Properties	80184B9C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_gDryfieldGasStationPassThroughSilentSurface	80184BA4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM1	801803C0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM2	801803C0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_dryfieldGasStationExecuteCutsceneCommand	801803C0	flt	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM3	801803D8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM4	801803E0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM5	80180410	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM6	80180428	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM7	8018043C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM8	80180450	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM9	80180458	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM10	801804A0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM11	801804A8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM12	801804B0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM13	801804C4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM14	801804DC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM15	8018051C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM16	80180524	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM17	80180544	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM18	8018058C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM19	801805A0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM20	801805B4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM21	801805B8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM22	801805C0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM23	801805DC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM24	801805E4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM25	801805F4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM26	801805F4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM27	801805F8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM28	801805FC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM29	80180600	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM30	80180604	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM31	80180618	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM32	80180630	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM33	8018063C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM34	8018064C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM35	8018065C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM36	80180664	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM37	8018066C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM38	8018066C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM39	80180674	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM40	80180678	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM41	80180684	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM42	80180688	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM43	8018068C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM44	80180690	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM45	80180694	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM46	80180698	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM47	801806A4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM48	801806AC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM49	801806B8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM50	801806C0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM51	801806D0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM52	801806D8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM53	801806DC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM54	801806E4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM55	801806FC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM56	80180740	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM57	80180750	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM58	80180758	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM59	80180794	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM60	801807A8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM61	801807B4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM62	801807BC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM63	801807C4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM64	801807C8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM65	801807E0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM66	801807E0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM67	801807E0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM68	801807F4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM69	80180814	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM70	80180838	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM71	80180848	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM72	80180850	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM73	80180858	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM74	80180860	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM75	80180870	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM76	8018087C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM77	801808C8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM78	801808D4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM79	801808EC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM80	801808F8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM81	80180900	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM82	80180918	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM83	80180920	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM84	80180928	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM85	80180930	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM86	80180944	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM87	80180944	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM88	80180944	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM89	80180944	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM90	8018094C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM91	80180954	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM92	8018095C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM93	8018096C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM94	80180974	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM95	80180984	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM96	80180984	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM97	80180984	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM98	80180998	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM99	8018099C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM100	801809A0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM101	801809B8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM102	801809C4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM103	801809CC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM104	801809D0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM105	801809D8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM106	801809DC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM107	801809E0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM108	801809F0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM109	80180A34	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM110	80180A3C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM111	80180A44	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM112	80180A4C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM113	80180A60	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM114	80180A60	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM115	80180A60	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM116	80180A64	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM117	80180A68	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM118	80180A6C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM119	80180A70	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM120	80180A78	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM121	80180A80	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM122	80180A90	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM123	80180A98	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM124	80180A9C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM125	80180AA4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM126	80180B00	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM127	80180B10	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM128	80180B18	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM129	80180B2C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM130	80180B2C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM131	80180B2C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM132	80180B2C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM133	80180B40	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM134	80180B44	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM135	80180B4C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM136	80180B4C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM137	80180B4C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_glowDrawStarLocal	80180B4C	flt	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM138	80180B70	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM139	80180B7C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM140	80180B84	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM141	80180BA0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM142	80180BCC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM143	80180BD4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM144	80180BE0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM145	80180BFC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM146	80180C10	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM147	80180C18	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM148	80180C1C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM149	80180C24	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM150	80180C2C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM151	80180C30	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM152	80180C38	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM153	80180C50	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM154	80180C80	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM155	80180C88	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM156	80180C94	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM157	80180C9C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM158	80180CAC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM159	80180CC0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM160	80180CE4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM161	80180D1C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM162	80180D28	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM163	80180D28	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM164	80180D3C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM165	80180D50	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM166	80180DA4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM167	80180DB8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM168	80180DC8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM169	80180DDC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM170	80180DF0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM171	80180DF4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM172	80180DF8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM173	80180E18	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM174	80180E5C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM175	80180E60	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM176	80180E84	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM177	80180E88	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM178	80180E90	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM179	80180E9C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM180	80180EA0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM181	80180EB4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM182	80180EB4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM183	80180EB8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM184	80180EBC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM185	80180EC0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM186	80180EC8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM187	80180ED8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM188	80180EE0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM189	80180EE8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM190	80180EF4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM191	80180F00	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM192	80180F0C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM193	80180F10	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM194	80180F14	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM195	80180F28	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM196	80180F2C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM197	80180F30	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM198	80180F44	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM199	80180F50	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM200	80180F5C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM201	80180F78	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM202	80180F94	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM203	80180FD8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM204	80180FDC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM205	80181000	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM206	80181004	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM207	8018100C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM208	80181018	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM209	80181030	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM210	80181058	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM211	80181058	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM212	80181058	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+_glowDrawRayStar	80181058	flt	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM213	8018107C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM214	80181090	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM215	80181098	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM216	801810B4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM217	801810E0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM218	801810E8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM219	801810F4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM220	80181110	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM221	80181124	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM222	8018112C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM223	80181130	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM224	80181138	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM225	80181140	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM226	80181144	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM227	8018114C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM228	80181164	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM229	80181194	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM230	8018119C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM231	801811A8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM232	801811B0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM233	801811C0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM234	801811D4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM235	801811F8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM236	8018123C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM237	80181270	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM238	8018127C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM239	8018127C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM240	80181288	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM241	8018129C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM242	801812A0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM243	801812A8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM244	801812AC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM245	801812B4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM246	801812C0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM247	801812C8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM248	801812CC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM249	801812D8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM250	801812E4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM251	801812F0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM252	801812F8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM253	8018130C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM254	80181310	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM255	80181320	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM256	80181334	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM257	80181338	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM258	8018133C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM259	8018134C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM260	80181360	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM261	80181364	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM262	80181374	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM263	8018139C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM264	801813A0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM265	801813A4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM266	801813A8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM267	801813AC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM268	801813B0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM269	801813C4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM270	801813C8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM271	801813D8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM272	801813FC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM273	80181404	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM274	80181408	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM275	80181464	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM276	80181468	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM277	8018147C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM278	80181488	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM279	80181490	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM280	80181494	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM281	8018149C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM282	801814AC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM283	801814B8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM284	801814C4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM285	801814D0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM286	801814D8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM287	801814EC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM288	801814F0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM289	80181500	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM290	80181514	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM291	80181518	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM292	80181528	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM293	8018153C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM294	80181540	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM295	80181550	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM296	80181578	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM297	80181584	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM298	80181588	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM299	8018158C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM300	801815A0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM301	801815A4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM302	801815B4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM303	801815D8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM304	801815E0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM305	801815E4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM306	8018162C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM307	80181630	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM308	80181640	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM309	80181644	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM310	80181658	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM311	80181664	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM312	80181670	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM313	80181674	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM314	80181678	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM315	80181690	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM316	80181690	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM317	80181694	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM318	80181698	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM319	8018169C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM320	801816A4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM321	801816B4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM322	801816C0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM323	801816CC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM324	801816D8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM325	801816E0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM326	801816F4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM327	801816F8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM328	80181708	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM329	8018171C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM330	80181720	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM331	80181730	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM332	80181744	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM333	80181748	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM334	80181758	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM335	80181780	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM336	80181784	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM337	80181788	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM338	8018178C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM339	80181790	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM340	80181794	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM341	801817A8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM342	801817AC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM343	801817BC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM344	801817E0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM345	801817E4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM346	801817E8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM347	80181838	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM348	8018183C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM349	80181850	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM350	8018185C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM351	80181860	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM352	80181864	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM353	8018186C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM354	8018187C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM355	80181888	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM356	80181894	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM357	801818A0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM358	801818A8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM359	801818BC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM360	801818C0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM361	801818D0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM362	801818E4	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM363	801818E8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM364	801818F8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM365	8018190C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM366	80181910	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM367	80181920	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM368	80181948	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM369	8018194C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM370	80181950	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM371	80181954	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM372	80181958	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM373	8018195C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM374	80181970	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM375	80181974	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM376	80181984	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM377	801819A8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM378	801819AC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM379	801819B0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM380	801819EC	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM381	801819F0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM382	80181A00	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM383	80181A04	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM384	80181A18	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM385	80181A24	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM386	80181A30	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM387	80181A48	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM388	80181A78	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM389	80181A78	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM390	80181A78	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM391	80181A78	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM392	80181A80	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM393	80181A88	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM394	80181A94	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM395	80181A98	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM396	80181A9C	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM397	80181AA0	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM398	80181AA8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM399	80181AB8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM400	80181AC8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM401	80181AD8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM402	80181AE8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+LM403	80181AF8	fl	build/USA/src/rooms/dryfield_gas_station/dryfield_gas_station_3.i
+__romPos	00007630	al	
+equipmentGetWeaponLoadCapacity	800BB938	a	
+gActor443500ConsoleFollowupSkipScript	80142A74	a	
+dryfieldGasStationArrivalMovieTask	8017FFE4	ft	
+D_80073BAC	80073BAC	a	
+D_80072174	80072174	a	
+areaSetCurrentObjectState	800BAC34	a	
+uiInitList	800489A0	a	
+D_80071072	80071072	a	
+gDryfieldGasStationRoomLighting	80183160	f	
+CdFlush	80015AF4	a	
+gameFlagSetNibble	8004AC58	a	
+SetRotMatrix	8004ADF8	a	
+stageRequestModeTaskExit	8003F6F8	a	
+gActor503500StaffCardSceneTaskDesc	8014B958	a	
+sceneEngageBattle	800DB4E0	a	
+tmdAllocPrimitiveBuffer	80041B88	a	
+gActor335800BalconyBattleStartScript	80165720	a	
+gActor450200CompanionSceneScript	80137EE4	a	
+actor161500StartSoldierBRemark	80131E38	a	
+gCapCommandEntries	801156A0	a	
+displayAcquireMenuHold	8003E610	a	
+gPadMenuButtonMask	8005ED78	a	
+areaSetPlacementVariant	800B5B30	a	
+displayQueueModeTask	8003FB70	a	
+gameGetTaskSlot	8002D22C	a	
+GetTPage	80043938	a	
+displaySetFrameTiming	800280F4	a	
+textItoaUnsigned	8002F18C	a	
+dryfieldGasStationTelephoneMenuTask	8017EA90	ft	
+damagePackEnemyAttackKey	800E2BF8	a	
+viewGetMappedIndex	800AD284	a	
+worldCoordGetOriginAudioPan	800D937C	a	
+mapShelterRoomVariantResolve	80179A04	a	
+gPadInputMenuUnlockUpdates	80115716	a	
+uiGetTextColor	80048E10	a	
+cdCmdSelectScene	8001D534	a	
+gMapDryfieldGasStationVariant1Placements	8017AD34	a	
+gActor107600TaskDescriptors	80134F94	a	
+SetDrawTPage	80043A38	a	
+D_801153F1	801153F1	a	
+printf	8001AF3C	a	
+worldCollisionClearContacts	800E1A6C	a	
+sceneReleaseBattleRefAndClearRewards	800DB630	a	
+gDryfieldGasStationSpriteViews	801842A8	f	
+memMalloc	8002DABC	a	
+D_80073BA0	80073BA0	a	
+gActionPromptSlots	80114D28	a	
+D_80072836	80072836	a	
+gAttachmentTrainingLevels	80114BF0	a	
+taskPollKill	8002D3BC	a	
+actor260400RestoreHeliportPlacement	80149FA4	a	
+gRoomEffectOrangeBurst2Id	80115754	a	
+stageMusicRequestAreaStop	800430E4	a	
+taskSpawn	8002CFDC	a	
+MatrixNormal	8003D6C8	a	
+gAreaRecordsByStage	8010CBCC	a	
+textDrawUiLine	8002FDCC	a	
+D_8007106C	8007106C	a	
+gActor450800NurseryIntroSkipScript	8013A33C	a	
+D_80070F6C	80070F6C	a	
+capRunCommandWithTransition	800E3B60	a	
+SetSemiTrans	800439B8	a	
+gCapRoomCompletionSoundsEnabled	80115598	a	
+sndEvtRequestMidiStart	800512BC	a	
+inventoryHasCollectedBit	800BB4BC	a	
+gGfxViewCoord	80070F10	a	
+equipmentRestoreHpMp	800BC164	a	
+D_80073B8C	80073B8C	a	
+gameFlowBeginLoadScreen	8002252C	a	
+sndEvtRequestScriptMix	80054424	a	
+worldCollisionProjectGroundCoord	800EA02C	a	
+worldCollisionUnlinkTrigger	800E1708	a	
+actor215100SelectCaptionResource	8014C5E0	a	
+padScriptSpawnVariableMotorRamp	800E8D1C	a	
+gfxSetFlatLight	8003B140	a	
+gPlayerActorStateTickHeld	80115768	a	
+gItemDescriptors	8010D838	a	
+playerActorPrepareDryfieldLoadout	800BC4E4	a	
+gActor450200RoomVariantSceneScript	8013FC58	a	
+taskGetDescAt	8002D32C	a	
+rcos	8003D108	a	
+gRoomEffectTwinTrailId	8011572C	a	
+D_80072177	80072177	a	
+streamFindViewMovieSlot	8001EED8	a	
+taskKill	8002CCB8	a	
+gActor143000KeypadTaskDesc	80134564	a	
+gEffectSpriteAtlasFrames	80111E48	a	
+D_80115188	80115188	a	
+D_80072724	80072724	a	
+textDrawString	8002E53C	a	
+gDirectionInteractionRearmUpdates	80114D08	a	
+gRoomEffectSparkBurstId	80115750	a	
+D_80071078	80071078	a	
+gActor120300TaskDescriptors	80141B6C	a	
+inventoryResetIceBagTimer	800BC21C	a	
+gEffectUnitQuadCorners	80111E38	a	
+worldCoordSetActorColorMode	800D930C	a	
+gActor342400EncounterTaskDescs	8016BFE0	a	
+gActor560800ChainGlowTick	801752EC	a	
+gActor444000IncineratorEventTaskDesc	801449F4	a	
+playerActorSetScriptedControl	800E3BBC	a	
+stageMusicRequestAreaStart	80043028	a	
+itemMenuSpawnNotice	800D4E40	a	
+actor460200SetupTentSoldiers	80132210	a	
+gActor335800BalconyEntrySkipScript	80165798	a	
+D_80115124	80115124	a	
+uiStartPanelOpening	80048964	a	
+actor215100RequestGalleryAbort	8014A9A0	a	
+streamGetFrameLimit	80020414	a	
+gActor00100DesertChaserTaskDesc	8014D8A4	a	
+gActor04000HangingPoolTaskDesc	8013E51C	a	
+gActor560800CutsceneTaskDescriptors	801718F0	a	
+actor161500StartCompanionRequestReminder	801322A0	a	
+equipmentInitializeWeaponSupplies	800B6CF0	a	
+gFsActorBuffer1Base	8005C370	a	
+textFormatPlayTime	8002EB94	a	
+playerActorRestoreEquipment	801034C0	a	
+gRoomCutsceneSoundTask	80184BD0	f	
+playerActorRemoveEquipment	801043F4	a	
+SetDrawMove	8004AD18	a	
+damageGetPlayerAttackEffectId	800E2D90	a	
+gpuSetPrimitiveBlendMode	800EC914	a	
+worldCoordUpdateActorColor	800D8EA0	a	
+enemyTaskExit	800B0234	a	
+gfxComposeNodeWorldTransform	800B1D00	a	
+dryfield_gas_station_RODATA_START	8017D5C0	f	
+gUiPromptObject	80067694	a	
+gFsActorBuffer0Base	8005C36C	a	
+ratan2	8003D9C8	a	
+sceneFindPlacedActor	800E86FC	a	
+animationSeekSlotWithBlend	800B4114	a	
+inventoryInitializeShootingGalleryLoadout	800BA538	a	
+D_80071090	80071090	a	
+gActor450200SoloSceneScript	8013C72C	a	
+RotTransSV	8004BD58	a	
+padIsStartPressed	8004ACF0	a	
+ApplyMatrixSV	80043A68	a	
+memSelectAuxHeapRegion	8002DC08	a	
+gActor450800NurseryIntroScript	80139964	a	
+memcpy	8001AEFC	a	
+gActor151000GardenArrivalScript	801334EC	a	
+gActor341300WalkwaySceneSkipScript	80165834	a	
+gStageCountdownMusicEntry	80062735	a	
+Gp_QtyById0	8010E038	a	
+sndEvtRequestStageScriptStop	800E3E64	a	
+gActor207000SucklercephTaskDescs	80151E60	a	
+capSetTexturePage	800E6D4C	a	
+__floatsidf	8004B5D8	a	
+SetSprt	80043A18	a	
+gActor443500MapFollowupSkipScript	801432FC	a	
+areaSyncLocationVariant	800B601C	a	
+effectDrawGroundShadow	800F68AC	a	
+cdCmdCompleteHeadRequest	8001DA48	a	
+gameFlagSetNibbleIfPresent	800E3B3C	a	
+uiSizePanelForTextDefault	800490A4	a	
+worldCollisionUnlinkBody	800E1638	a	
+gRoomEffectFlyingSparkId	80115730	a	
+playerActorWriteWeaponAnimationBankIndex	800E3CEC	a	
+gGpuCurrentOt	800710A0	a	
+streamInitMoviePlayback	8002043C	a	
+gActor150400FreezerSceneScript	80132D70	a	
+gActor450200SoloSceneSkipScript	8013CAEC	a	
+sndScriptHasActiveId	8005462C	a	
+gMcDialogDescriptors	800611C8	a	
+sndEvtRequestMidiVolume	80051460	a	
+padScriptSpawn	800E8FB0	a	
+gCapFile	8011568C	a	
+gActor450200CompanionSceneSkipScript	80138694	a	
+sceneReleaseBattleRef	800DB6B4	a	
+gMcSaveData	80072168	a	
+gameSetTaskSlot	8002D214	a	
+taskSpawnFromTable	8002CFA0	a	
+gActor142900ElevatorFirstVisitSkipScript	801380F8	a	
+gActor503500BossPhaseTransitionScript	8014D158	a	
+inventoryGetItemQuantity	800BB6FC	a	
+cdCmdRequestCancel	8001C970	a	
+actor450900HandleDepartureTrigger	80132834	a	
+D_80070F70	80070F70	a	
+gActor160600SceneWithoutCompanionScript	80135AC0	a	
+displayResumeGameLoop	8003E540	a	
+gDryfieldGasStationViewCameras	80183EC8	f	
+tmdFreePrimitiveBuffer	80041B4C	a	
+dryfield_gas_station_DATA_SIZE	000030F8	a	
+actor460200TalkToSoldierC	801322B8	a	
+itemMenuOpenHotspotCommands	800D4E78	a	
+gfxMakeRelativeTransform	800A8864	a	
+gWorldCollisionSurfacePropertiesTables	8010CBB8	a	
+streamPollGameRestore	8001EF9C	a	
+areaClearMapMark	800AED24	a	
+gItemMenuInfoPanel	80067634	a	
+dryfield_gas_station_ROM_START	00000000	a	
+cdCmdIsSlotEmpty	8001D37C	a	
+D_8007107C	8007107C	a	
+gActor461800NeoArkSceneSkipScript	80134470	a	
+MargePrim	800422B8	a	
+itemMenuDrawTaskPrompt	800CE4F4	a	
+worldCoordSetModelLighting	800D7A9C	a	
+streamResetGameRestore	80020388	a	
+gfxReadMatrixYAxis	8003C748	a	
+actor503500ClearFadeFromBlackHandle	80132F58	a	
+displayReleaseMenuHold	8003E64C	a	
+taskCallExit	8002D0A4	a	
+RotMatrixZYX	80044408	a	
+actor341300ResetScriptTaskHandle	8016268C	a	
+modelObjectAttachTmd	8009902C	a	
+gActor161500CompleteCompanionRequestTaskDesc	80136CDC	a	
+gGameSession	8005ED64	a	
+D_80071076	80071076	a	
+__adddf3	8004AFE8	a	
+dryfieldGasStationArrivalTask	801802C0	ft	
+gRoomEffectFlashId	80115758	a	
+gActor443500TourOpeningSkipScript	80141C1C	a	
+actor215100FinishGalleryCourse	8014A908	a	
+animationAimHeadAtPoint	800B0CF4	a	
+mapAkropolisOpenKeyItemMenu	80179FC8	a	
+areaSetObjectState	800BB8E8	a	
+SquareRoot0	8003B8A0	a	
+gItemMenuPanelDescriptors	8010EAB4	a	
+gameFlagSetPackedByte	800E3FAC	a	
+gAttachmentState	80114C08	a	
+displayConfigureFramebuffers	8003DB48	a	
+gfxBuildOrthonormalBasis	8003CEC4	a	
+gActor342100EncounterBlazeTaskDescriptors	80164B78	a	
+gActor535700PawnGolemEncounterScript	80133898	a	
+sndEvtRequestScriptStop	800542D0	a	
+SetShadeTex	800439E8	a	
+sceneReleaseBattleRefWithRewards	800DB558	a	
+capRunCommand	800E34D8	a	
+gFsActorBuffer2Base	8005C374	a	
+capReset	800E6DF4	a	
+gActor341300WalkwaySceneScript	80165354	a	
+gEquipmentWeaponPrimaryLoadOptions	8010E238	a	
+gfxReadMatrixZAxis	8003C768	a	
+D_80071086	80071086	a	
+gfxRotMatrixY	8003C98C	a	
+gPadScriptTransitionCommands	80114A24	a	
+viewApplyCamera	800A8A48	a	
+RotTransPers4	8004C358	a	
+D_8011540E	8011540E	a	
+gPadScriptTransitionSegments	80114A34	a	
+mapDryfieldFullResolveRoomVariant	80179954	a	
+inventoryRestoreCarriedLoadout	800BA75C	a	
+D_80072176	80072176	a	
+gStreamInterFile	8006AC30	a	
+playerActorPrepareAcropolisLoadout	800BC4BC	a	
+mapAkropolisWasDryfieldMapSelected	8017A038	a	
+gStageMusicTaskDesc	80062774	a	
+gMdecMovieOutputSlot	8005EAEE	a	
+gActor451100SubmarineTunnelSceneSkipScript	80135FD0	a	
+gStageRoomMusicSequence	80062737	a	
+worldCollisionFindContactIndex	800E19B8	a	
+worldCollisionLinkBody	800E15AC	a	
+D_80073BA9	80073BA9	a	
+midiIsSequenceBusy	800514F8	a	
+gDryfieldGasStationWarpEntries	8018316C	f	
+effectKillTask	800EC7E4	a	
+memCopyBytes	8002D7A8	a	
+inventoryCountOccupiedRows	800BAF5C	a	
+itemMenuGetPrimaryPreviewItem	800CF27C	a	
+sceneSetPlacedActorDrawMode	800E3C6C	a	
+__fixdfsi	8004B4D8	a	
+effectDrawGouraudDisc	800EAEB8	a	
+cdCmdStageSceneAudioStart	8001D6B8	a	
+D_80072A94	80072A94	a	
+textItoaSigned	8002F020	a	
+cdCmdIsIdle	8001D344	a	
+actor215100CheckGalleryExitInput	8014A398	a	
+D_80072729	80072729	a	
+sceneQueueBattleEscapeResult	800A7A64	a	
+capStartSequenceSlot	800E6C70	a	
+gActor215100GalleryTrainingActive	8014D038	a	
+worldCollisionReadActionHit	800E1BF0	a	
+SetTransMatrix	8004AE28	a	
+gameFlagGetNibble	8004ACAC	a	
+dryfield_gas_station_RODATA_SIZE	00000138	a	
+D_801153F4	801153F4	a	
+gRoomEffectHaloId	80115744	a	
+AddPrim	80043978	a	
+gCapPreserveActorControl	80115690	a	
+uiSetListSystemCursorSound	8004917C	a	
+gfxRotMatrixZ	8003CB80	a	
+itemSetIdentified	800BB7C0	a	
+worldTargetAddReadoutAmount	800DA6E8	a	
+inventoryGetConsumableStackQuantity	800BB26C	a	
+SetDrawOffset	80018AA4	a	
+D_8007272D	8007272D	a	
+gSceneCombatState	801153F0	a	
+itemMenuDrawItemRow	800CD924	a	
+effectDrawSpinningBillboard	800EB2C8	a	
+uiDrawPanelLabel	80047F40	a	
+gGameMainPersistentState	800710A8	a	
+enemySpawnFromTable	800B01AC	a	
+gfxRotMatrixYXZ	8003BD34	a	
+D_8011540A	8011540A	a	
+effectDrawModulatedBillboard	800EB6E8	a	
+equipmentHasCarriedWeaponSupply	800BBDDC	a	
+gActor461800NeoArkSceneScript	80133F90	a	
+uiPositionRowDialog	80049024	a	
+actor260400StartHeliportConversation	80149E38	a	
+evsStartScriptWithSkip	800E8634	a	
+gEquipmentModeBaseStats	8010D328	a	
+gFsImageWorkspacePtr	8005C364	a	
+actor160700StartMeetingScript	80131E70	a	
+evsStartScript	800E8614	a	
+loadingRequestViewGraphicsRestore	800A99B4	a	
+actor450200InitializeObservatoryCompanion	801322F8	a	
+StoreImage	80017FA4	a	
+D_80114C12	80114C12	a	
+MoveImage	80018004	a	
+func_807245E4	807245E4	a	
+uiUpdateList	80048C10	a	
+streamGetSlot	80020278	a	
+textAppendString	8002F588	a	
+gActor310100Officer1TaskDescriptors	801798FC	a	
+capGetVariantKey	800E6D3C	a	
+gActor143900ObservatoryEntrySkipScript	80133860	a	
+gActor503500BossDefeatSkipScript	8014CAF8	a	
+attachmentIsTrainingMode	800A74C4	a	
+capIsBusy	800E6CE0	a	
+gGpuPrimCursor	80071190	a	
+worldCoordGetOriginAudioDepth	800D9340	a	
+gfxRotMatrixXYZ	8003B960	a	
+actor161500StartSoldierBShopConversation	80132110	a	
+shopOpenSession	800D4D2C	a	
+gPadCancelButtonMask	8005ED74	a	
+gPadStates	80071620	a	
+SetDrawArea	80018A24	a	
+D_80071075	80071075	a	
+RotTransPers3	8004C1E8	a	
+actor460200TalkToSoldierA	80132390	a	
+animationInitContext	800B3F84	a	
+gActor450200RoomVariantSceneSkipScript	80140078	a	
+equipmentFindNextCarriedWeaponSupply	800BBD40	a	
+gActor535700PawnGolemEncounterSkipScript	801341E0	a	
+uiDrawBeveledRect	80046B34	a	
+rand	80037164	a	
+gActor450900EntrySkipScript	80136308	a	
+D_80115410	80115410	a	
+companionSetDrawMode	800E3EB0	a	
+inventoryGiveItem	800BAD08	a	
+gActor560800MovieTaskDescriptors	8016EA28	a	
+gActor342000IncineratorEventTaskDescs	80164FF8	a	
+D_8010E138	8010E138	a	
+effectSpawnHit	800FDB18	a	
+gDryfieldGasStationArrivalCutsceneTaskDescs	8018312C	f	
+gInventoryContainerRanges	8010D550	a	
+gActor143400CompanionEntryScript	801350BC	a	
+memCalloc	8002D978	a	
+effectSpawn	800EA478	a	
+gActor450900EntryScript	80136110	a	
+strncmp	8001EAC4	a	
+gInventoryConsumableStacks	8010E3B8	a	
+gActor105500MaggotCaterpillarTasks	8013A8DC	a	
+itemMenuDrawDefaultItemIcon	800CE5D0	a	
+actor161500StartSoldierBTalkB	80132038	a	
+D_80071068	80071068	a	
+gRoomEffectWaterSprayId	80115738	a	
+gActor450800NurseryShootingSkipScript	8013BA84	a	
+gMdecMovieInputSlot	8005EAEC	a	
+dryfield_gas_station_TEXT_START	8017D6F8	f	
+gActor443500ConsoleFollowupScript	80141D9C	a	
+actor150400SpawnSlidingModels	80131FB8	a	
+D_800691CA	800691CA	a	
+gActor503500SceneEffectTaskDescs	8014B964	a	
+D_80114C0B	80114C0B	a	
+gRoomEffectMoteId	80115728	a	
+dryfield_gas_station_DATA_START	80181AF8	f	
+areaApplySavedUpdates	800AE62C	a	
+cdCmdCancelScene	8001D588	a	
+func_800AC000	800AC000	a	
+uiSetPanelContentSize	800466E4	a	
+GsWSMATRIX	80071138	a	
+_gDryfieldGasStationArrivalCutsceneTask	80184BD4	f	
+cdSyncPollCommand	8001E6AC	a	
+uiObjectTaskExit	800488B8	a	
+gActor443500MapFollowupScript	80142C24	a	
+gItemMenuTransferPanelDescriptors	8010D6F4	a	
+cdCmdEnqueue	8001D2B0	a	
+D_801150C0	801150C0	a	
+padCheckButtons	8002C868	a	
+itemMenuDrawPreview	800C7AE8	a	
+gActor160600SceneWithCompanionScript	80135D78	a	
+gCapChoiceRowStride	80115680	a	
+taskSpawnFromTableOnDefaultList	8003E4BC	a	
+SetDrawStp	80042288	a	
+gActor143900ObservatoryEntryScript	80133560	a	
+playerActorSetDrawMode	800E3B80	a	
+actor450800StartNurseryCompanionDialogue	80132000	a	
+gActor215100PierceStoryScript	80153274	a	
+itemMenuSetPreviewItem	800CDE80	a	
+equipmentRecalculateMaxMp	800B7930	a	
+effectDrawOuterGlowBand	800EAA0C	a	
+stageEnsureHeapTaskPrimitiveBuffer	8003F9AC	a	
+gDryfieldGasStationSurfacePropertiesByClass	80184BAC	f	
+actor215100HandleGalleryAction	8014AB6C	a	
+RotMatrixZ	8004AE48	a	
+SetDispMask	80017C00	a	
+SetTile	80042344	a	
+func_80724608	80724608	a	
+cdCmdEnqueueScenePlayback	8001D5CC	a	
+__muldf3	8004B828	a	
+gDryfieldGasStationRoomViewCounts	80183168	f	
+rsin	8003D038	a	
+viewFindLogicalIndex	800ACEBC	a	
+inventoryInitializeStarterLoadout	800B7D18	a	
+gPadConfirmButtonMask	8005ED70	a	
+areaIsSavedPoseRestoreEnabled	800B59A8	a	
+gActor361100PodSceneScript	80165F48	a	
+areaGetVariant	800B5CE8	a	
+gActor443500TourOpeningScript	8014152C	a	
+gGameFlagNibbleBanks	80073980	a	
+gDryfieldGasStationPlacementVariants	80184A38	f	
+gDryfieldGasStationRoomCollisionResources	8018314C	f	
+dryfield_gas_station_RODATA_END	8017D6F8	f	
+dryfield_gas_station_VRAM_END	80184BF0	f	
+actor450800PrepareNurseryKyleMadigan	80132028	a	
+worldCoordSetAmbientColorOverride	800D94B8	a	
+gActor460200TentArrivalSkipScript	80137890	a	
+gDryfieldGasStationArrivalTaskDescs	80181E7C	f	
+worldTargetDisableNodeLockOn	800DACF8	a	
+D_80072170	80072170	a	
+D_80070F87	80070F87	a	
+D_80072310	80072310	a	
+worldCollisionProbeGridSegment	800DE7CC	a	
+D_8011540C	8011540C	a	
+memset	800420F8	a	
+companionWriteAnimationBankIndex	800E3D24	a	
+D_80073BAE	80073BAE	a	
+gActor215100GalleryTaskDescs	8014E13C	a	
+gActor136300GarageCompanionSceneSkipScript	8013C388	a	
+streamPrepareMovieWorkspace	80020298	a	
+gActor136300CompanionGaragePlacement	8013B570	a	
+srand	80037194	a	
+viewQueueCurrentCameraAndPackets	800A8B6C	a	
+ApplyMatrixLV	80042128	a	
+taskMessageDispatch	800AC464	a	
+uiStartTreeClosing	80048838	a	
+animationResetSlot	800B3FA8	a	
+actor215100CapCaptionSelectRecord	8014B2B8	a	
+taskRequestKill	8002D340	a	
+D_8007107A	8007107A	a	
+actor161500RestoreCompanionRequestScene	8013230C	a	
+actor215100ResolveGalleryExit	8014AA54	a	
+gPlayerStatus	80073B88	a	
+inventoryGetRangeTable	800BB500	a	
+gActor142600IncineratorArrivalSkipScript	80136804	a	
+gPlayerActorTasks	80115760	a	
+dryfield_gas_station_VRAM	8017D5C0	f	
+gActor548100PanelTaskDesc	801358D8	a	
+equipmentConsumeWeaponLoad	800B6DA4	a	
+inventoryResetCarriedRange	800BC490	a	
+enemyDestroy	800B01F0	a	
+gFsResourceSlots	8006C338	a	
+gRandomLcgState	80070F60	a	
+actor160700RestoreMeetingAnimation	80131E24	a	
+func_800ABFF8	800ABFF8	a	
+gActor146300IceBagHandoverTaskDesc	8013788C	a	
+areaSpawnPlacements	800B4AF8	a	
+itemMenuDrawMeter	800C0E20	a	
+gameFlagGetPackedByte	800E3FCC	a	
+equipmentLoadWeaponConsumable	800B715C	a	
+displaySetShakeY	8003DE78	a	
+inventoryHasAttachedItem	800BC3F8	a	
+sndEvtRequestStageScriptStart	800E3DD8	a	
+equipmentRecalculateMaxHp	800BC0C0	a	
+RotTransPers	8004C198	a	
+D_8007216D	8007216D	a	
+gActor146300WaterTankEventScript	80137C28	a	
+roomEffectRequestCancelPe	800FC6C0	a	
+gpuUploadImages	800DB31C	a	
+gDirectionActionActive	80114CF8	a	
+D_80072830	80072830	a	
+sndEvtRequestScriptVolume	800544B8	a	
+worldCollisionLinkTrigger	800E1688	a	
+actor450800StartNurseryInteraction	80131E2C	a	
+gDryfieldGasStationArrivalTask	80184BCC	f	
+gActor215100PierceStorySkipScript	80153D6C	a	
+dryfield_gas_station_TEXT_END	80181AF8	f	
+gActor136300TaskTable	8013B11C	a	
+gStageMusicParams	8007A39C	a	
+VectorNormalSS	8003D5D8	a	
+gActor160900TaskDescriptors	8013FB50	a	
+D_80072A93	80072A93	a	
+gWorldCollisionActiveGrid	80115448	a	
+D_80072A92	80072A92	a	
+roomEffectRequestCancelAll	800EC868	a	
+gActor310100Officer2TaskDescriptors	80179920	a	
+actorRenderDrawGroundShadow	800B4E54	a	
+D_8007218A	8007218A	a	
+capSelectLoadedFile	800E6D60	a	
+cdCmdDropQueuedTail	8001D424	a	
+Gfx_ViewWorldMtx	80070F34	a	
+actor161500StartSoldierBTalkA	80131FBC	a	
+gActor503500BossDefeatScript	8014C540	a	
+tmdBuildBufferHalf	800410F0	a	
+effectDrawScreenTint	800EA858	a	
+gActor146000WaterHoleSceneTasks	801351FC	a	
+tmdResetAuxHeapAndRestoreBuffers	80041EB4	a	
+gActor120500EmptyPlacementTaskDesc	8013843C	a	
+equipmentGetWeaponLoad	800BAFE0	a	
+DrawSync	80017C98	a	
+damageComputePlayerAttack	800E1FEC	a	
+itemMenuClearPreviewItems	800CDEF4	a	
+actor215100StartPierceConversation	8014AF0C	a	
+actor450900StartCompanionConversation	801327A8	a	
+damageRollCriticalHit	800E25F8	a	
+gActor151000GardenArrivalSkipScript	80133954	a	
+animationTickSlot	800B4514	a	
+sceneAcquireBattleRef	800DB53C	a	
+gActor143400CompanionEntrySkipScript	801359D4	a	
+companionRemoveEquipment	8010B674	a	
+sndScriptResolveStageId	800E3E30	a	
+actor146300RestoreHandoverPose	8013224C	a	
+gActor150400FreezerSceneSkipScript	80133088	a	
+companionSetScriptedControl	800E3EF0	a	
+gCapInlineIconCells	8010FB70	a	
+streamPollMoviePlayback	8001FAE0	a	
+gPlayerActorWeaponReaches	80112F60	a	
+D_80072728	80072728	a	
+damagePackAttackKey	800E2C40	a	
+uiSpawnObject	800486F0	a	
+worldCollisionInitContacts	800E18E0	a	
+sndEvtRequestMidiStop	8005132C	a	
+gActor503500BossIntroSkipScript	8014C288	a	
+RotMatrix	80043AC8	a	
+D_80114C11	80114C11	a	
+memConfigureImageMemory	800144F8	a	
+viewQueueCamera	800A8A1C	a	
+displaySpawnTaskFromTable	8003E324	a	
+uiStartPanelHiding	800488F8	a	
+actor260500RestoreHeliportPlacement	80149E80	a	
+gActor04400MadChaserTaskDescs	80142604	a	
+actor450200StartCompanionTalk	80132220	a	
+dryfieldGasStationRoomTask	8017FF8C	ft	
+gpuBlendRgb555ClutRow	800B27C4	a	
+dryfield_gas_station_DATA_END	80184BF0	f	
+D_80072834	80072834	a	
+actor361100ClearHeadAimTaskHandle	80162B0C	a	
+gCapConfirmedChoiceIndex	801156A8	a	
+itemGetText	800B8EB0	a	
+gActor451100SubmarineTunnelEntryScript	80136108	a	
+ScaleMatrix	8004A98C	a	
+uiDrawTitle	80048E38	a	
+playerActorEndScripted	80104838	a	
+gfxRotMatrixX	8003C788	a	
+screenFadeInTask	801801E4	ft	
+D_80071071	80071071	a	
+gRoomEffectSparkEmitterId	80115720	a	
+MulMatrix0	80044208	a	
+D_80114FF8	80114FF8	a	
+gActor450900Tasks	80135E78	a	
+itemMenuIsHotspotActionConfirmed	800D4EC0	a	
+inventoryClearItems	800BAC8C	a	
+gCapRestoreView	80115694	a	
+D_801153F6	801153F6	a	
+gWorldCoordTransientPointLights	80114F30	a	
+gActor443500PowerPlantProgressDialogueScript	80143494	a	
+capSpawnEventIfIdle	800E3D8C	a	
+gDisplayState	80070F68	a	
+itemMenuSetItemDescriptionPrompt	800CEB40	a	
+D_8007217B	8007217B	a	
+gActor136300GarageCompanionSceneScript	8013B590	a	
+ApplyTransposeMatrixLV	80044050	a	
+gSpriteAreaTables	8010CB68	a	
+inventoryCanAddItem	800B8988	a	
+sceneFindEnemyByPlaceKey	800B584C	a	
+gMidiMusicVolume	8007A396	a	
+inventoryMeltIceBagIfExpired	800BC254	a	
+gteMIMefunc	8004AD78	a	
+inventoryGetItemSortKey	800BC18C	a	
+uiGetTextRowsHeight	80048E2C	a	
+gCapControlFlags	801156A4	a	
+gFsActorBufferWrittenBytes	8006D860	a	
+gDryfieldGasStationRoomViewMaps	8018315C	f	
+gActor142600IncineratorArrivalScript	801360E4	a	
+playerActorEnterLocomotion	801066DC	a	
+D_8007218B	8007218B	a	
+uiDrawHorizontalSeparator	80047A0C	a	
+gDryfieldGasStationRoomCutscene	80184BD8	f	
+sndEvtRequestScriptStart	8005414C	a	
+actor215100CapCaptionDrawCurrent	8014B0D4	a	
+gActor335800BalconyEntryScript	80165060	a	
+stageReleaseTaskPrimitiveBuffer	8003F9F4	a	
+equipmentGetWeaponSupply	800BBDC8	a	
+animationAimHeadAt	800B17D4	a	
+gRoomEffectOrangeBurstId	8011573C	a	
+viewGetMappedCamera	800A8C08	a	
+gCdCmdQueue	80068FA0	a	
+gActor146300WaterTankEventSkipScript	80138570	a	
+capAbortPlayback	800E6CF0	a	
+textDrawUiLines	8002FB84	a	
+streamFinishScene	800B00C4	a	
+loadingEnqueueEquippedWeaponResources	800A9BE4	a	
+gActor503500BossIntroScript	8014BD48	a	
+gActor207000SlouchTaskDescs	801575F0	a	
+companionRestoreFullHp	800E3D78	a	
+textItoaPadded	8002F44C	a	
+playerStateRestoreFullHpMp	800E3D5C	a	
+gRoomEffectWaterRippleId	8011574C	a	
+memFillBytes	8002D894	a	
+D_8007106B	8007106B	a	
+gActor450800NurseryShootingScript	8013AF8C	a	
+uiFitPanelToList	80046830	a	
+uiSetPromptText	80049D34	a	
+RotMatrixX	8004BE58	a	
+dryfield_gas_station_TEXT_SIZE	00004400	a	
+worldCoordSetModelAmbientColor	800D9550	a	
+worldTargetLinkNode	800DABEC	a	
+damageAccumulateLifeDrainHp	800E2C78	a	
+gActor451100SubmarineTunnelSceneScript	80135220	a	
+taskReparent	8002D14C	a	
+gActor160600SceneSkipScript	80136258	a	
+playerActorTurnToYaw	80104E00	a	
+gRoomEffectState	80115740	a	
+TransposeMatrix	800420B8	a	
+worldCollisionProjectGroundPoint	800EA1A8	a	
+inventoryClearCollectedBit	800BAEC0	a	
+D_8007216C	8007216C	a	
+uiSpawnOptionDialog	800480A0	a	
+actorRenderComposeCoord	80098F58	a	
+GetClut	80042AE0	a	
+gRoomEffectGlowDiscId	80115734	a	
+itemMenuDrawQuantity	800CDBEC	a	
+areaGetCurrentObjectState	800BB470	a	
+gActor341900GluttonEntranceTaskDescs	80164190	a	
+gWorldCollisionActionTriggerListHead	8011556C	a	
+actor260500StartHeliportConversation	80149EBC	a	
+fadeDrawOverlay	8002BA9C	a	
+worldCollisionResolvePushback	800E0C10	a	
+equipmentEquipCarriedArmor	800B7A50	a	
+__subdf3	8004BC28	a	
+D_80072A98	80072A98	a	
+padInputChangeSuppression	800E9BDC	a	
+gActor450800NurseryReentryScript	8013A84C	a	
+gEvsPlaybackPaused	801156F9	a	
+gActor460200TentArrivalScript	801362B8	a	
+RotMatrixY	8004BFF8	a	
+gActor361100PodSceneSkipScript	80166848	a	
+streamFindMovieSlot	8001EDC8	a	
+gActor310100PlayerAnimationSets	801797FC	a	
+gActor142900ElevatorFirstVisitScript	801378D0	a	
+dryfieldGasStationCyanGlowTask	80181A78	ft	
+inventoryIsItemLimitReached	800B7420	a	
+streamSetExternalScenePayloadBuffer	800B015C	a	
+gActor141000FlightTasks	801348D8	a	
+mapNeoArkResolveRoomVariant	80179B14	a	
+gViewIdentityMap	8010CAF8	a	
+gpuResetAndInvalidateModelBuffers	80041E4C	a	
+animationAimHeadAtTask	800B0928	a	
+gAkropolisSquarePostCutsceneAreaUpdates	80188888	a	
+dryfield_gas_station_ROM_END	00007630	a	
+gItemMenuEmptyPromptText	8010F8D0	a	
+padScriptHalt	800E8F68	a	
+gWorldCollisionSurfacePushbackSuppression	80115428	a	

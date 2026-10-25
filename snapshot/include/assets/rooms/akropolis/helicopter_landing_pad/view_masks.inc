@@ -1,0 +1,18 @@
+/* rooms/akropolis/helicopter_landing_pad/package: written from its room instance by tools/buildsteps/gen_room_inc.py. */
+#define ROOM_CAT_(a, b) a##b
+#define ROOM_CAT(a, b) ROOM_CAT_(a, b)
+
+static u32 _gAcropolisHelicopterLandingPadPerimeterLightViewMasks[12] = {
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+};

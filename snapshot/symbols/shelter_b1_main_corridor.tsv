@@ -1,0 +1,2290 @@
+gcc2_compiled.	8017D620	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+__gnu_compiled_c	8017D620	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_MACRO_INC_GUARD	00000001	al	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gRoomEventTaskDesc	8018308C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gShelterB1MainCorridorStagedEventTaskDesc	80183098	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gShelterB1MainCorridorRoomMessages	801830A4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_shelterB1MainCorridorResolveRoomTransition	8017DA8C	flt	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_shelterB1MainCorridorRejectKeyItemUse	8017DCEC	flt	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_shelterB1MainCorridorIgnoreRoomAction	8017DCFC	flt	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_shelterB1MainCorridorIgnoreCommand	8017DCF4	flt	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_shelterB1MainCorridorHandleSoundMessage	8017DD04	flt	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gShelterB1MainCorridorEntryBeamPoints	801830D4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gShelterB1MainCorridorViewLightPoints	80183114	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gRoomVisualEffectsHaloShades	801831D4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gRoomVisualEffectsTwinTrailEndpointOffsets	801831E8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gShelterB1MainCorridorCollisionGridNormals	80183350	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gShelterB1MainCorridorCollisionGridVerts	80183460	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gShelterB1MainCorridorCollisionGridFaces	801839C0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gShelterB1MainCorridorCollisionGridCells	80183D98	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gShelterB1MainCorridorCollisionGridTable	801840A8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gShelterB1MainCorridorView1SpriteBatches	8018427C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gShelterB1MainCorridorView2SpriteBatches	8018428C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gShelterB1MainCorridorView3SpriteBatches	8018429C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gShelterB1MainCorridorView4SpriteSources	801842AC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gShelterB1MainCorridorView4SpriteBatches	8018470C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gShelterB1MainCorridorView4SpriteDrawAreas	80184724	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gShelterB1MainCorridorView5SpriteSources	80184738	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gShelterB1MainCorridorView5SpriteBatches	8018483C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gShelterB1MainCorridorView6SpriteSources	80184854	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gShelterB1MainCorridorView6SpriteBatches	801849A8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gShelterB1MainCorridorView7SpriteSources	801849C0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gShelterB1MainCorridorView7SpriteBatches	80184BA0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gShelterB1MainCorridorView7SpriteDrawAreas	80184BB8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gShelterB1MainCorridorView8SpriteSources	80184BCC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gShelterB1MainCorridorView8SpriteBatches	80184D48	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gShelterB1MainCorridorView9SpriteSources	80184D60	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gShelterB1MainCorridorView9SpriteBatches	80184F68	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gShelterB1MainCorridorView10SpriteSources	80184F80	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gShelterB1MainCorridorView10SpriteBatches	80185110	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gShelterB1MainCorridorPointLights	801851A0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gShelterB1MainCorridorVariant1Resources	80185A80	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gShelterB1MainCorridorVariant2Resources	80185AA4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gShelterB1MainCorridorVariant3Resources	80185ABC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gShelterB1MainCorridorVariant7Resources	80185AD4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gShelterB1MainCorridorVariant11Resources	80185AEC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gShelterB1MainCorridorVariant1Placements	80185B10	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gShelterB1MainCorridorVariant2Placements	80185B70	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gShelterB1MainCorridorVariant3Placements	80185BB0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gShelterB1MainCorridorVariant7Placements	80185BE0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gShelterB1MainCorridorVariant11Placements	80185C00	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gShelterB1MainCorridorFloorFootstepSounds	80185CE0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gShelterB1MainCorridorBlockingSurfaceProperties	80185CEC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gShelterB1MainCorridorPassThroughSurfaceProperties	80185CF4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gShelterB1MainCorridorFloorSurfaceProperties	80185CFC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gRoomEventMsg	80185D2C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gRoomEventStagedMsg	80185D3C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gShelterB1MainCorridorStagedEventStart	80185D44	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1	8017D620	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM2	8017D620	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_roomEventGate	8017D620	flt	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM3	8017D638	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM4	8017D63C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM5	8017D644	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM6	8017D64C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM7	8017D654	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM8	8017D65C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM9	8017D664	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM10	8017D66C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM11	8017D690	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM12	8017D73C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM13	8017D744	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM14	8017D754	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM15	8017D760	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM16	8017D76C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM17	8017D770	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM18	8017D784	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM19	8017D784	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM20	8017D784	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM21	8017D798	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM22	8017D7C8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM23	8017D7C8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM24	8017D7CC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM25	8017D7D4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM26	8017D7DC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM27	8017D7EC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM28	8017D7FC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM29	8017D804	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM30	8017D80C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM31	8017D810	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM32	8017D818	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM33	8017D820	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM34	8017D828	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM35	8017D83C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM36	8017D844	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM37	8017D84C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM38	8017D850	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM39	8017D858	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM40	8017D870	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM41	8017D87C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM42	8017D884	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM43	8017D890	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM44	8017D89C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM45	8017D8A8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM46	8017D8B8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM47	8017D8BC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM48	8017D8C0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM49	8017D8C4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM50	8017D8C8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM51	8017D8CC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM52	8017D8D0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM53	8017D8D0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM54	8017D8D8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM55	8017D8E0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM56	8017D8F4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM57	8017D8F4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM58	8017D8F4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM59	8017D908	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM60	8017D938	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM61	8017D938	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM62	8017D93C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM63	8017D944	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM64	8017D94C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM65	8017D95C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM66	8017D960	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM67	8017D964	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM68	8017D96C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM69	8017D97C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM70	8017D9B0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM71	8017D9B8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM72	8017D9CC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM73	8017D9D4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM74	8017D9DC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM75	8017D9E0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM76	8017D9E8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM77	8017DA08	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM78	8017DA14	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM79	8017DA1C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM80	8017DA28	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM81	8017DA38	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM82	8017DA44	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM83	8017DA54	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM84	8017DA58	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM85	8017DA5C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM86	8017DA64	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM87	8017DA68	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM88	8017DA70	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM89	8017DA78	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM90	8017DA8C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM91	8017DA8C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM92	8017DA8C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM93	8017DAA0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM94	8017DAA8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM95	8017DAAC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM96	8017DAC8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM97	8017DAD0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM98	8017DAE0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM99	8017DAF4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM100	8017DAFC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM101	8017DB10	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM102	8017DB18	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM103	8017DB2C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM104	8017DB34	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM105	8017DB48	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM106	8017DB58	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM107	8017DB60	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM108	8017DB68	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM109	8017DB68	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM110	8017DB6C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM111	8017DB74	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM112	8017DB7C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM113	8017DB84	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM114	8017DB88	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM115	8017DB8C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM116	8017DB90	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM117	8017DB94	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM118	8017DBA4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM119	8017DBAC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM120	8017DBBC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM121	8017DBCC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM122	8017DBD8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM123	8017DBE0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM124	8017DBE8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM125	8017DBF8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM126	8017DC00	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM127	8017DC0C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM128	8017DC1C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM129	8017DCD8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM130	8017DCEC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM131	8017DCEC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM132	8017DCEC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM133	8017DCEC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM134	8017DCF4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM135	8017DCF4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM136	8017DCF4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM137	8017DCF4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM138	8017DCFC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM139	8017DCFC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM140	8017DCFC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM141	8017DCFC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM142	8017DD04	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM143	8017DD04	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM144	8017DD04	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM145	8017DD08	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM146	8017DD14	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM147	8017DD20	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM148	8017DD28	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM149	8017DD3C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM150	8017DD3C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM151	8017DD40	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM152	8017DD44	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM153	8017DD4C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM154	8017DD4C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM155	8017DD4C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_shelterB1MainCorridorInitRoomTask	8017DD4C	flt	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM156	8017DD58	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM157	8017DD60	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM158	8017DD64	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM159	8017DD68	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM160	8017DD70	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM161	8017DD90	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM162	8017DD90	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM163	8017DD90	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_shelterB1MainCorridorMessageTaskIdle	8017DD90	flt	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM164	8017DD90	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM165	8017DD98	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_gShelterB1MainCorridorRoomTaskStates	8017D5F0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM166	8017DD98	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM167	8017DD98	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM168	8017DD9C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM169	8017DDA0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM170	8017DDA4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM171	8017DDC0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM172	8017DDE0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM173	8017DDF0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM174	8017DDF0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM175	8017DDF0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM176	8017DE00	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM177	8017DE10	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM178	8017DE14	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM179	8017DE1C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM180	8017DE24	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM181	8017DE2C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM182	8017DE34	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM183	8017DE3C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM184	8017DE44	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM185	8017DE4C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM186	8017DE54	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM187	8017DE5C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM188	8017DE64	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM189	8017DE6C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM190	8017DE74	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM191	8017DE7C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM192	8017DE84	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM193	8017DEBC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM194	8017DEBC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_glowDrawBeam	8017E070	flt	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM195	8017DEE4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM196	8017DEEC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM197	8017DEEC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM198	8017DEEC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM199	8017DEF4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM200	8017DF08	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM201	8017DF1C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM202	8017DF2C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM203	8017DF3C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM204	8017DF4C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM205	8017DF54	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM206	8017DF54	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM207	8017DF60	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM208	8017DF68	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM209	8017DF6C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM210	8017DF74	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM211	8017DF74	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM212	8017DF7C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM213	8017DF90	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM214	8017DFA4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM215	8017DFB8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM216	8017DFC8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM217	8017DFD8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM218	8017DFE8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM219	8017DFF8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM220	8017E000	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM221	8017E000	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM222	8017E000	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM223	8017E008	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM224	8017E01C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM225	8017E028	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM226	8017E030	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM227	8017E030	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM228	8017E03C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM229	8017E044	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM230	8017E060	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM231	8017E070	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM232	8017E070	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM233	8017E070	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM234	8017E07C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM235	8017E084	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM236	8017E088	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM237	8017E0B0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM238	8017E0B4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM239	8017E0B8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM240	8017E0C0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM241	8017E0C4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM242	8017E0C8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM243	8017E0E0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM244	8017E110	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM245	8017E118	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM246	8017E124	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM247	8017E12C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM248	8017E13C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM249	8017E144	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM250	8017E150	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM251	8017E158	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM252	8017E16C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM253	8017E180	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM254	8017E194	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM255	8017E198	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM256	8017E19C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM257	8017E1A0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM258	8017E1A4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM259	8017E1D0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM260	8017E204	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM261	8017E220	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM262	8017E224	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM263	8017E228	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM264	8017E234	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM265	8017E240	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM266	8017E244	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM267	8017E248	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM268	8017E24C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM269	8017E254	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM270	8017E258	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM271	8017E260	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM272	8017E264	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM273	8017E268	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM274	8017E26C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM275	8017E270	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM276	8017E274	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM277	8017E278	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM278	8017E27C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM279	8017E2C0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM280	8017E2D4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM281	8017E2D8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM282	8017E2E8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM283	8017E2FC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM284	8017E300	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM285	8017E308	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM286	8017E318	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM287	8017E32C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM288	8017E330	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM289	8017E340	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM290	8017E364	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM291	8017E368	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM292	8017E36C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM293	8017E370	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM294	8017E374	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM295	8017E378	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM296	8017E37C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM297	8017E380	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM298	8017E384	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM299	8017E398	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM300	8017E39C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM301	8017E3AC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM302	8017E3D0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM303	8017E3D8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM304	8017E3DC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM305	8017E43C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM306	8017E440	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM307	8017E454	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM308	8017E460	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM309	8017E464	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM310	8017E46C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM311	8017E470	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM312	8017E474	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM313	8017E47C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM314	8017E48C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM315	8017E498	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM316	8017E4A4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM317	8017E4B0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM318	8017E4B8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM319	8017E4CC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM320	8017E4D0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM321	8017E4E0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM322	8017E4F4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM323	8017E4F8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM324	8017E508	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM325	8017E51C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM326	8017E520	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM327	8017E530	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM328	8017E558	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM329	8017E564	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM330	8017E570	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM331	8017E574	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM332	8017E578	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM333	8017E57C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM334	8017E580	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM335	8017E584	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM336	8017E588	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM337	8017E5E8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM338	8017E5EC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM339	8017E600	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM340	8017E60C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM341	8017E610	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM342	8017E614	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM343	8017E618	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM344	8017E61C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM345	8017E620	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM346	8017E664	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM347	8017E678	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM348	8017E67C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM349	8017E68C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM350	8017E6A0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM351	8017E6A4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM352	8017E6AC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM353	8017E6BC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM354	8017E6D0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM355	8017E6D4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM356	8017E6E4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM357	8017E6F8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM358	8017E6FC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM359	8017E710	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM360	8017E714	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM361	8017E718	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM362	8017E71C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM363	8017E720	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM364	8017E724	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM365	8017E724	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM366	8017E738	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM367	8017E73C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM368	8017E74C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM369	8017E770	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM370	8017E778	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM371	8017E77C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM372	8017E7CC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM373	8017E7D0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM374	8017E7E0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM375	8017E7E4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM376	8017E7F8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM377	8017E804	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM378	8017E810	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM379	8017E828	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM380	8017E858	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM381	8017E858	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM382	8017E858	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM383	8017E85C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM384	8017E864	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM385	8017E868	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM386	8017E86C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM387	8017E870	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM388	8017E87C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM389	8017E894	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM390	8017E8C4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM391	8017E8CC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM392	8017E8D8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM393	8017E8E4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM394	8017E8EC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM395	8017E8FC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM396	8017E904	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM397	8017E914	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM398	8017E928	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM399	8017E928	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM400	8017E92C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM401	8017E930	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM402	8017E934	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM403	8017E938	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM404	8017E93C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM405	8017E940	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM406	8017E94C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM407	8017E958	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM408	8017E970	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM409	8017E974	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM410	8017E97C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM411	8017E980	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM412	8017E984	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM413	8017E98C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM414	8017E998	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM415	8017E9A0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM416	8017E9AC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM417	8017E9B8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM418	8017EA2C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM419	8017EA44	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM420	8017EA54	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM421	8017EAC0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM422	8017EACC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM423	8017EAD4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM424	8017EAD4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM425	8017EAD4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM426	8017EAE4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_roomVisualEffectsDrawMote	8017EDA0	flt	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM427	8017ED88	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM428	8017EDA0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM429	8017EDA0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM430	8017EDA0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM431	8017EDA0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM432	8017EDA8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM433	8017EDAC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM434	8017EDB4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM435	8017EDBC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM436	8017EDC0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM437	8017EDC4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM438	8017EDC8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM439	8017EDCC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM440	8017EDD0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM441	8017EDD4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM442	8017EDD8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM443	8017EDDC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM444	8017EDE0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM445	8017EDE4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM446	8017EDE8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM447	8017EDEC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM448	8017EDF0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM449	8017EE08	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM450	8017EE38	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM451	8017EE40	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM452	8017EE4C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM453	8017EE54	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM454	8017EE64	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM455	8017EE74	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM456	8017EE84	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM457	8017EE88	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM458	8017EE8C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM459	8017EE90	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM460	8017EE98	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM461	8017EEA0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM462	8017EEA8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM463	8017EEB0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM464	8017EEB8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM465	8017EEBC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM466	8017EEC4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM467	8017EECC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM468	8017EED8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM469	8017EEE0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM470	8017EEE8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM471	8017EF08	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM472	8017EF0C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM473	8017EF18	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM474	8017EF1C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM475	8017EF24	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM476	8017EF30	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM477	8017EF40	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM478	8017EF7C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM479	8017EF84	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM480	8017EF88	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM481	8017EF8C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM482	8017EF90	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM483	8017EF94	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM484	8017EF9C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM485	8017EFA0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM486	8017EFA4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM487	8017EFA8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM488	8017EFAC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM489	8017EFB4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM490	8017EFB8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM491	8017EFBC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM492	8017EFC0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM493	8017EFC4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM494	8017EFCC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM495	8017EFD0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM496	8017EFD4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM497	8017EFD8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM498	8017EFDC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM499	8017F048	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM500	8017F05C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM501	8017F064	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM502	8017F064	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM503	8017F064	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_roomVisualEffectsDrawHaloRing	8017F064	flt	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM504	8017F06C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM505	8017F074	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM506	8017F09C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM507	8017F0A0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM508	8017F0A4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM509	8017F0A8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM510	8017F0AC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM511	8017F0B0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM512	8017F0B4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM513	8017F0B8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM514	8017F0BC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM515	8017F0C0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM516	8017F0C4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM517	8017F0C8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM518	8017F0CC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM519	8017F0D0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM520	8017F0E8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM521	8017F118	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM522	8017F120	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM523	8017F12C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM524	8017F134	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM525	8017F144	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM526	8017F154	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM527	8017F164	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM528	8017F168	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM529	8017F16C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM530	8017F170	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM531	8017F174	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM532	8017F1A0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM533	8017F1A8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM534	8017F1AC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM535	8017F1D8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM536	8017F1F0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM537	8017F1F4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM538	8017F1F8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM539	8017F204	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM540	8017F20C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM541	8017F21C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM542	8017F228	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM543	8017F234	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM544	8017F258	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM545	8017F274	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM546	8017F278	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM547	8017F28C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM548	8017F290	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM549	8017F2A0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM550	8017F2B4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM551	8017F2B8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM552	8017F2BC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM553	8017F2CC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM554	8017F2E0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM555	8017F2E4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM556	8017F2F4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM557	8017F308	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM558	8017F30C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM559	8017F31C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM560	8017F330	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM561	8017F334	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM562	8017F344	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM563	8017F358	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM564	8017F35C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM565	8017F36C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM566	8017F380	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM567	8017F384	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM568	8017F394	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM569	8017F3BC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM570	8017F400	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM571	8017F404	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM572	8017F414	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM573	8017F418	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM574	8017F42C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM575	8017F438	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM576	8017F444	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM577	8017F45C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM578	8017F488	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM579	8017F488	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM580	8017F488	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_roomVisualEffectsDrawHaloDisc	8017F488	flt	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM581	8017F498	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM582	8017F4A0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM583	8017F4C0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM584	8017F4C4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM585	8017F4C8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM586	8017F4CC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM587	8017F4D0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM588	8017F4D4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM589	8017F4D8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM590	8017F4DC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM591	8017F4E0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM592	8017F4E4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM593	8017F4E8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM594	8017F4EC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM595	8017F4F0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM596	8017F508	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM597	8017F538	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM598	8017F540	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM599	8017F54C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM600	8017F554	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM601	8017F564	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM602	8017F574	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM603	8017F584	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM604	8017F588	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM605	8017F58C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM606	8017F590	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM607	8017F594	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM608	8017F5C0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM609	8017F5D8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM610	8017F5DC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM611	8017F5E0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM612	8017F5EC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM613	8017F5F4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM614	8017F604	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM615	8017F610	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM616	8017F61C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM617	8017F638	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM618	8017F63C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM619	8017F648	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM620	8017F648	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM621	8017F65C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM622	8017F660	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM623	8017F670	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM624	8017F684	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM625	8017F68C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM626	8017F69C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM627	8017F6B0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM628	8017F6B4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM629	8017F6C4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM630	8017F6EC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM631	8017F6F0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM632	8017F6F4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM633	8017F6F8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM634	8017F6FC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM635	8017F700	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM636	8017F714	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM637	8017F718	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM638	8017F728	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM639	8017F750	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM640	8017F794	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM641	8017F798	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM642	8017F7A8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM643	8017F7AC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM644	8017F7C0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM645	8017F7CC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM646	8017F7D8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM647	8017F7F0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM648	8017F81C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM649	8017F81C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM650	8017F81C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM651	8017F82C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_roomVisualEffectsDrawHaloStar	80180604	flt	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM652	8017FB98	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM653	8017FBB4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM654	8017FBB4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM655	8017FBB4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM656	8017FBC4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_roomVisualEffectsDrawHaloBurstGlow	8017FD60	flt	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM657	8017FD48	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM658	8017FD60	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM659	8017FD60	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM660	8017FD60	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM661	8017FD68	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM662	8017FD70	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM663	8017FD74	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM664	8017FD7C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM665	8017FD80	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM666	8017FD84	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM667	8017FD8C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM668	8017FD90	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM669	8017FD98	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM670	8017FD9C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM671	8017FDA4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM672	8017FDB0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM673	8017FDBC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM674	8017FDC0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM675	8017FDC4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM676	8017FDC8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM677	8017FDCC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM678	8017FDD0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM679	8017FDD4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM680	8017FDE0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM681	8017FDE4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM682	8017FDE8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM683	8017FDEC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM684	8017FDF0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM685	8017FDF4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM686	8017FDF8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM687	8017FDFC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM688	8017FE00	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM689	8017FE04	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM690	8017FE08	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM691	8017FE0C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM692	8017FE10	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM693	8017FE14	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM694	8017FE18	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM695	8017FE1C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM696	8017FE20	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM697	8017FE24	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM698	8017FE28	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM699	8017FE2C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM700	8017FE30	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM701	8017FE48	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM702	8017FE78	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM703	8017FE80	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM704	8017FE8C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM705	8017FE94	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM706	8017FEA4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM707	8017FEB4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM708	8017FEC4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM709	8017FED0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM710	8017FED8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM711	8017FEE0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM712	8017FEE8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM713	8017FEF0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM714	8017FF08	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM715	8017FF0C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM716	8017FF14	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM717	8017FF1C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM718	8017FF20	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM719	8017FF24	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM720	8017FF28	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM721	8017FF50	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM722	8017FF58	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM723	8017FF5C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM724	8017FF60	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM725	8017FF64	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM726	8017FF70	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM727	8017FF74	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM728	8017FF94	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM729	8017FF9C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM730	8017FFE4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM731	8017FFF4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM732	8017FFF8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM733	80180000	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM734	80180004	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM735	80180008	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM736	8018000C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM737	80180010	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM738	80180018	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM739	8018001C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM740	80180020	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM741	80180024	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM742	80180028	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM743	80180030	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM744	80180034	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM745	80180038	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM746	8018003C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM747	80180040	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM748	80180048	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM749	8018004C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM750	80180050	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM751	80180054	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM752	80180058	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM753	80180094	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM754	80180098	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM755	801800AC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM756	801800B4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM757	801800B8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM758	801800C4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM759	801800CC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM760	801800D4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM761	801800DC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM762	801800E0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM763	801800E4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM764	801800FC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM765	80180114	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM766	8018011C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM767	80180124	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM768	80180134	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM769	80180140	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM770	80180148	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM771	80180184	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM772	80180194	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM773	80180198	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM774	8018019C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM775	801801AC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM776	801801B0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM777	801801B4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM778	801801C4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM779	801801C8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM780	801801CC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM781	801801D4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM782	801801D8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM783	801801DC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM784	801801E0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM785	801801E4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM786	80180238	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM787	8018023C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM788	80180244	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM789	80180258	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_roomVisualEffectsDrawHaloBurstGroundQuad	8018028C	flt	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM790	80180264	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM791	8018027C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM792	8018028C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM793	8018028C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM794	8018028C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM795	8018028C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM796	8018028C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM797	80180294	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM798	80180298	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM799	8018029C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM800	801802A0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM801	801802AC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM802	801802C4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM803	801802D4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM804	801802E0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM805	801802E4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM806	801802EC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM807	80180300	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM808	80180330	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM809	80180338	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM810	80180344	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM811	8018035C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM812	80180370	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM813	80180378	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM814	8018037C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM815	80180384	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM816	8018038C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM817	80180390	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM818	80180398	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM819	801803A4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM820	801803D4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM821	801803DC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM822	801803E8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM823	801803F0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM824	80180414	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM825	80180420	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM826	80180438	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM827	80180448	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM828	80180458	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM829	80180468	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM830	8018046C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM831	80180470	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM832	80180474	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM833	80180478	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM834	80180480	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM835	80180488	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM836	80180490	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM837	801804A4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM838	801804AC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM839	801804B4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM840	801804B8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM841	801804C0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM842	801804CC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM843	801804D0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM844	801804D4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM845	801804D8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM846	801804E4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM847	801804E8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM848	801804EC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM849	801804F4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM850	80180500	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM851	80180504	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM852	80180508	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM853	8018050C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM854	80180518	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM855	8018051C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM856	80180528	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM857	80180534	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM858	80180540	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM859	8018054C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM860	80180558	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM861	80180564	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM862	80180568	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM863	8018056C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM864	80180570	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM865	80180574	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM866	80180578	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM867	8018057C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM868	801805E8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM869	801805FC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM870	80180604	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM871	80180604	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM872	80180604	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM873	80180614	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM874	8018061C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM875	80180640	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM876	80180644	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM877	80180648	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM878	8018064C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM879	80180650	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM880	80180654	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM881	80180658	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM882	8018065C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM883	80180660	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM884	80180664	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM885	80180668	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM886	8018066C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM887	80180670	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM888	80180688	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM889	801806B8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM890	801806C0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM891	801806CC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM892	801806D4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM893	801806E4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM894	801806F4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM895	80180704	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM896	8018070C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM897	80180710	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM898	80180714	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM899	80180718	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM900	80180744	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM901	80180748	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM902	8018074C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM903	80180778	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM904	8018077C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM905	80180790	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM906	80180794	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM907	80180798	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM908	801807A4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM909	801807AC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM910	801807F8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM911	801807FC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM912	8018080C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM913	80180820	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM914	80180824	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM915	80180834	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM916	80180848	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM917	8018084C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM918	80180850	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM919	80180860	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM920	80180874	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM921	80180878	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM922	80180888	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM923	801808B0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM924	801808B4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM925	801808B8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM926	801808BC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM927	801808C0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM928	801808C4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM929	801808D8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM930	801808DC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM931	801808EC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM932	80180910	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM933	80180914	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM934	80180918	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM935	80180968	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM936	8018096C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM937	80180980	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM938	8018098C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM939	80180998	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM940	801809A0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM941	801809E4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM942	801809E8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM943	801809F4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM944	80180A08	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM945	80180A0C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM946	80180A1C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM947	80180A30	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM948	80180A34	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM949	80180A44	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM950	80180A58	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM951	80180A5C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM952	80180A6C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM953	80180A94	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM954	80180AA0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM955	80180AA4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM956	80180AA8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM957	80180ABC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM958	80180AC0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM959	80180AD0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM960	80180AF4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM961	80180AF8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM962	80180AFC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM963	80180B38	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM964	80180B3C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM965	80180B4C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM966	80180B50	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM967	80180B64	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM968	80180B70	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM969	80180B7C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM970	80180B80	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM971	80180B98	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM972	80180BA0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM973	80180BA8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM974	80180BE4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM975	80180BE8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM976	80180BF4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM977	80180BF8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM978	80180C08	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM979	80180C1C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM980	80180C20	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM981	80180C30	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM982	80180C44	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM983	80180C48	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM984	80180C58	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM985	80180C6C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM986	80180C70	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM987	80180C80	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM988	80180CA8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM989	80180CAC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM990	80180CB0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM991	80180CB4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM992	80180CB8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM993	80180CBC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM994	80180CD0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM995	80180CD4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM996	80180CE4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM997	80180D08	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM998	80180D0C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM999	80180D10	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1000	80180D60	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1001	80180D64	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1002	80180D78	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1003	80180D84	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1004	80180D8C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1005	80180D94	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1006	80180DE0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1007	80180DE4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1008	80180DF4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1009	80180E08	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1010	80180E0C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1011	80180E1C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1012	80180E30	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1013	80180E34	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1014	80180E44	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1015	80180E58	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1016	80180E5C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1017	80180E6C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1018	80180E94	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1019	80180E98	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1020	80180E9C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1021	80180EA0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1022	80180EA4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1023	80180EA8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1024	80180EBC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1025	80180EC0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1026	80180ED0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1027	80180EF4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1028	80180EF8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1029	80180EFC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1030	80180F38	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1031	80180F3C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1032	80180F4C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1033	80180F50	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1034	80180F64	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1035	80180F70	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1036	80180F7C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1037	80180F94	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1038	80180FC4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1039	80180FC4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1040	80180FC4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1041	80180FD4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1042	801810E0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1043	801810F8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1044	801810F8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1045	801810F8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1046	80181108	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_roomVisualEffectsDrawFlashDisc	801817C8	flt	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_roomVisualEffectsDrawFlashRing	8018139C	flt	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_roomVisualEffectsDrawBurstStar	801826CC	flt	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1047	80181384	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1048	8018139C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1049	8018139C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1050	8018139C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1051	801813A4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1052	801813AC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1053	801813D4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1054	801813D8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1055	801813DC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1056	801813E4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1057	801813E8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1058	801813EC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1059	801813F0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1060	801813F4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1061	801813F8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1062	801813FC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1063	80181400	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1064	80181404	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1065	80181408	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1066	80181420	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1067	80181450	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1068	8018145C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1069	80181468	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1070	80181470	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1071	80181480	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1072	80181490	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1073	801814A0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1074	801814A4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1075	801814A8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1076	801814AC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1077	801814B0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1078	801814DC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1079	801814E0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1080	801814E4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1081	801814E8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1082	8018151C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1083	80181520	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1084	80181534	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1085	80181538	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1086	80181544	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1087	8018154C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1088	8018155C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1089	80181568	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1090	80181574	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1091	80181598	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1092	801815B4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1093	801815B8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1094	801815CC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1095	801815D0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1096	801815E0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1097	801815F4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1098	801815F8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1099	801815FC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1100	8018160C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1101	80181620	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1102	80181624	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1103	80181634	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1104	80181648	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1105	8018164C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1106	8018165C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1107	80181670	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1108	80181674	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1109	80181684	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1110	80181698	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1111	8018169C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1112	801816AC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1113	801816C0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1114	801816C4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1115	801816D4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1116	801816FC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1117	80181740	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1118	80181744	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1119	80181754	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1120	80181758	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1121	8018176C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1122	80181778	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1123	80181784	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1124	8018179C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1125	801817C8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1126	801817C8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1127	801817C8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1128	801817D8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1129	801817E0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1130	80181800	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1131	80181804	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1132	80181808	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1133	8018180C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1134	80181810	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1135	80181814	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1136	80181818	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1137	8018181C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1138	80181820	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1139	80181824	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1140	80181828	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1141	8018182C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1142	80181830	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1143	80181848	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1144	80181878	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1145	80181880	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1146	8018188C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1147	80181894	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1148	801818A4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1149	801818B4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1150	801818C4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1151	801818C8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1152	801818CC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1153	801818D0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1154	801818D4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1155	80181900	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1156	80181918	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1157	8018191C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1158	80181920	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1159	8018192C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1160	80181934	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1161	80181944	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1162	80181950	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1163	8018195C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1164	80181978	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1165	8018197C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1166	80181988	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1167	80181988	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1168	8018199C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1169	801819A0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1170	801819B0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1171	801819C4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1172	801819CC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1173	801819DC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1174	801819F0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1175	801819F4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1176	80181A04	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1177	80181A2C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1178	80181A30	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1179	80181A34	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1180	80181A38	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1181	80181A3C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1182	80181A40	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1183	80181A54	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1184	80181A58	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1185	80181A68	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1186	80181A90	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1187	80181AD4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1188	80181AD8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1189	80181AE8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1190	80181AEC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1191	80181B00	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1192	80181B0C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1193	80181B18	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1194	80181B30	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1195	80181B5C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1196	80181B5C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1197	80181B5C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1198	80181B5C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1199	80181B64	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1200	80181B94	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1201	80181B98	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1202	80181B9C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1203	80181BA0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1204	80181BA4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1205	80181BA8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1206	80181BB4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1207	80181BC4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1208	80181BEC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1209	80181BFC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1210	80181C04	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1211	80181C0C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1212	80181C0C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1213	80181C0C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1214	80181C14	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1215	80181C18	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1216	80181C1C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1217	80181C20	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1218	80181C24	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1219	80181C28	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1220	80181C2C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1221	80181C38	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1222	80181C3C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1223	80181C40	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1224	80181C44	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1225	80181C48	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1226	80181C4C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1227	80181C50	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1228	80181C50	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1229	80181C58	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1230	80181C64	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1231	80181C68	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1232	80181C6C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1233	80181C70	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1234	80181C74	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1235	80181C78	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1236	80181C7C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1237	80181C80	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1238	80181C84	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1239	80181C88	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1240	80181C8C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1241	80181C8C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1242	80181C94	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1243	80181CA0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1244	80181D38	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1245	80181DD0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1246	80181DE4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1247	80181DEC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1248	80181DEC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1249	80181DF4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1250	80181DFC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1251	80181E00	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1252	80181E04	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1253	80181E08	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1254	80181E0C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1255	80181E10	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1256	80181E14	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1257	80181E18	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1258	80181E1C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1259	80181E20	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1260	80181E20	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1261	80181E2C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1262	80181E34	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1263	80181EE4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1264	80181F9C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1265	80181FA8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1266	80181FAC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1267	80181FB0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1268	80181FB8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1269	80181FBC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1270	80181FC0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1271	80181FC8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1272	80181FDC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+_roomVisualEffectsDrawTwinTrail	8018204C	flt	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1273	80181FF4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1274	80182014	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1275	8018201C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1276	8018204C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1277	8018204C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1278	8018204C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1279	80182060	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1280	80182068	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1281	80182078	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1282	8018207C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1283	80182094	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1284	80182098	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1285	8018209C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1286	801820A8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1287	801820C0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1288	801820F0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1289	801820F4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1290	80182108	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1291	80182114	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1292	80182118	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1293	80182128	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1294	8018212C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1295	80182130	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1296	80182134	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1297	80182138	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1298	8018213C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1299	80182140	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1300	80182144	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1301	80182148	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1302	8018214C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1303	80182150	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1304	80182154	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1305	80182158	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1306	8018215C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1307	80182160	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1308	80182164	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1309	80182168	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1310	8018216C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1311	80182170	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1312	80182174	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1313	80182180	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1314	8018218C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1315	80182190	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1316	80182194	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1317	80182198	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1318	801821A4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1319	801821B0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1320	801821BC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1321	801821C4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1322	801821D0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1323	801821D8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1324	801821FC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1325	80182208	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1326	80182220	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1327	80182230	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1328	80182240	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1329	80182250	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1330	80182260	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1331	80182264	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1332	8018227C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1333	8018228C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1334	80182290	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1335	80182298	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1336	801822AC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1337	801822AC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1338	801822B0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1339	801822B4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1340	801822B8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1341	801822C0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1342	801822C8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1343	801822CC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1344	801822D0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1345	801822D4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1346	801822D8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1347	801822DC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1348	801822E0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1349	801822E4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1350	801822E8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1351	801822EC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1352	801822F0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1353	801822F4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1354	801822F8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1355	801822FC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1356	80182300	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1357	80182304	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1358	80182308	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1359	8018230C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1360	80182310	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1361	80182314	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1362	80182320	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1363	8018232C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1364	80182338	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1365	80182344	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1366	80182350	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1367	8018235C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1368	80182360	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1369	80182364	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1370	80182368	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1371	8018236C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1372	80182370	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1373	80182374	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1374	801823E0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1375	801823EC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1376	801823F0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1377	801823FC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1378	80182414	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1379	80182444	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1380	80182444	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1381	80182444	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1382	80182454	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1383	801826B0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1384	801826CC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1385	801826CC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1386	801826CC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1387	801826DC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1388	801826E4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1389	80182708	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1390	8018270C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1391	80182710	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1392	80182714	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1393	80182718	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1394	8018271C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1395	80182720	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1396	80182724	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1397	80182728	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1398	8018272C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1399	80182730	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1400	80182734	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1401	80182738	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1402	80182750	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1403	80182780	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1404	80182788	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1405	80182794	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1406	8018279C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1407	801827AC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1408	801827BC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1409	801827CC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1410	801827D4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1411	801827D8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1412	801827DC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1413	801827E0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1414	8018280C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1415	80182810	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1416	80182814	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1417	80182840	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1418	80182844	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1419	80182858	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1420	8018285C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1421	80182860	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1422	8018286C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1423	80182874	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1424	801828C0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1425	801828C4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1426	801828D4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1427	801828E8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1428	801828EC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1429	801828FC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1430	80182910	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1431	80182914	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1432	80182918	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1433	80182928	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1434	8018293C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1435	80182940	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1436	80182950	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1437	80182978	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1438	8018297C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1439	80182980	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1440	80182984	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1441	80182988	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1442	8018298C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1443	801829A0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1444	801829A4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1445	801829B4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1446	801829D8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1447	801829DC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1448	801829E0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1449	80182A30	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1450	80182A34	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1451	80182A48	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1452	80182A54	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1453	80182A60	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1454	80182A68	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1455	80182AAC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1456	80182AB0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1457	80182ABC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1458	80182AD0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1459	80182AD4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1460	80182AE4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1461	80182AF8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1462	80182AFC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1463	80182B0C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1464	80182B20	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1465	80182B24	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1466	80182B34	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1467	80182B5C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1468	80182B68	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1469	80182B6C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1470	80182B70	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1471	80182B84	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1472	80182B88	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1473	80182B98	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1474	80182BBC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1475	80182BC0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1476	80182BC4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1477	80182C00	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1478	80182C04	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1479	80182C14	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1480	80182C18	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1481	80182C2C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1482	80182C38	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1483	80182C44	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1484	80182C48	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1485	80182C60	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1486	80182C68	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1487	80182C70	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1488	80182CAC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1489	80182CB0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1490	80182CBC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1491	80182CC0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1492	80182CD0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1493	80182CE4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1494	80182CE8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1495	80182CF8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1496	80182D0C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1497	80182D10	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1498	80182D20	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1499	80182D34	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1500	80182D38	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1501	80182D48	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1502	80182D70	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1503	80182D74	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1504	80182D78	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1505	80182D7C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1506	80182D80	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1507	80182D84	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1508	80182D98	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1509	80182D9C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1510	80182DAC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1511	80182DD0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1512	80182DD4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1513	80182DD8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1514	80182E28	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1515	80182E2C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1516	80182E40	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1517	80182E4C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1518	80182E54	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1519	80182E5C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1520	80182EA8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1521	80182EAC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1522	80182EBC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1523	80182ED0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1524	80182ED4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1525	80182EE4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1526	80182EF8	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1527	80182EFC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1528	80182F0C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1529	80182F20	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1530	80182F24	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1531	80182F34	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1532	80182F5C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1533	80182F60	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1534	80182F64	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1535	80182F68	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1536	80182F6C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1537	80182F70	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1538	80182F84	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1539	80182F88	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1540	80182F98	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1541	80182FBC	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1542	80182FC0	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1543	80182FC4	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1544	80183000	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1545	80183004	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1546	80183014	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1547	80183018	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1548	8018302C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1549	80183038	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1550	80183044	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1551	8018305C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+LM1552	8018308C	fl	build/USA/src/rooms/shelter_b1_main_corridor/shelter_b1_main_corridor.i
+__romPos	000087B4	al	
+equipmentGetWeaponLoadCapacity	800BB938	a	
+gActor443500ConsoleFollowupSkipScript	80142A74	a	
+D_80073BAC	80073BAC	a	
+D_80072174	80072174	a	
+areaSetCurrentObjectState	800BAC34	a	
+uiInitList	800489A0	a	
+D_80071072	80071072	a	
+shelter_b1_main_corridor_RODATA_END	8017D620	f	
+CdFlush	80015AF4	a	
+gameFlagSetNibble	8004AC58	a	
+SetRotMatrix	8004ADF8	a	
+stageRequestModeTaskExit	8003F6F8	a	
+gShelterB1MainCorridorViewBoundaries	801853F8	f	
+gActor503500StaffCardSceneTaskDesc	8014B958	a	
+sceneEngageBattle	800DB4E0	a	
+tmdAllocPrimitiveBuffer	80041B88	a	
+gActor335800BalconyBattleStartScript	80165720	a	
+gActor450200CompanionSceneScript	80137EE4	a	
+actor161500StartSoldierBRemark	80131E38	a	
+gCapCommandEntries	801156A0	a	
+displayAcquireMenuHold	8003E610	a	
+gPadMenuButtonMask	8005ED78	a	
+areaSetPlacementVariant	800B5B30	a	
+displayQueueModeTask	8003FB70	a	
+gameGetTaskSlot	8002D22C	a	
+GetTPage	80043938	a	
+displaySetFrameTiming	800280F4	a	
+textItoaUnsigned	8002F18C	a	
+damagePackEnemyAttackKey	800E2BF8	a	
+viewGetMappedIndex	800AD284	a	
+worldCoordGetOriginAudioPan	800D937C	a	
+gPadInputMenuUnlockUpdates	80115716	a	
+mapShelterRoomVariantResolve	80179A04	a	
+uiGetTextColor	80048E10	a	
+cdCmdSelectScene	8001D534	a	
+gActor107600TaskDescriptors	80134F94	a	
+SetDrawTPage	80043A38	a	
+gShelterB1MainCorridorRoomViewCounts	801831FC	f	
+D_801153F1	801153F1	a	
+roomEventTask	8017D784	ft	
+printf	8001AF3C	a	
+worldCollisionClearContacts	800E1A6C	a	
+shelterB1MainCorridorRoomVisualEffectsHaloOrangeBurstTask	8017FBB4	ft	
+sceneReleaseBattleRefAndClearRewards	800DB630	a	
+memMalloc	8002DABC	a	
+D_80073BA0	80073BA0	a	
+gActionPromptSlots	80114D28	a	
+D_80072836	80072836	a	
+gAttachmentTrainingLevels	80114BF0	a	
+taskPollKill	8002D3BC	a	
+actor260400RestoreHeliportPlacement	80149FA4	a	
+gShelterB1MainCorridorCollisionGrid	801840F0	f	
+gRoomEffectOrangeBurst2Id	80115754	a	
+stageMusicRequestAreaStop	800430E4	a	
+taskSpawn	8002CFDC	a	
+MatrixNormal	8003D6C8	a	
+gAreaRecordsByStage	8010CBCC	a	
+textDrawUiLine	8002FDCC	a	
+D_8007106C	8007106C	a	
+gActor450800NurseryIntroSkipScript	8013A33C	a	
+D_80070F6C	80070F6C	a	
+capRunCommandWithTransition	800E3B60	a	
+SetSemiTrans	800439B8	a	
+gCapRoomCompletionSoundsEnabled	80115598	a	
+sndEvtRequestMidiStart	800512BC	a	
+inventoryHasCollectedBit	800BB4BC	a	
+gGfxViewCoord	80070F10	a	
+equipmentRestoreHpMp	800BC164	a	
+D_80073B8C	80073B8C	a	
+gameFlowBeginLoadScreen	8002252C	a	
+sndEvtRequestScriptMix	80054424	a	
+worldCollisionProjectGroundCoord	800EA02C	a	
+worldCollisionUnlinkTrigger	800E1708	a	
+gShelterB1MainCorridorWarpTriggers	801858B8	f	
+actor215100SelectCaptionResource	8014C5E0	a	
+padScriptSpawnVariableMotorRamp	800E8D1C	a	
+shelterB1MainCorridorRoomVisualEffectsSparkBurstTask	80182444	ft	
+gShelterB1MainCorridorSurfacePropertiesByClass	80185D04	f	
+gfxSetFlatLight	8003B140	a	
+gPlayerActorStateTickHeld	80115768	a	
+glowDrawFlareClipped	8017E858	ft	
+gItemDescriptors	8010D838	a	
+playerActorPrepareDryfieldLoadout	800BC4E4	a	
+gActor450200RoomVariantSceneScript	8013FC58	a	
+taskGetDescAt	8002D32C	a	
+rcos	8003D108	a	
+D_80072177	80072177	a	
+streamFindViewMovieSlot	8001EED8	a	
+gRoomEffectTwinTrailId	8011572C	a	
+taskKill	8002CCB8	a	
+gActor143000KeypadTaskDesc	80134564	a	
+gEffectSpriteAtlasFrames	80111E48	a	
+D_80115188	80115188	a	
+D_80072724	80072724	a	
+textDrawString	8002E53C	a	
+gDirectionInteractionRearmUpdates	80114D08	a	
+D_80071078	80071078	a	
+gRoomEffectSparkBurstId	80115750	a	
+gActor120300TaskDescriptors	80141B6C	a	
+inventoryResetIceBagTimer	800BC21C	a	
+gEffectUnitQuadCorners	80111E38	a	
+worldCoordSetActorColorMode	800D930C	a	
+gActor342400EncounterTaskDescs	8016BFE0	a	
+gActor560800ChainGlowTick	801752EC	a	
+gActor444000IncineratorEventTaskDesc	801449F4	a	
+playerActorSetScriptedControl	800E3BBC	a	
+stageMusicRequestAreaStart	80043028	a	
+itemMenuSpawnNotice	800D4E40	a	
+actor460200SetupTentSoldiers	80132210	a	
+gActor335800BalconyEntrySkipScript	80165798	a	
+D_80115124	80115124	a	
+uiStartPanelOpening	80048964	a	
+gShelterB1MainCorridorSpriteViews	80185128	f	
+actor215100RequestGalleryAbort	8014A9A0	a	
+streamGetFrameLimit	80020414	a	
+gActor00100DesertChaserTaskDesc	8014D8A4	a	
+gActor04000HangingPoolTaskDesc	8013E51C	a	
+gActor560800CutsceneTaskDescriptors	801718F0	a	
+actor161500StartCompanionRequestReminder	801322A0	a	
+equipmentInitializeWeaponSupplies	800B6CF0	a	
+gFsActorBuffer1Base	8005C370	a	
+textFormatPlayTime	8002EB94	a	
+playerActorRestoreEquipment	801034C0	a	
+playerActorRemoveEquipment	801043F4	a	
+SetDrawMove	8004AD18	a	
+damageGetPlayerAttackEffectId	800E2D90	a	
+gpuSetPrimitiveBlendMode	800EC914	a	
+worldCoordUpdateActorColor	800D8EA0	a	
+enemyTaskExit	800B0234	a	
+gfxComposeNodeWorldTransform	800B1D00	a	
+gUiPromptObject	80067694	a	
+gFsActorBuffer0Base	8005C36C	a	
+ratan2	8003D9C8	a	
+sceneFindPlacedActor	800E86FC	a	
+animationSeekSlotWithBlend	800B4114	a	
+shelter_b1_main_corridor_DATA_SIZE	00002CE8	a	
+inventoryInitializeShootingGalleryLoadout	800BA538	a	
+D_80071090	80071090	a	
+gActor450200SoloSceneScript	8013C72C	a	
+RotTransSV	8004BD58	a	
+padIsStartPressed	8004ACF0	a	
+shelter_b1_main_corridor_DATA_END	80185D74	f	
+ApplyMatrixSV	80043A68	a	
+memSelectAuxHeapRegion	8002DC08	a	
+gActor450800NurseryIntroScript	80139964	a	
+memcpy	8001AEFC	a	
+gActor151000GardenArrivalScript	801334EC	a	
+gActor341300WalkwaySceneSkipScript	80165834	a	
+gStageCountdownMusicEntry	80062735	a	
+Gp_QtyById0	8010E038	a	
+sndEvtRequestStageScriptStop	800E3E64	a	
+shelterB1MainCorridorRoomVisualEffectsMoteTask	8017EAD4	ft	
+shelterB1MainCorridorRoomVisualEffectsSparkEmitterTask	80180FC4	ft	
+gActor207000SucklercephTaskDescs	80151E60	a	
+capSetTexturePage	800E6D4C	a	
+__floatsidf	8004B5D8	a	
+gRoomEventActive	80185D34	f	
+SetSprt	80043A18	a	
+gActor443500MapFollowupSkipScript	801432FC	a	
+areaSyncLocationVariant	800B601C	a	
+effectDrawGroundShadow	800F68AC	a	
+cdCmdCompleteHeadRequest	8001DA48	a	
+gameFlagSetNibbleIfPresent	800E3B3C	a	
+uiSizePanelForTextDefault	800490A4	a	
+worldCollisionUnlinkBody	800E1638	a	
+gRoomEffectFlyingSparkId	80115730	a	
+playerActorWriteWeaponAnimationBankIndex	800E3CEC	a	
+gGpuCurrentOt	800710A0	a	
+streamInitMoviePlayback	8002043C	a	
+gActor150400FreezerSceneScript	80132D70	a	
+gActor450200SoloSceneSkipScript	8013CAEC	a	
+sndScriptHasActiveId	8005462C	a	
+gMcDialogDescriptors	800611C8	a	
+sndEvtRequestMidiVolume	80051460	a	
+padScriptSpawn	800E8FB0	a	
+gCapFile	8011568C	a	
+gActor450200CompanionSceneSkipScript	80138694	a	
+sceneReleaseBattleRef	800DB6B4	a	
+gMcSaveData	80072168	a	
+gameSetTaskSlot	8002D214	a	
+taskSpawnFromTable	8002CFA0	a	
+gActor142900ElevatorFirstVisitSkipScript	801380F8	a	
+gActor503500BossPhaseTransitionScript	8014D158	a	
+inventoryGetItemQuantity	800BB6FC	a	
+gRoomEventFade	80185D24	f	
+cdCmdRequestCancel	8001C970	a	
+actor450900HandleDepartureTrigger	80132834	a	
+D_80070F70	80070F70	a	
+gActor160600SceneWithoutCompanionScript	80135AC0	a	
+displayResumeGameLoop	8003E540	a	
+tmdFreePrimitiveBuffer	80041B4C	a	
+shelterB1MainCorridorRoomVisualEffectsFlashTask	801810F8	ft	
+actor460200TalkToSoldierC	801322B8	a	
+itemMenuOpenHotspotCommands	800D4E78	a	
+gfxMakeRelativeTransform	800A8864	a	
+gRoomEventReq	80185D48	f	
+gWorldCollisionSurfacePropertiesTables	8010CBB8	a	
+streamPollGameRestore	8001EF9C	a	
+areaClearMapMark	800AED24	a	
+gItemMenuInfoPanel	80067634	a	
+cdCmdIsSlotEmpty	8001D37C	a	
+gActor05700RookGolemTasks	801611F8	a	
+D_8007107C	8007107C	a	
+gActor461800NeoArkSceneSkipScript	80134470	a	
+itemMenuDrawTaskPrompt	800CE4F4	a	
+MargePrim	800422B8	a	
+worldCoordSetModelLighting	800D7A9C	a	
+streamResetGameRestore	80020388	a	
+shelter_b1_main_corridor_RODATA_SIZE	00000060	a	
+gfxReadMatrixYAxis	8003C748	a	
+actor503500ClearFadeFromBlackHandle	80132F58	a	
+displayReleaseMenuHold	8003E64C	a	
+taskCallExit	8002D0A4	a	
+RotMatrixZYX	80044408	a	
+shelter_b1_main_corridor_VRAM_END	80185D74	f	
+actor341300ResetScriptTaskHandle	8016268C	a	
+modelObjectAttachTmd	8009902C	a	
+gActor161500CompleteCompanionRequestTaskDesc	80136CDC	a	
+gGameSession	8005ED64	a	
+D_80071076	80071076	a	
+__adddf3	8004AFE8	a	
+gRoomEffectFlashId	80115758	a	
+gShelterB1MainCorridorRoomLights	801853E0	f	
+gActor443500TourOpeningSkipScript	80141C1C	a	
+actor215100FinishGalleryCourse	8014A908	a	
+animationAimHeadAtPoint	800B0CF4	a	
+mapAkropolisOpenKeyItemMenu	80179FC8	a	
+areaSetObjectState	800BB8E8	a	
+gItemMenuPanelDescriptors	8010EAB4	a	
+SquareRoot0	8003B8A0	a	
+gameFlagSetPackedByte	800E3FAC	a	
+gAttachmentState	80114C08	a	
+displayConfigureFramebuffers	8003DB48	a	
+gfxBuildOrthonormalBasis	8003CEC4	a	
+gActor342100EncounterBlazeTaskDescriptors	80164B78	a	
+gActor535700PawnGolemEncounterScript	80133898	a	
+sndEvtRequestScriptStop	800542D0	a	
+SetShadeTex	800439E8	a	
+sceneReleaseBattleRefWithRewards	800DB558	a	
+capRunCommand	800E34D8	a	
+gFsActorBuffer2Base	8005C374	a	
+shelterB1MainCorridorRoomVisualEffectsTwinTrailTask	80181B5C	ft	
+capReset	800E6DF4	a	
+shelter_b1_main_corridor_VRAM	8017D5C0	f	
+gActor341300WalkwaySceneScript	80165354	a	
+gEquipmentWeaponPrimaryLoadOptions	8010E238	a	
+gfxReadMatrixZAxis	8003C768	a	
+D_80071086	80071086	a	
+gfxRotMatrixY	8003C98C	a	
+gPadScriptTransitionCommands	80114A24	a	
+viewApplyCamera	800A8A48	a	
+RotTransPers4	8004C358	a	
+D_8011540E	8011540E	a	
+gPadScriptTransitionSegments	80114A34	a	
+mapDryfieldFullResolveRoomVariant	80179954	a	
+shelter_b1_main_corridor_TEXT_START	8017D620	f	
+inventoryRestoreCarriedLoadout	800BA75C	a	
+D_80072176	80072176	a	
+gStreamInterFile	8006AC30	a	
+playerActorPrepareAcropolisLoadout	800BC4BC	a	
+mapAkropolisWasDryfieldMapSelected	8017A038	a	
+gStageMusicTaskDesc	80062774	a	
+gMdecMovieOutputSlot	8005EAEE	a	
+gActor451100SubmarineTunnelSceneSkipScript	80135FD0	a	
+gShelterB1MainCorridorWarpEntries	80183200	f	
+gStageRoomMusicSequence	80062737	a	
+worldCollisionFindContactIndex	800E19B8	a	
+worldCollisionLinkBody	800E15AC	a	
+D_80073BA9	80073BA9	a	
+midiIsSequenceBusy	800514F8	a	
+memCopyBytes	8002D7A8	a	
+effectKillTask	800EC7E4	a	
+inventoryCountOccupiedRows	800BAF5C	a	
+itemMenuGetPrimaryPreviewItem	800CF27C	a	
+shelter_b1_main_corridor_TEXT_SIZE	00005A6C	a	
+sceneSetPlacedActorDrawMode	800E3C6C	a	
+__fixdfsi	8004B4D8	a	
+effectDrawGouraudDisc	800EAEB8	a	
+cdCmdStageSceneAudioStart	8001D6B8	a	
+gShelterB1MainCorridorRoomViewMaps	801831F8	f	
+D_80072A94	80072A94	a	
+textItoaSigned	8002F020	a	
+cdCmdIsIdle	8001D344	a	
+actor215100CheckGalleryExitInput	8014A398	a	
+D_80072729	80072729	a	
+sceneQueueBattleEscapeResult	800A7A64	a	
+gShelterB1MainCorridorAreaVariants	80185C30	f	
+capStartSequenceSlot	800E6C70	a	
+gActor215100GalleryTrainingActive	8014D038	a	
+worldCollisionReadActionHit	800E1BF0	a	
+SetTransMatrix	8004AE28	a	
+gameFlagGetNibble	8004ACAC	a	
+D_801153F4	801153F4	a	
+gRoomEffectHaloId	80115744	a	
+AddPrim	80043978	a	
+gCapPreserveActorControl	80115690	a	
+uiSetListSystemCursorSound	8004917C	a	
+itemSetIdentified	800BB7C0	a	
+gfxRotMatrixZ	8003CB80	a	
+worldTargetAddReadoutAmount	800DA6E8	a	
+inventoryGetConsumableStackQuantity	800BB26C	a	
+SetDrawOffset	80018AA4	a	
+D_8007272D	8007272D	a	
+gSceneCombatState	801153F0	a	
+itemMenuDrawItemRow	800CD924	a	
+effectDrawSpinningBillboard	800EB2C8	a	
+uiDrawPanelLabel	80047F40	a	
+gGameMainPersistentState	800710A8	a	
+enemySpawnFromTable	800B01AC	a	
+gfxRotMatrixYXZ	8003BD34	a	
+D_8011540A	8011540A	a	
+effectDrawModulatedBillboard	800EB6E8	a	
+equipmentHasCarriedWeaponSupply	800BBDDC	a	
+gActor461800NeoArkSceneScript	80133F90	a	
+uiPositionRowDialog	80049024	a	
+actor260400StartHeliportConversation	80149E38	a	
+gActor100300Tasks	80148110	a	
+evsStartScriptWithSkip	800E8634	a	
+gActor102100WatcherTaskDesc	80135C30	a	
+gEquipmentModeBaseStats	8010D328	a	
+gFsImageWorkspacePtr	8005C364	a	
+actor160700StartMeetingScript	80131E70	a	
+evsStartScript	800E8614	a	
+loadingRequestViewGraphicsRestore	800A99B4	a	
+actor450200InitializeObservatoryCompanion	801322F8	a	
+StoreImage	80017FA4	a	
+D_80114C12	80114C12	a	
+MoveImage	80018004	a	
+func_807245E4	807245E4	a	
+uiUpdateList	80048C10	a	
+streamGetSlot	80020278	a	
+textAppendString	8002F588	a	
+gActor310100Officer1TaskDescriptors	801798FC	a	
+capGetVariantKey	800E6D3C	a	
+gActor143900ObservatoryEntrySkipScript	80133860	a	
+gActor503500BossDefeatSkipScript	8014CAF8	a	
+attachmentIsTrainingMode	800A74C4	a	
+gGpuPrimCursor	80071190	a	
+capIsBusy	800E6CE0	a	
+worldCoordGetOriginAudioDepth	800D9340	a	
+gfxRotMatrixXYZ	8003B960	a	
+actor161500StartSoldierBShopConversation	80132110	a	
+shopOpenSession	800D4D2C	a	
+gPadCancelButtonMask	8005ED74	a	
+gPadStates	80071620	a	
+SetDrawArea	80018A24	a	
+D_80071075	80071075	a	
+shelter_b1_main_corridor_RODATA_START	8017D5C0	f	
+RotTransPers3	8004C1E8	a	
+actor460200TalkToSoldierA	80132390	a	
+animationInitContext	800B3F84	a	
+gActor450200RoomVariantSceneSkipScript	80140078	a	
+equipmentFindNextCarriedWeaponSupply	800BBD40	a	
+gActor535700PawnGolemEncounterSkipScript	801341E0	a	
+uiDrawBeveledRect	80046B34	a	
+rand	80037164	a	
+gActor450900EntrySkipScript	80136308	a	
+D_80115410	80115410	a	
+companionSetDrawMode	800E3EB0	a	
+inventoryGiveItem	800BAD08	a	
+gActor560800MovieTaskDescriptors	8016EA28	a	
+roomEventStagedTask	8017D8F4	ft	
+gActor342000IncineratorEventTaskDescs	80164FF8	a	
+D_8010E138	8010E138	a	
+effectSpawnHit	800FDB18	a	
+gInventoryContainerRanges	8010D550	a	
+gActor143400CompanionEntryScript	801350BC	a	
+memCalloc	8002D978	a	
+effectSpawn	800EA478	a	
+gActor450900EntryScript	80136110	a	
+strncmp	8001EAC4	a	
+gInventoryConsumableStacks	8010E3B8	a	
+gActor105500MaggotCaterpillarTasks	8013A8DC	a	
+itemMenuDrawDefaultItemIcon	800CE5D0	a	
+actor161500StartSoldierBTalkB	80132038	a	
+D_80071068	80071068	a	
+gRoomEffectWaterSprayId	80115738	a	
+shelter_b1_main_corridor_TEXT_END	8018308C	f	
+gActor450800NurseryShootingSkipScript	8013BA84	a	
+gMdecMovieInputSlot	8005EAEC	a	
+gActor443500ConsoleFollowupScript	80141D9C	a	
+actor150400SpawnSlidingModels	80131FB8	a	
+D_800691CA	800691CA	a	
+gActor503500SceneEffectTaskDescs	8014B964	a	
+D_80114C0B	80114C0B	a	
+gRoomEffectMoteId	80115728	a	
+areaApplySavedUpdates	800AE62C	a	
+cdCmdCancelScene	8001D588	a	
+func_800AC000	800AC000	a	
+uiSetPanelContentSize	800466E4	a	
+GsWSMATRIX	80071138	a	
+uiObjectTaskExit	800488B8	a	
+cdSyncPollCommand	8001E6AC	a	
+gActor443500MapFollowupScript	80142C24	a	
+gItemMenuTransferPanelDescriptors	8010D6F4	a	
+cdCmdEnqueue	8001D2B0	a	
+D_801150C0	801150C0	a	
+padCheckButtons	8002C868	a	
+itemMenuDrawPreview	800C7AE8	a	
+gActor160600SceneWithCompanionScript	80135D78	a	
+gCapChoiceRowStride	80115680	a	
+taskSpawnFromTableOnDefaultList	8003E4BC	a	
+SetDrawStp	80042288	a	
+gActor143900ObservatoryEntryScript	80133560	a	
+playerActorSetDrawMode	800E3B80	a	
+actor450800StartNurseryCompanionDialogue	80132000	a	
+gActor215100PierceStoryScript	80153274	a	
+itemMenuSetPreviewItem	800CDE80	a	
+equipmentRecalculateMaxMp	800B7930	a	
+effectDrawOuterGlowBand	800EAA0C	a	
+stageEnsureHeapTaskPrimitiveBuffer	8003F9AC	a	
+actor215100HandleGalleryAction	8014AB6C	a	
+RotMatrixZ	8004AE48	a	
+SetDispMask	80017C00	a	
+SetTile	80042344	a	
+func_80724608	80724608	a	
+cdCmdEnqueueScenePlayback	8001D5CC	a	
+__muldf3	8004B828	a	
+rsin	8003D038	a	
+viewFindLogicalIndex	800ACEBC	a	
+inventoryInitializeStarterLoadout	800B7D18	a	
+gPadConfirmButtonMask	8005ED70	a	
+areaIsSavedPoseRestoreEnabled	800B59A8	a	
+gActor361100PodSceneScript	80165F48	a	
+areaGetVariant	800B5CE8	a	
+gActor443500TourOpeningScript	8014152C	a	
+gGameFlagNibbleBanks	80073980	a	
+actor450800PrepareNurseryKyleMadigan	80132028	a	
+worldCoordSetAmbientColorOverride	800D94B8	a	
+gActor460200TentArrivalSkipScript	80137890	a	
+worldTargetDisableNodeLockOn	800DACF8	a	
+D_80072170	80072170	a	
+D_80070F87	80070F87	a	
+D_80072310	80072310	a	
+worldCollisionProbeGridSegment	800DE7CC	a	
+D_8011540C	8011540C	a	
+memset	800420F8	a	
+companionWriteAnimationBankIndex	800E3D24	a	
+D_80073BAE	80073BAE	a	
+gActor215100GalleryTaskDescs	8014E13C	a	
+gActor136300GarageCompanionSceneSkipScript	8013C388	a	
+gActor402200GolemTaskDesc	80154188	a	
+streamPrepareMovieWorkspace	80020298	a	
+gActor136300CompanionGaragePlacement	8013B570	a	
+srand	80037194	a	
+viewQueueCurrentCameraAndPackets	800A8B6C	a	
+ApplyMatrixLV	80042128	a	
+taskMessageDispatch	800AC464	a	
+uiStartTreeClosing	80048838	a	
+animationResetSlot	800B3FA8	a	
+actor215100CapCaptionSelectRecord	8014B2B8	a	
+taskRequestKill	8002D340	a	
+D_8007107A	8007107A	a	
+actor161500RestoreCompanionRequestScene	8013230C	a	
+actor215100ResolveGalleryExit	8014AA54	a	
+gPlayerStatus	80073B88	a	
+inventoryGetRangeTable	800BB500	a	
+gActor142600IncineratorArrivalSkipScript	80136804	a	
+gPlayerActorTasks	80115760	a	
+shelterB1MainCorridorDrawViewLightsTask	8017DDF0	ft	
+gActor548100PanelTaskDesc	801358D8	a	
+equipmentConsumeWeaponLoad	800B6DA4	a	
+inventoryResetCarriedRange	800BC490	a	
+enemyDestroy	800B01F0	a	
+gFsResourceSlots	8006C338	a	
+gRandomLcgState	80070F60	a	
+actor160700RestoreMeetingAnimation	80131E24	a	
+func_800ABFF8	800ABFF8	a	
+gActor146300IceBagHandoverTaskDesc	8013788C	a	
+areaSpawnPlacements	800B4AF8	a	
+itemMenuDrawMeter	800C0E20	a	
+gameFlagGetPackedByte	800E3FCC	a	
+equipmentLoadWeaponConsumable	800B715C	a	
+displaySetShakeY	8003DE78	a	
+inventoryHasAttachedItem	800BC3F8	a	
+sndEvtRequestStageScriptStart	800E3DD8	a	
+equipmentRecalculateMaxHp	800BC0C0	a	
+gRoomEventLatched	80185D68	f	
+RotTransPers	8004C198	a	
+D_8007216D	8007216D	a	
+gActor146300WaterTankEventScript	80137C28	a	
+roomEffectRequestCancelPe	800FC6C0	a	
+gpuUploadImages	800DB31C	a	
+gDirectionActionActive	80114CF8	a	
+D_80072830	80072830	a	
+sndEvtRequestScriptVolume	800544B8	a	
+worldCollisionLinkTrigger	800E1688	a	
+actor450800StartNurseryInteraction	80131E2C	a	
+gActor215100PierceStorySkipScript	80153D6C	a	
+gActor136300TaskTable	8013B11C	a	
+gStageMusicParams	8007A39C	a	
+VectorNormalSS	8003D5D8	a	
+gActor160900TaskDescriptors	8013FB50	a	
+D_80072A93	80072A93	a	
+gWorldCollisionActiveGrid	80115448	a	
+D_80072A92	80072A92	a	
+roomEffectRequestCancelAll	800EC868	a	
+gActor310100Officer2TaskDescriptors	80179920	a	
+actorRenderDrawGroundShadow	800B4E54	a	
+D_8007218A	8007218A	a	
+capSelectLoadedFile	800E6D60	a	
+cdCmdDropQueuedTail	8001D424	a	
+Gfx_ViewWorldMtx	80070F34	a	
+actor161500StartSoldierBTalkA	80131FBC	a	
+gActor503500BossDefeatScript	8014C540	a	
+tmdBuildBufferHalf	800410F0	a	
+effectDrawScreenTint	800EA858	a	
+gActor146000WaterHoleSceneTasks	801351FC	a	
+tmdResetAuxHeapAndRestoreBuffers	80041EB4	a	
+gActor120500EmptyPlacementTaskDesc	8013843C	a	
+equipmentGetWeaponLoad	800BAFE0	a	
+DrawSync	80017C98	a	
+damageComputePlayerAttack	800E1FEC	a	
+itemMenuClearPreviewItems	800CDEF4	a	
+actor215100StartPierceConversation	8014AF0C	a	
+actor450900StartCompanionConversation	801327A8	a	
+damageRollCriticalHit	800E25F8	a	
+gActor151000GardenArrivalSkipScript	80133954	a	
+animationTickSlot	800B4514	a	
+sceneAcquireBattleRef	800DB53C	a	
+gActor143400CompanionEntrySkipScript	801359D4	a	
+companionRemoveEquipment	8010B674	a	
+sndScriptResolveStageId	800E3E30	a	
+actor146300RestoreHandoverPose	8013224C	a	
+gActor150400FreezerSceneSkipScript	80133088	a	
+companionSetScriptedControl	800E3EF0	a	
+gCapInlineIconCells	8010FB70	a	
+streamPollMoviePlayback	8001FAE0	a	
+gPlayerActorWeaponReaches	80112F60	a	
+D_80072728	80072728	a	
+damagePackAttackKey	800E2C40	a	
+uiSpawnObject	800486F0	a	
+worldCollisionInitContacts	800E18E0	a	
+shelter_b1_main_corridor_ROM_START	00000000	a	
+sndEvtRequestMidiStop	8005132C	a	
+gActor503500BossIntroSkipScript	8014C288	a	
+RotMatrix	80043AC8	a	
+D_80114C11	80114C11	a	
+memConfigureImageMemory	800144F8	a	
+viewQueueCamera	800A8A1C	a	
+displaySpawnTaskFromTable	8003E324	a	
+uiStartPanelHiding	800488F8	a	
+actor260500RestoreHeliportPlacement	80149E80	a	
+gActor04400MadChaserTaskDescs	80142604	a	
+actor450200StartCompanionTalk	80132220	a	
+shelterB1MainCorridorRoomVisualEffectsHaloTask	8017F81C	ft	
+gpuBlendRgb555ClutRow	800B27C4	a	
+D_80072834	80072834	a	
+actor361100ClearHeadAimTaskHandle	80162B0C	a	
+gCapConfirmedChoiceIndex	801156A8	a	
+itemGetText	800B8EB0	a	
+gActor451100SubmarineTunnelEntryScript	80136108	a	
+ScaleMatrix	8004A98C	a	
+uiDrawTitle	80048E38	a	
+playerActorEndScripted	80104838	a	
+gfxRotMatrixX	8003C788	a	
+D_80071071	80071071	a	
+gRoomEffectSparkEmitterId	80115720	a	
+MulMatrix0	80044208	a	
+D_80114FF8	80114FF8	a	
+gActor450900Tasks	80135E78	a	
+itemMenuIsHotspotActionConfirmed	800D4EC0	a	
+inventoryClearItems	800BAC8C	a	
+gCapRestoreView	80115694	a	
+D_801153F6	801153F6	a	
+gWorldCoordTransientPointLights	80114F30	a	
+gActor443500PowerPlantProgressDialogueScript	80143494	a	
+capSpawnEventIfIdle	800E3D8C	a	
+gDisplayState	80070F68	a	
+itemMenuSetItemDescriptionPrompt	800CEB40	a	
+D_8007217B	8007217B	a	
+gActor201100Tasks	8015F400	a	
+gActor136300GarageCompanionSceneScript	8013B590	a	
+ApplyTransposeMatrixLV	80044050	a	
+gSpriteAreaTables	8010CB68	a	
+inventoryCanAddItem	800B8988	a	
+sceneFindEnemyByPlaceKey	800B584C	a	
+gMidiMusicVolume	8007A396	a	
+inventoryMeltIceBagIfExpired	800BC254	a	
+gteMIMefunc	8004AD78	a	
+inventoryGetItemSortKey	800BC18C	a	
+uiGetTextRowsHeight	80048E2C	a	
+gCapControlFlags	801156A4	a	
+gFsActorBufferWrittenBytes	8006D860	a	
+gActor142600IncineratorArrivalScript	801360E4	a	
+playerActorEnterLocomotion	801066DC	a	
+D_8007218B	8007218B	a	
+uiDrawHorizontalSeparator	80047A0C	a	
+gShelterB1MainCorridorViewCameras	80184114	f	
+sndEvtRequestScriptStart	8005414C	a	
+actor215100CapCaptionDrawCurrent	8014B0D4	a	
+gActor335800BalconyEntryScript	80165060	a	
+stageReleaseTaskPrimitiveBuffer	8003F9F4	a	
+equipmentGetWeaponSupply	800BBDC8	a	
+animationAimHeadAt	800B17D4	a	
+gRoomEffectOrangeBurstId	8011573C	a	
+viewGetMappedCamera	800A8C08	a	
+gCdCmdQueue	80068FA0	a	
+gActor146300WaterTankEventSkipScript	80138570	a	
+capAbortPlayback	800E6CF0	a	
+textDrawUiLines	8002FB84	a	
+streamFinishScene	800B00C4	a	
+loadingEnqueueEquippedWeaponResources	800A9BE4	a	
+gActor503500BossIntroScript	8014BD48	a	
+gActor207000SlouchTaskDescs	801575F0	a	
+companionRestoreFullHp	800E3D78	a	
+shelterB1MainCorridorRoomTask	8017DD98	ft	
+textItoaPadded	8002F44C	a	
+playerStateRestoreFullHpMp	800E3D5C	a	
+gRoomEffectWaterRippleId	8011574C	a	
+memFillBytes	8002D894	a	
+D_8007106B	8007106B	a	
+gActor450800NurseryShootingScript	8013AF8C	a	
+uiFitPanelToList	80046830	a	
+uiSetPromptText	80049D34	a	
+RotMatrixX	8004BE58	a	
+worldCoordSetModelAmbientColor	800D9550	a	
+worldTargetLinkNode	800DABEC	a	
+damageAccumulateLifeDrainHp	800E2C78	a	
+gActor451100SubmarineTunnelSceneScript	80135220	a	
+taskReparent	8002D14C	a	
+gActor160600SceneSkipScript	80136258	a	
+playerActorTurnToYaw	80104E00	a	
+gRoomEffectState	80115740	a	
+TransposeMatrix	800420B8	a	
+worldCollisionProjectGroundPoint	800EA1A8	a	
+inventoryClearCollectedBit	800BAEC0	a	
+D_8007216C	8007216C	a	
+uiSpawnOptionDialog	800480A0	a	
+actorRenderComposeCoord	80098F58	a	
+GetClut	80042AE0	a	
+gRoomEffectGlowDiscId	80115734	a	
+itemMenuDrawQuantity	800CDBEC	a	
+gActor105600PawnGolemTasks	801482C0	a	
+shelter_b1_main_corridor_ROM_END	000087B4	a	
+areaGetCurrentObjectState	800BB470	a	
+gActor341900GluttonEntranceTaskDescs	80164190	a	
+gWorldCollisionActionTriggerListHead	8011556C	a	
+actor260500StartHeliportConversation	80149EBC	a	
+fadeDrawOverlay	8002BA9C	a	
+worldCollisionResolvePushback	800E0C10	a	
+equipmentEquipCarriedArmor	800B7A50	a	
+__subdf3	8004BC28	a	
+D_80072A98	80072A98	a	
+padInputChangeSuppression	800E9BDC	a	
+gActor450800NurseryReentryScript	8013A84C	a	
+gEvsPlaybackPaused	801156F9	a	
+gActor460200TentArrivalScript	801362B8	a	
+RotMatrixY	8004BFF8	a	
+gActor361100PodSceneSkipScript	80166848	a	
+streamFindMovieSlot	8001EDC8	a	
+gActor310100PlayerAnimationSets	801797FC	a	
+gActor142900ElevatorFirstVisitScript	801378D0	a	
+inventoryIsItemLimitReached	800B7420	a	
+streamSetExternalScenePayloadBuffer	800B015C	a	
+gActor141000FlightTasks	801348D8	a	
+mapNeoArkResolveRoomVariant	80179B14	a	
+gViewIdentityMap	8010CAF8	a	
+gActor400600ZebraStalkerTaskDesc	80151B10	a	
+gpuResetAndInvalidateModelBuffers	80041E4C	a	
+shelter_b1_main_corridor_DATA_START	8018308C	f	
+animationAimHeadAtTask	800B0928	a	
+gItemMenuEmptyPromptText	8010F8D0	a	
+padScriptHalt	800E8F68	a	
+gWorldCollisionSurfacePushbackSuppression	80115428	a	

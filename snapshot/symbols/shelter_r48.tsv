@@ -1,0 +1,2325 @@
+gcc2_compiled.	8017D660	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+__gnu_compiled_c	8017D660	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_MACRO_INC_GUARD	00000001	al	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48WaterRefractionStream	80182F7C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48WaterRefractionSource	80182F88	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48WaterRefractionSkeleton	8018BE30	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_shelterR48WaterRefractionTask	8017D660	flt	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48RoomMessages	80182FB8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_shelterR48ResolveTransitionMessage	8017E044	flt	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_shelterR48UseStaffCard	8017DF50	flt	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_shelterR48RoomActionMsg	8017E090	flt	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_shelterR48IgnoreRoomCommand	8017E088	flt	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_shelterR48AdvanceBossSceneMsg	8017E0EC	flt	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48RingBandShapes	80182FE8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48GlowWorldPosition	8018300C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48RoomLights	8018B658	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48ViewBoundaryTriggers	8018B670	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48ActionTriggers	8018BC78	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48CollisionGridNormals	8018306C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48CollisionGridVerts	801831AC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48CollisionGridFaces	801835EC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48CollisionGridCells	801839D0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48CollisionGridTable	80183E60	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48View1SpriteBatches	80184198	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48View2SpriteSources	801841A8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48View2SpriteBatches	80184720	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48View3SpriteSources	80184748	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48View3SpriteBatches	8018510C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48View4SpriteSources	8018513C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48View4SpriteBatches	80185984	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48View5SpriteSources	801859B4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48View5SpriteBatches	80186580	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48View6SpriteSources	801865A0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48View6SpriteBatches	80186C58	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48View7SpriteSources	80186C80	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48View7SpriteBatches	80187784	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48View8SpriteSources	801877B4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48View8SpriteBatches	8018809C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48View9SpriteSources	801880D4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48View9SpriteBatches	80188B10	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48View10SpriteSources	80188B30	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48View10SpriteBatches	80188BBC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48View11SpriteBatches	80188BD4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48View12SpriteSources	80188BE4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48View12SpriteBatches	80188F54	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48View13SpriteSources	80188F74	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48View13SpriteBatches	80189064	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48View14SpriteBatches	8018907C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48View15SpriteBatches	8018908C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48View16SpriteBatches	8018909C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48View17SpriteSources	801890AC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48View17SpriteBatches	801897A0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48View18SpriteSources	801897C0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48View18SpriteBatches	80189F7C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48PointLights	8018A08C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48ConeLights	8018B5EC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48Variant1Resources	8018BB30	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48Variant2Resources	8018BB54	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48Variant3Resources	8018BB78	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48Variant1Placements	8018BB90	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48Variant2Placements	8018BBC0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48Variant3Placements	8018BBF0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48Class1FootstepSounds	8018BDF4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48SolidSurface	8018BE00	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48ProbePassSurface	8018BE08	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48RingTexturePhases	8018BE54	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1	8017D660	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM2	8017D660	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM3	8017D66C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM4	8017D670	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM5	8017D674	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM6	8017D698	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM7	8017D69C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM8	8017D6A0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM9	8017D6A8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM10	8017D6AC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM11	8017D6B0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM12	8017D6C0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM13	8017D6EC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM14	8017D6F0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM15	8017D6F4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM16	8017D6F8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM17	8017D6FC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM18	8017D700	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM19	8017D704	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM20	8017D708	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM21	8017D710	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM22	8017D714	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM23	8017D718	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM24	8017D71C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM25	8017D720	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM26	8017D724	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM27	8017D72C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM28	8017D730	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM29	8017D734	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM30	8017D738	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM31	8017D740	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM32	8017D744	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM33	8017D748	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM34	8017D74C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM35	8017D754	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM36	8017D758	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM37	8017D75C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM38	8017D760	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM39	8017D768	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM40	8017D76C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM41	8017D770	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM42	8017D774	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM43	8017D778	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM44	8017D77C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM45	8017D780	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM46	8017D788	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM47	8017D798	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM48	8017D79C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM49	8017D7A0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM50	8017D7A4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM51	8017D7AC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM52	8017D7BC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM53	8017D7C4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM54	8017D7C8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM55	8017D7CC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM56	8017D7D4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM57	8017D7D8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM58	8017D7D8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM59	8017D7E0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM60	8017D7E8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM61	8017D7F8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM62	8017D7F8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM63	8017D804	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM64	8017D80C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM65	8017D814	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM66	8017D81C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM67	8017D820	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM68	8017D824	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM69	8017D934	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM70	8017D970	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM71	8017D974	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM72	8017D978	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM73	8017D97C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM74	8017D984	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM75	8017D990	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM76	8017D994	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM77	8017D998	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM78	8017D99C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM79	8017D9A4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM80	8017D9B0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM81	8017D9B8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM82	8017D9C0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM83	8017D9C4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM84	8017D9C8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM85	8017D9D8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM86	8017D9F8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM87	8017DA00	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM88	8017DA08	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM89	8017DA0C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM90	8017DA10	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM91	8017DA1C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM92	8017DA20	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM93	8017DA24	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM94	8017DA2C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM95	8017DA30	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM96	8017DA34	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM97	8017DA44	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM98	8017DA50	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM99	8017DA50	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM100	8017DA54	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM101	8017DA58	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM102	8017DA60	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM103	8017DA64	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM104	8017DA70	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM105	8017DA80	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM106	8017DA84	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM107	8017DAA0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM108	8017DAB0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM109	8017DAE4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM110	8017DAEC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM111	8017DAF0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM112	8017DAF8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM113	8017DB00	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM114	8017DB04	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM115	8017DB10	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM116	8017DB1C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM117	8017DB24	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM118	8017DB30	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM119	8017DB3C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM120	8017DB48	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM121	8017DB4C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM122	8017DB60	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM123	8017DB6C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM124	8017DB78	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM125	8017DB7C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM126	8017DB90	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM127	8017DB98	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM128	8017DB9C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM129	8017DBA4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM130	8017DBA8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM131	8017DBB0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM132	8017DC00	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM133	8017DC0C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM134	8017DC14	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM135	8017DC18	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM136	8017DC2C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM137	8017DC34	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM138	8017DC38	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM139	8017DC4C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM140	8017DC54	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM141	8017DC60	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM142	8017DC68	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM143	8017DC70	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM144	8017DC78	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM145	8017DC80	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM146	8017DC84	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM147	8017DC94	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM148	8017DC9C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM149	8017DCAC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM150	8017DCB4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM151	8017DCC0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM152	8017DCC4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM153	8017DCCC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM154	8017DCD0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM155	8017DCD8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM156	8017DCE0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM157	8017DCE4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM158	8017DCE8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM159	8017DCF0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM160	8017DCF8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM161	8017DCFC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM162	8017DD00	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM163	8017DD0C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM164	8017DD18	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM165	8017DD1C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM166	8017DD24	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM167	8017DD28	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM168	8017DD2C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM169	8017DD30	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM170	8017DD38	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM171	8017DD3C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM172	8017DD40	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM173	8017DD44	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM174	8017DD48	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM175	8017DD4C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM176	8017DD50	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM177	8017DD64	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM178	8017DD68	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM179	8017DD70	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM180	8017DD74	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM181	8017DD7C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM182	8017DD84	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM183	8017DDC0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM184	8017DDC8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM185	8017DDD0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM186	8017DDD4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM187	8017DDD8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM188	8017DDE8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM189	8017DDEC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM190	8017DDEC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM191	8017DDF4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM192	8017DDF8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM193	8017DDFC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM194	8017DE00	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM195	8017DE04	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM196	8017DE08	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM197	8017DE10	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM198	8017DE14	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM199	8017DE18	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM200	8017DE1C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM201	8017DE20	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM202	8017DE24	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM203	8017DE38	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM204	8017DE3C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM205	8017DE44	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM206	8017DE48	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM207	8017DE50	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM208	8017DE58	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM209	8017DE94	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM210	8017DE98	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM211	8017DEA4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM212	8017DEA8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM213	8017DEAC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM214	8017DEB0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM215	8017DEB8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM216	8017DED4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM217	8017DEDC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM218	8017DEEC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM219	8017DF08	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM220	8017DF20	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM221	8017DF50	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM222	8017DF50	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM223	8017DF50	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM224	8017DF58	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM225	8017DF5C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM226	8017DF64	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM227	8017DF64	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM228	8017DF6C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM229	8017DFE0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM230	8017DFE8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM231	8017DFF0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM232	8017DFF4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM233	8017DFFC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM234	8017E000	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM235	8017E004	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM236	8017E008	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM237	8017E00C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM238	8017E010	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM239	8017E018	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM240	8017E024	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM241	8017E030	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM242	8017E034	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM243	8017E044	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_gShelterR48RoomTaskStates	8017D608	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_shelterR48RoomSetupState	8017E1A4	flt	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_shelterR48RoomIdleState	8017E214	flt	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM244	8017E044	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM245	8017E044	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM246	8017E054	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM247	8017E070	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM248	8017E078	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM249	8017E07C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM250	8017E080	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM251	8017E088	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM252	8017E088	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM253	8017E088	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM254	8017E088	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM255	8017E090	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM256	8017E090	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM257	8017E090	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM258	8017E09C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM259	8017E0AC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM260	8017E0CC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM261	8017E0D0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM262	8017E0D8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM263	8017E0D8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM264	8017E0E0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM265	8017E0E4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM266	8017E0EC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM267	8017E0EC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM268	8017E0EC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM269	8017E0F0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM270	8017E0F4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM271	8017E0F8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM272	8017E10C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM273	8017E11C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM274	8017E120	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM275	8017E128	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM276	8017E13C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM277	8017E158	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM278	8017E16C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM279	8017E180	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM280	8017E190	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM281	8017E190	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM282	8017E198	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM283	8017E19C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM284	8017E1A4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM285	8017E1A4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM286	8017E1A4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM287	8017E1B0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM288	8017E1B4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM289	8017E1BC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM290	8017E1C0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM291	8017E1C8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM292	8017E1D0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM293	8017E1E8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM294	8017E1F4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM295	8017E204	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM296	8017E214	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM297	8017E214	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM298	8017E214	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM299	8017E218	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM300	8017E218	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM301	8017E224	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM302	8017E224	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM303	8017E224	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM304	8017E228	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM305	8017E22C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM306	8017E230	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM307	8017E24C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM308	8017E26C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM309	8017E27C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM310	8017E27C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM311	8017E27C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM312	8017E27C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM313	8017E27C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM314	8017E280	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM315	8017E284	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM316	8017E288	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM317	8017E28C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM318	8017E290	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM319	8017E294	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM320	8017E298	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM321	8017E2BC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM322	8017E2C4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM323	8017E2C8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM324	8017E2D0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM325	8017E2D4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM326	8017E2DC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM327	8017E2E0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM328	8017E2E4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM329	8017E2EC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM330	8017E2F0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM331	8017E2F4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM332	8017E2FC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM333	8017E300	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM334	8017E304	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM335	8017E30C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM336	8017E310	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM337	8017E314	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM338	8017E31C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM339	8017E320	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM340	8017E324	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM341	8017E32C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM342	8017E330	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM343	8017E340	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM344	8017E348	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM345	8017E34C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM346	8017E350	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM347	8017E358	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM348	8017E35C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM349	8017E360	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM350	8017E368	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM351	8017E36C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM352	8017E370	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM353	8017E378	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM354	8017E37C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM355	8017E380	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM356	8017E388	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM357	8017E38C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM358	8017E390	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM359	8017E398	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM360	8017E39C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM361	8017E3A0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM362	8017E3A8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM363	8017E3AC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM364	8017E3B0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM365	8017E3B8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM366	8017E3B8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM367	8017E3B8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM368	8017E3C4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM369	8017E3D0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM370	8017E3D8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM371	8017E3E0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM372	8017E3F4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM373	8017E3FC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM374	8017E400	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM375	8017E404	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM376	8017E40C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM377	8017E410	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM378	8017E414	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM379	8017E434	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM380	8017E440	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM381	8017E450	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM382	8017E454	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM383	8017E468	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM384	8017E47C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM385	8017E484	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM386	8017E4A0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_shelterR48DrawRoomGlow	8018258C	flt	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM387	8017E4B4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM388	8017E4C4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM389	8017E4C4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM390	8017E4C4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM391	8017E4D4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM392	8017E4D8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM393	8017E4E4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM394	8017E4E8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM395	8017E4EC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM396	8017E4F0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM397	8017E4F4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM398	8017E4F8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM399	8017E500	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_waterDrawTileU16	8017FF74	flt	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM400	8017E524	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM401	8017E540	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM402	8017E548	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM403	8017E58C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM404	8017E594	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM405	8017E5A4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM406	8017E5EC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM407	8017E604	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM408	8017E60C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM409	8017E62C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM410	8017E640	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM411	8017E658	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM412	8017E664	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM413	8017E66C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM414	8017E688	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM415	8017E68C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM416	8017E6A8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM417	8017E6C4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM418	8017E6D4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM419	8017E6D8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM420	8017E6E0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM421	8017E6E8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM422	8017E704	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM423	8017E704	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM424	8017E704	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM425	8017E714	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM426	8017E718	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM427	8017E724	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM428	8017E728	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM429	8017E72C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM430	8017E730	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM431	8017E734	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM432	8017E738	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM433	8017E740	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_shelterR48DrawBankedDriftSprite	80180804	flt	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM434	8017E79C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM435	8017E7B8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM436	8017E7C0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM437	8017E7C8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM438	8017E810	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM439	8017E818	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM440	8017E828	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM441	8017E864	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM442	8017E87C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM443	8017E884	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM444	8017E8E0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM445	8017E8F4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM446	8017E90C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM447	8017E918	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM448	8017E920	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM449	8017E958	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM450	8017E970	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM451	8017E984	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM452	8017E99C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM453	8017E9B8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM454	8017E9B8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM455	8017E9B8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM456	8017E9C8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM457	8017E9CC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM458	8017E9D8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM459	8017E9DC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM460	8017E9E0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM461	8017E9E4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM462	8017E9E8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM463	8017E9EC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM464	8017E9F4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM465	8017EA54	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM466	8017EA70	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM467	8017EA78	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM468	8017EA80	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM469	8017EAC8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM470	8017EAD0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM471	8017EAE0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM472	8017EB1C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM473	8017EB34	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM474	8017EB3C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM475	8017EB9C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM476	8017EBB0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM477	8017EBC8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM478	8017EBD4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM479	8017EBDC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM480	8017EBE4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM481	8017EBFC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM482	8017EC18	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM483	8017EC18	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM484	8017EC18	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM485	8017EC20	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM486	8017EC28	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM487	8017EC40	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM488	8017EC44	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM489	8017EC48	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM490	8017EC4C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM491	8017EC50	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM492	8017EC5C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM493	8017EC6C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM494	8017ECE0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM495	8017ECE8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM496	8017ECEC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM497	8017ECF0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM498	8017ECF4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM499	8017ECF8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM500	8017ED34	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM501	8017ED50	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM502	8017ED9C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM503	8017EDB0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM504	8017EDBC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM505	8017EDC4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM506	8017EDC8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM507	8017EDCC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM508	8017EDD0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM509	8017EDD8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM510	8017EDEC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM511	8017EDF4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM512	8017EDFC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM513	8017EE00	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM514	8017EE04	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM515	8017EE08	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM516	8017EE0C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM517	8017EE10	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM518	8017EE20	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM519	8017EE6C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM520	8017EE80	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM521	8017EE94	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM522	8017EEA0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM523	8017EEA8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM524	8017EEAC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM525	8017EEB0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM526	8017EEB4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM527	8017EEBC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM528	8017EED0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM529	8017EEE0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM530	8017EEF0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM531	8017EEF8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM532	8017EEFC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM533	8017EF04	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM534	8017EF0C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM535	8017EF20	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM536	8017EF6C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM537	8017EF84	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM538	8017EF88	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM539	8017EF8C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM540	8017EF90	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM541	8017EF94	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM542	8017EF98	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM543	8017EF9C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM544	8017EFA4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM545	8017EFAC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM546	8017EFB8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM547	8017EFD8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM548	8017EFD8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM549	8017EFD8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM550	8017EFE8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM551	8017EFEC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM552	8017EFF8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM553	8017EFFC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM554	8017F000	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM555	8017F004	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM556	8017F008	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM557	8017F00C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM558	8017F014	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_shelterR48DrawRingBand	8017F124	flt	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM559	8017F020	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM560	8017F030	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM561	8017F040	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM562	8017F05C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM563	8017F064	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM564	8017F074	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM565	8017F084	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM566	8017F088	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM567	8017F090	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM568	8017F098	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM569	8017F0AC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM570	8017F0B4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM571	8017F0BC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM572	8017F0C0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM573	8017F0C4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM574	8017F0C8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM575	8017F0CC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM576	8017F0D0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM577	8017F0D8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM578	8017F0E8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM579	8017F0F8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM580	8017F100	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM581	8017F108	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM582	8017F124	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM583	8017F124	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM584	8017F124	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM585	8017F134	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM586	8017F138	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM587	8017F144	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM588	8017F148	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM589	8017F170	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM590	8017F174	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM591	8017F184	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM592	8017F188	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM593	8017F18C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM594	8017F194	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM595	8017F198	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM596	8017F19C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM597	8017F1A0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM598	8017F1A4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM599	8017F1A8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM600	8017F1B0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM601	8017F1B4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM602	8017F1BC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM603	8017F1C8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM604	8017F1E0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM605	8017F1FC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM606	8017F200	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM607	8017F20C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM608	8017F210	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM609	8017F214	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM610	8017F21C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM611	8017F224	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM612	8017F230	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM613	8017F234	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM614	8017F240	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM615	8017F268	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM616	8017F270	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM617	8017F27C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM618	8017F294	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM619	8017F2A8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM620	8017F2BC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM621	8017F2C4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM622	8017F2C8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM623	8017F2CC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM624	8017F2D8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM625	8017F2DC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM626	8017F2E0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM627	8017F2EC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM628	8017F304	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM629	8017F32C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM630	8017F33C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM631	8017F348	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM632	8017F360	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM633	8017F374	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM634	8017F37C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM635	8017F380	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM636	8017F388	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM637	8017F394	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM638	8017F394	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM639	8017F39C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM640	8017F3A8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM641	8017F3D8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM642	8017F4D8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM643	8017F4E8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM644	8017F4F8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM645	8017F500	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM646	8017F508	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM647	8017F510	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM648	8017F518	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM649	8017F53C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM650	8017F544	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM651	8017F548	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM652	8017F564	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM653	8017F574	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM654	8017F59C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM655	8017F5A8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM656	8017F5B4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM657	8017F5C0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM658	8017F5CC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM659	8017F5D8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM660	8017F5E4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM661	8017F5F0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM662	8017F5FC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM663	8017F668	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM664	8017F678	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM665	8017F690	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM666	8017F6C0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM667	8017F6C0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM668	8017F6C0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM669	8017F6D0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_waterDrawSpinU16	8017FB7C	flt	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM670	8017FB64	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM671	8017FB7C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM672	8017FB7C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM673	8017FB7C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM674	8017FB84	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM675	8017FB8C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM676	8017FBA4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM677	8017FBA8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM678	8017FBAC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM679	8017FBB0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM680	8017FBB4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM681	8017FBB8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM682	8017FBBC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM683	8017FBC0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM684	8017FBC4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM685	8017FBC8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM686	8017FBCC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM687	8017FBD0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM688	8017FBD4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM689	8017FBEC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM690	8017FC1C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM691	8017FC24	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM692	8017FC30	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM693	8017FC38	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM694	8017FC48	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM695	8017FC58	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM696	8017FC68	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM697	8017FC74	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM698	8017FC78	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM699	8017FC7C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM700	8017FC80	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM701	8017FC88	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM702	8017FC90	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM703	8017FC98	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM704	8017FCA0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM705	8017FCA8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM706	8017FCB0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM707	8017FCB8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM708	8017FCBC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM709	8017FCC0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM710	8017FD88	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM711	8017FDA4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM712	8017FDA8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM713	8017FDBC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM714	8017FDC4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM715	8017FDC8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM716	8017FDD0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM717	8017FDDC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM718	8017FE7C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM719	8017FE84	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM720	8017FE88	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM721	8017FE98	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM722	8017FE9C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM723	8017FEA4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM724	8017FEA8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM725	8017FEB0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM726	8017FEB8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM727	8017FEBC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM728	8017FEC4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM729	8017FECC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM730	8017FED0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM731	8017FED8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM732	8017FF44	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM733	8017FF54	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM734	8017FF74	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM735	8017FF74	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM736	8017FF74	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM737	8017FF74	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM738	8017FF7C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM739	8017FF80	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM740	8017FF84	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM741	8017FF88	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM742	8017FF8C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM743	8017FF90	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM744	8017FF94	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM745	8017FF98	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM746	8017FF9C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM747	8017FFA0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM748	8017FFA4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM749	8017FFA8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM750	8017FFAC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM751	8017FFB0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM752	8017FFC8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM753	8017FFF8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM754	80180000	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM755	8018000C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM756	80180014	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM757	80180024	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM758	80180034	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM759	80180044	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM760	80180048	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM761	8018004C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM762	80180050	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM763	80180058	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM764	80180060	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM765	80180068	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM766	80180070	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM767	80180078	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM768	8018007C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM769	80180080	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM770	80180084	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM771	80180094	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM772	801800A8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM773	801800AC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM774	801800B4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM775	801800B8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM776	801800C0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM777	801800C8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM778	801800D0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM779	801800DC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM780	801800E4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM781	80180128	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM782	80180140	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM783	80180168	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM784	80180190	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM785	801801FC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM786	80180208	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM787	80180210	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM788	80180210	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM789	80180210	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM790	8018021C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM791	80180220	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM792	8018022C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM793	80180230	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM794	80180234	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM795	80180238	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM796	8018023C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM797	80180240	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM798	80180248	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM799	80180258	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_shelterR48DrawAlternateDriftSprite	80180C5C	flt	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM800	80180270	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM801	80180278	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM802	80180290	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM803	801802A0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM804	801802A8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM805	801802B8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM806	801802F4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM807	801802F4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM808	801802FC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM809	80180300	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM810	80180304	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM811	80180308	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM812	80180314	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM813	80180318	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM814	80180324	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM815	8018032C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM816	8018032C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM817	80180338	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM818	8018033C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM819	80180344	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM820	80180348	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM821	80180348	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM822	8018034C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM823	80180350	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM824	80180368	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM825	8018036C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM826	80180370	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM827	80180378	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM828	80180384	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM829	80180398	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM830	801803AC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM831	801803B4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM832	801803B8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM833	801803BC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM834	801803F0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM835	801803F8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM836	80180408	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM837	8018040C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM838	80180418	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM839	80180424	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM840	80180430	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM841	80180434	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM842	8018043C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM843	80180440	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM844	8018044C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM845	80180458	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM846	8018045C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM847	80180460	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM848	80180464	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM849	8018046C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM850	8018047C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM851	80180480	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM852	8018048C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM853	80180498	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM854	801804A4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM855	801804A8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM856	801804B8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM857	801804C4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM858	801804C8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM859	801804CC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM860	801804D0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM861	801804D4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM862	801804DC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM863	801804EC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM864	801804F0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM865	801804FC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM866	80180508	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM867	80180514	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM868	80180518	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM869	80180528	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM870	80180534	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM871	80180538	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM872	8018053C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM873	80180540	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM874	8018054C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM875	80180554	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM876	80180558	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM877	8018055C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM878	80180560	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM879	80180564	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM880	8018056C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM881	8018057C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM882	80180580	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM883	80180584	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM884	80180590	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM885	801805A0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM886	801805AC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM887	801805B0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM888	801805B4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM889	8018061C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM890	80180624	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM891	8018062C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM892	80180648	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM893	80180694	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM894	801806A4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM895	801806E8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM896	801806F8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM897	80180700	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM898	80180708	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM899	80180720	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM900	8018076C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM901	8018077C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM902	801807C0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM903	801807D0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM904	801807E4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM905	801807EC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM906	80180804	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM907	80180804	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM908	80180804	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM909	80180808	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM910	80180810	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM911	80180818	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM912	8018081C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM913	8018082C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM914	80180830	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM915	80180834	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM916	80180838	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM917	8018083C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM918	80180840	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM919	80180844	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM920	80180848	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM921	8018084C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM922	80180850	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM923	80180854	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM924	8018085C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM925	80180860	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM926	80180864	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM927	8018087C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM928	801808AC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM929	801808B4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM930	801808C0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM931	801808C8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM932	801808D8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM933	801808E8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM934	801808F8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM935	801808FC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM936	80180900	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM937	80180904	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM938	8018090C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM939	80180914	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM940	8018091C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM941	80180924	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM942	80180928	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM943	80180930	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM944	80180938	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM945	80180944	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM946	80180954	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM947	80180960	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM948	80180974	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM949	80180984	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM950	80180994	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM951	80180A6C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM952	80180A88	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM953	80180A8C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM954	80180AA0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM955	80180AA8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM956	80180AAC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM957	80180AB4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM958	80180AC0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM959	80180B60	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM960	80180B68	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM961	80180B6C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM962	80180B7C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM963	80180B80	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM964	80180B88	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM965	80180B8C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM966	80180B94	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM967	80180B9C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM968	80180BA0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM969	80180BA8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM970	80180BB0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM971	80180BB4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM972	80180BBC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM973	80180C28	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM974	80180C40	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM975	80180C5C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM976	80180C5C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM977	80180C5C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM978	80180C60	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM979	80180C68	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM980	80180C70	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM981	80180C74	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM982	80180C84	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM983	80180C88	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM984	80180C8C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM985	80180C90	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM986	80180C94	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM987	80180C98	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM988	80180C9C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM989	80180CA0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM990	80180CA4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM991	80180CA8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM992	80180CAC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM993	80180CB4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM994	80180CB8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM995	80180CBC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM996	80180CD4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM997	80180D04	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM998	80180D0C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM999	80180D18	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1000	80180D20	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1001	80180D30	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1002	80180D40	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1003	80180D50	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1004	80180D54	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1005	80180D58	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1006	80180D5C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1007	80180D64	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1008	80180D6C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1009	80180D74	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1010	80180D7C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1011	80180D80	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1012	80180D88	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1013	80180D90	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1014	80180D98	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1015	80180DA8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1016	80180DB4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1017	80180DC8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1018	80180DD8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1019	80180DE8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1020	80180EC0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1021	80180EDC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1022	80180EE0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1023	80180EF4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1024	80180EFC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1025	80180F00	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1026	80180F08	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1027	80180F14	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1028	80180FB4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1029	80180FBC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1030	80180FC0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1031	80180FD0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1032	80180FD4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1033	80180FDC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1034	80180FE0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1035	80180FE8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1036	80180FF0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1037	80180FF4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1038	80180FFC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1039	80181004	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1040	80181008	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1041	80181010	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1042	8018107C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1043	80181094	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1044	801810B0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1045	801810B0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1046	801810B0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1047	801810B8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1048	801810C0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1049	801810D8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1050	801810DC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1051	801810E0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1052	801810E4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1053	801810E8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1054	801810F4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1055	80181104	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1056	80181140	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1057	80181140	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1058	80181144	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1059	80181148	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1060	8018114C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1061	80181154	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1062	80181158	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1063	8018115C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1064	80181160	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1065	80181164	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1066	8018116C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1067	80181170	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1068	80181174	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1069	80181178	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1070	8018117C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1071	801811B8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1072	801811D4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1073	80181224	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1074	8018127C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1075	80181284	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1076	80181288	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1077	80181290	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1078	80181298	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1079	801812AC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1080	801812BC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1081	8018130C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1082	80181364	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1083	80181374	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1084	80181384	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1085	8018138C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1086	80181390	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1087	80181398	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1088	801813A0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1089	801813AC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1090	801813B4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1091	801813C8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1092	80181418	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1093	80181430	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1094	80181440	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1095	80181448	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1096	80181450	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1097	8018145C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1098	8018147C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1099	8018147C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1100	8018147C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1101	8018148C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1102	80181490	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1103	8018149C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1104	801814A0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1105	801814A4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1106	801814A8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1107	801814AC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1108	801814B0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1109	801814B8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1110	801814C4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1111	801814D4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1112	801814E4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1113	80181500	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1114	80181508	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1115	80181518	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1116	8018158C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1117	80181590	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1118	80181594	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1119	80181598	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1120	801815A0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1121	801815B0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1122	801815C0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1123	801815D0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1124	801815D4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1125	801815D8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1126	801815E0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1127	801815E4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1128	801815EC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1129	801815F0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1130	801815F8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1131	801815FC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1132	80181600	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1133	80181604	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1134	8018160C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1135	80181610	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1136	80181614	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1137	80181618	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1138	80181620	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1139	80181634	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1140	8018163C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1141	80181650	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1142	80181658	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1143	8018165C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1144	80181664	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1145	80181668	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1146	80181670	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1147	80181674	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1148	8018167C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1149	80181680	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1150	80181688	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1151	80181698	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1152	801816A8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1153	801816B4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1154	801816B8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1155	801816BC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1156	801816C4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1157	801816C8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1158	801816CC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1159	801816D0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1160	801816D8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1161	801816E0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1162	801816E8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1163	80181704	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1164	80181704	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1165	80181704	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1166	80181704	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1167	8018170C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1168	80181724	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1169	80181728	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1170	8018172C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1171	80181730	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1172	80181734	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1173	80181740	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1174	80181750	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1175	801817BC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1176	801817C4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1177	801817CC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1178	801817D0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1179	801817D4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1180	801817D8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1181	80181814	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1182	80181830	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1183	801818EC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1184	801818F4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1185	801818F8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1186	80181900	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1187	80181908	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1188	8018191C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1189	8018192C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1190	801819E8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1191	801819F8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1192	801819FC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1193	80181A04	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1194	80181A0C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1195	80181A14	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1196	80181A28	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1197	80181A34	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1198	80181A44	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1199	80181A48	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1200	80181A4C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1201	80181A54	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1202	80181A60	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1203	80181A78	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1204	80181A94	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1205	80181A98	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1206	80181A9C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1207	80181AA0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1208	80181AA4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1209	80181AA8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1210	80181AAC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1211	80181AB4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1212	80181ABC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1213	80181AC0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+_shelterR48DrawGlowBeam	80181C14	flt	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1214	80181AD4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1215	80181AF4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1216	80181AFC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1217	80181B10	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1218	80181B30	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1219	80181B4C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1220	80181B60	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1221	80181B64	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1222	80181B68	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1223	80181B6C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1224	80181B70	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1225	80181B74	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1226	80181B7C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1227	80181B84	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1228	80181B94	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1229	80181BA0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1230	80181BC0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1231	80181BDC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1232	80181BE8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1233	80181BF0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1234	80181BFC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1235	80181C14	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1236	80181C14	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1237	80181C14	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1238	80181C20	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1239	80181C28	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1240	80181C2C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1241	80181C30	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1242	80181C3C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1243	80181C60	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1244	80181C64	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1245	80181C68	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1246	80181C74	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1247	80181C7C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1248	80181C80	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1249	80181C84	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1250	80181C8C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1251	80181C90	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1252	80181CBC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1253	80181CC8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1254	80181CD4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1255	80181CEC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1256	80181D18	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1257	80181D20	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1258	80181D2C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1259	80181D44	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1260	80181D50	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1261	80181D54	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1262	80181D58	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1263	80181D5C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1264	80181D60	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1265	80181D64	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1266	80181D68	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1267	80181D6C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1268	80181D70	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1269	80181D74	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1270	80181D78	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1271	80181D80	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1272	80181D84	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1273	80181D88	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1274	80181D8C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1275	80181D90	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1276	80181D94	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1277	80181D98	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1278	80181DB0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1279	80181DE0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1280	80181DE8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1281	80181DF4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1282	80181DFC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1283	80181E0C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1284	80181E1C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1285	80181E2C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1286	80181E34	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1287	80181E40	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1288	80181E48	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1289	80181E54	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1290	80181E68	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1291	80181E78	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1292	80181E7C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1293	80181E84	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1294	80181E88	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1295	80181E8C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1296	80181E90	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1297	80181E98	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1298	80181E9C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1299	80181EA4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1300	80181EA8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1301	80181EAC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1302	80181EB0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1303	80181EB4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1304	80181EB8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1305	80181ED8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1306	80181F0C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1307	80181F40	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1308	80181F58	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1309	80181F5C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1310	80181F6C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1311	80181F7C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1312	80181F8C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1313	80181F90	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1314	80181F94	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1315	80181FA0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1316	80181FD4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1317	80181FE0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1318	80181FF4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1319	80182008	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1320	8018200C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1321	8018201C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1322	80182030	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1323	80182038	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1324	80182048	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1325	8018205C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1326	80182060	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1327	80182070	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1328	80182098	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1329	8018209C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1330	801820A0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1331	801820A4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1332	801820A8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1333	801820AC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1334	801820C0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1335	801820C4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1336	801820D4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1337	801820F8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1338	801820FC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1339	80182100	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1340	80182150	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1341	80182154	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1342	80182168	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1343	80182174	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1344	80182180	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1345	801821C0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1346	801821D4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1347	801821E8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1348	801821EC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1349	801821FC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1350	80182210	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1351	80182218	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1352	80182228	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1353	8018223C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1354	80182240	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1355	80182250	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1356	80182278	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1357	8018227C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1358	80182280	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1359	80182284	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1360	80182288	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1361	8018228C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1362	801822A0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1363	801822A4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1364	801822B4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1365	801822D8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1366	801822DC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1367	801822E0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1368	80182330	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1369	80182334	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1370	80182348	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1371	80182354	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1372	8018235C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1373	80182370	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1374	8018237C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1375	8018238C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1376	80182398	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1377	801823A4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1378	801823BC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1379	801823CC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1380	801823D0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1381	801823D4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1382	801823E8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1383	801823EC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1384	801823FC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1385	80182410	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1386	80182414	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1387	80182424	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1388	80182438	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1389	8018243C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1390	8018244C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1391	80182474	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1392	80182480	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1393	8018248C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1394	80182498	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1395	8018249C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1396	801824A0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1397	801824A4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1398	801824F4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1399	801824F8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1400	8018250C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1401	80182518	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1402	8018251C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1403	80182520	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1404	8018252C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1405	80182544	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1406	8018255C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1407	8018258C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1408	8018258C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1409	8018258C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1410	80182590	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1411	80182598	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1412	8018259C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1413	801825C4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1414	801825C8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1415	801825CC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1416	801825D8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1417	801825F0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1418	80182620	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1419	80182628	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1420	80182634	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1421	8018263C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1422	8018264C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1423	8018265C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1424	8018266C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1425	8018267C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1426	80182688	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1427	8018268C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1428	80182690	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1429	80182694	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1430	801826C8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1431	801826D4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1432	801826D8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1433	8018270C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1434	80182710	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1435	80182718	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1436	8018271C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1437	80182728	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1438	80182734	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1439	80182740	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1440	8018274C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1441	80182750	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1442	80182758	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1443	8018275C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1444	80182764	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1445	80182770	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1446	80182778	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1447	8018277C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1448	80182788	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1449	80182794	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1450	80182798	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1451	8018279C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1452	801827A0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1453	801827A4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1454	801827A8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1455	801827AC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1456	801827B0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1457	801827B4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1458	801827B8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1459	801827BC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1460	801827C0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1461	801827C4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1462	801827D0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1463	801827D0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1464	801827E4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1465	801827E8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1466	801827F8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1467	8018280C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1468	80182810	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1469	80182814	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1470	80182824	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1471	80182838	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1472	8018283C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1473	8018284C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1474	80182874	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1475	80182878	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1476	8018287C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1477	80182880	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1478	80182884	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1479	80182888	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1480	8018289C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1481	801828A0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1482	801828B0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1483	801828D4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1484	801828DC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1485	801828E0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1486	80182940	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1487	80182944	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1488	80182958	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1489	80182964	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1490	8018296C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1491	80182970	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1492	801829B4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1493	801829C8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1494	801829CC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1495	801829DC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1496	801829F0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1497	801829F4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1498	80182A04	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1499	80182A18	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1500	80182A1C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1501	80182A2C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1502	80182A54	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1503	80182A60	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1504	80182A64	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1505	80182A68	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1506	80182A7C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1507	80182A80	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1508	80182A90	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1509	80182AA4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1510	80182AA8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1511	80182AB8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1512	80182AC0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1513	80182AC4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1514	80182B24	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1515	80182B28	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1516	80182B3C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1517	80182B48	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1518	80182B54	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1519	80182B58	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1520	80182B64	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1521	80182B68	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1522	80182B6C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1523	80182B70	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1524	80182B70	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1525	80182B74	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1526	80182B78	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1527	80182B7C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1528	80182BC0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1529	80182BD4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1530	80182BD8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1531	80182BE8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1532	80182BFC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1533	80182C00	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1534	80182C10	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1535	80182C24	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1536	80182C28	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1537	80182C38	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1538	80182C60	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1539	80182C64	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1540	80182C68	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1541	80182C6C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1542	80182C70	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1543	80182C74	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1544	80182C88	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1545	80182C8C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1546	80182C9C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1547	80182CC0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1548	80182CC8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1549	80182CCC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1550	80182D28	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1551	80182D2C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1552	80182D40	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1553	80182D4C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1554	80182D54	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1555	80182D58	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1556	80182D9C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1557	80182DB0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1558	80182DB4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1559	80182DC4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1560	80182DD8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1561	80182DDC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1562	80182DEC	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1563	80182E00	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1564	80182E04	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1565	80182E14	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1566	80182E3C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1567	80182E40	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1568	80182E44	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1569	80182E48	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1570	80182E4C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1571	80182E50	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1572	80182E64	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1573	80182E68	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1574	80182E78	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1575	80182E9C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1576	80182EA4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1577	80182EA8	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1578	80182EF0	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1579	80182EF4	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1580	80182F04	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1581	80182F08	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1582	80182F1C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1583	80182F28	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1584	80182F34	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1585	80182F4C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+LM1586	80182F7C	fl	build/USA/src/rooms/shelter_r48/shelter_r48.i
+__romPos	0000E8F4	al	
+equipmentGetWeaponLoadCapacity	800BB938	a	
+gActor443500ConsoleFollowupSkipScript	80142A74	a	
+D_80073BAC	80073BAC	a	
+D_80072174	80072174	a	
+areaSetCurrentObjectState	800BAC34	a	
+uiInitList	800489A0	a	
+D_80071072	80071072	a	
+CdFlush	80015AF4	a	
+gameFlagSetNibble	8004AC58	a	
+SetRotMatrix	8004ADF8	a	
+shelterR48InitRingsAndDrawGlowTask	8017E3B8	ft	
+stageRequestModeTaskExit	8003F6F8	a	
+gActor503500StaffCardSceneTaskDesc	8014B958	a	
+sceneEngageBattle	800DB4E0	a	
+tmdAllocPrimitiveBuffer	80041B88	a	
+gActor335800BalconyBattleStartScript	80165720	a	
+gActor450200CompanionSceneScript	80137EE4	a	
+actor161500StartSoldierBRemark	80131E38	a	
+gCapCommandEntries	801156A0	a	
+displayAcquireMenuHold	8003E610	a	
+gPadMenuButtonMask	8005ED78	a	
+shelterR48ProjectileTask	8017E704	ft	
+areaSetPlacementVariant	800B5B30	a	
+displayQueueModeTask	8003FB70	a	
+gameGetTaskSlot	8002D22C	a	
+GetTPage	80043938	a	
+displaySetFrameTiming	800280F4	a	
+textItoaUnsigned	8002F18C	a	
+damagePackEnemyAttackKey	800E2BF8	a	
+viewGetMappedIndex	800AD284	a	
+worldCoordGetOriginAudioPan	800D937C	a	
+gPadInputMenuUnlockUpdates	80115716	a	
+mapShelterRoomVariantResolve	80179A04	a	
+uiGetTextColor	80048E10	a	
+cdCmdSelectScene	8001D534	a	
+gActor107600TaskDescriptors	80134F94	a	
+SetDrawTPage	80043A38	a	
+D_801153F1	801153F1	a	
+printf	8001AF3C	a	
+worldCollisionClearContacts	800E1A6C	a	
+sceneReleaseBattleRefAndClearRewards	800DB630	a	
+shelter_r48_VRAM	8017D5C0	f	
+memMalloc	8002DABC	a	
+D_80073BA0	80073BA0	a	
+gActionPromptSlots	80114D28	a	
+D_80072836	80072836	a	
+gAttachmentTrainingLevels	80114BF0	a	
+taskPollKill	8002D3BC	a	
+actor260400RestoreHeliportPlacement	80149FA4	a	
+gRoomEffectOrangeBurst2Id	80115754	a	
+stageMusicRequestAreaStop	800430E4	a	
+taskSpawn	8002CFDC	a	
+MatrixNormal	8003D6C8	a	
+gAreaRecordsByStage	8010CBCC	a	
+textDrawUiLine	8002FDCC	a	
+D_8007106C	8007106C	a	
+gActor450800NurseryIntroSkipScript	8013A33C	a	
+D_80070F6C	80070F6C	a	
+capRunCommandWithTransition	800E3B60	a	
+SetSemiTrans	800439B8	a	
+gCapRoomCompletionSoundsEnabled	80115598	a	
+sndEvtRequestMidiStart	800512BC	a	
+inventoryHasCollectedBit	800BB4BC	a	
+gGfxViewCoord	80070F10	a	
+equipmentRestoreHpMp	800BC164	a	
+D_80073B8C	80073B8C	a	
+gameFlowBeginLoadScreen	8002252C	a	
+sndEvtRequestScriptMix	80054424	a	
+worldCollisionProjectGroundCoord	800EA02C	a	
+worldCollisionUnlinkTrigger	800E1708	a	
+actor215100SelectCaptionResource	8014C5E0	a	
+padScriptSpawnVariableMotorRamp	800E8D1C	a	
+gfxSetFlatLight	8003B140	a	
+gPlayerActorStateTickHeld	80115768	a	
+gItemDescriptors	8010D838	a	
+playerActorPrepareDryfieldLoadout	800BC4E4	a	
+gActor450200RoomVariantSceneScript	8013FC58	a	
+taskGetDescAt	8002D32C	a	
+rcos	8003D108	a	
+gRoomEffectTwinTrailId	8011572C	a	
+D_80072177	80072177	a	
+streamFindViewMovieSlot	8001EED8	a	
+taskKill	8002CCB8	a	
+gActor143000KeypadTaskDesc	80134564	a	
+gEffectSpriteAtlasFrames	80111E48	a	
+D_80115188	80115188	a	
+D_80072724	80072724	a	
+textDrawString	8002E53C	a	
+gDirectionInteractionRearmUpdates	80114D08	a	
+gRoomEffectSparkBurstId	80115750	a	
+D_80071078	80071078	a	
+gActor120300TaskDescriptors	80141B6C	a	
+inventoryResetIceBagTimer	800BC21C	a	
+gEffectUnitQuadCorners	80111E38	a	
+worldCoordSetActorColorMode	800D930C	a	
+gActor342400EncounterTaskDescs	8016BFE0	a	
+gActor560800ChainGlowTick	801752EC	a	
+gActor444000IncineratorEventTaskDesc	801449F4	a	
+playerActorSetScriptedControl	800E3BBC	a	
+stageMusicRequestAreaStart	80043028	a	
+itemMenuSpawnNotice	800D4E40	a	
+actor460200SetupTentSoldiers	80132210	a	
+gActor335800BalconyEntrySkipScript	80165798	a	
+D_80115124	80115124	a	
+shelter_r48_ROM_END	0000E8F4	a	
+uiStartPanelOpening	80048964	a	
+actor215100RequestGalleryAbort	8014A9A0	a	
+streamGetFrameLimit	80020414	a	
+gActor00100DesertChaserTaskDesc	8014D8A4	a	
+gActor04000HangingPoolTaskDesc	8013E51C	a	
+gActor560800CutsceneTaskDescriptors	801718F0	a	
+actor161500StartCompanionRequestReminder	801322A0	a	
+equipmentInitializeWeaponSupplies	800B6CF0	a	
+gFsActorBuffer1Base	8005C370	a	
+textFormatPlayTime	8002EB94	a	
+playerActorRestoreEquipment	801034C0	a	
+shelter_r48_TEXT_SIZE	0000591C	a	
+playerActorRemoveEquipment	801043F4	a	
+SetDrawMove	8004AD18	a	
+damageGetPlayerAttackEffectId	800E2D90	a	
+gpuSetPrimitiveBlendMode	800EC914	a	
+worldCoordUpdateActorColor	800D8EA0	a	
+enemyTaskExit	800B0234	a	
+gfxComposeNodeWorldTransform	800B1D00	a	
+gUiPromptObject	80067694	a	
+gFsActorBuffer0Base	8005C36C	a	
+ratan2	8003D9C8	a	
+sceneFindPlacedActor	800E86FC	a	
+animationSeekSlotWithBlend	800B4114	a	
+inventoryInitializeShootingGalleryLoadout	800BA538	a	
+D_80071090	80071090	a	
+gActor450200SoloSceneScript	8013C72C	a	
+RotTransSV	8004BD58	a	
+padIsStartPressed	8004ACF0	a	
+ApplyMatrixSV	80043A68	a	
+memSelectAuxHeapRegion	8002DC08	a	
+gActor450800NurseryIntroScript	80139964	a	
+memcpy	8001AEFC	a	
+gActor151000GardenArrivalScript	801334EC	a	
+gActor341300WalkwaySceneSkipScript	80165834	a	
+gStageCountdownMusicEntry	80062735	a	
+Gp_QtyById0	8010E038	a	
+shelterR48SpriteDriftTask	80180210	ft	
+sndEvtRequestStageScriptStop	800E3E64	a	
+gActor207000SucklercephTaskDescs	80151E60	a	
+capSetTexturePage	800E6D4C	a	
+__floatsidf	8004B5D8	a	
+SetSprt	80043A18	a	
+gShelterR48SurfacePropertiesByClass	8018BE10	f	
+gActor443500MapFollowupSkipScript	801432FC	a	
+areaSyncLocationVariant	800B601C	a	
+gShelterR48WaterRefractionTaskDesc	80182FAC	f	
+effectDrawGroundShadow	800F68AC	a	
+cdCmdCompleteHeadRequest	8001DA48	a	
+gameFlagSetNibbleIfPresent	800E3B3C	a	
+uiSizePanelForTextDefault	800490A4	a	
+worldCollisionUnlinkBody	800E1638	a	
+gRoomEffectFlyingSparkId	80115730	a	
+playerActorWriteWeaponAnimationBankIndex	800E3CEC	a	
+gGpuCurrentOt	800710A0	a	
+streamInitMoviePlayback	8002043C	a	
+gActor150400FreezerSceneScript	80132D70	a	
+gActor450200SoloSceneSkipScript	8013CAEC	a	
+sndScriptHasActiveId	8005462C	a	
+gMcDialogDescriptors	800611C8	a	
+sndEvtRequestMidiVolume	80051460	a	
+padScriptSpawn	800E8FB0	a	
+gCapFile	8011568C	a	
+gActor450200CompanionSceneSkipScript	80138694	a	
+sceneReleaseBattleRef	800DB6B4	a	
+gMcSaveData	80072168	a	
+gameSetTaskSlot	8002D214	a	
+taskSpawnFromTable	8002CFA0	a	
+gActor142900ElevatorFirstVisitSkipScript	801380F8	a	
+gActor503500BossPhaseTransitionScript	8014D158	a	
+inventoryGetItemQuantity	800BB6FC	a	
+cdCmdRequestCancel	8001C970	a	
+actor450900HandleDepartureTrigger	80132834	a	
+D_80070F70	80070F70	a	
+shelterR48WaterDriftTaskU16	8017F6C0	ft	
+gActor160600SceneWithoutCompanionScript	80135AC0	a	
+displayResumeGameLoop	8003E540	a	
+tmdFreePrimitiveBuffer	80041B4C	a	
+shelterR48OrangeRingFlashTask	801810B0	ft	
+actor460200TalkToSoldierC	801322B8	a	
+itemMenuOpenHotspotCommands	800D4E78	a	
+gfxMakeRelativeTransform	800A8864	a	
+gWorldCollisionSurfacePropertiesTables	8010CBB8	a	
+gShelterR48ViewCounts	80183030	f	
+streamPollGameRestore	8001EF9C	a	
+areaClearMapMark	800AED24	a	
+gItemMenuInfoPanel	80067634	a	
+cdCmdIsSlotEmpty	8001D37C	a	
+D_8007107C	8007107C	a	
+gActor461800NeoArkSceneSkipScript	80134470	a	
+itemMenuDrawTaskPrompt	800CE4F4	a	
+MargePrim	800422B8	a	
+worldCoordSetModelLighting	800D7A9C	a	
+streamResetGameRestore	80020388	a	
+gfxReadMatrixYAxis	8003C748	a	
+actor503500ClearFadeFromBlackHandle	80132F58	a	
+displayReleaseMenuHold	8003E64C	a	
+taskCallExit	8002D0A4	a	
+RotMatrixZYX	80044408	a	
+actor341300ResetScriptTaskHandle	8016268C	a	
+modelObjectAttachTmd	8009902C	a	
+gActor161500CompleteCompanionRequestTaskDesc	80136CDC	a	
+gGameSession	8005ED64	a	
+D_80071076	80071076	a	
+__adddf3	8004AFE8	a	
+gRoomEffectFlashId	80115758	a	
+gActor443500TourOpeningSkipScript	80141C1C	a	
+actor215100FinishGalleryCourse	8014A908	a	
+animationAimHeadAtPoint	800B0CF4	a	
+mapAkropolisOpenKeyItemMenu	80179FC8	a	
+areaSetObjectState	800BB8E8	a	
+shelter_r48_TEXT_START	8017D660	f	
+gItemMenuPanelDescriptors	8010EAB4	a	
+SquareRoot0	8003B8A0	a	
+gameFlagSetPackedByte	800E3FAC	a	
+gAttachmentState	80114C08	a	
+displayConfigureFramebuffers	8003DB48	a	
+gfxBuildOrthonormalBasis	8003CEC4	a	
+gActor342100EncounterBlazeTaskDescriptors	80164B78	a	
+gActor535700PawnGolemEncounterScript	80133898	a	
+sndEvtRequestScriptStop	800542D0	a	
+SetShadeTex	800439E8	a	
+sceneReleaseBattleRefWithRewards	800DB558	a	
+capRunCommand	800E34D8	a	
+gFsActorBuffer2Base	8005C374	a	
+capReset	800E6DF4	a	
+shelterR48LargeOrbTask	8017E9B8	ft	
+gActor341300WalkwaySceneScript	80165354	a	
+gEquipmentWeaponPrimaryLoadOptions	8010E238	a	
+gfxReadMatrixZAxis	8003C768	a	
+shelter_r48_BSS_END	8018BEB4	f	
+D_80071086	80071086	a	
+gfxRotMatrixY	8003C98C	a	
+gPadScriptTransitionCommands	80114A24	a	
+viewApplyCamera	800A8A48	a	
+RotTransPers4	8004C358	a	
+D_8011540E	8011540E	a	
+gPadScriptTransitionSegments	80114A34	a	
+mapDryfieldFullResolveRoomVariant	80179954	a	
+inventoryRestoreCarriedLoadout	800BA75C	a	
+D_80072176	80072176	a	
+gStreamInterFile	8006AC30	a	
+playerActorPrepareAcropolisLoadout	800BC4BC	a	
+mapAkropolisWasDryfieldMapSelected	8017A038	a	
+gStageMusicTaskDesc	80062774	a	
+gMdecMovieOutputSlot	8005EAEE	a	
+gActor451100SubmarineTunnelSceneSkipScript	80135FD0	a	
+gStageRoomMusicSequence	80062737	a	
+worldCollisionFindContactIndex	800E19B8	a	
+shelter_r48_TEXT_END	80182F7C	f	
+worldCollisionLinkBody	800E15AC	a	
+D_80073BA9	80073BA9	a	
+midiIsSequenceBusy	800514F8	a	
+memCopyBytes	8002D7A8	a	
+effectKillTask	800EC7E4	a	
+inventoryCountOccupiedRows	800BAF5C	a	
+itemMenuGetPrimaryPreviewItem	800CF27C	a	
+sceneSetPlacedActorDrawMode	800E3C6C	a	
+__fixdfsi	8004B4D8	a	
+shelter_r48_RODATA_SIZE	000000A0	a	
+effectDrawGouraudDisc	800EAEB8	a	
+cdCmdStageSceneAudioStart	8001D6B8	a	
+D_80072A94	80072A94	a	
+textItoaSigned	8002F020	a	
+cdCmdIsIdle	8001D344	a	
+actor215100CheckGalleryExitInput	8014A398	a	
+shelterR48SetBackgroundSpritesVisible	8017E27C	ft	
+D_80072729	80072729	a	
+sceneQueueBattleEscapeResult	800A7A64	a	
+capStartSequenceSlot	800E6C70	a	
+gActor215100GalleryTrainingActive	8014D038	a	
+worldCollisionReadActionHit	800E1BF0	a	
+SetTransMatrix	8004AE28	a	
+gameFlagGetNibble	8004ACAC	a	
+shelter_r48_DATA_END	8018BEB4	f	
+D_801153F4	801153F4	a	
+gRoomEffectHaloId	80115744	a	
+AddPrim	80043978	a	
+gCapPreserveActorControl	80115690	a	
+uiSetListSystemCursorSound	8004917C	a	
+itemSetIdentified	800BB7C0	a	
+gfxRotMatrixZ	8003CB80	a	
+worldTargetAddReadoutAmount	800DA6E8	a	
+inventoryGetConsumableStackQuantity	800BB26C	a	
+SetDrawOffset	80018AA4	a	
+D_8007272D	8007272D	a	
+gSceneCombatState	801153F0	a	
+itemMenuDrawItemRow	800CD924	a	
+effectDrawSpinningBillboard	800EB2C8	a	
+uiDrawPanelLabel	80047F40	a	
+gGameMainPersistentState	800710A8	a	
+enemySpawnFromTable	800B01AC	a	
+gfxRotMatrixYXZ	8003BD34	a	
+D_8011540A	8011540A	a	
+effectDrawModulatedBillboard	800EB6E8	a	
+equipmentHasCarriedWeaponSupply	800BBDDC	a	
+gActor461800NeoArkSceneScript	80133F90	a	
+uiPositionRowDialog	80049024	a	
+actor260400StartHeliportConversation	80149E38	a	
+shelter_r48_RODATA_START	8017D5C0	f	
+evsStartScriptWithSkip	800E8634	a	
+gEquipmentModeBaseStats	8010D328	a	
+gFsImageWorkspacePtr	8005C364	a	
+actor160700StartMeetingScript	80131E70	a	
+evsStartScript	800E8614	a	
+loadingRequestViewGraphicsRestore	800A99B4	a	
+actor450200InitializeObservatoryCompanion	801322F8	a	
+StoreImage	80017FA4	a	
+D_80114C12	80114C12	a	
+MoveImage	80018004	a	
+func_807245E4	807245E4	a	
+uiUpdateList	80048C10	a	
+streamGetSlot	80020278	a	
+textAppendString	8002F588	a	
+gActor310100Officer1TaskDescriptors	801798FC	a	
+capGetVariantKey	800E6D3C	a	
+gActor143900ObservatoryEntrySkipScript	80133860	a	
+gShelterR48ViewMaps	8018302C	f	
+capIsBusy	800E6CE0	a	
+attachmentIsTrainingMode	800A74C4	a	
+gGpuPrimCursor	80071190	a	
+gActor503500BossDefeatSkipScript	8014CAF8	a	
+worldCoordGetOriginAudioDepth	800D9340	a	
+gfxRotMatrixXYZ	8003B960	a	
+actor161500StartSoldierBShopConversation	80132110	a	
+shopOpenSession	800D4D2C	a	
+gPadCancelButtonMask	8005ED74	a	
+gPadStates	80071620	a	
+SetDrawArea	80018A24	a	
+shelter_r48_VRAM_END	8018BEB4	f	
+D_80071075	80071075	a	
+RotTransPers3	8004C1E8	a	
+actor460200TalkToSoldierA	80132390	a	
+animationInitContext	800B3F84	a	
+gActor450200RoomVariantSceneSkipScript	80140078	a	
+equipmentFindNextCarriedWeaponSupply	800BBD40	a	
+gActor535700PawnGolemEncounterSkipScript	801341E0	a	
+uiDrawBeveledRect	80046B34	a	
+rand	80037164	a	
+gActor450900EntrySkipScript	80136308	a	
+D_80115410	80115410	a	
+companionSetDrawMode	800E3EB0	a	
+inventoryGiveItem	800BAD08	a	
+gActor560800MovieTaskDescriptors	8016EA28	a	
+gActor342000IncineratorEventTaskDescs	80164FF8	a	
+D_8010E138	8010E138	a	
+effectSpawnHit	800FDB18	a	
+gInventoryContainerRanges	8010D550	a	
+gActor143400CompanionEntryScript	801350BC	a	
+memCalloc	8002D978	a	
+effectSpawn	800EA478	a	
+gActor450900EntryScript	80136110	a	
+strncmp	8001EAC4	a	
+gInventoryConsumableStacks	8010E3B8	a	
+gActor105500MaggotCaterpillarTasks	8013A8DC	a	
+itemMenuDrawDefaultItemIcon	800CE5D0	a	
+actor161500StartSoldierBTalkB	80132038	a	
+D_80071068	80071068	a	
+gRoomEffectWaterSprayId	80115738	a	
+gActor450800NurseryShootingSkipScript	8013BA84	a	
+gMdecMovieInputSlot	8005EAEC	a	
+gActor443500ConsoleFollowupScript	80141D9C	a	
+actor150400SpawnSlidingModels	80131FB8	a	
+D_800691CA	800691CA	a	
+gActor503500SceneEffectTaskDescs	8014B964	a	
+D_80114C0B	80114C0B	a	
+gRoomEffectMoteId	80115728	a	
+areaApplySavedUpdates	800AE62C	a	
+cdCmdCancelScene	8001D588	a	
+func_800AC000	800AC000	a	
+uiSetPanelContentSize	800466E4	a	
+GsWSMATRIX	80071138	a	
+uiObjectTaskExit	800488B8	a	
+cdSyncPollCommand	8001E6AC	a	
+gActor443500MapFollowupScript	80142C24	a	
+gItemMenuTransferPanelDescriptors	8010D6F4	a	
+cdCmdEnqueue	8001D2B0	a	
+D_801150C0	801150C0	a	
+padCheckButtons	8002C868	a	
+itemMenuDrawPreview	800C7AE8	a	
+gActor160600SceneWithCompanionScript	80135D78	a	
+gCapChoiceRowStride	80115680	a	
+taskSpawnFromTableOnDefaultList	8003E4BC	a	
+SetDrawStp	80042288	a	
+gActor143900ObservatoryEntryScript	80133560	a	
+playerActorSetDrawMode	800E3B80	a	
+actor450800StartNurseryCompanionDialogue	80132000	a	
+gActor215100PierceStoryScript	80153274	a	
+itemMenuSetPreviewItem	800CDE80	a	
+equipmentRecalculateMaxMp	800B7930	a	
+effectDrawOuterGlowBand	800EAA0C	a	
+stageEnsureHeapTaskPrimitiveBuffer	8003F9AC	a	
+shelter_r48_BSS_START	8018BEB4	f	
+actor215100HandleGalleryAction	8014AB6C	a	
+shelterR48ShockwaveRingsTask	8018147C	ft	
+RotMatrixZ	8004AE48	a	
+SetDispMask	80017C00	a	
+SetTile	80042344	a	
+func_80724608	80724608	a	
+cdCmdEnqueueScenePlayback	8001D5CC	a	
+__muldf3	8004B828	a	
+rsin	8003D038	a	
+viewFindLogicalIndex	800ACEBC	a	
+inventoryInitializeStarterLoadout	800B7D18	a	
+gPadConfirmButtonMask	8005ED70	a	
+areaIsSavedPoseRestoreEnabled	800B59A8	a	
+gActor361100PodSceneScript	80165F48	a	
+areaGetVariant	800B5CE8	a	
+gActor443500TourOpeningScript	8014152C	a	
+gGameFlagNibbleBanks	80073980	a	
+shelterR48RoomTask	8017E224	ft	
+actor450800PrepareNurseryKyleMadigan	80132028	a	
+worldCoordSetAmbientColorOverride	800D94B8	a	
+gActor460200TentArrivalSkipScript	80137890	a	
+gShelterR48RoomCollisionResources	8018301C	f	
+worldTargetDisableNodeLockOn	800DACF8	a	
+D_80072170	80072170	a	
+D_80070F87	80070F87	a	
+D_80072310	80072310	a	
+worldCollisionProbeGridSegment	800DE7CC	a	
+D_8011540C	8011540C	a	
+memset	800420F8	a	
+companionWriteAnimationBankIndex	800E3D24	a	
+D_80073BAE	80073BAE	a	
+gActor215100GalleryTaskDescs	8014E13C	a	
+shelterR48YellowRingFlashTask	8017EC18	ft	
+gActor136300GarageCompanionSceneSkipScript	8013C388	a	
+shelterR48SmallOrbTask	8017E4C4	ft	
+streamPrepareMovieWorkspace	80020298	a	
+gActor136300CompanionGaragePlacement	8013B570	a	
+srand	80037194	a	
+viewQueueCurrentCameraAndPackets	800A8B6C	a	
+ApplyMatrixLV	80042128	a	
+taskMessageDispatch	800AC464	a	
+uiStartTreeClosing	80048838	a	
+animationResetSlot	800B3FA8	a	
+actor215100CapCaptionSelectRecord	8014B2B8	a	
+taskRequestKill	8002D340	a	
+D_8007107A	8007107A	a	
+actor161500RestoreCompanionRequestScene	8013230C	a	
+actor215100ResolveGalleryExit	8014AA54	a	
+gPlayerStatus	80073B88	a	
+inventoryGetRangeTable	800BB500	a	
+gActor142600IncineratorArrivalSkipScript	80136804	a	
+gPlayerActorTasks	80115760	a	
+shelterR48RingWallTask	8017EFD8	ft	
+gActor548100PanelTaskDesc	801358D8	a	
+equipmentConsumeWeaponLoad	800B6DA4	a	
+inventoryResetCarriedRange	800BC490	a	
+enemyDestroy	800B01F0	a	
+gFsResourceSlots	8006C338	a	
+gRandomLcgState	80070F60	a	
+actor160700RestoreMeetingAnimation	80131E24	a	
+func_800ABFF8	800ABFF8	a	
+gActor146300IceBagHandoverTaskDesc	8013788C	a	
+areaSpawnPlacements	800B4AF8	a	
+itemMenuDrawMeter	800C0E20	a	
+gameFlagGetPackedByte	800E3FCC	a	
+equipmentLoadWeaponConsumable	800B715C	a	
+displaySetShakeY	8003DE78	a	
+sndEvtRequestStageScriptStart	800E3DD8	a	
+inventoryHasAttachedItem	800BC3F8	a	
+equipmentRecalculateMaxHp	800BC0C0	a	
+RotTransPers	8004C198	a	
+D_8007216D	8007216D	a	
+gActor146300WaterTankEventScript	80137C28	a	
+roomEffectRequestCancelPe	800FC6C0	a	
+gpuUploadImages	800DB31C	a	
+gDirectionActionActive	80114CF8	a	
+D_80072830	80072830	a	
+shelter_r48_BSS_SIZE	00000000	a	
+sndEvtRequestScriptVolume	800544B8	a	
+worldCollisionLinkTrigger	800E1688	a	
+actor450800StartNurseryInteraction	80131E2C	a	
+gActor215100PierceStorySkipScript	80153D6C	a	
+gActor136300TaskTable	8013B11C	a	
+gStageMusicParams	8007A39C	a	
+VectorNormalSS	8003D5D8	a	
+gActor160900TaskDescriptors	8013FB50	a	
+D_80072A93	80072A93	a	
+gWorldCollisionActiveGrid	80115448	a	
+D_80072A92	80072A92	a	
+roomEffectRequestCancelAll	800EC868	a	
+gActor310100Officer2TaskDescriptors	80179920	a	
+actorRenderDrawGroundShadow	800B4E54	a	
+D_8007218A	8007218A	a	
+capSelectLoadedFile	800E6D60	a	
+cdCmdDropQueuedTail	8001D424	a	
+Gfx_ViewWorldMtx	80070F34	a	
+actor161500StartSoldierBTalkA	80131FBC	a	
+gActor503500BossDefeatScript	8014C540	a	
+tmdBuildBufferHalf	800410F0	a	
+effectDrawScreenTint	800EA858	a	
+gActor146000WaterHoleSceneTasks	801351FC	a	
+tmdResetAuxHeapAndRestoreBuffers	80041EB4	a	
+gActor120500EmptyPlacementTaskDesc	8013843C	a	
+equipmentGetWeaponLoad	800BAFE0	a	
+DrawSync	80017C98	a	
+damageComputePlayerAttack	800E1FEC	a	
+itemMenuClearPreviewItems	800CDEF4	a	
+actor215100StartPierceConversation	8014AF0C	a	
+actor450900StartCompanionConversation	801327A8	a	
+damageRollCriticalHit	800E25F8	a	
+gActor151000GardenArrivalSkipScript	80133954	a	
+shelterR48PinkRingFlashTask	80181704	ft	
+animationTickSlot	800B4514	a	
+sceneAcquireBattleRef	800DB53C	a	
+gActor143400CompanionEntrySkipScript	801359D4	a	
+companionRemoveEquipment	8010B674	a	
+sndScriptResolveStageId	800E3E30	a	
+actor146300RestoreHandoverPose	8013224C	a	
+gActor150400FreezerSceneSkipScript	80133088	a	
+gActor403600TaskTable	80160514	a	
+companionSetScriptedControl	800E3EF0	a	
+gCapInlineIconCells	8010FB70	a	
+streamPollMoviePlayback	8001FAE0	a	
+gPlayerActorWeaponReaches	80112F60	a	
+D_80072728	80072728	a	
+damagePackAttackKey	800E2C40	a	
+uiSpawnObject	800486F0	a	
+worldCollisionInitContacts	800E18E0	a	
+sndEvtRequestMidiStop	8005132C	a	
+gActor503500BossIntroSkipScript	8014C288	a	
+RotMatrix	80043AC8	a	
+D_80114C11	80114C11	a	
+memConfigureImageMemory	800144F8	a	
+viewQueueCamera	800A8A1C	a	
+displaySpawnTaskFromTable	8003E324	a	
+uiStartPanelHiding	800488F8	a	
+actor260500RestoreHeliportPlacement	80149E80	a	
+gActor04400MadChaserTaskDescs	80142604	a	
+actor450200StartCompanionTalk	80132220	a	
+gpuBlendRgb555ClutRow	800B27C4	a	
+D_80072834	80072834	a	
+actor361100ClearHeadAimTaskHandle	80162B0C	a	
+gCapConfirmedChoiceIndex	801156A8	a	
+itemGetText	800B8EB0	a	
+gActor451100SubmarineTunnelEntryScript	80136108	a	
+ScaleMatrix	8004A98C	a	
+uiDrawTitle	80048E38	a	
+playerActorEndScripted	80104838	a	
+gfxRotMatrixX	8003C788	a	
+D_80071071	80071071	a	
+gRoomEffectSparkEmitterId	80115720	a	
+MulMatrix0	80044208	a	
+D_80114FF8	80114FF8	a	
+gActor450900Tasks	80135E78	a	
+itemMenuIsHotspotActionConfirmed	800D4EC0	a	
+inventoryClearItems	800BAC8C	a	
+gCapRestoreView	80115694	a	
+D_801153F6	801153F6	a	
+gWorldCoordTransientPointLights	80114F30	a	
+gActor443500PowerPlantProgressDialogueScript	80143494	a	
+capSpawnEventIfIdle	800E3D8C	a	
+gDisplayState	80070F68	a	
+itemMenuSetItemDescriptionPrompt	800CEB40	a	
+D_8007217B	8007217B	a	
+gActor136300GarageCompanionSceneScript	8013B590	a	
+ApplyTransposeMatrixLV	80044050	a	
+inventoryCanAddItem	800B8988	a	
+gSpriteAreaTables	8010CB68	a	
+sceneFindEnemyByPlaceKey	800B584C	a	
+gMidiMusicVolume	8007A396	a	
+shelter_r48_DATA_SIZE	00008F38	a	
+inventoryMeltIceBagIfExpired	800BC254	a	
+gteMIMefunc	8004AD78	a	
+gShelterR48WarpEntries	80183034	f	
+inventoryGetItemSortKey	800BC18C	a	
+uiGetTextRowsHeight	80048E2C	a	
+gCapControlFlags	801156A4	a	
+gFsActorBufferWrittenBytes	8006D860	a	
+gActor142600IncineratorArrivalScript	801360E4	a	
+shelter_r48_RODATA_END	8017D660	f	
+playerActorEnterLocomotion	801066DC	a	
+D_8007218B	8007218B	a	
+uiDrawHorizontalSeparator	80047A0C	a	
+sndEvtRequestScriptStart	8005414C	a	
+actor215100CapCaptionDrawCurrent	8014B0D4	a	
+gActor335800BalconyEntryScript	80165060	a	
+stageReleaseTaskPrimitiveBuffer	8003F9F4	a	
+equipmentGetWeaponSupply	800BBDC8	a	
+animationAimHeadAt	800B17D4	a	
+gRoomEffectOrangeBurstId	8011573C	a	
+viewGetMappedCamera	800A8C08	a	
+gCdCmdQueue	80068FA0	a	
+gActor146300WaterTankEventSkipScript	80138570	a	
+capAbortPlayback	800E6CF0	a	
+textDrawUiLines	8002FB84	a	
+gActor503500EnemyTaskDescs	8016E924	a	
+streamFinishScene	800B00C4	a	
+loadingEnqueueEquippedWeaponResources	800A9BE4	a	
+gActor503500BossIntroScript	8014BD48	a	
+gShelterR48AreaVariants	8018BC10	f	
+gActor207000SlouchTaskDescs	801575F0	a	
+companionRestoreFullHp	800E3D78	a	
+textItoaPadded	8002F44C	a	
+shelter_r48_bss_VRAM	8018BEB4	f	
+playerStateRestoreFullHpMp	800E3D5C	a	
+gRoomEffectWaterRippleId	8011574C	a	
+memFillBytes	8002D894	a	
+D_8007106B	8007106B	a	
+gActor450800NurseryShootingScript	8013AF8C	a	
+uiFitPanelToList	80046830	a	
+uiSetPromptText	80049D34	a	
+RotMatrixX	8004BE58	a	
+worldCoordSetModelAmbientColor	800D9550	a	
+worldTargetLinkNode	800DABEC	a	
+damageAccumulateLifeDrainHp	800E2C78	a	
+gActor451100SubmarineTunnelSceneScript	80135220	a	
+taskReparent	8002D14C	a	
+gActor160600SceneSkipScript	80136258	a	
+gShelterR48RoomLighting	80183014	f	
+playerActorTurnToYaw	80104E00	a	
+gRoomEffectState	80115740	a	
+TransposeMatrix	800420B8	a	
+gShelterR48CollisionGrid	80183EEC	f	
+worldCollisionProjectGroundPoint	800EA1A8	a	
+inventoryClearCollectedBit	800BAEC0	a	
+D_8007216C	8007216C	a	
+uiSpawnOptionDialog	800480A0	a	
+actorRenderComposeCoord	80098F58	a	
+GetClut	80042AE0	a	
+gRoomEffectGlowDiscId	80115734	a	
+itemMenuDrawQuantity	800CDBEC	a	
+gShelterR48ViewCameras	80183F10	f	
+gActor503500TentacleTaskDesc	80176524	a	
+areaGetCurrentObjectState	800BB470	a	
+gActor341900GluttonEntranceTaskDescs	80164190	a	
+gWorldCollisionActionTriggerListHead	8011556C	a	
+gShelterR48SpriteViews	80189FB4	f	
+actor260500StartHeliportConversation	80149EBC	a	
+fadeDrawOverlay	8002BA9C	a	
+worldCollisionResolvePushback	800E0C10	a	
+equipmentEquipCarriedArmor	800B7A50	a	
+__subdf3	8004BC28	a	
+D_80072A98	80072A98	a	
+shelter_r48_DATA_START	80182F7C	f	
+padInputChangeSuppression	800E9BDC	a	
+gActor450800NurseryReentryScript	8013A84C	a	
+shelter_r48_ROM_START	00000000	a	
+gEvsPlaybackPaused	801156F9	a	
+gActor460200TentArrivalScript	801362B8	a	
+RotMatrixY	8004BFF8	a	
+gActor361100PodSceneSkipScript	80166848	a	
+streamFindMovieSlot	8001EDC8	a	
+gActor310100PlayerAnimationSets	801797FC	a	
+gActor142900ElevatorFirstVisitScript	801378D0	a	
+inventoryIsItemLimitReached	800B7420	a	
+streamSetExternalScenePayloadBuffer	800B015C	a	
+gActor141000FlightTasks	801348D8	a	
+mapNeoArkResolveRoomVariant	80179B14	a	
+gViewIdentityMap	8010CAF8	a	
+gpuResetAndInvalidateModelBuffers	80041E4C	a	
+animationAimHeadAtTask	800B0928	a	
+gItemMenuEmptyPromptText	8010F8D0	a	
+padScriptHalt	800E8F68	a	
+gWorldCollisionSurfacePushbackSuppression	80115428	a	

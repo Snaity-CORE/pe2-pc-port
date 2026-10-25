@@ -1,0 +1,7 @@
+/* Generated from assets/USA/pe2pkg/shelter_b1_transfer_tunnel.pe2pkg; grid header at 0x552C. */
+    { { 0, 0, 0, 0 }, 0, 0 },
+    { { 0, 0, 0, 0 }, 0, 0 },
+    { { 0, 0, 0, 0 }, 0, 0 },
+    { { 0, 0, 0, 0 }, 0, 0 },
+    { { 0, 0, 0, 0 }, 0, 0 },
+    { { 0, 0, 0, 0 }, 0, 0 },

@@ -1,0 +1,612 @@
+gcc2_compiled.	8011D1EC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+__gnu_compiled_c	8011D1EC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_MACRO_INC_GUARD	00000001	al	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonTrailEndpointOffsets	8011E0F0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonWeaponModelSkeleton	8011E100	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonWeaponModelPartVerts	8011E124	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonWeaponModelVerts	8011E128	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonWeaponModelNormals	8011E1E8	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonWeaponModelStream	8011E288	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonShaftModelSkeleton	8011E484	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonShaftModelPartVerts	8011E4A8	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonShaftModelVerts	8011E4AC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonShaftModelNormals	8011E4EC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonShaftModelStream	8011E52C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaIdleClipBank1	8011E610	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaIdleClipBank4	8011E628	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaIdleClipRecords	8011E648	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaIdleClipTrackStarts	8011E778	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaUnarmedWalkClipBank1	8011E7C8	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaUnarmedWalkClipBank4	8011E858	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaUnarmedWalkClipRecords	8011EAB4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaUnarmedWalkClipTrackStarts	8011EE1C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaUnarmedWalkClip	8011EE44	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaTurnLeftClipBank1	8011EE6C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaTurnLeftClipBank4	8011EF50	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaTurnLeftClipRecords	8011F1F4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaTurnLeftClipTrackStarts	8011F67C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaTurnLeftClip	8011F6A4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaTurnRightClipBank1	8011F6CC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaTurnRightClipBank4	8011F7B0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaTurnRightClipRecords	8011FA58	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaTurnRightClipTrackStarts	8011FEE0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaTurnRightClip	8011FF08	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaItemUseClipBank1	8011FF30	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaItemUseClipBank4	8011FF54	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaItemUseClipRecords	80120068	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaItemUseClipTrackStarts	801201F4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaItemUseClip	8012021C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaStairAscentClipBank1	80120244	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaStairAscentClipBank4	801202EC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaStairAscentClipRecords	8012055C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaStairAscentClipTrackStarts	80120950	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaStairAscentClip	80120978	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaStairDescentClipBank1	801209A0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaStairDescentClipBank4	80120A60	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaStairDescentClipRecords	80120CFC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaStairDescentClipTrackStarts	801210D8	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaStairDescentClip	80121100	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaStairAscentFinishOddClipBank1	80121128	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaStairAscentFinishOddClipBank4	80121170	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaStairAscentFinishOddClipRecords	80121240	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaStairAscentFinishOddClipTrackStarts	801213AC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaStairAscentFinishOddClip	801213D4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaStairAscentFinishEvenClipBank1	801213FC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaStairAscentFinishEvenClipBank4	80121450	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaStairAscentFinishEvenClipRecords	80121574	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaStairAscentFinishEvenClipTrackStarts	8012173C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaStairAscentFinishEvenClip	80121764	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaParasiteEnergyBegin0ClipBank1	8012178C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaParasiteEnergyBegin0ClipBank4	801217F8	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaParasiteEnergyBegin0ClipRecords	80121998	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaParasiteEnergyBegin0ClipTrackStarts	80121BC4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaParasiteEnergyBegin0Clip	80121BEC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaParasiteEnergyCharge0ClipBank1	80121C14	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaParasiteEnergyCharge0ClipBank4	80121C38	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaParasiteEnergyCharge0ClipRecords	80121C90	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaParasiteEnergyCharge0ClipTrackStarts	80121DC0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaParasiteEnergyCharge0Clip	80121DE8	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaParasiteEnergyCast0ClipBank1	80121E10	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaParasiteEnergyCast0ClipBank4	80121E58	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaParasiteEnergyCast0ClipRecords	80121F3C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaParasiteEnergyCast0ClipTrackStarts	80122098	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaParasiteEnergyCast0Clip	801220C0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaParasiteEnergyBegin1ClipBank1	801220E8	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaParasiteEnergyBegin1ClipBank4	80122118	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaParasiteEnergyBegin1ClipRecords	801221F4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaParasiteEnergyBegin1ClipTrackStarts	8012233C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaParasiteEnergyBegin1Clip	80122364	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaParasiteEnergyCharge1ClipBank1	8012238C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaParasiteEnergyCharge1ClipBank4	801223B0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaParasiteEnergyCharge1ClipRecords	8012240C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaParasiteEnergyCharge1ClipTrackStarts	8012253C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaParasiteEnergyCharge1Clip	80122564	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaParasiteEnergyCast1ClipBank1	8012258C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaParasiteEnergyCast1ClipBank4	801225EC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaParasiteEnergyCast1ClipRecords	801226FC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaParasiteEnergyCast1ClipTrackStarts	80122890	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaParasiteEnergyCast1Clip	801228B8	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaHitHeadClipBank1	801228E0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaHitHeadClipBank4	8012291C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaHitHeadClipRecords	801229F8	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaHitHeadClipTrackStarts	80122B44	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaHitHeadClip	80122B6C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaHitBodyClipBank1	80122B94	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaHitBodyClipBank4	80122BDC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaHitBodyClipRecords	80122CE4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaHitBodyClipTrackStarts	80122E64	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaHitBodyClip	80122E8C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaDeathClipBank1	80122EB4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaDeathClipBank4	80122F8C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaDeathClipRecords	8012326C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaDeathClipTrackStarts	80123628	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaDeathClip	80123650	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaHighHealthIdleClipBank1	80123678	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaHighHealthIdleClipBank4	801237D4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaHighHealthIdleClipRecords	80123EDC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaHighHealthIdleClipTrackStarts	801248C0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaHighHealthIdleClip	801248E8	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaLowHealthIdleClipBank1	80124910	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaLowHealthIdleClipBank4	801249A0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaLowHealthIdleClipRecords	80124DC8	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaLowHealthIdleClipTrackStarts	80125438	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaLowHealthIdleClip	80125460	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaMidHealthIdleClipBank1	80125488	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaMidHealthIdleClipBank4	801254F4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaMidHealthIdleClipRecords	80125734	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaMidHealthIdleClipTrackStarts	80125B54	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaMidHealthIdleClip	80125B7C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaExamineEnterClipBank1	80125BA4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaExamineEnterClipBank4	80125BEC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaExamineEnterClipRecords	80125D98	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaExamineEnterClipTrackStarts	80125FD4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaExamineEnterClip	80125FFC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaExamineExitClipBank1	80126024	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaExamineExitClipBank4	80126048	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaExamineExitClipRecords	801260C8	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaExamineExitClipTrackStarts	801261AC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaExamineExitClip	801261D4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaParasiteEnergyBegin2ClipBank1	801261FC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaParasiteEnergyBegin2ClipBank4	80126280	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaParasiteEnergyBegin2ClipRecords	80126474	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaParasiteEnergyBegin2ClipTrackStarts	80126710	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaParasiteEnergyBegin2Clip	80126738	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaParasiteEnergyCharge2ClipBank1	80126760	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaParasiteEnergyCharge2ClipBank4	80126784	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaParasiteEnergyCharge2ClipRecords	801267D4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaParasiteEnergyCharge2ClipTrackStarts	80126904	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaParasiteEnergyCharge2Clip	8012692C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaParasiteEnergyCast2ClipBank1	80126954	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaParasiteEnergyCast2ClipBank4	801269B4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaParasiteEnergyCast2ClipRecords	80126B58	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaParasiteEnergyCast2ClipTrackStarts	80126D84	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaParasiteEnergyCast2Clip	80126DAC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonAimIdleClipBank1	80126DD4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonAimIdleClipBank4	80126DEC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonAimIdleClipRecords	80126E2C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonAimIdleClipTrackStarts	80126F10	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonAimIdleClip	80126F38	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonAimBackwardClipBank1	80126F60	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonAimBackwardClipBank4	80127014	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonAimBackwardClipRecords	801272F8	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonAimBackwardClipTrackStarts	8012772C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonAimBackwardClip	80127754	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonAimForwardClipBank1	8012777C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonAimForwardClipBank4	80127830	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonAimForwardClipRecords	80127B5C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonAimForwardClipTrackStarts	80127FE8	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonAimForwardClip	80128010	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonBattleEndClipBank1	80128038	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonBattleEndClipBank4	801280F8	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonBattleEndClipRecords	801283A0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonBattleEndClipTrackStarts	80128760	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonBattleEndClip	80128788	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonStrikeClipBank1	801287B0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonStrikeClipBank4	80128834	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonStrikeClipRecords	80128A9C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonStrikeClipTrackStarts	80128DA0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonStrikeClip	80128DC8	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonStrikeRecoveryClipBank1	80128DF0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonStrikeRecoveryClipBank4	80128EA4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonStrikeRecoveryClipRecords	801291DC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonStrikeRecoveryClipTrackStarts	801295BC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonStrikeRecoveryClip	801295E4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonComboStrikeClipBank1	8012960C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonComboStrikeClipBank4	80129774	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonComboStrikeClipRecords	80129E14	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonComboStrikeClipTrackStarts	8012A5C4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonComboStrikeClip	8012A5EC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonAimEnterClipBank1	8012A614	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonAimEnterClipBank4	8012A650	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonAimEnterClipRecords	8012A728	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonAimEnterClipTrackStarts	8012A88C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonAimEnterClip	8012A8B4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonAimExitClipBank1	8012A8DC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonAimExitClipBank4	8012A900	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonAimExitClipRecords	8012A970	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonAimExitClipTrackStarts	8012AA54	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonAimExitClip	8012AA7C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaHandgunBackwardWalkClipBank1	8012AAA4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaHandgunBackwardWalkClipBank4	8012AB88	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaHandgunBackwardWalkClipRecords	8012AE8C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaHandgunBackwardWalkClipTrackStarts	8012B32C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaHandgunBackwardWalkClip	8012B354	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaHandgunRunClipBank1	8012B37C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaHandgunRunClipBank4	8012B418	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaHandgunRunClipRecords	8012B6B4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaHandgunRunClipTrackStarts	8012BA60	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gAyaHandgunRunClip	8012BA88	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gBladeTrailFirstHistory	8012BBEC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gBladeTrailSecondHistory	8012BE6C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_gTonfaBatonTrailTint	8012C0EC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM1	8011D1EC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM2	8011D1EC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM3	8011D1F8	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM4	8011D1FC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM5	8011D220	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM6	8011D224	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM7	8011D228	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM8	8011D22C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM9	8011D230	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM10	8011D234	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM11	8011D23C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM12	8011D24C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM13	8011D26C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM14	8011D26C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM15	8011D270	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM16	8011D274	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM17	8011D278	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM18	8011D27C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM19	8011D280	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM20	8011D28C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM21	8011D290	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM22	8011D294	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM23	8011D298	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM24	8011D29C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM25	8011D2A0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM26	8011D2A4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM27	8011D2A4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM28	8011D2AC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM29	8011D2B4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM30	8011D2B8	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM31	8011D2BC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM32	8011D2C0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM33	8011D2C4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM34	8011D2C8	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM35	8011D2CC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM36	8011D2D0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM37	8011D2D4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM38	8011D2D8	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM39	8011D2D8	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM40	8011D2E0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM41	8011D2F4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM42	8011D394	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM43	8011D430	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM44	8011D440	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM45	8011D448	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM46	8011D450	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM47	8011D454	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM48	8011D458	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM49	8011D460	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM50	8011D460	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM51	8011D468	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM52	8011D470	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM53	8011D474	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM54	8011D478	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM55	8011D47C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM56	8011D480	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM57	8011D484	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM58	8011D488	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM59	8011D48C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM60	8011D490	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM61	8011D494	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM62	8011D494	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM63	8011D49C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM64	8011D4A8	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM65	8011D4B0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM66	8011D560	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM67	8011D618	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM68	8011D620	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM69	8011D624	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM70	8011D628	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM71	8011D630	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM72	8011D634	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM73	8011D638	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM74	8011D640	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM75	8011D650	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_bladeTrailDraw	8011D6B0	flt	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM76	8011D664	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM77	8011D678	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM78	8011D680	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM79	8011D6B0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM80	8011D6B0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM81	8011D6B0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM82	8011D6BC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM83	8011D6C4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM84	8011D6CC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM85	8011D6D0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM86	8011D6EC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM87	8011D6F0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM88	8011D6F4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM89	8011D700	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM90	8011D718	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM91	8011D748	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM92	8011D768	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM93	8011D774	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM94	8011D778	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM95	8011D788	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM96	8011D78C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM97	8011D790	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM98	8011D794	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM99	8011D798	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM100	8011D79C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM101	8011D7A0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM102	8011D7A4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM103	8011D7A8	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM104	8011D7AC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM105	8011D7B0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM106	8011D7B4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM107	8011D7B8	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM108	8011D7BC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM109	8011D7C0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM110	8011D7C4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM111	8011D7C8	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM112	8011D7CC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM113	8011D7D0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM114	8011D7D4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM115	8011D7E0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM116	8011D7EC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM117	8011D7F0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM118	8011D7F4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM119	8011D7F8	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM120	8011D804	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM121	8011D810	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM122	8011D81C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM123	8011D824	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM124	8011D830	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM125	8011D83C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM126	8011D844	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM127	8011D854	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM128	8011D85C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM129	8011D880	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM130	8011D88C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM131	8011D8A4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM132	8011D8B4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM133	8011D8C4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM134	8011D8D4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM135	8011D8E4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM136	8011D914	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM137	8011D930	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM138	8011D938	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM139	8011D960	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM140	8011D97C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM141	8011D9D8	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM142	8011D9DC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM143	8011D9E8	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM144	8011D9F4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM145	8011DA04	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM146	8011DA1C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM147	8011DA48	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM148	8011DA48	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM149	8011DA48	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_tonfaBatonInitModelTask	8011DA48	flt	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM150	8011DA48	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM151	8011DA48	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM152	8011DA4C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM153	8011DA50	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM154	8011DA54	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM155	8011DA5C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_tonfaBatonKillModelTask	8011DB78	flt	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM156	8011DA68	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM157	8011DA6C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM158	8011DA74	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM159	8011DA74	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM160	8011DA74	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_tonfaBatonUpdateModelPose	8011DA74	flt	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM161	8011DA90	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM162	8011DA98	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM163	8011DA9C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM164	8011DAA8	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM165	8011DAAC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM166	8011DAC8	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM167	8011DACC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM168	8011DAD0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM169	8011DAD4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM170	8011DAD8	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM171	8011DAE8	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM172	8011DAEC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM173	8011DB50	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM174	8011DB6C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM175	8011DB6C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM176	8011DB6C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+_tonfaBatonDeferModelTaskRemoval	8011DB6C	flt	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM177	8011DB6C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM178	8011DB6C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM179	8011DB70	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM180	8011DB78	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM181	8011DB78	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM182	8011DB78	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM183	8011DB80	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM184	8011DB98	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM185	8011DB98	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM186	8011DB98	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM187	8011DB9C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM188	8011DBA0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM189	8011DBA4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM190	8011DBCC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM191	8011DBEC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM192	8011DBFC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM193	8011DBFC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM194	8011DBFC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM195	8011DC0C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM196	8011DC10	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM197	8011DC18	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM198	8011DC28	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM199	8011DC2C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM200	8011DC30	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM201	8011DC38	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM202	8011DC40	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM203	8011DC6C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM204	8011DC6C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM205	8011DC70	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM206	8011DC78	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM207	8011DC80	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM208	8011DC84	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM209	8011DC88	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM210	8011DC8C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM211	8011DC90	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM212	8011DC94	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM213	8011DC98	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM214	8011DCA0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM215	8011DCA8	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM216	8011DCB4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM217	8011DCB8	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM218	8011DCBC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM219	8011DCC0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM220	8011DCC8	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM221	8011DCD0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM222	8011DCD8	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM223	8011DCE0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM224	8011DCE8	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM225	8011DCEC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM226	8011DCF0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM227	8011DCF4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM228	8011DD00	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM229	8011DD04	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM230	8011DD0C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM231	8011DD14	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM232	8011DD1C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM233	8011DD28	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM234	8011DD2C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM235	8011DD30	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM236	8011DD34	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM237	8011DD3C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM238	8011DD54	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM239	8011DD74	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM240	8011DD7C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM241	8011DD8C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM242	8011DDAC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM243	8011DDB0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM244	8011DDC4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM245	8011DDE0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM246	8011DDE4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM247	8011DDE8	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM248	8011DDF0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM249	8011DDFC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM250	8011DE00	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM251	8011DE08	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM252	8011DE0C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM253	8011DE14	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM254	8011DE1C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM255	8011DE28	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM256	8011DE2C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM257	8011DE40	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM258	8011DE48	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM259	8011DE58	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM260	8011DE64	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM261	8011DE6C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM262	8011DE70	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM263	8011DE74	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM264	8011DE7C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM265	8011DE84	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM266	8011DE8C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM267	8011DE94	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM268	8011DEA4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM269	8011DEA8	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM270	8011DEB0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM271	8011DEB4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM272	8011DEB8	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM273	8011DEC0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM274	8011DEC8	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM275	8011DECC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM276	8011DED0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM277	8011DED4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM278	8011DEDC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM279	8011DEF4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM280	8011DF04	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM281	8011DF08	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM282	8011DF0C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM283	8011DF14	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM284	8011DF18	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM285	8011DF28	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM286	8011DF30	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM287	8011DF34	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM288	8011DF3C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM289	8011DF4C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM290	8011DF6C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM291	8011DF70	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM292	8011DF84	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM293	8011DF8C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM294	8011DF9C	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM295	8011DFA0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM296	8011DFA4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM297	8011DFA8	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM298	8011DFAC	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM299	8011DFC8	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM300	8011DFD0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM301	8011E0A4	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM302	8011E0B0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM303	8011E0B8	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM304	8011E0C0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM305	8011E0C8	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM306	8011E0D0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+LM307	8011E0F0	fl	build/USA/src/weapons/tonfa_baton/tonfa_baton.i
+__romPos	0000EF30	al	
+tonfa_baton_ROM_END	0000EF30	a	
+playerActorResetChildSlots	801038F8	a	
+gameGetTaskSlot	8002D22C	a	
+worldCoordGetOriginAudioPan	800D937C	a	
+gTonfaBatonPlayerAnimationBank	8012BAB0	f	
+worldCollisionClearContacts	800E1A6C	a	
+D_80114F94	80114F94	a	
+gTonfaBatonWeaponModel	8011E460	f	
+taskSpawn	8002CFDC	a	
+gGfxViewCoord	80070F10	a	
+worldCollisionProjectGroundCoord	800EA02C	a	
+rcos	8003D108	a	
+taskKill	8002CCB8	a	
+gEffectSpriteAtlasFrames	80111E48	a	
+playerActorQueryWeaponLoads	80106264	a	
+gEffectUnitQuadCorners	80111E38	a	
+tonfa_baton_DATA_SIZE	0000DFFE	a	
+playerActorPlayChildSlotsWithBlend	80103A18	a	
+gpuSetPrimitiveBlendMode	800EC914	a	
+tonfa_baton_DATA_START	8011E0F0	f	
+weaponRecordUse	80106518	a	
+ratan2	8003D9C8	a	
+D_80114F98	80114F98	a	
+tonfa_baton_BSS_END	8012C0F0	f	
+worldCollisionUnlinkBody	800E1638	a	
+gGpuCurrentOt	800710A0	a	
+gMcSaveData	80072168	a	
+worldCollisionCountContactsByKind	800E1A1C	a	
+worldCollisionSurfaceClassFromMask	800E1ACC	a	
+tonfaBatonModelTask	8011DB98	ft	
+gfxMakeRelativeTransform	800A8864	a	
+gWorldCollisionSurfacePropertiesTables	8010CBB8	a	
+playerActorReadAttackButton	801060E0	a	
+tonfa_baton_DATA_END	8012C0EE	f	
+gAyaIdleClip	8011E7A0	f	
+gGameSession	8005ED64	a	
+gPlayerActorAttachmentParentParts	80112E04	a	
+tonfa_baton_RODATA_END	8011D1EC	f	
+tonfa_baton_TEXT_START	8011D1EC	f	
+sndEvtRequestScriptStop	800542D0	a	
+tonfa_baton_RODATA_START	8011D1C0	f	
+worldCollisionResolveResponsePushback	800E0FEC	a	
+gfxReadMatrixZAxis	8003C768	a	
+tonfa_baton_bss_VRAM	8012C0F0	f	
+_gTonfaBatonTrailTint	8012C0EC	a	
+worldCollisionLinkBody	800E15AC	a	
+D_80073BA9	80073BA9	a	
+effectKillTask	800EC7E4	a	
+effectDrawGouraudDisc	800EAEB8	a	
+playerActorTrackLockTarget	80103F70	a	
+gfxRotMatrixZ	8003CB80	a	
+tonfaBatonAttackState	8011DBFC	ft	
+worldCoordPlaySound	801064A4	a	
+tonfaBatonSwingTrailTask	8011D1EC	ft	
+gGpuPrimCursor	80071190	a	
+worldCoordGetOriginAudioDepth	800D9340	a	
+effectDrawRaisedGlowBand	800EB9B0	a	
+memCalloc	8002D978	a	
+effectSpawn	800EA478	a	
+tonfa_baton_ROM_START	00000000	a	
+tonfa_baton_BSS_SIZE	00000000	a	
+playerActorSpawnGrenadeProjectile	80104490	a	
+GsWSMATRIX	80071138	a	
+D_80073BAA	80073BAA	a	
+effectDrawOuterGlowBand	800EAA0C	a	
+rsin	8003D038	a	
+tonfa_baton_TEXT_END	8011E0F0	f	
+worldCollisionProbeGridSegment	800DE7CC	a	
+tonfa_baton_VRAM_END	8012C0F0	f	
+tonfa_baton_BSS_START	8012C0F0	f	
+gPlayerStatus	80073B88	a	
+tonfa_baton_RODATA_SIZE	0000002C	a	
+equipmentConsumeWeaponLoad	800B6DA4	a	
+gRandomLcgState	80070F60	a	
+tonfa_baton_VRAM	8011D1C0	f	
+tonfa_baton_TEXT_SIZE	00000F04	a	
+VectorNormalSS	8003D5D8	a	
+D_8007218A	8007218A	a	
+Gfx_ViewWorldMtx	80070F34	a	
+effectDrawScreenTint	800EA858	a	
+equipmentGetWeaponLoad	800BAFE0	a	
+playerActorFinishWeaponAttack	80106550	a	
+gPlayerActorWeaponReaches	80112F60	a	
+worldCollisionInitContacts	800E18E0	a	
+gfxRotMatrixX	8003C788	a	
+gWorldCoordTransientPointLights	80114F30	a	
+gDisplayState	80070F68	a	
+playerActorSpawnWeaponImpact	80105BC4	a	
+playerActorIsSlotAdvancingLinearly	80105894	a	
+sndEvtRequestScriptStart	8005414C	a	
+animationGetCurrentRecord	800B4668	a	
+memFillBytes	8002D894	a	
+RotMatrixX	8004BE58	a	
+taskReparent	8002D14C	a	
+gRoomEffectState	80115740	a	
+actorRenderComposeCoord	80098F58	a	
+gTonfaBatonShaftModel	8011E5EC	f	
+playerActorSetWeaponAttackFlags	80106238	a	

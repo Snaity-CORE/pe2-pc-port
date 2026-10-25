@@ -1,0 +1,910 @@
+gcc2_compiled.	80131E24	fl	build/USA/src/actors/actor_151000/actor_151000.i
+__gnu_compiled_c	80131E24	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_MACRO_INC_GUARD	00000001	al	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenPlayerShadeEyesClipBank1	80132AD4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenPlayerShadeEyesClipBank4	80132AEC	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenPlayerShadeEyesClipRecords	80132B50	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenPlayerShadeEyesClipTrackStarts	80132CD0	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenPlayerShadeEyesClip	80132CF8	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenPlayerStepTowardEveClipBank1	80132D20	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenPlayerStepTowardEveClipBank4	80132D68	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenPlayerStepTowardEveClipRecords	80132E98	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenPlayerStepTowardEveClipTrackStarts	80133098	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenPlayerStepTowardEveClip	801330C0	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenPlayerReachAfterEveClipBank1	801330E8	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenPlayerReachAfterEveClipBank4	8013310C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenPlayerReachAfterEveClipRecords	801331C0	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenPlayerReachAfterEveClipTrackStarts	80133310	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenPlayerReachAfterEveClip	80133338	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gActor151000BlackoutTaskDesc	80133360	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_actor151000BlackoutTask	80131E24	flt	build/USA/src/actors/actor_151000/actor_151000.i
+_gActor151000PlayerAnimationBankExtension	8013336C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gActor151000UnusedBank1Animation47	80133378	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gActor151000PlayerAnimation47	8013338C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gActor151000PlayerAnimation48	801333A0	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gActor151000PlayerAnimation49	801333B4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gActor151000UnusedBank1Animation0	801333C8	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gActor151000WalkerAnimation16	801333DC	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gActor151000WalkerAnimation17	801333F0	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gActor151000WalkerAnimation19	80133404	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gActor151000UnusedBank0Animations13And14	80133418	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gActor151000WalkerAnimation15	80133440	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gActor151000PlayerAnimation1	80133454	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gActor151000EnableWalkerFootstepsCommand	80133468	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gActor151000PlayerArrivalPlacement	8013346C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gActor151000PlayerReturnPlacement	80133484	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gActor151000WalkerArrivalPlacement	8013349C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gActor151000WalkerDeparturePlacement	801334B4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gActor151000WalkerDepartureTarget	801334CC	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gActor151000PlayerAnimationBankCopy	801334E4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_actor151000SetBlackout	80131EE0	flt	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveBodySkeleton	80133ABC	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveBodyPartVerts	80133D68	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveBodyVerts	80133DB4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveBodyNormals	8013491C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveBodyStream	80135524	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveBody	80139270	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveIdleClipBank1	80139294	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveIdleClipBank4	801392AC	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveIdleClipRecords	80139308	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveIdleClipTrackStarts	80139458	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveIdleClip	80139480	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveWalkSlowClipBank1	801394A8	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveWalkSlowClipBank4	801394FC	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveWalkSlowClipRecords	80139628	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveWalkSlowClipTrackStarts	80139850	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveWalkSlowClip	80139878	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveEveWalkClipBank1	801398A0	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveEveWalkClipBank4	801399A8	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveEveWalkClipRecords	80139E50	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveEveWalkClipTrackStarts	8013A434	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveEveWalkClip	8013A45C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenFootstepWalkAnim01ClipBank1	8013A484	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenFootstepWalkAnim01ClipBank4	8013A4B4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenFootstepWalkAnim01ClipRecords	8013A574	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenFootstepWalkAnim01ClipTrackStarts	8013A69C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenFootstepWalkAnim01Clip	8013A6C4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveWalkBackwardClipBank1	8013A6EC	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveWalkBackwardClipBank4	8013A728	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveWalkBackwardClipRecords	8013A858	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveWalkBackwardClipTrackStarts	8013AAA4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveWalkBackwardClip	8013AACC	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveTurnClipBank1	8013AAF4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveTurnClipBank4	8013AB30	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveTurnClipRecords	8013AC94	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveTurnClipTrackStarts	8013AEB0	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveTurnClip	8013AED8	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenFootstepWalkAnim04ClipBank1	8013AF00	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenFootstepWalkAnim04ClipBank4	8013AF30	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenFootstepWalkAnim04ClipRecords	8013B01C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenFootstepWalkAnim04ClipTrackStarts	8013B1C0	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenFootstepWalkAnim04Clip	8013B1E8	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenFootstepWalkAnim05ClipBank1	8013B210	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenFootstepWalkAnim05ClipBank4	8013B228	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenFootstepWalkAnim05ClipRecords	8013B2A0	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenFootstepWalkAnim05ClipTrackStarts	8013B418	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenFootstepWalkAnim05Clip	8013B440	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenFootstepWalkAnim06ClipBank1	8013B468	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenFootstepWalkAnim06ClipBank4	8013B480	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenFootstepWalkAnim06ClipRecords	8013B540	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenFootstepWalkAnim06ClipTrackStarts	8013B6A8	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenFootstepWalkAnim06Clip	8013B6D0	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenFootstepWalkAnim07ClipBank1	8013B6F8	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenFootstepWalkAnim07ClipBank4	8013B734	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenFootstepWalkAnim07ClipRecords	8013B820	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenFootstepWalkAnim07ClipTrackStarts	8013BA90	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenFootstepWalkAnim07Clip	8013BAB8	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenFootstepWalkAnim08ClipBank1	8013BAE0	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenFootstepWalkAnim08ClipBank4	8013BB04	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenFootstepWalkAnim08ClipRecords	8013BB78	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenFootstepWalkAnim08ClipTrackStarts	8013BD40	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenFootstepWalkAnim08Clip	8013BD68	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveWalkStopClipBank1	8013BD90	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveWalkStopClipBank4	8013BDA8	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveWalkStopClipRecords	8013BDF8	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveWalkStopClipTrackStarts	8013BEFC	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveWalkStopClip	8013BF24	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveSwingArmsClipBank1	8013BF4C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveSwingArmsClipBank4	8013BF70	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveSwingArmsClipRecords	8013C074	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveSwingArmsClipTrackStarts	8013C2E4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveSwingArmsClip	8013C30C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveClutchHeadAndRunClipBank1	8013C334	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveClutchHeadAndRunClipBank4	8013C40C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveClutchHeadAndRunClipRecords	8013C7AC	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveClutchHeadAndRunClipTrackStarts	8013CC94	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveClutchHeadAndRunClip	8013CCBC	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenFootstepWalkAnim19ClipBank1	8013CCE4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenFootstepWalkAnim19ClipBank4	8013CD14	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenFootstepWalkAnim19ClipRecords	8013CE24	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenFootstepWalkAnim19ClipTrackStarts	8013D010	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gNeoArkGardenFootstepWalkAnim19Clip	8013D038	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveLieUnconsciousClipBank1	8013D060	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveLieUnconsciousClipBank4	8013D078	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveLieUnconsciousClipRecords	8013D0E4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveLieUnconsciousClipTrackStarts	8013D25C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gEveLieUnconsciousClip	8013D284	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gFootstepWalkBlendFrames	8013D2AC	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gFootstepWalkMessageTable	8013D2B0	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_footstepWalkPlayAnimation	80132738	flt	build/USA/src/actors/actor_151000/actor_151000.i
+_actor151000SetWalkerModelDraw	801327C8	flt	build/USA/src/actors/actor_151000/actor_151000.i
+_footstepWalkPlace	80132810	flt	build/USA/src/actors/actor_151000/actor_151000.i
+_actor151000ApplyWalkerCommand	8013288C	flt	build/USA/src/actors/actor_151000/actor_151000.i
+_footstepWalkSetWalkTarget	801328DC	flt	build/USA/src/actors/actor_151000/actor_151000.i
+_actor151000WalkerTask	801323F4	flt	build/USA/src/actors/actor_151000/actor_151000.i
+_gFootstepWalkAnimationSets	8013D2EC	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM1	80131E24	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM2	80131E24	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM3	80131E24	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gActor151000BlackoutEnabled	8013D378	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM4	80131E2C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM5	80131E34	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM6	80131EC0	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM7	80131EC8	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM8	80131ED0	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM9	80131EE0	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM10	80131EE0	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM11	80131EE0	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM12	80131EE4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM13	80131EE8	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM14	80131EEC	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM15	80131EF4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM16	80131F0C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM17	80131F1C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM18	80131F1C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM19	80131F1C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_footstepWalkSpawn	80131F1C	flt	build/USA/src/actors/actor_151000/actor_151000.i
+LM20	80131F30	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM21	80131F34	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM22	80131F44	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM23	80131F4C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM24	80131F50	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM25	80131F58	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gFootstepWalkWork	8013D37C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM26	80131F60	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM27	80131F68	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM28	80131F74	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM29	80131F7C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM30	80131F7C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM31	80131F80	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_footstepWalkExit	801324D4	flt	build/USA/src/actors/actor_151000/actor_151000.i
+LM32	80131F8C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM33	80131F98	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM34	80131FA0	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM35	80131FA4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM36	80131FA8	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM37	80131FAC	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM38	80131FB0	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM39	80131FB4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM40	80131FB8	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM41	80131FBC	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM42	80131FC0	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM43	80131FC8	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM44	80131FCC	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM45	80131FD0	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM46	80131FD4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM47	80131FD8	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM48	80131FDC	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM49	80131FE4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM50	80131FE8	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gFootstepWalkTask	8013D380	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM51	80131FF0	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM52	8013201C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM53	80132034	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM54	8013204C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_footstepWalkUpdate	80132084	flt	build/USA/src/actors/actor_151000/actor_151000.i
+LM55	80132054	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM56	80132064	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM57	80132084	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM58	80132084	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM59	80132084	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM60	80132094	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM61	8013209C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM62	801320B0	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM63	801320B4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM64	801320B8	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM65	801320BC	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM66	801320C0	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM67	801320C4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM68	801320CC	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_footstepWalkBlendAnim	801326AC	flt	build/USA/src/actors/actor_151000/actor_151000.i
+LM69	801320D4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM70	801320E4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_footstepWalkResetAnim	80132610	flt	build/USA/src/actors/actor_151000/actor_151000.i
+LM71	801320EC	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM72	801320F4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM73	80132104	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM74	80132124	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_gFootstepWalkMode	8013D384	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM75	80132134	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM76	801321D8	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM77	80132250	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM78	8013232C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM79	80132348	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM80	8013234C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM81	80132350	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM82	80132358	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM83	80132360	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM84	801323B0	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_footstepWalkTickAnim	801325C4	flt	build/USA/src/actors/actor_151000/actor_151000.i
+LM85	801323B8	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM86	801323C8	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_footstepWalkPlayStepSound	801324FC	flt	build/USA/src/actors/actor_151000/actor_151000.i
+LM87	801323D0	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM88	801323F4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM89	801323F4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM90	801323F4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM91	80132400	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_actorRenderWalkerFrame	80132450	flt	build/USA/src/actors/actor_151000/actor_151000.i
+LM92	80132418	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM93	8013241C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM94	80132420	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM95	8013242C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM96	80132434	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM97	80132440	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM98	80132450	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM99	80132450	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM100	80132450	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM101	801324AC	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM102	801324B4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+_actorRenderDrawWalkerGroundShadow	80132A38	flt	build/USA/src/actors/actor_151000/actor_151000.i
+LM103	801324BC	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM104	801324D4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM105	801324D4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM106	801324D4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM107	801324E0	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM108	801324FC	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM109	801324FC	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM110	801324FC	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM111	80132510	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM112	80132514	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM113	80132518	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM114	8013251C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM115	80132520	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM116	80132524	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM117	80132530	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM118	80132548	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM119	8013254C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM120	80132554	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM121	80132558	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM122	80132568	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM123	8013256C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM124	80132574	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM125	8013257C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM126	80132580	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM127	80132588	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM128	8013258C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM129	80132590	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM130	80132598	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM131	801325AC	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM132	801325C4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM133	801325C4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM134	801325C4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM135	801325CC	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM136	801325D0	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM137	801325D4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM138	801325D8	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM139	801325DC	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM140	801325E4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM141	801325E8	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM142	801325F0	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM143	801325FC	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM144	80132610	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM145	80132610	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM146	80132610	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM147	80132614	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM148	80132618	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM149	8013261C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM150	80132620	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM151	80132624	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM152	80132628	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM153	8013262C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM154	80132630	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM155	80132634	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM156	80132638	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM157	8013263C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM158	80132640	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM159	80132644	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM160	80132648	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM161	8013264C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM162	80132650	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM163	80132658	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM164	8013265C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM165	80132660	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM166	8013266C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM167	80132678	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM168	80132690	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM169	801326AC	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM170	801326AC	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM171	801326AC	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM172	801326B0	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM173	801326B4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM174	801326B8	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM175	801326BC	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM176	801326C0	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM177	801326C4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM178	801326C8	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM179	801326CC	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM180	801326D0	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM181	801326D4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM182	801326D8	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM183	801326DC	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM184	801326E0	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM185	801326FC	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM186	80132708	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM187	80132720	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM188	80132738	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM189	80132738	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM190	80132738	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM191	80132740	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM192	80132754	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM193	80132764	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM194	80132774	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM195	8013277C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM196	80132784	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM197	8013278C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM198	80132794	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM199	80132798	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM200	8013279C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM201	801327A0	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM202	801327A4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM203	801327AC	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM204	801327B4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM205	801327B8	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM206	801327C8	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM207	801327C8	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM208	801327C8	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM209	801327C8	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM210	801327C8	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM211	801327D0	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM212	801327D4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM213	801327D8	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM214	801327E0	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM215	801327E8	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM216	801327EC	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM217	801327F8	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM218	80132808	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM219	80132808	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM220	80132810	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM221	80132810	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM222	80132810	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM223	8013281C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM224	80132820	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM225	80132828	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM226	8013282C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM227	80132834	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM228	80132838	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM229	8013283C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM230	80132840	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM231	80132850	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM232	8013285C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM233	80132868	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM234	8013286C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM235	80132870	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM236	80132874	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM237	80132880	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM238	80132884	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM239	8013288C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM240	8013288C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM241	8013288C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM242	8013288C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM243	8013288C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM244	80132894	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM245	801328AC	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM246	801328B8	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM247	801328C0	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM248	801328D0	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM249	801328D4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM250	801328DC	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM251	801328DC	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM252	801328DC	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM253	80132904	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM254	80132908	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM255	8013290C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM256	80132910	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM257	80132914	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM258	80132918	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM259	80132920	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM260	80132924	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM261	8013292C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM262	80132930	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM263	80132934	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM264	80132940	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM265	80132948	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM266	80132950	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM267	80132958	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM268	80132968	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM269	80132988	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM270	80132990	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM271	801329C4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM272	801329CC	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM273	801329D4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM274	801329D8	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM275	80132A0C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM276	80132A2C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM277	80132A30	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM278	80132A38	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM279	80132A38	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM280	80132A38	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM281	80132A44	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM282	80132A4C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM283	80132A50	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM284	80132A54	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM285	80132A70	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM286	80132A78	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM287	80132A84	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM288	80132A88	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM289	80132A8C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM290	80132A90	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM291	80132A94	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM292	80132A98	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM293	80132A9C	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM294	80132AB4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM295	80132AC4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+LM296	80132AD4	fl	build/USA/src/actors/actor_151000/actor_151000.i
+__romPos	0000B568	al	
+animationInitDirectSlot	800B3CE8	a	
+D_80073BAC	80073BAC	a	
+effectSpawnPlayerBodyHit	8010B2A0	a	
+areaSetCurrentObjectState	800BAC34	a	
+gameFlagSetNibble	8004AC58	a	
+playerActorResetChildSlots	801038F8	a	
+SetRotMatrix	8004ADF8	a	
+stageRequestModeTaskExit	8003F6F8	a	
+sceneSetEnemyAlert	800DB530	a	
+sceneEngageBattle	800DB4E0	a	
+tmdAllocPrimitiveBuffer	80041B88	a	
+playerActorEnterPendingHit	8010A9D0	a	
+displayAcquireMenuHold	8003E610	a	
+companionRecoverToIdle	8010C180	a	
+displayQueueModeTask	8003FB70	a	
+gameGetTaskSlot	8002D22C	a	
+D_80115418	80115418	a	
+damagePackEnemyAttackKey	800E2BF8	a	
+viewGetMappedIndex	800AD284	a	
+worldCoordGetOriginAudioPan	800D937C	a	
+actor_151000_RODATA_END	80131E24	f	
+animationTickSlotPose	800B3448	a	
+D_801153F1	801153F1	a	
+D_8011541B	8011541B	a	
+printf	8001AF3C	a	
+worldCollisionClearContacts	800E1A6C	a	
+gfxBuildDirectionRotation	800E1CD4	a	
+sceneReleaseBattleRefAndClearRewards	800DB630	a	
+LoadImage2	8001A3E4	a	
+memMalloc	8002DABC	a	
+D_80073BA0	80073BA0	a	
+gActionPromptSlots	80114D28	a	
+gRoomEffectOrangeBurst2Id	80115754	a	
+__divsf3	8005BF20	a	
+taskSpawn	8002CFDC	a	
+MatrixNormal	8003D6C8	a	
+actor_151000_ROM_START	00000000	a	
+D_8007106C	8007106C	a	
+D_80070F6C	80070F6C	a	
+capRunCommandWithTransition	800E3B60	a	
+SetSemiTrans	800439B8	a	
+inventoryHasCollectedBit	800BB4BC	a	
+worldCollisionApplyResponsePushback	801011D0	a	
+gGfxViewCoord	80070F10	a	
+D_80073B8C	80073B8C	a	
+gfxMatrixToEuler	8003C4F0	a	
+gameFlowBeginLoadScreen	8002252C	a	
+actor_151000_VRAM	80131E20	f	
+sndEvtRequestScriptMix	80054424	a	
+worldCollisionProjectGroundCoord	800EA02C	a	
+playerActorPlayFootstepCue	80105ED4	a	
+worldCollisionUnlinkTrigger	800E1708	a	
+__fixsfsi	8005C070	a	
+RotMatrixZXY	8004C9C8	a	
+padScriptSpawnVariableMotorRamp	800E8D1C	a	
+gfxSetFlatLight	8003B140	a	
+playerActorSpawnWeaponModel	80104364	a	
+gPlayerActorStateTickHeld	80115768	a	
+padScriptSpawnDepthScaled	800E9188	a	
+MulRotMatrix	8004C508	a	
+rcos	8003D108	a	
+gRoomEffectTwinTrailId	8011572C	a	
+taskKill	8002CCB8	a	
+worldCollisionCalcContactWorldOffset	800B6118	a	
+gEffectSpriteAtlasFrames	80111E48	a	
+gDirectionInteractionRearmUpdates	80114D08	a	
+playerActorPlanarLength	80103D8C	a	
+gRoomEffectSparkBurstId	80115750	a	
+D_80071078	80071078	a	
+playerActorTurnBodyTowardPoint	8010BD88	a	
+gEffectUnitQuadCorners	80111E38	a	
+worldCoordSetActorColorMode	800D930C	a	
+sceneLatchActionSignal	800DB500	a	
+playerActorSetScriptedControl	800E3BBC	a	
+playerActorPlayChildSlotsWithBlend	80103A18	a	
+playerActorRestoreEquipment	801034C0	a	
+playerActorRemoveEquipment	801043F4	a	
+worldTargetFindLockNodeFromPad	800DAD78	a	
+damageGetPlayerAttackEffectId	800E2D90	a	
+gpuSetPrimitiveBlendMode	800EC914	a	
+worldCoordUpdateActorColor	800D8EA0	a	
+enemyTaskExit	800B0234	a	
+gfxComposeNodeWorldTransform	800B1D00	a	
+companionEnterDamageReaction	8010B9A4	a	
+playerActorTickScriptedAnimation	80108BAC	a	
+D_80115416	80115416	a	
+gPlayerActorWeaponAnimationBankBases	80112D68	a	
+gfxExtractSmallestEuler	800B114C	a	
+ratan2	8003D9C8	a	
+D_80115414	80115414	a	
+sceneFindPlacedActor	800E86FC	a	
+animationSeekSlotWithBlend	800B4114	a	
+D_80071090	80071090	a	
+padIsStartPressed	8004ACF0	a	
+ApplyMatrixSV	80043A68	a	
+memcpy	8001AEFC	a	
+gActor151000GardenArrivalScript	801334EC	f	
+gStageCountdownMusicEntry	80062735	a	
+capSetTexturePage	800E6D4C	a	
+__floatsidf	8004B5D8	a	
+cdCmdEnqueueDisplayResource	80042364	a	
+LoadAverageCol	8004C808	a	
+playerActorGetTurnToPoint	8010BCF4	a	
+areaSyncLocationVariant	800B601C	a	
+effectDrawGroundShadow	800F68AC	a	
+worldCollisionUnlinkBody	800E1638	a	
+playerActorWriteWeaponAnimationBankIndex	800E3CEC	a	
+StoreImage2	8001A4D0	a	
+gGpuCurrentOt	800710A0	a	
+damageIsEnemyDamageOverTimeExpired	800E2F7C	a	
+padScriptSpawn	800E8FB0	a	
+gCapFile	8011568C	a	
+sceneReleaseBattleRef	800DB6B4	a	
+damageGetPlayerAttackHitCooldown	800E3194	a	
+gMcSaveData	80072168	a	
+animationApplyBlendedPose	800B4248	a	
+gameSetTaskSlot	8002D214	a	
+worldCollisionCountContactsByKind	800E1A1C	a	
+taskSpawnFromTable	8002CFA0	a	
+companionInitNativeAnimation	8010BFCC	a	
+cdCmdRequestCancel	8001C970	a	
+worldCollisionSurfaceClassFromMask	800E1ACC	a	
+D_80070F70	80070F70	a	
+displayResumeGameLoop	8003E540	a	
+gTaskBank4Descs	800676A8	a	
+gTaskBank2Descs	80067828	a	
+tmdFreePrimitiveBuffer	80041B4C	a	
+VectorNormalS	8003D594	a	
+itemMenuOpenHotspotCommands	800D4E78	a	
+gfxMakeRelativeTransform	800A8864	a	
+gWorldCollisionSurfacePropertiesTables	8010CBB8	a	
+LoadImage	80017F44	a	
+gTaskBank1Descs	800670D0	a	
+D_80062730	80062730	a	
+streamPollGameRestore	8001EF9C	a	
+areaClearMapMark	800AED24	a	
+worldCollisionSurfaceClassFromKey	800E1B24	a	
+D_8007107C	8007107C	a	
+worldCoordSetModelLighting	800D7A9C	a	
+streamResetGameRestore	80020388	a	
+gfxReadMatrixYAxis	8003C748	a	
+playerActorTickScriptedMoveTo	80107E1C	a	
+displayReleaseMenuHold	8003E64C	a	
+taskCallExit	8002D0A4	a	
+RotMatrixZYX	80044408	a	
+SetPolyFT4	8004C1C8	a	
+D_8011540D	8011540D	a	
+modelLightingSetLayerMaterials	8009EA50	a	
+damageTickEnemyBuildup	800E3084	a	
+playerActorTurnAimTowardPoint	8010BE5C	a	
+gGameSession	8005ED64	a	
+damageStartEnemyBuildup	800E301C	a	
+D_80071076	80071076	a	
+D_80115413	80115413	a	
+worldCollisionSegmentOccluded	800E0308	a	
+__adddf3	8004AFE8	a	
+gRoomEffectFlashId	80115758	a	
+actor_151000_TEXT_SIZE	00000CB0	a	
+playerActorInitWeaponCollision	80100FCC	a	
+animationAimHeadAtPoint	800B0CF4	a	
+SquareRoot0	8003B8A0	a	
+gameFlagSetPackedByte	800E3FAC	a	
+gAttachmentState	80114C08	a	
+worldCollisionTestOccluderSegment	800DFCCC	a	
+tmdXformStreamVerts	800112DC	a	
+displayConfigureFramebuffers	8003DB48	a	
+gfxBuildOrthonormalBasis	8003CEC4	a	
+sndEvtRequestScriptStop	800542D0	a	
+actorRenderUploadTexture	800DB28C	a	
+worldCollisionResolveResponsePushback	800E0FEC	a	
+sceneReleaseBattleRefWithRewards	800DB558	a	
+capRunCommand	800E34D8	a	
+gFsActorBuffer2Base	8005C374	a	
+capReset	800E6DF4	a	
+damageGetPlayerAttackReaction	800E2D3C	a	
+loadingEnqueueCharacterResources	800A9B3C	a	
+worldTargetFindLockNode	800DAD54	a	
+gfxReadMatrixZAxis	8003C768	a	
+gfxRotMatrixY	8003C98C	a	
+gPadScriptTransitionCommands	80114A24	a	
+RotTransPers4	8004C358	a	
+gfxDotProduct	8003D000	a	
+playerActorSetPendingDisplacement	80105B74	a	
+padPostVibrationRequest	8002C8E4	a	
+animationBindContext	800B3F60	a	
+D_8011540E	8011540E	a	
+gPadScriptTransitionSegments	80114A34	a	
+playerActorEnterStoppedPose	8010AA28	a	
+inventoryRestoreCarriedLoadout	800BA75C	a	
+roomEffectRecordAnimationSoundCue	800EA3A0	a	
+worldTargetUnlinkNode	800DAB38	a	
+worldCollisionFindContactIndex	800E19B8	a	
+worldCollisionLinkBody	800E15AC	a	
+D_80073BA9	80073BA9	a	
+tmdDrawStreamGt4	800110A0	a	
+D_80073BAD	80073BAD	a	
+effectKillTask	800EC7E4	a	
+memCopyBytes	8002D7A8	a	
+sceneSetPlacedActorDrawMode	800E3C6C	a	
+__fixdfsi	8004B4D8	a	
+gWorldCollisionOccluderListHead	80115550	a	
+gEffectBurstTaskDescriptors	80114B34	a	
+cdCmdStageSceneAudioStart	8001D6B8	a	
+actor_151000_RODATA_SIZE	00000004	a	
+animationTickDirectSlot	800B3DB4	a	
+cdCmdIsIdle	8001D344	a	
+D_80115419	80115419	a	
+D_80072729	80072729	a	
+capStartSequenceSlot	800E6C70	a	
+companionGetHealthBand	8010C058	a	
+worldCollisionReadActionHit	800E1BF0	a	
+playerActorResetWeaponAttack	80106350	a	
+SetTransMatrix	8004AE28	a	
+gameFlagGetNibble	8004ACAC	a	
+actor_151000_DATA_END	8013D386	f	
+D_801153F4	801153F4	a	
+gRoomEffectHaloId	80115744	a	
+playerStateSpendMp	800A7F34	a	
+gCapPreserveActorControl	80115690	a	
+itemSetIdentified	800BB7C0	a	
+gfxRotMatrixZ	8003CB80	a	
+worldTargetAddReadoutAmount	800DA6E8	a	
+SetDrawOffset	80018AA4	a	
+playerActorShortestTurn	80103E7C	a	
+VectorNormal	8003D5A8	a	
+D_8007272D	8007272D	a	
+gSceneCombatState	801153F0	a	
+worldCoordPlaySound	801064A4	a	
+enemySpawnFromTable	800B01AC	a	
+playerActorGetPointDelta	80103C74	a	
+D_8011540A	8011540A	a	
+tmdSetTextureOffsets	800B58D4	a	
+evsStartScriptWithSkip	800E8634	a	
+playerActorSpawnAttachment	80104258	a	
+gFsImageWorkspacePtr	8005C364	a	
+evsStartScript	800E8614	a	
+StoreImage	80017FA4	a	
+D_80114C12	80114C12	a	
+actor_151000_VRAM_END	8013D386	f	
+MoveImage	80018004	a	
+actor_151000_DATA_START	80132AD4	f	
+capGetVariantKey	800E6D3C	a	
+capIsBusy	800E6CE0	a	
+gGpuPrimCursor	80071190	a	
+worldCoordGetOriginAudioDepth	800D9340	a	
+D_8011505C	8011505C	a	
+gfxRotMatrixXYZ	8003B960	a	
+shopOpenSession	800D4D2C	a	
+gPadCancelButtonMask	8005ED74	a	
+gPadStates	80071620	a	
+SetDrawArea	80018A24	a	
+D_80071075	80071075	a	
+worldTargetSetPlayerLock	800DACAC	a	
+RotTransPers3	8004C1E8	a	
+animationInitContext	800B3F84	a	
+actor_151000_RODATA_START	80131E20	f	
+rand	80037164	a	
+D_80115410	80115410	a	
+playerActorPlayChildSlots	8010397C	a	
+effectSpawnHit	800FDB18	a	
+D_801153F2	801153F2	a	
+__floatsisf	8005C120	a	
+RotMatrix_gte	80049D84	a	
+companionBindCollisionProbe	8010C1FC	a	
+actor_151000_ROM_END	0000B568	a	
+actor_151000_DATA_SIZE	0000A8B2	a	
+memCalloc	8002D978	a	
+sndEvtRequestScriptUnmute	800543AC	a	
+effectSpawn	800EA478	a	
+strncmp	8001EAC4	a	
+gRoomEffectWaterSprayId	80115738	a	
+gfxExtractEulerAngles	800B0FDC	a	
+D_800691CA	800691CA	a	
+areaSaveEnemyPose	800B48FC	a	
+playerActorSpawnGrenadeProjectile	80104490	a	
+gRoomEffectMoteId	80115728	a	
+areaApplySavedUpdates	800AE62C	a	
+D_80115415	80115415	a	
+cdCmdCancelScene	8001D588	a	
+GsWSMATRIX	80071138	a	
+cdCmdEnqueue	8001D2B0	a	
+padCheckButtons	8002C868	a	
+taskSpawnFromTableOnDefaultList	8003E4BC	a	
+SetDrawStp	80042288	a	
+playerActorSetDrawMode	800E3B80	a	
+worldTargetGetBodyPosition	800DAE50	a	
+gfxReadMatrixXAxis	8003C728	a	
+D_80073BAA	80073BAA	a	
+animationBindModelContext	800B3CCC	a	
+worldCollisionBindEnemySphere	8010C980	a	
+fsUploadImageChunk	800246B0	a	
+RotMatrixZ	8004AE48	a	
+SetDispMask	80017C00	a	
+playerActorMode2State2	80108BD8	a	
+SetTile	80042344	a	
+cdCmdEnqueueScenePlayback	8001D5CC	a	
+__muldf3	8004B828	a	
+rsin	8003D038	a	
+viewFindLogicalIndex	800ACEBC	a	
+D_8006C45C	8006C45C	a	
+actorRenderCopyCoordBodyTransform	800B0278	a	
+areaGetVariant	800B5CE8	a	
+gGameFlagNibbleBanks	80073980	a	
+ScaleMatrixL	8004C888	a	
+worldCoordSetAmbientColorOverride	800D94B8	a	
+tmdDrawStreamGt3	80010F08	a	
+damageStartEnemyStagger	800E3008	a	
+worldTargetDisableNodeLockOn	800DACF8	a	
+D_80072170	80072170	a	
+D_80070F87	80070F87	a	
+worldCollisionProbeGridSegment	800DE7CC	a	
+playerActorHasWallContact	801041B4	a	
+D_8011540C	8011540C	a	
+memset	800420F8	a	
+companionWriteAnimationBankIndex	800E3D24	a	
+D_80073BAE	80073BAE	a	
+D_80115412	80115412	a	
+D_8007272F	8007272F	a	
+streamPrepareMovieWorkspace	80020298	a	
+srand	80037194	a	
+viewQueueCurrentCameraAndPackets	800A8B6C	a	
+ApplyMatrixLV	80042128	a	
+inventorySetCollectedBit	800BAE5C	a	
+taskMessageDispatch	800AC464	a	
+animationResetSlot	800B3FA8	a	
+actor_151000_TEXT_START	80131E24	f	
+taskRequestKill	8002D340	a	
+playerActorTickChildSlots	80103AC0	a	
+D_8007107A	8007107A	a	
+ClearImage	80017E1C	a	
+playerActorTickAnimationState	80101848	a	
+playerActorFinishDamageReaction	8010ABD4	a	
+gPlayerStatus	80073B88	a	
+gPlayerActorTasks	80115760	a	
+animationStartDirectSlot	800B3AA4	a	
+enemyDestroy	800B01F0	a	
+gFsResourceSlots	8006C338	a	
+__mulsf3	8005C1F0	a	
+gRandomLcgState	80070F60	a	
+sndEvtRequestScriptMute	80054334	a	
+strcmp	80039B74	a	
+D_80115764	80115764	a	
+displaySetShakeY	8003DE78	a	
+damageTryStartEnemyDamageOverTime	800E2DE4	a	
+RotTransPers	8004C198	a	
+D_8007216D	8007216D	a	
+animationCaptureSlotWithBlend	800B4538	a	
+gTaskBank8Descs	800626EC	a	
+roomEffectRequestCancelPe	800FC6C0	a	
+gpuUploadImages	800DB31C	a	
+gDirectionActionActive	80114CF8	a	
+D_80072830	80072830	a	
+D_80071085	80071085	a	
+spriteGetViewDrawAreas	800AD2E8	a	
+gfxBlendOrthonormalRotation	800B1460	a	
+VectorNormalSS	8003D5D8	a	
+gWorldCollisionActiveGrid	80115448	a	
+roomEffectRequestCancelAll	800EC868	a	
+actorRenderDrawGroundShadow	800B4E54	a	
+D_8007218A	8007218A	a	
+damageTickEnemyDamageOverTime	800E2EC4	a	
+capSelectLoadedFile	800E6D60	a	
+Gfx_ViewWorldMtx	80070F34	a	
+gFsImageHeaderYShiftRows	8006C234	a	
+tmdBuildBufferHalf	800410F0	a	
+GPU_printf	8005D950	a	
+gMapNeoArkCompanionDistressTicks	8017A99C	a	
+DrawSync	80017C98	a	
+effectGetGroundShadowShade	800EA318	a	
+damageComputePlayerAttack	800E1FEC	a	
+D_8006C454	8006C454	a	
+animationApplyPoseWithBlendedRotation	800B43E0	a	
+damageRollCriticalHit	800E25F8	a	
+gActor151000GardenArrivalSkipScript	80133954	f	
+animationTickSlot	800B4514	a	
+sceneAcquireBattleRef	800DB53C	a	
+companionGetPlayerPlanarDistance	8010BC70	a	
+effectDrawGroundGlow	800F6560	a	
+gCapInlineIconCells	8010FB70	a	
+playerActorPlanarDistance	80103DD4	a	
+taskDetachFromParent	8002D0CC	a	
+gPlayerActorWeaponReaches	80112F60	a	
+playerActorUpdateFacing	80101F58	a	
+D_80072728	80072728	a	
+damagePackAttackKey	800E2C40	a	
+worldCollisionInitContacts	800E18E0	a	
+sndEvtRequestMidiStop	8005132C	a	
+RotMatrix	80043AC8	a	
+D_80114C11	80114C11	a	
+viewQueueCamera	800A8A1C	a	
+displaySpawnTaskFromTable	8003E324	a	
+companionSetDecisionDelay	8010BF7C	a	
+ScaleMatrix	8004A98C	a	
+gfxRotMatrixX	8003C788	a	
+D_8011540B	8011540B	a	
+playerActorResolveBodyContacts	80109BB4	a	
+gRoomEffectSparkEmitterId	80115720	a	
+MulMatrix0	80044208	a	
+D_80114FF8	80114FF8	a	
+D_80115417	80115417	a	
+itemMenuIsHotspotActionConfirmed	800D4EC0	a	
+gActor151000WalkerTaskDesc	8013D2E0	f	
+D_801153F6	801153F6	a	
+gWorldCoordTransientPointLights	80114F30	a	
+companionTrackLockTarget	8010C098	a	
+capSpawnEventIfIdle	800E3D8C	a	
+gDisplayState	80070F68	a	
+ApplyTransposeMatrixLV	80044050	a	
+gSpriteAreaTables	8010CB68	a	
+sceneFindEnemyByPlaceKey	800B584C	a	
+MulMatrix	8004C248	a	
+inventoryMeltIceBagIfExpired	800BC254	a	
+gteMIMefunc	8004AD78	a	
+gFsActorBufferWrittenBytes	8006D860	a	
+playerActorIsSlotAdvancingLinearly	80105894	a	
+playerStateSetStatusEffects	8010A1B0	a	
+D_8007218B	8007218B	a	
+sndEvtRequestScriptStart	8005414C	a	
+companionApplyDamage	8010C8F0	a	
+animationAimHeadAt	800B17D4	a	
+gRoomEffectOrangeBurstId	8011573C	a	
+viewGetMappedCamera	800A8C08	a	
+gCdCmdQueue	80068FA0	a	
+streamFinishScene	800B00C4	a	
+animationGetCurrentRecord	800B4668	a	
+animationResetRemappedSlot	800B404C	a	
+actor_151000_TEXT_END	80132AD4	f	
+gRoomEffectWaterRippleId	8011574C	a	
+memFillBytes	8002D894	a	
+playerActorStepMovement	80101A68	a	
+D_8007106B	8007106B	a	
+damageGetHazardDamage	800E2CD4	a	
+RotMatrixX	8004BE58	a	
+worldCoordSetModelAmbientColor	800D9550	a	
+worldTargetLinkNode	800DABEC	a	
+damageAccumulateLifeDrainHp	800E2C78	a	
+taskReparent	8002D14C	a	
+gRoomEffectState	80115740	a	
+TransposeMatrix	800420B8	a	
+companionEnterIdle	8010BC04	a	
+playerActorMode2State6	80108D68	a	
+worldCollisionProjectGroundPoint	800EA1A8	a	
+inventoryClearCollectedBit	800BAEC0	a	
+D_8007216C	8007216C	a	
+actorRenderComposeCoord	80098F58	a	
+GetClut	80042AE0	a	
+gRoomEffectGlowDiscId	80115734	a	
+actorRenderPlaceCoordOffset	801040A0	a	
+areaGetCurrentObjectState	800BB470	a	
+gWorldCollisionActionTriggerListHead	8011556C	a	
+worldTargetGetActorLockMask	800DAC54	a	
+fadeDrawOverlay	8002BA9C	a	
+worldCollisionResolvePushback	800E0C10	a	
+__subdf3	8004BC28	a	
+padInputChangeSuppression	800E9BDC	a	
+gEvsPlaybackPaused	801156F9	a	
+RotMatrixY	8004BFF8	a	
+playerActorScriptedState0	80108B80	a	
+streamFindMovieSlot	8001EDC8	a	
+inventoryIsItemLimitReached	800B7420	a	
+gPlayerActorWeaponAnimationBanks	80112D6C	a	
+playerActorSetWeaponAttackFlags	80106238	a	
+animationAimHeadAtTask	800B0928	a	
+D_80115408	80115408	a	
+padScriptHalt	800E8F68	a	

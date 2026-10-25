@@ -1,0 +1,2 @@
+/* Generated from assets/USA/pe2pkg/shelter_b1_sterilization_room.pe2pkg; grid header at 0x7968. */
+    SHELTER_B1_STERILIZATION_ROOM_CELL_FACE_LIST_AT_OFFSET(0),

@@ -1,0 +1,2 @@
+/* Generated from assets/USA/pe2pkg/dryfield_r04.pe2pkg; grid header at 0xC34. */
+    { 0, -0, 0, 0 },

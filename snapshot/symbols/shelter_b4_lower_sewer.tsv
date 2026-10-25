@@ -1,0 +1,1960 @@
+gcc2_compiled.	8017D608	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+__gnu_compiled_c	8017D608	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+_MACRO_INC_GUARD	00000001	al	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+_gShelterB4LowerSewerRoomMessages	80181E44	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+_shelterB4LowerSewerResolveRoomVariant	8017D610	flt	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+_shelterB4LowerSewerRejectKeyItem	8017D608	flt	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+_shelterB4LowerSewerIgnoreRoomAction	8017D65C	flt	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+_shelterB4LowerSewerIgnoreCommand	8017D654	flt	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+_gShelterB4LowerSewerWaterTaskDesc	80181E70	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+_shelterB4LowerSewerWaterTask	8017E2D4	flt	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+_gShelterB4LowerSewerXWaveSurfaces	80181E7C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+_gShelterB4LowerSewerSingleStripWaterSurfaces	80181E90	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM1	8017D608	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM2	8017D608	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM3	8017D608	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM4	8017D610	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM5	8017D610	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM6	8017D610	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM7	8017D620	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM8	8017D63C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM9	8017D644	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM10	8017D648	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM11	8017D64C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM12	8017D654	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM13	8017D654	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM14	8017D654	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM15	8017D654	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM16	8017D65C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM17	8017D65C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM18	8017D65C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM19	8017D65C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM20	8017D664	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM21	8017D664	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM22	8017D664	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+_shelterB4LowerSewerInitializeRoom	8017D664	flt	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM23	8017D670	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM24	8017D678	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM25	8017D67C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM26	8017D680	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM27	8017D688	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM28	8017D698	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM29	8017D6AC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM30	8017D6CC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM31	8017D6CC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM32	8017D6CC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+_shelterB4LowerSewerIdleRoom	8017D6CC	flt	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM33	8017D6CC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM34	8017D6D4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+_gShelterB4LowerSewerRoomTaskStates	8017D5C4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM35	8017D6D4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM36	8017D6D4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM37	8017D6D8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM38	8017D6DC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM39	8017D6E0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM40	8017D6FC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM41	8017D71C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM42	8017D72C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM43	8017D72C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM44	8017D72C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+_shelterB4LowerSewerDrawXWaveStrips	8017D72C	flt	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM45	8017D730	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM46	8017D738	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM47	8017D740	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM48	8017D744	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM49	8017D748	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM50	8017D74C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM51	8017D750	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM52	8017D754	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM53	8017D758	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM54	8017D75C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM55	8017D780	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM56	8017D784	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM57	8017D788	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM58	8017D78C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM59	8017D794	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM60	8017D798	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM61	8017D79C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM62	8017D79C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM63	8017D7A4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM64	8017D7D4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM65	8017D7F4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM66	8017D804	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM67	8017D828	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM68	8017D844	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM69	8017D848	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM70	8017D84C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM71	8017D864	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM72	8017D868	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM73	8017D86C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM74	8017D870	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM75	8017D874	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM76	8017D878	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM77	8017D87C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM78	8017D880	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM79	8017D884	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM80	8017D8A0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM81	8017D8AC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM82	8017D8B8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM83	8017D8D4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM84	8017D8D8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM85	8017D8E0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM86	8017D8E4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM87	8017D8E8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM88	8017D8EC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM89	8017D8F4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM90	8017D900	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM91	8017D904	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM92	8017D908	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM93	8017D90C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM94	8017D91C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM95	8017D924	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM96	8017D928	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM97	8017D930	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM98	8017D938	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM99	8017D93C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM100	8017D940	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM101	8017D948	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM102	8017D954	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM103	8017D95C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM104	8017D964	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM105	8017D974	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM106	8017D97C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM107	8017D980	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM108	8017D988	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM109	8017D990	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM110	8017D994	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM111	8017D99C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM112	8017D9D0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM113	8017D9D8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM114	8017D9E0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM115	8017D9E8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM116	8017D9F0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM117	8017D9F8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM118	8017DA00	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM119	8017DA04	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM120	8017DA08	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM121	8017DA0C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM122	8017DA10	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM123	8017DA14	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM124	8017DA18	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM125	8017DA1C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM126	8017DA20	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM127	8017DA24	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM128	8017DA28	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM129	8017DA2C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM130	8017DA30	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM131	8017DA34	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM132	8017DA38	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM133	8017DA3C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM134	8017DA40	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM135	8017DA44	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM136	8017DA48	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM137	8017DA4C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM138	8017DA50	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM139	8017DA54	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM140	8017DA58	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM141	8017DA5C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM142	8017DA60	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM143	8017DB2C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM144	8017DB3C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM145	8017DB4C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM146	8017DB5C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM147	8017DB68	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM148	8017DB6C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM149	8017DB74	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM150	8017DB78	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM151	8017DB88	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM152	8017DB90	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM153	8017DB94	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM154	8017DB9C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM155	8017DBA4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM156	8017DBA8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM157	8017DBAC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM158	8017DBB4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM159	8017DBC0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM160	8017DBC8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM161	8017DBD8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM162	8017DBEC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM163	8017DC00	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM164	8017DC1C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM165	8017DC28	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM166	8017DC3C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM167	8017DC48	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM168	8017DC54	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM169	8017DC64	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM170	8017DC68	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM171	8017DC6C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM172	8017DC70	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM173	8017DC80	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM174	8017DC84	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM175	8017DC88	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM176	8017DCB8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM177	8017DCC0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM178	8017DCC8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM179	8017DCD0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM180	8017DCD8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM181	8017DCE0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM182	8017DCE8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM183	8017DCEC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM184	8017DCF0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM185	8017DCF4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM186	8017DCF8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM187	8017DCFC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM188	8017DD00	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM189	8017DD04	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM190	8017DD08	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM191	8017DD0C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM192	8017DD10	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM193	8017DD14	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM194	8017DD18	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM195	8017DD1C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM196	8017DD20	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM197	8017DD24	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM198	8017DD28	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM199	8017DD2C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM200	8017DD30	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM201	8017DD34	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM202	8017DD38	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM203	8017DD3C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM204	8017DD40	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM205	8017DD44	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM206	8017DD48	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM207	8017DE14	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM208	8017DE24	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM209	8017DE44	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM210	8017DE5C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM211	8017DE8C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM212	8017DE8C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM213	8017DE8C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+_shelterB4LowerSewerDrawXWaveStrip	8017DE8C	flt	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM214	8017DE90	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM215	8017DE94	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM216	8017DE98	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM217	8017DE9C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM218	8017DEA4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM219	8017DEA8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM220	8017DEAC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM221	8017DEB0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM222	8017DEB4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM223	8017DEB8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM224	8017DEBC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM225	8017DEDC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM226	8017DEE0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM227	8017DEE4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM228	8017DEE8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM229	8017DEF0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM230	8017DEF4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM231	8017DEF8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM232	8017DEF8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM233	8017DF00	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM234	8017DF30	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM235	8017DF50	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM236	8017DF60	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM237	8017DF7C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM238	8017DF90	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM239	8017DF98	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM240	8017DF9C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM241	8017DFA0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM242	8017DFA4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM243	8017DFA8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM244	8017DFAC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM245	8017DFB0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM246	8017DFB4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM247	8017DFB8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM248	8017DFBC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM249	8017DFD8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM250	8017DFE4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM251	8017DFF0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM252	8017E00C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM253	8017E010	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM254	8017E018	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM255	8017E01C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM256	8017E020	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM257	8017E028	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM258	8017E030	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM259	8017E03C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM260	8017E040	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM261	8017E044	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM262	8017E048	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM263	8017E058	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM264	8017E060	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM265	8017E064	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM266	8017E06C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM267	8017E074	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM268	8017E078	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM269	8017E07C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM270	8017E084	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM271	8017E090	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM272	8017E094	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM273	8017E09C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM274	8017E0A0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM275	8017E0B0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM276	8017E0B8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM277	8017E0BC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM278	8017E0C4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM279	8017E0CC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM280	8017E0D0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM281	8017E0D8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM282	8017E10C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM283	8017E11C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM284	8017E124	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM285	8017E12C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM286	8017E134	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM287	8017E13C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM288	8017E140	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM289	8017E144	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM290	8017E148	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM291	8017E14C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM292	8017E150	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM293	8017E154	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM294	8017E158	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM295	8017E15C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM296	8017E160	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM297	8017E164	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM298	8017E168	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM299	8017E16C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM300	8017E170	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM301	8017E174	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM302	8017E178	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM303	8017E17C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM304	8017E180	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM305	8017E184	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM306	8017E188	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM307	8017E18C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM308	8017E190	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM309	8017E194	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM310	8017E198	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM311	8017E19C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM312	8017E268	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM313	8017E278	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM314	8017E28C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM315	8017E2A4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM316	8017E2D4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM317	8017E2D4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM318	8017E2D4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM319	8017E2DC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+_shelterB4LowerSewerInitializeWater	8017E33C	flt	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+_shelterB4LowerSewerDrawWater	8017E37C	flt	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM320	8017E2F4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM321	8017E314	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM322	8017E32C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM323	8017E33C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM324	8017E33C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM325	8017E33C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM326	8017E33C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM327	8017E350	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM328	8017E354	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM329	8017E35C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM330	8017E368	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM331	8017E37C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM332	8017E37C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM333	8017E37C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM334	8017E384	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM335	8017E3E0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM336	8017E3E8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM337	8017E3F0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+LM338	8017E400	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer.i
+gcc2_compiled.	8017E400	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+__gnu_compiled_c	8017E400	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_MACRO_INC_GUARD	00000001	al	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_gShelterB4LowerSewerGlowEndpoints	80181EA4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_gRoomVisualEffectsTwinTrailEndpointOffsets	80181F94	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_gShelterB4LowerSewerDiverPatrolWaypoints1	8018208C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_gShelterB4LowerSewerDiverPatrolWaypoints2	801820CC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_gShelterB4LowerSewerCollisionGridNormals	8018216C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_gShelterB4LowerSewerCollisionGridVerts	801821EC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_gShelterB4LowerSewerCollisionGridFaces	8018250C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_gShelterB4LowerSewerCollisionGridCells	80182698	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_gShelterB4LowerSewerCollisionGridTable	801828A4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_gShelterB4LowerSewerView1SpriteBatches	80182A4C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_gShelterB4LowerSewerView2SpriteBatches	80182A5C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_gShelterB4LowerSewerView3SpriteBatches	80182A6C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_gShelterB4LowerSewerView4SpriteSources	80182A7C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_gShelterB4LowerSewerView4SpriteBatches	80182AB8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_gShelterB4LowerSewerView5SpriteSources	80182AD0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_gShelterB4LowerSewerView5SpriteBatches	80182C10	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_gShelterB4LowerSewerView6SpriteSources	80182C28	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_gShelterB4LowerSewerView6SpriteBatches	80182CDC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_gShelterB4LowerSewerView7SpriteBatches	80182CF4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_gShelterB4LowerSewerView8SpriteBatches	80182D04	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_gShelterB4LowerSewerView9SpriteSources	80182D14	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_gShelterB4LowerSewerView9SpriteBatches	80182E68	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_gShelterB4LowerSewerPointLights	80182EEC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_gShelterB4LowerSewerVariant1Resources	80183B64	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_gShelterB4LowerSewerVariant2Resources	80183B7C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_gShelterB4LowerSewerVariant3Resources	80183B94	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_gShelterB4LowerSewerVariant7Resources	80183BC4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_gShelterB4LowerSewerVariant8Resources	80183BDC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_gShelterB4LowerSewerVariant11Resources	80183BF4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_gShelterB4LowerSewerVariant1Placements	80183C18	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_gShelterB4LowerSewerVariant2Placements	80183C48	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_gShelterB4LowerSewerVariant3Placements	80183C68	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_gShelterB4LowerSewerVariant7Placements	80183CC8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_gShelterB4LowerSewerVariant8Placements	80183CE8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_gShelterB4LowerSewerVariant11Placements	80183D08	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_gShelterB4LowerSewerSurface5FootstepSounds	80183DA8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_gShelterB4LowerSewerSurface2FootstepSounds	80183DB4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_gShelterB4LowerSewerSurface3FootstepSounds	80183DC0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_gShelterB4LowerSewerDefaultSurface	80183DCC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_gShelterB4LowerSewerSurface1	80183DD4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_gShelterB4LowerSewerSurface2	80183DDC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_gShelterB4LowerSewerSurface3	80183DE4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_gShelterB4LowerSewerSurface5	80183DEC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM1	8017E400	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM2	8017E400	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM3	8017E410	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM4	8017E47C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM5	8017E480	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM6	8017E4B8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM7	8017E4C0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_glowDrawCapsule	8017E6A0	flt	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM8	8017E4D0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM9	8017E4D8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM10	8017E4D8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM11	8017E4E0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM12	8017E4F0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM13	8017E500	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM14	8017E510	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM15	8017E518	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM16	8017E518	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM17	8017E520	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM18	8017E530	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM19	8017E540	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM20	8017E550	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM21	8017E558	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM22	8017E558	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM23	8017E560	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM24	8017E570	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM25	8017E578	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM26	8017E578	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM27	8017E580	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM28	8017E590	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM29	8017E5A0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM30	8017E5B0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM31	8017E5C0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM32	8017E5C8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM33	8017E5C8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM34	8017E5D0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM35	8017E5E0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM36	8017E5F0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM37	8017E600	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM38	8017E610	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM39	8017E620	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM40	8017E628	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM41	8017E628	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM42	8017E630	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM43	8017E640	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM44	8017E650	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM45	8017E660	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM46	8017E670	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM47	8017E680	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM48	8017E690	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM49	8017E690	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM50	8017E6A0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM51	8017E6A0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM52	8017E6A0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM53	8017E6AC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM54	8017E6B4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM55	8017E6B8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM56	8017E6BC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM57	8017E6E0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM58	8017E6E4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM59	8017E6E8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM60	8017E6F4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM61	8017E70C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM62	8017E73C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM63	8017E744	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM64	8017E750	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM65	8017E758	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM66	8017E768	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM67	8017E778	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM68	8017E788	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM69	8017E790	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM70	8017E79C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM71	8017E7A4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM72	8017E7B0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM73	8017E7C0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM74	8017E7D0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM75	8017E7D4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM76	8017E7D8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM77	8017E7DC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM78	8017E808	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM79	8017E83C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM80	8017E854	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM81	8017E858	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM82	8017E860	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM83	8017E868	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM84	8017E870	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM85	8017E874	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM86	8017E87C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM87	8017E880	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM88	8017E884	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM89	8017E888	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM90	8017E890	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM91	8017E894	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM92	8017E898	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM93	8017E8A4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM94	8017E8B4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM95	8017E8B8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM96	8017E8BC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM97	8017E8C0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM98	8017E8C8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM99	8017E8CC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM100	8017E910	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM101	8017E924	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM102	8017E928	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM103	8017E938	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM104	8017E94C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM105	8017E950	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM106	8017E954	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM107	8017E964	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM108	8017E978	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM109	8017E97C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM110	8017E98C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM111	8017E9B4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM112	8017E9B8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM113	8017E9BC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM114	8017E9C0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM115	8017E9C4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM116	8017E9C8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM117	8017E9DC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM118	8017E9E0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM119	8017E9F0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM120	8017EA14	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM121	8017EA1C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM122	8017EA20	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM123	8017EA80	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM124	8017EA84	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM125	8017EA98	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM126	8017EAA4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM127	8017EAAC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM128	8017EAC0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM129	8017EAC4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM130	8017EAD0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM131	8017EAE0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM132	8017EAEC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM133	8017EAF8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM134	8017EB04	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM135	8017EB0C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM136	8017EB20	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM137	8017EB24	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM138	8017EB34	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM139	8017EB48	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM140	8017EB4C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM141	8017EB5C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM142	8017EB70	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM143	8017EB74	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM144	8017EB84	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM145	8017EBAC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM146	8017EBB8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM147	8017EBC4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM148	8017EBD0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM149	8017EBD4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM150	8017EBD8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM151	8017EBDC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM152	8017EC68	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM153	8017EC6C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM154	8017EC80	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM155	8017ECA0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM156	8017ECA4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM157	8017ECA8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM158	8017ECAC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM159	8017ECB0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM160	8017ECF4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM161	8017ED08	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM162	8017ED0C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM163	8017ED1C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM164	8017ED30	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM165	8017ED34	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM166	8017ED38	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM167	8017ED48	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM168	8017ED5C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM169	8017ED60	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM170	8017ED70	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM171	8017ED98	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM172	8017ED9C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM173	8017EDA0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM174	8017EDA4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM175	8017EDA8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM176	8017EDAC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM177	8017EDC0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM178	8017EDC4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM179	8017EDD4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM180	8017EDF8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM181	8017EE00	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM182	8017EE04	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM183	8017EE64	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM184	8017EE68	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM185	8017EE7C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM186	8017EE88	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM187	8017EE8C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM188	8017EE90	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM189	8017EE9C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM190	8017EEB4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM191	8017EEE4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM192	8017EEE4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM193	8017EEE4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM194	8017EEF8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_waterDrawSplash	8017F038	flt	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM195	8017F01C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM196	8017F038	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM197	8017F038	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM198	8017F038	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM199	8017F038	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM200	8017F038	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM201	8017F040	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM202	8017F044	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM203	8017F048	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM204	8017F04C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM205	8017F058	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM206	8017F070	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM207	8017F084	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM208	8017F090	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM209	8017F094	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM210	8017F09C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM211	8017F0B0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM212	8017F0D8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM213	8017F0E0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM214	8017F0EC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM215	8017F104	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM216	8017F118	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM217	8017F120	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM218	8017F124	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM219	8017F12C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM220	8017F134	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM221	8017F138	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM222	8017F140	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM223	8017F1F0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM224	8017F200	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM225	8017F210	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM226	8017F218	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM227	8017F21C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM228	8017F224	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM229	8017F234	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM230	8017F23C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM231	8017F244	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM232	8017F24C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM233	8017F250	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM234	8017F254	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM235	8017F258	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM236	8017F264	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM237	8017F268	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM238	8017F26C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM239	8017F270	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM240	8017F274	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM241	8017F278	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM242	8017F27C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM243	8017F284	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM244	8017F290	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM245	8017F29C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM246	8017F2A8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM247	8017F2B4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM248	8017F2B8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM249	8017F2BC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM250	8017F2C0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM251	8017F2C4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM252	8017F2C8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM253	8017F2CC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM254	8017F2D0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM255	8017F2D4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM256	8017F2D8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM257	8017F2DC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM258	8017F2E0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM259	8017F2E4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM260	8017F350	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM261	8017F364	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM262	8017F36C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM263	8017F36C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM264	8017F36C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM265	8017F37C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_waterDrawSpinU16	8017F828	flt	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_waterDrawTileU16	8017FC14	flt	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM266	8017F810	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM267	8017F828	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM268	8017F828	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM269	8017F828	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM270	8017F830	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM271	8017F838	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM272	8017F850	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM273	8017F854	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM274	8017F858	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM275	8017F85C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM276	8017F860	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM277	8017F864	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM278	8017F868	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM279	8017F86C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM280	8017F870	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM281	8017F874	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM282	8017F878	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM283	8017F87C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM284	8017F880	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM285	8017F898	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM286	8017F8C8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM287	8017F8D0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM288	8017F8DC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM289	8017F8E4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM290	8017F8F4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM291	8017F904	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM292	8017F914	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM293	8017F918	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM294	8017F920	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM295	8017F928	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM296	8017F930	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM297	8017F938	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM298	8017F940	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM299	8017F948	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM300	8017F950	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM301	8017F958	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM302	8017FA28	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM303	8017FA44	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM304	8017FA48	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM305	8017FA5C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM306	8017FA64	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM307	8017FA68	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM308	8017FA70	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM309	8017FA7C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM310	8017FB1C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM311	8017FB24	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM312	8017FB28	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM313	8017FB38	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM314	8017FB3C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM315	8017FB44	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM316	8017FB48	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM317	8017FB50	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM318	8017FB58	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM319	8017FB5C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM320	8017FB64	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM321	8017FB6C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM322	8017FB70	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM323	8017FB78	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM324	8017FBE4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM325	8017FBF4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM326	8017FC14	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM327	8017FC14	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM328	8017FC14	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM329	8017FC14	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM330	8017FC1C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM331	8017FC20	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM332	8017FC24	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM333	8017FC28	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM334	8017FC2C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM335	8017FC30	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM336	8017FC34	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM337	8017FC38	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM338	8017FC3C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM339	8017FC40	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM340	8017FC44	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM341	8017FC48	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM342	8017FC4C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM343	8017FC50	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM344	8017FC54	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM345	8017FC6C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM346	8017FC9C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM347	8017FCA4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM348	8017FCB0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM349	8017FCB8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM350	8017FCC8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM351	8017FCD8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM352	8017FCE8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM353	8017FCF4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM354	8017FCFC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM355	8017FD04	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM356	8017FD0C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM357	8017FD14	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM358	8017FD1C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM359	8017FD20	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM360	8017FD30	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM361	8017FD44	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM362	8017FD48	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM363	8017FD4C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM364	8017FD50	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM365	8017FD58	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM366	8017FD60	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM367	8017FD68	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM368	8017FD74	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM369	8017FD84	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM370	8017FDC8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM371	8017FDE0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM372	8017FE08	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM373	8017FE30	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM374	8017FE9C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM375	8017FEA8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM376	8017FEB0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM377	8017FEB0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM378	8017FEB0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM379	8017FEC0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_roomVisualEffectsDrawFlashDisc	80180580	flt	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_roomVisualEffectsDrawFlashRing	80180154	flt	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_roomVisualEffectsDrawBurstStar	80181484	flt	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM380	8018013C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM381	80180154	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM382	80180154	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM383	80180154	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM384	8018015C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM385	80180164	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM386	8018018C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM387	80180190	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM388	80180194	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM389	8018019C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM390	801801A0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM391	801801A4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM392	801801A8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM393	801801AC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM394	801801B0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM395	801801B4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM396	801801B8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM397	801801BC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM398	801801C0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM399	801801D8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM400	80180208	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM401	80180214	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM402	80180220	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM403	80180228	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM404	80180238	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM405	80180248	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM406	80180258	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM407	8018025C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM408	80180260	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM409	80180264	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM410	80180268	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM411	80180294	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM412	80180298	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM413	8018029C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM414	801802A0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM415	801802D4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM416	801802D8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM417	801802EC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM418	801802F0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM419	801802FC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM420	80180304	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM421	80180314	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM422	80180320	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM423	8018032C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM424	80180350	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM425	8018036C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM426	80180370	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM427	80180384	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM428	80180388	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM429	80180398	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM430	801803AC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM431	801803B0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM432	801803B4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM433	801803C4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM434	801803D8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM435	801803DC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM436	801803EC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM437	80180400	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM438	80180404	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM439	80180414	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM440	80180428	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM441	8018042C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM442	8018043C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM443	80180450	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM444	80180454	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM445	80180464	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM446	80180478	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM447	8018047C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM448	8018048C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM449	801804B4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM450	801804F8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM451	801804FC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM452	8018050C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM453	80180510	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM454	80180524	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM455	80180530	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM456	8018053C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM457	80180554	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM458	80180580	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM459	80180580	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM460	80180580	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM461	80180590	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM462	80180598	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM463	801805B8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM464	801805BC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM465	801805C0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM466	801805C4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM467	801805C8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM468	801805CC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM469	801805D0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM470	801805D4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM471	801805D8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM472	801805DC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM473	801805E0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM474	801805E4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM475	801805E8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM476	80180600	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM477	80180630	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM478	80180638	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM479	80180644	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM480	8018064C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM481	8018065C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM482	8018066C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM483	8018067C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM484	80180680	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM485	80180684	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM486	80180688	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM487	8018068C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM488	801806B8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM489	801806D0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM490	801806D4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM491	801806D8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM492	801806E4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM493	801806EC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM494	801806FC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM495	80180708	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM496	80180714	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM497	80180730	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM498	80180734	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM499	80180740	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM500	80180740	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM501	80180754	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM502	80180758	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM503	80180768	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM504	8018077C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM505	80180784	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM506	80180794	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM507	801807A8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM508	801807AC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM509	801807BC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM510	801807E4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM511	801807E8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM512	801807EC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM513	801807F0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM514	801807F4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM515	801807F8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM516	8018080C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM517	80180810	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM518	80180820	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM519	80180848	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM520	8018088C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM521	80180890	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM522	801808A0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM523	801808A4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM524	801808B8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM525	801808C4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM526	801808D0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM527	801808E8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM528	80180914	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM529	80180914	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM530	80180914	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM531	80180914	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM532	8018091C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM533	8018094C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM534	80180950	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM535	80180954	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM536	80180958	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM537	8018095C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM538	80180960	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM539	8018096C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM540	8018097C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM541	801809A4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM542	801809B4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM543	801809BC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM544	801809C4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM545	801809C4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM546	801809C4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM547	801809CC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM548	801809D0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM549	801809D4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM550	801809D8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM551	801809DC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM552	801809E0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM553	801809E4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM554	801809F0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM555	801809F4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM556	801809F8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM557	801809FC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM558	80180A00	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM559	80180A04	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM560	80180A08	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM561	80180A08	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM562	80180A10	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM563	80180A1C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM564	80180A20	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM565	80180A24	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM566	80180A28	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM567	80180A2C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM568	80180A30	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM569	80180A34	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM570	80180A38	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM571	80180A3C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM572	80180A40	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM573	80180A44	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM574	80180A44	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM575	80180A4C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM576	80180A58	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM577	80180AF0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM578	80180B88	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM579	80180B9C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM580	80180BA4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM581	80180BA4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM582	80180BAC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM583	80180BB4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM584	80180BB8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM585	80180BBC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM586	80180BC0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM587	80180BC4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM588	80180BC8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM589	80180BCC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM590	80180BD0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM591	80180BD4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM592	80180BD8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM593	80180BD8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM594	80180BE4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM595	80180BEC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM596	80180C9C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM597	80180D54	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM598	80180D60	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM599	80180D64	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM600	80180D68	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM601	80180D70	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM602	80180D74	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM603	80180D78	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM604	80180D80	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM605	80180D94	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+_roomVisualEffectsDrawTwinTrail	80180E04	flt	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM606	80180DAC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM607	80180DCC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM608	80180DD4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM609	80180E04	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM610	80180E04	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM611	80180E04	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM612	80180E18	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM613	80180E20	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM614	80180E30	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM615	80180E34	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM616	80180E4C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM617	80180E50	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM618	80180E54	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM619	80180E60	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM620	80180E78	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM621	80180EA8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM622	80180EAC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM623	80180EC0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM624	80180ECC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM625	80180ED0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM626	80180EE0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM627	80180EE4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM628	80180EE8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM629	80180EEC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM630	80180EF0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM631	80180EF4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM632	80180EF8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM633	80180EFC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM634	80180F00	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM635	80180F04	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM636	80180F08	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM637	80180F0C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM638	80180F10	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM639	80180F14	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM640	80180F18	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM641	80180F1C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM642	80180F20	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM643	80180F24	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM644	80180F28	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM645	80180F2C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM646	80180F38	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM647	80180F44	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM648	80180F48	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM649	80180F4C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM650	80180F50	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM651	80180F5C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM652	80180F68	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM653	80180F74	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM654	80180F7C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM655	80180F88	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM656	80180F90	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM657	80180FB4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM658	80180FC0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM659	80180FD8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM660	80180FE8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM661	80180FF8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM662	80181008	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM663	80181018	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM664	8018101C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM665	80181034	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM666	80181044	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM667	80181048	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM668	80181050	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM669	80181064	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM670	80181064	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM671	80181068	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM672	8018106C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM673	80181070	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM674	80181078	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM675	80181080	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM676	80181084	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM677	80181088	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM678	8018108C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM679	80181090	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM680	80181094	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM681	80181098	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM682	8018109C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM683	801810A0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM684	801810A4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM685	801810A8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM686	801810AC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM687	801810B0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM688	801810B4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM689	801810B8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM690	801810BC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM691	801810C0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM692	801810C4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM693	801810C8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM694	801810CC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM695	801810D8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM696	801810E4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM697	801810F0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM698	801810FC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM699	80181108	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM700	80181114	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM701	80181118	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM702	8018111C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM703	80181120	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM704	80181124	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM705	80181128	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM706	8018112C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM707	80181198	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM708	801811A4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM709	801811A8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM710	801811B4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM711	801811CC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM712	801811FC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM713	801811FC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM714	801811FC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM715	8018120C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM716	80181468	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM717	80181484	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM718	80181484	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM719	80181484	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM720	80181494	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM721	8018149C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM722	801814C0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM723	801814C4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM724	801814C8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM725	801814CC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM726	801814D0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM727	801814D4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM728	801814D8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM729	801814DC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM730	801814E0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM731	801814E4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM732	801814E8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM733	801814EC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM734	801814F0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM735	80181508	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM736	80181538	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM737	80181540	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM738	8018154C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM739	80181554	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM740	80181564	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM741	80181574	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM742	80181584	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM743	8018158C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM744	80181590	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM745	80181594	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM746	80181598	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM747	801815C4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM748	801815C8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM749	801815CC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM750	801815F8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM751	801815FC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM752	80181610	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM753	80181614	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM754	80181618	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM755	80181624	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM756	8018162C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM757	80181678	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM758	8018167C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM759	8018168C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM760	801816A0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM761	801816A4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM762	801816B4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM763	801816C8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM764	801816CC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM765	801816D0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM766	801816E0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM767	801816F4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM768	801816F8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM769	80181708	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM770	80181730	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM771	80181734	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM772	80181738	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM773	8018173C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM774	80181740	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM775	80181744	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM776	80181758	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM777	8018175C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM778	8018176C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM779	80181790	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM780	80181794	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM781	80181798	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM782	801817E8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM783	801817EC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM784	80181800	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM785	8018180C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM786	80181818	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM787	80181820	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM788	80181864	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM789	80181868	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM790	80181874	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM791	80181888	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM792	8018188C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM793	8018189C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM794	801818B0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM795	801818B4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM796	801818C4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM797	801818D8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM798	801818DC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM799	801818EC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM800	80181914	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM801	80181920	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM802	80181924	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM803	80181928	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM804	8018193C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM805	80181940	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM806	80181950	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM807	80181974	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM808	80181978	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM809	8018197C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM810	801819B8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM811	801819BC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM812	801819CC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM813	801819D0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM814	801819E4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM815	801819F0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM816	801819FC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM817	80181A00	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM818	80181A18	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM819	80181A20	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM820	80181A28	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM821	80181A64	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM822	80181A68	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM823	80181A74	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM824	80181A78	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM825	80181A88	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM826	80181A9C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM827	80181AA0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM828	80181AB0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM829	80181AC4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM830	80181AC8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM831	80181AD8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM832	80181AEC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM833	80181AF0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM834	80181B00	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM835	80181B28	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM836	80181B2C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM837	80181B30	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM838	80181B34	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM839	80181B38	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM840	80181B3C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM841	80181B50	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM842	80181B54	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM843	80181B64	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM844	80181B88	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM845	80181B8C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM846	80181B90	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM847	80181BE0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM848	80181BE4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM849	80181BF8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM850	80181C04	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM851	80181C0C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM852	80181C14	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM853	80181C60	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM854	80181C64	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM855	80181C74	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM856	80181C88	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM857	80181C8C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM858	80181C9C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM859	80181CB0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM860	80181CB4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM861	80181CC4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM862	80181CD8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM863	80181CDC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM864	80181CEC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM865	80181D14	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM866	80181D18	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM867	80181D1C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM868	80181D20	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM869	80181D24	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM870	80181D28	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM871	80181D3C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM872	80181D40	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM873	80181D50	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM874	80181D74	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM875	80181D78	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM876	80181D7C	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM877	80181DB8	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM878	80181DBC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM879	80181DCC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM880	80181DD0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM881	80181DE4	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM882	80181DF0	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM883	80181DFC	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM884	80181E14	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+LM885	80181E44	fl	build/USA/src/rooms/shelter_b4_lower_sewer/shelter_b4_lower_sewer_2.i
+__romPos	00006858	al	
+equipmentGetWeaponLoadCapacity	800BB938	a	
+gActor443500ConsoleFollowupSkipScript	80142A74	a	
+D_80073BAC	80073BAC	a	
+D_80072174	80072174	a	
+areaSetCurrentObjectState	800BAC34	a	
+uiInitList	800489A0	a	
+D_80071072	80071072	a	
+gameFlagSetNibble	8004AC58	a	
+CdFlush	80015AF4	a	
+SetRotMatrix	8004ADF8	a	
+stageRequestModeTaskExit	8003F6F8	a	
+gActor503500StaffCardSceneTaskDesc	8014B958	a	
+sceneEngageBattle	800DB4E0	a	
+tmdAllocPrimitiveBuffer	80041B88	a	
+gActor335800BalconyBattleStartScript	80165720	a	
+gActor450200CompanionSceneScript	80137EE4	a	
+actor161500StartSoldierBRemark	80131E38	a	
+gCapCommandEntries	801156A0	a	
+displayAcquireMenuHold	8003E610	a	
+gPadMenuButtonMask	8005ED78	a	
+areaSetPlacementVariant	800B5B30	a	
+displayQueueModeTask	8003FB70	a	
+gameGetTaskSlot	8002D22C	a	
+GetTPage	80043938	a	
+displaySetFrameTiming	800280F4	a	
+textItoaUnsigned	8002F18C	a	
+damagePackEnemyAttackKey	800E2BF8	a	
+viewGetMappedIndex	800AD284	a	
+worldCoordGetOriginAudioPan	800D937C	a	
+gPadInputMenuUnlockUpdates	80115716	a	
+mapShelterRoomVariantResolve	80179A04	a	
+uiGetTextColor	80048E10	a	
+cdCmdSelectScene	8001D534	a	
+gActor107600TaskDescriptors	80134F94	a	
+SetDrawTPage	80043A38	a	
+D_801153F1	801153F1	a	
+shelter_b4_lower_sewer_TEXT_START	8017D608	f	
+printf	8001AF3C	a	
+worldCollisionClearContacts	800E1A6C	a	
+sceneReleaseBattleRefAndClearRewards	800DB630	a	
+memMalloc	8002DABC	a	
+D_80073BA0	80073BA0	a	
+gActionPromptSlots	80114D28	a	
+shelterB4LowerSewerRoomVisualEffectsFlashTask	8017FEB0	ft	
+D_80072836	80072836	a	
+gAttachmentTrainingLevels	80114BF0	a	
+taskPollKill	8002D3BC	a	
+actor260400RestoreHeliportPlacement	80149FA4	a	
+gShelterB4LowerSewerWaterPacketCursor	80183E14	f	
+gRoomEffectOrangeBurst2Id	80115754	a	
+stageMusicRequestAreaStop	800430E4	a	
+taskSpawn	8002CFDC	a	
+MatrixNormal	8003D6C8	a	
+gAreaRecordsByStage	8010CBCC	a	
+textDrawUiLine	8002FDCC	a	
+D_8007106C	8007106C	a	
+gActor450800NurseryIntroSkipScript	8013A33C	a	
+D_80070F6C	80070F6C	a	
+capRunCommandWithTransition	800E3B60	a	
+SetSemiTrans	800439B8	a	
+gCapRoomCompletionSoundsEnabled	80115598	a	
+sndEvtRequestMidiStart	800512BC	a	
+inventoryHasCollectedBit	800BB4BC	a	
+gGfxViewCoord	80070F10	a	
+equipmentRestoreHpMp	800BC164	a	
+D_80073B8C	80073B8C	a	
+gameFlowBeginLoadScreen	8002252C	a	
+sndEvtRequestScriptMix	80054424	a	
+worldCollisionProjectGroundCoord	800EA02C	a	
+worldCollisionUnlinkTrigger	800E1708	a	
+actor215100SelectCaptionResource	8014C5E0	a	
+padScriptSpawnVariableMotorRamp	800E8D1C	a	
+gfxSetFlatLight	8003B140	a	
+gPlayerActorStateTickHeld	80115768	a	
+gItemDescriptors	8010D838	a	
+playerActorPrepareDryfieldLoadout	800BC4E4	a	
+gActor450200RoomVariantSceneScript	8013FC58	a	
+taskGetDescAt	8002D32C	a	
+rcos	8003D108	a	
+D_80072177	80072177	a	
+streamFindViewMovieSlot	8001EED8	a	
+gRoomEffectTwinTrailId	8011572C	a	
+taskKill	8002CCB8	a	
+gActor143000KeypadTaskDesc	80134564	a	
+gEffectSpriteAtlasFrames	80111E48	a	
+D_80115188	80115188	a	
+D_80072724	80072724	a	
+textDrawString	8002E53C	a	
+gDirectionInteractionRearmUpdates	80114D08	a	
+D_80071078	80071078	a	
+gRoomEffectSparkBurstId	80115750	a	
+gActor120300TaskDescriptors	80141B6C	a	
+inventoryResetIceBagTimer	800BC21C	a	
+gEffectUnitQuadCorners	80111E38	a	
+worldCoordSetActorColorMode	800D930C	a	
+gActor342400EncounterTaskDescs	8016BFE0	a	
+gActor560800ChainGlowTick	801752EC	a	
+gActor444000IncineratorEventTaskDesc	801449F4	a	
+playerActorSetScriptedControl	800E3BBC	a	
+stageMusicRequestAreaStart	80043028	a	
+itemMenuSpawnNotice	800D4E40	a	
+actor460200SetupTentSoldiers	80132210	a	
+gActor335800BalconyEntrySkipScript	80165798	a	
+D_80115124	80115124	a	
+uiStartPanelOpening	80048964	a	
+actor215100RequestGalleryAbort	8014A9A0	a	
+streamGetFrameLimit	80020414	a	
+gActor00100DesertChaserTaskDesc	8014D8A4	a	
+gActor04000HangingPoolTaskDesc	8013E51C	a	
+gActor560800CutsceneTaskDescriptors	801718F0	a	
+actor161500StartCompanionRequestReminder	801322A0	a	
+equipmentInitializeWeaponSupplies	800B6CF0	a	
+gFsActorBuffer1Base	8005C370	a	
+textFormatPlayTime	8002EB94	a	
+playerActorRestoreEquipment	801034C0	a	
+playerActorRemoveEquipment	801043F4	a	
+SetDrawMove	8004AD18	a	
+damageGetPlayerAttackEffectId	800E2D90	a	
+gpuSetPrimitiveBlendMode	800EC914	a	
+shelter_b4_lower_sewer_VRAM_END	80183E18	f	
+worldCoordUpdateActorColor	800D8EA0	a	
+enemyTaskExit	800B0234	a	
+gfxComposeNodeWorldTransform	800B1D00	a	
+shelter_b4_lower_sewer_bss_VRAM	80183E18	f	
+gUiPromptObject	80067694	a	
+gShelterB4LowerSewerActionTriggers	801837D4	f	
+gFsActorBuffer0Base	8005C36C	a	
+ratan2	8003D9C8	a	
+sceneFindPlacedActor	800E86FC	a	
+animationSeekSlotWithBlend	800B4114	a	
+inventoryInitializeShootingGalleryLoadout	800BA538	a	
+D_80071090	80071090	a	
+gActor450200SoloSceneScript	8013C72C	a	
+RotTransSV	8004BD58	a	
+padIsStartPressed	8004ACF0	a	
+ApplyMatrixSV	80043A68	a	
+memSelectAuxHeapRegion	8002DC08	a	
+gActor450800NurseryIntroScript	80139964	a	
+memcpy	8001AEFC	a	
+gActor151000GardenArrivalScript	801334EC	a	
+gActor341300WalkwaySceneSkipScript	80165834	a	
+gStageCountdownMusicEntry	80062735	a	
+Gp_QtyById0	8010E038	a	
+sndEvtRequestStageScriptStop	800E3E64	a	
+gActor102000PawnGolemTasks	80147DF0	a	
+gActor207000SucklercephTaskDescs	80151E60	a	
+capSetTexturePage	800E6D4C	a	
+__floatsidf	8004B5D8	a	
+SetSprt	80043A18	a	
+shelter_b4_lower_sewer_DATA_END	80183E18	f	
+gActor443500MapFollowupSkipScript	801432FC	a	
+areaSyncLocationVariant	800B601C	a	
+effectDrawGroundShadow	800F68AC	a	
+cdCmdCompleteHeadRequest	8001DA48	a	
+gameFlagSetNibbleIfPresent	800E3B3C	a	
+uiSizePanelForTextDefault	800490A4	a	
+worldCollisionUnlinkBody	800E1638	a	
+gRoomEffectFlyingSparkId	80115730	a	
+gActor207200CreepingStrangerTaskDesc	80153EC8	a	
+playerActorWriteWeaponAnimationBankIndex	800E3CEC	a	
+gGpuCurrentOt	800710A0	a	
+streamInitMoviePlayback	8002043C	a	
+gActor150400FreezerSceneScript	80132D70	a	
+gActor450200SoloSceneSkipScript	8013CAEC	a	
+sndScriptHasActiveId	8005462C	a	
+gMcDialogDescriptors	800611C8	a	
+sndEvtRequestMidiVolume	80051460	a	
+padScriptSpawn	800E8FB0	a	
+gCapFile	8011568C	a	
+gActor450200CompanionSceneSkipScript	80138694	a	
+sceneReleaseBattleRef	800DB6B4	a	
+gMcSaveData	80072168	a	
+gameSetTaskSlot	8002D214	a	
+gShelterB4LowerSewerSpriteViews	80182E80	f	
+taskSpawnFromTable	8002CFA0	a	
+gActor142900ElevatorFirstVisitSkipScript	801380F8	a	
+gActor503500BossPhaseTransitionScript	8014D158	a	
+inventoryGetItemQuantity	800BB6FC	a	
+cdCmdRequestCancel	8001C970	a	
+actor450900HandleDepartureTrigger	80132834	a	
+D_80070F70	80070F70	a	
+gActor160600SceneWithoutCompanionScript	80135AC0	a	
+displayResumeGameLoop	8003E540	a	
+tmdFreePrimitiveBuffer	80041B4C	a	
+gShelterB4LowerSewerCollisionGrid	801828E4	f	
+actor460200TalkToSoldierC	801322B8	a	
+itemMenuOpenHotspotCommands	800D4E78	a	
+gfxMakeRelativeTransform	800A8864	a	
+gWorldCollisionSurfacePropertiesTables	8010CBB8	a	
+streamPollGameRestore	8001EF9C	a	
+areaClearMapMark	800AED24	a	
+gItemMenuInfoPanel	80067634	a	
+gShelterB4LowerSewerRoomViewCounts	80181FA8	f	
+cdCmdIsSlotEmpty	8001D37C	a	
+D_8007107C	8007107C	a	
+gActor461800NeoArkSceneSkipScript	80134470	a	
+itemMenuDrawTaskPrompt	800CE4F4	a	
+MargePrim	800422B8	a	
+worldCoordSetModelLighting	800D7A9C	a	
+streamResetGameRestore	80020388	a	
+gfxReadMatrixYAxis	8003C748	a	
+actor503500ClearFadeFromBlackHandle	80132F58	a	
+displayReleaseMenuHold	8003E64C	a	
+taskCallExit	8002D0A4	a	
+RotMatrixZYX	80044408	a	
+actor341300ResetScriptTaskHandle	8016268C	a	
+modelObjectAttachTmd	8009902C	a	
+gActor161500CompleteCompanionRequestTaskDesc	80136CDC	a	
+gGameSession	8005ED64	a	
+D_80071076	80071076	a	
+__adddf3	8004AFE8	a	
+gShelterB4LowerSewerViewMaps	80181FA4	f	
+gRoomEffectFlashId	80115758	a	
+gActor443500TourOpeningSkipScript	80141C1C	a	
+actor215100FinishGalleryCourse	8014A908	a	
+animationAimHeadAtPoint	800B0CF4	a	
+mapAkropolisOpenKeyItemMenu	80179FC8	a	
+areaSetObjectState	800BB8E8	a	
+gItemMenuPanelDescriptors	8010EAB4	a	
+SquareRoot0	8003B8A0	a	
+gameFlagSetPackedByte	800E3FAC	a	
+gAttachmentState	80114C08	a	
+gActor01100Tasks	8015F400	a	
+displayConfigureFramebuffers	8003DB48	a	
+gfxBuildOrthonormalBasis	8003CEC4	a	
+gActor342100EncounterBlazeTaskDescriptors	80164B78	a	
+gActor535700PawnGolemEncounterScript	80133898	a	
+sndEvtRequestScriptStop	800542D0	a	
+SetShadeTex	800439E8	a	
+shelter_b4_lower_sewer_BSS_START	80183E18	f	
+sceneReleaseBattleRefWithRewards	800DB558	a	
+capRunCommand	800E34D8	a	
+gFsActorBuffer2Base	8005C374	a	
+capReset	800E6DF4	a	
+gActor341300WalkwaySceneScript	80165354	a	
+gEquipmentWeaponPrimaryLoadOptions	8010E238	a	
+gfxReadMatrixZAxis	8003C768	a	
+D_80071086	80071086	a	
+gfxRotMatrixY	8003C98C	a	
+gPadScriptTransitionCommands	80114A24	a	
+viewApplyCamera	800A8A48	a	
+RotTransPers4	8004C358	a	
+D_8011540E	8011540E	a	
+gPadScriptTransitionSegments	80114A34	a	
+mapDryfieldFullResolveRoomVariant	80179954	a	
+inventoryRestoreCarriedLoadout	800BA75C	a	
+D_80072176	80072176	a	
+gStreamInterFile	8006AC30	a	
+playerActorPrepareAcropolisLoadout	800BC4BC	a	
+mapAkropolisWasDryfieldMapSelected	8017A038	a	
+gStageMusicTaskDesc	80062774	a	
+gMdecMovieOutputSlot	8005EAEE	a	
+gActor451100SubmarineTunnelSceneSkipScript	80135FD0	a	
+gStageRoomMusicSequence	80062737	a	
+worldCollisionFindContactIndex	800E19B8	a	
+worldCollisionLinkBody	800E15AC	a	
+D_80073BA9	80073BA9	a	
+midiIsSequenceBusy	800514F8	a	
+memCopyBytes	8002D7A8	a	
+effectKillTask	800EC7E4	a	
+inventoryCountOccupiedRows	800BAF5C	a	
+itemMenuGetPrimaryPreviewItem	800CF27C	a	
+sceneSetPlacedActorDrawMode	800E3C6C	a	
+__fixdfsi	8004B4D8	a	
+effectDrawGouraudDisc	800EAEB8	a	
+cdCmdStageSceneAudioStart	8001D6B8	a	
+D_80072A94	80072A94	a	
+textItoaSigned	8002F020	a	
+cdCmdIsIdle	8001D344	a	
+actor215100CheckGalleryExitInput	8014A398	a	
+gShelterB4LowerSewerViewBoundaryTriggers	80183444	f	
+D_80072729	80072729	a	
+sceneQueueBattleEscapeResult	800A7A64	a	
+capStartSequenceSlot	800E6C70	a	
+gActor215100GalleryTrainingActive	8014D038	a	
+worldCollisionReadActionHit	800E1BF0	a	
+SetTransMatrix	8004AE28	a	
+shelter_b4_lower_sewer_ROM_END	00006858	a	
+gameFlagGetNibble	8004ACAC	a	
+D_801153F4	801153F4	a	
+gRoomEffectHaloId	80115744	a	
+AddPrim	80043978	a	
+shelter_b4_lower_sewer_DATA_SIZE	00001FD4	a	
+gCapPreserveActorControl	80115690	a	
+uiSetListSystemCursorSound	8004917C	a	
+itemSetIdentified	800BB7C0	a	
+gfxRotMatrixZ	8003CB80	a	
+worldTargetAddReadoutAmount	800DA6E8	a	
+inventoryGetConsumableStackQuantity	800BB26C	a	
+SetDrawOffset	80018AA4	a	
+D_8007272D	8007272D	a	
+gSceneCombatState	801153F0	a	
+itemMenuDrawItemRow	800CD924	a	
+effectDrawSpinningBillboard	800EB2C8	a	
+uiDrawPanelLabel	80047F40	a	
+gGameMainPersistentState	800710A8	a	
+enemySpawnFromTable	800B01AC	a	
+gfxRotMatrixYXZ	8003BD34	a	
+D_8011540A	8011540A	a	
+effectDrawModulatedBillboard	800EB6E8	a	
+equipmentHasCarriedWeaponSupply	800BBDDC	a	
+gActor461800NeoArkSceneScript	80133F90	a	
+uiPositionRowDialog	80049024	a	
+actor260400StartHeliportConversation	80149E38	a	
+evsStartScriptWithSkip	800E8634	a	
+gShelterB4LowerSewerDiverPatrolRings	8018210C	f	
+gEquipmentModeBaseStats	8010D328	a	
+gFsImageWorkspacePtr	8005C364	a	
+actor160700StartMeetingScript	80131E70	a	
+evsStartScript	800E8614	a	
+loadingRequestViewGraphicsRestore	800A99B4	a	
+actor450200InitializeObservatoryCompanion	801322F8	a	
+StoreImage	80017FA4	a	
+D_80114C12	80114C12	a	
+MoveImage	80018004	a	
+func_807245E4	807245E4	a	
+uiUpdateList	80048C10	a	
+streamGetSlot	80020278	a	
+textAppendString	8002F588	a	
+gActor310100Officer1TaskDescriptors	801798FC	a	
+capGetVariantKey	800E6D3C	a	
+gActor143900ObservatoryEntrySkipScript	80133860	a	
+gActor503500BossDefeatSkipScript	8014CAF8	a	
+capIsBusy	800E6CE0	a	
+attachmentIsTrainingMode	800A74C4	a	
+gGpuPrimCursor	80071190	a	
+worldCoordGetOriginAudioDepth	800D9340	a	
+gfxRotMatrixXYZ	8003B960	a	
+shelter_b4_lower_sewer_ROM_START	00000000	a	
+actor161500StartSoldierBShopConversation	80132110	a	
+shopOpenSession	800D4D2C	a	
+gPadCancelButtonMask	8005ED74	a	
+gPadStates	80071620	a	
+SetDrawArea	80018A24	a	
+D_80071075	80071075	a	
+RotTransPers3	8004C1E8	a	
+actor460200TalkToSoldierA	80132390	a	
+animationInitContext	800B3F84	a	
+gActor450200RoomVariantSceneSkipScript	80140078	a	
+equipmentFindNextCarriedWeaponSupply	800BBD40	a	
+gActor535700PawnGolemEncounterSkipScript	801341E0	a	
+uiDrawBeveledRect	80046B34	a	
+rand	80037164	a	
+gActor450900EntrySkipScript	80136308	a	
+D_80115410	80115410	a	
+companionSetDrawMode	800E3EB0	a	
+inventoryGiveItem	800BAD08	a	
+gActor560800MovieTaskDescriptors	8016EA28	a	
+gActor342000IncineratorEventTaskDescs	80164FF8	a	
+D_8010E138	8010E138	a	
+effectSpawnHit	800FDB18	a	
+gInventoryContainerRanges	8010D550	a	
+shelter_b4_lower_sewer_TEXT_SIZE	0000483C	a	
+gActor143400CompanionEntryScript	801350BC	a	
+memCalloc	8002D978	a	
+effectSpawn	800EA478	a	
+gActor450900EntryScript	80136110	a	
+strncmp	8001EAC4	a	
+gShelterB4LowerSewerViewCameras	80182908	f	
+gInventoryConsumableStacks	8010E3B8	a	
+gActor105500MaggotCaterpillarTasks	8013A8DC	a	
+itemMenuDrawDefaultItemIcon	800CE5D0	a	
+actor161500StartSoldierBTalkB	80132038	a	
+D_80071068	80071068	a	
+gRoomEffectWaterSprayId	80115738	a	
+gActor450800NurseryShootingSkipScript	8013BA84	a	
+gMdecMovieInputSlot	8005EAEC	a	
+gActor443500ConsoleFollowupScript	80141D9C	a	
+actor150400SpawnSlidingModels	80131FB8	a	
+D_800691CA	800691CA	a	
+gActor503500SceneEffectTaskDescs	8014B964	a	
+D_80114C0B	80114C0B	a	
+gRoomEffectMoteId	80115728	a	
+areaApplySavedUpdates	800AE62C	a	
+cdCmdCancelScene	8001D588	a	
+func_800AC000	800AC000	a	
+uiSetPanelContentSize	800466E4	a	
+GsWSMATRIX	80071138	a	
+uiObjectTaskExit	800488B8	a	
+cdSyncPollCommand	8001E6AC	a	
+gActor443500MapFollowupScript	80142C24	a	
+gItemMenuTransferPanelDescriptors	8010D6F4	a	
+cdCmdEnqueue	8001D2B0	a	
+shelter_b4_lower_sewer_BSS_END	80183E18	f	
+D_801150C0	801150C0	a	
+padCheckButtons	8002C868	a	
+itemMenuDrawPreview	800C7AE8	a	
+gActor160600SceneWithCompanionScript	80135D78	a	
+shelterB4LowerSewerWaterRippleTask	8017EEE4	ft	
+gCapChoiceRowStride	80115680	a	
+taskSpawnFromTableOnDefaultList	8003E4BC	a	
+SetDrawStp	80042288	a	
+gActor143900ObservatoryEntryScript	80133560	a	
+playerActorSetDrawMode	800E3B80	a	
+actor450800StartNurseryCompanionDialogue	80132000	a	
+gActor215100PierceStoryScript	80153274	a	
+itemMenuSetPreviewItem	800CDE80	a	
+equipmentRecalculateMaxMp	800B7930	a	
+effectDrawOuterGlowBand	800EAA0C	a	
+stageEnsureHeapTaskPrimitiveBuffer	8003F9AC	a	
+actor215100HandleGalleryAction	8014AB6C	a	
+RotMatrixZ	8004AE48	a	
+SetDispMask	80017C00	a	
+SetTile	80042344	a	
+gShelterB4LowerSewerSurfacePropertiesByClass	80183DF4	f	
+func_80724608	80724608	a	
+cdCmdEnqueueScenePlayback	8001D5CC	a	
+__muldf3	8004B828	a	
+rsin	8003D038	a	
+viewFindLogicalIndex	800ACEBC	a	
+inventoryInitializeStarterLoadout	800B7D18	a	
+gPadConfirmButtonMask	8005ED70	a	
+areaIsSavedPoseRestoreEnabled	800B59A8	a	
+gActor361100PodSceneScript	80165F48	a	
+areaGetVariant	800B5CE8	a	
+gActor443500TourOpeningScript	8014152C	a	
+shelter_b4_lower_sewer_VRAM	8017D5C0	f	
+gShelterB4LowerSewerRoomLights	8018342C	f	
+gGameFlagNibbleBanks	80073980	a	
+actor450800PrepareNurseryKyleMadigan	80132028	a	
+worldCoordSetAmbientColorOverride	800D94B8	a	
+gActor460200TentArrivalSkipScript	80137890	a	
+shelter_b4_lower_sewer_TEXT_END	80181E44	f	
+worldTargetDisableNodeLockOn	800DACF8	a	
+D_80072170	80072170	a	
+D_80070F87	80070F87	a	
+D_80072310	80072310	a	
+worldCollisionProbeGridSegment	800DE7CC	a	
+D_8011540C	8011540C	a	
+memset	800420F8	a	
+companionWriteAnimationBankIndex	800E3D24	a	
+D_80073BAE	80073BAE	a	
+gActor215100GalleryTaskDescs	8014E13C	a	
+gActor136300GarageCompanionSceneSkipScript	8013C388	a	
+streamPrepareMovieWorkspace	80020298	a	
+gActor136300CompanionGaragePlacement	8013B570	a	
+srand	80037194	a	
+viewQueueCurrentCameraAndPackets	800A8B6C	a	
+ApplyMatrixLV	80042128	a	
+shelterB4LowerSewerRoomVisualEffectsSparkBurstTask	801811FC	ft	
+taskMessageDispatch	800AC464	a	
+uiStartTreeClosing	80048838	a	
+animationResetSlot	800B3FA8	a	
+actor215100CapCaptionSelectRecord	8014B2B8	a	
+taskRequestKill	8002D340	a	
+D_8007107A	8007107A	a	
+actor161500RestoreCompanionRequestScene	8013230C	a	
+actor215100ResolveGalleryExit	8014AA54	a	
+gPlayerStatus	80073B88	a	
+inventoryGetRangeTable	800BB500	a	
+gActor142600IncineratorArrivalSkipScript	80136804	a	
+gPlayerActorTasks	80115760	a	
+gActor548100PanelTaskDesc	801358D8	a	
+equipmentConsumeWeaponLoad	800B6DA4	a	
+inventoryResetCarriedRange	800BC490	a	
+enemyDestroy	800B01F0	a	
+gFsResourceSlots	8006C338	a	
+gRandomLcgState	80070F60	a	
+actor160700RestoreMeetingAnimation	80131E24	a	
+shelterB4LowerSewerRoomVisualEffectsTwinTrailTask	80180914	ft	
+func_800ABFF8	800ABFF8	a	
+gActor146300IceBagHandoverTaskDesc	8013788C	a	
+areaSpawnPlacements	800B4AF8	a	
+itemMenuDrawMeter	800C0E20	a	
+gameFlagGetPackedByte	800E3FCC	a	
+equipmentLoadWeaponConsumable	800B715C	a	
+displaySetShakeY	8003DE78	a	
+sndEvtRequestStageScriptStart	800E3DD8	a	
+inventoryHasAttachedItem	800BC3F8	a	
+equipmentRecalculateMaxHp	800BC0C0	a	
+RotTransPers	8004C198	a	
+D_8007216D	8007216D	a	
+gActor146300WaterTankEventScript	80137C28	a	
+roomEffectRequestCancelPe	800FC6C0	a	
+gpuUploadImages	800DB31C	a	
+gDirectionActionActive	80114CF8	a	
+D_80072830	80072830	a	
+sndEvtRequestScriptVolume	800544B8	a	
+worldCollisionLinkTrigger	800E1688	a	
+actor450800StartNurseryInteraction	80131E2C	a	
+shelter_b4_lower_sewer_BSS_SIZE	00000000	a	
+gActor215100PierceStorySkipScript	80153D6C	a	
+gActor102300RookGolemTasks	80147AB8	a	
+gActor136300TaskTable	8013B11C	a	
+gStageMusicParams	8007A39C	a	
+VectorNormalSS	8003D5D8	a	
+gActor160900TaskDescriptors	8013FB50	a	
+D_80072A93	80072A93	a	
+gWorldCollisionActiveGrid	80115448	a	
+D_80072A92	80072A92	a	
+roomEffectRequestCancelAll	800EC868	a	
+gShelterB4LowerSewerWarpEntries	80181FAC	f	
+gActor310100Officer2TaskDescriptors	80179920	a	
+actorRenderDrawGroundShadow	800B4E54	a	
+D_8007218A	8007218A	a	
+capSelectLoadedFile	800E6D60	a	
+cdCmdDropQueuedTail	8001D424	a	
+Gfx_ViewWorldMtx	80070F34	a	
+actor161500StartSoldierBTalkA	80131FBC	a	
+gActor503500BossDefeatScript	8014C540	a	
+tmdBuildBufferHalf	800410F0	a	
+effectDrawScreenTint	800EA858	a	
+gActor146000WaterHoleSceneTasks	801351FC	a	
+tmdResetAuxHeapAndRestoreBuffers	80041EB4	a	
+gActor120500EmptyPlacementTaskDesc	8013843C	a	
+equipmentGetWeaponLoad	800BAFE0	a	
+DrawSync	80017C98	a	
+damageComputePlayerAttack	800E1FEC	a	
+itemMenuClearPreviewItems	800CDEF4	a	
+actor215100StartPierceConversation	8014AF0C	a	
+actor450900StartCompanionConversation	801327A8	a	
+damageRollCriticalHit	800E25F8	a	
+gActor151000GardenArrivalSkipScript	80133954	a	
+animationTickSlot	800B4514	a	
+sceneAcquireBattleRef	800DB53C	a	
+gActor143400CompanionEntrySkipScript	801359D4	a	
+companionRemoveEquipment	8010B674	a	
+sndScriptResolveStageId	800E3E30	a	
+actor146300RestoreHandoverPose	8013224C	a	
+gActor100400Tasks	80147E48	a	
+gActor150400FreezerSceneSkipScript	80133088	a	
+companionSetScriptedControl	800E3EF0	a	
+gCapInlineIconCells	8010FB70	a	
+streamPollMoviePlayback	8001FAE0	a	
+gPlayerActorWeaponReaches	80112F60	a	
+D_80072728	80072728	a	
+damagePackAttackKey	800E2C40	a	
+uiSpawnObject	800486F0	a	
+worldCollisionInitContacts	800E18E0	a	
+sndEvtRequestMidiStop	8005132C	a	
+gActor503500BossIntroSkipScript	8014C288	a	
+RotMatrix	80043AC8	a	
+D_80114C11	80114C11	a	
+memConfigureImageMemory	800144F8	a	
+viewQueueCamera	800A8A1C	a	
+displaySpawnTaskFromTable	8003E324	a	
+uiStartPanelHiding	800488F8	a	
+actor260500RestoreHeliportPlacement	80149E80	a	
+gActor04400MadChaserTaskDescs	80142604	a	
+actor450200StartCompanionTalk	80132220	a	
+gpuBlendRgb555ClutRow	800B27C4	a	
+D_80072834	80072834	a	
+actor361100ClearHeadAimTaskHandle	80162B0C	a	
+gCapConfirmedChoiceIndex	801156A8	a	
+shelter_b4_lower_sewer_RODATA_SIZE	00000048	a	
+itemGetText	800B8EB0	a	
+gActor451100SubmarineTunnelEntryScript	80136108	a	
+ScaleMatrix	8004A98C	a	
+uiDrawTitle	80048E38	a	
+playerActorEndScripted	80104838	a	
+gfxRotMatrixX	8003C788	a	
+D_80071071	80071071	a	
+gRoomEffectSparkEmitterId	80115720	a	
+MulMatrix0	80044208	a	
+D_80114FF8	80114FF8	a	
+gActor450900Tasks	80135E78	a	
+gShelterB4LowerSewerAreaVariants	80183D48	f	
+itemMenuIsHotspotActionConfirmed	800D4EC0	a	
+inventoryClearItems	800BAC8C	a	
+gCapRestoreView	80115694	a	
+gActor207200SkullStalkerTaskDesc	8014E7A4	a	
+D_801153F6	801153F6	a	
+gWorldCoordTransientPointLights	80114F30	a	
+gActor443500PowerPlantProgressDialogueScript	80143494	a	
+capSpawnEventIfIdle	800E3D8C	a	
+gDisplayState	80070F68	a	
+itemMenuSetItemDescriptionPrompt	800CEB40	a	
+D_8007217B	8007217B	a	
+shelterB4LowerSewerRoomTask	8017D6D4	ft	
+gActor136300GarageCompanionSceneScript	8013B590	a	
+ApplyTransposeMatrixLV	80044050	a	
+gSpriteAreaTables	8010CB68	a	
+inventoryCanAddItem	800B8988	a	
+sceneFindEnemyByPlaceKey	800B584C	a	
+gMidiMusicVolume	8007A396	a	
+inventoryMeltIceBagIfExpired	800BC254	a	
+gteMIMefunc	8004AD78	a	
+inventoryGetItemSortKey	800BC18C	a	
+uiGetTextRowsHeight	80048E2C	a	
+gCapControlFlags	801156A4	a	
+gFsActorBufferWrittenBytes	8006D860	a	
+gActor142600IncineratorArrivalScript	801360E4	a	
+playerActorEnterLocomotion	801066DC	a	
+D_8007218B	8007218B	a	
+uiDrawHorizontalSeparator	80047A0C	a	
+sndEvtRequestScriptStart	8005414C	a	
+actor215100CapCaptionDrawCurrent	8014B0D4	a	
+gActor335800BalconyEntryScript	80165060	a	
+shelter_b4_lower_sewer_RODATA_START	8017D5C0	f	
+gShelterB4LowerSewerWaterY	80181E6C	f	
+stageReleaseTaskPrimitiveBuffer	8003F9F4	a	
+equipmentGetWeaponSupply	800BBDC8	a	
+animationAimHeadAt	800B17D4	a	
+gRoomEffectOrangeBurstId	8011573C	a	
+viewGetMappedCamera	800A8C08	a	
+gCdCmdQueue	80068FA0	a	
+gActor146300WaterTankEventSkipScript	80138570	a	
+capAbortPlayback	800E6CF0	a	
+textDrawUiLines	8002FB84	a	
+streamFinishScene	800B00C4	a	
+loadingEnqueueEquippedWeaponResources	800A9BE4	a	
+gActor503500BossIntroScript	8014BD48	a	
+gActor207000SlouchTaskDescs	801575F0	a	
+companionRestoreFullHp	800E3D78	a	
+textItoaPadded	8002F44C	a	
+playerStateRestoreFullHpMp	800E3D5C	a	
+gRoomEffectWaterRippleId	8011574C	a	
+memFillBytes	8002D894	a	
+D_8007106B	8007106B	a	
+gActor450800NurseryShootingScript	8013AF8C	a	
+uiFitPanelToList	80046830	a	
+uiSetPromptText	80049D34	a	
+RotMatrixX	8004BE58	a	
+worldCoordSetModelAmbientColor	800D9550	a	
+worldTargetLinkNode	800DABEC	a	
+damageAccumulateLifeDrainHp	800E2C78	a	
+gActor451100SubmarineTunnelSceneScript	80135220	a	
+taskReparent	8002D14C	a	
+gActor160600SceneSkipScript	80136258	a	
+playerActorTurnToYaw	80104E00	a	
+gRoomEffectState	80115740	a	
+TransposeMatrix	800420B8	a	
+worldCollisionProjectGroundPoint	800EA1A8	a	
+inventoryClearCollectedBit	800BAEC0	a	
+D_8007216C	8007216C	a	
+uiSpawnOptionDialog	800480A0	a	
+actorRenderComposeCoord	80098F58	a	
+shelter_b4_lower_sewer_RODATA_END	8017D608	f	
+GetClut	80042AE0	a	
+gRoomEffectGlowDiscId	80115734	a	
+itemMenuDrawQuantity	800CDBEC	a	
+areaGetCurrentObjectState	800BB470	a	
+gActor341900GluttonEntranceTaskDescs	80164190	a	
+gWorldCollisionActionTriggerListHead	8011556C	a	
+actor260500StartHeliportConversation	80149EBC	a	
+fadeDrawOverlay	8002BA9C	a	
+worldCollisionResolvePushback	800E0C10	a	
+equipmentEquipCarriedArmor	800B7A50	a	
+__subdf3	8004BC28	a	
+D_80072A98	80072A98	a	
+padInputChangeSuppression	800E9BDC	a	
+gActor450800NurseryReentryScript	8013A84C	a	
+shelterB4LowerSewerDrawGlowsTask	8017E400	ft	
+gEvsPlaybackPaused	801156F9	a	
+gActor460200TentArrivalScript	801362B8	a	
+shelterB4LowerSewerWaterDriftTaskU16	8017F36C	ft	
+RotMatrixY	8004BFF8	a	
+gActor361100PodSceneSkipScript	80166848	a	
+streamFindMovieSlot	8001EDC8	a	
+gActor310100PlayerAnimationSets	801797FC	a	
+gActor142900ElevatorFirstVisitScript	801378D0	a	
+inventoryIsItemLimitReached	800B7420	a	
+streamSetExternalScenePayloadBuffer	800B015C	a	
+gActor141000FlightTasks	801348D8	a	
+gShelterB4LowerSewerDiverSurfaceSpots	8018211C	f	
+shelter_b4_lower_sewer_DATA_START	80181E44	f	
+mapNeoArkResolveRoomVariant	80179B14	a	
+gViewIdentityMap	8010CAF8	a	
+gpuResetAndInvalidateModelBuffers	80041E4C	a	
+animationAimHeadAtTask	800B0928	a	
+gItemMenuEmptyPromptText	8010F8D0	a	
+padScriptHalt	800E8F68	a	
+gWorldCollisionSurfacePushbackSuppression	80115428	a	

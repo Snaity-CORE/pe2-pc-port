@@ -1,0 +1,2 @@
+/* Generated from assets/USA/pe2pkg/acropolis_hallway.pe2pkg; model at 0x2468. */
+    { { { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }, { 0, 0, 0 } }, 0 },

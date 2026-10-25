@@ -1,0 +1,7 @@
+/* Generated from assets/USA/pe2pkg/neo_ark_submarine_tunnel.pe2pkg; animation at 0x3EE0. */
+    { 0, 0, 0, 0, 0, 0 },
+    { 0, -0, 0, 0, 0, 0 },
+    { 0, -0, 0, 0, 0, 0 },
+    { 0, -0, 0, 0, 0, 0 },
+    { -0, -0, 0, 0, -0, -0 },
+    { -0, -0, 0, 0, -0, -0 },

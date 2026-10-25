@@ -1,0 +1,214 @@
+/* rooms/mist/parking/package: written from its room instance by tools/buildsteps/gen_room_inc.py. */
+#define ROOM_CAT_(a, b) a##b
+#define ROOM_CAT(a, b) ROOM_CAT_(a, b)
+
+#define ROOM_IS_declarations_mist_parking 1
+#if ROOM_CAT(ROOM_IS_, ROOM_PART) == 1
+static ActorTransform _gMistParkingRoom2PlayerPlacement;
+static ActorTransform _gMistParkingRoom1PlayerPlacement;
+static ActorTransform _gMistParkingCommand1PlayerPlacement;
+static AnimationBankCopyRequest _gMistParkingCommand1PlayerBankCopy;
+static AnimationPlayRequest _gMistParkingCommand1PlayerAnimation;
+static AnimationPlayRequest _gMistParkingPlayerRoomTransitionAnimation;
+static EvsCommand _gMistParkingSelectRoom2Script[15];
+static EvsCommand _gMistParkingSelectRoom1Script[13];
+static EvsCommand _gMistParkingCommand1Script[12];
+#endif
+#undef ROOM_IS_declarations_mist_parking
+
+#define ROOM_IS_declarations_mist_parking_2 1
+#if ROOM_CAT(ROOM_IS_, ROOM_PART) == 1
+extern AnimationBankCopyRequest gMistParkingPlayerConversationBankCopy;
+static AnimationPlayRequest _gMistParkingUnusedPlayerClip1Request;
+static AnimationPlayRequest _gMistParkingPlayerConversationResetAnimation;
+static AnimationPlayRequest _gMistParkingUnusedPlayerClip49Request;
+static AnimationPlayRequest _gMistParkingPlayerArrivalCueAnimation50;
+static AnimationPlayRequest _gMistParkingPlayerCutsceneModelCueAnimation;
+static AnimationPlayRequest _gMistParkingPlayerArrivalClip52Request;
+static AnimationPlayRequest _gMistParkingPlayerArrivalClip53Request;
+static AnimationPlayRequest _gMistParkingPlayerArrivalClip54Request;
+static AnimationPlayRequest _gMistParkingPlayerArrivalClip55Request;
+static AnimationPlayRequest _gMistParkingPlayerArrivalClip56Request;
+static AnimationPlayRequest _gMistParkingPlayerArrivalClip57Request;
+static AnimationPlayRequest _gMistParkingUnusedPlayerClip58Request;
+static AnimationPlayRequest _gMistParkingPlayerArrivalTalkResetAnimation;
+static AnimationPlayRequest _gMistParkingPlayerArrivalClip60Request;
+static AnimationPlayRequest _gMistParkingPlayerArrivalClip61Request;
+static AnimationPlayRequest _gMistParkingUnusedPlayerClip62Request;
+static AnimationPlayRequest _gMistParkingPlayerArrivalClip63Request;
+static AnimationPlayRequest _gMistParkingPlayerTalkAnimation;
+static AnimationPlayRequest _gMistParkingUnusedPlayerClip65Request;
+static AnimationPlayRequest _gMistParkingPlayerArrivalClip66Request;
+static AnimationPlayRequest _gMistParkingPlayerArrivalClip67Request;
+static AnimationPlayRequest _gMistParkingPlayerStayOrGalleryReplyAnimation;
+static AnimationPlayRequest _gMistParkingUnusedPlayerClip69Request;
+static AnimationPlayRequest _gMistParkingPlayerDepartureReplyAnimation;
+static AnimationPlayRequest _gMistParkingPlayerArrivalClip71Request;
+static ActorTransform _gMistParkingPlayerArrivalAndDepartureTransform;
+static ActorTransform _gMistParkingPlayerArrivalTalkTransform;
+static ActorTransform _gMistParkingPlayerArrivalApproachTransform;
+static ActorTransform _gMistParkingPlayerArrivalClosingTransform;
+static ActorTransform _gMistParkingPlayerDeparturePromptTransform;
+static AnimationPlayRequest _gMistParkingUnusedPierceResetRequest;
+static AnimationPlayRequest _gMistParkingPierceConversationRestAnimation;
+static AnimationPlayRequest _gMistParkingUnusedPierceClip2To4Requests[3];
+static AnimationPlayRequest _gMistParkingPierceDeparturePromptAnimation;
+static AnimationPlayRequest _gMistParkingPierceArrivalClosingAnimation;
+static AnimationPlayRequest _gMistParkingUnusedPierceClip7Request;
+static AnimationPlayRequest _gMistParkingPierceFollowupTalkAnimation;
+static AnimationPlayRequest _gMistParkingUnusedPierceClip9To14Requests[6];
+static AnimationPlayRequest _gMistParkingPierceDepartureReplyAnimation;
+static AnimationPlayRequest _gMistParkingUnusedPierceClip16Request;
+static AnimationPlayRequest _gMistParkingPierceArrivalClip17Request;
+static AnimationPlayRequest _gMistParkingPierceArrivalClip18Request;
+static AnimationPlayRequest _gMistParkingPierceArrivalClip19Request;
+static AnimationPlayRequest _gMistParkingPierceArrivalClip20Request;
+static AnimationPlayRequest _gMistParkingUnusedPierceClip21To26Requests[6];
+static AnimationPlayRequest _gMistParkingPierceArrivalClip27Request;
+static AnimationPlayRequest _gMistParkingPierceArrivalClip28Request;
+static AnimationPlayRequest _gMistParkingPierceArrivalClip29Request;
+static AnimationPlayRequest _gMistParkingUnusedPierceClip30Request;
+static AnimationPlayRequest _gMistParkingPierceArrivalClip31Request;
+static AnimationPlayRequest _gMistParkingUnusedPierceClip32To33Requests[2];
+static AnimationPlayRequest _gMistParkingPierceArrivalClip34Request;
+static AnimationPlayRequest _gMistParkingUnusedPierceClip35Request;
+static ActorTransform _gMistParkingPierceArrivalStartTransform;
+static ActorTransform _gMistParkingPierceArrivalTalkTransform;
+static ActorTransform _gMistParkingPiercePostArrivalTransform;
+static ActorTransform _gMistParkingPierceDryfieldDepartureTarget;
+static ActorTransform _gMistParkingPierceArrivalClosingTransform;
+static ActorMotionWalkAnim _gMistParkingPiercePostArrivalWalkClips;
+static ActorMotionWalkAnim _gMistParkingPierceArrivalTalkWalkClips;
+static ActorCommand _gMistParkingPierceShowBillboardCommand;
+static ActorCommand _gMistParkingPierceHideBillboardCommand;
+static ActorCommand _gMistParkingPierceAimHeadCommand;
+static ActorCommand _gMistParkingPierceReleaseHeadCommand;
+static AnimationPlayRequest _gMistParkingUnusedJodieResetRequest;
+static AnimationPlayRequest _gMistParkingJodieTalkOpeningAnimation;
+static AnimationPlayRequest _gMistParkingJodieUnusedAnimations2To4[3];
+static AnimationPlayRequest _gMistParkingJodieConversationRestAnimation;
+static AnimationPlayRequest _gMistParkingJodieUnusedAnimation6;
+static AnimationPlayRequest _gMistParkingJodieTalkGreetingAnimation;
+static AnimationPlayRequest _gMistParkingJodieShopReplyAnimation;
+static AnimationPlayRequest _gMistParkingJodieShopReplyClosingAnimation;
+static ActorTransform _gMistParkingJodieShopTransform;
+extern EvsCommand gMistParkingArrivalConversationScript[155];
+extern EvsCommand gMistParkingArrivalSkipScript[23];
+extern EvsCommand gMistParkingArrivalRoomEntryScript[8];
+extern EvsCommand gMistParkingFirstFollowupScript[10];
+extern EvsCommand gMistParkingSecondFollowupScript[10];
+static EvsCommand _gMistParkingUnusedThirdFollowupScript[10];
+static EvsCommand _gMistParkingDeparturePromptScript[13];
+static EvsCommand _gMistParkingStayReplyScript[13];
+static EvsCommand _gMistParkingDryfieldDepartureScript[24];
+static EvsCommand _gMistParkingShootingGalleryDepartureScript[16];
+static EvsCommand _gMistParkingJodieTalkPoseScript[7];
+static EvsCommand _gMistParkingJodieShopSessionScript[10];
+static EvsCommand _gMistParkingJodieShopDeclineScript[8];
+#endif
+#undef ROOM_IS_declarations_mist_parking_2
+
+#define ROOM_IS_declarations_mist_parking_3 1
+#if ROOM_CAT(ROOM_IS_, ROOM_PART) == 1
+static ActorTransform _gMistParkingCutsceneModelPlacement;
+#endif
+#undef ROOM_IS_declarations_mist_parking_3
+
+#define ROOM_IS_declarations_mist_parking_4 1
+#if ROOM_CAT(ROOM_IS_, ROOM_PART) == 1
+extern AnimationBankCopyRequest gMistParkingShopPlayerAnimationBankCopy;
+static AnimationPlayRequest _gMistParkingUnusedBank1Clip1Animation;
+extern AnimationPlayRequest gMistParkingPlayerShopTalkAnimation;
+static AnimationPlayRequest _gMistParkingPlayerDepartureMenuAnimation;
+static AnimationPlayRequest _gMistParkingPlayerStayAnimation;
+static AnimationPlayRequest _gMistParkingUnusedBank0Clip1ResetAnimation;
+static AnimationPlayRequest _gMistParkingUnusedBank0Clips1To5Animations[5];
+static AnimationPlayRequest _gMistParkingPierceDepartureMenuAnimation;
+static AnimationPlayRequest _gMistParkingUnusedBank0Clips7To14Animations[8];
+static AnimationPlayRequest _gMistParkingShopPierceDepartureReplyAnimation;
+static AnimationPlayRequest _gMistParkingUnusedBank0Clips16To35Animations[20];
+static ActorCommand _gMistParkingShopPierceAimHeadCommand;
+static ActorCommand _gMistParkingShopPierceReleaseHeadCommand;
+static AnimationPlayRequest _gMistParkingUnusedBank0Clip1Animation;
+extern AnimationPlayRequest gMistParkingJodieIdleAnimation;
+static AnimationPlayRequest _gMistParkingUnusedBank0Clips2To4Animations[3];
+extern AnimationPlayRequest gMistParkingJodieShopExitAnimation;
+static AnimationPlayRequest _gMistParkingUnusedBank0Clip6Animation;
+extern AnimationPlayRequest gMistParkingJodieGreetingAnimation;
+extern AnimationPlayRequest gMistParkingJodieReplyAnimation;
+extern AnimationPlayRequest gMistParkingJodieReplyEndAnimation;
+static EvsCommand _gMistParkingShopDepartureMenuScript[10];
+static EvsCommand _gMistParkingShopStayScript[12];
+static EvsCommand _gMistParkingShopDepartForAcropolisScript[18];
+static EvsCommand _gMistParkingShopDepartForShootingGalleryScript[12];
+#endif
+#undef ROOM_IS_declarations_mist_parking_4
+
+#define ROOM_IS_declarations_mist_parking_5 1
+#if ROOM_CAT(ROOM_IS_, ROOM_PART) == 1
+extern EvsCommand gMistParkingJodieShopTalkScript[8];
+extern EvsCommand gMistParkingJodieOpenShopScript[10];
+extern EvsCommand gMistParkingJodieShopReplyScript[8];
+extern EvsCommand gMistParkingJodieShopFarewellScript[8];
+extern WorldCollisionRoomResources gMistParkingRoomCollisionResources[4];
+static u8 _gMistParkingEarlyChapterViewMap[20];
+extern u8* gMistParkingViewMaps[4];
+extern ViewCount gMistParkingViewCounts[4];
+extern WorldCoordRoomLighting gMistParkingRoomLightingTable[4];
+extern DirectionWarpEntry gMistParkingWarpEntries[4];
+static SVECTOR _gMistParkingCollisionGridNormals[13];
+static SVECTOR _gMistParkingCollisionGridVerts[125];
+static WorldCollisionGridFace _gMistParkingCollisionGridFaces[66];
+static s16 _gMistParkingCollisionGridCells[434];
+static s16* _gMistParkingCollisionGridTable[28];
+extern WorldCollisionGrid gMistParkingCollisionGrid;
+extern ViewCamera gMistParkingViewCameras[20];
+static SpriteBatch _gMistParkingView1SpriteBatches[2];
+static SpriteSource _gMistParkingView2SpriteSources[21];
+static SpriteBatch _gMistParkingView2SpriteBatches[3];
+static SpriteBatch _gMistParkingView3SpriteBatches[2];
+static SpriteSource _gMistParkingView4SpriteSources[26];
+static SpriteBatch _gMistParkingView4SpriteBatches[5];
+static SpriteSource _gMistParkingView5SpriteSources[39];
+static SpriteBatch _gMistParkingView5SpriteBatches[5];
+static SpriteSource _gMistParkingView6SpriteSources[37];
+static SpriteBatch _gMistParkingView6SpriteBatches[7];
+static SpriteSource _gMistParkingView7SpriteSources[9];
+static SpriteBatch _gMistParkingView7SpriteBatches[3];
+static SpriteBatch _gMistParkingView8SpriteBatches[2];
+static SpriteBatch _gMistParkingView9SpriteBatches[2];
+static SpriteSource _gMistParkingView10SpriteSources[25];
+static SpriteBatch _gMistParkingView10SpriteBatches[3];
+static SpriteSource _gMistParkingView11SpriteSources[4];
+static SpriteBatch _gMistParkingView11SpriteBatches[3];
+static SpriteBatch _gMistParkingView12SpriteBatches[2];
+static SpriteBatch _gMistParkingView13SpriteBatches[2];
+static SpriteBatch _gMistParkingView14SpriteBatches[2];
+static SpriteBatch _gMistParkingView15SpriteBatches[2];
+static SpriteBatch _gMistParkingView16SpriteBatches[2];
+static SpriteBatch _gMistParkingView17SpriteBatches[2];
+static SpriteSource _gMistParkingView18SpriteSources[35];
+static SpriteBatch _gMistParkingView18SpriteBatches[5];
+static SpriteSource _gMistParkingView19SpriteSources[43];
+static SpriteBatch _gMistParkingView19SpriteBatches[7];
+static SpriteBatch _gMistParkingView20SpriteBatches[2];
+extern SpriteView gMistParkingSpriteViews[20];
+static WorldCollisionTrigger _gMistParkingViewBoundaryTriggers[12];
+static WorldCollisionTrigger _gMistParkingEarlyChapterActionTriggers[13];
+static WorldCollisionTrigger _gMistParkingLaterChapterActionTriggers[14];
+static WorldCoordPointLight _gMistParkingRoom1PointLights[28];
+static WorldCoordRoomLights _gMistParkingRoom1Lights;
+static WorldCoordPointLight _gMistParkingRoom2PointLights[2];
+static WorldCoordRoomLights _gMistParkingRoom2Lights;
+static AreaResource _gMistParkingActorResources[3];
+extern AreaVariant gMistParkingAreaVariants[13];
+static WorldCoordRoomAmbientEntry _gMistParkingRoom2AmbientByView[21];
+static WorldCollisionFootstepSounds _gMistParkingFootstepSounds;
+static WorldCollisionSurfaceProperties _gMistParkingDefaultSurfaceProperties;
+static WorldCollisionSurfaceProperties _gMistParkingSurfaceClass1Properties;
+static WorldCollisionSurfaceProperties _gMistParkingSurfaceClass2Properties;
+static WorldCollisionSurfaceProperties _gMistParkingSurfaceClass3Properties;
+extern WorldCollisionSurfaceProperties* gMistParkingSurfacePropertiesByClass[8];
+#endif
+#undef ROOM_IS_declarations_mist_parking_5
+#undef ROOM_PART

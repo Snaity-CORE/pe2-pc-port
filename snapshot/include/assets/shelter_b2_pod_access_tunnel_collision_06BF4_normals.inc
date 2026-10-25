@@ -1,0 +1,6 @@
+/* Generated from assets/USA/pe2pkg/shelter_b2_pod_access_tunnel.pe2pkg; grid header at 0x6BF4. */
+    { 0, 0, 0, 0 },
+    { 0, 0, -0, 0 },
+    { -0, 0, 0, 0 },
+    { 0, 0, 0, 0 },
+    { 0, -0, 0, 0 },

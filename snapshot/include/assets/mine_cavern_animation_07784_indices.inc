@@ -1,0 +1,4 @@
+/* Generated from assets/USA/pe2pkg/mine_cavern.pe2pkg; animation at 0x7784. */
+    0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0,

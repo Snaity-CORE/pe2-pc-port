@@ -1,0 +1,3 @@
+/* Generated from assets/USA/pe2pkg/dryfield_night_motel_loft.pe2pkg; grid header at 0x1794. */
+    DRYFIELD_NIGHT_MOTEL_LOFT_CELL_FACE_LIST_AT_OFFSET(0),
+    DRYFIELD_NIGHT_MOTEL_LOFT_CELL_FACE_LIST_AT_OFFSET(0),

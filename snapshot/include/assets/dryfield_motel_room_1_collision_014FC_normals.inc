@@ -1,0 +1,10 @@
+/* Generated from assets/USA/pe2pkg/dryfield_motel_room_1.pe2pkg; grid header at 0x14FC. */
+    { 0, 0, -0, 0 },
+    { 0, 0, -0, 0 },
+    { 0, 0, 0, 0 },
+    { -0, 0, 0, 0 },
+    { 0, 0, 0, 0 },
+    { 0, 0, 0, 0 },
+    { 0, 0, -0, 0 },
+    { 0, -0, 0, 0 },
+    { -0, 0, -0, 0 },

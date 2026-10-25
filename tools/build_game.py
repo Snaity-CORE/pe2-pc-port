@@ -36,9 +36,16 @@ LINK_DIR = BUILD / "link"
 GAME_DIR = BUILD / "game"
 TARGET = "i686-pc-windows-msvc"
 
+sys.path.insert(0, str(ROOT / "tools"))
+import pclink  # noqa: E402
+
 # PE2_ASSET_INCLUDES=<dir> (experiments): a folder of asset includes used
-# before the decomp's generated ones (decomp/build/include/assets).
+# before the decomp's generated ones (decomp/build/include/assets). Built
+# from the snapshot (pclink.from_snapshot), its includes: the decomp's,
+# their values taken out (make_snapshot.py).
 ASSET_OVERRIDE = [Path(p) for p in [os.environ.get("PE2_ASSET_INCLUDES")] if p]
+if pclink.from_snapshot():
+    ASSET_OVERRIDE.append(pclink.SNAPSHOT / "include")
 
 INCLUDES = ASSET_OVERRIDE + [
     BUILD / "port_include",
@@ -162,15 +169,12 @@ def static_functions(units: list[dict]) -> dict[str, list[str]]:
     in PSX RAM, loaded from the disc, where the game may change it. Taking
     every one's address keeps both: the functions, and the data read from
     memory as on the console (whatever values the build saw)."""
-    sys.path.insert(0, str(ROOT / "tools"))
-    import pclink
-
     by_image: dict[str, list] = {}
     out: dict[str, list[str]] = {}
     for unit in units:
         image = unit["overlays"][0]
         if image not in by_image:
-            by_image[image] = pclink.read_elf_symbols(pclink.image_file(image))
+            by_image[image] = pclink.elf_symbols(image)
         file = f"build/USA/src/{unit['object']}.i"
         names = sorted({s.name for s in by_image[image]
                         if s.file == file and s.is_local and not s.is_abs

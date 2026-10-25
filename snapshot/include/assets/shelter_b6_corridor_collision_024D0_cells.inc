@@ -1,0 +1,5 @@
+/* Generated from assets/USA/pe2pkg/shelter_b6_corridor.pe2pkg; grid header at 0x24D0. */
+    0, 0, 0, 0, 0, 0, 0, 0,
+    0, -0, 0, 0, 0, 0, 0, 0,
+    -0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, -0,

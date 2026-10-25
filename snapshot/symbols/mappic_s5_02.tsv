@@ -1,0 +1,32 @@
+_MACRO_INC_GUARD	00000001	al	build/USA/src/mappic/mappic_s5_02/mappic_s5_02.i
+_gMappicS502NurseryShapeSkeleton	8012EF34	l	build/USA/src/mappic/mappic_s5_02/mappic_s5_02.i
+_gMappicS502NurseryShapePartVerts	8012EF58	l	build/USA/src/mappic/mappic_s5_02/mappic_s5_02.i
+_gMappicS502NurseryShapeVerts	8012EF5C	l	build/USA/src/mappic/mappic_s5_02/mappic_s5_02.i
+_gMappicS502NurseryShapeStream	8012EFCC	l	build/USA/src/mappic/mappic_s5_02/mappic_s5_02.i
+_gMappicS502GrowthRoomShapeSkeleton	8012F068	l	build/USA/src/mappic/mappic_s5_02/mappic_s5_02.i
+_gMappicS502GrowthRoomShapePartVerts	8012F08C	l	build/USA/src/mappic/mappic_s5_02/mappic_s5_02.i
+_gMappicS502GrowthRoomShapeVerts	8012F090	l	build/USA/src/mappic/mappic_s5_02/mappic_s5_02.i
+_gMappicS502GrowthRoomShapeStream	8012F0D0	l	build/USA/src/mappic/mappic_s5_02/mappic_s5_02.i
+_gMappicS502EveElevatorCorridorShapeSkeleton	8012F148	l	build/USA/src/mappic/mappic_s5_02/mappic_s5_02.i
+_gMappicS502EveElevatorCorridorShapePartVerts	8012F16C	l	build/USA/src/mappic/mappic_s5_02/mappic_s5_02.i
+_gMappicS502EveElevatorCorridorShapeVerts	8012F170	l	build/USA/src/mappic/mappic_s5_02/mappic_s5_02.i
+_gMappicS502EveElevatorCorridorShapeStream	8012F1D0	l	build/USA/src/mappic/mappic_s5_02/mappic_s5_02.i
+_gMappicS502TrainingRoomShapeSkeleton	8012F248	l	build/USA/src/mappic/mappic_s5_02/mappic_s5_02.i
+_gMappicS502TrainingRoomShapePartVerts	8012F26C	l	build/USA/src/mappic/mappic_s5_02/mappic_s5_02.i
+_gMappicS502TrainingRoomShapeVerts	8012F270	l	build/USA/src/mappic/mappic_s5_02/mappic_s5_02.i
+_gMappicS502TrainingRoomShapeStream	8012F290	l	build/USA/src/mappic/mappic_s5_02/mappic_s5_02.i
+__romPos	000003A8	al	
+mappic_s5_02_ROM_START	00000000	a	
+gMappicS502TrainingRoomShape	8012F2B4		
+mappic_s5_02_VRAM	8012EF30		
+mappic_s5_02_RODATA_SIZE	00000004	a	
+mappic_s5_02_RODATA_END	8012EF34		
+gMappicS502EveElevatorCorridorShape	8012F224		
+mappic_s5_02_VRAM_END	8012F2D8		
+mappic_s5_02_RODATA_START	8012EF30		
+mappic_s5_02_DATA_SIZE	000003A4	a	
+gMappicS502NurseryShape	8012F044		
+gMappicS502GrowthRoomShape	8012F124		
+mappic_s5_02_DATA_END	8012F2D8		
+mappic_s5_02_DATA_START	8012EF34		
+mappic_s5_02_ROM_END	000003A8	a	

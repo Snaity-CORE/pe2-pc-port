@@ -1,0 +1,4 @@
+/* Generated from assets/USA/pe2pkg/mine_tunnel.pe2pkg; animation at 0x9DC. */
+    0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0,

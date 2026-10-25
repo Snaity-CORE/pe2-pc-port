@@ -76,6 +76,14 @@ def check(path: str) -> list[str]:
                 problems.append(f"contains a {what} signature")
     if is_binary(data) and len(data) > MAX_BINARY_BYTES and path not in ALLOWED_BINARIES:
         problems.append(f"is a {len(data)} byte binary file (limit {MAX_BINARY_BYTES})")
+    # The snapshot's asset includes keep the shape of the game's data, never
+    # its values (make_snapshot.py).
+    if lower.startswith("snapshot/include/") and lower.endswith(".inc"):
+        sys.path.insert(0, str(ROOT / "tools"))
+        from make_snapshot import values_left
+
+        if left := values_left(data.decode("utf-8", errors="surrogateescape")):
+            problems.append(f"holds the game's values ({', '.join(left[:3])}...): regenerate it with make_snapshot.py")
     return problems
 
 

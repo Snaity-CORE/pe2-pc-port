@@ -1,0 +1,4 @@
+/* Generated from assets/USA/pe2pkg/shelter_b1_control_room.pe2pkg; grid header at 0x4B38. */
+    SHELTER_B1_CONTROL_ROOM_CELL_FACE_LIST_AT_OFFSET(0),
+    SHELTER_B1_CONTROL_ROOM_CELL_FACE_LIST_AT_OFFSET(0),
+    SHELTER_B1_CONTROL_ROOM_CELL_FACE_LIST_AT_OFFSET(0),

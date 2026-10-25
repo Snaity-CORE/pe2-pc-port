@@ -1,0 +1,4 @@
+/* Generated from assets/USA/pe2pkg/shelter_b3_garbage_incinerator.pe2pkg; animation at 0x9320. */
+    0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0,

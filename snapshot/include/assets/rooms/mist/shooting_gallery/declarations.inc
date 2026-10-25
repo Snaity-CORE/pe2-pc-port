@@ -1,0 +1,104 @@
+/* rooms/mist/shooting_gallery/package: written from its room instance by tools/buildsteps/gen_room_inc.py. */
+#define ROOM_CAT_(a, b) a##b
+#define ROOM_CAT(a, b) ROOM_CAT_(a, b)
+
+#define ROOM_IS_declarations_mist_shooting_gallery 1
+#if ROOM_CAT(ROOM_IS_, ROOM_PART) == 1
+static DATA_CONST JukeboxTrackLists _gJukeboxTrackLists;
+static _MistShootingGalleryTargetScore _gMistShootingGalleryTargetScores[13];
+static SVECTOR _gMistShootingGalleryStoryBarrierCollisionTemplateNormals[3];
+static SVECTOR _gMistShootingGalleryStoryBarrierCollisionTemplateVerts[8];
+static WorldCollisionGridFace _gMistShootingGalleryStoryBarrierCollisionTemplateFaces[3];
+static s16 _gMistShootingGalleryStoryBarrierCollisionTemplateCells[4];
+static s16* _gMistShootingGalleryStoryBarrierCollisionTemplateTable[1];
+static WorldCollisionGrid _gMistShootingGalleryStoryBarrierCollisionTemplate;
+static SVECTOR _gMistShootingGalleryTrainingBarrierCollisionTemplateNormals[1];
+static SVECTOR _gMistShootingGalleryTrainingBarrierCollisionTemplateVerts[4];
+static WorldCollisionGridFace _gMistShootingGalleryTrainingBarrierCollisionTemplateFaces[1];
+static s16 _gMistShootingGalleryTrainingBarrierCollisionTemplateCells[2];
+static s16* _gMistShootingGalleryTrainingBarrierCollisionTemplateTable[1];
+static WorldCollisionGrid _gMistShootingGalleryTrainingBarrierCollisionTemplate;
+static JukeboxTrack _gMistShootingGalleryJukeboxTrainingReplayTracks[3];
+static JukeboxTrack _gMistShootingGalleryJukeboxTrainingBountyTracks[3];
+static JukeboxTrack _gMistShootingGalleryJukeboxTrainingScavengerTracks[3];
+static JukeboxTrack _gMistShootingGalleryJukeboxTrainingNightmareTracks[3];
+static JukeboxTrack _gMistShootingGalleryJukeboxTrainingUnclearedTracks[3];
+static JukeboxTrack _gMistShootingGalleryJukeboxRegularReplayTracks[4];
+static JukeboxTrack _gMistShootingGalleryJukeboxRegularBountyTracks[4];
+static JukeboxTrack _gMistShootingGalleryJukeboxRegularScavengerTracks[4];
+static JukeboxTrack _gMistShootingGalleryJukeboxRegularNightmareTracks[4];
+static JukeboxTrack _gMistShootingGalleryJukeboxRegularUnclearedTracks[4];
+extern WorldCollisionRoomResources gMistShootingGalleryRoomCollisionResources[1];
+extern u8* gMistShootingGalleryViewMaps[1];
+extern ViewCount gMistShootingGalleryViewCounts[2];
+extern WorldCoordRoomLighting gMistShootingGalleryRoomLightingTable[1];
+extern DirectionWarpEntry gMistShootingGalleryWarpEntries[7];
+static SVECTOR _gMistShootingGalleryLightGlowPoints[45];
+#endif
+#undef ROOM_IS_declarations_mist_shooting_gallery
+
+#define ROOM_IS_declarations_mist_shooting_gallery_2 1
+#if ROOM_CAT(ROOM_IS_, ROOM_PART) == 1
+static _MistShootingGallerySpawn _gMistShootingGalleryCourse0WaveScript[60];
+static _MistShootingGallerySpawn _gMistShootingGalleryCourse1WaveScript[66];
+static _MistShootingGallerySpawn _gMistShootingGalleryCourse2WaveScript[75];
+static _MistShootingGallerySpawn _gMistShootingGalleryCourse3WaveScript[106];
+static _MistShootingGallerySpawn _gMistShootingGalleryCourse4WaveScript[80];
+static SVECTOR _gMistShootingGalleryCollisionGridNormals[22];
+static SVECTOR _gMistShootingGalleryCollisionGridVerts[136];
+static WorldCollisionGridFace _gMistShootingGalleryCollisionGridFaces[57];
+static s16 _gMistShootingGalleryCollisionGridCells[474];
+static s16* _gMistShootingGalleryCollisionGridTable[28];
+extern WorldCollisionGrid gMistShootingGalleryCollisionGrid;
+extern ViewCamera gMistShootingGalleryViewCameras[18];
+static SpriteBatch _gMistShootingGalleryView1SpriteBatches[2];
+static SpriteBatch _gMistShootingGalleryView2SpriteBatches[2];
+static SpriteBatch _gMistShootingGalleryView3SpriteBatches[2];
+static SpriteSource _gMistShootingGalleryView4SpriteSources[13];
+static SpriteBatch _gMistShootingGalleryView4SpriteBatches[3];
+static SpriteSource _gMistShootingGalleryView5SpriteSources[32];
+static SpriteBatch _gMistShootingGalleryView5SpriteBatches[3];
+static SpriteBatch _gMistShootingGalleryView6SpriteBatches[2];
+static SpriteSource _gMistShootingGalleryView7SpriteSources[24];
+static SpriteBatch _gMistShootingGalleryView7SpriteBatches[4];
+static SpriteSource _gMistShootingGalleryView8SpriteSources[25];
+static SpriteBatch _gMistShootingGalleryView8SpriteBatches[4];
+static SpriteBatch _gMistShootingGalleryView9SpriteBatches[2];
+static SpriteSource _gMistShootingGalleryView10SpriteSources[9];
+static SpriteBatch _gMistShootingGalleryView10SpriteBatches[5];
+static SpriteSource _gMistShootingGalleryView11SpriteSources[13];
+static SpriteBatch _gMistShootingGalleryView11SpriteBatches[5];
+static SpriteSource _gMistShootingGalleryView12SpriteSources[14];
+static SpriteBatch _gMistShootingGalleryView12SpriteBatches[3];
+static SpriteSource _gMistShootingGalleryView13SpriteSources[12];
+static SpriteBatch _gMistShootingGalleryView13SpriteBatches[3];
+static SpriteSource _gMistShootingGalleryView14SpriteSources[29];
+static SpriteBatch _gMistShootingGalleryView14SpriteBatches[5];
+static SpriteSource _gMistShootingGalleryView15SpriteSources[164];
+static SpriteBatch _gMistShootingGalleryView15SpriteBatches[5];
+static SpriteSource _gMistShootingGalleryView16SpriteSources[58];
+static SpriteBatch _gMistShootingGalleryView16SpriteBatches[3];
+static SpriteSource _gMistShootingGalleryView17SpriteSources[6];
+static SpriteBatch _gMistShootingGalleryView17SpriteBatches[3];
+static SpriteBatch _gMistShootingGalleryView18SpriteBatches[2];
+extern SpriteView gMistShootingGallerySpriteViews[18];
+extern WorldCollisionTrigger gMistShootingGalleryViewBoundaryTriggers[28];
+extern WorldCollisionTrigger gMistShootingGalleryActionTriggers[21];
+static WorldCoordPointLight _gMistShootingGalleryDefaultPointLights[14];
+extern WorldCoordRoomLights gMistShootingGalleryDefaultRoomLights;
+static WorldCoordLight _gMistShootingGalleryAlternateDirectionalLights[1];
+static WorldCoordPointLight _gMistShootingGalleryAlternatePointLights[18];
+static WorldCoordSpotLight _gMistShootingGalleryAlternateConeLights[15];
+extern WorldCoordRoomLights gMistShootingGalleryAlternateRoomLights;
+static AreaResource _gMistShootingGalleryVariant1Resources[3];
+extern AreaVariant gMistShootingGalleryAreaVariants[12];
+extern WorldCoordRoomAmbientEntry gMistShootingGalleryViewAmbientTable[19];
+static WorldCollisionFootstepSounds _gMistShootingGallerySurface1FootstepSounds;
+static WorldCollisionFootstepSounds _gMistShootingGallerySurface2FootstepSounds;
+static WorldCollisionSurfaceProperties _gMistShootingGallerySilentSurfaceProperties;
+static WorldCollisionSurfaceProperties _gMistShootingGallerySurface1Properties;
+static WorldCollisionSurfaceProperties _gMistShootingGallerySurface2Properties;
+extern WorldCollisionSurfaceProperties* gMistShootingGallerySurfacePropertiesByClass[8];
+#endif
+#undef ROOM_IS_declarations_mist_shooting_gallery_2
+#undef ROOM_PART

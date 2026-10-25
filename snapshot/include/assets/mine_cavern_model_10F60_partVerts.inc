@@ -1,0 +1,2 @@
+/* Generated from assets/USA/pe2pkg/mine_cavern.pe2pkg; model at 0x11100. */
+    0,

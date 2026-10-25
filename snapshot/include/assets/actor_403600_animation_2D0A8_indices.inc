@@ -1,0 +1,4 @@
+/* Generated from assets/USA/pe2pkg/actor_403600.pe2pkg; animation at 0x2D0A8. */
+    0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0,

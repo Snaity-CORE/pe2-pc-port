@@ -1,0 +1,733 @@
+gcc2_compiled.	80131E30	fl	build/USA/src/actors/actor_113000/actor_113000.i
+__gnu_compiled_c	80131E30	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_MACRO_INC_GUARD	00000001	al	build/USA/src/actors/actor_113000/actor_113000.i
+_gActor113000RupertBroderickHurtStates	80131E24	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_actor113000Spawn	80131F90	flt	build/USA/src/actors/actor_113000/actor_113000.i
+_actor113000Update	80132070	flt	build/USA/src/actors/actor_113000/actor_113000.i
+_gRupertHurtBodySkeleton	80132534	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gRupertHurtBodyPartVerts	80132804	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gRupertHurtBodyVerts	80132854	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gRupertHurtBodyNormals	8013330C	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gRupertHurtBodyStream	80133D7C	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gRupertHurtBody	801378E0	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gMistR18RupertRestClipBank1	80137904	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gMistR18RupertRestClipBank4	80137928	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gMistR18RupertRestClipRecords	80137994	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gMistR18RupertRestClipTrackStarts	80137B8C	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gMistR18RupertRestClip	80137BB4	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gMistR18RupertBriefing1ClipBank1	80137BDC	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gMistR18RupertBriefing1ClipBank4	80137C00	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gMistR18RupertBriefing1ClipRecords	80137C6C	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gMistR18RupertBriefing1ClipTrackStarts	80137FEC	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gMistR18RupertBriefing1Clip	80138014	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gMistR18RupertBriefing2ClipBank1	8013803C	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gMistR18RupertBriefing2ClipBank4	80138060	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gMistR18RupertBriefing2ClipRecords	801380DC	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gMistR18RupertBriefing2ClipTrackStarts	80138374	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gMistR18RupertBriefing2Clip	8013839C	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gMistR18RupertCutTheCrapClipBank1	801383C4	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gMistR18RupertCutTheCrapClipBank4	80138418	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gMistR18RupertCutTheCrapClipRecords	80138700	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gMistR18RupertCutTheCrapClipTrackStarts	80138B08	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gMistR18RupertCutTheCrapClip	80138B30	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gMistR18RupertAskAboutAkropolisClipBank1	80138B58	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gMistR18RupertAskAboutAkropolisClipBank4	80138C78	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gMistR18RupertAskAboutAkropolisClipRecords	80138E98	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gMistR18RupertAskAboutAkropolisClipTrackStarts	801391A0	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gMistR18RupertAskAboutAkropolisClip	801391C8	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gMistR18RupertYesSirClipBank1	801391F0	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gMistR18RupertYesSirClipBank4	80139244	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gMistR18RupertYesSirClipRecords	801393F4	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gMistR18RupertYesSirClipTrackStarts	801396B0	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gMistR18RupertYesSirClip	801396D8	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gMistR18RupertDismissedClipBank1	80139700	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gMistR18RupertDismissedClipBank4	801397B4	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gMistR18RupertDismissedClipRecords	80139994	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gMistR18RupertDismissedClipTrackStarts	80139C64	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gMistR18RupertDismissedClip	80139C8C	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gMistR18RupertReminderClipBank1	80139CB4	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gMistR18RupertReminderClipBank4	80139CD8	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gMistR18RupertReminderClipRecords	80139D54	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gMistR18RupertReminderClipTrackStarts	80139EDC	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gMistR18RupertReminderClip	80139F04	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gActor113000OpenEyesPixels	80139F2C	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gActor113000OpenEyesUploads	8013A32C	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gActor113000HalfOpenEyesPixels	8013A34C	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gActor113000HalfOpenEyesUploads	8013A74C	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gActor113000ClosedEyesPixels	8013A76C	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gActor113000ClosedEyesUploads	8013AB6C	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gActor113000AnimationSets	8013AB8C	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_gActor113000AnimationBanks	8013ABB0	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_actor113000Task	80131F38	flt	build/USA/src/actors/actor_113000/actor_113000.i
+_gActor113000Messages	8013ABC0	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_actor113000PlayAnimation	80132208	flt	build/USA/src/actors/actor_113000/actor_113000.i
+_actor113000SetModelDraw	80132398	flt	build/USA/src/actors/actor_113000/actor_113000.i
+_actor113000SetEyes	80132474	flt	build/USA/src/actors/actor_113000/actor_113000.i
+LM1	80131E30	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM2	80131E30	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_actor113000TickBlink	80131E30	flt	build/USA/src/actors/actor_113000/actor_113000.i
+LM3	80131E3C	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM4	80131E40	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM5	80131E48	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM6	80131E50	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM7	80131E54	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM8	80131E58	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM9	80131E5C	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM10	80131E98	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM11	80131EA8	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM12	80131EB4	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM13	80131EBC	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM14	80131ECC	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM15	80131EF4	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM16	80131EFC	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM17	80131F0C	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM18	80131F18	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM19	80131F24	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM20	80131F28	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM21	80131F38	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM22	80131F38	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM23	80131F38	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM24	80131F3C	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM25	80131F40	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM26	80131F44	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM27	80131F60	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM28	80131F80	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM29	80131F90	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM30	80131F90	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM31	80131F90	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM32	80131F9C	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM33	80131FA0	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM34	80131FA8	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM35	80131FAC	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM36	80131FB8	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM37	80131FC0	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM38	80131FC8	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM39	80131FD0	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM40	80131FD0	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM41	80131FD4	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM42	80131FD8	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM43	80131FDC	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM44	80131FE0	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM45	80131FE4	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM46	80131FF0	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM47	80131FF4	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM48	80132000	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM49	8013201C	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM50	80132030	fl	build/USA/src/actors/actor_113000/actor_113000.i
+_actor113000InitLighting	801321A8	flt	build/USA/src/actors/actor_113000/actor_113000.i
+LM51	80132038	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM52	80132044	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM53	80132048	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM54	8013204C	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM55	80132054	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM56	8013205C	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM57	80132070	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM58	80132070	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM59	80132070	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM60	8013208C	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM61	80132094	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM62	80132098	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM63	8013209C	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM64	801320A4	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM65	801320A8	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM66	801320B0	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM67	801320C0	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM68	801320D4	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM69	801320F4	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM70	80132108	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM71	80132124	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM72	80132134	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM73	80132138	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM74	80132140	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM75	80132154	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM76	8013215C	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM77	8013216C	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM78	80132174	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM79	8013217C	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM80	8013218C	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM81	801321A8	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM82	801321A8	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM83	801321A8	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM84	801321B8	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM85	801321BC	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM86	801321C0	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM87	801321C4	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM88	801321C8	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM89	801321CC	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM90	801321D0	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM91	801321D4	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM92	801321D8	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM93	801321E0	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM94	801321F4	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM95	80132208	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM96	80132208	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM97	80132208	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM98	80132220	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM99	80132224	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM100	8013222C	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM101	80132230	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM102	80132238	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM103	80132240	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM104	80132244	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM105	80132248	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM106	80132268	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM107	80132274	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM108	80132284	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM109	80132288	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM110	8013229C	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM111	801322A4	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM112	801322B0	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM113	801322B8	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM114	801322BC	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM115	801322C8	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM116	801322D0	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM117	801322DC	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM118	801322E0	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM119	801322E8	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM120	801322F8	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM121	80132300	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM122	80132310	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM123	80132314	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM124	8013231C	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM125	8013231C	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM126	8013231C	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM127	80132328	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM128	80132334	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM129	80132340	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM130	8013234C	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM131	80132358	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM132	80132364	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM133	80132368	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM134	8013236C	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM135	80132370	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM136	80132374	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM137	80132378	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM138	80132380	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM139	80132384	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM140	8013238C	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM141	80132390	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM142	80132398	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM143	80132398	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM144	80132398	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM145	801323A0	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM146	801323A4	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM147	801323AC	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM148	801323B0	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM149	801323B4	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM150	801323F4	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM151	801323F8	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM152	80132400	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM153	80132404	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM154	80132408	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM155	8013240C	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM156	80132414	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM157	80132420	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM158	80132428	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM159	80132438	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM160	8013243C	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM161	80132440	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM162	80132448	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM163	80132454	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM164	80132458	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM165	8013245C	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM166	80132460	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM167	80132474	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM168	80132474	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM169	80132474	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM170	80132478	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM171	8013247C	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM172	80132484	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM173	8013248C	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM174	80132490	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM175	80132494	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM176	80132498	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM177	8013249C	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM178	801324DC	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM179	801324E0	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM180	801324E8	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM181	801324EC	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM182	801324F4	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM183	801324F4	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM184	801324FC	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM185	80132500	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM186	80132504	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM187	80132508	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM188	8013250C	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM189	8013250C	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM190	80132510	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM191	80132510	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM192	80132518	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM193	80132524	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM194	80132524	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM195	80132528	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM196	8013252C	fl	build/USA/src/actors/actor_113000/actor_113000.i
+LM197	80132534	fl	build/USA/src/actors/actor_113000/actor_113000.i
+__romPos	00008DC8	al	
+animationInitDirectSlot	800B3CE8	a	
+D_80073BAC	80073BAC	a	
+effectSpawnPlayerBodyHit	8010B2A0	a	
+areaSetCurrentObjectState	800BAC34	a	
+gameFlagSetNibble	8004AC58	a	
+playerActorResetChildSlots	801038F8	a	
+SetRotMatrix	8004ADF8	a	
+stageRequestModeTaskExit	8003F6F8	a	
+sceneSetEnemyAlert	800DB530	a	
+sceneEngageBattle	800DB4E0	a	
+tmdAllocPrimitiveBuffer	80041B88	a	
+playerActorEnterPendingHit	8010A9D0	a	
+displayAcquireMenuHold	8003E610	a	
+companionRecoverToIdle	8010C180	a	
+displayQueueModeTask	8003FB70	a	
+gameGetTaskSlot	8002D22C	a	
+D_80115418	80115418	a	
+damagePackEnemyAttackKey	800E2BF8	a	
+viewGetMappedIndex	800AD284	a	
+worldCoordGetOriginAudioPan	800D937C	a	
+animationTickSlotPose	800B3448	a	
+actor_113000_BSS_END	8013ABE8	f	
+D_801153F1	801153F1	a	
+D_8011541B	8011541B	a	
+printf	8001AF3C	a	
+worldCollisionClearContacts	800E1A6C	a	
+gfxBuildDirectionRotation	800E1CD4	a	
+actor_113000_ROM_END	00008DC8	a	
+sceneReleaseBattleRefAndClearRewards	800DB630	a	
+LoadImage2	8001A3E4	a	
+memMalloc	8002DABC	a	
+D_80073BA0	80073BA0	a	
+gActionPromptSlots	80114D28	a	
+gRoomEffectOrangeBurst2Id	80115754	a	
+gActor113000RupertBroderickHurtTaskDesc	8013ABB4	f	
+actor_113000_DATA_START	80132534	f	
+__divsf3	8005BF20	a	
+taskSpawn	8002CFDC	a	
+MatrixNormal	8003D6C8	a	
+D_8007106C	8007106C	a	
+D_80070F6C	80070F6C	a	
+capRunCommandWithTransition	800E3B60	a	
+SetSemiTrans	800439B8	a	
+inventoryHasCollectedBit	800BB4BC	a	
+worldCollisionApplyResponsePushback	801011D0	a	
+gGfxViewCoord	80070F10	a	
+D_80073B8C	80073B8C	a	
+gfxMatrixToEuler	8003C4F0	a	
+gameFlowBeginLoadScreen	8002252C	a	
+sndEvtRequestScriptMix	80054424	a	
+worldCollisionProjectGroundCoord	800EA02C	a	
+playerActorPlayFootstepCue	80105ED4	a	
+worldCollisionUnlinkTrigger	800E1708	a	
+__fixsfsi	8005C070	a	
+RotMatrixZXY	8004C9C8	a	
+padScriptSpawnVariableMotorRamp	800E8D1C	a	
+gfxSetFlatLight	8003B140	a	
+playerActorSpawnWeaponModel	80104364	a	
+gPlayerActorStateTickHeld	80115768	a	
+padScriptSpawnDepthScaled	800E9188	a	
+actor_113000_RODATA_START	80131E20	f	
+MulRotMatrix	8004C508	a	
+rcos	8003D108	a	
+gRoomEffectTwinTrailId	8011572C	a	
+taskKill	8002CCB8	a	
+worldCollisionCalcContactWorldOffset	800B6118	a	
+gEffectSpriteAtlasFrames	80111E48	a	
+gDirectionInteractionRearmUpdates	80114D08	a	
+playerActorPlanarLength	80103D8C	a	
+gRoomEffectSparkBurstId	80115750	a	
+D_80071078	80071078	a	
+playerActorTurnBodyTowardPoint	8010BD88	a	
+gEffectUnitQuadCorners	80111E38	a	
+worldCoordSetActorColorMode	800D930C	a	
+sceneLatchActionSignal	800DB500	a	
+playerActorSetScriptedControl	800E3BBC	a	
+playerActorPlayChildSlotsWithBlend	80103A18	a	
+playerActorRestoreEquipment	801034C0	a	
+playerActorRemoveEquipment	801043F4	a	
+worldTargetFindLockNodeFromPad	800DAD78	a	
+damageGetPlayerAttackEffectId	800E2D90	a	
+gpuSetPrimitiveBlendMode	800EC914	a	
+worldCoordUpdateActorColor	800D8EA0	a	
+enemyTaskExit	800B0234	a	
+gfxComposeNodeWorldTransform	800B1D00	a	
+companionEnterDamageReaction	8010B9A4	a	
+playerActorTickScriptedAnimation	80108BAC	a	
+D_80115416	80115416	a	
+gPlayerActorWeaponAnimationBankBases	80112D68	a	
+gfxExtractSmallestEuler	800B114C	a	
+ratan2	8003D9C8	a	
+D_80115414	80115414	a	
+sceneFindPlacedActor	800E86FC	a	
+animationSeekSlotWithBlend	800B4114	a	
+D_80071090	80071090	a	
+padIsStartPressed	8004ACF0	a	
+ApplyMatrixSV	80043A68	a	
+memcpy	8001AEFC	a	
+gStageCountdownMusicEntry	80062735	a	
+capSetTexturePage	800E6D4C	a	
+__floatsidf	8004B5D8	a	
+cdCmdEnqueueDisplayResource	80042364	a	
+actor_113000_VRAM_END	8013ABE8	f	
+LoadAverageCol	8004C808	a	
+playerActorGetTurnToPoint	8010BCF4	a	
+areaSyncLocationVariant	800B601C	a	
+effectDrawGroundShadow	800F68AC	a	
+worldCollisionUnlinkBody	800E1638	a	
+actor_113000_TEXT_START	80131E30	f	
+playerActorWriteWeaponAnimationBankIndex	800E3CEC	a	
+gGpuCurrentOt	800710A0	a	
+StoreImage2	8001A4D0	a	
+damageIsEnemyDamageOverTimeExpired	800E2F7C	a	
+padScriptSpawn	800E8FB0	a	
+gCapFile	8011568C	a	
+sceneReleaseBattleRef	800DB6B4	a	
+damageGetPlayerAttackHitCooldown	800E3194	a	
+gMcSaveData	80072168	a	
+animationApplyBlendedPose	800B4248	a	
+gameSetTaskSlot	8002D214	a	
+worldCollisionCountContactsByKind	800E1A1C	a	
+taskSpawnFromTable	8002CFA0	a	
+companionInitNativeAnimation	8010BFCC	a	
+cdCmdRequestCancel	8001C970	a	
+worldCollisionSurfaceClassFromMask	800E1ACC	a	
+D_80070F70	80070F70	a	
+displayResumeGameLoop	8003E540	a	
+gTaskBank4Descs	800676A8	a	
+gTaskBank2Descs	80067828	a	
+tmdFreePrimitiveBuffer	80041B4C	a	
+VectorNormalS	8003D594	a	
+itemMenuOpenHotspotCommands	800D4E78	a	
+gfxMakeRelativeTransform	800A8864	a	
+gWorldCollisionSurfacePropertiesTables	8010CBB8	a	
+LoadImage	80017F44	a	
+gTaskBank1Descs	800670D0	a	
+D_80062730	80062730	a	
+streamPollGameRestore	8001EF9C	a	
+areaClearMapMark	800AED24	a	
+worldCollisionSurfaceClassFromKey	800E1B24	a	
+D_8007107C	8007107C	a	
+worldCoordSetModelLighting	800D7A9C	a	
+streamResetGameRestore	80020388	a	
+gfxReadMatrixYAxis	8003C748	a	
+playerActorTickScriptedMoveTo	80107E1C	a	
+displayReleaseMenuHold	8003E64C	a	
+taskCallExit	8002D0A4	a	
+RotMatrixZYX	80044408	a	
+SetPolyFT4	8004C1C8	a	
+D_8011540D	8011540D	a	
+modelLightingSetLayerMaterials	8009EA50	a	
+damageTickEnemyBuildup	800E3084	a	
+playerActorTurnAimTowardPoint	8010BE5C	a	
+gGameSession	8005ED64	a	
+damageStartEnemyBuildup	800E301C	a	
+D_80071076	80071076	a	
+D_80115413	80115413	a	
+worldCollisionSegmentOccluded	800E0308	a	
+__adddf3	8004AFE8	a	
+gRoomEffectFlashId	80115758	a	
+playerActorInitWeaponCollision	80100FCC	a	
+animationAimHeadAtPoint	800B0CF4	a	
+SquareRoot0	8003B8A0	a	
+gameFlagSetPackedByte	800E3FAC	a	
+gAttachmentState	80114C08	a	
+worldCollisionTestOccluderSegment	800DFCCC	a	
+tmdXformStreamVerts	800112DC	a	
+displayConfigureFramebuffers	8003DB48	a	
+gfxBuildOrthonormalBasis	8003CEC4	a	
+sndEvtRequestScriptStop	800542D0	a	
+actorRenderUploadTexture	800DB28C	a	
+worldCollisionResolveResponsePushback	800E0FEC	a	
+sceneReleaseBattleRefWithRewards	800DB558	a	
+actor_113000_DATA_SIZE	000086B4	a	
+capRunCommand	800E34D8	a	
+gFsActorBuffer2Base	8005C374	a	
+capReset	800E6DF4	a	
+damageGetPlayerAttackReaction	800E2D3C	a	
+loadingEnqueueCharacterResources	800A9B3C	a	
+worldTargetFindLockNode	800DAD54	a	
+gfxReadMatrixZAxis	8003C768	a	
+gfxRotMatrixY	8003C98C	a	
+gPadScriptTransitionCommands	80114A24	a	
+RotTransPers4	8004C358	a	
+gfxDotProduct	8003D000	a	
+playerActorSetPendingDisplacement	80105B74	a	
+padPostVibrationRequest	8002C8E4	a	
+animationBindContext	800B3F60	a	
+D_8011540E	8011540E	a	
+gPadScriptTransitionSegments	80114A34	a	
+playerActorEnterStoppedPose	8010AA28	a	
+inventoryRestoreCarriedLoadout	800BA75C	a	
+roomEffectRecordAnimationSoundCue	800EA3A0	a	
+actor_113000_DATA_END	8013ABE8	f	
+worldTargetUnlinkNode	800DAB38	a	
+worldCollisionFindContactIndex	800E19B8	a	
+worldCollisionLinkBody	800E15AC	a	
+D_80073BA9	80073BA9	a	
+tmdDrawStreamGt4	800110A0	a	
+actor_113000_RODATA_END	80131E30	f	
+D_80073BAD	80073BAD	a	
+effectKillTask	800EC7E4	a	
+memCopyBytes	8002D7A8	a	
+sceneSetPlacedActorDrawMode	800E3C6C	a	
+__fixdfsi	8004B4D8	a	
+gWorldCollisionOccluderListHead	80115550	a	
+gEffectBurstTaskDescriptors	80114B34	a	
+cdCmdStageSceneAudioStart	8001D6B8	a	
+animationTickDirectSlot	800B3DB4	a	
+cdCmdIsIdle	8001D344	a	
+D_80115419	80115419	a	
+D_80072729	80072729	a	
+capStartSequenceSlot	800E6C70	a	
+companionGetHealthBand	8010C058	a	
+worldCollisionReadActionHit	800E1BF0	a	
+playerActorResetWeaponAttack	80106350	a	
+SetTransMatrix	8004AE28	a	
+gameFlagGetNibble	8004ACAC	a	
+D_801153F4	801153F4	a	
+gRoomEffectHaloId	80115744	a	
+playerStateSpendMp	800A7F34	a	
+gCapPreserveActorControl	80115690	a	
+actor_113000_TEXT_SIZE	00000704	a	
+itemSetIdentified	800BB7C0	a	
+gfxRotMatrixZ	8003CB80	a	
+worldTargetAddReadoutAmount	800DA6E8	a	
+SetDrawOffset	80018AA4	a	
+playerActorShortestTurn	80103E7C	a	
+VectorNormal	8003D5A8	a	
+D_8007272D	8007272D	a	
+gSceneCombatState	801153F0	a	
+worldCoordPlaySound	801064A4	a	
+enemySpawnFromTable	800B01AC	a	
+playerActorGetPointDelta	80103C74	a	
+D_8011540A	8011540A	a	
+actor_113000_ROM_START	00000000	a	
+tmdSetTextureOffsets	800B58D4	a	
+evsStartScriptWithSkip	800E8634	a	
+playerActorSpawnAttachment	80104258	a	
+gFsImageWorkspacePtr	8005C364	a	
+evsStartScript	800E8614	a	
+StoreImage	80017FA4	a	
+D_80114C12	80114C12	a	
+MoveImage	80018004	a	
+capGetVariantKey	800E6D3C	a	
+capIsBusy	800E6CE0	a	
+gGpuPrimCursor	80071190	a	
+worldCoordGetOriginAudioDepth	800D9340	a	
+D_8011505C	8011505C	a	
+gfxRotMatrixXYZ	8003B960	a	
+shopOpenSession	800D4D2C	a	
+gPadCancelButtonMask	8005ED74	a	
+gPadStates	80071620	a	
+SetDrawArea	80018A24	a	
+D_80071075	80071075	a	
+worldTargetSetPlayerLock	800DACAC	a	
+RotTransPers3	8004C1E8	a	
+animationInitContext	800B3F84	a	
+rand	80037164	a	
+D_80115410	80115410	a	
+playerActorPlayChildSlots	8010397C	a	
+effectSpawnHit	800FDB18	a	
+D_801153F2	801153F2	a	
+__floatsisf	8005C120	a	
+RotMatrix_gte	80049D84	a	
+companionBindCollisionProbe	8010C1FC	a	
+memCalloc	8002D978	a	
+sndEvtRequestScriptUnmute	800543AC	a	
+effectSpawn	800EA478	a	
+strncmp	8001EAC4	a	
+gRoomEffectWaterSprayId	80115738	a	
+gfxExtractEulerAngles	800B0FDC	a	
+D_800691CA	800691CA	a	
+areaSaveEnemyPose	800B48FC	a	
+playerActorSpawnGrenadeProjectile	80104490	a	
+gRoomEffectMoteId	80115728	a	
+areaApplySavedUpdates	800AE62C	a	
+D_80115415	80115415	a	
+cdCmdCancelScene	8001D588	a	
+GsWSMATRIX	80071138	a	
+cdCmdEnqueue	8001D2B0	a	
+padCheckButtons	8002C868	a	
+taskSpawnFromTableOnDefaultList	8003E4BC	a	
+SetDrawStp	80042288	a	
+playerActorSetDrawMode	800E3B80	a	
+worldTargetGetBodyPosition	800DAE50	a	
+gfxReadMatrixXAxis	8003C728	a	
+D_80073BAA	80073BAA	a	
+animationBindModelContext	800B3CCC	a	
+worldCollisionBindEnemySphere	8010C980	a	
+fsUploadImageChunk	800246B0	a	
+RotMatrixZ	8004AE48	a	
+SetDispMask	80017C00	a	
+playerActorMode2State2	80108BD8	a	
+SetTile	80042344	a	
+cdCmdEnqueueScenePlayback	8001D5CC	a	
+__muldf3	8004B828	a	
+rsin	8003D038	a	
+viewFindLogicalIndex	800ACEBC	a	
+actor_113000_VRAM	80131E20	f	
+D_8006C45C	8006C45C	a	
+actorRenderCopyCoordBodyTransform	800B0278	a	
+areaGetVariant	800B5CE8	a	
+gGameFlagNibbleBanks	80073980	a	
+ScaleMatrixL	8004C888	a	
+worldCoordSetAmbientColorOverride	800D94B8	a	
+tmdDrawStreamGt3	80010F08	a	
+actor_113000_TEXT_END	80132534	f	
+damageStartEnemyStagger	800E3008	a	
+worldTargetDisableNodeLockOn	800DACF8	a	
+D_80072170	80072170	a	
+D_80070F87	80070F87	a	
+worldCollisionProbeGridSegment	800DE7CC	a	
+playerActorHasWallContact	801041B4	a	
+D_8011540C	8011540C	a	
+memset	800420F8	a	
+companionWriteAnimationBankIndex	800E3D24	a	
+D_80073BAE	80073BAE	a	
+actorMsgPlaceEuler	8013231C	ft	
+D_80115412	80115412	a	
+D_8007272F	8007272F	a	
+streamPrepareMovieWorkspace	80020298	a	
+srand	80037194	a	
+viewQueueCurrentCameraAndPackets	800A8B6C	a	
+actor_113000_BSS_SIZE	00000000	a	
+ApplyMatrixLV	80042128	a	
+inventorySetCollectedBit	800BAE5C	a	
+taskMessageDispatch	800AC464	a	
+animationResetSlot	800B3FA8	a	
+taskRequestKill	8002D340	a	
+playerActorTickChildSlots	80103AC0	a	
+D_8007107A	8007107A	a	
+actor_113000_RODATA_SIZE	00000010	a	
+ClearImage	80017E1C	a	
+playerActorTickAnimationState	80101848	a	
+playerActorFinishDamageReaction	8010ABD4	a	
+gPlayerStatus	80073B88	a	
+gPlayerActorTasks	80115760	a	
+animationStartDirectSlot	800B3AA4	a	
+enemyDestroy	800B01F0	a	
+gFsResourceSlots	8006C338	a	
+__mulsf3	8005C1F0	a	
+gRandomLcgState	80070F60	a	
+sndEvtRequestScriptMute	80054334	a	
+strcmp	80039B74	a	
+D_80115764	80115764	a	
+displaySetShakeY	8003DE78	a	
+damageTryStartEnemyDamageOverTime	800E2DE4	a	
+RotTransPers	8004C198	a	
+D_8007216D	8007216D	a	
+animationCaptureSlotWithBlend	800B4538	a	
+gTaskBank8Descs	800626EC	a	
+roomEffectRequestCancelPe	800FC6C0	a	
+gpuUploadImages	800DB31C	a	
+gDirectionActionActive	80114CF8	a	
+D_80072830	80072830	a	
+D_80071085	80071085	a	
+spriteGetViewDrawAreas	800AD2E8	a	
+gfxBlendOrthonormalRotation	800B1460	a	
+VectorNormalSS	8003D5D8	a	
+gWorldCollisionActiveGrid	80115448	a	
+roomEffectRequestCancelAll	800EC868	a	
+actorRenderDrawGroundShadow	800B4E54	a	
+D_8007218A	8007218A	a	
+damageTickEnemyDamageOverTime	800E2EC4	a	
+capSelectLoadedFile	800E6D60	a	
+Gfx_ViewWorldMtx	80070F34	a	
+gFsImageHeaderYShiftRows	8006C234	a	
+tmdBuildBufferHalf	800410F0	a	
+GPU_printf	8005D950	a	
+gMapNeoArkCompanionDistressTicks	8017A99C	a	
+DrawSync	80017C98	a	
+effectGetGroundShadowShade	800EA318	a	
+damageComputePlayerAttack	800E1FEC	a	
+D_8006C454	8006C454	a	
+animationApplyPoseWithBlendedRotation	800B43E0	a	
+damageRollCriticalHit	800E25F8	a	
+animationTickSlot	800B4514	a	
+sceneAcquireBattleRef	800DB53C	a	
+companionGetPlayerPlanarDistance	8010BC70	a	
+effectDrawGroundGlow	800F6560	a	
+gCapInlineIconCells	8010FB70	a	
+playerActorPlanarDistance	80103DD4	a	
+taskDetachFromParent	8002D0CC	a	
+gPlayerActorWeaponReaches	80112F60	a	
+playerActorUpdateFacing	80101F58	a	
+D_80072728	80072728	a	
+damagePackAttackKey	800E2C40	a	
+worldCollisionInitContacts	800E18E0	a	
+sndEvtRequestMidiStop	8005132C	a	
+RotMatrix	80043AC8	a	
+D_80114C11	80114C11	a	
+viewQueueCamera	800A8A1C	a	
+displaySpawnTaskFromTable	8003E324	a	
+companionSetDecisionDelay	8010BF7C	a	
+ScaleMatrix	8004A98C	a	
+gfxRotMatrixX	8003C788	a	
+D_8011540B	8011540B	a	
+playerActorResolveBodyContacts	80109BB4	a	
+gRoomEffectSparkEmitterId	80115720	a	
+MulMatrix0	80044208	a	
+D_80114FF8	80114FF8	a	
+D_80115417	80115417	a	
+itemMenuIsHotspotActionConfirmed	800D4EC0	a	
+D_801153F6	801153F6	a	
+gWorldCoordTransientPointLights	80114F30	a	
+companionTrackLockTarget	8010C098	a	
+capSpawnEventIfIdle	800E3D8C	a	
+gDisplayState	80070F68	a	
+ApplyTransposeMatrixLV	80044050	a	
+gSpriteAreaTables	8010CB68	a	
+sceneFindEnemyByPlaceKey	800B584C	a	
+MulMatrix	8004C248	a	
+inventoryMeltIceBagIfExpired	800BC254	a	
+gteMIMefunc	8004AD78	a	
+gFsActorBufferWrittenBytes	8006D860	a	
+playerActorIsSlotAdvancingLinearly	80105894	a	
+playerStateSetStatusEffects	8010A1B0	a	
+D_8007218B	8007218B	a	
+sndEvtRequestScriptStart	8005414C	a	
+companionApplyDamage	8010C8F0	a	
+animationAimHeadAt	800B17D4	a	
+gRoomEffectOrangeBurstId	8011573C	a	
+viewGetMappedCamera	800A8C08	a	
+gCdCmdQueue	80068FA0	a	
+streamFinishScene	800B00C4	a	
+animationGetCurrentRecord	800B4668	a	
+animationResetRemappedSlot	800B404C	a	
+gRoomEffectWaterRippleId	8011574C	a	
+memFillBytes	8002D894	a	
+playerActorStepMovement	80101A68	a	
+D_8007106B	8007106B	a	
+damageGetHazardDamage	800E2CD4	a	
+RotMatrixX	8004BE58	a	
+worldCoordSetModelAmbientColor	800D9550	a	
+worldTargetLinkNode	800DABEC	a	
+damageAccumulateLifeDrainHp	800E2C78	a	
+taskReparent	8002D14C	a	
+actor_113000_BSS_START	8013ABE8	f	
+gRoomEffectState	80115740	a	
+TransposeMatrix	800420B8	a	
+companionEnterIdle	8010BC04	a	
+playerActorMode2State6	80108D68	a	
+worldCollisionProjectGroundPoint	800EA1A8	a	
+inventoryClearCollectedBit	800BAEC0	a	
+D_8007216C	8007216C	a	
+actorRenderComposeCoord	80098F58	a	
+GetClut	80042AE0	a	
+gRoomEffectGlowDiscId	80115734	a	
+actorRenderPlaceCoordOffset	801040A0	a	
+areaGetCurrentObjectState	800BB470	a	
+gWorldCollisionActionTriggerListHead	8011556C	a	
+worldTargetGetActorLockMask	800DAC54	a	
+fadeDrawOverlay	8002BA9C	a	
+worldCollisionResolvePushback	800E0C10	a	
+__subdf3	8004BC28	a	
+padInputChangeSuppression	800E9BDC	a	
+gEvsPlaybackPaused	801156F9	a	
+RotMatrixY	8004BFF8	a	
+playerActorScriptedState0	80108B80	a	
+streamFindMovieSlot	8001EDC8	a	
+inventoryIsItemLimitReached	800B7420	a	
+gPlayerActorWeaponAnimationBanks	80112D6C	a	
+playerActorSetWeaponAttackFlags	80106238	a	
+animationAimHeadAtTask	800B0928	a	
+actor_113000_bss_VRAM	8013ABE8	f	
+D_80115408	80115408	a	
+padScriptHalt	800E8F68	a	

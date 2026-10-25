@@ -1,0 +1,2 @@
+/* Generated from assets/USA/pe2pkg/dryfield_breezeway.pe2pkg; model at 0x57DC. */
+    { { { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }, { 0, 0, 0 } }, 0 },

@@ -1,0 +1,1263 @@
+gcc2_compiled.	8017D5D0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+__gnu_compiled_c	8017D5D0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+_MACRO_INC_GUARD	00000001	al	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+_gNeoArkSouthPromenadeRoomTaskStates	8017D5C4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+_neoArkSouthPromenadeInitRoomTask	8017D62C	flt	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+_neoArkSouthPromenadeIdleRoomTask	8017D670	flt	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+_gNeoArkSouthPromenadeRoomMessages	8017F6B4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+_neoArkSouthPromenadeResolveRoomTransition	8017D5D8	flt	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+_neoArkSouthPromenadeRejectKeyItemMessage	8017D5D0	flt	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+_neoArkSouthPromenadeIgnoreActionMessage	8017D624	flt	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+_neoArkSouthPromenadeIgnoreCommandMessage	8017D61C	flt	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+_gRoomVisualEffectsTwinTrailEndpointOffsets	8017F6DC	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+_gNeoArkSouthPromenadeRoomLights	801804D0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+_gNeoArkSouthPromenadeCollisionGrid	8017FD8C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+_gNeoArkSouthPromenadeViewBoundaryTriggers	801804E8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+_gNeoArkSouthPromenadeActionTriggers	801806B0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+_gNeoArkSouthPromenadeOccluders	8018094C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+_gNeoArkSouthPromenadeCollisionGridNormals	8017F77C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+_gNeoArkSouthPromenadeCollisionGridVerts	8017F7E4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+_gNeoArkSouthPromenadeCollisionGridFaces	8017FA6C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+_gNeoArkSouthPromenadeCollisionGridCells	8017FC10	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+_gNeoArkSouthPromenadeCollisionGridTable	8017FD4C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+_gNeoArkSouthPromenadeView1SpriteBatches	8017FE64	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+_gNeoArkSouthPromenadeView2SpriteSources	8017FE74	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+_gNeoArkSouthPromenadeView2SpriteBatches	80180068	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+_gNeoArkSouthPromenadeView3SpriteSources	80180090	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+_gNeoArkSouthPromenadeView3SpriteBatches	8018039C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+_gNeoArkSouthPromenadeView4SpriteBatches	801803C4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+_gNeoArkSouthPromenadeView5SpriteBatches	801803D4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+_gNeoArkSouthPromenadeDirectionalLights	80180420	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+_gNeoArkSouthPromenadeVariant2Resources	80180878	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+_gNeoArkSouthPromenadeVariant3Resources	80180884	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+_gNeoArkSouthPromenadeVariant4Resources	80180890	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+_gNeoArkSouthPromenadeVariant5Resources	801808A8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+_gNeoArkSouthPromenadeVariant11Resources	801808C0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+_gNeoArkSouthPromenadeFootstepSounds	80180988	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+_gNeoArkSouthPromenadeSolidSurface	80180994	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+_gNeoArkSouthPromenadeSolidFootstepSurface	8018099C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+_gNeoArkSouthPromenadeProbePassSurface	801809A4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM1	8017D5D0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM2	8017D5D0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM3	8017D5D0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM4	8017D5D0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM5	8017D5D0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM6	8017D5D8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM7	8017D5D8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM8	8017D5D8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM9	8017D5E8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM10	8017D604	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM11	8017D60C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM12	8017D61C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM13	8017D61C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM14	8017D61C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM15	8017D61C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM16	8017D624	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM17	8017D624	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM18	8017D624	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM19	8017D624	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM20	8017D62C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM21	8017D62C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM22	8017D62C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM23	8017D638	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM24	8017D640	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM25	8017D644	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM26	8017D648	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM27	8017D650	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM28	8017D670	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM29	8017D670	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM30	8017D670	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM31	8017D670	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM32	8017D678	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM33	8017D678	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM34	8017D678	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM35	8017D67C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM36	8017D680	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM37	8017D684	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM38	8017D6A0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM39	8017D6C0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM40	8017D6D0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM41	8017D6D0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM42	8017D6D0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM43	8017D6D4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM44	8017D6E4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM45	8017D6E8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM46	8017D6F0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM47	8017D6F8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM48	8017D700	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM49	8017D708	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM50	8017D710	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM51	8017D718	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM52	8017D720	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM53	8017D720	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM54	8017D720	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM55	8017D730	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+_roomVisualEffectsDrawFlashDisc	8017DDF0	flt	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+_roomVisualEffectsDrawFlashRing	8017D9C4	flt	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+_roomVisualEffectsDrawBurstStar	8017ECF4	flt	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM56	8017D9AC	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM57	8017D9C4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM58	8017D9C4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM59	8017D9C4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM60	8017D9CC	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM61	8017D9D4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM62	8017D9FC	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM63	8017DA00	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM64	8017DA04	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM65	8017DA0C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM66	8017DA10	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM67	8017DA14	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM68	8017DA18	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM69	8017DA1C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM70	8017DA20	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM71	8017DA24	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM72	8017DA28	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM73	8017DA2C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM74	8017DA30	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM75	8017DA48	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM76	8017DA78	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM77	8017DA84	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM78	8017DA90	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM79	8017DA98	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM80	8017DAA8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM81	8017DAB8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM82	8017DAC8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM83	8017DACC	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM84	8017DAD0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM85	8017DAD4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM86	8017DAD8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM87	8017DB04	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM88	8017DB08	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM89	8017DB0C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM90	8017DB10	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM91	8017DB44	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM92	8017DB48	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM93	8017DB5C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM94	8017DB60	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM95	8017DB6C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM96	8017DB74	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM97	8017DB84	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM98	8017DB90	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM99	8017DB9C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM100	8017DBC0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM101	8017DBDC	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM102	8017DBE0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM103	8017DBF4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM104	8017DBF8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM105	8017DC08	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM106	8017DC1C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM107	8017DC20	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM108	8017DC24	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM109	8017DC34	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM110	8017DC48	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM111	8017DC4C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM112	8017DC5C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM113	8017DC70	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM114	8017DC74	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM115	8017DC84	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM116	8017DC98	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM117	8017DC9C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM118	8017DCAC	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM119	8017DCC0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM120	8017DCC4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM121	8017DCD4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM122	8017DCE8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM123	8017DCEC	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM124	8017DCFC	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM125	8017DD24	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM126	8017DD68	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM127	8017DD6C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM128	8017DD7C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM129	8017DD80	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM130	8017DD94	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM131	8017DDA0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM132	8017DDAC	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM133	8017DDC4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM134	8017DDF0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM135	8017DDF0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM136	8017DDF0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM137	8017DE00	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM138	8017DE08	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM139	8017DE28	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM140	8017DE2C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM141	8017DE30	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM142	8017DE34	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM143	8017DE38	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM144	8017DE3C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM145	8017DE40	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM146	8017DE44	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM147	8017DE48	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM148	8017DE4C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM149	8017DE50	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM150	8017DE54	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM151	8017DE58	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM152	8017DE70	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM153	8017DEA0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM154	8017DEA8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM155	8017DEB4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM156	8017DEBC	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM157	8017DECC	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM158	8017DEDC	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM159	8017DEEC	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM160	8017DEF0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM161	8017DEF4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM162	8017DEF8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM163	8017DEFC	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM164	8017DF28	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM165	8017DF40	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM166	8017DF44	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM167	8017DF48	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM168	8017DF54	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM169	8017DF5C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM170	8017DF6C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM171	8017DF78	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM172	8017DF84	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM173	8017DFA0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM174	8017DFA4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM175	8017DFB0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM176	8017DFB0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM177	8017DFC4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM178	8017DFC8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM179	8017DFD8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM180	8017DFEC	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM181	8017DFF4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM182	8017E004	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM183	8017E018	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM184	8017E01C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM185	8017E02C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM186	8017E054	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM187	8017E058	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM188	8017E05C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM189	8017E060	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM190	8017E064	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM191	8017E068	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM192	8017E07C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM193	8017E080	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM194	8017E090	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM195	8017E0B8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM196	8017E0FC	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM197	8017E100	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM198	8017E110	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM199	8017E114	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM200	8017E128	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM201	8017E134	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM202	8017E140	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM203	8017E158	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM204	8017E184	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM205	8017E184	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM206	8017E184	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM207	8017E184	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM208	8017E18C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM209	8017E1BC	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM210	8017E1C0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM211	8017E1C4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM212	8017E1C8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM213	8017E1CC	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM214	8017E1D0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM215	8017E1DC	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM216	8017E1EC	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM217	8017E214	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM218	8017E224	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM219	8017E22C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM220	8017E234	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM221	8017E234	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM222	8017E234	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM223	8017E23C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM224	8017E240	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM225	8017E244	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM226	8017E248	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM227	8017E24C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM228	8017E250	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM229	8017E254	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM230	8017E260	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM231	8017E264	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM232	8017E268	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM233	8017E26C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM234	8017E270	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM235	8017E274	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM236	8017E278	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM237	8017E278	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM238	8017E280	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM239	8017E28C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM240	8017E290	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM241	8017E294	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM242	8017E298	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM243	8017E29C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM244	8017E2A0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM245	8017E2A4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM246	8017E2A8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM247	8017E2AC	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM248	8017E2B0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM249	8017E2B4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM250	8017E2B4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM251	8017E2BC	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM252	8017E2C8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM253	8017E360	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM254	8017E3F8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM255	8017E40C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM256	8017E414	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM257	8017E414	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM258	8017E41C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM259	8017E424	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM260	8017E428	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM261	8017E42C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM262	8017E430	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM263	8017E434	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM264	8017E438	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM265	8017E43C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM266	8017E440	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM267	8017E444	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM268	8017E448	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM269	8017E448	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM270	8017E454	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM271	8017E45C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM272	8017E50C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM273	8017E5C4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM274	8017E5D0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM275	8017E5D4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM276	8017E5D8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM277	8017E5E0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM278	8017E5E4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM279	8017E5E8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM280	8017E5F0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM281	8017E604	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+_roomVisualEffectsDrawTwinTrail	8017E674	flt	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM282	8017E61C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM283	8017E63C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM284	8017E644	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM285	8017E674	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM286	8017E674	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM287	8017E674	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM288	8017E688	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM289	8017E690	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM290	8017E6A0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM291	8017E6A4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM292	8017E6BC	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM293	8017E6C0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM294	8017E6C4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM295	8017E6D0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM296	8017E6E8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM297	8017E718	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM298	8017E71C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM299	8017E730	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM300	8017E73C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM301	8017E740	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM302	8017E750	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM303	8017E754	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM304	8017E758	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM305	8017E75C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM306	8017E760	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM307	8017E764	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM308	8017E768	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM309	8017E76C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM310	8017E770	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM311	8017E774	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM312	8017E778	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM313	8017E77C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM314	8017E780	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM315	8017E784	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM316	8017E788	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM317	8017E78C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM318	8017E790	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM319	8017E794	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM320	8017E798	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM321	8017E79C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM322	8017E7A8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM323	8017E7B4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM324	8017E7B8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM325	8017E7BC	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM326	8017E7C0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM327	8017E7CC	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM328	8017E7D8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM329	8017E7E4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM330	8017E7EC	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM331	8017E7F8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM332	8017E800	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM333	8017E824	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM334	8017E830	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM335	8017E848	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM336	8017E858	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM337	8017E868	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM338	8017E878	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM339	8017E888	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM340	8017E88C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM341	8017E8A4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM342	8017E8B4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM343	8017E8B8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM344	8017E8C0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM345	8017E8D4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM346	8017E8D4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM347	8017E8D8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM348	8017E8DC	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM349	8017E8E0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM350	8017E8E8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM351	8017E8F0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM352	8017E8F4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM353	8017E8F8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM354	8017E8FC	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM355	8017E900	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM356	8017E904	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM357	8017E908	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM358	8017E90C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM359	8017E910	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM360	8017E914	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM361	8017E918	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM362	8017E91C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM363	8017E920	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM364	8017E924	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM365	8017E928	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM366	8017E92C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM367	8017E930	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM368	8017E934	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM369	8017E938	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM370	8017E93C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM371	8017E948	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM372	8017E954	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM373	8017E960	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM374	8017E96C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM375	8017E978	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM376	8017E984	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM377	8017E988	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM378	8017E98C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM379	8017E990	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM380	8017E994	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM381	8017E998	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM382	8017E99C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM383	8017EA08	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM384	8017EA14	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM385	8017EA18	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM386	8017EA24	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM387	8017EA3C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM388	8017EA6C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM389	8017EA6C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM390	8017EA6C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM391	8017EA7C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM392	8017ECD8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM393	8017ECF4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM394	8017ECF4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM395	8017ECF4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM396	8017ED04	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM397	8017ED0C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM398	8017ED30	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM399	8017ED34	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM400	8017ED38	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM401	8017ED3C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM402	8017ED40	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM403	8017ED44	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM404	8017ED48	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM405	8017ED4C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM406	8017ED50	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM407	8017ED54	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM408	8017ED58	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM409	8017ED5C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM410	8017ED60	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM411	8017ED78	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM412	8017EDA8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM413	8017EDB0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM414	8017EDBC	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM415	8017EDC4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM416	8017EDD4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM417	8017EDE4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM418	8017EDF4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM419	8017EDFC	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM420	8017EE00	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM421	8017EE04	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM422	8017EE08	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM423	8017EE34	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM424	8017EE38	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM425	8017EE3C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM426	8017EE68	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM427	8017EE6C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM428	8017EE80	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM429	8017EE84	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM430	8017EE88	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM431	8017EE94	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM432	8017EE9C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM433	8017EEE8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM434	8017EEEC	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM435	8017EEFC	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM436	8017EF10	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM437	8017EF14	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM438	8017EF24	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM439	8017EF38	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM440	8017EF3C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM441	8017EF40	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM442	8017EF50	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM443	8017EF64	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM444	8017EF68	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM445	8017EF78	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM446	8017EFA0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM447	8017EFA4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM448	8017EFA8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM449	8017EFAC	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM450	8017EFB0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM451	8017EFB4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM452	8017EFC8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM453	8017EFCC	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM454	8017EFDC	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM455	8017F000	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM456	8017F004	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM457	8017F008	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM458	8017F058	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM459	8017F05C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM460	8017F070	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM461	8017F07C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM462	8017F088	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM463	8017F090	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM464	8017F0D4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM465	8017F0D8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM466	8017F0E4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM467	8017F0F8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM468	8017F0FC	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM469	8017F10C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM470	8017F120	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM471	8017F124	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM472	8017F134	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM473	8017F148	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM474	8017F14C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM475	8017F15C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM476	8017F184	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM477	8017F190	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM478	8017F194	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM479	8017F198	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM480	8017F1AC	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM481	8017F1B0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM482	8017F1C0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM483	8017F1E4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM484	8017F1E8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM485	8017F1EC	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM486	8017F228	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM487	8017F22C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM488	8017F23C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM489	8017F240	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM490	8017F254	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM491	8017F260	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM492	8017F26C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM493	8017F270	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM494	8017F288	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM495	8017F290	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM496	8017F298	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM497	8017F2D4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM498	8017F2D8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM499	8017F2E4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM500	8017F2E8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM501	8017F2F8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM502	8017F30C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM503	8017F310	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM504	8017F320	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM505	8017F334	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM506	8017F338	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM507	8017F348	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM508	8017F35C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM509	8017F360	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM510	8017F370	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM511	8017F398	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM512	8017F39C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM513	8017F3A0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM514	8017F3A4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM515	8017F3A8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM516	8017F3AC	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM517	8017F3C0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM518	8017F3C4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM519	8017F3D4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM520	8017F3F8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM521	8017F3FC	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM522	8017F400	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM523	8017F450	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM524	8017F454	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM525	8017F468	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM526	8017F474	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM527	8017F47C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM528	8017F484	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM529	8017F4D0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM530	8017F4D4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM531	8017F4E4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM532	8017F4F8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM533	8017F4FC	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM534	8017F50C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM535	8017F520	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM536	8017F524	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM537	8017F534	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM538	8017F548	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM539	8017F54C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM540	8017F55C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM541	8017F584	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM542	8017F588	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM543	8017F58C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM544	8017F590	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM545	8017F594	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM546	8017F598	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM547	8017F5AC	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM548	8017F5B0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM549	8017F5C0	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM550	8017F5E4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM551	8017F5E8	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM552	8017F5EC	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM553	8017F628	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM554	8017F62C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM555	8017F63C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM556	8017F640	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM557	8017F654	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM558	8017F660	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM559	8017F66C	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM560	8017F684	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+LM561	8017F6B4	fl	build/USA/src/rooms/neo_ark_south_promenade/neo_ark_south_promenade.i
+__romPos	0000340C	al	
+equipmentGetWeaponLoadCapacity	800BB938	a	
+gActor443500ConsoleFollowupSkipScript	80142A74	a	
+D_80073BAC	80073BAC	a	
+D_80072174	80072174	a	
+areaSetCurrentObjectState	800BAC34	a	
+uiInitList	800489A0	a	
+D_80071072	80071072	a	
+gameFlagSetNibble	8004AC58	a	
+CdFlush	80015AF4	a	
+SetRotMatrix	8004ADF8	a	
+stageRequestModeTaskExit	8003F6F8	a	
+gActor503500StaffCardSceneTaskDesc	8014B958	a	
+sceneEngageBattle	800DB4E0	a	
+tmdAllocPrimitiveBuffer	80041B88	a	
+gActor335800BalconyBattleStartScript	80165720	a	
+gActor450200CompanionSceneScript	80137EE4	a	
+actor161500StartSoldierBRemark	80131E38	a	
+gCapCommandEntries	801156A0	a	
+displayAcquireMenuHold	8003E610	a	
+gPadMenuButtonMask	8005ED78	a	
+areaSetPlacementVariant	800B5B30	a	
+displayQueueModeTask	8003FB70	a	
+gameGetTaskSlot	8002D22C	a	
+GetTPage	80043938	a	
+displaySetFrameTiming	800280F4	a	
+textItoaUnsigned	8002F18C	a	
+damagePackEnemyAttackKey	800E2BF8	a	
+viewGetMappedIndex	800AD284	a	
+worldCoordGetOriginAudioPan	800D937C	a	
+mapShelterRoomVariantResolve	80179A04	a	
+gPadInputMenuUnlockUpdates	80115716	a	
+uiGetTextColor	80048E10	a	
+cdCmdSelectScene	8001D534	a	
+gNeoArkSouthPromenadeAreaVariants	801808E4	f	
+gActor107600TaskDescriptors	80134F94	a	
+SetDrawTPage	80043A38	a	
+D_801153F1	801153F1	a	
+printf	8001AF3C	a	
+worldCollisionClearContacts	800E1A6C	a	
+sceneReleaseBattleRefAndClearRewards	800DB630	a	
+gNeoArkSouthPromenadeViewCameras	8017FDB0	f	
+memMalloc	8002DABC	a	
+D_80073BA0	80073BA0	a	
+neo_ark_south_promenade_DATA_SIZE	00001318	a	
+gActionPromptSlots	80114D28	a	
+D_80072836	80072836	a	
+gAttachmentTrainingLevels	80114BF0	a	
+taskPollKill	8002D3BC	a	
+actor260400RestoreHeliportPlacement	80149FA4	a	
+gRoomEffectOrangeBurst2Id	80115754	a	
+stageMusicRequestAreaStop	800430E4	a	
+taskSpawn	8002CFDC	a	
+MatrixNormal	8003D6C8	a	
+gAreaRecordsByStage	8010CBCC	a	
+textDrawUiLine	8002FDCC	a	
+D_8007106C	8007106C	a	
+gActor450800NurseryIntroSkipScript	8013A33C	a	
+D_80070F6C	80070F6C	a	
+capRunCommandWithTransition	800E3B60	a	
+SetSemiTrans	800439B8	a	
+gCapRoomCompletionSoundsEnabled	80115598	a	
+sndEvtRequestMidiStart	800512BC	a	
+inventoryHasCollectedBit	800BB4BC	a	
+gGfxViewCoord	80070F10	a	
+equipmentRestoreHpMp	800BC164	a	
+D_80073B8C	80073B8C	a	
+gameFlowBeginLoadScreen	8002252C	a	
+sndEvtRequestScriptMix	80054424	a	
+worldCollisionProjectGroundCoord	800EA02C	a	
+worldCollisionUnlinkTrigger	800E1708	a	
+actor215100SelectCaptionResource	8014C5E0	a	
+padScriptSpawnVariableMotorRamp	800E8D1C	a	
+gfxSetFlatLight	8003B140	a	
+gPlayerActorStateTickHeld	80115768	a	
+gItemDescriptors	8010D838	a	
+playerActorPrepareDryfieldLoadout	800BC4E4	a	
+neo_ark_south_promenade_ROM_START	00000000	a	
+gActor450200RoomVariantSceneScript	8013FC58	a	
+taskGetDescAt	8002D32C	a	
+rcos	8003D108	a	
+D_80072177	80072177	a	
+streamFindViewMovieSlot	8001EED8	a	
+gRoomEffectTwinTrailId	8011572C	a	
+taskKill	8002CCB8	a	
+gActor143000KeypadTaskDesc	80134564	a	
+gEffectSpriteAtlasFrames	80111E48	a	
+D_80115188	80115188	a	
+D_80072724	80072724	a	
+textDrawString	8002E53C	a	
+gDirectionInteractionRearmUpdates	80114D08	a	
+D_80071078	80071078	a	
+gRoomEffectSparkBurstId	80115750	a	
+gActor120300TaskDescriptors	80141B6C	a	
+inventoryResetIceBagTimer	800BC21C	a	
+gEffectUnitQuadCorners	80111E38	a	
+worldCoordSetActorColorMode	800D930C	a	
+gActor342400EncounterTaskDescs	8016BFE0	a	
+gActor560800ChainGlowTick	801752EC	a	
+gActor444000IncineratorEventTaskDesc	801449F4	a	
+playerActorSetScriptedControl	800E3BBC	a	
+stageMusicRequestAreaStart	80043028	a	
+itemMenuSpawnNotice	800D4E40	a	
+actor460200SetupTentSoldiers	80132210	a	
+gActor335800BalconyEntrySkipScript	80165798	a	
+D_80115124	80115124	a	
+uiStartPanelOpening	80048964	a	
+actor215100RequestGalleryAbort	8014A9A0	a	
+streamGetFrameLimit	80020414	a	
+gActor00100DesertChaserTaskDesc	8014D8A4	a	
+gActor04000HangingPoolTaskDesc	8013E51C	a	
+gMapNeoArkSouthPromenadeVariant11Placements	8017BE70	a	
+gActor560800CutsceneTaskDescriptors	801718F0	a	
+actor161500StartCompanionRequestReminder	801322A0	a	
+equipmentInitializeWeaponSupplies	800B6CF0	a	
+gFsActorBuffer1Base	8005C370	a	
+textFormatPlayTime	8002EB94	a	
+playerActorRestoreEquipment	801034C0	a	
+playerActorRemoveEquipment	801043F4	a	
+SetDrawMove	8004AD18	a	
+damageGetPlayerAttackEffectId	800E2D90	a	
+gpuSetPrimitiveBlendMode	800EC914	a	
+worldCoordUpdateActorColor	800D8EA0	a	
+enemyTaskExit	800B0234	a	
+gfxComposeNodeWorldTransform	800B1D00	a	
+gUiPromptObject	80067694	a	
+gFsActorBuffer0Base	8005C36C	a	
+ratan2	8003D9C8	a	
+sceneFindPlacedActor	800E86FC	a	
+animationSeekSlotWithBlend	800B4114	a	
+inventoryInitializeShootingGalleryLoadout	800BA538	a	
+D_80071090	80071090	a	
+gActor450200SoloSceneScript	8013C72C	a	
+RotTransSV	8004BD58	a	
+padIsStartPressed	8004ACF0	a	
+ApplyMatrixSV	80043A68	a	
+memSelectAuxHeapRegion	8002DC08	a	
+gActor450800NurseryIntroScript	80139964	a	
+memcpy	8001AEFC	a	
+gActor151000GardenArrivalScript	801334EC	a	
+gActor341300WalkwaySceneSkipScript	80165834	a	
+gStageCountdownMusicEntry	80062735	a	
+Gp_QtyById0	8010E038	a	
+sndEvtRequestStageScriptStop	800E3E64	a	
+gActor102000PawnGolemTasks	80147DF0	a	
+gActor207000SucklercephTaskDescs	80151E60	a	
+capSetTexturePage	800E6D4C	a	
+__floatsidf	8004B5D8	a	
+SetSprt	80043A18	a	
+gActor443500MapFollowupSkipScript	801432FC	a	
+areaSyncLocationVariant	800B601C	a	
+effectDrawGroundShadow	800F68AC	a	
+cdCmdCompleteHeadRequest	8001DA48	a	
+gameFlagSetNibbleIfPresent	800E3B3C	a	
+uiSizePanelForTextDefault	800490A4	a	
+worldCollisionUnlinkBody	800E1638	a	
+neoArkSouthPromenadeRegisterGolemEffectsTask	8017D6D0	ft	
+gRoomEffectFlyingSparkId	80115730	a	
+playerActorWriteWeaponAnimationBankIndex	800E3CEC	a	
+gGpuCurrentOt	800710A0	a	
+streamInitMoviePlayback	8002043C	a	
+gActor150400FreezerSceneScript	80132D70	a	
+gActor450200SoloSceneSkipScript	8013CAEC	a	
+sndScriptHasActiveId	8005462C	a	
+gMcDialogDescriptors	800611C8	a	
+sndEvtRequestMidiVolume	80051460	a	
+padScriptSpawn	800E8FB0	a	
+gCapFile	8011568C	a	
+gActor450200CompanionSceneSkipScript	80138694	a	
+sceneReleaseBattleRef	800DB6B4	a	
+gMcSaveData	80072168	a	
+neo_ark_south_promenade_RODATA_SIZE	00000010	a	
+gameSetTaskSlot	8002D214	a	
+neoArkSouthPromenadeRoomVisualEffectsFlashTask	8017D720	ft	
+taskSpawnFromTable	8002CFA0	a	
+gActor142900ElevatorFirstVisitSkipScript	801380F8	a	
+gActor503500BossPhaseTransitionScript	8014D158	a	
+inventoryGetItemQuantity	800BB6FC	a	
+cdCmdRequestCancel	8001C970	a	
+actor450900HandleDepartureTrigger	80132834	a	
+D_80070F70	80070F70	a	
+gActor160600SceneWithoutCompanionScript	80135AC0	a	
+displayResumeGameLoop	8003E540	a	
+tmdFreePrimitiveBuffer	80041B4C	a	
+actor460200TalkToSoldierC	801322B8	a	
+itemMenuOpenHotspotCommands	800D4E78	a	
+gfxMakeRelativeTransform	800A8864	a	
+gWorldCollisionSurfacePropertiesTables	8010CBB8	a	
+streamPollGameRestore	8001EF9C	a	
+areaClearMapMark	800AED24	a	
+gItemMenuInfoPanel	80067634	a	
+cdCmdIsSlotEmpty	8001D37C	a	
+D_8007107C	8007107C	a	
+gActor461800NeoArkSceneSkipScript	80134470	a	
+itemMenuDrawTaskPrompt	800CE4F4	a	
+MargePrim	800422B8	a	
+worldCoordSetModelLighting	800D7A9C	a	
+streamResetGameRestore	80020388	a	
+gfxReadMatrixYAxis	8003C748	a	
+actor503500ClearFadeFromBlackHandle	80132F58	a	
+displayReleaseMenuHold	8003E64C	a	
+taskCallExit	8002D0A4	a	
+RotMatrixZYX	80044408	a	
+actor341300ResetScriptTaskHandle	8016268C	a	
+modelObjectAttachTmd	8009902C	a	
+gActor161500CompleteCompanionRequestTaskDesc	80136CDC	a	
+gGameSession	8005ED64	a	
+D_80071076	80071076	a	
+__adddf3	8004AFE8	a	
+gRoomEffectFlashId	80115758	a	
+gActor443500TourOpeningSkipScript	80141C1C	a	
+actor215100FinishGalleryCourse	8014A908	a	
+neo_ark_south_promenade_bss_VRAM	801809CC	f	
+animationAimHeadAtPoint	800B0CF4	a	
+mapAkropolisOpenKeyItemMenu	80179FC8	a	
+areaSetObjectState	800BB8E8	a	
+gItemMenuPanelDescriptors	8010EAB4	a	
+SquareRoot0	8003B8A0	a	
+gameFlagSetPackedByte	800E3FAC	a	
+gAttachmentState	80114C08	a	
+displayConfigureFramebuffers	8003DB48	a	
+neo_ark_south_promenade_TEXT_START	8017D5D0	f	
+gfxBuildOrthonormalBasis	8003CEC4	a	
+gActor342100EncounterBlazeTaskDescriptors	80164B78	a	
+gActor535700PawnGolemEncounterScript	80133898	a	
+sndEvtRequestScriptStop	800542D0	a	
+neo_ark_south_promenade_BSS_END	801809CC	f	
+SetShadeTex	800439E8	a	
+neo_ark_south_promenade_DATA_END	801809CC	f	
+sceneReleaseBattleRefWithRewards	800DB558	a	
+capRunCommand	800E34D8	a	
+gFsActorBuffer2Base	8005C374	a	
+capReset	800E6DF4	a	
+gActor341300WalkwaySceneScript	80165354	a	
+gEquipmentWeaponPrimaryLoadOptions	8010E238	a	
+gfxReadMatrixZAxis	8003C768	a	
+D_80071086	80071086	a	
+gfxRotMatrixY	8003C98C	a	
+gPadScriptTransitionCommands	80114A24	a	
+viewApplyCamera	800A8A48	a	
+RotTransPers4	8004C358	a	
+D_8011540E	8011540E	a	
+gPadScriptTransitionSegments	80114A34	a	
+mapDryfieldFullResolveRoomVariant	80179954	a	
+inventoryRestoreCarriedLoadout	800BA75C	a	
+D_80072176	80072176	a	
+gStreamInterFile	8006AC30	a	
+playerActorPrepareAcropolisLoadout	800BC4BC	a	
+mapAkropolisWasDryfieldMapSelected	8017A038	a	
+gStageMusicTaskDesc	80062774	a	
+neo_ark_south_promenade_BSS_START	801809CC	f	
+gMdecMovieOutputSlot	8005EAEE	a	
+gActor451100SubmarineTunnelSceneSkipScript	80135FD0	a	
+gStageRoomMusicSequence	80062737	a	
+neo_ark_south_promenade_BSS_SIZE	00000000	a	
+worldCollisionFindContactIndex	800E19B8	a	
+worldCollisionLinkBody	800E15AC	a	
+D_80073BA9	80073BA9	a	
+midiIsSequenceBusy	800514F8	a	
+memCopyBytes	8002D7A8	a	
+effectKillTask	800EC7E4	a	
+inventoryCountOccupiedRows	800BAF5C	a	
+itemMenuGetPrimaryPreviewItem	800CF27C	a	
+sceneSetPlacedActorDrawMode	800E3C6C	a	
+__fixdfsi	8004B4D8	a	
+neo_ark_south_promenade_RODATA_END	8017D5D0	f	
+effectDrawGouraudDisc	800EAEB8	a	
+cdCmdStageSceneAudioStart	8001D6B8	a	
+D_80072A94	80072A94	a	
+textItoaSigned	8002F020	a	
+cdCmdIsIdle	8001D344	a	
+actor215100CheckGalleryExitInput	8014A398	a	
+D_80072729	80072729	a	
+sceneQueueBattleEscapeResult	800A7A64	a	
+capStartSequenceSlot	800E6C70	a	
+gActor215100GalleryTrainingActive	8014D038	a	
+worldCollisionReadActionHit	800E1BF0	a	
+SetTransMatrix	8004AE28	a	
+neo_ark_south_promenade_TEXT_SIZE	000020E4	a	
+gameFlagGetNibble	8004ACAC	a	
+D_801153F4	801153F4	a	
+gRoomEffectHaloId	80115744	a	
+AddPrim	80043978	a	
+gCapPreserveActorControl	80115690	a	
+uiSetListSystemCursorSound	8004917C	a	
+itemSetIdentified	800BB7C0	a	
+gfxRotMatrixZ	8003CB80	a	
+worldTargetAddReadoutAmount	800DA6E8	a	
+inventoryGetConsumableStackQuantity	800BB26C	a	
+SetDrawOffset	80018AA4	a	
+D_8007272D	8007272D	a	
+gSceneCombatState	801153F0	a	
+itemMenuDrawItemRow	800CD924	a	
+effectDrawSpinningBillboard	800EB2C8	a	
+uiDrawPanelLabel	80047F40	a	
+gGameMainPersistentState	800710A8	a	
+enemySpawnFromTable	800B01AC	a	
+gfxRotMatrixYXZ	8003BD34	a	
+D_8011540A	8011540A	a	
+effectDrawModulatedBillboard	800EB6E8	a	
+equipmentHasCarriedWeaponSupply	800BBDDC	a	
+gActor461800NeoArkSceneScript	80133F90	a	
+uiPositionRowDialog	80049024	a	
+actor260400StartHeliportConversation	80149E38	a	
+evsStartScriptWithSkip	800E8634	a	
+gEquipmentModeBaseStats	8010D328	a	
+gNeoArkSouthPromenadeSpriteViews	801803E4	f	
+gFsImageWorkspacePtr	8005C364	a	
+actor160700StartMeetingScript	80131E70	a	
+evsStartScript	800E8614	a	
+loadingRequestViewGraphicsRestore	800A99B4	a	
+actor450200InitializeObservatoryCompanion	801322F8	a	
+StoreImage	80017FA4	a	
+D_80114C12	80114C12	a	
+MoveImage	80018004	a	
+func_807245E4	807245E4	a	
+uiUpdateList	80048C10	a	
+streamGetSlot	80020278	a	
+textAppendString	8002F588	a	
+gActor310100Officer1TaskDescriptors	801798FC	a	
+capGetVariantKey	800E6D3C	a	
+gActor143900ObservatoryEntrySkipScript	80133860	a	
+gActor503500BossDefeatSkipScript	8014CAF8	a	
+capIsBusy	800E6CE0	a	
+attachmentIsTrainingMode	800A74C4	a	
+gGpuPrimCursor	80071190	a	
+worldCoordGetOriginAudioDepth	800D9340	a	
+gfxRotMatrixXYZ	8003B960	a	
+actor161500StartSoldierBShopConversation	80132110	a	
+shopOpenSession	800D4D2C	a	
+gPadCancelButtonMask	8005ED74	a	
+gPadStates	80071620	a	
+SetDrawArea	80018A24	a	
+D_80071075	80071075	a	
+RotTransPers3	8004C1E8	a	
+actor460200TalkToSoldierA	80132390	a	
+animationInitContext	800B3F84	a	
+gActor450200RoomVariantSceneSkipScript	80140078	a	
+equipmentFindNextCarriedWeaponSupply	800BBD40	a	
+gActor535700PawnGolemEncounterSkipScript	801341E0	a	
+uiDrawBeveledRect	80046B34	a	
+rand	80037164	a	
+gActor450900EntrySkipScript	80136308	a	
+D_80115410	80115410	a	
+companionSetDrawMode	800E3EB0	a	
+inventoryGiveItem	800BAD08	a	
+gActor560800MovieTaskDescriptors	8016EA28	a	
+gActor342000IncineratorEventTaskDescs	80164FF8	a	
+D_8010E138	8010E138	a	
+effectSpawnHit	800FDB18	a	
+gInventoryContainerRanges	8010D550	a	
+gActor143400CompanionEntryScript	801350BC	a	
+memCalloc	8002D978	a	
+gActor103800BlackBeetleTaskDesc	80137D74	a	
+effectSpawn	800EA478	a	
+gActor450900EntryScript	80136110	a	
+strncmp	8001EAC4	a	
+gInventoryConsumableStacks	8010E3B8	a	
+gActor105500MaggotCaterpillarTasks	8013A8DC	a	
+itemMenuDrawDefaultItemIcon	800CE5D0	a	
+actor161500StartSoldierBTalkB	80132038	a	
+D_80071068	80071068	a	
+gRoomEffectWaterSprayId	80115738	a	
+gActor450800NurseryShootingSkipScript	8013BA84	a	
+gMdecMovieInputSlot	8005EAEC	a	
+gNeoArkSouthPromenadeRoomLighting	8017F6EC	f	
+gActor443500ConsoleFollowupScript	80141D9C	a	
+actor150400SpawnSlidingModels	80131FB8	a	
+D_800691CA	800691CA	a	
+neo_ark_south_promenade_TEXT_END	8017F6B4	f	
+gActor503500SceneEffectTaskDescs	8014B964	a	
+D_80114C0B	80114C0B	a	
+gRoomEffectMoteId	80115728	a	
+areaApplySavedUpdates	800AE62C	a	
+cdCmdCancelScene	8001D588	a	
+func_800AC000	800AC000	a	
+uiSetPanelContentSize	800466E4	a	
+GsWSMATRIX	80071138	a	
+uiObjectTaskExit	800488B8	a	
+cdSyncPollCommand	8001E6AC	a	
+gActor443500MapFollowupScript	80142C24	a	
+gItemMenuTransferPanelDescriptors	8010D6F4	a	
+neo_ark_south_promenade_RODATA_START	8017D5C0	f	
+cdCmdEnqueue	8001D2B0	a	
+D_801150C0	801150C0	a	
+padCheckButtons	8002C868	a	
+itemMenuDrawPreview	800C7AE8	a	
+gActor160600SceneWithCompanionScript	80135D78	a	
+gCapChoiceRowStride	80115680	a	
+taskSpawnFromTableOnDefaultList	8003E4BC	a	
+SetDrawStp	80042288	a	
+gActor143900ObservatoryEntryScript	80133560	a	
+playerActorSetDrawMode	800E3B80	a	
+actor450800StartNurseryCompanionDialogue	80132000	a	
+gMapNeoArkSouthPromenadeVariant4Placements	8017BDD0	a	
+gActor215100PierceStoryScript	80153274	a	
+itemMenuSetPreviewItem	800CDE80	a	
+equipmentRecalculateMaxMp	800B7930	a	
+effectDrawOuterGlowBand	800EAA0C	a	
+stageEnsureHeapTaskPrimitiveBuffer	8003F9AC	a	
+actor215100HandleGalleryAction	8014AB6C	a	
+RotMatrixZ	8004AE48	a	
+SetDispMask	80017C00	a	
+SetTile	80042344	a	
+func_80724608	80724608	a	
+cdCmdEnqueueScenePlayback	8001D5CC	a	
+__muldf3	8004B828	a	
+rsin	8003D038	a	
+viewFindLogicalIndex	800ACEBC	a	
+inventoryInitializeStarterLoadout	800B7D18	a	
+gPadConfirmButtonMask	8005ED70	a	
+areaIsSavedPoseRestoreEnabled	800B59A8	a	
+gActor361100PodSceneScript	80165F48	a	
+areaGetVariant	800B5CE8	a	
+gActor443500TourOpeningScript	8014152C	a	
+gGameFlagNibbleBanks	80073980	a	
+actor450800PrepareNurseryKyleMadigan	80132028	a	
+worldCoordSetAmbientColorOverride	800D94B8	a	
+gActor460200TentArrivalSkipScript	80137890	a	
+worldTargetDisableNodeLockOn	800DACF8	a	
+D_80072170	80072170	a	
+D_80070F87	80070F87	a	
+D_80072310	80072310	a	
+worldCollisionProbeGridSegment	800DE7CC	a	
+D_8011540C	8011540C	a	
+memset	800420F8	a	
+companionWriteAnimationBankIndex	800E3D24	a	
+D_80073BAE	80073BAE	a	
+gActor215100GalleryTaskDescs	8014E13C	a	
+gActor136300GarageCompanionSceneSkipScript	8013C388	a	
+streamPrepareMovieWorkspace	80020298	a	
+gActor136300CompanionGaragePlacement	8013B570	a	
+srand	80037194	a	
+viewQueueCurrentCameraAndPackets	800A8B6C	a	
+ApplyMatrixLV	80042128	a	
+taskMessageDispatch	800AC464	a	
+uiStartTreeClosing	80048838	a	
+animationResetSlot	800B3FA8	a	
+gMapNeoArkSouthPromenadeVariant5Placements	8017BE40	a	
+actor215100CapCaptionSelectRecord	8014B2B8	a	
+taskRequestKill	8002D340	a	
+D_8007107A	8007107A	a	
+actor161500RestoreCompanionRequestScene	8013230C	a	
+actor215100ResolveGalleryExit	8014AA54	a	
+gPlayerStatus	80073B88	a	
+inventoryGetRangeTable	800BB500	a	
+gActor142600IncineratorArrivalSkipScript	80136804	a	
+gPlayerActorTasks	80115760	a	
+gActor548100PanelTaskDesc	801358D8	a	
+equipmentConsumeWeaponLoad	800B6DA4	a	
+inventoryResetCarriedRange	800BC490	a	
+enemyDestroy	800B01F0	a	
+gFsResourceSlots	8006C338	a	
+gRandomLcgState	80070F60	a	
+actor160700RestoreMeetingAnimation	80131E24	a	
+func_800ABFF8	800ABFF8	a	
+gActor146300IceBagHandoverTaskDesc	8013788C	a	
+areaSpawnPlacements	800B4AF8	a	
+itemMenuDrawMeter	800C0E20	a	
+gNeoArkSouthPromenadeWarpEntries	8017F70C	f	
+gameFlagGetPackedByte	800E3FCC	a	
+equipmentLoadWeaponConsumable	800B715C	a	
+displaySetShakeY	8003DE78	a	
+sndEvtRequestStageScriptStart	800E3DD8	a	
+inventoryHasAttachedItem	800BC3F8	a	
+equipmentRecalculateMaxHp	800BC0C0	a	
+RotTransPers	8004C198	a	
+D_8007216D	8007216D	a	
+gActor146300WaterTankEventScript	80137C28	a	
+roomEffectRequestCancelPe	800FC6C0	a	
+gpuUploadImages	800DB31C	a	
+gDirectionActionActive	80114CF8	a	
+D_80072830	80072830	a	
+sndEvtRequestScriptVolume	800544B8	a	
+worldCollisionLinkTrigger	800E1688	a	
+actor450800StartNurseryInteraction	80131E2C	a	
+gActor215100PierceStorySkipScript	80153D6C	a	
+gActor136300TaskTable	8013B11C	a	
+gStageMusicParams	8007A39C	a	
+VectorNormalSS	8003D5D8	a	
+gActor160900TaskDescriptors	8013FB50	a	
+D_80072A93	80072A93	a	
+gWorldCollisionActiveGrid	80115448	a	
+D_80072A92	80072A92	a	
+roomEffectRequestCancelAll	800EC868	a	
+gActor310100Officer2TaskDescriptors	80179920	a	
+actorRenderDrawGroundShadow	800B4E54	a	
+gMapNeoArkSouthPromenadeVariant2Placements	8017BDB0	a	
+D_8007218A	8007218A	a	
+capSelectLoadedFile	800E6D60	a	
+cdCmdDropQueuedTail	8001D424	a	
+Gfx_ViewWorldMtx	80070F34	a	
+actor161500StartSoldierBTalkA	80131FBC	a	
+gActor503500BossDefeatScript	8014C540	a	
+tmdBuildBufferHalf	800410F0	a	
+effectDrawScreenTint	800EA858	a	
+gActor146000WaterHoleSceneTasks	801351FC	a	
+tmdResetAuxHeapAndRestoreBuffers	80041EB4	a	
+gActor120500EmptyPlacementTaskDesc	8013843C	a	
+equipmentGetWeaponLoad	800BAFE0	a	
+DrawSync	80017C98	a	
+gActor202300RookGolemTasks	8015FAB8	a	
+damageComputePlayerAttack	800E1FEC	a	
+itemMenuClearPreviewItems	800CDEF4	a	
+actor215100StartPierceConversation	8014AF0C	a	
+actor450900StartCompanionConversation	801327A8	a	
+damageRollCriticalHit	800E25F8	a	
+gActor151000GardenArrivalSkipScript	80133954	a	
+animationTickSlot	800B4514	a	
+sceneAcquireBattleRef	800DB53C	a	
+gActor143400CompanionEntrySkipScript	801359D4	a	
+companionRemoveEquipment	8010B674	a	
+sndScriptResolveStageId	800E3E30	a	
+actor146300RestoreHandoverPose	8013224C	a	
+gActor150400FreezerSceneSkipScript	80133088	a	
+companionSetScriptedControl	800E3EF0	a	
+gCapInlineIconCells	8010FB70	a	
+streamPollMoviePlayback	8001FAE0	a	
+gPlayerActorWeaponReaches	80112F60	a	
+D_80072728	80072728	a	
+damagePackAttackKey	800E2C40	a	
+neoArkSouthPromenadeRoomTask	8017D678	ft	
+uiSpawnObject	800486F0	a	
+worldCollisionInitContacts	800E18E0	a	
+sndEvtRequestMidiStop	8005132C	a	
+gActor503500BossIntroSkipScript	8014C288	a	
+RotMatrix	80043AC8	a	
+D_80114C11	80114C11	a	
+memConfigureImageMemory	800144F8	a	
+viewQueueCamera	800A8A1C	a	
+neo_ark_south_promenade_VRAM_END	801809CC	f	
+displaySpawnTaskFromTable	8003E324	a	
+uiStartPanelHiding	800488F8	a	
+actor260500RestoreHeliportPlacement	80149E80	a	
+gActor04400MadChaserTaskDescs	80142604	a	
+actor450200StartCompanionTalk	80132220	a	
+gpuBlendRgb555ClutRow	800B27C4	a	
+D_80072834	80072834	a	
+actor361100ClearHeadAimTaskHandle	80162B0C	a	
+gCapConfirmedChoiceIndex	801156A8	a	
+itemGetText	800B8EB0	a	
+gActor451100SubmarineTunnelEntryScript	80136108	a	
+ScaleMatrix	8004A98C	a	
+uiDrawTitle	80048E38	a	
+gNeoArkSouthPromenadeSurfaceProperties	801809AC	f	
+playerActorEndScripted	80104838	a	
+gfxRotMatrixX	8003C788	a	
+D_80071071	80071071	a	
+gRoomEffectSparkEmitterId	80115720	a	
+MulMatrix0	80044208	a	
+D_80114FF8	80114FF8	a	
+gActor450900Tasks	80135E78	a	
+itemMenuIsHotspotActionConfirmed	800D4EC0	a	
+inventoryClearItems	800BAC8C	a	
+gCapRestoreView	80115694	a	
+D_801153F6	801153F6	a	
+neo_ark_south_promenade_DATA_START	8017F6B4	f	
+gWorldCoordTransientPointLights	80114F30	a	
+gActor443500PowerPlantProgressDialogueScript	80143494	a	
+capSpawnEventIfIdle	800E3D8C	a	
+gDisplayState	80070F68	a	
+itemMenuSetItemDescriptionPrompt	800CEB40	a	
+D_8007217B	8007217B	a	
+gActor136300GarageCompanionSceneScript	8013B590	a	
+ApplyTransposeMatrixLV	80044050	a	
+gSpriteAreaTables	8010CB68	a	
+inventoryCanAddItem	800B8988	a	
+sceneFindEnemyByPlaceKey	800B584C	a	
+gMidiMusicVolume	8007A396	a	
+inventoryMeltIceBagIfExpired	800BC254	a	
+gteMIMefunc	8004AD78	a	
+inventoryGetItemSortKey	800BC18C	a	
+uiGetTextRowsHeight	80048E2C	a	
+gCapControlFlags	801156A4	a	
+gFsActorBufferWrittenBytes	8006D860	a	
+gActor142600IncineratorArrivalScript	801360E4	a	
+playerActorEnterLocomotion	801066DC	a	
+D_8007218B	8007218B	a	
+gNeoArkSouthPromenadeCollisionResources	8017F6F4	f	
+uiDrawHorizontalSeparator	80047A0C	a	
+sndEvtRequestScriptStart	8005414C	a	
+actor215100CapCaptionDrawCurrent	8014B0D4	a	
+gActor335800BalconyEntryScript	80165060	a	
+stageReleaseTaskPrimitiveBuffer	8003F9F4	a	
+equipmentGetWeaponSupply	800BBDC8	a	
+animationAimHeadAt	800B17D4	a	
+gRoomEffectOrangeBurstId	8011573C	a	
+viewGetMappedCamera	800A8C08	a	
+gCdCmdQueue	80068FA0	a	
+gActor146300WaterTankEventSkipScript	80138570	a	
+capAbortPlayback	800E6CF0	a	
+textDrawUiLines	8002FB84	a	
+gNeoArkSouthPromenadeViewMaps	8017F704	f	
+streamFinishScene	800B00C4	a	
+loadingEnqueueEquippedWeaponResources	800A9BE4	a	
+gActor503500BossIntroScript	8014BD48	a	
+gActor207000SlouchTaskDescs	801575F0	a	
+companionRestoreFullHp	800E3D78	a	
+textItoaPadded	8002F44C	a	
+playerStateRestoreFullHpMp	800E3D5C	a	
+gRoomEffectWaterRippleId	8011574C	a	
+memFillBytes	8002D894	a	
+D_8007106B	8007106B	a	
+gActor450800NurseryShootingScript	8013AF8C	a	
+uiFitPanelToList	80046830	a	
+neoArkSouthPromenadeRoomVisualEffectsSparkBurstTask	8017EA6C	ft	
+uiSetPromptText	80049D34	a	
+RotMatrixX	8004BE58	a	
+worldCoordSetModelAmbientColor	800D9550	a	
+worldTargetLinkNode	800DABEC	a	
+damageAccumulateLifeDrainHp	800E2C78	a	
+gActor451100SubmarineTunnelSceneScript	80135220	a	
+taskReparent	8002D14C	a	
+gActor160600SceneSkipScript	80136258	a	
+playerActorTurnToYaw	80104E00	a	
+gRoomEffectState	80115740	a	
+TransposeMatrix	800420B8	a	
+worldCollisionProjectGroundPoint	800EA1A8	a	
+inventoryClearCollectedBit	800BAEC0	a	
+D_8007216C	8007216C	a	
+uiSpawnOptionDialog	800480A0	a	
+actorRenderComposeCoord	80098F58	a	
+GetClut	80042AE0	a	
+gRoomEffectGlowDiscId	80115734	a	
+itemMenuDrawQuantity	800CDBEC	a	
+gActor105600PawnGolemTasks	801482C0	a	
+areaGetCurrentObjectState	800BB470	a	
+gActor341900GluttonEntranceTaskDescs	80164190	a	
+neo_ark_south_promenade_VRAM	8017D5C0	f	
+gWorldCollisionActionTriggerListHead	8011556C	a	
+actor260500StartHeliportConversation	80149EBC	a	
+fadeDrawOverlay	8002BA9C	a	
+worldCollisionResolvePushback	800E0C10	a	
+equipmentEquipCarriedArmor	800B7A50	a	
+__subdf3	8004BC28	a	
+D_80072A98	80072A98	a	
+gMapNeoArkSouthPromenadeVariant3Placements	8017BDC0	a	
+padInputChangeSuppression	800E9BDC	a	
+gActor450800NurseryReentryScript	8013A84C	a	
+gEvsPlaybackPaused	801156F9	a	
+neoArkSouthPromenadeRoomVisualEffectsTwinTrailTask	8017E184	ft	
+gActor460200TentArrivalScript	801362B8	a	
+RotMatrixY	8004BFF8	a	
+gActor361100PodSceneSkipScript	80166848	a	
+streamFindMovieSlot	8001EDC8	a	
+gActor310100PlayerAnimationSets	801797FC	a	
+neo_ark_south_promenade_ROM_END	0000340C	a	
+gActor142900ElevatorFirstVisitScript	801378D0	a	
+inventoryIsItemLimitReached	800B7420	a	
+streamSetExternalScenePayloadBuffer	800B015C	a	
+gActor141000FlightTasks	801348D8	a	
+mapNeoArkResolveRoomVariant	80179B14	a	
+gViewIdentityMap	8010CAF8	a	
+gNeoArkSouthPromenadeViewCounts	8017F708	f	
+gpuResetAndInvalidateModelBuffers	80041E4C	a	
+animationAimHeadAtTask	800B0928	a	
+gItemMenuEmptyPromptText	8010F8D0	a	
+padScriptHalt	800E8F68	a	
+gWorldCollisionSurfacePushbackSuppression	80115428	a	

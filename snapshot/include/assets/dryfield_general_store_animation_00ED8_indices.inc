@@ -1,0 +1,4 @@
+/* Generated from assets/USA/pe2pkg/dryfield_general_store.pe2pkg; animation at 0xED8. */
+    0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0,

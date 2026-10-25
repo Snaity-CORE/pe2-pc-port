@@ -1,0 +1,504 @@
+gcc2_compiled.	8011D1D4	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+__gnu_compiled_c	8011D1D4	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_MACRO_INC_GUARD	00000001	al	build/USA/src/weapons/mm1/grenade_pistol.i
+_gMm1WeaponModelSkeleton	8011DC3C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gMm1WeaponModelPartVerts	8011DC60	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gMm1WeaponModelVerts	8011DC64	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gMm1WeaponModelNormals	8011DE04	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gMm1WeaponModelStream	8011DF94	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaIdleClipBank1	8011E4B8	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaIdleClipBank4	8011E4D0	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaIdleClipRecords	8011E4F0	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaIdleClipTrackStarts	8011E620	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaUnarmedWalkClipBank1	8011E670	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaUnarmedWalkClipBank4	8011E700	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaUnarmedWalkClipRecords	8011E95C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaUnarmedWalkClipTrackStarts	8011ECC4	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaUnarmedWalkClip	8011ECEC	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaHandgunBackwardWalkClipBank1	8011ED14	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaHandgunBackwardWalkClipBank4	8011EDF8	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaHandgunBackwardWalkClipRecords	8011F0FC	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaHandgunBackwardWalkClipTrackStarts	8011F59C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaHandgunBackwardWalkClip	8011F5C4	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaTurnLeftClipBank1	8011F5EC	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaTurnLeftClipBank4	8011F6D0	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaTurnLeftClipRecords	8011F974	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaTurnLeftClipTrackStarts	8011FDFC	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaTurnLeftClip	8011FE24	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaTurnRightClipBank1	8011FE4C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaTurnRightClipBank4	8011FF30	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaTurnRightClipRecords	801201D8	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaTurnRightClipTrackStarts	80120660	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaTurnRightClip	80120688	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaItemUseClipBank1	801206B0	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaItemUseClipBank4	801206D4	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaItemUseClipRecords	801207E8	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaItemUseClipTrackStarts	80120974	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaItemUseClip	8012099C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaStairAscentClipBank1	801209C4	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaStairAscentClipBank4	80120A6C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaStairAscentClipRecords	80120CDC	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaStairAscentClipTrackStarts	801210D0	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaStairAscentClip	801210F8	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaStairDescentClipBank1	80121120	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaStairDescentClipBank4	801211E0	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaStairDescentClipRecords	8012147C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaStairDescentClipTrackStarts	80121858	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaStairDescentClip	80121880	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaStairAscentFinishOddClipBank1	801218A8	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaStairAscentFinishOddClipBank4	801218F0	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaStairAscentFinishOddClipRecords	801219C0	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaStairAscentFinishOddClipTrackStarts	80121B2C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaStairAscentFinishOddClip	80121B54	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaStairAscentFinishEvenClipBank1	80121B7C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaStairAscentFinishEvenClipBank4	80121BD0	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaStairAscentFinishEvenClipRecords	80121CF4	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaStairAscentFinishEvenClipTrackStarts	80121EBC	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaStairAscentFinishEvenClip	80121EE4	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaParasiteEnergyBegin0ClipBank1	80121F0C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaParasiteEnergyBegin0ClipBank4	80121F78	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaParasiteEnergyBegin0ClipRecords	80122118	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaParasiteEnergyBegin0ClipTrackStarts	80122344	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaParasiteEnergyBegin0Clip	8012236C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaParasiteEnergyCharge0ClipBank1	80122394	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaParasiteEnergyCharge0ClipBank4	801223B8	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaParasiteEnergyCharge0ClipRecords	80122410	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaParasiteEnergyCharge0ClipTrackStarts	80122540	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaParasiteEnergyCharge0Clip	80122568	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaParasiteEnergyCast0ClipBank1	80122590	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaParasiteEnergyCast0ClipBank4	801225D8	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaParasiteEnergyCast0ClipRecords	801226BC	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaParasiteEnergyCast0ClipTrackStarts	80122818	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaParasiteEnergyCast0Clip	80122840	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaParasiteEnergyBegin1ClipBank1	80122868	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaParasiteEnergyBegin1ClipBank4	80122898	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaParasiteEnergyBegin1ClipRecords	80122974	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaParasiteEnergyBegin1ClipTrackStarts	80122ABC	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaParasiteEnergyBegin1Clip	80122AE4	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaParasiteEnergyCharge1ClipBank1	80122B0C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaParasiteEnergyCharge1ClipBank4	80122B30	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaParasiteEnergyCharge1ClipRecords	80122B8C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaParasiteEnergyCharge1ClipTrackStarts	80122CBC	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaParasiteEnergyCharge1Clip	80122CE4	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaParasiteEnergyCast1ClipBank1	80122D0C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaParasiteEnergyCast1ClipBank4	80122D6C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaParasiteEnergyCast1ClipRecords	80122E7C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaParasiteEnergyCast1ClipTrackStarts	80123010	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaParasiteEnergyCast1Clip	80123038	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaHitHeadClipBank1	80123060	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaHitHeadClipBank4	8012309C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaHitHeadClipRecords	80123178	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaHitHeadClipTrackStarts	801232C4	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaHitHeadClip	801232EC	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaHitBodyClipBank1	80123314	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaHitBodyClipBank4	8012335C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaHitBodyClipRecords	80123464	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaHitBodyClipTrackStarts	801235E4	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaHitBodyClip	8012360C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaDeathClipBank1	80123634	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaDeathClipBank4	8012370C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaDeathClipRecords	801239EC	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaDeathClipTrackStarts	80123DA8	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaDeathClip	80123DD0	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaHighHealthIdleClipBank1	80123DF8	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaHighHealthIdleClipBank4	80123F54	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaHighHealthIdleClipRecords	8012465C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaHighHealthIdleClipTrackStarts	80125040	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaHighHealthIdleClip	80125068	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaLowHealthIdleClipBank1	80125090	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaLowHealthIdleClipBank4	80125120	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaLowHealthIdleClipRecords	80125548	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaLowHealthIdleClipTrackStarts	80125BB8	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaLowHealthIdleClip	80125BE0	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaMidHealthIdleClipBank1	80125C08	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaMidHealthIdleClipBank4	80125C74	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaMidHealthIdleClipRecords	80125EB4	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaMidHealthIdleClipTrackStarts	801262D4	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaMidHealthIdleClip	801262FC	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaExamineEnterClipBank1	80126324	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaExamineEnterClipBank4	8012636C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaExamineEnterClipRecords	80126518	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaExamineEnterClipTrackStarts	80126754	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaExamineEnterClip	8012677C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaExamineExitClipBank1	801267A4	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaExamineExitClipBank4	801267C8	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaExamineExitClipRecords	80126848	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaExamineExitClipTrackStarts	8012692C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaExamineExitClip	80126954	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaParasiteEnergyBegin2ClipBank1	8012697C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaParasiteEnergyBegin2ClipBank4	80126A00	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaParasiteEnergyBegin2ClipRecords	80126BF4	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaParasiteEnergyBegin2ClipTrackStarts	80126E90	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaParasiteEnergyBegin2Clip	80126EB8	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaParasiteEnergyCharge2ClipBank1	80126EE0	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaParasiteEnergyCharge2ClipBank4	80126F04	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaParasiteEnergyCharge2ClipRecords	80126F54	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaParasiteEnergyCharge2ClipTrackStarts	80127084	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaParasiteEnergyCharge2Clip	801270AC	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaParasiteEnergyCast2ClipBank1	801270D4	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaParasiteEnergyCast2ClipBank4	80127134	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaParasiteEnergyCast2ClipRecords	801272D8	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaParasiteEnergyCast2ClipTrackStarts	80127504	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaParasiteEnergyCast2Clip	8012752C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gMm1AimIdleClipBank1	80127554	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gMm1AimIdleClipBank4	8012756C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gMm1AimIdleClipRecords	801275AC	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gMm1AimIdleClipTrackStarts	801276DC	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gMm1AimIdleClip	80127704	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gMm1AimBackwardClipBank1	8012772C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gMm1AimBackwardClipBank4	801277C8	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gMm1AimBackwardClipRecords	80127AB8	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gMm1AimBackwardClipTrackStarts	80127E94	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gMm1AimBackwardClip	80127EBC	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaRifleAimForwardClipBank1	80127EE4	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaRifleAimForwardClipBank4	80127FC8	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaRifleAimForwardClipRecords	801283FC	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaRifleAimForwardClipTrackStarts	8012893C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaRifleAimForwardClip	80128964	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gMm1ReloadClipBank1	8012898C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gMm1ReloadClipBank4	80128AF4	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gMm1ReloadClipRecords	801292B8	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gMm1ReloadClipTrackStarts	80129FB8	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gMm1ReloadClip	80129FE0	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gMm1FireClipBank1	8012A008	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gMm1FireClipBank4	8012A08C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gMm1FireClipRecords	8012A30C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gMm1FireClipTrackStarts	8012A654	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gMm1FireClip	8012A67C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gMm1AimEnterClipBank1	8012A6A4	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gMm1AimEnterClipBank4	8012A788	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gMm1AimEnterClipRecords	8012ABDC	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gMm1AimEnterClipTrackStarts	8012B0F4	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gMm1AimEnterClip	8012B11C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gMm1AimExitClipBank1	8012B144	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gMm1AimExitClipBank4	8012B1C8	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gMm1AimExitClipRecords	8012B424	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gMm1AimExitClipTrackStarts	8012B708	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gMm1AimExitClip	8012B730	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaRifleWalkClipBank1	8012B758	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaRifleWalkClipBank4	8012B830	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaRifleWalkClipRecords	8012BB54	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaRifleWalkClipTrackStarts	8012BFC0	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaRifleWalkClip	8012BFE8	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaRifleBackwardWalkClipBank1	8012C010	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaRifleBackwardWalkClipBank4	8012C0D0	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaRifleBackwardWalkClipRecords	8012C344	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaRifleBackwardWalkClipTrackStarts	8012C760	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaRifleBackwardWalkClip	8012C788	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaRifleRunClipBank1	8012C7B0	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaRifleRunClipBank4	8012C8DC	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaRifleRunClipRecords	8012CC58	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaRifleRunClipTrackStarts	8012D134	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gAyaRifleRunClip	8012D15C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gLauncherGrenadeMuzzleOffsets	8012D2C0	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gLauncherGrenadeBlastRadii	8012D2D0	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gLauncherGrenadeInitialFlightDivisors	8012D2D8	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gMm1ShellModelSkeleton	8012D2DC	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gMm1ShellModelPartVerts	8012D300	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gMm1ShellModelVerts	8012D304	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gMm1ShellModelNormals	8012D344	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gMm1ShellModelStream	8012D384	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM1	8011D1D4	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM2	8011D1D4	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM3	8011D1EC	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM4	8011D1F4	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM5	8011D238	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM6	8011D238	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM7	8011D23C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM8	8011D240	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM9	8011D248	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM10	8011D24C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM11	8011D250	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM12	8011D254	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM13	8011D258	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM14	8011D25C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM15	8011D260	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM16	8011D268	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM17	8011D26C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM18	8011D27C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM19	8011D284	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM20	8011D298	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM21	8011D2A4	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM22	8011D2AC	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM23	8011D2B8	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM24	8011D2C0	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM25	8011D2C4	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM26	8011D2CC	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM27	8011D2D0	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM28	8011D2D4	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM29	8011D2F0	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM30	8011D310	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM31	8011D31C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM32	8011D33C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM33	8011D350	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM34	8011D358	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM35	8011D388	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM36	8011D390	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM37	8011D3A8	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM38	8011D3A8	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM39	8011D3A8	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_launcherGrenadeSpawn	8011D3A8	flt	build/USA/src/weapons/mm1/grenade_pistol.i
+LM40	8011D3B8	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM41	8011D3C0	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM42	8011D3C4	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM43	8011D3E4	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM44	8011D3EC	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM45	8011D3F0	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM46	8011D3F4	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM47	8011D3F8	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM48	8011D3FC	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM49	8011D400	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM50	8011D408	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM51	8011D40C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM52	8011D418	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM53	8011D420	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM54	8011D424	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM55	8011D428	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM56	8011D42C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM57	8011D434	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM58	8011D43C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM59	8011D43C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM60	8011D448	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_launcherGrenadeExit	8011DB94	flt	build/USA/src/weapons/mm1/grenade_pistol.i
+LM61	8011D44C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM62	8011D450	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM63	8011D454	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM64	8011D458	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM65	8011D45C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM66	8011D460	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM67	8011D468	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM68	8011D488	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM69	8011D494	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM70	8011D498	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM71	8011D49C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM72	8011D4A0	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM73	8011D4A8	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM74	8011D4F0	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM75	8011D518	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM76	8011D530	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM77	8011D538	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM78	8011D544	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM79	8011D554	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM80	8011D560	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM81	8011D564	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM82	8011D56C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM83	8011D578	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM84	8011D580	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM85	8011D584	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM86	8011D58C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM87	8011D59C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM88	8011D5A8	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM89	8011D5B8	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM90	8011D6C0	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM91	8011D6C8	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM92	8011D6D0	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM93	8011D6D4	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM94	8011D704	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM95	8011D704	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM96	8011D704	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_launcherGrenadeFly	8011D704	flt	build/USA/src/weapons/mm1/grenade_pistol.i
+LM97	8011D710	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM98	8011D718	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM99	8011D71C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM100	8011D738	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM101	8011D73C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM102	8011D740	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM103	8011D744	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM104	8011D74C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM105	8011D750	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM106	8011D754	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM107	8011D758	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM108	8011D75C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM109	8011D76C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM110	8011D76C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM111	8011D770	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM112	8011D774	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM113	8011D778	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM114	8011D780	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM115	8011D784	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM116	8011D788	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM117	8011D78C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM118	8011D794	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM119	8011D7A0	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM120	8011D7B4	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM121	8011D7BC	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM122	8011D7C4	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM123	8011D7CC	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM124	8011D7D0	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM125	8011D7D4	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM126	8011D7D8	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM127	8011D7DC	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM128	8011D7E8	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM129	8011D7F4	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM130	8011D804	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM131	8011D808	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM132	8011D808	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM133	8011D810	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM134	8011D814	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM135	8011D818	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM136	8011D81C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM137	8011D824	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM138	8011D838	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM139	8011D83C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM140	8011D840	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM141	8011D848	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM142	8011D850	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM143	8011D864	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM144	8011D878	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM145	8011D884	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM146	8011D8CC	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM147	8011D8DC	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM148	8011D8EC	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM149	8011D8F0	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM150	8011D8F8	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM151	8011D92C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM152	8011D934	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM153	8011DA20	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM154	8011DA34	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM155	8011DA40	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM156	8011DA44	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM157	8011DA48	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM158	8011DA50	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM159	8011DA54	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM160	8011DA58	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM161	8011DA5C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM162	8011DA64	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM163	8011DA74	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM164	8011DA78	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM165	8011DA7C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM166	8011DA80	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM167	8011DA84	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM168	8011DABC	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM169	8011DAC0	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM170	8011DB04	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM171	8011DB18	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM172	8011DB20	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM173	8011DB28	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM174	8011DB40	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM175	8011DB68	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM176	8011DB68	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM177	8011DB68	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_launcherGrenadeBlast	8011DB68	flt	build/USA/src/weapons/mm1/grenade_pistol.i
+LM178	8011DB68	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM179	8011DB68	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM180	8011DB70	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM181	8011DB7C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM182	8011DB84	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM183	8011DB8C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM184	8011DB94	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM185	8011DB94	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM186	8011DB94	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM187	8011DBA8	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM188	8011DBAC	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM189	8011DBB4	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM190	8011DBBC	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM191	8011DBC4	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM192	8011DBD8	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+_gGrenadePistolShellStateHandlers	8011D1C4	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM193	8011DBD8	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM194	8011DBD8	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM195	8011DBDC	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM196	8011DBE0	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM197	8011DBE4	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM198	8011DC0C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM199	8011DC2C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+LM200	8011DC3C	fl	build/USA/src/weapons/mm1/grenade_pistol.i
+__romPos	000102A8	al	
+mm1_DATA_END	8012D468	f	
+playerActorResetChildSlots	801038F8	a	
+gMm1WeaponModel	8011E494	f	
+gameGetTaskSlot	8002D22C	a	
+worldCoordGetOriginAudioPan	800D937C	a	
+mm1_BSS_SIZE	00000000	a	
+worldCollisionClearContacts	800E1A6C	a	
+D_80114F94	80114F94	a	
+taskSpawn	8002CFDC	a	
+gGfxViewCoord	80070F10	a	
+worldCollisionProjectGroundCoord	800EA02C	a	
+rcos	8003D108	a	
+taskKill	8002CCB8	a	
+gEffectSpriteAtlasFrames	80111E48	a	
+playerActorQueryWeaponLoads	80106264	a	
+gEffectUnitQuadCorners	80111E38	a	
+playerActorPlayChildSlotsWithBlend	80103A18	a	
+mm1_ROM_END	000102A8	a	
+gpuSetPrimitiveBlendMode	800EC914	a	
+weaponRecordUse	80106518	a	
+ratan2	8003D9C8	a	
+D_80114F98	80114F98	a	
+mm1_RODATA_END	8011D1D4	f	
+worldCollisionUnlinkBody	800E1638	a	
+mm1_DATA_SIZE	0000F82C	a	
+gGpuCurrentOt	800710A0	a	
+gMcSaveData	80072168	a	
+worldCollisionCountContactsByKind	800E1A1C	a	
+worldCollisionSurfaceClassFromMask	800E1ACC	a	
+gfxMakeRelativeTransform	800A8864	a	
+gWorldCollisionSurfacePropertiesTables	8010CBB8	a	
+grenadePistolShellTask	8011DBD8	ft	
+playerActorReadAttackButton	801060E0	a	
+gAyaIdleClip	8011E648	f	
+gGameSession	8005ED64	a	
+gPlayerActorAttachmentParentParts	80112E04	a	
+mm1_BSS_END	8012D468	f	
+sndEvtRequestScriptStop	800542D0	a	
+worldCollisionResolveResponsePushback	800E0FEC	a	
+mm1_TEXT_START	8011D1D4	f	
+gfxReadMatrixZAxis	8003C768	a	
+mm1ShellTask	8011DBD8	ft	
+worldCollisionLinkBody	800E15AC	a	
+D_80073BA9	80073BA9	a	
+effectKillTask	800EC7E4	a	
+mm1AttackState	8011D1D4	ft	
+effectDrawGouraudDisc	800EAEB8	a	
+mm1_ROM_START	00000000	a	
+mm1_DATA_START	8011DC3C	f	
+playerActorTrackLockTarget	80103F70	a	
+gfxRotMatrixZ	8003CB80	a	
+worldCoordPlaySound	801064A4	a	
+gGpuPrimCursor	80071190	a	
+worldCoordGetOriginAudioDepth	800D9340	a	
+effectDrawRaisedGlowBand	800EB9B0	a	
+memCalloc	8002D978	a	
+effectSpawn	800EA478	a	
+playerActorSpawnGrenadeProjectile	80104490	a	
+GsWSMATRIX	80071138	a	
+mm1_VRAM_END	8012D468	f	
+D_80073BAA	80073BAA	a	
+effectDrawOuterGlowBand	800EAA0C	a	
+mm1_TEXT_SIZE	00000A68	a	
+rsin	8003D038	a	
+mm1_VRAM	8011D1C0	f	
+worldCollisionProbeGridSegment	800DE7CC	a	
+mm1_RODATA_START	8011D1C0	f	
+gMm1ShellModel	8012D444	f	
+gPlayerStatus	80073B88	a	
+mm1_bss_VRAM	8012D468	f	
+equipmentConsumeWeaponLoad	800B6DA4	a	
+gRandomLcgState	80070F60	a	
+mm1_TEXT_END	8011DC3C	f	
+VectorNormalSS	8003D5D8	a	
+grenadePistolAttackState	8011D1D4	ft	
+D_8007218A	8007218A	a	
+Gfx_ViewWorldMtx	80070F34	a	
+effectDrawScreenTint	800EA858	a	
+equipmentGetWeaponLoad	800BAFE0	a	
+playerActorFinishWeaponAttack	80106550	a	
+gPlayerActorWeaponReaches	80112F60	a	
+worldCollisionInitContacts	800E18E0	a	
+gMm1PlayerAnimationBank	8012D184	f	
+gfxRotMatrixX	8003C788	a	
+gWorldCoordTransientPointLights	80114F30	a	
+gDisplayState	80070F68	a	
+playerActorSpawnWeaponImpact	80105BC4	a	
+playerActorIsSlotAdvancingLinearly	80105894	a	
+sndEvtRequestScriptStart	8005414C	a	
+mm1_RODATA_SIZE	00000014	a	
+animationGetCurrentRecord	800B4668	a	
+memFillBytes	8002D894	a	
+RotMatrixX	8004BE58	a	
+taskReparent	8002D14C	a	
+gRoomEffectState	80115740	a	
+actorRenderComposeCoord	80098F58	a	
+mm1_BSS_START	8012D468	f	
+playerActorSetWeaponAttackFlags	80106238	a	

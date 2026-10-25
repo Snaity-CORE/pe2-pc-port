@@ -1,0 +1,32 @@
+_MACRO_INC_GUARD	00000001	al	build/USA/src/mappic/mappic_s4_05/mappic_s4_05.i
+_gMappicS405DumpingHoleShapeSkeleton	8012EF34	l	build/USA/src/mappic/mappic_s4_05/mappic_s4_05.i
+_gMappicS405DumpingHoleShapePartVerts	8012EF58	l	build/USA/src/mappic/mappic_s4_05/mappic_s4_05.i
+_gMappicS405DumpingHoleShapeVerts	8012EF5C	l	build/USA/src/mappic/mappic_s4_05/mappic_s4_05.i
+_gMappicS405DumpingHoleShapeStream	8012EF9C	l	build/USA/src/mappic/mappic_s4_05/mappic_s4_05.i
+_gMappicS405GarbageIncineratorShapeSkeleton	8012F014	l	build/USA/src/mappic/mappic_s4_05/mappic_s4_05.i
+_gMappicS405GarbageIncineratorShapePartVerts	8012F038	l	build/USA/src/mappic/mappic_s4_05/mappic_s4_05.i
+_gMappicS405GarbageIncineratorShapeVerts	8012F03C	l	build/USA/src/mappic/mappic_s4_05/mappic_s4_05.i
+_gMappicS405GarbageIncineratorShapeStream	8012F0BC	l	build/USA/src/mappic/mappic_s4_05/mappic_s4_05.i
+_gMappicS405IncineratorControlRoomShapeSkeleton	8012F170	l	build/USA/src/mappic/mappic_s4_05/mappic_s4_05.i
+_gMappicS405IncineratorControlRoomShapePartVerts	8012F194	l	build/USA/src/mappic/mappic_s4_05/mappic_s4_05.i
+_gMappicS405IncineratorControlRoomShapeVerts	8012F198	l	build/USA/src/mappic/mappic_s4_05/mappic_s4_05.i
+_gMappicS405IncineratorControlRoomShapeStream	8012F1C8	l	build/USA/src/mappic/mappic_s4_05/mappic_s4_05.i
+_gMappicS405ElevatorHallShapeSkeleton	8012F21C	l	build/USA/src/mappic/mappic_s4_05/mappic_s4_05.i
+_gMappicS405ElevatorHallShapePartVerts	8012F240	l	build/USA/src/mappic/mappic_s4_05/mappic_s4_05.i
+_gMappicS405ElevatorHallShapeVerts	8012F244	l	build/USA/src/mappic/mappic_s4_05/mappic_s4_05.i
+_gMappicS405ElevatorHallShapeStream	8012F2B4	l	build/USA/src/mappic/mappic_s4_05/mappic_s4_05.i
+__romPos	00000420	al	
+mappic_s4_05_RODATA_START	8012EF30		
+mappic_s4_05_VRAM_END	8012F350		
+gMappicS405GarbageIncineratorShape	8012F14C		
+mappic_s4_05_DATA_END	8012F350		
+gMappicS405DumpingHoleShape	8012EFF0		
+gMappicS405IncineratorControlRoomShape	8012F1F8		
+mappic_s4_05_ROM_END	00000420	a	
+mappic_s4_05_RODATA_SIZE	00000004	a	
+mappic_s4_05_DATA_SIZE	0000041C	a	
+mappic_s4_05_VRAM	8012EF30		
+mappic_s4_05_RODATA_END	8012EF34		
+mappic_s4_05_DATA_START	8012EF34		
+mappic_s4_05_ROM_START	00000000	a	
+gMappicS405ElevatorHallShape	8012F32C		

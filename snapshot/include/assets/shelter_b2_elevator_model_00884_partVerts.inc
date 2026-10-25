@@ -1,0 +1,2 @@
+/* Generated from assets/USA/pe2pkg/shelter_b2_elevator.pe2pkg; model at 0x98C. */
+    0,

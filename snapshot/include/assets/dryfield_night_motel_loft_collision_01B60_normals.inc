@@ -1,0 +1,10 @@
+/* Generated from assets/USA/pe2pkg/dryfield_night_motel_loft.pe2pkg; grid header at 0x1B60. */
+    { 0, 0, 0, 0 },
+    { 0, 0, 0, 0 },
+    { 0, 0, 0, 0 },
+    { -0, 0, 0, 0 },
+    { 0, 0, -0, 0 },
+    { 0, -0, 0, 0 },
+    { 0, 0, 0, 0 },
+    { -0, 0, 0, 0 },
+    { 0, 0, 0, 0 },

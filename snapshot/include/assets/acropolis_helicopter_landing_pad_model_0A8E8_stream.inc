@@ -1,0 +1,12 @@
+/* Generated from assets/USA/pe2pkg/acropolis_helicopter_landing_pad.pe2pkg; model at 0xA990. */
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0,
