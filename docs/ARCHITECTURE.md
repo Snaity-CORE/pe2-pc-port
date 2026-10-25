@@ -13,6 +13,11 @@
 3. **Game C stays close to upstream.** The decomp is still active (renaming and
    documenting code). Port changes go into the fork behind `#ifdef PC_PORT`,
    kept small and easy to rebase.
+4. **AI-assisted, human-supervised.** Much of the port was written with an AI
+   assistant (Claude Code), which is why it moved fast. Snaity directs the
+   work, reviews every change, tests it in the game against the console's
+   behaviour and makes every commit (see the README's
+   [How it was made](../README.md#how-it-was-made)).
 
 ## Layers
 

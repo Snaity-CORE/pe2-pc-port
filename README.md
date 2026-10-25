@@ -39,6 +39,19 @@ It plays as the console does and adds what a PC can, all optional:
 
 Memory cards are raw `.mcd` images, so saves move both ways with DuckStation.
 
+## How it was made
+
+This port was developed with AI assistance: much of its code, tools and
+documentation was written with [Claude Code](https://claude.com/claude-code)
+(Anthropic). That is why it came together quickly.
+
+Every step was directed and supervised by a person. Snaity set the goals
+and the rules the project keeps (no game data, no Sony code, the game's own
+behaviour as the reference), reviewed each change, played and tested it in
+the game, compared it with the console through DuckStation, and made every
+commit. Bugs were tracked down by measuring the running game, not by
+guesswork, and fixes went in only after they held up in play.
+
 ## Playing
 
 Build it as [docs/BUILDING.md](docs/BUILDING.md) explains, then start
@@ -79,7 +92,7 @@ setting.
 | `port/` | C side: the PC's own Psy-Q headers and library routines, software GTE |
 | `crates/pe2-host/` | Rust host: launcher, window, graphics, sound, CD and the rest of the runtime |
 | `tools/` | Build, debugging and verification tools |
-| `docs/` | [Architecture](docs/ARCHITECTURE.md) and [building](docs/BUILDING.md) |
+| `docs/` | [Architecture](docs/ARCHITECTURE.md), [building](docs/BUILDING.md), [modding](docs/MODDING.md) and [releasing](docs/RELEASING.md) |
 
 ## Golden rule
 
@@ -89,7 +102,9 @@ runs `tools/check_no_game_data.py` and blocks them.
 
 ## Credits
 
-- **Port**: Adriano Teodoro.
+- **Port**: Snaity (Adriano Teodoro), developed with AI assistance (Claude
+  Code, by Anthropic) under Snaity's direction and review (see
+  [How it was made](#how-it-was-made)).
 - **Decompilation**: [GabeRealB](https://github.com/GabeRealB/parasite-eve-2-decomp)
   and its contributors. The port stands on their work.
 - **Parasite Eve II**: Square, and everyone who made the original game.
