@@ -1,7 +1,9 @@
-//! Dialogue in a mod's font (docs/MODDING.md).
+//! Dialogue in a high-definition font: the built-in one (DejaVu Sans Bold,
+//! res/fonts, with [video] hd_dialogue, the default) or a mod's
+//! `fonts/captions.ttf` (or `.otf`, docs/MODDING.md), which wins.
 //!
-//! A mod's `fonts/captions.ttf` (or `.otf`) draws the dialogue instead of
-//! the game's glyph pictures: every CAP file the game loads gets a copy
+//! The font draws the dialogue instead of the game's glyph pictures: every
+//! CAP file the game loads gets a copy
 //! (translate.rs) whose lines use glyphs drawn here from that font, put in
 //! the file's glyph page below the game's own, as the translations' are.
 //! The game still lays the text out by its glyph table (now the font's
@@ -16,7 +18,6 @@
 //! not known (and the speakers' name labels) stay the game's.
 
 use std::collections::HashMap;
-use std::path::PathBuf;
 use std::sync::{Arc, Mutex, OnceLock};
 
 use ab_glyph::{Font as _, FontVec, PxScale, ScaleFont as _, point};
@@ -30,6 +31,9 @@ const SHADES: [(u8, f32); 7] = [(8, 16.0), (7, 40.0), (6, 72.0), (5, 104.0), (4,
 
 /// Finer texels per page texel of the drawn glyphs.
 pub const SCALE: usize = 8;
+
+/// The built-in font (its license: res/fonts/LICENSE-DejaVu.txt).
+const BUILT_IN: &[u8] = include_bytes!("../../res/fonts/DejaVuSans-Bold.ttf");
 
 /// The game's glyph cells: 14 rows, bottom at the pen. The font's baseline
 /// is 3 rows above the bottom (its descenders below, then the outline).
@@ -54,56 +58,63 @@ struct Loaded {
     px: f32,
     tracking: i32,
     weight: f32,
-    path: PathBuf,
 }
 
 fn loaded() -> Option<&'static Loaded> {
     static LOADED: OnceLock<Option<Loaded>> = OnceLock::new();
     LOADED
         .get_or_init(|| {
-            if !super::enabled() {
-                return None;
-            }
-            // The highest priority mod's.
-            let dir = super::installed()
-                .into_iter()
-                .filter(|m| m.enabled)
-                .map(|m| m.dir.join("fonts"))
-                .find(|d| d.join("captions.ttf").is_file() || d.join("captions.otf").is_file())?;
-            let path = ["captions.ttf", "captions.otf"].iter().map(|n| dir.join(n)).find(|p| p.is_file())?;
-            let settings: Settings = match std::fs::read_to_string(dir.join("captions.toml")) {
-                Ok(t) => toml::from_str(&t).unwrap_or_else(|e| {
-                    eprintln!("pe2: mods: {}: {e}", dir.join("captions.toml").display());
-                    Settings::default()
-                }),
-                Err(_) => Settings::default(),
-            };
-            let font = match std::fs::read(&path)
-                .map_err(|e| e.to_string())
-                .and_then(|b| FontVec::try_from_vec(b).map_err(|e| e.to_string()))
-            {
-                Ok(f) => f,
-                Err(e) => {
-                    eprintln!("pe2: mods: {}: {e}", path.display());
-                    return None;
+            let (font, settings) = match mod_font() {
+                Some(found) => found,
+                None if crate::config::get().video.hd_dialogue.unwrap_or(true) => {
+                    let font = FontVec::try_from_vec(BUILT_IN.to_vec()).expect("the built-in font loads");
+                    eprintln!("pe2: video: dialogue drawn in the built-in font (DejaVu Sans Bold)");
+                    (font, Settings::default())
                 }
+                None => return None,
             };
             let probe = font.glyph_id('H').with_scale(100.0);
             let cap = font.outline_glyph(probe)?.px_bounds().height();
             let px = 100.0 * settings.cap_height.unwrap_or(9.0) / cap.max(1.0);
-            eprintln!("pe2: mods: dialogue drawn in {}", path.display());
-            Some(Loaded {
-                font,
-                px,
-                tracking: settings.tracking.unwrap_or(0),
-                weight: settings.weight.unwrap_or(0.0),
-                path,
-            })
+            Some(Loaded { font, px, tracking: settings.tracking.unwrap_or(0), weight: settings.weight.unwrap_or(0.0) })
         })
         .as_ref()
 }
 
-/// Whether a mod's font draws the dialogue.
+/// The highest priority mod's font and its settings, with mods on.
+fn mod_font() -> Option<(FontVec, Settings)> {
+    if !super::enabled() {
+        return None;
+    }
+    let dir = super::installed()
+        .into_iter()
+        .filter(|m| m.enabled)
+        .map(|m| m.dir.join("fonts"))
+        .find(|d| d.join("captions.ttf").is_file() || d.join("captions.otf").is_file())?;
+    let path = ["captions.ttf", "captions.otf"].iter().map(|n| dir.join(n)).find(|p| p.is_file())?;
+    let settings: Settings = match std::fs::read_to_string(dir.join("captions.toml")) {
+        Ok(t) => toml::from_str(&t).unwrap_or_else(|e| {
+            eprintln!("pe2: mods: {}: {e}", dir.join("captions.toml").display());
+            Settings::default()
+        }),
+        Err(_) => Settings::default(),
+    };
+    match std::fs::read(&path)
+        .map_err(|e| e.to_string())
+        .and_then(|b| FontVec::try_from_vec(b).map_err(|e| e.to_string()))
+    {
+        Ok(font) => {
+            eprintln!("pe2: mods: dialogue drawn in {}", path.display());
+            Some((font, settings))
+        }
+        Err(e) => {
+            eprintln!("pe2: mods: {}: {e}", path.display());
+            None
+        }
+    }
+}
+
+/// Whether a font (the built-in one or a mod's) draws the dialogue.
 pub fn active() -> bool {
     loaded().is_some()
 }
@@ -152,7 +163,7 @@ fn draw(font: &Loaded, c: char) -> Option<Drawn> {
     let id = font.font.glyph_id(c);
     if id.0 == 0 && !c.is_whitespace() {
         if crate::runtime::trace("text") {
-            eprintln!("[text] {}: no glyph for {c:?}", font.path.display());
+            eprintln!("[text] the dialogue font has no glyph for {c:?}");
         }
         return None;
     }

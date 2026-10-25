@@ -44,7 +44,8 @@ pub struct Cheats {
 #[derive(Debug, Default, Deserialize)]
 #[serde(default, deny_unknown_fields)]
 pub struct Mods {
-    /// Use the mods in the data folder's mods/ (default on).
+    /// Use the mods in the data folder's mods/ (default on, with
+    /// [general] experimental).
     pub enabled: Option<bool>,
     /// No longer used (the extract saves everything mods replace); read so
     /// settings that still have it load.
@@ -102,6 +103,9 @@ pub struct Video {
     pub hide_cursor: Option<bool>,
     /// 3D textures: "nearest" (the default) or "bilinear".
     pub texture_filter: Option<String>,
+    /// Dialogue drawn from a high-definition font (the built-in one, or a
+    /// mod's) instead of the game's glyph pictures (default on).
+    pub hd_dialogue: Option<bool>,
     /// Pre-rendered backgrounds and full-screen pictures: "nearest" (the
     /// default) or "bicubic".
     pub background_filter: Option<String>,
@@ -122,6 +126,8 @@ pub struct General {
     pub confirm_exit: Option<bool>,
     /// The launcher's language: "en" (the default) or "pt".
     pub language: Option<String>,
+    /// Experimental features: mods (default off).
+    pub experimental: Option<bool>,
 }
 
 #[derive(Debug, Default, Deserialize)]

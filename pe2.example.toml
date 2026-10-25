@@ -16,6 +16,8 @@
 # Esc asks before quitting (Cancel is the default: Enter or Esc again keep
 # playing); false quits at once.
 # confirm_exit = true
+# Experimental features: mods (see [mods] below).
+# experimental = false
 
 [discs]
 # Your own dumps of Parasite Eve II (USA), .cue or .chd. With these set,
@@ -40,6 +42,9 @@ scale = 4
 # "nearest" (blocks of console pixels, as now) or "bicubic" (enlarged
 # smoothly; text and the interface stay sharp).
 # background_filter = "nearest"
+# Dialogue drawn from a high-definition font (built in: DejaVu Sans Bold; a
+# mod's own font wins) instead of the game's glyph pictures.
+# hd_dialogue = true
 # Smooth motion: where the game runs at 30 fps, frames in between at 60,
 # with the 3D models halfway (backgrounds and the interface are unchanged).
 # No added delay. Needs subpixel.
@@ -83,7 +88,8 @@ scale = 4
 # cross = "South"
 
 [mods]
-# Mods are folders in the data folder's mods/ (see docs/MODDING.md).
+# Mods are folders in the data folder's mods/ (see docs/MODDING.md). They
+# are an experimental feature: they load only with [general] experimental.
 # enabled = true
 
 [memcard]

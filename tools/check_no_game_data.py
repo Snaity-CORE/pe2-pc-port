@@ -28,7 +28,10 @@ FORBIDDEN_SUFFIXES = {
 }
 # Binary files larger than this need an explicit allowlist entry.
 MAX_BINARY_BYTES = 64 * 1024
-ALLOWED_BINARIES: set[str] = set()
+ALLOWED_BINARIES: set[str] = {
+    # The built-in dialogue font (DejaVu, its license beside it).
+    "crates/pe2-host/res/fonts/DejaVuSans-Bold.ttf",
+}
 
 # Byte signatures that only appear in disc-derived data.
 SIGNATURES = {

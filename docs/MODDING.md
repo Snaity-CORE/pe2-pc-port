@@ -4,6 +4,11 @@ PE2PC can show mods: folders of your own files that change what the game
 shows, without touching the game's data or its logic. This page explains how
 to make one, and the design the mod support follows as it grows.
 
+Mods are an **experimental feature**: they load only with experimental
+features on (the launcher's Settings, General, Experimental; or
+`[general] experimental = true` in `pe2.toml`), and the launcher shows its
+Mods screen only then. `PE2_MODS=1` turns mods on for one run regardless.
+
 > Mods contain only their authors' work. The game's own files never go into a
 > mod (assets are found by a hash of what they replace, so a mod does not need
 > them), and nothing taken from the discs ever goes into this repository.
@@ -529,11 +534,12 @@ shows.
 
 ### Dialogue in your own font
 
-A mod's `fonts/captions.ttf` (or `.otf`) draws all the dialogue instead of
-the game's glyph pictures, its translations included (and then any
-character the font has, accents and all, with no marks drawn by PE2PC). The
-highest-priority enabled mod that has one is used. An optional
-`fonts/captions.toml` tunes it:
+PE2PC draws the dialogue from a high-definition font by default, its own
+DejaVu Sans Bold (`[video] hd_dialogue`, on unless turned off). A mod's
+`fonts/captions.ttf` (or `.otf`) replaces that font for all the dialogue,
+its translations included (and then any character the font has, accents
+and all, with no marks drawn by PE2PC). The highest-priority enabled mod
+that has one is used. An optional `fonts/captions.toml` tunes it:
 
 ```toml
 cap_height = 9.0   # a capital's height in the game's pixels (the game's: 9)

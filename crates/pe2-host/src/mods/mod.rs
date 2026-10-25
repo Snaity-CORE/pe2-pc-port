@@ -158,8 +158,14 @@ pub fn start(discs: &[PathBuf]) {
 
 /// Whether mods are used: PE2_MODS=0/1, else pe2.toml's [mods] enabled,
 /// else on.
+/// Mods are on with [general] experimental and [mods] enabled (PE2_MODS=1
+/// or 0 says instead).
 fn enabled() -> bool {
-    std::env::var("PE2_MODS").ok().map(|v| v.trim() != "0").or(crate::config::get().mods.enabled).unwrap_or(true)
+    let config = crate::config::get();
+    std::env::var("PE2_MODS")
+        .ok()
+        .map(|v| v.trim() != "0")
+        .unwrap_or(config.general.experimental.unwrap_or(false) && config.mods.enabled.unwrap_or(true))
 }
 
 /// `len` bytes at RAM address `address` of a PS-X EXE (its header, then

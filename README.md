@@ -27,7 +27,9 @@ It plays as the console does and adds what a PC can, all optional:
 - **Modern movement**: the stick points where to go, relative to the camera,
   in exploration and in battle; or the original tank controls with a quick
   turn (back + run).
-- **Mods**: replace the pre-rendered backgrounds and full-screen pictures
+- **Sharp dialogue**: the dialogue drawn from a high-definition font (the
+  built-in DejaVu Sans Bold) instead of the game's small glyph pictures.
+- **Mods** (experimental, turned on in Settings): replace the pre-rendered backgrounds and full-screen pictures
   and the textures with your own at any resolution, the music with
   recordings, the movies with video files, any of the game's files, and
   the dialogue with translations; cheats and memory patches; the game's
@@ -113,6 +115,9 @@ runs `tools/check_no_game_data.py` and blocks them.
   Specifications), which the runtime's GPU, SPU, GTE, MDEC and CD-ROM are
   written from.
 - **Sub-pixel precision**: the idea of PGXP, by iCatButler.
+- **Font**: [DejaVu Sans](https://dejavu-fonts.github.io/) Bold, built in for
+  the dialogue (Bitstream Vera license with DejaVu's changes in the public
+  domain; `crates/pe2-host/res/fonts/LICENSE-DejaVu.txt`).
 - **Reference**: [DuckStation](https://github.com/stenzek/duckstation), used
   to compare behaviour (none of its code is used).
 - **Libraries**: [wgpu](https://wgpu.rs), [winit](https://github.com/rust-windowing/winit),
@@ -131,4 +136,5 @@ runs `tools/check_no_game_data.py` and blocks them.
 Parasite Eve II is © Square (now Square Enix). This project is not affiliated
 with or endorsed by them, and includes none of the game's data: you supply
 your own copy. The project's own code is released under CC0-1.0; the
-decompilation in `decomp/` keeps its own license.
+decompilation in `decomp/` and the fonts in `crates/pe2-host/res/fonts/`
+keep their own licenses.

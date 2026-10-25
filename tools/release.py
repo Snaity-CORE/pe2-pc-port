@@ -11,7 +11,7 @@ where they are, not on GitHub's runners. For version X.Y.Z:
 3. checks the build carries no game data: the repository
    (check_no_game_data.py) and the exe (check_exe_game_data.py);
 4. packages dist/pe2-pc-port-vX.Y.Z-windows-x86.zip: pe2.exe, the example
-   settings, README and the modding guide;
+   settings, README, the modding guide and the embedded font's license;
 5. tags the commit vX.Y.Z, pushes the tag and opens a draft release with
    the zip, to review and publish on GitHub.
 
@@ -41,6 +41,8 @@ PACKAGE = [
     (ROOT / "pe2.example.toml", "pe2.example.toml"),
     (ROOT / "README.md", "README.md"),
     (ROOT / "docs" / "MODDING.md", "MODDING.md"),
+    # The font pe2.exe embeds: its license goes with it.
+    (ROOT / "crates" / "pe2-host" / "res" / "fonts" / "LICENSE-DejaVu.txt", "LICENSE-DejaVu.txt"),
 ]
 
 

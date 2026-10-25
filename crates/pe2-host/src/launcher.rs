@@ -328,6 +328,8 @@ impl Lang {
 struct Settings {
     language: Lang,
     confirm_exit: bool,
+    /// [general] experimental: mods.
+    experimental: bool,
     discs: [String; 2],
     scale: i64,
     subpixel: bool,
@@ -337,6 +339,8 @@ struct Settings {
     interpolation: bool,
     crt: bool,
     integer_scaling: bool,
+    /// [video] hd_dialogue.
+    hd_dialogue: bool,
     /// [video] graphics_api: "auto", "vulkan" or "opengl".
     graphics_api: String,
     /// [video] window_size: "auto" or "<width>x<height>" in pixels.
@@ -368,6 +372,7 @@ impl Settings {
         Settings {
             language: Lang::from_code(get("general", "language").and_then(|v| v.as_str())),
             confirm_exit: flag("general", "confirm_exit", true),
+            experimental: flag("general", "experimental", false),
             discs: [text("discs", "disc1"), text("discs", "disc2")],
             scale: get("video", "scale").and_then(|v| v.as_integer()).unwrap_or(1).clamp(1, 8),
             subpixel: flag("video", "subpixel", true),
@@ -377,6 +382,7 @@ impl Settings {
             interpolation: flag("video", "frame_interpolation", true),
             crt: flag("video", "crt", false),
             integer_scaling: flag("video", "integer_scaling", false),
+            hd_dialogue: flag("video", "hd_dialogue", true),
             graphics_api: get("video", "graphics_api")
                 .and_then(|v| v.as_str())
                 .filter(|n| crate::gfx::APIS.iter().any(|(a, _)| a == n))
@@ -424,6 +430,7 @@ impl Settings {
         use toml_edit::value;
         doc["general"]["language"] = value(self.language.code());
         doc["general"]["confirm_exit"] = value(self.confirm_exit);
+        doc["general"]["experimental"] = value(self.experimental);
         let mut path = |table: &str, key: &str, text: &str| {
             if text.trim().is_empty() {
                 if let Some(t) = doc.get_mut(table).and_then(|t| t.as_table_like_mut()) {
@@ -450,6 +457,7 @@ impl Settings {
         doc["video"]["frame_interpolation"] = value(self.interpolation);
         doc["video"]["crt"] = value(self.crt);
         doc["video"]["integer_scaling"] = value(self.integer_scaling);
+        doc["video"]["hd_dialogue"] = value(self.hd_dialogue);
         doc["video"]["graphics_api"] = value(self.graphics_api.as_str());
         doc["video"]["window_size"] = value(self.window_size.as_str());
         doc["mods"]["enabled"] = value(self.mods_enabled);
@@ -780,7 +788,7 @@ impl Launcher {
                 );
             }
         }
-        let buttons = [
+        let mut buttons = vec![
             (Icon::Play, lang.t("Play", "Jogar"), ready && !running, true),
             (Icon::Settings, lang.t("Settings", "Configurações"), !running, false),
             (Icon::Controls, lang.t("Controls", "Controles"), !running, false),
@@ -788,6 +796,10 @@ impl Launcher {
             (Icon::Setup, lang.t("Setup", "Configuração inicial"), !running, false),
             (Icon::Exit, lang.t("Exit", "Sair"), true, false),
         ];
+        // Mods are an experimental feature.
+        if !self.saved.experimental {
+            buttons.retain(|b| !matches!(b.0, Icon::Mods));
+        }
         // The controller's or keyboard's choice: up and down skip the
         // buttons that are off; Accept (or Enter) presses.
         let keys = ui.ctx().input(|i| {
@@ -995,6 +1007,12 @@ impl Launcher {
         f.checkbox(ui, &mut e.bilinear, lang.t("Smooth 3D textures (bilinear)", "Suavizar texturas 3D (bilinear)"), hi);
         f.checkbox(
             ui,
+            &mut e.hd_dialogue,
+            lang.t("Dialogue in a high-definition font", "Diálogos em fonte de alta definição"),
+            true,
+        );
+        f.checkbox(
+            ui,
             &mut e.smooth_backgrounds,
             lang.t("Smooth backgrounds (bicubic)", "Suavizar cenários (bicúbico)"),
             hi,
@@ -1103,6 +1121,15 @@ impl Launcher {
                         ui,
                         &mut self.edit.confirm_exit,
                         lang.t("Ask before Esc quits", "Perguntar antes de Esc sair"),
+                        true,
+                    );
+                });
+                ui.add_space(12.0);
+                card(ui, lang.t("Experimental", "Experimental"), |ui| {
+                    self.focus.checkbox(
+                        ui,
+                        &mut self.edit.experimental,
+                        lang.t("Experimental features (mods)", "Recursos experimentais (mods)"),
                         true,
                     );
                 });
@@ -1809,6 +1836,8 @@ mod tests {
         let mut s = Settings::load(&doc);
         s.language = Lang::Pt;
         s.confirm_exit = false;
+        s.experimental = true;
+        s.hd_dialogue = false;
         s.discs = [r"D:\Games\PE2 (Disc 1).chd".into(), String::new()];
         s.scale = 6;
         s.subpixel = false;
@@ -1828,6 +1857,8 @@ mod tests {
         let config: crate::config::Config = toml::from_str(&text).expect("the game reads it");
         assert_eq!(config.general.language.as_deref(), Some("pt"));
         assert_eq!(config.general.confirm_exit, Some(false));
+        assert_eq!(config.general.experimental, Some(true));
+        assert_eq!(config.video.hd_dialogue, Some(false));
         assert_eq!(config.discs.disc1.as_deref(), Some(Path::new(r"D:\Games\PE2 (Disc 1).chd")));
         assert_eq!(config.discs.disc2, None);
         assert_eq!(config.video.scale, Some(6));
