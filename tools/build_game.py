@@ -22,6 +22,7 @@ import argparse
 import concurrent.futures
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -35,7 +36,11 @@ LINK_DIR = BUILD / "link"
 GAME_DIR = BUILD / "game"
 TARGET = "i686-pc-windows-msvc"
 
-INCLUDES = [
+# PE2_ASSET_INCLUDES=<dir> (experiments): a folder of asset includes used
+# before the decomp's generated ones (decomp/build/include/assets).
+ASSET_OVERRIDE = [Path(p) for p in [os.environ.get("PE2_ASSET_INCLUDES")] if p]
+
+INCLUDES = ASSET_OVERRIDE + [
     BUILD / "port_include",
     ROOT / "port" / "include",
     DECOMP / "include",
@@ -147,10 +152,16 @@ WRAP_DIR = BUILD / "wrap"
 
 
 def static_functions(units: list[dict]) -> dict[str, list[str]]:
-    """Static functions the PSX build emitted for each unit (from its image's
-    ELF symbols, attributed by the FILE symbol). clang drops static functions
-    nothing in their file references, but other images still call some of
-    them by address, so every one the console binary has must exist."""
+    """Static functions and data the PSX build emitted for each unit (from
+    its image's ELF symbols, attributed by the FILE symbol).
+
+    clang drops static functions nothing in their file references, but other
+    images still call some of them by address, so every one the console
+    binary has must exist. And static data nothing in its file writes, clang
+    takes as constant and folds its values into the code; but here it lives
+    in PSX RAM, loaded from the disc, where the game may change it. Taking
+    every one's address keeps both: the functions, and the data read from
+    memory as on the console (whatever values the build saw)."""
     sys.path.insert(0, str(ROOT / "tools"))
     import pclink
 
@@ -162,19 +173,19 @@ def static_functions(units: list[dict]) -> dict[str, list[str]]:
             by_image[image] = pclink.read_elf_symbols(pclink.image_file(image))
         file = f"build/USA/src/{unit['object']}.i"
         names = sorted({s.name for s in by_image[image]
-                        if s.file == file and s.is_local and s.typed_func
+                        if s.file == file and s.is_local and not s.is_abs
                         and s.name.isidentifier() and not s.name.startswith("__")})
         out[unit["object"]] = names
     return out
 
 
 def wrapper_source(unit: dict, keep: list[str]) -> Path:
-    """A translation unit that includes the original source, then references
-    its static functions so the compiler keeps them."""
+    """A translation unit that includes the original source, then takes the
+    address of its static functions and data (see static_functions)."""
     src = (DECOMP / unit["source"]).resolve().as_posix()
     text = f'#include "{src}"\n'
     if keep:
-        refs = ", ".join(f"(void*){n}" for n in keep)
+        refs = ", ".join(f"(void*)&{n}" for n in keep)
         text += f"static void* const pc_keep_statics[] __attribute__((used)) = {{{refs}}};\n"
     path = WRAP_DIR / f"{unit['object']}.c"
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -186,15 +197,21 @@ def wrapper_source(unit: dict, keep: list[str]) -> Path:
 def compile_unit(unit: dict, keep: list[str], cflags: list[str], stamp: Path) -> bool:
     out = OBJ_DIR / f"{unit['object']}.o"
     dep = out.with_suffix(".d")
-    src = wrapper_source(unit, keep)
-    if not outdated(out, [src, stamp, *depfile_deps(dep)]) and dep.exists():
+    original = (DECOMP / unit["source"]).resolve()
+    wrapper = WRAP_DIR / f"{unit['object']}.c"
+    if wrapper.exists() and not outdated(out, [original, stamp, *depfile_deps(dep)]) and dep.exists():
         return False
     out.parent.mkdir(parents=True, exist_ok=True)
-    cmd = ["clang", "-c", *cflags, *(f"-I{p}" for p in INCLUDES)]
+    cmd = ["clang", *cflags, *(f"-I{p}" for p in INCLUDES)]
     for name, value in unit["defines"].items():
         cmd.append(f"-D{name}" if value is None else f"-D{name}={value}")
-    cmd += ["-MD", "-MF", dep, "-o", out, src]
-    run(cmd, cwd=DECOMP)
+    # The names the PSX build has that the source declares (its symbols
+    # also include the assembler's labels).
+    preprocessed = subprocess.run([*cmd, "-E", "-P", str(original)], cwd=DECOMP, capture_output=True,
+                                  text=True, errors="replace").stdout
+    words = set(re.findall(r"[A-Za-z_]\w*", preprocessed))
+    src = wrapper_source(unit, [n for n in keep if n in words])
+    run([*cmd, "-c", "-MD", "-MF", dep, "-o", out, src], cwd=DECOMP)
     return True
 
 

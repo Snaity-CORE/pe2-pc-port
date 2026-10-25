@@ -55,11 +55,20 @@ def allowed(src: int, length: int) -> bool:
 
 
 def trivial(values) -> bool:
-    """Too regular to tell disc data from chance."""
+    """Too regular to tell disc data from chance: few distinct values, or a
+    steady step (also between 16-bit values, read from bytes: counting
+    tables of halfwords turn up anywhere)."""
     if len(set(values)) < WINDOW // 2:
         return True
     steps = {b - a for a, b in zip(values, values[1:])}
-    return len(steps) <= 3
+    if len(steps) <= 3:
+        return True
+    if isinstance(values, bytes):
+        for start in (0, 1):
+            halves = [values[i] | values[i + 1] << 8 for i in range(start, len(values) - 1, 2)]
+            if len({b - a for a, b in zip(halves, halves[1:])}) <= 3:
+                return True
+    return False
 
 
 def executable_runs(exe: bytes, path: Path) -> list[tuple[int, int, int]]:
