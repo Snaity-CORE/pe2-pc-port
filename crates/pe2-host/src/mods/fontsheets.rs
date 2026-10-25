@@ -50,29 +50,55 @@ pub fn get(sheet: u64, depth: u32) -> Option<Arc<Indexed>> {
     SHEETS.get()?.get(&(sheet, depth)).cloned()
 }
 
+/// The files of disc 1 that hold the two sheets: the menus' font and the
+/// loading captions (glyphmaps.rs).
+const FILES: [&str; 2] = ["stage0/file1", "stage0/file10"];
+
+/// Starts redrawing, on threads of its own, from `disc1`: only the two
+/// files and the executable are read, so it is done before the game draws
+/// either (the rest of what mods need comes later, mods::start).
+pub fn start(disc1: std::path::PathBuf) {
+    if !enabled() {
+        return;
+    }
+    std::thread::spawn(move || {
+        let mut disc = match crate::disc::open(&disc1) {
+            Ok(d) => d,
+            Err(e) => {
+                eprintln!("pe2: video: {}: {e}", disc1.display());
+                return;
+            }
+        };
+        let exe = crate::disc::iso9660::boot_executable(disc.as_mut()).map(|e| e.1).unwrap_or_default();
+        let sources = super::files::sources_of(disc.as_mut(), |key| FILES.contains(&key));
+        let catalog = Catalog::new(&sources);
+        build(&catalog, &exe);
+        // The renderer finds the sheets it draws in the catalog: these two
+        // at once, until the one of all the discs' sheets comes.
+        super::sheets::set_catalog(catalog);
+    });
+}
+
 /// Redraws the menus' font and the loading captions, from the sheets of
 /// `catalog` and the maps the game's executable `exe` gives.
 pub fn build(catalog: &Catalog, exe: &[u8]) {
     let since = std::time::Instant::now();
-    let mut out = HashMap::new();
     let ui = Font::new(super::capfont::BUILT_IN);
     let typewriter = Font::new(COURIER_PRIME);
-    if let Some(map) = super::glyphmaps::ui_font(catalog, exe) {
-        // The small face is wide capitals: stretched into its cells.
-        let faces = [(Some("medium"), &ui, None), (Some("large"), &ui, None), (Some("small"), &ui, Some(3.0))];
-        let scheme = Scheme { clear: 5, fill_from: 13, ink_from: 8, keep_zero: true, levels: ui_levels, weight: -0.25 };
-        if let Some(sheet) = redraw(catalog, &map, &faces, &scheme) {
-            out.insert((sheet.sheet, sheet.depth), Arc::new(sheet));
-        }
-    }
-    if let Some(map) = super::glyphmaps::loading(catalog, exe) {
-        let faces = [(None, &typewriter, None)];
-        let scheme =
-            Scheme { clear: 0, fill_from: 10, ink_from: 1, keep_zero: false, levels: loading_levels, weight: 0.15 };
-        if let Some(sheet) = redraw(catalog, &map, &faces, &scheme) {
-            out.insert((sheet.sheet, sheet.depth), Arc::new(sheet));
-        }
-    }
+    // The small face is wide capitals: stretched into its cells.
+    let ui_faces = [(Some("medium"), &ui, None), (Some("large"), &ui, None), (Some("small"), &ui, Some(3.0))];
+    let ui_scheme = Scheme { clear: 5, fill_from: 13, ink_from: 8, keep_zero: true, levels: ui_levels, weight: -0.25 };
+    let loading_faces = [(None, &typewriter, None)];
+    let loading_scheme =
+        Scheme { clear: 0, fill_from: 10, ink_from: 1, keep_zero: false, levels: loading_levels, weight: 0.15 };
+    let (ui_map, loading_map) = (super::glyphmaps::ui_font(catalog, exe), super::glyphmaps::loading(catalog, exe));
+    let sheets: Vec<Indexed> = std::thread::scope(|scope| {
+        let a = scope.spawn(|| ui_map.as_ref().and_then(|m| redraw(catalog, m, &ui_faces, &ui_scheme)));
+        let b = scope.spawn(|| loading_map.as_ref().and_then(|m| redraw(catalog, m, &loading_faces, &loading_scheme)));
+        [a, b].into_iter().filter_map(|t| t.join().ok().flatten()).collect()
+    });
+    let out: HashMap<(u64, u32), Arc<Indexed>> =
+        sheets.into_iter().map(|s| ((s.sheet, s.depth), Arc::new(s))).collect();
     eprintln!(
         "pe2: video: menus' font and loading captions redrawn ({} sheets) in {:.1} s",
         out.len(),
@@ -469,10 +495,27 @@ fn smooth(idx: &[u8], w: usize, h: usize) -> Vec<u8> {
     let up = resize(&Grey { w, h, px: idx.iter().map(|&i| grey(i)).collect() }, w * K, h * K);
     let (bw, bh) = (w * K, h * K);
     let mut out = vec![0u8; bw * bh];
-    for y in 0..bh {
-        for x in 0..bw {
+    // Bands of rows, one a core.
+    let band = bh.div_ceil(cores()).max(1);
+    std::thread::scope(|scope| {
+        for (n, rows) in out.chunks_mut(band * bw).enumerate() {
+            let (up, grey) = (&up, &grey);
+            scope.spawn(move || {
+                for (r, row) in rows.chunks_mut(bw).enumerate() {
+                    smooth_row(idx, w, h, n * band + r, &up.px[(n * band + r) * bw..][..bw], grey, row);
+                }
+            });
+        }
+    });
+    out
+}
+
+/// Finer row `y` of `smooth`: `up` its enlarged greys.
+fn smooth_row(idx: &[u8], w: usize, h: usize, y: usize, up: &[f32], grey: &impl Fn(u8) -> f32, out: &mut [u8]) {
+    {
+        for (x, texel) in out.iter_mut().enumerate() {
             let (sx, sy) = (x / K, y / K);
-            let target = up.px[y * bw + x];
+            let target = up[x];
             let mut best = idx[sy * w + sx];
             let mut dist = (grey(best) - target).powi(2);
             // Neighbours in the tool's order (row by row), the first nearer one winning.
@@ -490,10 +533,14 @@ fn smooth(idx: &[u8], w: usize, h: usize) -> Vec<u8> {
                     }
                 }
             }
-            out[y * bw + x] = best;
+            *texel = best;
         }
     }
-    out
+}
+
+/// The processor's cores (at least 1).
+fn cores() -> usize {
+    std::thread::available_parallelism().map_or(4, |n| n.get())
 }
 
 /// The sheet of `map` redrawn from `faces` in `scheme`'s indices.
@@ -541,30 +588,27 @@ fn redraw(catalog: &Catalog, map: &Map, faces: &[Face], scheme: &Scheme) -> Opti
         }
     }
     let s = K * SS;
-    let mut drawn = 0;
-    for g in &map.glyphs {
+    // One glyph drawn: its cell and its finer texels' indices.
+    let draw = |g: &Glyph| -> Option<(usize, usize, usize, usize, Vec<u8>)> {
         if g.text.is_empty() {
-            continue;
+            return None;
         }
-        let Some(&(_, font, stretch)) = faces.iter().find(|f| f.0 == g.face) else { continue };
-        let Some((u, v, cw, ch)) = cell_of(g) else { continue };
+        let &(_, font, stretch) = faces.iter().find(|f| f.0 == g.face)?;
+        let (u, v, cw, ch) = cell_of(g)?;
         let ink: Vec<(usize, usize)> = (0..ch)
             .flat_map(|y| (0..cw).map(move |x| (x, y)))
             .filter(|&(x, y)| idx[(v + y) * w + u + x] >= scheme.ink_from)
             .collect();
-        if ink.is_empty() {
-            continue;
-        }
         let (x0, y0) = (ink.iter().map(|p| p.0).min()?, ink.iter().map(|p| p.1).min()?);
         let (x1, y1) = (ink.iter().map(|p| p.0).max()? + 1, ink.iter().map(|p| p.1).max()? + 1);
         let (fx0, fy0, fx1, fy1) = (x0 + 1, y0 + 1, x1.saturating_sub(1), y1.saturating_sub(1));
         if fx1 <= fx0 || fy1 <= fy0 {
-            continue;
+            return None;
         }
         let mut big = Mask::new(cw * s, ch * s);
         if let Some(name) = g.text.strip_prefix('{').and_then(|t| t.strip_suffix('}')) {
             let stroke = if g.face == Some("large") { 2.0 } else { 1.6 } * s as f32;
-            let Some(shape) = icon(name, (fx1 - fx0) * s, (fy1 - fy0) * s, stroke) else { continue };
+            let shape = icon(name, (fx1 - fx0) * s, (fy1 - fy0) * s, stroke)?;
             big.paste(&shape, fx0 * s, fy0 * s);
         } else {
             let base = g.baseline.map(usize::from).or(page_base);
@@ -577,21 +621,33 @@ fn redraw(catalog: &Catalog, map: &Map, faces: &[Face], scheme: &Scheme) -> Opti
             match placed {
                 Some((top, left, shape)) => big.paste(&shape, left, top),
                 None => {
-                    let Some(shape) = boxed(font, &g.text, (fx1 - fx0) * s, (fy1 - fy0) * s, stretch.unwrap_or(1.25))
-                    else {
-                        continue;
-                    };
+                    let shape = boxed(font, &g.text, (fx1 - fx0) * s, (fy1 - fy0) * s, stretch.unwrap_or(1.25))?;
                     big.paste(&shape, fx0 * s, fy0 * s);
                 }
             }
         }
         let (fill, ring) = coverage(&big, cw, ch, scheme.weight);
-        for y in 0..ch * K {
-            for x in 0..cw * K {
+        let block = (0..ch * K * cw * K)
+            .map(|i| {
+                let (y, x) = (i / (cw * K), i % (cw * K));
                 let keep_zero = scheme.keep_zero && idx[(v + y / K) * w + u + x / K] == 0;
-                let i = y * cw * K + x;
-                out[(v * K + y) * bw + u * K + x] = if keep_zero { 0 } else { (scheme.levels)(fill[i], ring[i]) };
-            }
+                if keep_zero { 0 } else { (scheme.levels)(fill[i], ring[i]) }
+            })
+            .collect();
+        Some((u, v, cw, ch, block))
+    };
+    // The glyphs shared out among the cores, then put in their cells in order.
+    let per = map.glyphs.len().div_ceil(cores()).max(1);
+    let blocks: Vec<_> = std::thread::scope(|scope| {
+        let parts: Vec<_> =
+            map.glyphs.chunks(per).map(|part| scope.spawn(|| part.iter().map(draw).collect::<Vec<_>>())).collect();
+        parts.into_iter().flat_map(|t| t.join().unwrap_or_default()).collect()
+    });
+    let mut drawn = 0;
+    for (u, v, cw, ch, block) in blocks.into_iter().flatten() {
+        for y in 0..ch * K {
+            let row = (v * K + y) * bw + u * K;
+            out[row..row + cw * K].copy_from_slice(&block[y * cw * K..(y + 1) * cw * K]);
         }
         drawn += 1;
     }

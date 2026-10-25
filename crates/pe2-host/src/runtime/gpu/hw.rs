@@ -1163,7 +1163,8 @@ impl Hw {
             return 0;
         }
         let Some(f) = self.tracker.find(vram, st, sh, uv) else { return 0 };
-        let catalog = crate::mods::sheets::catalog();
+        // The catalog its sheets were found in (a fuller one may have come since).
+        let catalog = crate::mods::sheets::catalog().filter(|(g, _)| *g == f.generation).map(|(_, c)| c);
         let per = [4, 2, 1][f.depth as usize];
         let mut page = [0u32; 8];
         for part in &f.parts {
@@ -1174,7 +1175,7 @@ impl Hw {
                 }
                 continue;
             }
-            let Some(sheet) = catalog.and_then(|c| c.sheets.get(part.sheet as usize)) else { continue };
+            let Some(sheet) = catalog.as_ref().and_then(|c| c.sheets.get(part.sheet as usize)) else { continue };
             let (width, height) = (64 * per, sheet.rows.len() as i32);
             // An indexed replacement of the sheet (whatever its palette),
             // else this palette's picture of it, else the one for any.

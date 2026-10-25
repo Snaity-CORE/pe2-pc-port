@@ -96,11 +96,15 @@ pub fn installed() -> Vec<Mod> {
     mods
 }
 
-/// When the game starts: what mods need from the first of `discs` (their
-/// images) is read on a thread of its own: the texture sheets' catalog for
-/// textures, the dialogue font for translations, and what character each
-/// dialogue glyph is for a mod's font (from every disc).
+/// When the game starts, on threads of their own: the menus' and captions'
+/// sheets redrawn from fonts first (fontsheets.rs, from two files of disc
+/// 1); then, from every disc at once, what mods and the dialogue font
+/// need: the texture sheets' catalog, the dialogue font for translations
+/// (disc 1), and what character each dialogue glyph is.
 pub fn start(discs: &[PathBuf]) {
+    if let Some(first) = discs.first() {
+        fontsheets::start(first.clone());
+    }
     let texts = capfont::active();
     let (font, textures) = (translate::wanted() && !texts, wants_textures());
     if discs.is_empty() || !(font || textures || texts) {
@@ -109,36 +113,53 @@ pub fn start(discs: &[PathBuf]) {
     let images = discs.to_vec();
     std::thread::spawn(move || {
         let since = std::time::Instant::now();
+        // PE2_TRACE=startup: how long each step takes.
+        let step = |what: &str, disc: usize| {
+            if crate::runtime::trace("startup") {
+                eprintln!("[startup] disc {}: {what} at {:.2} s", disc + 1, since.elapsed().as_secs_f32());
+            }
+        };
+        // Disc 1 alone when only its dialogue font is wanted.
+        let wanted = if textures || texts { images.len() } else { 1 };
+        let per_disc = std::thread::scope(|scope| {
+            let jobs: Vec<_> = images[..wanted]
+                .iter()
+                .enumerate()
+                .map(|(number, image)| {
+                    scope.spawn(move || {
+                        // The cores shared among the discs.
+                        let threads = std::thread::available_parallelism().map_or(4, |n| n.get()) / wanted;
+                        let sources = match files::dialogue_sources_of(image, threads) {
+                            Ok(s) => s,
+                            Err(e) => {
+                                eprintln!("pe2: mods: {}: {e}", image.display());
+                                return None;
+                            }
+                        };
+                        step("files read", number);
+                        let catalog = textures.then(|| sheets::Catalog::new(&sources));
+                        let glyphs = (font && number == 0).then(|| dialogue::font(&sources));
+                        let known = texts.then(|| dialogue::cap_texts(&sources));
+                        step("done", number);
+                        Some((catalog, glyphs, known))
+                    })
+                })
+                .collect();
+            jobs.into_iter().map(|j| j.join().ok().flatten()).collect::<Vec<_>>()
+        });
+        // In disc order: disc 1's first.
         let mut catalog = sheets::Catalog::default();
         let mut known = std::collections::HashMap::new();
-        let mut executable = Vec::new();
-        for (number, image) in images.iter().enumerate() {
-            let mut disc = match crate::disc::open(image) {
-                Ok(d) => d,
-                Err(e) => {
-                    eprintln!("pe2: mods: {}: {e}", image.display());
-                    continue;
-                }
-            };
-            if number == 0 && fontsheets::enabled() {
-                executable = crate::disc::iso9660::boot_executable(disc.as_mut()).map(|e| e.1).unwrap_or_default();
+        for (part, glyphs, texts) in per_disc.into_iter().flatten() {
+            if let Some(part) = part {
+                catalog.extend(part);
             }
-            let sources = files::dialogue_sources(disc.as_mut());
-            if textures {
-                catalog.extend(sheets::Catalog::new(&sources));
-            }
-            if font && number == 0 {
-                let f = dialogue::font(&sources);
+            if let Some(f) = glyphs {
                 eprintln!("pe2: mods: dialogue font: {} glyphs in {:.1} s", f.len(), since.elapsed().as_secs_f32());
                 translate::set_font(f);
             }
-            if texts {
-                for (hash, t) in dialogue::cap_texts(&sources) {
-                    known.entry(hash).or_insert(t);
-                }
-            }
-            if !textures && !texts {
-                break;
+            for (hash, t) in texts.into_iter().flatten() {
+                known.entry(hash).or_insert(t);
             }
         }
         if texts {
@@ -147,7 +168,7 @@ pub fn start(discs: &[PathBuf]) {
                 known.len(),
                 since.elapsed().as_secs_f32()
             );
-            capfont::set_texts(std::mem::take(&mut known));
+            capfont::set_texts(known);
         }
         if textures {
             eprintln!(
@@ -156,9 +177,7 @@ pub fn start(discs: &[PathBuf]) {
                 images.len(),
                 since.elapsed().as_secs_f32()
             );
-            if fontsheets::enabled() {
-                fontsheets::build(&catalog, &executable);
-            }
+            catalog.complete = true;
             sheets::set_catalog(catalog);
         }
     });

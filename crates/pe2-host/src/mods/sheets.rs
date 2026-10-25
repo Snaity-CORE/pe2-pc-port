@@ -17,7 +17,7 @@
 //! palettes are fixed by the game's code instead (`FIXED`).
 
 use std::collections::HashMap;
-use std::sync::OnceLock;
+use std::sync::{Arc, RwLock};
 
 use super::dialogue::{Column, Sources, lzss, picture};
 
@@ -216,6 +216,8 @@ pub struct Catalog {
     pieces: HashMap<u64, Vec<(u32, u16)>>,
     by_hash: HashMap<u64, u32>,
     ui_palettes: Vec<Vec<u16>>,
+    /// Of all the discs' sheets (not only the first few wanted at once).
+    pub complete: bool,
 }
 
 impl Catalog {
@@ -489,15 +491,24 @@ pub fn extract_indexed(
     Ok((written, guessed))
 }
 
-static CATALOG: OnceLock<Catalog> = OnceLock::new();
+/// The catalog and its generation (how many were set before it).
+static CATALOG: RwLock<Option<(u32, Arc<Catalog>)>> = RwLock::new(None);
 
-/// The catalog, once read from the disc (see mods::start).
-pub fn catalog() -> Option<&'static Catalog> {
-    CATALOG.get()
+/// The catalog read from the discs so far, and its generation: a sheet's
+/// index means something only with the catalog it was found in.
+pub fn catalog() -> Option<(u32, Arc<Catalog>)> {
+    CATALOG.read().unwrap().clone()
 }
 
+/// Sets the catalog: first the few sheets wanted at once (fontsheets.rs),
+/// then all of them (mods::start); never the few after all of them.
 pub fn set_catalog(c: Catalog) {
-    let _ = CATALOG.set(c);
+    let mut slot = CATALOG.write().unwrap();
+    if !c.complete && slot.as_ref().is_some_and(|(_, old)| old.complete) {
+        return;
+    }
+    let generation = slot.as_ref().map_or(0, |(g, _)| g + 1);
+    *slot = Some((generation, Arc::new(c)));
 }
 
 #[cfg(test)]

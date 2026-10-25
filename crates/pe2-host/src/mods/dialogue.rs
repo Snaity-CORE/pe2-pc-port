@@ -850,23 +850,39 @@ pub fn glyph_maps(sources: &Sources) -> HashMap<u64, Vec<([u8; 4], String)>> {
 /// not known or not drawn by its lines): what a mod's font draws instead
 /// (mods/capfont.rs).
 pub fn cap_texts(sources: &Sources) -> HashMap<u64, Vec<Option<String>>> {
-    let mut pages = Pages::new(sources);
+    // The bundles shared out among the cores, each part with pages of its
+    // own; the first file of each hash, in disc order, kept.
+    let cores = std::thread::available_parallelism().map_or(4, |n| n.get());
+    let per = sources.bundles.len().div_ceil(cores).max(1);
+    let parts: Vec<Vec<(u64, Vec<Option<String>>)>> = std::thread::scope(|scope| {
+        let jobs: Vec<_> = sources
+            .bundles
+            .chunks(per)
+            .map(|bundles| {
+                scope.spawn(move || {
+                    let mut pages = Pages::new(sources);
+                    let mut found = Vec::new();
+                    for (key, _, payload) in bundles {
+                        for bytes in caps(payload) {
+                            let Some(cap) = Cap::new(bytes) else { continue };
+                            let Some(page) = pages.find(key, &cap) else { continue };
+                            let used = uses(&cap, usize::MAX);
+                            let mut texts = vec![None; used.iter().max().map_or(0, |m| m + 1)];
+                            for index in used {
+                                texts[index] = recognize(&glyph(page, cap.cell(index))).map(|t| t.into_owned());
+                            }
+                            found.push((cap.hash(), texts));
+                        }
+                    }
+                    found
+                })
+            })
+            .collect();
+        jobs.into_iter().map(|j| j.join().unwrap_or_default()).collect()
+    });
     let mut out = HashMap::new();
-    for (key, _, payload) in &sources.bundles {
-        for bytes in caps(payload) {
-            let Some(cap) = Cap::new(bytes) else { continue };
-            let hash = cap.hash();
-            if out.contains_key(&hash) {
-                continue;
-            }
-            let Some(page) = pages.find(key, &cap) else { continue };
-            let used = uses(&cap, usize::MAX);
-            let mut texts = vec![None; used.iter().max().map_or(0, |m| m + 1)];
-            for index in used {
-                texts[index] = recognize(&glyph(page, cap.cell(index))).map(|t| t.into_owned());
-            }
-            out.insert(hash, texts);
-        }
+    for (hash, texts) in parts.into_iter().flatten() {
+        out.entry(hash).or_insert(texts);
     }
     out
 }

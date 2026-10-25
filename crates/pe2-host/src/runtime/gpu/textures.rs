@@ -114,6 +114,8 @@ pub struct Part {
 /// What a primitive draws from: its texel depth (0: 4 bits, 1: 8, 2: 15),
 /// its palette's hash (0 for 15 bits) and the sheets.
 pub struct Found {
+    /// The generation of the catalog its parts' sheets index (sheets.rs).
+    pub generation: u32,
     pub depth: u32,
     pub palette: u64,
     pub parts: Vec<Part>,
@@ -128,6 +130,8 @@ pub struct Tracker {
     palettes: Vec<(i32, i32, i32, u64)>,
     /// Rows of a column a hosted texture was loaded to: (x, y, rows, id).
     hosted: Vec<(i32, i32, i32, u32)>,
+    /// The catalog generation the pieces' sheets were found in.
+    generation: u32,
 }
 
 impl Default for Tracker {
@@ -137,6 +141,7 @@ impl Default for Tracker {
             pieces: vec![None; (COLUMNS * PIECES) as usize],
             palettes: Vec::new(),
             hosted: Vec::new(),
+            generation: 0,
         }
     }
 }
@@ -203,13 +208,12 @@ impl Tracker {
 
     /// The sheet piece `p` of column `c` is part of, and the row its top is
     /// at: by its hash if only one sheet has it, else by its neighbours.
-    fn resolve(&mut self, c: i32, p: i32) -> Option<(u32, i32)> {
+    fn resolve(&mut self, catalog: &sheets::Catalog, c: i32, p: i32) -> Option<(u32, i32)> {
         let rows_per = PIECE_ROWS as i32;
         let piece = self.pieces[(c * PIECES + p) as usize]?;
         if piece.sheet.is_some() {
             return piece.sheet;
         }
-        let catalog = sheets::catalog()?;
         let unique = |piece: Piece, p: i32| match catalog.pieces(piece.hash) {
             [(s, k)] => Some((*s, (p - i32::from(*k)) * rows_per)),
             _ => piece.sheet,
@@ -257,6 +261,14 @@ impl Tracker {
         if rows(y0, y1 - y0 + 1).any(|r| self.loaded[r] & bits != bits) {
             return None;
         }
+        let (generation, catalog) = sheets::catalog()?;
+        if generation != self.generation {
+            // A fuller catalog: its sheets' indices are not the last one's.
+            for piece in self.pieces.iter_mut().flatten() {
+                piece.sheet = None;
+            }
+            self.generation = generation;
+        }
         let rows_per = PIECE_ROWS as i32;
         let mut parts = Vec::new();
         for c in x0 / 64..=x1 / 64 {
@@ -268,7 +280,7 @@ impl Tracker {
             }
             let mut at = None;
             for p in y0 / rows_per..=y1 / rows_per {
-                let r = self.resolve(c, p)?;
+                let r = self.resolve(&catalog, c, p)?;
                 if at.is_some_and(|a| a != r) {
                     return None;
                 }
@@ -282,7 +294,7 @@ impl Tracker {
         if crate::runtime::trace("textures") {
             // Each sheet and palette once: the names mods give pictures.
             static SEEN: std::sync::Mutex<Option<std::collections::HashSet<(u32, u64)>>> = std::sync::Mutex::new(None);
-            if let Some(catalog) = sheets::catalog() {
+            {
                 for part in parts.iter().filter(|p| p.sheet & HOSTED == 0) {
                     if SEEN.lock().unwrap().get_or_insert_with(Default::default).insert((part.sheet, palette)) {
                         let name = crate::mods::texture_name((catalog.sheets[part.sheet as usize].hash, palette));
@@ -300,7 +312,7 @@ impl Tracker {
                 }
             }
         }
-        Some(Found { depth, palette, parts })
+        Some(Found { generation, depth, palette, parts })
     }
 
     fn palette(&mut self, vram: &Vram, x: i32, y: i32, n: i32) -> u64 {

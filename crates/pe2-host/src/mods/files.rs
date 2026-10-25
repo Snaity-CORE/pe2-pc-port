@@ -431,23 +431,63 @@ fn mdec(bs: &[u8], rgb24: bool) -> Option<Vec<u32>> {
     Some(mdec.output.iter().copied().collect())
 }
 
-/// The dialogue bundles of `disc` and the pictures that may hold their
-/// glyphs (see dialogue.rs).
-pub fn dialogue_sources(disc: &mut dyn Disc) -> super::dialogue::Sources {
+/// The dialogue bundles, the pictures that may hold their glyphs and the
+/// rest dialogue.rs reads, of the files of `disc` whose keys `wanted` takes.
+pub fn sources_of(disc: &mut dyn Disc, wanted: impl Fn(&str) -> bool) -> super::dialogue::Sources {
     let mut out = super::dialogue::Sources::default();
-    for f in layout(disc) {
-        for (k, c) in read_chunks(disc, f.lba).into_iter().enumerate() {
-            match c.header[0] {
-                0 => out.packages.entry(f.key.clone()).or_default().push((c.load_address(), c.payload)),
-                1 => out.pictures.entry(f.key.clone()).or_default().push(c.payload),
-                2 => out.palettes.entry(f.key.clone()).or_default().push(c.payload),
-                5 => out.backgrounds.entry(f.key.clone()).or_default().push(c.payload),
-                4 => out.bundles.push((f.key.clone(), k, c.payload)),
-                _ => {}
-            }
-        }
+    for f in layout(disc).into_iter().filter(|f| wanted(&f.key)) {
+        add_source(&mut out, disc, &f);
     }
     out
+}
+
+/// The same of all the files of the disc image `image`, read by
+/// `threads` threads at once, each with a reader of its own (unpacking a
+/// compressed image is most of the time).
+pub fn dialogue_sources_of(image: &Path, threads: usize) -> Result<super::dialogue::Sources, String> {
+    let files = layout(crate::disc::open(image).map_err(|e| e.to_string())?.as_mut());
+    let per = files.len().div_ceil(threads.max(1)).max(1);
+    let parts = std::thread::scope(|scope| {
+        let jobs: Vec<_> = files
+            .chunks(per)
+            .map(|group| {
+                scope.spawn(move || {
+                    let mut disc = crate::disc::open(image).map_err(|e| e.to_string())?;
+                    let mut out = super::dialogue::Sources::default();
+                    for f in group {
+                        add_source(&mut out, disc.as_mut(), f);
+                    }
+                    Ok::<_, String>(out)
+                })
+            })
+            .collect();
+        jobs.into_iter().map(|j| j.join().unwrap_or_else(|_| Err("a reader failed".into()))).collect::<Vec<_>>()
+    });
+    // In disc order (each file is in one group).
+    let mut out = super::dialogue::Sources::default();
+    for part in parts {
+        let part = part?;
+        out.pictures.extend(part.pictures);
+        out.palettes.extend(part.palettes);
+        out.packages.extend(part.packages);
+        out.backgrounds.extend(part.backgrounds);
+        out.bundles.extend(part.bundles);
+    }
+    Ok(out)
+}
+
+/// The chunks of file `f` of `disc` added to `out`, by type.
+fn add_source(out: &mut super::dialogue::Sources, disc: &mut dyn Disc, f: &DiscFile) {
+    for (k, c) in read_chunks(disc, f.lba).into_iter().enumerate() {
+        match c.header[0] {
+            0 => out.packages.entry(f.key.clone()).or_default().push((c.load_address(), c.payload)),
+            1 => out.pictures.entry(f.key.clone()).or_default().push(c.payload),
+            2 => out.palettes.entry(f.key.clone()).or_default().push(c.payload),
+            5 => out.backgrounds.entry(f.key.clone()).or_default().push(c.payload),
+            4 => out.bundles.push((f.key.clone(), k, c.payload)),
+            _ => {}
+        }
+    }
 }
 
 /// Saves every file of the discs' file systems, chunk by chunk, under
