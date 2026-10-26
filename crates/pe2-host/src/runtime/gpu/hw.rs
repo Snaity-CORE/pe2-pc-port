@@ -2175,18 +2175,80 @@ impl Hw {
             if c.ops.is_empty() {
                 continue;
             }
+            let pos: Vec<[f32; 2]> = c.vertices.iter().map(|v| v.pos).collect();
+            let ways = ways_back(&pos, &c.keys, before, origin, limit);
             let mut vertices = c.vertices.clone();
-            for (v, k) in vertices.iter_mut().zip(&c.keys) {
-                let Some(p) = before.get(k).filter(|_| *k != 0) else { continue };
-                let p = [p[0] + origin[0], p[1] + origin[1]];
-                let (dx, dy) = (v.pos[0] - p[0], v.pos[1] - p[1]);
-                if dx.abs() <= limit && dy.abs() <= limit {
-                    v.pos = [p[0] + dx * t, p[1] + dy * t];
-                }
+            for (v, w) in vertices.iter_mut().zip(&ways) {
+                v.pos = [v.pos[0] + w[0] * (1.0 - t), v.pos[1] + w[1] * (1.0 - t)];
             }
             self.run(&c.ops, &vertices, &c.uploads, &into, true);
         }
     }
+}
+
+/// How far back toward the last frame each vertex of a chunk goes (all the
+/// way: the frame in between takes 1 - t of it), its vertices' positions
+/// `pos` and `keys` in triangles. A keyed vertex the last frame had goes
+/// back to where it was there (unless further than `limit`: a cut). One it
+/// had not belongs to polygons just come into view, as the thin ones
+/// filling a model's joints do turn by turn: it goes back as the vertices
+/// it shares triangles with do, on average, so its polygons move with the
+/// model instead of stretching from where those were to where it is.
+fn ways_back(
+    pos: &[[f32; 2]],
+    keys: &[u32],
+    before: &std::collections::HashMap<u32, [f32; 2]>,
+    origin: [f32; 2],
+    limit: f32,
+) -> Vec<[f32; 2]> {
+    #[derive(Clone, Copy)]
+    enum Way {
+        Known([f32; 2]),
+        Stays,
+        Unknown,
+    }
+    let mut ways: Vec<Way> = pos
+        .iter()
+        .zip(keys)
+        .map(|(p, &k)| match before.get(&k) {
+            _ if k == 0 => Way::Stays,
+            Some(q) => {
+                let d = [q[0] + origin[0] - p[0], q[1] + origin[1] - p[1]];
+                if d[0].abs() <= limit && d[1].abs() <= limit { Way::Known(d) } else { Way::Stays }
+            }
+            None => Way::Unknown,
+        })
+        .collect();
+    // Twice: a polygon all of whose vertices are new may share one with a
+    // polygon the first round settled.
+    for _ in 0..2 {
+        let mut sums: std::collections::HashMap<u32, ([f32; 2], f32)> = std::collections::HashMap::new();
+        for (tri, tri_keys) in ways.chunks_exact(3).zip(keys.chunks_exact(3)) {
+            let known: Vec<[f32; 2]> =
+                tri.iter().filter_map(|w| if let Way::Known(d) = w { Some(*d) } else { None }).collect();
+            if known.is_empty() || known.len() == 3 {
+                continue;
+            }
+            let n = known.len() as f32;
+            let mean = [known.iter().map(|d| d[0]).sum::<f32>() / n, known.iter().map(|d| d[1]).sum::<f32>() / n];
+            for (w, &k) in tri.iter().zip(tri_keys) {
+                if matches!(w, Way::Unknown) {
+                    let e = sums.entry(k).or_insert(([0.0; 2], 0.0));
+                    e.0 = [e.0[0] + mean[0], e.0[1] + mean[1]];
+                    e.1 += 1.0;
+                }
+            }
+        }
+        if sums.is_empty() {
+            break;
+        }
+        for (w, k) in ways.iter_mut().zip(keys) {
+            if let (Way::Unknown, Some((s, n))) = (*w, sums.get(k)) {
+                *w = Way::Known([s[0] / n, s[1] / n]);
+            }
+        }
+    }
+    ways.into_iter().map(|w| if let Way::Known(d) = w { d } else { [0.0; 2] }).collect()
 }
 
 /// Sends native VRAM halfwords to a VRAM-sized texture.
@@ -2212,4 +2274,36 @@ fn bytes<T: Copy>(v: &[T]) -> &[u8] {
     // SAFETY: plain-old-data slices (u16, u32, f32, GpuVertex: repr(C),
     // no padding) viewed as bytes.
     unsafe { std::slice::from_raw_parts(v.as_ptr().cast(), std::mem::size_of_val(v)) }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    /// A vertex the last frame had goes back to where it was; a new one goes
+    /// back with the vertices of its triangles; a cut and an unkeyed vertex
+    /// stay.
+    #[test]
+    fn new_vertices_go_back_with_their_polygons() {
+        let before = std::collections::HashMap::from([(1, [0.0, 0.0]), (2, [10.0, 0.0]), (5, [0.0, 0.0])]);
+        // Triangle (1, 2, 3): 3 is new. Triangle (3, 4, 1): 4 is new too.
+        // Triangle (5, 0, 6): 5 moved too far (a cut), 0 has no key.
+        let pos = [
+            [4.0, 2.0],
+            [14.0, 2.0],
+            [9.0, 7.0],
+            [9.0, 7.0],
+            [5.0, 9.0],
+            [4.0, 2.0],
+            [500.0, 0.0],
+            [1.0, 1.0],
+            [2.0, 2.0],
+        ];
+        let keys = [1, 2, 3, 3, 4, 1, 5, 0, 6];
+        let ways = ways_back(&pos, &keys, &before, [0.0; 2], 32.0);
+        assert_eq!(ways[0], [-4.0, -2.0]);
+        assert_eq!(ways[2], [-4.0, -2.0]);
+        assert_eq!(ways[4], [-4.0, -2.0]);
+        assert_eq!(&ways[6..], &[[0.0; 2]; 3]);
+    }
 }
