@@ -20,6 +20,11 @@ this machine instead, from the decomp's PSX build. For version X.Y.Z:
     python tools/release.py 0.2.0 --dry-run   # 1-4 only: no tag, no release
     python tools/release.py 0.2.0 --ci        # on GitHub, for a pushed tag:
                                               # 3-5 of a finished build
+    python tools/release.py --nightly         # on GitHub, for a push to main:
+                                              # 3-4, then the nightly pre-release
+
+The nightly pre-release keeps main's last build under one link: its tag
+`nightly` moves to the built commit and its zip is replaced.
 """
 
 import argparse
@@ -38,6 +43,9 @@ TARGET = "i686-pc-windows-msvc"
 EXE = ROOT / "target" / TARGET / "release" / "pe2.exe"
 DIST = ROOT / "dist"
 BRANCH = "main"
+NIGHTLY = "nightly"
+DISCS = ("Needs your own Parasite Eve II (USA) discs: the game reads them at runtime "
+         "(see README.md in the zip).")
 # What goes into the zip: (path in the repository, name in the zip).
 PACKAGE = [
     (EXE, "pe2.exe"),
@@ -139,24 +147,57 @@ def publish(tag: str, zip_path: Path, digest: str, tagged: bool = False) -> None
         git("tag", "-a", tag, "-m", f"pe2-pc-port {tag}")
         run(["git", "push", "origin", f"refs/tags/{tag}"])
     notes = DIST / f"{tag}-notes.md"
+    notes.write_text(f"{DISCS}\n\n`{zip_path.name}` SHA-256: `{digest}`\n", encoding="utf-8")
+    # The notes count the commits since the last release, not since nightly.
+    last = run(["gh", "release", "list", "--exclude-pre-releases", "--exclude-drafts", "--limit", "1",
+                "--json", "tagName", "--jq", ".[].tagName"], capture=True).strip()
+    run(["gh", "release", "create", tag, str(zip_path), "--draft", "--verify-tag",
+         "--title", f"pe2-pc-port {tag}", "--notes-file", str(notes), "--generate-notes"]
+        + (["--notes-start-tag", last] if last else []))
+    print(f"draft release {tag} created: review and publish it on GitHub")
+
+
+def nightly() -> None:
+    """Publishes this build as the nightly pre-release: tag `nightly` moved
+    to HEAD, its zip replaced (same name, so the same download link)."""
+    check_no_game_data()
+    zip_path, digest = package(NIGHTLY)
+    commit = git("rev-parse", "HEAD")
+    notes = DIST / f"{NIGHTLY}-notes.md"
     notes.write_text(
-        "Needs your own Parasite Eve II (USA) discs: the game reads them at runtime "
-        "(see README.md in the zip).\n\n"
-        f"`{zip_path.name}` SHA-256: `{digest}`\n",
+        f"The last build of `{BRANCH}`, from {commit}: not a release, only built and tested by CI.\n\n"
+        f"{DISCS}\n\n`{zip_path.name}` SHA-256: `{digest}`\n",
         encoding="utf-8",
     )
-    run(["gh", "release", "create", tag, str(zip_path), "--draft", "--verify-tag",
-         "--title", f"pe2-pc-port {tag}", "--notes-file", str(notes), "--generate-notes"])
-    print(f"draft release {tag} created: review and publish it on GitHub")
+    if subprocess.run(["gh", "release", "view", NIGHTLY], cwd=ROOT, capture_output=True).returncode:
+        run(["gh", "release", "create", NIGHTLY, str(zip_path), "--prerelease", "--latest=false",
+             "--target", commit, "--title", "pe2-pc-port nightly", "--notes-file", str(notes)])
+    else:
+        run(["gh", "api", "-X", "PATCH", f"repos/{{owner}}/{{repo}}/git/refs/tags/{NIGHTLY}",
+             "-f", f"sha={commit}", "-F", "force=true"], capture=True)
+        run(["gh", "release", "upload", NIGHTLY, str(zip_path), "--clobber"])
+        run(["gh", "release", "edit", NIGHTLY, "--prerelease", "--latest=false", "--notes-file", str(notes)])
+    print(f"nightly pre-release now at {commit[:9]}")
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("version", help="X.Y.Z (or vX.Y.Z)")
+    parser.add_argument("version", nargs="?", help="X.Y.Z (or vX.Y.Z)")
     parser.add_argument("--dry-run", action="store_true", help="build, check and package; no tag, no release")
     parser.add_argument("--ci", action="store_true",
                         help="for a pushed tag, after the workflow's build: check, package, draft release")
+    parser.add_argument("--nightly", action="store_true",
+                        help="for a push to main, after the workflow's build: check, package, nightly pre-release")
     args = parser.parse_args()
+    if args.nightly:
+        try:
+            nightly()
+        except Failed as e:
+            print(f"release: {e}")
+            return 1
+        return 0
+    if args.version is None:
+        parser.error("the version is needed (or --nightly)")
     version = args.version.removeprefix("v")
     if not re.fullmatch(r"\d+\.\d+\.\d+", version):
         print(f"version {args.version!r} is not X.Y.Z")

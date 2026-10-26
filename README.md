@@ -57,8 +57,9 @@ guesswork, and fixes went in only after they held up in play.
 
 ## Playing
 
-Build it as [docs/BUILDING.md](docs/BUILDING.md) explains, then start
-`pe2.exe`. The launcher's Setup asks for your disc images, memory cards and a
+Build it as [docs/BUILDING.md](docs/BUILDING.md) explains, or take the
+[last build of `main`](https://github.com/Snaity-CORE/pe2-pc-port/releases/download/nightly/pe2-pc-port-nightly-windows-x86.zip)
+(the nightly pre-release: untested beyond CI), then start `pe2.exe`. The launcher's Setup asks for your disc images, memory cards and a
 quality level; after that, Play starts the game. Settings and Controls change
 everything later.
 

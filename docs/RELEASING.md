@@ -6,7 +6,8 @@ GitHub builds the port without the game discs, from `snapshot/` (see
 - `.github/workflows/build.yml`, on every push to `main`, pull request and
   tag: builds the game library and the host (release), runs the tests and
   keeps `pe2.exe` as the run's artifact. A tag `vX.Y.Z` also packages it
-  and opens a draft release.
+  and opens a draft release. A push to `main` also packages it as the
+  nightly pre-release (below).
 - `.github/workflows/ci.yml`, on every push and pull request: no game data
   in the repository, the Python tools compile, Rust formatting.
 
@@ -46,6 +47,17 @@ python tools/release.py X.Y.Z             # also tag, push the tag, draft releas
 
 It first checks that both trees are clean, their commits on GitHub, and
 the tag new.
+
+## Nightly
+
+`main`'s last build is always at the same link:
+
+https://github.com/Snaity-CORE/pe2-pc-port/releases/download/nightly/pe2-pc-port-nightly-windows-x86.zip
+
+`release.py --nightly`, after each push's build, moves the tag `nightly`
+to the built commit and replaces the zip of the pre-release of that tag
+(made the first time). A pre-release, it is never the latest release, and
+release notes count from the last real release, not from it.
 
 ## The zip
 

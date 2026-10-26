@@ -1,6 +1,7 @@
 # Builds the port on GitHub's runners, from snapshot/ (no game discs: see
 # docs/BUILDING.md, "Without the discs"), and tests it. A pushed tag vX.Y.Z
-# also packages it and opens a draft release (docs/RELEASING.md).
+# also packages it and opens a draft release; a push to main replaces the
+# nightly pre-release's zip (docs/RELEASING.md).
 name: Build
 
 on:
@@ -8,6 +9,12 @@ on:
     branches: [main]
     tags: ["v*"]
   pull_request:
+
+# One build per ref at a time: main's wait their turn, so nightly ends at
+# the last push; a pull request's newer push cancels the older build.
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   build:
@@ -61,3 +68,9 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: python tools/release.py ${{ github.ref_name }} --ci
+
+      - name: Nightly pre-release
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python tools/release.py --nightly
