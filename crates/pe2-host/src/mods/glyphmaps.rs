@@ -5,10 +5,12 @@
 //! those sheets from them (tools/hd_fonts.py); nothing of the pictures is in
 //! a map.
 //!
-//! Four kinds: `dialogue` (each CAP file's glyph page, dialogue.rs),
+//! Five kinds: `dialogue` (each CAP file's glyph page, dialogue.rs),
 //! `ui-font` (the menus' font, its three faces' metrics in the executable),
-//! `loading` (the loading screen's captions) and `title` (the title
-//! screen's 8-bit page: its rows of text, two sheets side by side).
+//! `loading` (the loading screen's captions, and the M.I.S.T. briefing's
+//! copy of their font), `title` (the title screen's 8-bit page: its rows of
+//! text, two sheets side by side) and `disc-prompt` (the disc change's
+//! three lines).
 
 use std::path::Path;
 
@@ -121,15 +123,42 @@ pub fn ui_font(catalog: &Catalog, exe: &[u8]) -> Option<Map> {
 }
 
 /// The loading screen's captions: their sheet (stage0/file10, at (960, 0))
-/// and `Caption_Glyphs` (main/bootload.c): capitals, small letters, the
-/// digits 1 to 9 then 0, and : ; ' , . ? !
-pub fn loading(catalog: &Catalog, exe: &[u8]) -> Option<Map> {
+/// and `gTextCaptionGlyphCells` (main/caption_draw.c): capitals, small
+/// letters, the digits 1 to 9 then 0, and : ; ' , . ? ! The M.I.S.T.
+/// briefing (mist_r18.c) has its own copy of the font, 48 rows down its
+/// sheet (stage1/1801/file0, at (704, 0)), drawn through the same cells.
+pub fn loading(catalog: &Catalog, exe: &[u8]) -> Vec<Map> {
     const TEXT: &str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890:;',.?!";
-    let sheet = sheet_at(catalog, "stage0/file10/0#0", (960, 0))?;
-    let cells = super::exe_at(exe, 0x8006_27E0, TEXT.len() * 4)?;
-    let glyphs =
-        cells.as_chunks::<4>().0.iter().zip(TEXT.chars()).map(|(c, t)| Glyph::new(c.map(u16::from), t)).collect();
-    Some(Map { kind: "loading", sheets: vec![sheet], depth: 4, palette: None, glyphs })
+    const COPIES: [(&str, (u16, u16), u16); 2] =
+        [("stage0/file10/0#0", (960, 0), 0), ("stage1/1801/file0/1#0", (704, 0), 48)];
+    let Some(cells) = super::exe_at(exe, 0x8006_27E0, TEXT.len() * 4) else { return Vec::new() };
+    COPIES
+        .iter()
+        .filter_map(|&(origin, place, down)| {
+            let sheet = sheet_at(catalog, origin, place)?;
+            let glyphs = cells
+                .as_chunks::<4>()
+                .0
+                .iter()
+                .zip(TEXT.chars())
+                .map(|(c, t)| {
+                    let [u, v, w, h] = c.map(u16::from);
+                    Glyph::new([u, v + down, w, h], t)
+                })
+                .collect();
+            Some(Map { kind: "loading", sheets: vec![sheet], depth: 4, palette: None, glyphs })
+        })
+        .collect()
+}
+
+/// The disc change's lines (`_loadUiDrawDiskSwapMessage`, main/loadui.c):
+/// its sheet (stage0/file20160, the same on both discs, at (960, 0)), a
+/// line each 16 rows.
+pub fn disc_prompt(catalog: &Catalog) -> Option<Map> {
+    const LINES: [(&str, u16); 3] = [("Change to DISC 1", 159), ("Change to DISC 2", 159), ("Wrong DISC", 104)];
+    let sheet = sheet_at(catalog, "stage0/file20160/0#0", (960, 0))?;
+    let glyphs = LINES.iter().zip(0..).map(|(&(text, w), row)| Glyph::new([0, row * 16, w, 16], text)).collect();
+    Some(Map { kind: "disc-prompt", sheets: vec![sheet], depth: 4, palette: None, glyphs })
 }
 
 /// The title screen's page (stage0/file2, 8-bit at (768, 256), two sheets

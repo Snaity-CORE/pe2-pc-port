@@ -27,7 +27,8 @@ It plays as the console does and adds what a PC can, all optional:
 - **Modern movement**: the stick points where to go, relative to the camera,
   in exploration and in battle; or the original tank controls with a quick
   turn (back + run).
-- **Sharp text**: the dialogue, the menus and the loading captions drawn
+- **Sharp text**: the dialogue, the menus, the loading captions and the
+  disc change's lines drawn
   from high-definition fonts (the built-in DejaVu Sans Bold and Courier
   Prime) instead of the game's small pictures of text.
 - **Mods** (experimental, turned on in Settings): replace the pre-rendered backgrounds and full-screen pictures
@@ -120,7 +121,7 @@ runs `tools/check_no_game_data.py` and blocks them.
 - **Fonts**: [DejaVu Sans](https://dejavu-fonts.github.io/) Bold, built in for
   the dialogue and the menus (Bitstream Vera license with DejaVu's changes
   in the public domain), and [Courier Prime](https://github.com/quoteunquoteapps/CourierPrime)
-  for the loading captions (SIL Open Font License 1.1); their licenses are
+  for the loading captions and the disc change (SIL Open Font License 1.1); their licenses are
   in `crates/pe2-host/res/fonts/`.
 - **Reference**: [DuckStation](https://github.com/stenzek/duckstation), used
   to compare behaviour (none of its code is used).

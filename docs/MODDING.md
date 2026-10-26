@@ -238,12 +238,13 @@ when not known); the UI font's also give each glyph's `face` and
 | `kind` | What |
 |---|---|
 | `ui-font` | the menus' font: three faces (medium, large, small), from the executable's metrics |
-| `loading` | the loading screen's captions (date and place) |
+| `loading` | the loading screen's captions (date and place), and the M.I.S.T. briefing's copy of their font: two maps |
 | `title` | the title screen: PRESS START BUTTON, the copyright and logo, New Game, Continue, Option; its `palette` file under the dumps |
 | `dialogue` | each dialogue glyph page (the `l` glyph also draws capital I); a mod's font does this better, see Dialogue |
+| `disc-prompt` | the disc change's lines: Change to DISC 1, Change to DISC 2, Wrong DISC |
 
-PE2PC already redraws the menus' font (`ui-font`) and the loading captions
-from its built-in fonts by default (`[video] hd_fonts`); a mod's indexed
+PE2PC already redraws the menus' font (`ui-font`), the loading captions
+and the disc change's lines from its built-in fonts by default (`[video] hd_fonts`); a mod's indexed
 replacement of the same sheet wins. To use other fonts,
 `tools/hd_fonts.py` redraws the first three from fonts of your choice
 (needs Python with numpy, pillow and scipy):

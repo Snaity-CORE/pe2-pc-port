@@ -49,13 +49,21 @@ SS = 4  # supersampling for coverage
 # ---- maps and sheets ---------------------------------------------------------------
 
 
-def find_map(dumps, kind):
+def find_maps(dumps, kind):
+    """Every map of `kind` (the loading font has two sheets)."""
+    maps = []
     for path in sorted(glob.glob(os.path.join(dumps, 'textures-glyphs', '*.toml'))):
         with open(path, 'rb') as f:
             m = tomllib.load(f)
         if m.get('kind') == kind:
-            return m
-    sys.exit(f'no map of kind {kind!r} in {dumps}/textures-glyphs (extract with a current pe2 first)')
+            maps.append(m)
+    if not maps:
+        sys.exit(f'no map of kind {kind!r} in {dumps}/textures-glyphs (extract with a current pe2 first)')
+    return maps
+
+
+def find_map(dumps, kind):
+    return find_maps(dumps, kind)[0]
 
 
 def read_sheets(dumps, m):
@@ -473,17 +481,18 @@ def ui(args):
 
 
 def loading(args):
-    m = find_map(args.dumps, 'loading')
-    idx = read_sheets(args.dumps, m)
     fonts = {None: (Font(args.font), None)}
 
     def levels(f, o):
         return np.where(o >= 0.5, np.rint(1 + 14 * f).astype(np.int64).clip(1, 15), 0)
 
     scheme = {'ramp': 17, 'clear': 0, 'fill_from': 10, 'ink_from': 1, 'keep_zero': False, 'levels': levels}
-    out, drawn = draw_cells(idx, m['glyph'], args.factor, fonts, scheme, args.weight)
-    print(f'{drawn} glyphs drawn')
-    write_sheets(args.out, m, out, args.factor, 'loading captions redrawn from a vector font')
+    # The loading screen's sheet, and the M.I.S.T. briefing's copy of its font.
+    for m in find_maps(args.dumps, 'loading'):
+        idx = read_sheets(args.dumps, m)
+        out, drawn = draw_cells(idx, m['glyph'], args.factor, fonts, scheme, args.weight)
+        print(f'{drawn} glyphs drawn')
+        write_sheets(args.out, m, out, args.factor, 'loading captions redrawn from a vector font')
 
 
 def main():

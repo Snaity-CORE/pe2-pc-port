@@ -577,6 +577,7 @@ pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path, full: bool) -> std::io
     maps.extend(super::glyphmaps::ui_font(&catalog, &executable));
     maps.extend(super::glyphmaps::loading(&catalog, &executable));
     maps.extend(super::glyphmaps::title(&catalog));
+    maps.extend(super::glyphmaps::disc_prompt(&catalog));
     let count = super::glyphmaps::write(&maps, &glyphs)?;
     eprintln!("pe2: extract: {count} maps of pictures of text in {}", glyphs.display());
     eprintln!(

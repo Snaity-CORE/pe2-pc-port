@@ -15,7 +15,10 @@
 //!   the edges; letters of a face share one scale (its capitals') and
 //!   stand on the baseline their record gives; the pad's buttons drawn as
 //!   outlines;
-//! - loading: 0 clear, 1 the ring, 15 the fill, those between the edges.
+//! - loading: 0 clear, 1 the ring, 15 the fill, those between the edges;
+//!   also the M.I.S.T. briefing's copy of its font;
+//! - the disc change's lines: 15 clear (black), 0 the fill (white), 1 to
+//!   14 the greys between, darkest first; no ring.
 //!
 //! A mod's indexed replacement of the same sheet wins (mods::indexed_texture).
 
@@ -50,11 +53,12 @@ pub fn get(sheet: u64, depth: u32) -> Option<Arc<Indexed>> {
     SHEETS.get()?.get(&(sheet, depth)).cloned()
 }
 
-/// The files of disc 1 that hold the two sheets: the menus' font and the
-/// loading captions (glyphmaps.rs).
-const FILES: [&str; 2] = ["stage0/file1", "stage0/file10"];
+/// The files of disc 1 that hold the sheets: the menus' font, the loading
+/// captions, the M.I.S.T. briefing's room and the disc change's lines
+/// (glyphmaps.rs).
+const FILES: [&str; 4] = ["stage0/file1", "stage0/file10", "stage1/1801/file0", "stage0/file20160"];
 
-/// Starts redrawing, on threads of its own, from `disc1`: only the two
+/// Starts redrawing, on threads of its own, from `disc1`: only those
 /// files and the executable are read, so it is done before the game draws
 /// either (the rest of what mods need comes later, mods::start).
 pub fn start(disc1: std::path::PathBuf) {
@@ -73,34 +77,67 @@ pub fn start(disc1: std::path::PathBuf) {
         let sources = super::files::sources_of(disc.as_mut(), |key| FILES.contains(&key));
         let catalog = Catalog::new(&sources);
         build(&catalog, &exe);
-        // The renderer finds the sheets it draws in the catalog: these two
+        // The renderer finds the sheets it draws in the catalog: these
         // at once, until the one of all the discs' sheets comes.
         super::sheets::set_catalog(catalog);
     });
 }
 
-/// Redraws the menus' font and the loading captions, from the sheets of
-/// `catalog` and the maps the game's executable `exe` gives.
+/// Redraws the menus' font, the loading captions and the disc change's
+/// lines, from the sheets of `catalog` and the maps the game's executable
+/// `exe` gives.
 pub fn build(catalog: &Catalog, exe: &[u8]) {
     let since = std::time::Instant::now();
     let ui = Font::new(super::capfont::BUILT_IN);
     let typewriter = Font::new(COURIER_PRIME);
     // The small face is wide capitals: stretched into its cells.
     let ui_faces = [(Some("medium"), &ui, None), (Some("large"), &ui, None), (Some("small"), &ui, Some(3.0))];
-    let ui_scheme = Scheme { clear: 5, fill_from: 13, ink_from: 8, keep_zero: true, levels: ui_levels, weight: -0.25 };
-    let loading_faces = [(None, &typewriter, None)];
-    let loading_scheme =
-        Scheme { clear: 0, fill_from: 10, ink_from: 1, keep_zero: false, levels: loading_levels, weight: 0.15 };
-    let (ui_map, loading_map) = (super::glyphmaps::ui_font(catalog, exe), super::glyphmaps::loading(catalog, exe));
+    let ui_scheme = Scheme {
+        clear: 5,
+        fill_from: 13,
+        ink_from: 8,
+        keep_zero: true,
+        rank: in_order,
+        levels: ui_levels,
+        weight: -0.25,
+        inset: 1,
+    };
+    let typewriter_faces = [(None, &typewriter, None)];
+    let loading_scheme = Scheme {
+        clear: 0,
+        fill_from: 10,
+        ink_from: 1,
+        keep_zero: false,
+        rank: in_order,
+        levels: loading_levels,
+        weight: 0.15,
+        inset: 1,
+    };
+    let prompt_scheme = Scheme {
+        clear: 15,
+        fill_from: 8,
+        ink_from: 1,
+        keep_zero: false,
+        rank: prompt_rank,
+        levels: prompt_levels,
+        weight: 0.15,
+        inset: 0,
+    };
+    let mut jobs: Vec<(Map, &[Face], &Scheme)> = Vec::new();
+    jobs.extend(super::glyphmaps::ui_font(catalog, exe).map(|m| (m, &ui_faces[..], &ui_scheme)));
+    jobs.extend(
+        super::glyphmaps::loading(catalog, exe).into_iter().map(|m| (m, &typewriter_faces[..], &loading_scheme)),
+    );
+    jobs.extend(super::glyphmaps::disc_prompt(catalog).map(|m| (m, &typewriter_faces[..], &prompt_scheme)));
     let sheets: Vec<Indexed> = std::thread::scope(|scope| {
-        let a = scope.spawn(|| ui_map.as_ref().and_then(|m| redraw(catalog, m, &ui_faces, &ui_scheme)));
-        let b = scope.spawn(|| loading_map.as_ref().and_then(|m| redraw(catalog, m, &loading_faces, &loading_scheme)));
-        [a, b].into_iter().filter_map(|t| t.join().ok().flatten()).collect()
+        let jobs: Vec<_> =
+            jobs.iter().map(|(m, faces, scheme)| scope.spawn(move || redraw(catalog, m, faces, scheme))).collect();
+        jobs.into_iter().filter_map(|t| t.join().ok().flatten()).collect()
     });
     let out: HashMap<(u64, u32), Arc<Indexed>> =
         sheets.into_iter().map(|s| ((s.sheet, s.depth), Arc::new(s))).collect();
     eprintln!(
-        "pe2: video: menus' font and loading captions redrawn ({} sheets) in {:.1} s",
+        "pe2: video: menus' font, loading captions and disc change redrawn ({} sheets) in {:.1} s",
         out.len(),
         since.elapsed().as_secs_f32()
     );
@@ -117,17 +154,27 @@ pub fn build(catalog: &Catalog, exe: &[u8]) {
     let _ = SHEETS.set(out);
 }
 
-/// A sheet's indices: what its page is, where a glyph's fill and ink begin,
-/// whether its zero texels stay clear, and how coverage becomes indices.
+/// A sheet's indices: what its page is, where a glyph's fill and ink begin
+/// (in `rank`), whether its zero texels stay clear, and how coverage
+/// becomes indices.
 struct Scheme {
     clear: u8,
     fill_from: u8,
     ink_from: u8,
     keep_zero: bool,
+    /// Index -> its place from dark to bright (0 to 15).
+    rank: fn(u8) -> u8,
     /// (fill, ring coverage) -> index.
     levels: fn(f32, f32) -> u8,
     /// Texels the strokes grow (negative: thinner).
     weight: f32,
+    /// Texels between a glyph's old ink and the new one's box: room for
+    /// the ring, where there is one.
+    inset: usize,
+}
+
+fn in_order(i: u8) -> u8 {
+    i
 }
 
 fn ui_levels(fill: f32, ring: f32) -> u8 {
@@ -136,6 +183,20 @@ fn ui_levels(fill: f32, ring: f32) -> u8 {
 
 fn loading_levels(fill: f32, ring: f32) -> u8 {
     if ring >= 0.5 { (1.0 + 14.0 * fill).round_ties_even().clamp(1.0, 15.0) as u8 } else { 0 }
+}
+
+/// The disc change's palette (its file's, at (0, 255)): 15 black, 1 to 14
+/// greys growing brighter, 0 white. Its own inverse.
+fn prompt_rank(i: u8) -> u8 {
+    match i {
+        0 => 15,
+        15 => 0,
+        i => i,
+    }
+}
+
+fn prompt_levels(fill: f32, _ring: f32) -> u8 {
+    prompt_rank((15.0 * fill).round_ties_even().clamp(0.0, 15.0) as u8)
 }
 
 /// A face's font: (face name, font, horizontal stretch for boxed faces).
@@ -487,11 +548,11 @@ fn median(v: &mut [f32]) -> Option<f32> {
     Some(if n % 2 == 1 { v[n / 2] } else { (v[n / 2 - 1] + v[n / 2]) / 2.0 })
 }
 
-/// `idx` (`w` x `h` indices) K times finer: its indices' greys
+/// `idx` (`w` x `h` indices) K times finer: its indices' greys (by `rank`)
 /// Lanczos-enlarged, each finer texel the nearest of its texel's index and
 /// its neighbours'.
-fn smooth(idx: &[u8], w: usize, h: usize) -> Vec<u8> {
-    let grey = |i: u8| f32::from(i) * 17.0;
+fn smooth(idx: &[u8], w: usize, h: usize, rank: fn(u8) -> u8) -> Vec<u8> {
+    let grey = |i: u8| f32::from(rank(i)) * 17.0;
     let up = resize(&Grey { w, h, px: idx.iter().map(|&i| grey(i)).collect() }, w * K, h * K);
     let (bw, bh) = (w * K, h * K);
     let mut out = vec![0u8; bw * bh];
@@ -550,14 +611,15 @@ fn redraw(catalog: &Catalog, map: &Map, faces: &[Face], scheme: &Scheme) -> Opti
     let depth = if map.depth == 4 { 0 } else { 1 };
     let (w, idx) = super::indexed::sheet_indices(&sheet.rows, depth);
     let (w, h) = (w as usize, sheet.rows.len());
-    let mut out = smooth(&idx, w, h);
+    let mut out = smooth(&idx, w, h, scheme.rank);
     let bw = w * K;
     let cell_of = |g: &Glyph| -> Option<(usize, usize, usize, usize)> {
         let [u, v, cw, ch] = g.cell.map(usize::from);
         (u + cw <= w && v + ch <= h).then_some((u, v, cw, ch))
     };
+    let at_least = |u: usize, v: usize, from: u8| (scheme.rank)(idx[v * w + u]) >= from;
     let fill_rows = |u: usize, v: usize, cw: usize, ch: usize| -> Vec<usize> {
-        (0..ch).filter(|&y| (0..cw).any(|x| idx[(v + y) * w + u + x] >= scheme.fill_from)).collect()
+        (0..ch).filter(|&y| (0..cw).any(|x| at_least(u + x, v + y, scheme.fill_from))).collect()
     };
     // Each face's capitals' fill height, and the sheet's baseline (where a
     // glyph's record gives none).
@@ -581,7 +643,7 @@ fn redraw(catalog: &Catalog, map: &Map, faces: &[Face], scheme: &Scheme) -> Opti
         let Some((u, v, cw, ch)) = cell_of(g) else { continue };
         for y in v.saturating_sub(1) * K..((v + ch + 1) * K).min(h * K) {
             for x in u.saturating_sub(1) * K..((u + cw + 1) * K).min(bw) {
-                if out[y * bw + x] != 0 {
+                if !(scheme.keep_zero && out[y * bw + x] == 0) {
                     out[y * bw + x] = scheme.clear;
                 }
             }
@@ -597,11 +659,12 @@ fn redraw(catalog: &Catalog, map: &Map, faces: &[Face], scheme: &Scheme) -> Opti
         let (u, v, cw, ch) = cell_of(g)?;
         let ink: Vec<(usize, usize)> = (0..ch)
             .flat_map(|y| (0..cw).map(move |x| (x, y)))
-            .filter(|&(x, y)| idx[(v + y) * w + u + x] >= scheme.ink_from)
+            .filter(|&(x, y)| at_least(u + x, v + y, scheme.ink_from))
             .collect();
         let (x0, y0) = (ink.iter().map(|p| p.0).min()?, ink.iter().map(|p| p.1).min()?);
         let (x1, y1) = (ink.iter().map(|p| p.0).max()? + 1, ink.iter().map(|p| p.1).max()? + 1);
-        let (fx0, fy0, fx1, fy1) = (x0 + 1, y0 + 1, x1.saturating_sub(1), y1.saturating_sub(1));
+        let i = scheme.inset;
+        let (fx0, fy0, fx1, fy1) = (x0 + i, y0 + i, x1.saturating_sub(i), y1.saturating_sub(i));
         if fx1 <= fx0 || fy1 <= fy0 {
             return None;
         }
