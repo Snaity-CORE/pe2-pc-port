@@ -34,11 +34,15 @@ typedef struct {
 
 static Precise table[RAM_WORDS];
 
-/* Frames (vertical blanks) so far. Primitives are drawn within a frame or
- * two of being built; an older entry may belong to a word rewritten since
- * by code that does not record positions, with the same value by chance. */
+/* Frames (vertical blanks) so far. An old entry may belong to a word
+ * rewritten since by code that does not record positions, with the same
+ * value by chance; but models' primitives are often drawn more than two
+ * frames after being built, and losing their positions then snaps them to
+ * whole pixels and stops their frames in between: they seem to shake. A
+ * stale entry still rounds to the word's whole pixel, so a few frames
+ * more cost little. */
 static uint32_t frame;
-#define MAX_AGE 2
+#define MAX_AGE 8
 
 void pc_pgxp_tick(void)
 {
