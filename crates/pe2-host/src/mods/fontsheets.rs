@@ -100,6 +100,9 @@ pub fn build(catalog: &Catalog, exe: &[u8]) {
         rank: in_order,
         levels: ui_levels,
         weight: -0.25,
+        // A whole texel of ring is heavy around strokes drawn finer than
+        // the game's.
+        ring: 0.6,
         inset: 1,
     };
     let typewriter_faces = [(None, &typewriter, None)];
@@ -111,6 +114,7 @@ pub fn build(catalog: &Catalog, exe: &[u8]) {
         rank: in_order,
         levels: loading_levels,
         weight: 0.15,
+        ring: 1.0,
         inset: 1,
     };
     let prompt_scheme = Scheme {
@@ -121,6 +125,7 @@ pub fn build(catalog: &Catalog, exe: &[u8]) {
         rank: prompt_rank,
         levels: prompt_levels,
         weight: 0.15,
+        ring: 0.0,
         inset: 0,
     };
     let mut jobs: Vec<(Map, &[Face], &Scheme)> = Vec::new();
@@ -168,6 +173,8 @@ struct Scheme {
     levels: fn(f32, f32) -> u8,
     /// Texels the strokes grow (negative: thinner).
     weight: f32,
+    /// How wide the ring is, in texels.
+    ring: f32,
     /// Texels between a glyph's old ink and the new one's box: room for
     /// the ring, where there is one.
     inset: usize,
@@ -408,9 +415,9 @@ fn distance(target: &[bool], w: usize, h: usize) -> Vec<f32> {
     grid.into_iter().map(f32::sqrt).collect()
 }
 
-/// Fill and ring (a sheet texel wide) coverage, K per texel, of `fill`
-/// drawn SS times finer still; its strokes grown by `weight` texels.
-fn coverage(fill: &Mask, w: usize, h: usize, weight: f32) -> (Vec<f32>, Vec<f32>) {
+/// Fill and ring (`ring` sheet texels wide) coverage, K per texel, of
+/// `fill` drawn SS times finer still; its strokes grown by `weight` texels.
+fn coverage(fill: &Mask, w: usize, h: usize, weight: f32, ring: f32) -> (Vec<f32>, Vec<f32>) {
     let s = (K * SS) as f32;
     let off: Vec<bool> = fill.on.iter().map(|&b| !b).collect();
     let fill: Vec<bool> = if weight < 0.0 {
@@ -423,7 +430,7 @@ fn coverage(fill: &Mask, w: usize, h: usize, weight: f32) -> (Vec<f32>, Vec<f32>
     };
     let (bw, bh) = (w * K * SS, h * K * SS);
     let near = distance(&fill, bw, bh);
-    let ring: Vec<bool> = fill.iter().zip(&near).map(|(&f, &d)| f || d <= s).collect();
+    let ring: Vec<bool> = fill.iter().zip(&near).map(|(&f, &d)| f || d <= ring * s).collect();
     let down = |m: &[bool]| -> Vec<f32> {
         let mut out = vec![0.0f32; w * K * h * K];
         for y in 0..h * K {
@@ -539,6 +546,25 @@ fn on_baseline(
     Some((top as usize, left, g))
 }
 
+/// `stem` (a bare I) centred in `w` columns, with bars across them at its
+/// top and bottom, a little thinner than the stem is wide.
+fn with_serifs(stem: &Mask, w: usize) -> Mask {
+    let row = stem.h / 2;
+    let stem_w = (0..stem.w).filter(|&x| stem.on[row * stem.w + x]).count();
+    let bar = ((stem_w as f32 * 0.8).round() as usize).clamp(1, stem.h / 3);
+    let mut out = Mask::new(w.max(stem.w), stem.h);
+    out.paste(stem, (out.w - stem.w) / 2, 0);
+    // The stem's own rows, from its first to its last: bars inside them.
+    let filled = |y: usize| (0..stem.w).any(|x| stem.on[y * stem.w + x]);
+    let (Some(top), Some(bottom)) = ((0..stem.h).find(|&y| filled(y)), (0..stem.h).rfind(|&y| filled(y))) else {
+        return out;
+    };
+    for y in (top..top + bar).chain(bottom + 1 - bar..=bottom) {
+        out.on[y * out.w..(y + 1) * out.w].fill(true);
+    }
+    out
+}
+
 fn median(v: &mut [f32]) -> Option<f32> {
     if v.is_empty() {
         return None;
@@ -650,13 +676,9 @@ fn redraw(catalog: &Catalog, map: &Map, faces: &[Face], scheme: &Scheme) -> Opti
         }
     }
     let s = K * SS;
-    // One glyph drawn: its cell and its finer texels' indices.
-    let draw = |g: &Glyph| -> Option<(usize, usize, usize, usize, Vec<u8>)> {
-        if g.text.is_empty() {
-            return None;
-        }
-        let &(_, font, stretch) = faces.iter().find(|f| f.0 == g.face)?;
-        let (u, v, cw, ch) = cell_of(g)?;
+    // Where a glyph's new ink goes in its cell: its old ink's box, the
+    // scheme's inset within it.
+    let fill_box = |u: usize, v: usize, cw: usize, ch: usize| -> Option<(usize, usize, usize, usize)> {
         let ink: Vec<(usize, usize)> = (0..ch)
             .flat_map(|y| (0..cw).map(move |x| (x, y)))
             .filter(|&(x, y)| at_least(u + x, v + y, scheme.ink_from))
@@ -665,9 +687,39 @@ fn redraw(catalog: &Catalog, map: &Map, faces: &[Face], scheme: &Scheme) -> Opti
         let (x1, y1) = (ink.iter().map(|p| p.0).max()? + 1, ink.iter().map(|p| p.1).max()? + 1);
         let i = scheme.inset;
         let (fx0, fy0, fx1, fy1) = (x0 + i, y0 + i, x1.saturating_sub(i), y1.saturating_sub(i));
-        if fx1 <= fx0 || fy1 <= fy0 {
+        (fx1 > fx0 && fy1 > fy0).then_some((fx0, fy0, fx1, fy1))
+    };
+    // A stretched face's stretch: how much wider than the font's its
+    // capitals' boxes are, on the median (at most the face's own limit), so
+    // all its letters' strokes come out alike; a narrow letter (I, 1) stays
+    // narrow in its box instead of being widened the most.
+    let mut widen: HashMap<Option<&str>, f32> = HashMap::new();
+    for &(face, font, limit) in faces {
+        let Some(limit) = limit else { continue };
+        let mut ratios: Vec<f32> = map
+            .glyphs
+            .iter()
+            .filter(|g| g.face == face && g.text.chars().count() == 1 && "ABDEFHKLNPRTUVXZ".contains(g.text.as_str()))
+            .filter_map(|g| {
+                let (u, v, cw, ch) = cell_of(g)?;
+                let (fx0, fy0, fx1, fy1) = fill_box(u, v, cw, ch)?;
+                let (a, _) = font.ink(&g.text)?;
+                Some((fx1 - fx0) as f32 / (fy1 - fy0) as f32 / (a.w as f32 / a.h as f32))
+            })
+            .collect();
+        if let Some(m) = median(&mut ratios) {
+            widen.insert(face, m.min(limit));
+        }
+    }
+    // One glyph drawn: its cell and its finer texels' indices.
+    let draw = |g: &Glyph| -> Option<(usize, usize, usize, usize, Vec<u8>)> {
+        if g.text.is_empty() {
             return None;
         }
+        let &(_, font, stretch) = faces.iter().find(|f| f.0 == g.face)?;
+        let stretch = widen.get(&g.face).copied().or(stretch);
+        let (u, v, cw, ch) = cell_of(g)?;
+        let (fx0, fy0, fx1, fy1) = fill_box(u, v, cw, ch)?;
         let mut big = Mask::new(cw * s, ch * s);
         if let Some(name) = g.text.strip_prefix('{').and_then(|t| t.strip_suffix('}')) {
             let stroke = if g.face == Some("large") { 2.0 } else { 1.6 } * s as f32;
@@ -681,6 +733,15 @@ fn redraw(catalog: &Catalog, map: &Map, faces: &[Face], scheme: &Scheme) -> Opti
                 let descends = rows.last().is_some_and(|&r| r + 1 > base);
                 placed = on_baseline(font, &g.text, cap, base, ch, fx0, fx1, descends);
             }
+            // The menus' I has slab serifs, as wide as the other capitals'
+            // strokes are long; the font's is a bare stem.
+            let fill_width = |y: usize| (0..cw).filter(|&x| at_least(u + x, v + y, scheme.fill_from)).count();
+            let rows = fill_rows(u, v, cw, ch);
+            let serifs =
+                g.text == "I" && rows.len() >= 3 && fill_width(rows[0]) >= fill_width(rows[rows.len() / 2]) + 2;
+            if serifs && let Some((top, _, stem)) = placed.take() {
+                placed = Some((top, fx0 * s, with_serifs(&stem, (fx1 - fx0) * s)));
+            }
             match placed {
                 Some((top, left, shape)) => big.paste(&shape, left, top),
                 None => {
@@ -689,7 +750,7 @@ fn redraw(catalog: &Catalog, map: &Map, faces: &[Face], scheme: &Scheme) -> Opti
                 }
             }
         }
-        let (fill, ring) = coverage(&big, cw, ch, scheme.weight);
+        let (fill, ring) = coverage(&big, cw, ch, scheme.weight, scheme.ring);
         let block = (0..ch * K * cw * K)
             .map(|i| {
                 let (y, x) = (i / (cw * K), i % (cw * K));
@@ -758,6 +819,21 @@ mod tests {
             assert!((a.h as f32 - f.cap).abs() <= 2.0, "{} vs {}", a.h, f.cap);
             assert!((base - a.h as f32).abs() <= 2.0);
         }
+    }
+
+    /// An I gets bars as wide as asked at its top and bottom, its stem
+    /// centred and left alone between them.
+    #[test]
+    fn serifs_span_the_width() {
+        let mut stem = Mask::new(4, 20);
+        for y in 2..18 {
+            stem.on[y * 4 + 1..y * 4 + 3].fill(true);
+        }
+        let i = with_serifs(&stem, 12);
+        assert_eq!(i.w, 12);
+        assert!(i.on[2 * 12..3 * 12].iter().all(|&b| b) && i.on[17 * 12..18 * 12].iter().all(|&b| b));
+        assert!(!i.on[10 * 12] && i.on[10 * 12 + 5] && i.on[10 * 12 + 6] && !i.on[10 * 12 + 7]);
+        assert!(!i.on[..2 * 12].iter().any(|&b| b));
     }
 
     /// The buttons' outlines are hollow.
