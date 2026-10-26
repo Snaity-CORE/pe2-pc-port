@@ -28,11 +28,11 @@ It plays as the console does and adds what a PC can, all optional:
   in exploration and in battle; or the original tank controls with a quick
   turn (back + run).
 - **Sharp text**: the dialogue, the menus, the loading captions and the
-  disc change's lines drawn
-  from high-definition fonts (the built-in DejaVu Sans Bold and Courier
-  Prime) instead of the game's small pictures of text.
-- **Mods** (experimental, turned on in Settings): replace the pre-rendered backgrounds and full-screen pictures
-  and the textures with your own at any resolution, the music with
+  disc change's lines drawn from high-definition fonts (the built-in DejaVu
+  Sans Bold and Courier Prime) instead of the game's small pictures of text.
+- **Mods** (experimental, turned on in Settings): replace the pre-rendered
+  backgrounds and full-screen pictures and the textures with your own at
+  any resolution, the music with
   recordings, the movies with video files, any of the game's files, and
   the dialogue with translations; cheats and memory patches; the game's
   pictures, textures, music, movies, files and dialogue extracted from your
@@ -60,8 +60,9 @@ guesswork, and fixes went in only after they held up in play.
 
 Build it as [docs/BUILDING.md](docs/BUILDING.md) explains, or take the
 [last build of `main`](https://github.com/Snaity-CORE/pe2-pc-port/releases/download/nightly/pe2-pc-port-nightly-windows-x86.zip)
-(the nightly pre-release: untested beyond CI), then start `pe2.exe`. The launcher's Setup asks for your disc images, memory cards and a
-quality level; after that, Play starts the game. Settings and Controls change
+(the nightly pre-release: untested beyond CI), then start `pe2.exe`. The
+launcher's Setup asks for your disc images, memory cards and a quality
+level; after that, Play starts the game. Settings and Controls change
 everything later.
 
 Default keys (Controls remaps them):
@@ -96,7 +97,8 @@ setting.
 | `decomp/` | Submodule with the game's C code (fork of the decomp) |
 | `port/` | C side: the PC's own Psy-Q headers and library routines, software GTE |
 | `crates/pe2-host/` | Rust host: launcher, window, graphics, sound, CD and the rest of the runtime |
-| `tools/` | Build, debugging and verification tools |
+| `tools/` | Build, debugging, verification and release tools |
+| `snapshot/` | What the build takes from the decomp's PSX build, without the game's data, to build without the discs |
 | `docs/` | [Architecture](docs/ARCHITECTURE.md), [building](docs/BUILDING.md), [modding](docs/MODDING.md) and [releasing](docs/RELEASING.md) |
 
 ## Golden rule
@@ -120,9 +122,10 @@ runs `tools/check_no_game_data.py` and blocks them.
 - **Sub-pixel precision**: the idea of PGXP, by iCatButler.
 - **Fonts**: [DejaVu Sans](https://dejavu-fonts.github.io/) Bold, built in for
   the dialogue and the menus (Bitstream Vera license with DejaVu's changes
-  in the public domain), and [Courier Prime](https://github.com/quoteunquoteapps/CourierPrime)
-  for the loading captions and the disc change (SIL Open Font License 1.1); their licenses are
-  in `crates/pe2-host/res/fonts/`.
+  in the public domain), and
+  [Courier Prime](https://github.com/quoteunquoteapps/CourierPrime) for the
+  loading captions and the disc change (SIL Open Font License 1.1); their
+  licenses are in `crates/pe2-host/res/fonts/`.
 - **Reference**: [DuckStation](https://github.com/stenzek/duckstation), used
   to compare behaviour (none of its code is used).
 - **Libraries**: [wgpu](https://wgpu.rs), [winit](https://github.com/rust-windowing/winit),
@@ -133,13 +136,17 @@ runs `tools/check_no_game_data.py` and blocks them.
   pollster, windows-sys, lewton, claxon and hound (mods' music),
   [openh264](https://github.com/ralfbiedert/openh264-rs) with Cisco's
   [OpenH264](https://github.com/cisco/openh264) (BSD-2-Clause, © Cisco Systems),
-  mp4 and [Symphonia](https://github.com/pdeljanov/Symphonia) (mods' movies).
-  Thanks to all their authors.
+  mp4 and [Symphonia](https://github.com/pdeljanov/Symphonia) (mods' movies),
+  and the crates they build on. Thanks to all their authors.
 
 ## Legal
 
 Parasite Eve II is © Square (now Square Enix). This project is not affiliated
 with or endorsed by them, and includes none of the game's data: you supply
-your own copy. The project's own code is released under CC0-1.0; the
-decompilation in `decomp/` and the fonts in `crates/pe2-host/res/fonts/`
-keep their own licenses.
+your own copy.
+
+The project's own code is dedicated to the public domain under
+[CC0 1.0](LICENSE), as the decompilation in `decomp/` is. The fonts in
+`crates/pe2-host/res/fonts/` keep their own licenses, and so do the
+libraries `pe2.exe` is built from: each release carries their notices in
+`THIRD-PARTY-NOTICES.txt` (`python tools/third_party.py` writes them).

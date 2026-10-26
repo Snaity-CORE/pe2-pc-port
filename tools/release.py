@@ -12,7 +12,8 @@ this machine instead, from the decomp's PSX build. For version X.Y.Z:
 3. checks the build carries no game data: the repository
    (check_no_game_data.py) and the exe (check_exe_game_data.py);
 4. packages dist/pe2-pc-port-vX.Y.Z-windows-x86.zip: pe2.exe, the example
-   settings, README, the modding guide and the embedded fonts' licenses;
+   settings, README, the modding guide, the license, the third-party
+   notices (tools/third_party.py) and the embedded fonts' licenses;
 5. tags the commit vX.Y.Z, pushes the tag and opens a draft release with
    the zip, to review and publish on GitHub.
 
@@ -52,6 +53,9 @@ PACKAGE = [
     (ROOT / "pe2.example.toml", "pe2.example.toml"),
     (ROOT / "README.md", "README.md"),
     (ROOT / "docs" / "MODDING.md", "MODDING.md"),
+    (ROOT / "LICENSE", "LICENSE.txt"),
+    # The third-party code pe2.exe is built from (made by package()).
+    (DIST / "THIRD-PARTY-NOTICES.txt", "THIRD-PARTY-NOTICES.txt"),
     # The fonts pe2.exe embeds: their licenses go with them.
     (ROOT / "crates" / "pe2-host" / "res" / "fonts" / "LICENSE-DejaVu.txt", "LICENSE-DejaVu.txt"),
     (ROOT / "crates" / "pe2-host" / "res" / "fonts" / "LICENSE-CourierPrime.txt", "LICENSE-CourierPrime.txt"),
@@ -133,6 +137,7 @@ def check_no_game_data() -> None:
 def package(tag: str) -> tuple[Path, str]:
     """The zip and its SHA-256."""
     DIST.mkdir(exist_ok=True)
+    run([sys.executable, "tools/third_party.py", DIST / "THIRD-PARTY-NOTICES.txt"])
     out = DIST / f"pe2-pc-port-{tag}-windows-x86.zip"
     with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED, compresslevel=9) as z:
         for path, name in PACKAGE:

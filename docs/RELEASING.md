@@ -61,9 +61,16 @@ release notes count from the last real release, not from it.
 
 ## The zip
 
-`pe2.exe`, `pe2.example.toml`, `README.md`, `MODDING.md` and the licenses of
-the fonts `pe2.exe` embeds (`LICENSE-DejaVu.txt`, `LICENSE-CourierPrime.txt`).
+`pe2.exe`, `pe2.example.toml`, `README.md`, `MODDING.md`, the project's
+`LICENSE.txt` (CC0 1.0), `THIRD-PARTY-NOTICES.txt` and the licenses of the
+fonts `pe2.exe` embeds (`LICENSE-DejaVu.txt`, `LICENSE-CourierPrime.txt`).
 Players bring their own discs; the game reads them at runtime.
+
+`THIRD-PARTY-NOTICES.txt` is written while packaging by
+`tools/third_party.py`: every crate linked into `pe2.exe` (from
+`cargo metadata`), with the license files it ships, or the standard text of
+its license from `tools/licenses/` (SPDX) when it ships none. A crate with
+neither stops the release: add its license's text there.
 
 ## No game data
 

@@ -105,13 +105,22 @@ and `PE2_*` environment variables override it.
 
 Debug output:
 
-- `PE2_TRACE` takes comma-separated topics: `cd` (CD commands), `cdsector`
-  (every delivered sector), `stream` (movie frames), `images` (overlays
-  recognized in RAM), `gpu` (command lists and display changes), `dma`, `stubs`,
-  `xa` (XA audio sectors played), `files` (each game file read, by its mod
-  name), `music` (songs and replacement gain), `text` (translated dialogue
-  files loaded), `movies` (movies beginning and ending, by hash), `startup` (how long reading
-  the discs for fonts and mods takes, step by step), or `all`.
+- `PE2_TRACE` takes comma-separated topics, or `all`:
+  - CD and files: `cd` (CD commands), `cdsector` (every delivered sector),
+    `files` (each game file read, by its mod name), `images` (overlays
+    recognized in RAM), `mc` (memory cards), `startup` (how long reading the
+    discs for fonts and mods takes, step by step);
+  - graphics: `gpu` (command lists and display changes), `gpubig`
+    (oversized polygons), `dma`, `vram`, `hw` and `present` (the renderer),
+    `textures`, `pgxp` (vertices with and without exact positions),
+    `interp`, `interpcheck` and `interpshots` (frames in between);
+  - movies and sound: `stream` (movie frames), `mdec`, `movies` (movies
+    beginning and ending, by hash), `xa` (XA audio sectors played), `spu`
+    and `spukeys`, `music` (songs and replacement gain);
+  - timing: `vsyncwait`, `vsyncmode`, `waits`, `scene` (scene pacing),
+    `cputime`, `hang`, `lowmem`;
+  - the rest: `move` (modern movement), `rooms`, `text` (translated
+    dialogue files loaded), `stubs`.
 - `PE2_RECORD_AUDIO=<file.wav>:<start>:<seconds>` saves what the sound chip
   plays over that span, to check the mix without listening.
 - Performance: `PE2_TRACE=cpu` prints each thread's CPU use every 10 seconds
@@ -125,8 +134,9 @@ Debug output:
   console pixel per block.
 - With `[debug] record_input = true` in pe2.toml (off by default), each
   session records the controller (`recordings/<date>_<time>.txt` in the
-  data folder, the last ten, each with the memory card it started with). `PE2_REPLAY=<recording>.txt` plays one back from power-on on a
-  copy of that card, the same way, update for update, then pauses where it
+  data folder, the last ten, each with the memory card it started with).
+  `PE2_REPLAY=<recording>.txt` plays one back from power-on on a copy of
+  that card, the same way, update for update, then pauses where it
   ended (P resumes with the controls) and saves a screenshot: a way to get
   back to a place to debug it. `PE2_REPLAY_PAUSE=0` lets the game go on
   past the end instead, and `PE2_REPLAY_EXIT=<seconds>` closes it that long
@@ -142,9 +152,19 @@ Debug output:
   registers.
 - `PE2_PEEK=0x80082818:0x58[,addr:len...]` prints those bytes of PSX RAM
   every five seconds: a game's state while it seems stuck.
+- `PE2_GPUDUMP=<seconds>` logs the first command lists drawn after that
+  time, a line per command (F12 dumps the current one).
+- `PE2_FONTSHEETS=<dir>` saves the text pictures redrawn from the built-in
+  fonts as indexed replacements, to look at them.
 - A native crash prints the faulting address and stack; map the addresses to
   game functions with `python tools/symbolize.py <addr>...` (uses the linker
   map, `target/.../deps/pe2.map`).
+- A native game function that misbehaves can be found against the original
+  MIPS code: built with `python tools/build_game.py --route-calls`,
+  `PE2_INTERPRET=<addr>,<A-B>...` runs those functions in the interpreter
+  instead, `PE2_SHADOW=...` runs both and reports where they differ, and
+  `python tools/bisect_native.py` bisects the game's functions for one that
+  breaks 3D geometry.
 
 Keyboard: arrows = d-pad, Z/X/A/S = Cross/Circle/Square/Triangle,
 Enter = Start, Backspace = Select, Q/W/E/R = L1/R1/L2/R2, Alt+Enter toggles
@@ -152,7 +172,8 @@ borderless full screen (`fullscreen = true` in pe2.toml starts in it; the mouse
 cursor is hidden there unless `hide_cursor = false`), Esc asks to
 quit (`[general] confirm_exit = false` quits at once), P pauses and resumes, F9
 saves a screenshot at the internal resolution in `screenshots/` in the data
-folder.
+folder, F10 swaps discs by hand; for debugging, F11 writes a timed mark in
+the log and F12 dumps the GPU's current command list.
 
 The data folder holds pe2.toml, the default memory cards (`memcards/`),
 screenshots, input recordings (`recordings/`) and pe2.log: `%APPDATA%\PE2PC` on Windows,

@@ -2223,7 +2223,7 @@ fn ways_back(
     // polygon the first round settled.
     for _ in 0..2 {
         let mut sums: std::collections::HashMap<u32, ([f32; 2], f32)> = std::collections::HashMap::new();
-        for (tri, tri_keys) in ways.chunks_exact(3).zip(keys.chunks_exact(3)) {
+        for (tri, tri_keys) in ways.as_chunks::<3>().0.iter().zip(keys.as_chunks::<3>().0) {
             let known: Vec<[f32; 2]> =
                 tri.iter().filter_map(|w| if let Way::Known(d) = w { Some(*d) } else { None }).collect();
             if known.is_empty() || known.len() == 3 {

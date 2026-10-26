@@ -26,14 +26,15 @@
 │ pe2 (Rust) host: window, frame loop, config, mods              │
 ├────────────────────────────────────────────────────────────────┤
 │ PSX runtime (Rust, extern "C" API)                              │
-│  disc/CD (BIN/CUE) · GPU → wgpu · SPU → cpal · pad → gilrs      │
+│  disc/CD (BIN/CUE, CHD) · GPU → wgpu · SPU → cpal · pad → gilrs │
 │  memory card → files · MDEC → FMV · timers/VSync                │
 ├────────────────────────────────────────────────────────────────┤
-│ C shim (port/): PC Psy-Q headers, inline software GTE,          │
-│ C rewrites of the 9 hasm routines, overlay table                │
+│ C side (port/): the project's own Psy-Q headers and library     │
+│ routines, software GTE, sub-pixel positions, image thunks       │
 ├────────────────────────────────────────────────────────────────┤
-│ Game code: decomp/src (C, ~740k lines) built with clang         │
-│ through build.rs (`cc` crate) as a static library               │
+│ Game code: decomp/src (C, ~740k lines, and C versions of its    │
+│ hand-written assembly) built with clang by tools/build_game.py  │
+│ into a static library                                           │
 └────────────────────────────────────────────────────────────────┘
 ```
 
@@ -53,11 +54,11 @@
 | Topic | Decision | Reason |
 |---|---|---|
 | Target architecture | `i686-pc-windows-msvc` (32-bit) in phase 1 | Structs overlay disc data and assume 4-byte pointers. 64-bit is a phase 4 enhancement. |
-| C compiler | clang | Compiles the decomp's C almost unchanged. It is also what the `cc` crate drives. |
+| C compiler | clang (`tools/build_game.py`) | Compiles the decomp's C almost unchanged, for the same target as Rust. |
 | Memory | PSX RAM and scratchpad identity-mapped at their console addresses (see below) | Game code addresses data by fixed address across images, and disc data holds PSX pointers. |
 | Overlays | Every image linked in; each unit rewritten per image that links it (`tools/pclink.py`) | All overlays of a family load at the same address, so names and addresses repeat across them. |
 | Game data | All globals (main, gameplay, overlays) live in PSX RAM, loaded from the player's disc | Exactly the console's initial values and layout; nothing from the disc has to be in the binary. |
-| Generated `assets/*.inc` | Still needed to compile, but the data they define is remapped to PSX RAM and unused | A distributable build must drop it; auditing that is tracked for phase 3. |
+| Generated `assets/*.inc` | Needed to compile; built on GitHub from `snapshot/`, the same includes with every value taken out | The data they define is remapped to PSX RAM, so the values never mattered: the code comes out the same (`tools/make_snapshot.py` checks it), and a release carries nothing from the discs. |
 | Code generation | `-funsigned-char -fwrapv -fno-strict-aliasing -mno-sse` and friends (`tools/build_game.py`) | Matches the PSX build's semantics; globals are only as aligned as on the PSX. |
 | Runtime functions | `pcrt_<name>` for code with no C body: Psy-Q libraries and the hand-written assembly | Unimplemented ones fall back to logging stubs through `/alternatename`. |
 
@@ -110,32 +111,27 @@ waiting.
 
 ## Library code
 
-The game calls about 430 library routines with no C body (Psy-Q libraries
-and the decomp's hand-written assembly). They are handled in three ways:
+The game calls about 430 library routines with no C body: the Psy-Q
+libraries and the decomp's hand-written assembly. All of them are native
+and the project's own, so no code from Sony is built or run:
 
-1. **Interpreted.** By default a routine runs its original MIPS code, which
-   is in PSX RAM after boot, in a small R3000 interpreter
-   (`runtime/mips.rs`), with GTE instructions on the software GTE. Pure code
-   (GTE math, GPU packet builders, the LZ decompressor, MDEC VLC decoding)
-   then behaves exactly as on the console, without a rewrite.
-2. **Native.** Routines that drive hardware or the BIOS kernel have Rust
-   implementations: CD-ROM, GPU, VSync and timers, interrupts and events,
-   controller, memory card, sound. At boot each native routine also gets a
-   thunk at its PSX address, so interpreted code and stored function
-   pointers reach it too.
-3. **Interpreted over emulated registers.** Thin layers over a device
-   (libpress over the MDEC) run interpreted, and their register accesses go
-   to device models (`runtime/hw.rs`: MDEC, DMA channels 0/1).
+- **Hardware and BIOS** (CD-ROM, GPU, VSync and timers, interrupts and
+  events, controller, memory card, sound) are Rust (`runtime/`).
+- **Pure library code** (libgte, the libgpu/libgs packet helpers, libapi's
+  heap, libpress) is C in `port/src/`, checked against the originals:
+  `PE2_LIBTEST` runs a routine and its original MIPS code on the same
+  random inputs and compares what they leave.
+- **The hand-written assembly** (the TMD renderer, the LZ decompressors) is
+  C in the fork's `src/main/pc/hasm.c`, checked call by call against the
+  original with `PE2_SHADOW`.
 
-Callbacks registered by the game or by libraries are called through
-`call_psx`: natively when a thunk is installed at the address, otherwise in
-the interpreter.
-
-Every library routine gets a thunk at its PSX address: to its native
-implementation, or to the stub that interprets it. The two MIPS words a
-thunk overwrites are kept aside for the interpreter. Native calls into
-another image go through a trampoline that runs the target natively when it
-has a thunk and in the interpreter otherwise (`port/src/dispatch.s`).
+At boot each routine gets a thunk at its PSX address, so stored function
+pointers and calls between images reach it. The two MIPS words a thunk
+overwrites are kept aside: a small R3000 interpreter (`runtime/mips.rs`)
+can still run any routine's original code (`PE2_INTERPRET`), but only as a
+debugging tool; a normal run never enters it. Native calls into another
+image go through a trampoline that runs the target natively when it has a
+thunk (`port/src/dispatch.s`).
 
 ## Static functions
 
@@ -169,6 +165,13 @@ card drew is read back, one console pixel per block, when the game reads
 it or uses it as indexed texels. The display area is shown in a host window
 (`video.rs`, `present.rs`), with keyboard input mapped to the controller.
 
+At higher resolutions, the software GTE keeps each projection's exact
+position and the renderer uses it when the primitive still holds what was
+stored (`port/src/pgxp.c`, in the manner of PGXP), with the game's facing
+tests done on the exact positions. Those positions also carry each model
+vertex's identity, which lets `gpu/interp.rs` draw frames in between at
+60 fps with the models halfway.
+
 The MDEC decodes macroblocks from the run-length data libpress sends it
 (`runtime/mdec.rs`). STR movies are streamed with a native CdRead2 and St*
 ring (`runtime/stream.rs`) that assembles each frame's sectors contiguously
@@ -181,32 +184,20 @@ The host reads the player's images directly, as BIN/CUE or CHD
 loads it like the BIOS. The CD-ROM drive is emulated at the libcd level
 (`runtime/cdrom.rs`): primitive commands, sync and data-ready interrupts with
 their callbacks, and sectors delivered in real time at 75 or 150 sectors per
-second. XA-ADPCM and CD-DA audio come with the sound work in phase 3.
-
-## Feasibility (measured 2026-10-04)
-
-`-fsyntax-only` build of all 559 decomp translation units with clang
-`--target=i686-pc-windows-msvc`:
-
-| Status | Units |
-|---|---:|
-| Compile unchanged | 122 |
-| Only missing the disc-generated `assets/*.inc` | 332 |
-| Only fail on the GTE macros (inline MIPS asm) | 92 |
-| Other fixes (lvalue casts, per-package parameters, function pointer types) | 13 |
+second, with XA-ADPCM audio decoded into the sound chip's mix.
 
 ## Phases
 
 0. **Infrastructure** (done). Repository layout, game-data guard,
    documentation.
 1. **Link** (done). All game C built for x86 with a software GTE, the
-   identity-mapped memory model and a stubbed runtime. The native `main()`
-   boots through sound and graphics init into its first CD commands.
-2. **Title screen** (in progress). Disc reader (BIN/CUE, CHD) and the game's file system,
-   CD runtime, C rewrites of the hasm routines (LZ decompression, TMD
-   dispatch), 2D GPU (VRAM, sprites, polygons), controller, VSync.
-3. **Full game.** GTE and 3D models, rooms, combat, audio (SPU and CD-DA/XA),
-   FMV (MDEC/STR), memory card and disc swap. Goal: finish the game, compared
-   against a reference emulator.
-4. **Enhancements and mods.** 64-bit, high resolution, widescreen, 60 fps,
-   replaceable textures and a mod API.
+   identity-mapped memory model and a stubbed runtime.
+2. **Title screen** (done). Disc reader and the game's file system, CD
+   runtime, 2D GPU, controller, VSync.
+3. **Full game** (done). 3D models, rooms, combat, sound (SPU and XA),
+   movies (MDEC/STR), memory cards and disc swap; the project's own
+   libraries and C versions of the hand-written assembly, so no Sony code.
+4. **Enhancements and mods** (in progress). Done: higher resolution with
+   sub-pixel positions, 60 fps frames in between, filtering, sharp text
+   from built-in fonts, modern movement, mods (experimental). Not yet:
+   64-bit, widescreen.
