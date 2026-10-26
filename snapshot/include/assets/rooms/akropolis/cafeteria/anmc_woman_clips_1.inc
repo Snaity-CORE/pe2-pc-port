@@ -3,8 +3,8 @@
 
 #include "gameplay/animation.h"
 
-/* rooms/akropolis/cafeteria/player_cafeteria_opening */
-static AnimationPackedPose _gAkropolisCafeteriaPlayerCafeteriaOpeningClipBank1[158] = {
+/* rooms/akropolis/cafeteria/player_opening */
+static AnimationPackedPose _gAkropolisCafeteriaPlayerOpeningClipBank1[158] = {
     { 0, 0, 0, 0, 0, 0 },
     { -0, -0, 0, 0, 0, 0 },
     { -0, -0, 0, 0, 0, 0 },
@@ -165,7 +165,7 @@ static AnimationPackedPose _gAkropolisCafeteriaPlayerCafeteriaOpeningClipBank1[1
     { -0, -0, -0, -0, 0, -0 },
 };
 
-static AnimationPackedRotation _gAkropolisCafeteriaPlayerCafeteriaOpeningClipBank4[2161] = {
+static AnimationPackedRotation _gAkropolisCafeteriaPlayerOpeningClipBank4[2161] = {
     { 0, 0, 0 },
     { 0, -0, 0 },
     { 0, -0, 0 },
@@ -2329,7 +2329,7 @@ static AnimationPackedRotation _gAkropolisCafeteriaPlayerCafeteriaOpeningClipBan
     { 0, -0, 0 },
 };
 
-static AnimationRecord _gAkropolisCafeteriaPlayerCafeteriaOpeningClipRecords[3118] = {
+static AnimationRecord _gAkropolisCafeteriaPlayerOpeningClipRecords[3118] = {
     { 0, 0, 0 },
     { 0, 0, 0 },
     { 0, 0, 0 },
@@ -5450,14 +5450,14 @@ static AnimationRecord _gAkropolisCafeteriaPlayerCafeteriaOpeningClipRecords[311
     { 0, 0, 0 },
 };
 
-static u16 _gAkropolisCafeteriaPlayerCafeteriaOpeningClipTrackStarts[20] = {
+static u16 _gAkropolisCafeteriaPlayerOpeningClipTrackStarts[20] = {
     0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0,
 };
 
-AnimationSet gAkropolisCafeteriaPlayerCafeteriaOpeningClip = {
-    .records           = _gAkropolisCafeteriaPlayerCafeteriaOpeningClipRecords,
-    .trackStartIndices = _gAkropolisCafeteriaPlayerCafeteriaOpeningClipTrackStarts,
-    .poseBanks         = { [1] = _gAkropolisCafeteriaPlayerCafeteriaOpeningClipBank1, [4] = _gAkropolisCafeteriaPlayerCafeteriaOpeningClipBank4 },
+AnimationSet gAkropolisCafeteriaPlayerOpeningClip = {
+    .records           = _gAkropolisCafeteriaPlayerOpeningClipRecords,
+    .trackStartIndices = _gAkropolisCafeteriaPlayerOpeningClipTrackStarts,
+    .poseBanks         = { [1] = _gAkropolisCafeteriaPlayerOpeningClipBank1, [4] = _gAkropolisCafeteriaPlayerOpeningClipBank4 },
 };

@@ -954,8 +954,8 @@ AnimationSet gShelterB3IncineratorControlRoomPlayerFlusteredClip = {
     .poseBanks         = { [1] = _gShelterB3IncineratorControlRoomPlayerFlusteredClipBank1, [4] = _gShelterB3IncineratorControlRoomPlayerFlusteredClipBank4 },
 };
 
-/* rooms/mist/parking/mist_parking_player_conversation_anim_04 */
-static AnimationPackedPose _gMistParkingMistParkingPlayerConversationAnim04ClipBank1[9] = {
+/* rooms/mist/parking/player_conversation_anim_04 */
+static AnimationPackedPose _gMistParkingPlayerConversationAnim04ClipBank1[9] = {
     { 0, 0, 0, 0, 0, 0 },
     { 0, -0, -0, 0, -0, 0 },
     { 0, -0, -0, 0, -0, 0 },
@@ -967,7 +967,7 @@ static AnimationPackedPose _gMistParkingMistParkingPlayerConversationAnim04ClipB
     { 0, -0, 0, 0, -0, 0 },
 };
 
-static AnimationPackedRotation _gMistParkingMistParkingPlayerConversationAnim04ClipBank4[117] = {
+static AnimationPackedRotation _gMistParkingPlayerConversationAnim04ClipBank4[117] = {
     { -0, 0, 0 },
     { -0, 0, 0 },
     { -0, 0, 0 },
@@ -1087,7 +1087,7 @@ static AnimationPackedRotation _gMistParkingMistParkingPlayerConversationAnim04C
     { 0, -0, -0 },
 };
 
-static AnimationRecord _gMistParkingMistParkingPlayerConversationAnim04ClipRecords[147] = {
+static AnimationRecord _gMistParkingPlayerConversationAnim04ClipRecords[147] = {
     { 0, 0, 0 },
     { 0, 0, 0 },
     { 0, 0, 0 },
@@ -1237,20 +1237,20 @@ static AnimationRecord _gMistParkingMistParkingPlayerConversationAnim04ClipRecor
     { 0, 0, 0 },
 };
 
-static u16 _gMistParkingMistParkingPlayerConversationAnim04ClipTrackStarts[20] = {
+static u16 _gMistParkingPlayerConversationAnim04ClipTrackStarts[20] = {
     0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0,
 };
 
-AnimationSet gMistParkingMistParkingPlayerConversationAnim04Clip = {
-    .records           = _gMistParkingMistParkingPlayerConversationAnim04ClipRecords,
-    .trackStartIndices = _gMistParkingMistParkingPlayerConversationAnim04ClipTrackStarts,
-    .poseBanks         = { [1] = _gMistParkingMistParkingPlayerConversationAnim04ClipBank1, [4] = _gMistParkingMistParkingPlayerConversationAnim04ClipBank4 },
+AnimationSet gMistParkingPlayerConversationAnim04Clip = {
+    .records           = _gMistParkingPlayerConversationAnim04ClipRecords,
+    .trackStartIndices = _gMistParkingPlayerConversationAnim04ClipTrackStarts,
+    .poseBanks         = { [1] = _gMistParkingPlayerConversationAnim04ClipBank1, [4] = _gMistParkingPlayerConversationAnim04ClipBank4 },
 };
 
-/* rooms/mist/parking/mist_parking_player_conversation_anim_05 */
-static AnimationPackedPose _gMistParkingMistParkingPlayerConversationAnim05ClipBank1[10] = {
+/* rooms/mist/parking/player_conversation_anim_05 */
+static AnimationPackedPose _gMistParkingPlayerConversationAnim05ClipBank1[10] = {
     { 0, 0, 0, 0, 0, 0 },
     { 0, -0, 0, 0, 0, 0 },
     { -0, -0, -0, 0, 0, -0 },
@@ -1263,7 +1263,7 @@ static AnimationPackedPose _gMistParkingMistParkingPlayerConversationAnim05ClipB
     { -0, -0, 0, -0, -0, 0 },
 };
 
-static AnimationPackedRotation _gMistParkingMistParkingPlayerConversationAnim05ClipBank4[143] = {
+static AnimationPackedRotation _gMistParkingPlayerConversationAnim05ClipBank4[143] = {
     { -0, 0, -0 },
     { -0, 0, -0 },
     { 0, 0, -0 },
@@ -1409,7 +1409,7 @@ static AnimationPackedRotation _gMistParkingMistParkingPlayerConversationAnim05C
     { 0, -0, -0 },
 };
 
-static AnimationRecord _gMistParkingMistParkingPlayerConversationAnim05ClipRecords[177] = {
+static AnimationRecord _gMistParkingPlayerConversationAnim05ClipRecords[177] = {
     { 0, 0, 0 },
     { 0, 0, 0 },
     { 0, 0, 0 },
@@ -1589,20 +1589,20 @@ static AnimationRecord _gMistParkingMistParkingPlayerConversationAnim05ClipRecor
     { 0, 0, 0 },
 };
 
-static u16 _gMistParkingMistParkingPlayerConversationAnim05ClipTrackStarts[20] = {
+static u16 _gMistParkingPlayerConversationAnim05ClipTrackStarts[20] = {
     0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0,
 };
 
-AnimationSet gMistParkingMistParkingPlayerConversationAnim05Clip = {
-    .records           = _gMistParkingMistParkingPlayerConversationAnim05ClipRecords,
-    .trackStartIndices = _gMistParkingMistParkingPlayerConversationAnim05ClipTrackStarts,
-    .poseBanks         = { [1] = _gMistParkingMistParkingPlayerConversationAnim05ClipBank1, [4] = _gMistParkingMistParkingPlayerConversationAnim05ClipBank4 },
+AnimationSet gMistParkingPlayerConversationAnim05Clip = {
+    .records           = _gMistParkingPlayerConversationAnim05ClipRecords,
+    .trackStartIndices = _gMistParkingPlayerConversationAnim05ClipTrackStarts,
+    .poseBanks         = { [1] = _gMistParkingPlayerConversationAnim05ClipBank1, [4] = _gMistParkingPlayerConversationAnim05ClipBank4 },
 };
 
-/* rooms/mist/parking/mist_parking_player_conversation_anim_06 */
-static AnimationPackedPose _gMistParkingMistParkingPlayerConversationAnim06ClipBank1[5] = {
+/* rooms/mist/parking/player_conversation_anim_06 */
+static AnimationPackedPose _gMistParkingPlayerConversationAnim06ClipBank1[5] = {
     { 0, 0, 0, 0, 0, 0 },
     { -0, -0, 0, -0, -0, 0 },
     { -0, -0, 0, -0, -0, 0 },
@@ -1610,7 +1610,7 @@ static AnimationPackedPose _gMistParkingMistParkingPlayerConversationAnim06ClipB
     { -0, -0, 0, -0, -0, 0 },
 };
 
-static AnimationPackedRotation _gMistParkingMistParkingPlayerConversationAnim06ClipBank4[65] = {
+static AnimationPackedRotation _gMistParkingPlayerConversationAnim06ClipBank4[65] = {
     { -0, 0, 0 },
     { -0, 0, 0 },
     { -0, 0, 0 },
@@ -1678,7 +1678,7 @@ static AnimationPackedRotation _gMistParkingMistParkingPlayerConversationAnim06C
     { 0, -0, -0 },
 };
 
-static AnimationRecord _gMistParkingMistParkingPlayerConversationAnim06ClipRecords[137] = {
+static AnimationRecord _gMistParkingPlayerConversationAnim06ClipRecords[137] = {
     { 0, 0, 0 },
     { 0, 0, 0 },
     { 0, 0, 0 },
@@ -1818,20 +1818,20 @@ static AnimationRecord _gMistParkingMistParkingPlayerConversationAnim06ClipRecor
     { 0, 0, 0 },
 };
 
-static u16 _gMistParkingMistParkingPlayerConversationAnim06ClipTrackStarts[20] = {
+static u16 _gMistParkingPlayerConversationAnim06ClipTrackStarts[20] = {
     0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0,
 };
 
-AnimationSet gMistParkingMistParkingPlayerConversationAnim06Clip = {
-    .records           = _gMistParkingMistParkingPlayerConversationAnim06ClipRecords,
-    .trackStartIndices = _gMistParkingMistParkingPlayerConversationAnim06ClipTrackStarts,
-    .poseBanks         = { [1] = _gMistParkingMistParkingPlayerConversationAnim06ClipBank1, [4] = _gMistParkingMistParkingPlayerConversationAnim06ClipBank4 },
+AnimationSet gMistParkingPlayerConversationAnim06Clip = {
+    .records           = _gMistParkingPlayerConversationAnim06ClipRecords,
+    .trackStartIndices = _gMistParkingPlayerConversationAnim06ClipTrackStarts,
+    .poseBanks         = { [1] = _gMistParkingPlayerConversationAnim06ClipBank1, [4] = _gMistParkingPlayerConversationAnim06ClipBank4 },
 };
 
-/* rooms/mist/parking/mist_parking_player_conversation_anim_07 */
-static AnimationPackedPose _gMistParkingMistParkingPlayerConversationAnim07ClipBank1[12] = {
+/* rooms/mist/parking/player_conversation_anim_07 */
+static AnimationPackedPose _gMistParkingPlayerConversationAnim07ClipBank1[12] = {
     { 0, 0, 0, 0, 0, 0 },
     { -0, -0, 0, -0, -0, 0 },
     { -0, -0, 0, -0, -0, 0 },
@@ -1846,7 +1846,7 @@ static AnimationPackedPose _gMistParkingMistParkingPlayerConversationAnim07ClipB
     { -0, -0, 0, -0, -0, 0 },
 };
 
-static AnimationPackedRotation _gMistParkingMistParkingPlayerConversationAnim07ClipBank4[153] = {
+static AnimationPackedRotation _gMistParkingPlayerConversationAnim07ClipBank4[153] = {
     { -0, 0, 0 },
     { -0, 0, 0 },
     { 0, 0, 0 },
@@ -2002,7 +2002,7 @@ static AnimationPackedRotation _gMistParkingMistParkingPlayerConversationAnim07C
     { 0, -0, -0 },
 };
 
-static AnimationRecord _gMistParkingMistParkingPlayerConversationAnim07ClipRecords[238] = {
+static AnimationRecord _gMistParkingPlayerConversationAnim07ClipRecords[238] = {
     { 0, 0, 0 },
     { 0, 0, 0 },
     { 0, 0, 0 },
@@ -2243,20 +2243,20 @@ static AnimationRecord _gMistParkingMistParkingPlayerConversationAnim07ClipRecor
     { 0, 0, 0 },
 };
 
-static u16 _gMistParkingMistParkingPlayerConversationAnim07ClipTrackStarts[20] = {
+static u16 _gMistParkingPlayerConversationAnim07ClipTrackStarts[20] = {
     0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0,
 };
 
-AnimationSet gMistParkingMistParkingPlayerConversationAnim07Clip = {
-    .records           = _gMistParkingMistParkingPlayerConversationAnim07ClipRecords,
-    .trackStartIndices = _gMistParkingMistParkingPlayerConversationAnim07ClipTrackStarts,
-    .poseBanks         = { [1] = _gMistParkingMistParkingPlayerConversationAnim07ClipBank1, [4] = _gMistParkingMistParkingPlayerConversationAnim07ClipBank4 },
+AnimationSet gMistParkingPlayerConversationAnim07Clip = {
+    .records           = _gMistParkingPlayerConversationAnim07ClipRecords,
+    .trackStartIndices = _gMistParkingPlayerConversationAnim07ClipTrackStarts,
+    .poseBanks         = { [1] = _gMistParkingPlayerConversationAnim07ClipBank1, [4] = _gMistParkingPlayerConversationAnim07ClipBank4 },
 };
 
-/* rooms/mist/parking/mist_parking_player_conversation_anim_08 */
-static AnimationPackedPose _gMistParkingMistParkingPlayerConversationAnim08ClipBank1[7] = {
+/* rooms/mist/parking/player_conversation_anim_08 */
+static AnimationPackedPose _gMistParkingPlayerConversationAnim08ClipBank1[7] = {
     { 0, 0, 0, 0, 0, 0 },
     { -0, -0, 0, -0, -0, 0 },
     { -0, -0, 0, -0, -0, 0 },
@@ -2266,7 +2266,7 @@ static AnimationPackedPose _gMistParkingMistParkingPlayerConversationAnim08ClipB
     { -0, -0, 0, -0, -0, 0 },
 };
 
-static AnimationPackedRotation _gMistParkingMistParkingPlayerConversationAnim08ClipBank4[94] = {
+static AnimationPackedRotation _gMistParkingPlayerConversationAnim08ClipBank4[94] = {
     { -0, 0, 0 },
     { -0, 0, 0 },
     { -0, -0, 0 },
@@ -2363,7 +2363,7 @@ static AnimationPackedRotation _gMistParkingMistParkingPlayerConversationAnim08C
     { 0, -0, -0 },
 };
 
-static AnimationRecord _gMistParkingMistParkingPlayerConversationAnim08ClipRecords[175] = {
+static AnimationRecord _gMistParkingPlayerConversationAnim08ClipRecords[175] = {
     { 0, 0, 0 },
     { 0, 0, 0 },
     { 0, 0, 0 },
@@ -2541,20 +2541,20 @@ static AnimationRecord _gMistParkingMistParkingPlayerConversationAnim08ClipRecor
     { 0, 0, 0 },
 };
 
-static u16 _gMistParkingMistParkingPlayerConversationAnim08ClipTrackStarts[20] = {
+static u16 _gMistParkingPlayerConversationAnim08ClipTrackStarts[20] = {
     0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0,
 };
 
-AnimationSet gMistParkingMistParkingPlayerConversationAnim08Clip = {
-    .records           = _gMistParkingMistParkingPlayerConversationAnim08ClipRecords,
-    .trackStartIndices = _gMistParkingMistParkingPlayerConversationAnim08ClipTrackStarts,
-    .poseBanks         = { [1] = _gMistParkingMistParkingPlayerConversationAnim08ClipBank1, [4] = _gMistParkingMistParkingPlayerConversationAnim08ClipBank4 },
+AnimationSet gMistParkingPlayerConversationAnim08Clip = {
+    .records           = _gMistParkingPlayerConversationAnim08ClipRecords,
+    .trackStartIndices = _gMistParkingPlayerConversationAnim08ClipTrackStarts,
+    .poseBanks         = { [1] = _gMistParkingPlayerConversationAnim08ClipBank1, [4] = _gMistParkingPlayerConversationAnim08ClipBank4 },
 };
 
-/* rooms/mist/parking/mist_parking_player_conversation_anim_09 */
-static AnimationPackedPose _gMistParkingMistParkingPlayerConversationAnim09ClipBank1[12] = {
+/* rooms/mist/parking/player_conversation_anim_09 */
+static AnimationPackedPose _gMistParkingPlayerConversationAnim09ClipBank1[12] = {
     { 0, 0, 0, 0, 0, 0 },
     { -0, -0, 0, -0, -0, 0 },
     { -0, -0, 0, -0, -0, 0 },
@@ -2569,7 +2569,7 @@ static AnimationPackedPose _gMistParkingMistParkingPlayerConversationAnim09ClipB
     { 0, -0, -0, 0, -0, 0 },
 };
 
-static AnimationPackedRotation _gMistParkingMistParkingPlayerConversationAnim09ClipBank4[177] = {
+static AnimationPackedRotation _gMistParkingPlayerConversationAnim09ClipBank4[177] = {
     { -0, 0, 0 },
     { -0, 0, 0 },
     { -0, 0, -0 },
@@ -2749,7 +2749,7 @@ static AnimationPackedRotation _gMistParkingMistParkingPlayerConversationAnim09C
     { -0, 0, -0 },
 };
 
-static AnimationRecord _gMistParkingMistParkingPlayerConversationAnim09ClipRecords[213] = {
+static AnimationRecord _gMistParkingPlayerConversationAnim09ClipRecords[213] = {
     { 0, 0, 0 },
     { 0, 0, 0 },
     { 0, 0, 0 },
@@ -2965,26 +2965,26 @@ static AnimationRecord _gMistParkingMistParkingPlayerConversationAnim09ClipRecor
     { 0, 0, 0 },
 };
 
-static u16 _gMistParkingMistParkingPlayerConversationAnim09ClipTrackStarts[20] = {
+static u16 _gMistParkingPlayerConversationAnim09ClipTrackStarts[20] = {
     0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0,
 };
 
-AnimationSet gMistParkingMistParkingPlayerConversationAnim09Clip = {
-    .records           = _gMistParkingMistParkingPlayerConversationAnim09ClipRecords,
-    .trackStartIndices = _gMistParkingMistParkingPlayerConversationAnim09ClipTrackStarts,
-    .poseBanks         = { [1] = _gMistParkingMistParkingPlayerConversationAnim09ClipBank1, [4] = _gMistParkingMistParkingPlayerConversationAnim09ClipBank4 },
+AnimationSet gMistParkingPlayerConversationAnim09Clip = {
+    .records           = _gMistParkingPlayerConversationAnim09ClipRecords,
+    .trackStartIndices = _gMistParkingPlayerConversationAnim09ClipTrackStarts,
+    .poseBanks         = { [1] = _gMistParkingPlayerConversationAnim09ClipBank1, [4] = _gMistParkingPlayerConversationAnim09ClipBank4 },
 };
 
-/* rooms/mist/parking/mist_parking_player_conversation_anim_10 */
-static AnimationPackedPose _gMistParkingMistParkingPlayerConversationAnim10ClipBank1[3] = {
+/* rooms/mist/parking/player_conversation_anim_10 */
+static AnimationPackedPose _gMistParkingPlayerConversationAnim10ClipBank1[3] = {
     { 0, 0, 0, 0, 0, 0 },
     { 0, -0, 0, 0, 0, 0 },
     { 0, -0, 0, 0, 0, 0 },
 };
 
-static AnimationPackedRotation _gMistParkingMistParkingPlayerConversationAnim10ClipBank4[63] = {
+static AnimationPackedRotation _gMistParkingPlayerConversationAnim10ClipBank4[63] = {
     { 0, 0, 0 },
     { 0, 0, 0 },
     { 0, 0, 0 },
@@ -3050,7 +3050,7 @@ static AnimationPackedRotation _gMistParkingMistParkingPlayerConversationAnim10C
     { 0, 0, -0 },
 };
 
-static AnimationRecord _gMistParkingMistParkingPlayerConversationAnim10ClipRecords[92] = {
+static AnimationRecord _gMistParkingPlayerConversationAnim10ClipRecords[92] = {
     { 0, 0, 0 },
     { 0, 0, 0 },
     { 0, 0, 0 },
@@ -3145,16 +3145,16 @@ static AnimationRecord _gMistParkingMistParkingPlayerConversationAnim10ClipRecor
     { 0, 0, 0 },
 };
 
-static u16 _gMistParkingMistParkingPlayerConversationAnim10ClipTrackStarts[20] = {
+static u16 _gMistParkingPlayerConversationAnim10ClipTrackStarts[20] = {
     0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0,
 };
 
-AnimationSet gMistParkingMistParkingPlayerConversationAnim10Clip = {
-    .records           = _gMistParkingMistParkingPlayerConversationAnim10ClipRecords,
-    .trackStartIndices = _gMistParkingMistParkingPlayerConversationAnim10ClipTrackStarts,
-    .poseBanks         = { [1] = _gMistParkingMistParkingPlayerConversationAnim10ClipBank1, [4] = _gMistParkingMistParkingPlayerConversationAnim10ClipBank4 },
+AnimationSet gMistParkingPlayerConversationAnim10Clip = {
+    .records           = _gMistParkingPlayerConversationAnim10ClipRecords,
+    .trackStartIndices = _gMistParkingPlayerConversationAnim10ClipTrackStarts,
+    .poseBanks         = { [1] = _gMistParkingPlayerConversationAnim10ClipBank1, [4] = _gMistParkingPlayerConversationAnim10ClipBank4 },
 };
 
 /* characters/aya/introduce_herself */
@@ -4213,8 +4213,8 @@ AnimationSet gAyaItsNothingClip = {
     .poseBanks         = { [1] = _gAyaItsNothingClipBank1, [4] = _gAyaItsNothingClipBank4 },
 };
 
-/* rooms/mist/parking/mist_parking_player_conversation_anim_15 */
-static AnimationPackedPose _gMistParkingMistParkingPlayerConversationAnim15ClipBank1[10] = {
+/* rooms/mist/parking/player_conversation_anim_15 */
+static AnimationPackedPose _gMistParkingPlayerConversationAnim15ClipBank1[10] = {
     { 0, 0, 0, 0, 0, 0 },
     { 0, -0, 0, 0, 0, 0 },
     { -0, -0, -0, 0, 0, 0 },
@@ -4227,7 +4227,7 @@ static AnimationPackedPose _gMistParkingMistParkingPlayerConversationAnim15ClipB
     { -0, -0, -0, 0, 0, 0 },
 };
 
-static AnimationPackedRotation _gMistParkingMistParkingPlayerConversationAnim15ClipBank4[109] = {
+static AnimationPackedRotation _gMistParkingPlayerConversationAnim15ClipBank4[109] = {
     { 0, 0, 0 },
     { 0, -0, 0 },
     { 0, -0, 0 },
@@ -4339,7 +4339,7 @@ static AnimationPackedRotation _gMistParkingMistParkingPlayerConversationAnim15C
     { 0, 0, -0 },
 };
 
-static AnimationRecord _gMistParkingMistParkingPlayerConversationAnim15ClipRecords[165] = {
+static AnimationRecord _gMistParkingPlayerConversationAnim15ClipRecords[165] = {
     { 0, 0, 0 },
     { 0, 0, 0 },
     { 0, 0, 0 },
@@ -4507,16 +4507,16 @@ static AnimationRecord _gMistParkingMistParkingPlayerConversationAnim15ClipRecor
     { 0, 0, 0 },
 };
 
-static u16 _gMistParkingMistParkingPlayerConversationAnim15ClipTrackStarts[20] = {
+static u16 _gMistParkingPlayerConversationAnim15ClipTrackStarts[20] = {
     0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0,
 };
 
-AnimationSet gMistParkingMistParkingPlayerConversationAnim15Clip = {
-    .records           = _gMistParkingMistParkingPlayerConversationAnim15ClipRecords,
-    .trackStartIndices = _gMistParkingMistParkingPlayerConversationAnim15ClipTrackStarts,
-    .poseBanks         = { [1] = _gMistParkingMistParkingPlayerConversationAnim15ClipBank1, [4] = _gMistParkingMistParkingPlayerConversationAnim15ClipBank4 },
+AnimationSet gMistParkingPlayerConversationAnim15Clip = {
+    .records           = _gMistParkingPlayerConversationAnim15ClipRecords,
+    .trackStartIndices = _gMistParkingPlayerConversationAnim15ClipTrackStarts,
+    .poseBanks         = { [1] = _gMistParkingPlayerConversationAnim15ClipBank1, [4] = _gMistParkingPlayerConversationAnim15ClipBank4 },
 };
 
 /* characters/aya/on_my_way */
@@ -5406,14 +5406,14 @@ AnimationSet gAyaReplyClip = {
     .poseBanks         = { [1] = _gAyaReplyClipBank1, [4] = _gAyaReplyClipBank4 },
 };
 
-/* rooms/mist/parking/mist_parking_player_conversation_anim_20 */
-static AnimationPackedPose _gMistParkingMistParkingPlayerConversationAnim20ClipBank1[3] = {
+/* rooms/mist/parking/player_conversation_anim_20 */
+static AnimationPackedPose _gMistParkingPlayerConversationAnim20ClipBank1[3] = {
     { 0, 0, 0, 0, 0, 0 },
     { 0, -0, 0, 0, 0, 0 },
     { 0, -0, 0, 0, 0, 0 },
 };
 
-static AnimationPackedRotation _gMistParkingMistParkingPlayerConversationAnim20ClipBank4[43] = {
+static AnimationPackedRotation _gMistParkingPlayerConversationAnim20ClipBank4[43] = {
     { 0, 0, 0 },
     { 0, 0, 0 },
     { -0, 0, 0 },
@@ -5459,7 +5459,7 @@ static AnimationPackedRotation _gMistParkingMistParkingPlayerConversationAnim20C
     { 0, 0, 0 },
 };
 
-static AnimationRecord _gMistParkingMistParkingPlayerConversationAnim20ClipRecords[87] = {
+static AnimationRecord _gMistParkingPlayerConversationAnim20ClipRecords[87] = {
     { 0, 0, 0 },
     { 0, 0, 0 },
     { 0, 0, 0 },
@@ -5549,20 +5549,20 @@ static AnimationRecord _gMistParkingMistParkingPlayerConversationAnim20ClipRecor
     { 0, 0, 0 },
 };
 
-static u16 _gMistParkingMistParkingPlayerConversationAnim20ClipTrackStarts[20] = {
+static u16 _gMistParkingPlayerConversationAnim20ClipTrackStarts[20] = {
     0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0,
 };
 
-AnimationSet gMistParkingMistParkingPlayerConversationAnim20Clip = {
-    .records           = _gMistParkingMistParkingPlayerConversationAnim20ClipRecords,
-    .trackStartIndices = _gMistParkingMistParkingPlayerConversationAnim20ClipTrackStarts,
-    .poseBanks         = { [1] = _gMistParkingMistParkingPlayerConversationAnim20ClipBank1, [4] = _gMistParkingMistParkingPlayerConversationAnim20ClipBank4 },
+AnimationSet gMistParkingPlayerConversationAnim20Clip = {
+    .records           = _gMistParkingPlayerConversationAnim20ClipRecords,
+    .trackStartIndices = _gMistParkingPlayerConversationAnim20ClipTrackStarts,
+    .poseBanks         = { [1] = _gMistParkingPlayerConversationAnim20ClipBank1, [4] = _gMistParkingPlayerConversationAnim20ClipBank4 },
 };
 
-/* rooms/mist/parking/mist_parking_player_conversation_anim_21 */
-static AnimationPackedPose _gMistParkingMistParkingPlayerConversationAnim21ClipBank1[5] = {
+/* rooms/mist/parking/player_conversation_anim_21 */
+static AnimationPackedPose _gMistParkingPlayerConversationAnim21ClipBank1[5] = {
     { 0, 0, 0, 0, 0, 0 },
     { 0, -0, 0, 0, 0, 0 },
     { 0, -0, -0, 0, 0, 0 },
@@ -5570,7 +5570,7 @@ static AnimationPackedPose _gMistParkingMistParkingPlayerConversationAnim21ClipB
     { 0, -0, -0, 0, -0, 0 },
 };
 
-static AnimationPackedRotation _gMistParkingMistParkingPlayerConversationAnim21ClipBank4[99] = {
+static AnimationPackedRotation _gMistParkingPlayerConversationAnim21ClipBank4[99] = {
     { 0, 0, 0 },
     { 0, 0, 0 },
     { 0, 0, 0 },
@@ -5672,7 +5672,7 @@ static AnimationPackedRotation _gMistParkingMistParkingPlayerConversationAnim21C
     { 0, 0, 0 },
 };
 
-static AnimationRecord _gMistParkingMistParkingPlayerConversationAnim21ClipRecords[150] = {
+static AnimationRecord _gMistParkingPlayerConversationAnim21ClipRecords[150] = {
     { 0, 0, 0 },
     { 0, 0, 0 },
     { 0, 0, 0 },
@@ -5825,16 +5825,16 @@ static AnimationRecord _gMistParkingMistParkingPlayerConversationAnim21ClipRecor
     { 0, 0, 0 },
 };
 
-static u16 _gMistParkingMistParkingPlayerConversationAnim21ClipTrackStarts[20] = {
+static u16 _gMistParkingPlayerConversationAnim21ClipTrackStarts[20] = {
     0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0,
 };
 
-AnimationSet gMistParkingMistParkingPlayerConversationAnim21Clip = {
-    .records           = _gMistParkingMistParkingPlayerConversationAnim21ClipRecords,
-    .trackStartIndices = _gMistParkingMistParkingPlayerConversationAnim21ClipTrackStarts,
-    .poseBanks         = { [1] = _gMistParkingMistParkingPlayerConversationAnim21ClipBank1, [4] = _gMistParkingMistParkingPlayerConversationAnim21ClipBank4 },
+AnimationSet gMistParkingPlayerConversationAnim21Clip = {
+    .records           = _gMistParkingPlayerConversationAnim21ClipRecords,
+    .trackStartIndices = _gMistParkingPlayerConversationAnim21ClipTrackStarts,
+    .poseBanks         = { [1] = _gMistParkingPlayerConversationAnim21ClipBank1, [4] = _gMistParkingPlayerConversationAnim21ClipBank4 },
 };
 
 /* characters/aya/turn_pale */

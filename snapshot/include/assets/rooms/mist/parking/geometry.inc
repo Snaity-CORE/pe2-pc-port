@@ -2,6 +2,11 @@
 #define ROOM_CAT_(a, b) a##b
 #define ROOM_CAT(a, b) ROOM_CAT_(a, b)
 
+#include "types.h"
+#include <psyq/sys/types.h>
+#include <psyq/libgte.h>
+#include "gameplay/collision.h"
+
 static SVECTOR _gMistParkingCollisionGridNormals[13] = {
 #include "assets/mist_parking_collision_14C44_normals.inc"
 };

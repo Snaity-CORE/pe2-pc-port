@@ -2,11 +2,14 @@
 #define ROOM_CAT_(a, b) a##b
 #define ROOM_CAT(a, b) ROOM_CAT_(a, b)
 
-static SpriteBatch _gAcropolisEastElevatorHallView1SpriteBatches[2] = {
+#include "types.h"
+#include "gameplay/sprites.h"
+
+static SpriteBatch _gAkropolisEastElevatorHallView1SpriteBatches[2] = {
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
 };
-static SpriteSource _gAcropolisEastElevatorHallView2SpriteSources[39] = {
+static SpriteSource _gAkropolisEastElevatorHallView2SpriteSources[39] = {
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
@@ -47,62 +50,62 @@ static SpriteSource _gAcropolisEastElevatorHallView2SpriteSources[39] = {
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = 0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = 0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
 };
-static SpriteBatch _gAcropolisEastElevatorHallView2SpriteBatches[4] = {
-    { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
-    { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
-    { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
-    { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
-};
-static SpriteSource _gAcropolisEastElevatorHallView3SpriteSources[41] = {
-    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = 0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
-    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = 0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
-    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = 0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
-    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
-    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
-    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
-    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
-    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
-    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
-    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
-    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
-    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
-    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
-    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
-    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
-    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
-    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
-    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
-    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
-    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
-    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
-    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
-    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
-    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
-    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
-    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
-    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
-    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
-    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
-    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
-    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
-    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
-    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
-    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
-    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
-    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
-    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
-    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
-    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
-    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
-    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
-};
-static SpriteBatch _gAcropolisEastElevatorHallView3SpriteBatches[4] = {
+static SpriteBatch _gAkropolisEastElevatorHallView2SpriteBatches[4] = {
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
 };
-static SpriteSource _gAcropolisEastElevatorHallView4SpriteSources[38] = {
+static SpriteSource _gAkropolisEastElevatorHallView3SpriteSources[41] = {
+    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = 0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
+    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = 0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
+    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = 0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
+    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
+    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
+    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
+    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
+    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
+    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
+    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
+    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
+    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
+    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
+    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
+    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
+    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
+    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
+    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
+    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
+    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
+    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
+    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
+    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
+    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
+    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
+    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
+    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
+    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
+    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
+    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
+    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
+    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
+    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
+    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
+    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
+    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
+    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
+    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
+    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
+    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
+    { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
+};
+static SpriteBatch _gAkropolisEastElevatorHallView3SpriteBatches[4] = {
+    { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
+    { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
+    { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
+    { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
+};
+static SpriteSource _gAkropolisEastElevatorHallView4SpriteSources[38] = {
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
@@ -142,12 +145,12 @@ static SpriteSource _gAcropolisEastElevatorHallView4SpriteSources[38] = {
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
 };
-static SpriteBatch _gAcropolisEastElevatorHallView4SpriteBatches[3] = {
+static SpriteBatch _gAkropolisEastElevatorHallView4SpriteBatches[3] = {
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
 };
-static SpriteSource _gAcropolisEastElevatorHallView5SpriteSources[28] = {
+static SpriteSource _gAkropolisEastElevatorHallView5SpriteSources[28] = {
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = 0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = 0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = 0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
@@ -177,25 +180,25 @@ static SpriteSource _gAcropolisEastElevatorHallView5SpriteSources[28] = {
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = 0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = 0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
 };
-static SpriteBatch _gAcropolisEastElevatorHallView5SpriteBatches[3] = {
+static SpriteBatch _gAkropolisEastElevatorHallView5SpriteBatches[3] = {
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
 };
-static SpriteBatch _gAcropolisEastElevatorHallView6SpriteBatches[2] = {
+static SpriteBatch _gAkropolisEastElevatorHallView6SpriteBatches[2] = {
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
 };
-static SpriteBatch _gAcropolisEastElevatorHallView7SpriteBatches[2] = {
+static SpriteBatch _gAkropolisEastElevatorHallView7SpriteBatches[2] = {
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
 };
-SpriteView gAcropolisEastElevatorHallSpriteViews[7] = {
-    { .sources = { .empty = _gAcropolisEastElevatorHallView1SpriteBatches }, .batches = _gAcropolisEastElevatorHallView1SpriteBatches, .drawAreas = NULL },
-    { .sources = { .elements = _gAcropolisEastElevatorHallView2SpriteSources }, .batches = _gAcropolisEastElevatorHallView2SpriteBatches, .drawAreas = NULL },
-    { .sources = { .elements = _gAcropolisEastElevatorHallView3SpriteSources }, .batches = _gAcropolisEastElevatorHallView3SpriteBatches, .drawAreas = NULL },
-    { .sources = { .elements = _gAcropolisEastElevatorHallView4SpriteSources }, .batches = _gAcropolisEastElevatorHallView4SpriteBatches, .drawAreas = NULL },
-    { .sources = { .elements = _gAcropolisEastElevatorHallView5SpriteSources }, .batches = _gAcropolisEastElevatorHallView5SpriteBatches, .drawAreas = NULL },
-    { .sources = { .empty = _gAcropolisEastElevatorHallView6SpriteBatches }, .batches = _gAcropolisEastElevatorHallView6SpriteBatches, .drawAreas = NULL },
-    { .sources = { .empty = _gAcropolisEastElevatorHallView7SpriteBatches }, .batches = _gAcropolisEastElevatorHallView7SpriteBatches, .drawAreas = NULL },
+SpriteView gAkropolisEastElevatorHallSpriteViews[7] = {
+    { .sources = { .empty = _gAkropolisEastElevatorHallView1SpriteBatches }, .batches = _gAkropolisEastElevatorHallView1SpriteBatches, .drawAreas = NULL },
+    { .sources = { .elements = _gAkropolisEastElevatorHallView2SpriteSources }, .batches = _gAkropolisEastElevatorHallView2SpriteBatches, .drawAreas = NULL },
+    { .sources = { .elements = _gAkropolisEastElevatorHallView3SpriteSources }, .batches = _gAkropolisEastElevatorHallView3SpriteBatches, .drawAreas = NULL },
+    { .sources = { .elements = _gAkropolisEastElevatorHallView4SpriteSources }, .batches = _gAkropolisEastElevatorHallView4SpriteBatches, .drawAreas = NULL },
+    { .sources = { .elements = _gAkropolisEastElevatorHallView5SpriteSources }, .batches = _gAkropolisEastElevatorHallView5SpriteBatches, .drawAreas = NULL },
+    { .sources = { .empty = _gAkropolisEastElevatorHallView6SpriteBatches }, .batches = _gAkropolisEastElevatorHallView6SpriteBatches, .drawAreas = NULL },
+    { .sources = { .empty = _gAkropolisEastElevatorHallView7SpriteBatches }, .batches = _gAkropolisEastElevatorHallView7SpriteBatches, .drawAreas = NULL },
 };

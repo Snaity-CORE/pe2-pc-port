@@ -2,43 +2,55 @@
 #define ROOM_CAT_(a, b) a##b
 #define ROOM_CAT(a, b) ROOM_CAT_(a, b)
 
-static DATA_CONST SVECTOR _gAcropolisWestElevatorHallFirstBeaconPosition;
-static DATA_CONST SVECTOR _gAcropolisWestElevatorHallBayLightPosition;
-static AnimationBankCopyRequest _gAcropolisWestElevatorHallArrivalAnimationBankCopyRequest;
-static AnimationPlayRequest _gAcropolisWestElevatorHallArrivalAnimationRequest;
-static ActorTransform _gAcropolisWestElevatorHallPlayerArrivalHiddenTransform;
-static ActorTransform _gAcropolisWestElevatorHallPlayerDoorwayTransform;
-extern ActorTransform D_acropolis_west_elevator_hall_801845DC;
-static ActorTransform _gAcropolisWestElevatorHallPlayerArrivalEndTransform;
-static AnimationPlayRequest _gAcropolisWestElevatorHallPlayerIdleAnimationRequest;
-static EvsCommand _gAcropolisWestElevatorHallArrivalScript[26];
-static EvsCommand _gAcropolisWestElevatorHallArrivalSkipScript[13];
-extern WorldCollisionRoomResources gAcropolisWestElevatorHallCollisionRoomResources[1];
-extern u8* gAcropolisWestElevatorHallViewMaps[1];
-extern ViewCount gAcropolisWestElevatorHallViewCounts[1];
-extern WorldCoordRoomLighting gAcropolisWestElevatorHallRoomLightingTable[1];
-extern DirectionWarpEntry gAcropolisWestElevatorHallWarpEntries[2];
-static SVECTOR _gAcropolisWestElevatorHallCollisionGridNormals[7];
-static SVECTOR _gAcropolisWestElevatorHallCollisionGridVerts[29];
-static WorldCollisionGridFace _gAcropolisWestElevatorHallCollisionGridFaces[14];
-static s16 _gAcropolisWestElevatorHallCollisionGridCells[52];
-static s16* _gAcropolisWestElevatorHallCollisionGridTable[6];
-static WorldCollisionGrid _gAcropolisWestElevatorHallCollisionGrid;
-static WorldCollisionTrigger _gAcropolisWestElevatorHallViewBoundaryTriggers[4];
-static WorldCollisionTrigger _gAcropolisWestElevatorHallActionTriggers[5];
-static SpriteBatch _gAcropolisWestElevatorHallView1SpriteBatches[2];
-static SpriteSource _gAcropolisWestElevatorHallView2SpriteSources[26];
-static SpriteBatch _gAcropolisWestElevatorHallView2SpriteBatches[4];
-static SpriteSource _gAcropolisWestElevatorHallView3SpriteSources[63];
-static SpriteBatch _gAcropolisWestElevatorHallView3SpriteBatches[5];
-static SpriteSource _gAcropolisWestElevatorHallView4SpriteSources[60];
-static SpriteBatch _gAcropolisWestElevatorHallView4SpriteBatches[4];
-static SpriteSource _gAcropolisWestElevatorHallView5SpriteSources[26];
-static SpriteBatch _gAcropolisWestElevatorHallView5SpriteBatches[3];
-extern SpriteView gAcropolisWestElevatorHallSpriteViews[5];
-static WorldCoordPointLight _gAcropolisWestElevatorHallPointLights[15];
-static WorldCoordRoomLights _gAcropolisWestElevatorHallRoomLights;
-extern ViewCamera gAcropolisWestElevatorHallViewCameras[5];
-static WorldCollisionFootstepSounds _gAcropolisWestElevatorHallFootstepSounds;
-static WorldCollisionSurfaceProperties _gAcropolisWestElevatorHallSurfaceProperties;
-extern WorldCollisionSurfaceProperties* gAcropolisWestElevatorHallSurfacePropertiesByClass[8];
+#include "types.h"
+#include <psyq/sys/types.h>
+#include <psyq/libgte.h>
+#include "gameplay/collision.h"
+#include "gameplay/direction.h"
+#include "gameplay/evs.h"
+#include "gameplay/light.h"
+#include "gameplay/message.h"
+#include "gameplay/room.h"
+#include "gameplay/sprites.h"
+#include "gameplay/view.h"
+
+static DATA_CONST SVECTOR _gAkropolisWestElevatorHallFirstBeaconPosition;
+static DATA_CONST SVECTOR _gAkropolisWestElevatorHallBayLightPosition;
+static AnimationBankCopyRequest _gAkropolisWestElevatorHallArrivalAnimationBankCopyRequest;
+static AnimationPlayRequest _gAkropolisWestElevatorHallArrivalAnimationRequest;
+static ActorTransform _gAkropolisWestElevatorHallPlayerArrivalHiddenTransform;
+static ActorTransform _gAkropolisWestElevatorHallPlayerDoorwayTransform;
+static ActorTransform _gAkropolisWestElevatorHallUnusedTransform;
+static ActorTransform _gAkropolisWestElevatorHallPlayerArrivalEndTransform;
+static AnimationPlayRequest _gAkropolisWestElevatorHallPlayerIdleAnimationRequest;
+static EvsCommand _gAkropolisWestElevatorHallArrivalScript[26];
+static EvsCommand _gAkropolisWestElevatorHallArrivalSkipScript[13];
+extern WorldCollisionRoomResources gAkropolisWestElevatorHallCollisionRoomResources[1];
+extern u8* gAkropolisWestElevatorHallViewMaps[1];
+extern ViewCount gAkropolisWestElevatorHallViewCounts[1];
+extern WorldCoordRoomLighting gAkropolisWestElevatorHallRoomLightingTable[1];
+extern DirectionWarpEntry gAkropolisWestElevatorHallWarpEntries[2];
+static SVECTOR _gAkropolisWestElevatorHallCollisionGridNormals[7];
+static SVECTOR _gAkropolisWestElevatorHallCollisionGridVerts[29];
+static WorldCollisionGridFace _gAkropolisWestElevatorHallCollisionGridFaces[14];
+static s16 _gAkropolisWestElevatorHallCollisionGridCells[52];
+static s16* _gAkropolisWestElevatorHallCollisionGridTable[6];
+static WorldCollisionGrid _gAkropolisWestElevatorHallCollisionGrid;
+static WorldCollisionTrigger _gAkropolisWestElevatorHallViewBoundaryTriggers[4];
+static WorldCollisionTrigger _gAkropolisWestElevatorHallActionTriggers[5];
+static SpriteBatch _gAkropolisWestElevatorHallView1SpriteBatches[2];
+static SpriteSource _gAkropolisWestElevatorHallView2SpriteSources[26];
+static SpriteBatch _gAkropolisWestElevatorHallView2SpriteBatches[4];
+static SpriteSource _gAkropolisWestElevatorHallView3SpriteSources[63];
+static SpriteBatch _gAkropolisWestElevatorHallView3SpriteBatches[5];
+static SpriteSource _gAkropolisWestElevatorHallView4SpriteSources[60];
+static SpriteBatch _gAkropolisWestElevatorHallView4SpriteBatches[4];
+static SpriteSource _gAkropolisWestElevatorHallView5SpriteSources[26];
+static SpriteBatch _gAkropolisWestElevatorHallView5SpriteBatches[3];
+extern SpriteView gAkropolisWestElevatorHallSpriteViews[5];
+static WorldCoordPointLight _gAkropolisWestElevatorHallPointLights[15];
+static WorldCoordRoomLights _gAkropolisWestElevatorHallRoomLights;
+extern ViewCamera gAkropolisWestElevatorHallViewCameras[5];
+static WorldCollisionFootstepSounds _gAkropolisWestElevatorHallFootstepSounds;
+static WorldCollisionSurfaceProperties _gAkropolisWestElevatorHallSurfaceProperties;
+extern WorldCollisionSurfaceProperties* gAkropolisWestElevatorHallSurfacePropertiesByClass[8];

@@ -6411,7 +6411,7 @@ static u16 _gGolemRecoilFrontClipTrackStarts[20] = {
     0, 0, 0, 0,
 };
 
-static AnimationSet _gGolemRecoilFrontClip = {
+AnimationSet gGolemRecoilFrontClip = {
     .records           = _gGolemRecoilFrontClipRecords,
     .trackStartIndices = _gGolemRecoilFrontClipTrackStarts,
     .poseBanks         = { [1] = _gGolemRecoilFrontClipBank1, [4] = _gGolemRecoilFrontClipBank4 },
@@ -7059,7 +7059,7 @@ static u16 _gGolemRecoilBehindClipTrackStarts[20] = {
     0, 0, 0, 0,
 };
 
-static AnimationSet _gGolemRecoilBehindClip = {
+AnimationSet gGolemRecoilBehindClip = {
     .records           = _gGolemRecoilBehindClipRecords,
     .trackStartIndices = _gGolemRecoilBehindClipTrackStarts,
     .poseBanks         = { [1] = _gGolemRecoilBehindClipBank1, [4] = _gGolemRecoilBehindClipBank4 },
@@ -7421,7 +7421,7 @@ static u16 _gGolemBuildupClipTrackStarts[20] = {
     0, 0, 0, 0,
 };
 
-static AnimationSet _gGolemBuildupClip = {
+AnimationSet gGolemBuildupClip = {
     .records           = _gGolemBuildupClipRecords,
     .trackStartIndices = _gGolemBuildupClipTrackStarts,
     .poseBanks         = { [1] = _gGolemBuildupClipBank1, [4] = _gGolemBuildupClipBank4 },
@@ -8206,7 +8206,7 @@ static u16 _gGolemScreamRecoverClipTrackStarts[20] = {
     0, 0, 0, 0,
 };
 
-static AnimationSet _gGolemScreamRecoverClip = {
+AnimationSet gGolemScreamRecoverClip = {
     .records           = _gGolemScreamRecoverClipRecords,
     .trackStartIndices = _gGolemScreamRecoverClipTrackStarts,
     .poseBanks         = { [1] = _gGolemScreamRecoverClipBank1, [4] = _gGolemScreamRecoverClipBank4 },

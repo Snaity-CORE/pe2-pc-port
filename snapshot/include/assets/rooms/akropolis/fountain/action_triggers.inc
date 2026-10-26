@@ -2,15 +2,18 @@
 #define ROOM_CAT_(a, b) a##b
 #define ROOM_CAT(a, b) ROOM_CAT_(a, b)
 
-#define ROOM_IS__gAcropolisFountainClimbTrigger 1
-#if ROOM_CAT(ROOM_IS_, ROOM_PART) == 1
-static WorldCollisionTrigger _gAcropolisFountainClimbTrigger = { .next = NULL, .prevLink = NULL, .coord = NULL, .origin = { 0, -0, -0, 0 }, .vertices = { { -0, 0, -0, 0 }, { 0, 0, 0, 0 }, { -0, 0, -0, 0 }, { 0, 0, 0, 0 } }, .normal = { 0, 0, 0, 0 }, .facingNormal = { -0, 0, 0, 0 }, .radius = 0, .control = 0, .parameter0 = 0, .parameter1 = 0, .flags = 0, .hit = 0 };
-#endif
-#undef ROOM_IS__gAcropolisFountainClimbTrigger
+#include "types.h"
+#include "gameplay/collision.h"
 
-#define ROOM_IS__gAcropolisFountainActionTriggers 1
+#define ROOM_IS__gAkropolisFountainClimbTrigger 1
 #if ROOM_CAT(ROOM_IS_, ROOM_PART) == 1
-static WorldCollisionTrigger _gAcropolisFountainActionTriggers[9] = {
+static WorldCollisionTrigger _gAkropolisFountainClimbTrigger = { .next = NULL, .prevLink = NULL, .coord = NULL, .origin = { 0, -0, -0, 0 }, .vertices = { { -0, 0, -0, 0 }, { 0, 0, 0, 0 }, { -0, 0, -0, 0 }, { 0, 0, 0, 0 } }, .normal = { 0, 0, 0, 0 }, .facingNormal = { -0, 0, 0, 0 }, .radius = 0, .control = 0, .parameter0 = 0, .parameter1 = 0, .flags = 0, .hit = 0 };
+#endif
+#undef ROOM_IS__gAkropolisFountainClimbTrigger
+
+#define ROOM_IS__gAkropolisFountainActionTriggers 1
+#if ROOM_CAT(ROOM_IS_, ROOM_PART) == 1
+static WorldCollisionTrigger _gAkropolisFountainActionTriggers[9] = {
     { .next = NULL, .prevLink = NULL, .coord = NULL, .origin = { -0, -0, 0, 0 }, .vertices = { { -0, 0, -0, 0 }, { 0, 0, -0, 0 }, { -0, 0, 0, 0 }, { 0, 0, 0, 0 } }, .normal = { 0, 0, 0, 0 }, .facingNormal = { 0, 0, -0, 0 }, .radius = 0, .control = 0, .parameter0 = 0, .parameter1 = 0, .flags = 0, .hit = 0 },
     { .next = NULL, .prevLink = NULL, .coord = NULL, .origin = { 0, -0, 0, 0 }, .vertices = { { -0, 0, -0, 0 }, { 0, 0, -0, 0 }, { -0, 0, 0, 0 }, { 0, 0, 0, 0 } }, .normal = { 0, 0, 0, 0 }, .facingNormal = { 0, 0, -0, 0 }, .radius = 0, .control = 0, .parameter0 = 0, .parameter1 = 0, .flags = 0, .hit = 0 },
     { .next = NULL, .prevLink = NULL, .coord = NULL, .origin = { -0, -0, -0, 0 }, .vertices = { { -0, 0, -0, 0 }, { 0, 0, -0, 0 }, { -0, 0, 0, 0 }, { 0, 0, 0, 0 } }, .normal = { 0, 0, 0, 0 }, .facingNormal = { 0, 0, 0, 0 }, .radius = 0, .control = 0, .parameter0 = 0, .parameter1 = 0, .flags = 0, .hit = 0 },
@@ -22,5 +25,5 @@ static WorldCollisionTrigger _gAcropolisFountainActionTriggers[9] = {
     { .next = NULL, .prevLink = NULL, .coord = NULL, .origin = { 0, -0, -0, 0 }, .vertices = { { -0, 0, -0, 0 }, { 0, 0, -0, 0 }, { -0, 0, 0, 0 }, { 0, 0, 0, 0 } }, .normal = { 0, 0, 0, 0 }, .facingNormal = { 0, 0, -0, 0 }, .radius = 0, .control = 0, .parameter0 = 0, .parameter1 = 0, .flags = 0, .hit = 0 },
 };
 #endif
-#undef ROOM_IS__gAcropolisFountainActionTriggers
+#undef ROOM_IS__gAkropolisFountainActionTriggers
 #undef ROOM_PART

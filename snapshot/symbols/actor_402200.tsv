@@ -44,7 +44,6 @@ _gGolemAdvanceClipBank1	80140C40	fl	build/USA/src/actors/actor_402200/actor_4022
 _gGolemAdvanceClipBank4	80140DA8	fl	build/USA/src/actors/actor_402200/actor_402200.i
 _gGolemAdvanceClipRecords	801411FC	fl	build/USA/src/actors/actor_402200/actor_402200.i
 _gGolemAdvanceClipTrackStarts	8014179C	fl	build/USA/src/actors/actor_402200/actor_402200.i
-_gGolemAdvanceClip	801417C4	fl	build/USA/src/actors/actor_402200/actor_402200.i
 _gGolemChargeClipBank1	801417EC	fl	build/USA/src/actors/actor_402200/actor_402200.i
 _gGolemChargeClipBank4	80141D20	fl	build/USA/src/actors/actor_402200/actor_402200.i
 _gGolemChargeClipRecords	80143914	fl	build/USA/src/actors/actor_402200/actor_402200.i
@@ -148,7 +147,7 @@ _gGolemKnightBishopRoomRegions	80153C78	fl	build/USA/src/actors/actor_402200/act
 _gActor402200ShelterB1SleepingQuartersRegions	80153CC8	fl	build/USA/src/actors/actor_402200/actor_402200.i
 _gActor402200ShelterB1AccessTunnelRegions	80153D48	fl	build/USA/src/actors/actor_402200/actor_402200.i
 _gActor402200Shelter1fAirlockRegions	80153D98	fl	build/USA/src/actors/actor_402200/actor_402200.i
-_gActor402200AcropolisPromenadeRegions	80153DB8	fl	build/USA/src/actors/actor_402200/actor_402200.i
+_gActor402200AkropolisPromenadeRegions	80153DB8	fl	build/USA/src/actors/actor_402200/actor_402200.i
 _gActor402200DryfieldParkingLotRegions	80153E08	fl	build/USA/src/actors/actor_402200/actor_402200.i
 _gActor402200DryfieldNightUnderpassRegions	80153E38	fl	build/USA/src/actors/actor_402200/actor_402200.i
 _gActor402200ShelterB1MainCorridorRegions	80153EB8	fl	build/USA/src/actors/actor_402200/actor_402200.i
@@ -2396,6 +2395,7 @@ gameFlowBeginLoadScreen	8002252C	a
 sndEvtRequestScriptMix	80054424	a	
 worldCollisionProjectGroundCoord	800EA02C	a	
 playerActorPlayFootstepCue	80105ED4	a	
+gGolemAdvanceClip	801417C4	f	
 worldCollisionUnlinkTrigger	800E1708	a	
 __fixsfsi	8005C070	a	
 RotMatrixZXY	8004C9C8	a	

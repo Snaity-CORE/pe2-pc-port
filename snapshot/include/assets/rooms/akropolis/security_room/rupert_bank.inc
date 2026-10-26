@@ -3,6 +3,6 @@
 
 #include "gameplay/animation.h"
 
-static AnimationSet* _gActor311900RupertAnimationSets[3] = {
+static AnimationSet* _gSecurityMonitorsRupertAnimationSets[3] = {
     [1] = &_gRupertWalkClip,
 };

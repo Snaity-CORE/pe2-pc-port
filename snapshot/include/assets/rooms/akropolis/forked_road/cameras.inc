@@ -2,7 +2,9 @@
 #define ROOM_CAT_(a, b) a##b
 #define ROOM_CAT(a, b) ROOM_CAT_(a, b)
 
-ViewCamera gAcropolisForkedRoadViewCameras[12] = {
+#include "gameplay/view.h"
+
+ViewCamera gAkropolisForkedRoadViewCameras[12] = {
     { .transform = { .m = { { 0, 0, 0 }, { 0, 0, -0 }, { 0, 0, 0 } }, .t = { 0, 0, 0 } }, .screenDistance = 0 },
     { .transform = { .m = { { 0, 0, 0 }, { 0, 0, -0 }, { -0, 0, 0 } }, .t = { -0, 0, 0 } }, .screenDistance = 0 },
     { .transform = { .m = { { 0, 0, -0 }, { -0, 0, -0 }, { 0, 0, 0 } }, .t = { 0, 0, 0 } }, .screenDistance = 0 },

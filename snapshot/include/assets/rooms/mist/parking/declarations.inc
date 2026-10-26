@@ -2,6 +2,19 @@
 #define ROOM_CAT_(a, b) a##b
 #define ROOM_CAT(a, b) ROOM_CAT_(a, b)
 
+#include "types.h"
+#include <psyq/sys/types.h>
+#include <psyq/libgte.h>
+#include "gameplay/area.h"
+#include "gameplay/collision.h"
+#include "gameplay/direction.h"
+#include "gameplay/evs.h"
+#include "gameplay/light.h"
+#include "gameplay/message.h"
+#include "gameplay/room.h"
+#include "gameplay/sprites.h"
+#include "gameplay/view.h"
+
 #define ROOM_IS_declarations_mist_parking 1
 #if ROOM_CAT(ROOM_IS_, ROOM_PART) == 1
 static ActorTransform _gMistParkingRoom2PlayerPlacement;
@@ -16,7 +29,7 @@ static EvsCommand _gMistParkingCommand1Script[12];
 #endif
 #undef ROOM_IS_declarations_mist_parking
 
-#define ROOM_IS_declarations_mist_parking_2 1
+#define ROOM_IS_declarations_mist_parking_conversation 1
 #if ROOM_CAT(ROOM_IS_, ROOM_PART) == 1
 extern AnimationBankCopyRequest gMistParkingPlayerConversationBankCopy;
 static AnimationPlayRequest _gMistParkingUnusedPlayerClip1Request;
@@ -106,15 +119,15 @@ static EvsCommand _gMistParkingJodieTalkPoseScript[7];
 static EvsCommand _gMistParkingJodieShopSessionScript[10];
 static EvsCommand _gMistParkingJodieShopDeclineScript[8];
 #endif
-#undef ROOM_IS_declarations_mist_parking_2
+#undef ROOM_IS_declarations_mist_parking_conversation
 
-#define ROOM_IS_declarations_mist_parking_3 1
+#define ROOM_IS_declarations_mist_parking_scenes 1
 #if ROOM_CAT(ROOM_IS_, ROOM_PART) == 1
 static ActorTransform _gMistParkingCutsceneModelPlacement;
 #endif
-#undef ROOM_IS_declarations_mist_parking_3
+#undef ROOM_IS_declarations_mist_parking_scenes
 
-#define ROOM_IS_declarations_mist_parking_4 1
+#define ROOM_IS_declarations_mist_parking_shop 1
 #if ROOM_CAT(ROOM_IS_, ROOM_PART) == 1
 extern AnimationBankCopyRequest gMistParkingShopPlayerAnimationBankCopy;
 static AnimationPlayRequest _gMistParkingUnusedBank1Clip1Animation;
@@ -139,12 +152,12 @@ extern AnimationPlayRequest gMistParkingJodieReplyAnimation;
 extern AnimationPlayRequest gMistParkingJodieReplyEndAnimation;
 static EvsCommand _gMistParkingShopDepartureMenuScript[10];
 static EvsCommand _gMistParkingShopStayScript[12];
-static EvsCommand _gMistParkingShopDepartForAcropolisScript[18];
+static EvsCommand _gMistParkingShopDepartForAkropolisScript[18];
 static EvsCommand _gMistParkingShopDepartForShootingGalleryScript[12];
 #endif
-#undef ROOM_IS_declarations_mist_parking_4
+#undef ROOM_IS_declarations_mist_parking_shop
 
-#define ROOM_IS_declarations_mist_parking_5 1
+#define ROOM_IS_declarations_mist_parking_glows 1
 #if ROOM_CAT(ROOM_IS_, ROOM_PART) == 1
 extern EvsCommand gMistParkingJodieShopTalkScript[8];
 extern EvsCommand gMistParkingJodieOpenShopScript[10];
@@ -210,5 +223,5 @@ static WorldCollisionSurfaceProperties _gMistParkingSurfaceClass2Properties;
 static WorldCollisionSurfaceProperties _gMistParkingSurfaceClass3Properties;
 extern WorldCollisionSurfaceProperties* gMistParkingSurfacePropertiesByClass[8];
 #endif
-#undef ROOM_IS_declarations_mist_parking_5
+#undef ROOM_IS_declarations_mist_parking_glows
 #undef ROOM_PART

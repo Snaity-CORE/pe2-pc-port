@@ -2,6 +2,18 @@
 #define ROOM_CAT_(a, b) a##b
 #define ROOM_CAT(a, b) ROOM_CAT_(a, b)
 
+#include "types.h"
+#include "gameplay/area_flags.h"
+#include "gameplay/areaplace.h"
+#include "gameplay/battle_reward.h"
+#include "gameplay/direction.h"
+#include "gameplay/map.h"
+#include "gameplay/room.h"
+#include "gameplay/sprites.h"
+#include "gameplay/view.h"
+#include "main/gfx_types.h"
+#include "main/stage_types.h"
+
 extern GfxImageSlot gMapAkropolisImageSlots[22];
 extern s32 gMapAkropolisMovieWorkspaceBytesByArea[21];
 extern u8 gMapAkropolisPageFlagIds[8];

@@ -2,6 +2,11 @@
 #define ROOM_CAT_(a, b) a##b
 #define ROOM_CAT(a, b) ROOM_CAT_(a, b)
 
+#include "types.h"
+#include "gameplay/direction.h"
+#include "gameplay/room.h"
+#include "gameplay/view.h"
+
 WorldCollisionRoomResources gAkropolisSquareRoomCollisionResources[1] = {
     { .grid = &_gAkropolisSquareCollisionGrid, .viewBoundaryTriggers = _gAkropolisSquareViewBoundaryTriggers, .actionTriggers = _gAkropolisSquareActionTriggers, .occluders = NULL },
 };

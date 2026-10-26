@@ -6,5 +6,5 @@
 static AnimationSet* _gDesertChaserRearCatchPlayerAnimSets[5] = {
     [1] = &_gStingerPuppetPlayerKnockbackBackClip,
     [2] = &_gStingerPuppetPlayerKnockbackRecoverBackClip,
-    [3] = &_gChaserDesertPlayerKnockedBackRearClip,
+    [3] = &_gAyaHitBodyClip,
 };

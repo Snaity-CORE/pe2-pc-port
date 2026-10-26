@@ -3,7 +3,7 @@
 
 #include "gameplay/animation.h"
 
-static AnimationSet* _gActor110700No9GolemAnimationSets[6] = {
+static AnimationSet* _gSanctuaryNo9AnimationSets[6] = {
     [1] = &_gAkropolisSanctuaryNo9AttackRupertClip,
     [2] = &_gAkropolisSanctuaryNo9Arrival3Clip,
     [3] = &_gAkropolisSanctuaryNo9Arrival4Clip,

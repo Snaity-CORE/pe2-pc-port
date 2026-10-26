@@ -78,22 +78,18 @@ _gGolemRecoilFrontClipBank1	80141CA0	fl	build/USA/src/actors/actor_102300/actor_
 _gGolemRecoilFrontClipBank4	80141D84	fl	build/USA/src/actors/actor_102300/actor_02300.i
 _gGolemRecoilFrontClipRecords	80142180	fl	build/USA/src/actors/actor_102300/actor_02300.i
 _gGolemRecoilFrontClipTrackStarts	80142660	fl	build/USA/src/actors/actor_102300/actor_02300.i
-_gGolemRecoilFrontClip	80142688	fl	build/USA/src/actors/actor_102300/actor_02300.i
 _gGolemRecoilBehindClipBank1	801426B0	fl	build/USA/src/actors/actor_102300/actor_02300.i
 _gGolemRecoilBehindClipBank4	80142788	fl	build/USA/src/actors/actor_102300/actor_02300.i
 _gGolemRecoilBehindClipRecords	80142BEC	fl	build/USA/src/actors/actor_102300/actor_02300.i
 _gGolemRecoilBehindClipTrackStarts	80143108	fl	build/USA/src/actors/actor_102300/actor_02300.i
-_gGolemRecoilBehindClip	80143130	fl	build/USA/src/actors/actor_102300/actor_02300.i
 _gGolemBuildupClipBank1	80143158	fl	build/USA/src/actors/actor_102300/actor_02300.i
 _gGolemBuildupClipBank4	801431B8	fl	build/USA/src/actors/actor_102300/actor_02300.i
 _gGolemBuildupClipRecords	801433C0	fl	build/USA/src/actors/actor_102300/actor_02300.i
 _gGolemBuildupClipTrackStarts	801436E8	fl	build/USA/src/actors/actor_102300/actor_02300.i
-_gGolemBuildupClip	80143710	fl	build/USA/src/actors/actor_102300/actor_02300.i
 _gGolemScreamRecoverClipBank1	80143738	fl	build/USA/src/actors/actor_102300/actor_02300.i
 _gGolemScreamRecoverClipBank4	8014384C	fl	build/USA/src/actors/actor_102300/actor_02300.i
 _gGolemScreamRecoverClipRecords	80143D64	fl	build/USA/src/actors/actor_102300/actor_02300.i
 _gGolemScreamRecoverClipTrackStarts	801443DC	fl	build/USA/src/actors/actor_102300/actor_02300.i
-_gGolemScreamRecoverClip	80144404	fl	build/USA/src/actors/actor_102300/actor_02300.i
 _gGolemFallBehindClipBank1	8014442C	fl	build/USA/src/actors/actor_102300/actor_02300.i
 _gGolemFallBehindClipBank4	801445A0	fl	build/USA/src/actors/actor_102300/actor_02300.i
 _gGolemFallBehindClipRecords	80144C54	fl	build/USA/src/actors/actor_102300/actor_02300.i
@@ -1641,6 +1637,7 @@ D_80115416	80115416	a
 gPlayerActorWeaponAnimationBankBases	80112D68	a	
 gfxExtractSmallestEuler	800B114C	a	
 ratan2	8003D9C8	a	
+gGolemRecoilFrontClip	80142688	f	
 D_80115414	80115414	a	
 sceneFindPlacedActor	800E86FC	a	
 animationSeekSlotWithBlend	800B4114	a	
@@ -1825,6 +1822,7 @@ effectSpawn	800EA478	a
 strncmp	8001EAC4	a	
 gRoomEffectWaterSprayId	80115738	a	
 gfxExtractEulerAngles	800B0FDC	a	
+gGolemRecoilBehindClip	80143130	f	
 D_800691CA	800691CA	a	
 areaSaveEnemyPose	800B48FC	a	
 gGolemStaggerClip	80141C78	f	
@@ -1871,6 +1869,7 @@ D_8011540C	8011540C	a
 memset	800420F8	a	
 companionWriteAnimationBankIndex	800E3D24	a	
 D_80073BAE	80073BAE	a	
+gGolemScreamRecoverClip	80144404	f	
 D_80115412	80115412	a	
 D_8007272F	8007272F	a	
 streamPrepareMovieWorkspace	80020298	a	
@@ -1896,6 +1895,7 @@ gRandomLcgState	80070F60	a
 sndEvtRequestScriptMute	80054334	a	
 strcmp	80039B74	a	
 D_80115764	80115764	a	
+gGolemBuildupClip	80143710	f	
 displaySetShakeY	8003DE78	a	
 damageTryStartEnemyDamageOverTime	800E2DE4	a	
 RotTransPers	8004C198	a	

@@ -2,74 +2,88 @@
 #define ROOM_CAT_(a, b) a##b
 #define ROOM_CAT(a, b) ROOM_CAT_(a, b)
 
-static AnimationPlayRequest _gAcropolisBridgeArrivalWeaponAnimationRequest;
-static EvsSceneKey _gAcropolisBridgeArrivalSceneKey;
-static EvsCommand _gAcropolisBridgeArrivalScript[26];
-static EvsCommand _gAcropolisBridgeArrivalSkipScript[11];
-static SVECTOR _gAcropolisBridgeStarGlowOffsets[7];
-static SVECTOR _gAcropolisBridgeGroundGlowOffsets[7];
-static SVECTOR _gAcropolisBridgeLampGlowOffsets[12];
-static u16 _gAcropolisBridgeStarGlowViewMasks[8];
-static u16 _gAcropolisBridgeLampGlowViewMasks[12];
-static SVECTOR _gAcropolisBridgePlayerWaterPartPositions[2];
-static SVECTOR _gAcropolisBridgeWarmDiscWorldPosition;
-static SVECTOR _gAcropolisBridgeCoolDiscWorldPosition;
-extern WorldCollisionRoomResources gAcropolisBridgeRoomCollisionResources[2];
-static u8 _gAcropolisBridgeRoom2ViewMap[12];
-extern u8* gAcropolisBridgeViewMaps[2];
-extern ViewCount gAcropolisBridgeViewCounts[2];
-extern WorldCoordRoomLighting gAcropolisBridgeRoomLightingTable[2];
-extern DirectionWarpEntry gAcropolisBridgeWarpEntries[2];
-static SVECTOR _gAcropolisBridgeRoom1CollisionNormals[19];
-static SVECTOR _gAcropolisBridgeRoom1CollisionVerts[193];
-static WorldCollisionGridFace _gAcropolisBridgeRoom1CollisionFaces[92];
-static s16 _gAcropolisBridgeRoom1CollisionCells[274];
-static s16* _gAcropolisBridgeRoom1CollisionTable[25];
-static WorldCollisionGrid _gAcropolisBridgeRoom1Collision;
-static SVECTOR _gAcropolisBridgeRoom2CollisionNormals[17];
-static SVECTOR _gAcropolisBridgeRoom2CollisionVerts[205];
-static WorldCollisionGridFace _gAcropolisBridgeRoom2CollisionFaces[93];
-static s16 _gAcropolisBridgeRoom2CollisionCells[274];
-static s16* _gAcropolisBridgeRoom2CollisionTable[25];
-static WorldCollisionGrid _gAcropolisBridgeRoom2Collision;
-static WorldCollisionTrigger _gAcropolisBridgeViewBoundaryTriggers[4];
-static WorldCollisionTrigger _gAcropolisBridgeRoom1ActionTriggers[7];
-static WorldCollisionTrigger _gAcropolisBridgeRoom2ActionTriggers[7];
-static SpriteBatch _gAcropolisBridgeView1SpriteBatches[2];
-static SpriteSource _gAcropolisBridgeView2SpriteSources[104];
-static SpriteBatch _gAcropolisBridgeView2SpriteBatches[13];
-static SpriteSource _gAcropolisBridgeView3SpriteSources[112];
-static SpriteBatch _gAcropolisBridgeView3SpriteBatches[19];
-static SpriteSource _gAcropolisBridgeView4SpriteSources[153];
-static SpriteBatch _gAcropolisBridgeView4SpriteBatches[17];
-static SpriteSource _gAcropolisBridgeView5SpriteSources[112];
-static SpriteBatch _gAcropolisBridgeView5SpriteBatches[18];
-static SpriteSource _gAcropolisBridgeView6SpriteSources[142];
-static SpriteBatch _gAcropolisBridgeView6SpriteBatches[19];
-static SpriteSource _gAcropolisBridgeView7SpriteSources[133];
-static SpriteBatch _gAcropolisBridgeView7SpriteBatches[18];
-static SpriteSource _gAcropolisBridgeKeypadSpriteSources[40];
-static SpriteBatch _gAcropolisBridgeKeypadSpriteBatches[37];
-static SpriteBatch _gAcropolisBridgeView9SpriteBatches[2];
-static SpriteSource _gAcropolisBridgeArrivalSpriteSources[9];
-static SpriteBatch _gAcropolisBridgeArrivalSpriteBatches[5];
-extern SpriteView gAcropolisBridgeSpriteViews[10];
-static AreaResource _gAcropolisBridgeDefaultAreaResources[2];
-static AreaResource _gAcropolisBridgeVariant2AreaResources[1];
-static AreaResource _gAcropolisBridgeVariant3AreaResources[1];
-extern AreaVariant gAcropolisBridgePlacementVariants[12];
-static WorldCoordPointLight _gAcropolisBridgePointLights[25];
-static WorldCoordRoomLights _gAcropolisBridgeRoomLights;
-extern ViewCamera gAcropolisBridgeViewCameras[10];
-static PadScriptCmd _gAcropolisBridgeKeypadMovieVibrationCommands[6];
-static PadScriptVibrationSegment _gAcropolisBridgeKeypadMovieVibrationSegments[6];
-static PadScriptCmd _gAcropolisBridgeArrivalVibrationCommands[6];
-static PadScriptVibrationSegment _gAcropolisBridgeArrivalVibrationSegments[5];
-static WorldCollisionFootstepSounds _gAcropolisBridgeSurface2FootstepSounds;
-static WorldCollisionFootstepSounds _gAcropolisBridgeSurface4FootstepSounds;
-static WorldCollisionSurfaceProperties _gAcropolisBridgeBlockingSurfaceProperties;
-static WorldCollisionSurfaceProperties _gAcropolisBridgeSurface1Properties;
-static WorldCollisionSurfaceProperties _gAcropolisBridgeSurface2Properties;
-static WorldCollisionSurfaceProperties _gAcropolisBridgeSurface4Properties;
-static WorldCollisionSurfaceProperties _gAcropolisBridgeSurface7Properties;
-extern WorldCollisionSurfaceProperties* gAcropolisBridgeSurfacePropertiesByClass[8];
+#include "types.h"
+#include <psyq/sys/types.h>
+#include <psyq/libgte.h>
+#include "gameplay/area.h"
+#include "gameplay/collision.h"
+#include "gameplay/direction.h"
+#include "gameplay/evs.h"
+#include "gameplay/light.h"
+#include "gameplay/message.h"
+#include "gameplay/pad_script.h"
+#include "gameplay/room.h"
+#include "gameplay/sprites.h"
+#include "gameplay/view.h"
+
+static AnimationPlayRequest _gAkropolisBridgeArrivalWeaponAnimationRequest;
+static EvsSceneKey _gAkropolisBridgeArrivalSceneKey;
+static EvsCommand _gAkropolisBridgeArrivalScript[26];
+static EvsCommand _gAkropolisBridgeArrivalSkipScript[11];
+static SVECTOR _gAkropolisBridgeStarGlowOffsets[7];
+static SVECTOR _gAkropolisBridgeGroundGlowOffsets[7];
+static SVECTOR _gAkropolisBridgeLampGlowOffsets[12];
+static u16 _gAkropolisBridgeStarGlowViewMasks[8];
+static u16 _gAkropolisBridgeLampGlowViewMasks[12];
+static SVECTOR _gAkropolisBridgePlayerWaterPartPositions[2];
+static SVECTOR _gAkropolisBridgeWarmDiscWorldPosition;
+static SVECTOR _gAkropolisBridgeCoolDiscWorldPosition;
+extern WorldCollisionRoomResources gAkropolisBridgeRoomCollisionResources[2];
+static u8 _gAkropolisBridgeRoom2ViewMap[12];
+extern u8* gAkropolisBridgeViewMaps[2];
+extern ViewCount gAkropolisBridgeViewCounts[2];
+extern WorldCoordRoomLighting gAkropolisBridgeRoomLightingTable[2];
+extern DirectionWarpEntry gAkropolisBridgeWarpEntries[2];
+static SVECTOR _gAkropolisBridgeRoom1CollisionNormals[19];
+static SVECTOR _gAkropolisBridgeRoom1CollisionVerts[193];
+static WorldCollisionGridFace _gAkropolisBridgeRoom1CollisionFaces[92];
+static s16 _gAkropolisBridgeRoom1CollisionCells[274];
+static s16* _gAkropolisBridgeRoom1CollisionTable[25];
+static WorldCollisionGrid _gAkropolisBridgeRoom1Collision;
+static SVECTOR _gAkropolisBridgeRoom2CollisionNormals[17];
+static SVECTOR _gAkropolisBridgeRoom2CollisionVerts[205];
+static WorldCollisionGridFace _gAkropolisBridgeRoom2CollisionFaces[93];
+static s16 _gAkropolisBridgeRoom2CollisionCells[274];
+static s16* _gAkropolisBridgeRoom2CollisionTable[25];
+static WorldCollisionGrid _gAkropolisBridgeRoom2Collision;
+static WorldCollisionTrigger _gAkropolisBridgeViewBoundaryTriggers[4];
+static WorldCollisionTrigger _gAkropolisBridgeRoom1ActionTriggers[7];
+static WorldCollisionTrigger _gAkropolisBridgeRoom2ActionTriggers[7];
+static SpriteBatch _gAkropolisBridgeView1SpriteBatches[2];
+static SpriteSource _gAkropolisBridgeView2SpriteSources[104];
+static SpriteBatch _gAkropolisBridgeView2SpriteBatches[13];
+static SpriteSource _gAkropolisBridgeView3SpriteSources[112];
+static SpriteBatch _gAkropolisBridgeView3SpriteBatches[19];
+static SpriteSource _gAkropolisBridgeView4SpriteSources[153];
+static SpriteBatch _gAkropolisBridgeView4SpriteBatches[17];
+static SpriteSource _gAkropolisBridgeView5SpriteSources[112];
+static SpriteBatch _gAkropolisBridgeView5SpriteBatches[18];
+static SpriteSource _gAkropolisBridgeView6SpriteSources[142];
+static SpriteBatch _gAkropolisBridgeView6SpriteBatches[19];
+static SpriteSource _gAkropolisBridgeView7SpriteSources[133];
+static SpriteBatch _gAkropolisBridgeView7SpriteBatches[18];
+static SpriteSource _gAkropolisBridgeKeypadSpriteSources[40];
+static SpriteBatch _gAkropolisBridgeKeypadSpriteBatches[37];
+static SpriteBatch _gAkropolisBridgeView9SpriteBatches[2];
+static SpriteSource _gAkropolisBridgeArrivalSpriteSources[9];
+static SpriteBatch _gAkropolisBridgeArrivalSpriteBatches[5];
+extern SpriteView gAkropolisBridgeSpriteViews[10];
+static AreaResource _gAkropolisBridgeDefaultAreaResources[2];
+static AreaResource _gAkropolisBridgeVariant2AreaResources[1];
+static AreaResource _gAkropolisBridgeVariant3AreaResources[1];
+extern AreaVariant gAkropolisBridgePlacementVariants[12];
+static WorldCoordPointLight _gAkropolisBridgePointLights[25];
+static WorldCoordRoomLights _gAkropolisBridgeRoomLights;
+extern ViewCamera gAkropolisBridgeViewCameras[10];
+static PadScriptCmd _gAkropolisBridgeKeypadMovieVibrationCommands[6];
+static PadScriptVibrationSegment _gAkropolisBridgeKeypadMovieVibrationSegments[6];
+static PadScriptCmd _gAkropolisBridgeArrivalVibrationCommands[6];
+static PadScriptVibrationSegment _gAkropolisBridgeArrivalVibrationSegments[5];
+static WorldCollisionFootstepSounds _gAkropolisBridgeSurface2FootstepSounds;
+static WorldCollisionFootstepSounds _gAkropolisBridgeSurface4FootstepSounds;
+static WorldCollisionSurfaceProperties _gAkropolisBridgeBlockingSurfaceProperties;
+static WorldCollisionSurfaceProperties _gAkropolisBridgeSurface1Properties;
+static WorldCollisionSurfaceProperties _gAkropolisBridgeSurface2Properties;
+static WorldCollisionSurfaceProperties _gAkropolisBridgeSurface4Properties;
+static WorldCollisionSurfaceProperties _gAkropolisBridgeSurface7Properties;
+extern WorldCollisionSurfaceProperties* gAkropolisBridgeSurfacePropertiesByClass[8];

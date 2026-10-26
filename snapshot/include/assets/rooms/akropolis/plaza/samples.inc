@@ -2,7 +2,9 @@
 #define ROOM_CAT_(a, b) a##b
 #define ROOM_CAT(a, b) ROOM_CAT_(a, b)
 
-static s16 _gAcropolisPlazaLightRingSamples[32] = {
+#include "types.h"
+
+static s16 _gAkropolisPlazaLightRingSamples[32] = {
     -0,
     -0,
     -0,

@@ -2,19 +2,24 @@
 #define ROOM_CAT_(a, b) a##b
 #define ROOM_CAT(a, b) ROOM_CAT_(a, b)
 
-WorldCollisionRoomResources gAcropolisWestElevatorHallCollisionRoomResources[1] = {
-    { .grid = &_gAcropolisWestElevatorHallCollisionGrid, .viewBoundaryTriggers = _gAcropolisWestElevatorHallViewBoundaryTriggers, .actionTriggers = _gAcropolisWestElevatorHallActionTriggers, .occluders = NULL },
+#include "types.h"
+#include "gameplay/direction.h"
+#include "gameplay/room.h"
+#include "gameplay/view.h"
+
+WorldCollisionRoomResources gAkropolisWestElevatorHallCollisionRoomResources[1] = {
+    { .grid = &_gAkropolisWestElevatorHallCollisionGrid, .viewBoundaryTriggers = _gAkropolisWestElevatorHallViewBoundaryTriggers, .actionTriggers = _gAkropolisWestElevatorHallActionTriggers, .occluders = NULL },
 };
-u8* gAcropolisWestElevatorHallViewMaps[1] = {
+u8* gAkropolisWestElevatorHallViewMaps[1] = {
     (void*)&gViewIdentityMap,
 };
-ViewCount gAcropolisWestElevatorHallViewCounts[1] = {
+ViewCount gAkropolisWestElevatorHallViewCounts[1] = {
     0,
 };
-WorldCoordRoomLighting gAcropolisWestElevatorHallRoomLightingTable[1] = {
-    { .lights = &_gAcropolisWestElevatorHallRoomLights, .ambientTable = NULL },
+WorldCoordRoomLighting gAkropolisWestElevatorHallRoomLightingTable[1] = {
+    { .lights = &_gAkropolisWestElevatorHallRoomLights, .ambientTable = NULL },
 };
-DirectionWarpEntry gAcropolisWestElevatorHallWarpEntries[2] = {
+DirectionWarpEntry gAkropolisWestElevatorHallWarpEntries[2] = {
     { .player = { .yaw = { .word = 0 }, .x = -0, .y = -0, .z = 0 }, .unknown_10 = { 0, 0, 0, 0 }, .companion = { .yaw = { .word = 0 }, .x = -0, .y = -0, .z = 0 }, .unknown_24 = { 0, 0, 0, 0 }, .arrivalSound = 0, .departureSound = 0, .blockedSound = 0, .initialView = 0, .flags = 0, .mapFlagId = 0 },
     { .player = { .yaw = { .word = 0 }, .x = 0, .y = -0, .z = 0 }, .unknown_10 = { 0, 0, 0, 0 }, .companion = { .yaw = { .word = 0 }, .x = 0, .y = -0, .z = 0 }, .unknown_24 = { 0, 0, 0, 0 }, .arrivalSound = 0, .departureSound = 0, .blockedSound = 0, .initialView = 0, .flags = 0, .mapFlagId = 0 },
 };

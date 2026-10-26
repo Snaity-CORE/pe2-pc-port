@@ -2,7 +2,9 @@
 #define ROOM_CAT_(a, b) a##b
 #define ROOM_CAT(a, b) ROOM_CAT_(a, b)
 
-static AreaApplyRec _gAcropolisSecurityRoomRightUnlockAreaUpdates[10] = {
+#include "gameplay/area_flags.h"
+
+static AreaApplyRec _gAkropolisSecurityRoomRightUnlockAreaUpdates[10] = {
     { .stage = 0, .area = 0, .variant = 0, .policy = 0 },
     { .stage = 0, .area = 0, .variant = 0, .policy = 0 },
     { .stage = 0, .area = 0, .variant = 0, .policy = 0 },
@@ -14,12 +16,12 @@ static AreaApplyRec _gAcropolisSecurityRoomRightUnlockAreaUpdates[10] = {
     { .stage = 0, .area = 0, .variant = 0, .policy = 0 },
     { .stage = 0, .area = 0, .variant = 0, .policy = 0 },
 };
-static AreaApplyRec _gAcropolisSecurityRoomRightUnlockEarlyStoryAreaUpdates[1] = {
+static AreaApplyRec _gAkropolisSecurityRoomRightUnlockEarlyStoryAreaUpdates[1] = {
     { .stage = 0, .area = 0, .variant = 0, .policy = 0 },
 };
-static AreaApplyRec _gAcropolisSecurityRoomRightUnlockLateStoryAreaUpdates[1] = {
+static AreaApplyRec _gAkropolisSecurityRoomRightUnlockLateStoryAreaUpdates[1] = {
     { .stage = 0, .area = 0, .variant = 0, .policy = 0 },
 };
-static AreaApplyRec _gAcropolisSecurityRoomLeftUnlockAreaUpdates[1] = {
+static AreaApplyRec _gAkropolisSecurityRoomLeftUnlockAreaUpdates[1] = {
     { .stage = 0, .area = 0, .variant = 0, .policy = 0 },
 };

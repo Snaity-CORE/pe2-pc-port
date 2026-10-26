@@ -43,11 +43,12 @@ _telephonePlayDataMenuRow	8017F244	flt	build/USA/src/rooms/shelter_b2_laboratory
 _telephoneWeaponDataMenuRow	8017F30C	flt	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
 _telephonePeDataMenuRow	8017F3D4	flt	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
 _gTelephoneMenuList	801823FC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-_gShelterB2LaboratoryAcropolisSanctuaryModel090F0Skeleton	80182420	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-_gShelterB2LaboratoryAcropolisSanctuaryModel090F0PartVerts	8018248C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-_gShelterB2LaboratoryAcropolisSanctuaryModel090F0Verts	80182498	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-_gShelterB2LaboratoryAcropolisSanctuaryModel090F0Normals	80182658	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-_gShelterB2LaboratoryAcropolisSanctuaryModel090F0Stream	80182688	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+_gItemBoxModelSkeleton	80182420	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+_gItemBoxModelPartVerts	8018248C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+_gItemBoxModelVerts	80182498	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+_gItemBoxModelNormals	80182658	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+_gItemBoxModelStream	80182688	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+_gItemBoxModel	801829E4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
 _gRoomCutsceneTaskDescs	80182A08	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
 _roomCutsceneTask	8017F4D8	flt	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
 _roomCutsceneSoundTask	80180064	flt	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
@@ -880,590 +881,588 @@ LM755	801800F4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laborator
 LM756	801800F4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
 LM757	801800F4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
 LM758	801800F4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM759	801800F4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM760	801800F4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM759	801800FC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM760	801800FC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
 LM761	801800FC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM762	801800FC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM763	801800FC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM764	80180110	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM765	80180118	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM766	8018011C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM767	80180138	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM768	80180140	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM769	80180154	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM770	80180164	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM771	8018016C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM772	80180174	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM773	80180184	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM774	8018018C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM775	80180194	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM776	8018019C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM777	801801A0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM778	801801A4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM779	801801A8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM780	801801AC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM781	801801B0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM782	801801B4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM783	801801BC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM784	801801BC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM762	80180110	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM763	80180118	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM764	8018011C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM765	80180138	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM766	80180140	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM767	80180154	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM768	80180164	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM769	8018016C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM770	80180174	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM771	80180184	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM772	8018018C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM773	80180194	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM774	8018019C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM775	801801A0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM776	801801A4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM777	801801A8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM778	801801AC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM779	801801B0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM780	801801B4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM781	801801BC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM782	801801BC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM783	801801D0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM784	801801D0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
 LM785	801801D0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM786	801801D0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM787	801801D0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM788	801801D8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM789	801801E8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM790	801801F8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM791	8018020C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM792	80180220	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM793	80180228	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM794	80180230	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM795	80180238	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM796	80180240	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM797	8018024C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM798	8018024C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM799	80180250	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM800	80180254	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM786	801801D8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM787	801801E8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM788	801801F8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM789	8018020C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM790	80180220	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM791	80180228	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM792	80180230	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM793	80180238	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM794	80180240	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM795	8018024C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM796	8018024C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM797	80180250	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM798	80180254	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM799	8018025C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM800	8018025C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
 LM801	8018025C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM802	8018025C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM803	8018025C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM804	80180260	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM805	8018026C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM806	80180280	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM807	80180280	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM808	80180284	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM809	80180288	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM802	80180260	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM803	8018026C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM804	80180280	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM805	80180280	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM806	80180284	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM807	80180288	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM808	80180290	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM809	80180290	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
 LM810	80180290	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM811	80180290	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM812	80180290	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM813	801802A4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM814	801802C4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM815	801802DC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM816	801802E0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM817	801802E8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM818	801802EC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM819	801802F4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM820	80180308	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM821	80180310	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM822	80180318	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM823	80180324	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM824	8018032C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM825	80180334	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM826	8018033C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM811	801802A4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM812	801802C4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM813	801802DC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM814	801802E0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM815	801802E8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM816	801802EC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM817	801802F4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM818	80180308	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM819	80180310	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM820	80180318	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM821	80180324	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM822	8018032C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM823	80180334	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM824	8018033C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM825	80180350	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM826	80180350	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
 LM827	80180350	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM828	80180350	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM829	80180350	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM830	80180360	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM831	8018039C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM832	801803B4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM833	801803BC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM834	801803C4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM835	801803D0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM836	801803DC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM837	801803E8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM838	801803F0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM839	801803FC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM840	80180404	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM841	8018041C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM842	80180438	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM843	80180440	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM828	80180360	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM829	8018039C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM830	801803B4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM831	801803BC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM832	801803C4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM833	801803D0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM834	801803DC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM835	801803E8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM836	801803F0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM837	801803FC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM838	80180404	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM839	8018041C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM840	80180438	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM841	80180440	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM842	80180450	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM843	80180450	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
 LM844	80180450	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM845	80180450	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM846	80180450	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM847	8018045C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM848	80180464	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM849	80180468	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM850	8018046C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM851	80180474	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM845	8018045C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM846	80180464	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM847	80180468	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM848	8018046C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM849	80180474	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM850	80180494	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM851	80180494	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
 LM852	80180494	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM853	80180494	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM854	80180494	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM855	80180498	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM856	80180498	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM853	80180498	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM854	80180498	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM855	801804A4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM856	801804A4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
 LM857	801804A4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM858	801804A4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM859	801804A4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM860	801804A8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM861	801804AC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM862	801804B0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM863	801804CC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM864	801804EC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM858	801804A8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM859	801804AC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM860	801804B0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM861	801804CC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM862	801804EC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM863	801804FC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM864	801804FC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
 LM865	801804FC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
 LM866	801804FC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM867	801804FC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM868	801804FC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM869	80180504	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM870	80180508	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM871	80180510	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM872	80180518	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM873	80180520	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM874	80180538	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM867	80180504	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM868	80180508	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM869	80180510	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM870	80180518	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM871	80180520	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM872	80180538	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM873	80180548	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM874	80180548	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
 LM875	80180548	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM876	80180548	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM877	80180548	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM878	80180554	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM876	80180554	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
 _gShelterB2LaboratoryFastGlowPulse	80186540	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM879	80180564	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM880	80180568	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM881	80180570	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM882	801805A8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM877	80180564	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM878	80180568	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM879	80180570	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM880	801805A8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
 _glowDrawCapsule	80180AB4	flt	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM883	801805C0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM884	801805D0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM885	801805E0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM886	801805F0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM887	80180600	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM888	80180610	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM889	80180620	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM890	80180630	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM891	80180634	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM892	8018063C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM893	80180654	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM894	80180664	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM895	8018066C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM896	80180684	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM897	80180694	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM898	801806A4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM899	801806B4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM900	801806B8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM901	801806C0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM902	801806D8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM903	801806E8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM904	801806F8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM905	80180708	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM906	80180718	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM907	80180728	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM908	80180738	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM909	80180748	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM910	80180758	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM911	80180768	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM912	80180778	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM913	80180788	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM914	8018079C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM915	801807A4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM916	801807BC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM917	801807CC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM918	801807DC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM919	801807EC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM920	801807FC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM921	8018080C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM922	8018081C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM923	80180820	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM924	80180828	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM925	80180840	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM926	80180850	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM927	80180860	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM928	80180864	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM929	8018086C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM930	80180884	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM931	80180894	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM932	801808A4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM933	801808B4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM934	801808B8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM935	801808C0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM936	801808D4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM937	801808DC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM938	801808F4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM939	80180904	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM940	80180914	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM941	80180924	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM942	80180934	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM943	80180948	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM944	80180950	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM945	80180958	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM946	80180970	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM947	80180980	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM948	80180990	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM949	801809A0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM950	801809B0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM951	801809C0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM952	801809D4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM953	801809DC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM954	801809E4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM955	801809F8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM956	801809FC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM957	80180A04	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM881	801805C0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM882	801805D0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM883	801805E0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM884	801805F0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM885	80180600	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM886	80180610	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM887	80180620	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM888	80180630	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM889	80180634	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM890	8018063C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM891	80180654	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM892	80180664	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM893	8018066C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM894	80180684	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM895	80180694	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM896	801806A4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM897	801806B4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM898	801806B8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM899	801806C0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM900	801806D8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM901	801806E8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM902	801806F8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM903	80180708	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM904	80180718	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM905	80180728	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM906	80180738	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM907	80180748	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM908	80180758	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM909	80180768	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM910	80180778	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM911	80180788	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM912	8018079C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM913	801807A4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM914	801807BC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM915	801807CC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM916	801807DC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM917	801807EC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM918	801807FC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM919	8018080C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM920	8018081C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM921	80180820	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM922	80180828	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM923	80180840	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM924	80180850	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM925	80180860	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM926	80180864	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM927	8018086C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM928	80180884	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM929	80180894	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM930	801808A4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM931	801808B4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM932	801808B8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM933	801808C0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM934	801808D4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM935	801808DC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM936	801808F4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM937	80180904	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM938	80180914	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM939	80180924	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM940	80180934	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM941	80180948	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM942	80180950	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM943	80180958	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM944	80180970	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM945	80180980	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM946	80180990	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM947	801809A0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM948	801809B0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM949	801809C0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM950	801809D4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM951	801809DC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM952	801809E4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM953	801809F8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM954	801809FC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM955	80180A04	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
 _glowDrawPulsingDisc	8018176C	flt	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM958	80180A14	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM959	80180A1C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM960	80180A34	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM961	80180A44	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM962	80180A54	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM963	80180A64	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM964	80180A74	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM965	80180A88	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM966	80180A90	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM956	80180A14	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM957	80180A1C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM958	80180A34	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM959	80180A44	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM960	80180A54	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM961	80180A64	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM962	80180A74	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM963	80180A88	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM964	80180A90	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
 _shelterB2LaboratoryDrawGlowDiamond	801812F8	flt	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM967	80180AA4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM965	80180AA4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM966	80180AB4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM967	80180AB4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
 LM968	80180AB4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM969	80180AB4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM970	80180AB4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM971	80180AC0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM972	80180AC8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM973	80180ACC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM974	80180AD0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM975	80180AF4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM976	80180AF8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM977	80180AFC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM978	80180B08	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM979	80180B20	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM980	80180B50	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM981	80180B58	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM982	80180B64	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM983	80180B6C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM984	80180B7C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM985	80180B8C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM986	80180B9C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM987	80180BA4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM988	80180BB0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM989	80180BB8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM990	80180BC4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM991	80180BD4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM992	80180BE4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM993	80180BE8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM994	80180BEC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM995	80180BF0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM996	80180C1C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM997	80180C50	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM998	80180C68	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM999	80180C6C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1000	80180C74	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1001	80180C7C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1002	80180C84	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1003	80180C88	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1004	80180C90	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1005	80180C94	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1006	80180C98	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1007	80180C9C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1008	80180CA4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1009	80180CA8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1010	80180CAC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1011	80180CB8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1012	80180CC8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1013	80180CCC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1014	80180CD0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1015	80180CD4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1016	80180CDC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1017	80180CE0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1018	80180D24	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1019	80180D38	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1020	80180D3C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1021	80180D4C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1022	80180D60	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1023	80180D64	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1024	80180D68	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1025	80180D78	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1026	80180D8C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1027	80180D90	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1028	80180DA0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1029	80180DC8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1030	80180DCC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1031	80180DD0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1032	80180DD4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1033	80180DD8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1034	80180DDC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1035	80180DF0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1036	80180DF4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1037	80180E04	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1038	80180E28	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1039	80180E30	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1040	80180E34	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1041	80180E94	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1042	80180E98	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1043	80180EAC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1044	80180EB8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1045	80180EC0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1046	80180ED4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1047	80180ED8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1048	80180EE4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1049	80180EF4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1050	80180F00	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1051	80180F0C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1052	80180F18	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1053	80180F20	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1054	80180F34	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1055	80180F38	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1056	80180F48	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1057	80180F5C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1058	80180F60	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1059	80180F70	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1060	80180F84	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1061	80180F88	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1062	80180F98	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1063	80180FC0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1064	80180FCC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1065	80180FD8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1066	80180FE4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1067	80180FE8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1068	80180FEC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1069	80180FF0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1070	8018107C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1071	80181080	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1072	80181094	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1073	801810B4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1074	801810B8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1075	801810BC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1076	801810C0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1077	801810C4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1078	80181108	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1079	8018111C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1080	80181120	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1081	80181130	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1082	80181144	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1083	80181148	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1084	8018114C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1085	8018115C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1086	80181170	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1087	80181174	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1088	80181184	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1089	801811AC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1090	801811B0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1091	801811B4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1092	801811B8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1093	801811BC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1094	801811C0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1095	801811D4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1096	801811D8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1097	801811E8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1098	8018120C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1099	80181214	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1100	80181218	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1101	80181278	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1102	8018127C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1103	80181290	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1104	8018129C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1105	801812A0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1106	801812A4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1107	801812B0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1108	801812C8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM969	80180AC0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM970	80180AC8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM971	80180ACC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM972	80180AD0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM973	80180AF4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM974	80180AF8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM975	80180AFC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM976	80180B08	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM977	80180B20	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM978	80180B50	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM979	80180B58	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM980	80180B64	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM981	80180B6C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM982	80180B7C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM983	80180B8C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM984	80180B9C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM985	80180BA4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM986	80180BB0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM987	80180BB8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM988	80180BC4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM989	80180BD4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM990	80180BE4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM991	80180BE8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM992	80180BEC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM993	80180BF0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM994	80180C1C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM995	80180C50	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM996	80180C68	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM997	80180C6C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM998	80180C74	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM999	80180C7C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1000	80180C84	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1001	80180C88	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1002	80180C90	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1003	80180C94	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1004	80180C98	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1005	80180C9C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1006	80180CA4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1007	80180CA8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1008	80180CAC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1009	80180CB8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1010	80180CC8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1011	80180CCC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1012	80180CD0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1013	80180CD4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1014	80180CDC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1015	80180CE0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1016	80180D24	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1017	80180D38	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1018	80180D3C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1019	80180D4C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1020	80180D60	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1021	80180D64	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1022	80180D68	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1023	80180D78	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1024	80180D8C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1025	80180D90	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1026	80180DA0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1027	80180DC8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1028	80180DCC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1029	80180DD0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1030	80180DD4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1031	80180DD8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1032	80180DDC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1033	80180DF0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1034	80180DF4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1035	80180E04	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1036	80180E28	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1037	80180E30	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1038	80180E34	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1039	80180E94	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1040	80180E98	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1041	80180EAC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1042	80180EB8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1043	80180EC0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1044	80180ED4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1045	80180ED8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1046	80180EE4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1047	80180EF4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1048	80180F00	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1049	80180F0C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1050	80180F18	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1051	80180F20	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1052	80180F34	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1053	80180F38	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1054	80180F48	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1055	80180F5C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1056	80180F60	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1057	80180F70	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1058	80180F84	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1059	80180F88	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1060	80180F98	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1061	80180FC0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1062	80180FCC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1063	80180FD8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1064	80180FE4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1065	80180FE8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1066	80180FEC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1067	80180FF0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1068	8018107C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1069	80181080	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1070	80181094	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1071	801810B4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1072	801810B8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1073	801810BC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1074	801810C0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1075	801810C4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1076	80181108	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1077	8018111C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1078	80181120	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1079	80181130	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1080	80181144	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1081	80181148	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1082	8018114C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1083	8018115C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1084	80181170	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1085	80181174	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1086	80181184	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1087	801811AC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1088	801811B0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1089	801811B4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1090	801811B8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1091	801811BC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1092	801811C0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1093	801811D4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1094	801811D8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1095	801811E8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1096	8018120C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1097	80181214	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1098	80181218	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1099	80181278	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1100	8018127C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1101	80181290	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1102	8018129C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1103	801812A0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1104	801812A4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1105	801812B0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1106	801812C8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1107	801812F8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1108	801812F8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
 LM1109	801812F8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1110	801812F8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1111	801812F8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1112	80181304	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1113	8018130C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1114	80181310	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1115	8018132C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1116	80181330	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1117	80181334	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1118	80181340	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1119	80181358	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1120	80181388	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1121	80181390	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1122	8018139C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1123	801813A4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1124	801813B4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1125	801813C4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1126	801813D4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1127	801813F8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1128	80181430	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1129	8018143C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1130	80181440	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1131	80181450	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1132	80181464	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1133	80181468	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1134	80181470	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1135	801814B8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1136	801814CC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1137	801814D4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1138	801814D8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1139	801814DC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1140	801814F0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1141	801814F8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1142	801814FC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1143	80181500	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1144	80181504	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1145	80181508	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1146	8018150C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1147	8018152C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1148	80181570	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1149	80181574	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1150	80181598	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1151	8018159C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1152	801815A4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1153	801815B0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1154	801815B4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1155	801815C8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1156	801815CC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1157	801815D4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1158	801815EC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1159	80181620	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1160	80181624	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1161	80181628	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1162	8018163C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1163	80181640	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1164	80181644	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1165	80181658	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1166	80181664	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1167	80181670	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1168	8018168C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1169	801816A8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1170	801816EC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1171	801816F0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1172	80181714	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1173	80181718	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1174	80181720	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1175	8018172C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1176	80181744	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1110	80181304	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1111	8018130C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1112	80181310	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1113	8018132C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1114	80181330	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1115	80181334	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1116	80181340	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1117	80181358	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1118	80181388	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1119	80181390	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1120	8018139C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1121	801813A4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1122	801813B4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1123	801813C4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1124	801813D4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1125	801813F8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1126	80181430	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1127	8018143C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1128	80181440	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1129	80181450	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1130	80181464	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1131	80181468	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1132	80181470	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1133	801814B8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1134	801814CC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1135	801814D4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1136	801814D8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1137	801814DC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1138	801814F0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1139	801814F8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1140	801814FC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1141	80181500	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1142	80181504	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1143	80181508	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1144	8018150C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1145	8018152C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1146	80181570	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1147	80181574	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1148	80181598	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1149	8018159C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1150	801815A4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1151	801815B0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1152	801815B4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1153	801815C8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1154	801815CC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1155	801815D4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1156	801815EC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1157	80181620	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1158	80181624	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1159	80181628	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1160	8018163C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1161	80181640	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1162	80181644	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1163	80181658	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1164	80181664	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1165	80181670	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1166	8018168C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1167	801816A8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1168	801816EC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1169	801816F0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1170	80181714	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1171	80181718	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1172	80181720	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1173	8018172C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1174	80181744	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1175	8018176C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1176	8018176C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
 LM1177	8018176C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1178	8018176C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1179	8018176C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1180	80181778	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1181	80181780	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1182	80181784	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1183	801817A8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1184	801817AC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1185	801817B0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1186	801817BC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1187	801817D4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1188	80181804	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1189	8018180C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1190	80181818	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1191	80181820	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1192	80181830	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1193	80181840	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1194	80181850	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1195	80181874	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1196	8018187C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1197	801818B8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1198	801818EC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1199	801818F8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1200	801818F8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1201	80181904	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1202	80181918	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1203	8018191C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1204	80181924	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1205	80181928	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1206	80181930	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1207	8018193C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1208	80181944	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1209	80181948	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1210	80181954	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1211	80181960	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1212	8018196C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1213	80181974	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1214	80181988	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1215	8018198C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1216	8018199C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1217	801819B0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1218	801819B4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1219	801819B8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1220	801819C8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1221	801819DC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1222	801819E0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1223	801819F0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1224	80181A18	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1225	80181A1C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1226	80181A20	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1227	80181A24	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1228	80181A28	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1229	80181A2C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1230	80181A40	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1231	80181A44	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1232	80181A54	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1233	80181A78	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1234	80181A80	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1235	80181A84	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1236	80181AE0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1237	80181AE4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1238	80181AF8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1239	80181B04	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1240	80181B0C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1241	80181B10	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1242	80181B54	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1243	80181B68	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1244	80181B6C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1245	80181B7C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1246	80181B90	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1247	80181B94	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1248	80181BA4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1249	80181BB8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1250	80181BBC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1251	80181BCC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1252	80181BF4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1253	80181C00	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1254	80181C04	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1255	80181C08	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1256	80181C1C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1257	80181C20	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1258	80181C30	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1259	80181C54	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1260	80181C5C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1261	80181C60	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1262	80181CA8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1263	80181CAC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1264	80181CBC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1265	80181CC0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1266	80181CD4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1267	80181CE0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1268	80181CEC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1269	80181CF0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1270	80181CF4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1271	80181D0C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1272	80181D0C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1273	80181D10	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1274	80181D14	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1275	80181D18	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1276	80181D5C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1277	80181D70	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1278	80181D74	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1279	80181D84	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1280	80181D98	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1281	80181D9C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1282	80181DAC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1283	80181DC0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1284	80181DC4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1285	80181DD4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1286	80181DFC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1287	80181E00	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1288	80181E04	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1289	80181E08	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1290	80181E0C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1291	80181E10	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1292	80181E24	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1293	80181E28	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1294	80181E38	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1295	80181E5C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1296	80181E60	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1297	80181E64	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1298	80181EB4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1299	80181EB8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1300	80181ECC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1301	80181ED8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1302	80181EDC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1303	80181EE0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1304	80181F24	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1305	80181F38	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1306	80181F3C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1307	80181F4C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1308	80181F60	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1309	80181F64	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1310	80181F74	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1311	80181F88	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1312	80181F8C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1313	80181F9C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1314	80181FC4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1315	80181FC8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1316	80181FCC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1317	80181FD0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1318	80181FD4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1319	80181FD8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1320	80181FEC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1321	80181FF0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1322	80182000	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1323	80182024	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1324	80182028	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1325	8018202C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1326	80182068	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1327	8018206C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1328	8018207C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1329	80182080	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1330	80182094	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1331	801820A0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1332	801820AC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1333	801820C4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1178	80181778	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1179	80181780	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1180	80181784	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1181	801817A8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1182	801817AC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1183	801817B0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1184	801817BC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1185	801817D4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1186	80181804	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1187	8018180C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1188	80181818	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1189	80181820	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1190	80181830	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1191	80181840	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1192	80181850	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1193	80181874	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1194	8018187C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1195	801818B8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1196	801818EC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1197	801818F8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1198	801818F8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1199	80181904	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1200	80181918	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1201	8018191C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1202	80181924	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1203	80181928	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1204	80181930	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1205	8018193C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1206	80181944	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1207	80181948	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1208	80181954	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1209	80181960	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1210	8018196C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1211	80181974	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1212	80181988	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1213	8018198C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1214	8018199C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1215	801819B0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1216	801819B4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1217	801819B8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1218	801819C8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1219	801819DC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1220	801819E0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1221	801819F0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1222	80181A18	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1223	80181A1C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1224	80181A20	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1225	80181A24	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1226	80181A28	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1227	80181A2C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1228	80181A40	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1229	80181A44	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1230	80181A54	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1231	80181A78	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1232	80181A80	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1233	80181A84	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1234	80181AE0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1235	80181AE4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1236	80181AF8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1237	80181B04	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1238	80181B0C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1239	80181B10	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1240	80181B54	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1241	80181B68	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1242	80181B6C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1243	80181B7C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1244	80181B90	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1245	80181B94	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1246	80181BA4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1247	80181BB8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1248	80181BBC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1249	80181BCC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1250	80181BF4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1251	80181C00	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1252	80181C04	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1253	80181C08	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1254	80181C1C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1255	80181C20	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1256	80181C30	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1257	80181C54	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1258	80181C5C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1259	80181C60	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1260	80181CA8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1261	80181CAC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1262	80181CBC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1263	80181CC0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1264	80181CD4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1265	80181CE0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1266	80181CEC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1267	80181CF0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1268	80181CF4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1269	80181D0C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1270	80181D0C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1271	80181D10	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1272	80181D14	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1273	80181D18	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1274	80181D5C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1275	80181D70	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1276	80181D74	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1277	80181D84	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1278	80181D98	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1279	80181D9C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1280	80181DAC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1281	80181DC0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1282	80181DC4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1283	80181DD4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1284	80181DFC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1285	80181E00	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1286	80181E04	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1287	80181E08	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1288	80181E0C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1289	80181E10	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1290	80181E24	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1291	80181E28	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1292	80181E38	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1293	80181E5C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1294	80181E60	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1295	80181E64	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1296	80181EB4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1297	80181EB8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1298	80181ECC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1299	80181ED8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1300	80181EDC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1301	80181EE0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1302	80181F24	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1303	80181F38	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1304	80181F3C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1305	80181F4C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1306	80181F60	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1307	80181F64	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1308	80181F74	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1309	80181F88	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1310	80181F8C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1311	80181F9C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1312	80181FC4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1313	80181FC8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1314	80181FCC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1315	80181FD0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1316	80181FD4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1317	80181FD8	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1318	80181FEC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1319	80181FF0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1320	80182000	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1321	80182024	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1322	80182028	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1323	8018202C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1324	80182068	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1325	8018206C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1326	8018207C	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1327	80182080	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1328	80182094	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1329	801820A0	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1330	801820AC	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1331	801820C4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1332	801820F4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1333	801820F4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
 LM1334	801820F4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
 LM1335	801820F4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1336	801820F4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1337	801820F4	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
-LM1338	80182100	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
+LM1336	80182100	fl	build/USA/src/rooms/shelter_b2_laboratory/shelter_b2_laboratory.i
 __romPos	00008F84	al	
 equipmentGetWeaponLoadCapacity	800BB938	a	
 gActor443500ConsoleFollowupSkipScript	80142A74	a	
@@ -1491,6 +1490,7 @@ gameGetTaskSlot	8002D22C	a
 GetTPage	80043938	a	
 displaySetFrameTiming	800280F4	a	
 textItoaUnsigned	8002F18C	a	
+gShootingGalleryPierceGalleryTrainingActive	8014D038	a	
 damagePackEnemyAttackKey	800E2BF8	a	
 viewGetMappedIndex	800AD284	a	
 worldCoordGetOriginAudioPan	800D937C	a	
@@ -1498,7 +1498,6 @@ gPadInputMenuUnlockUpdates	80115716	a
 mapShelterRoomVariantResolve	80179A04	a	
 uiGetTextColor	80048E10	a	
 cdCmdSelectScene	8001D534	a	
-gActor107600TaskDescriptors	80134F94	a	
 SetDrawTPage	80043A38	a	
 D_801153F1	801153F1	a	
 roomEventTask	8017FBA8	ft	
@@ -1517,6 +1516,7 @@ gRoomEffectOrangeBurst2Id	80115754	a
 stageMusicRequestAreaStop	800430E4	a	
 taskSpawn	8002CFDC	a	
 MatrixNormal	8003D6C8	a	
+shootingGalleryPierceRequestGalleryAbort	8014A9A0	a	
 gAreaRecordsByStage	8010CBCC	a	
 textDrawUiLine	8002FDCC	a	
 D_8007106C	8007106C	a	
@@ -1534,7 +1534,6 @@ gameFlowBeginLoadScreen	8002252C	a
 sndEvtRequestScriptMix	80054424	a	
 worldCollisionProjectGroundCoord	800EA02C	a	
 worldCollisionUnlinkTrigger	800E1708	a	
-actor215100SelectCaptionResource	8014C5E0	a	
 padScriptSpawnVariableMotorRamp	800E8D1C	a	
 gfxSetFlatLight	8003B140	a	
 gPlayerActorStateTickHeld	80115768	a	
@@ -1570,7 +1569,6 @@ actor460200SetupTentSoldiers	80132210	a
 gActor335800BalconyEntrySkipScript	80165798	a	
 D_80115124	80115124	a	
 uiStartPanelOpening	80048964	a	
-actor215100RequestGalleryAbort	8014A9A0	a	
 streamGetFrameLimit	80020414	a	
 gActor00100DesertChaserTaskDesc	8014D8A4	a	
 gActor04000HangingPoolTaskDesc	8013E51C	a	
@@ -1678,7 +1676,6 @@ __adddf3	8004AFE8	a
 gRoomEffectFlashId	80115758	a	
 gActor443500TourOpeningSkipScript	80141C1C	a	
 gShelterB2LaboratoryActionTriggers	80185D84	f	
-actor215100FinishGalleryCourse	8014A908	a	
 animationAimHeadAtPoint	800B0CF4	a	
 mapAkropolisOpenKeyItemMenu	80179FC8	a	
 areaSetObjectState	800BB8E8	a	
@@ -1734,11 +1731,9 @@ cdCmdStageSceneAudioStart	8001D6B8	a
 D_80072A94	80072A94	a	
 textItoaSigned	8002F020	a	
 cdCmdIsIdle	8001D344	a	
-actor215100CheckGalleryExitInput	8014A398	a	
 D_80072729	80072729	a	
 sceneQueueBattleEscapeResult	800A7A64	a	
 capStartSequenceSlot	800E6C70	a	
-gActor215100GalleryTrainingActive	8014D038	a	
 worldCollisionReadActionHit	800E1BF0	a	
 SetTransMatrix	8004AE28	a	
 gameFlagGetNibble	8004ACAC	a	
@@ -1758,6 +1753,7 @@ gSceneCombatState	801153F0	a
 itemMenuDrawItemRow	800CD924	a	
 effectDrawSpinningBillboard	800EB2C8	a	
 uiDrawPanelLabel	80047F40	a	
+shootingGalleryPierceSelectCaptionResource	8014C5E0	a	
 gGameMainPersistentState	800710A8	a	
 enemySpawnFromTable	800B01AC	a	
 gfxRotMatrixYXZ	8003BD34	a	
@@ -1768,6 +1764,7 @@ gActor461800NeoArkSceneScript	80133F90	a
 uiPositionRowDialog	80049024	a	
 actor260400StartHeliportConversation	80149E38	a	
 evsStartScriptWithSkip	800E8634	a	
+gShootingGalleryTargetsTaskDescriptors	80134F94	a	
 gEquipmentModeBaseStats	8010D328	a	
 gFsImageWorkspacePtr	8005C364	a	
 actor160700StartMeetingScript	80131E70	a	
@@ -1781,7 +1778,6 @@ func_807245E4	807245E4	a
 uiUpdateList	80048C10	a	
 streamGetSlot	80020278	a	
 textAppendString	8002F588	a	
-gActor310100Officer1TaskDescriptors	801798FC	a	
 capGetVariantKey	800E6D3C	a	
 gActor143900ObservatoryEntrySkipScript	80133860	a	
 shelter_b2_laboratory_ROM_END	00008F84	a	
@@ -1796,6 +1792,7 @@ shopOpenSession	800D4D2C	a
 gPadCancelButtonMask	8005ED74	a	
 gPadStates	80071620	a	
 SetDrawArea	80018A24	a	
+gShootingGalleryPierceGalleryTaskDescs	8014E13C	a	
 D_80071075	80071075	a	
 RotTransPers3	8004C1E8	a	
 actor460200TalkToSoldierA	80132390	a	
@@ -1856,12 +1853,10 @@ gActor143900ObservatoryEntryScript	80133560	a
 playerActorSetDrawMode	800E3B80	a	
 gShelterB2LaboratoryPodTunnelAreaUpdates	8018649C	f	
 actor450800StartNurseryCompanionDialogue	80132000	a	
-gActor215100PierceStoryScript	80153274	a	
 itemMenuSetPreviewItem	800CDE80	a	
 equipmentRecalculateMaxMp	800B7930	a	
 effectDrawOuterGlowBand	800EAA0C	a	
 stageEnsureHeapTaskPrimitiveBuffer	8003F9AC	a	
-actor215100HandleGalleryAction	8014AB6C	a	
 RotMatrixZ	8004AE48	a	
 SetDispMask	80017C00	a	
 SetTile	80042344	a	
@@ -1871,6 +1866,7 @@ __muldf3	8004B828	a
 rsin	8003D038	a	
 viewFindLogicalIndex	800ACEBC	a	
 inventoryInitializeStarterLoadout	800B7D18	a	
+shootingGalleryPierceFinishGalleryCourse	8014A908	a	
 gPadConfirmButtonMask	8005ED70	a	
 areaIsSavedPoseRestoreEnabled	800B59A8	a	
 gActor361100PodSceneScript	80165F48	a	
@@ -1889,7 +1885,6 @@ D_8011540C	8011540C	a
 memset	800420F8	a	
 companionWriteAnimationBankIndex	800E3D24	a	
 D_80073BAE	80073BAE	a	
-gActor215100GalleryTaskDescs	8014E13C	a	
 gShelterB2LaboratoryAreaVariants	80186360	f	
 gActor136300GarageCompanionSceneSkipScript	8013C388	a	
 streamPrepareMovieWorkspace	80020298	a	
@@ -1900,11 +1895,10 @@ ApplyMatrixLV	80042128	a
 taskMessageDispatch	800AC464	a	
 uiStartTreeClosing	80048838	a	
 animationResetSlot	800B3FA8	a	
-actor215100CapCaptionSelectRecord	8014B2B8	a	
 taskRequestKill	8002D340	a	
+gShootingGalleryPiercePierceStoryScript	80153274	a	
 D_8007107A	8007107A	a	
 actor161500RestoreCompanionRequestScene	8013230C	a	
-actor215100ResolveGalleryExit	8014AA54	a	
 gPlayerStatus	80073B88	a	
 inventoryGetRangeTable	800BB500	a	
 gActor142600IncineratorArrivalSkipScript	80136804	a	
@@ -1914,6 +1908,7 @@ equipmentConsumeWeaponLoad	800B6DA4	a
 inventoryResetCarriedRange	800BC490	a	
 enemyDestroy	800B01F0	a	
 gFsResourceSlots	8006C338	a	
+shootingGalleryPierceStartPierceConversation	8014AF0C	a	
 gRandomLcgState	80070F60	a	
 actor160700RestoreMeetingAnimation	80131E24	a	
 func_800ABFF8	800ABFF8	a	
@@ -1923,6 +1918,7 @@ areaSpawnPlacements	800B4AF8	a
 itemMenuDrawMeter	800C0E20	a	
 gameFlagGetPackedByte	800E3FCC	a	
 shelterB2LaboratoryTask	801804A4	ft	
+shootingGalleryPierceResolveGalleryExit	8014AA54	a	
 equipmentLoadWeaponConsumable	800B715C	a	
 gShelterB2LaboratoryViewAmbientTable	801863B8	f	
 displaySetShakeY	8003DE78	a	
@@ -1940,7 +1936,6 @@ D_80072830	80072830	a
 sndEvtRequestScriptVolume	800544B8	a	
 worldCollisionLinkTrigger	800E1688	a	
 actor450800StartNurseryInteraction	80131E2C	a	
-gActor215100PierceStorySkipScript	80153D6C	a	
 gActor136300TaskTable	8013B11C	a	
 gStageMusicParams	8007A39C	a	
 VectorNormalSS	8003D5D8	a	
@@ -1950,12 +1945,12 @@ gWorldCollisionActiveGrid	80115448	a
 D_80072A92	80072A92	a	
 shelterB2LaboratoryTelephoneMenuTask	8017EAB4	ft	
 roomEffectRequestCancelAll	800EC868	a	
-gActor310100Officer2TaskDescriptors	80179920	a	
 actorRenderDrawGroundShadow	800B4E54	a	
 D_8007218A	8007218A	a	
 capSelectLoadedFile	800E6D60	a	
 cdCmdDropQueuedTail	8001D424	a	
 Gfx_ViewWorldMtx	80070F34	a	
+gShootingGalleryPiercePierceStorySkipScript	80153D6C	a	
 actor161500StartSoldierBTalkA	80131FBC	a	
 gActor503500BossDefeatScript	8014C540	a	
 tmdBuildBufferHalf	800410F0	a	
@@ -1968,7 +1963,6 @@ shelter_b2_laboratory_DATA_START	80182100	f
 DrawSync	80017C98	a	
 damageComputePlayerAttack	800E1FEC	a	
 itemMenuClearPreviewItems	800CDEF4	a	
-actor215100StartPierceConversation	8014AF0C	a	
 actor450900StartCompanionConversation	801327A8	a	
 damageRollCriticalHit	800E25F8	a	
 gActor151000GardenArrivalSkipScript	80133954	a	
@@ -1976,6 +1970,7 @@ animationTickSlot	800B4514	a
 sceneAcquireBattleRef	800DB53C	a	
 gActor143400CompanionEntrySkipScript	801359D4	a	
 companionRemoveEquipment	8010B674	a	
+gPoliceOfficersPlayerAnimSets	801797FC	a	
 sndScriptResolveStageId	800E3E30	a	
 actor146300RestoreHandoverPose	8013224C	a	
 gActor150400FreezerSceneSkipScript	80133088	a	
@@ -2017,7 +2012,6 @@ D_80114FF8	80114FF8	a
 gActor450900Tasks	80135E78	a	
 itemMenuIsHotspotActionConfirmed	800D4EC0	a	
 inventoryClearItems	800BAC8C	a	
-gShelterB2LaboratoryAcropolisSanctuaryModel090F0	801829E4	f	
 gShelterB2LaboratoryRoomLights	80185944	f	
 gCapRestoreView	80115694	a	
 D_801153F6	801153F6	a	
@@ -2039,6 +2033,7 @@ gteMIMefunc	8004AD78	a
 inventoryGetItemSortKey	800BC18C	a	
 uiGetTextRowsHeight	80048E2C	a	
 gCapControlFlags	801156A4	a	
+shootingGalleryPierceCheckGalleryExitInput	8014A398	a	
 gFsActorBufferWrittenBytes	8006D860	a	
 shelter_b2_laboratory_TEXT_START	8017D71C	f	
 gActor142600IncineratorArrivalScript	801360E4	a	
@@ -2047,7 +2042,6 @@ playerActorEnterLocomotion	801066DC	a
 D_8007218B	8007218B	a	
 uiDrawHorizontalSeparator	80047A0C	a	
 sndEvtRequestScriptStart	8005414C	a	
-actor215100CapCaptionDrawCurrent	8014B0D4	a	
 gActor335800BalconyEntryScript	80165060	a	
 stageReleaseTaskPrimitiveBuffer	8003F9F4	a	
 equipmentGetWeaponSupply	800BBDC8	a	
@@ -2059,6 +2053,7 @@ gActor146300WaterTankEventSkipScript	80138570	a
 capAbortPlayback	800E6CF0	a	
 textDrawUiLines	8002FB84	a	
 streamFinishScene	800B00C4	a	
+gShelterB2LaboratoryItemBoxModel	801829E4	f	
 loadingEnqueueEquippedWeaponResources	800A9BE4	a	
 gActor503500BossIntroScript	8014BD48	a	
 gActor207000SlouchTaskDescs	801575F0	a	
@@ -2066,6 +2061,7 @@ companionRestoreFullHp	800E3D78	a
 textItoaPadded	8002F44C	a	
 playerStateRestoreFullHpMp	800E3D5C	a	
 gRoomEffectWaterRippleId	8011574C	a	
+shootingGalleryPierceCapCaptionDrawCurrent	8014B0D4	a	
 memFillBytes	8002D894	a	
 D_8007106B	8007106B	a	
 gActor450800NurseryShootingScript	8013AF8C	a	
@@ -2096,6 +2092,7 @@ shelter_b2_laboratory_RODATA_START	8017D5C0	f
 actor260500StartHeliportConversation	80149EBC	a	
 fadeDrawOverlay	8002BA9C	a	
 worldCollisionResolvePushback	800E0C10	a	
+shootingGalleryPierceCapCaptionSelectRecord	8014B2B8	a	
 equipmentEquipCarriedArmor	800B7A50	a	
 __subdf3	8004BC28	a	
 D_80072A98	80072A98	a	
@@ -2103,14 +2100,16 @@ padInputChangeSuppression	800E9BDC	a
 gActor450800NurseryReentryScript	8013A84C	a	
 gEvsPlaybackPaused	801156F9	a	
 gActor460200TentArrivalScript	801362B8	a	
+gPoliceOfficersSergeantTaskDescriptors	80179920	a	
 RotMatrixY	8004BFF8	a	
 gActor361100PodSceneSkipScript	80166848	a	
 streamFindMovieSlot	8001EDC8	a	
-gActor310100PlayerAnimationSets	801797FC	a	
 shelter_b2_laboratory_DATA_END	80186542	f	
+shootingGalleryPierceHandleGalleryAction	8014AB6C	a	
 gActor142900ElevatorFirstVisitScript	801378D0	a	
 inventoryIsItemLimitReached	800B7420	a	
 streamSetExternalScenePayloadBuffer	800B015C	a	
+gPoliceOfficersRookieTaskDescriptors	801798FC	a	
 gActor141000FlightTasks	801348D8	a	
 mapNeoArkResolveRoomVariant	80179B14	a	
 gViewIdentityMap	8010CAF8	a	

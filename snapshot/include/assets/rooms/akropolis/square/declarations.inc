@@ -2,6 +2,20 @@
 #define ROOM_CAT_(a, b) a##b
 #define ROOM_CAT(a, b) ROOM_CAT_(a, b)
 
+#include "types.h"
+#include <psyq/sys/types.h>
+#include <psyq/libgte.h>
+#include "gameplay/area.h"
+#include "gameplay/area_flags.h"
+#include "gameplay/collision.h"
+#include "gameplay/direction.h"
+#include "gameplay/evs.h"
+#include "gameplay/light.h"
+#include "gameplay/message.h"
+#include "gameplay/room.h"
+#include "gameplay/sprites.h"
+#include "gameplay/view.h"
+
 static AnimationPlayRequest _gAkropolisSquareArrivalWeaponAnimation;
 static EvsCommand _gAkropolisSquareTelephoneSceneScript[7];
 static EvsCommand _gAkropolisSquareTelephoneSceneSkipScript[8];

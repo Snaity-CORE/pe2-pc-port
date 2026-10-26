@@ -2,7 +2,9 @@
 #define ROOM_CAT_(a, b) a##b
 #define ROOM_CAT(a, b) ROOM_CAT_(a, b)
 
-static u16 _gAcropolisForkedRoadWallLampViewMasks[14] = {
+#include "types.h"
+
+static u16 _gAkropolisForkedRoadWallLampViewMasks[14] = {
     0,
     0,
     0,

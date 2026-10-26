@@ -2,86 +2,90 @@
 #define ROOM_CAT_(a, b) a##b
 #define ROOM_CAT(a, b) ROOM_CAT_(a, b)
 
-#define ROOM_IS_D_acropolis_roof_garden_80183C40 1
-#if ROOM_CAT(ROOM_IS_, ROOM_PART) == 1
-ActorCommand D_acropolis_roof_garden_80183C40 = { .context = { .loc = { .stage = 0, .area = 0 } }, .command = 0 };
-static AnimationPlayRequest _gAcropolisRoofGardenArrivalFinalPlayerAnimation = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
-static ActorTransform _gAcropolisRoofGardenArrivalFigurePlacement = { .pos = { 0, 0, 0, 0 }, .rot = { 0, 0, 0, 0 } };
-static ActorTransform _gAcropolisRoofGardenArrivalStartPlayerPlacement = { .pos = { 0, 0, 0, 0 }, .rot = { 0, 0, 0, 0 } };
-ActorTransform D_acropolis_roof_garden_80183C88 = { .pos = { 0, 0, 0, 0 }, .rot = { 0, 0, 0, 0 } };
-static ActorTransform _gAcropolisRoofGardenArrivalEndPlayerPlacement = { .pos = { -0, 0, -0, 0 }, .rot = { 0, 0, 0, 0 } };
-#endif
-#undef ROOM_IS_D_acropolis_roof_garden_80183C40
+#include "gameplay/evs.h"
+#include "gameplay/message.h"
+#include "gameplay/scene_combat.h"
 
-#define ROOM_IS__gAcropolisRoofGardenArrivalPlayerBankCopy 1
+#define ROOM_IS__gAkropolisRoofGardenUnusedActorCommand 1
 #if ROOM_CAT(ROOM_IS_, ROOM_PART) == 1
-static AnimationBankCopyRequest _gAcropolisRoofGardenArrivalPlayerBankCopy = { .sets = (void*)&_gAcropolisRoofGardenArrivalPlayerAnimationSets, .count = 0 };
-static AnimationPlayRequest _gAcropolisRoofGardenArrivalOpeningPlayerAnimation = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
-static AnimationPlayRequest _gAcropolisRoofGardenArrivalClosingPlayerAnimation = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
-static AnimationPlayRequest _gAcropolisRoofGardenArrivalDialoguePlayerAnimation = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
-static AnimationPlayRequest _gAcropolisRoofGardenArrivalFigureAnimation1 = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
-static AnimationPlayRequest _gAcropolisRoofGardenArrivalFigureAnimation2 = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
-static AnimationPlayRequest _gAcropolisRoofGardenArrivalFigureAnimation3 = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
-static AnimationPlayRequest _gAcropolisRoofGardenArrivalFigureAnimation4 = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
-static AnimationPlayRequest _gAcropolisRoofGardenArrivalFigureAnimation5 = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
-EvsSceneKey D_acropolis_roof_garden_80183D6C = { .group = 0, .streamId = 0, .subId = 0 };
-static EvsCommand _gAcropolisRoofGardenArrivalScript[44] = {
+static ActorCommand _gAkropolisRoofGardenUnusedActorCommand = { .context = { .loc = { .stage = 0, .area = 0 } }, .command = 0 };
+static AnimationPlayRequest _gAkropolisRoofGardenArrivalFinalPlayerAnimation = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
+static ActorTransform _gAkropolisRoofGardenArrivalFigurePlacement = { .pos = { 0, 0, 0, 0 }, .rot = { 0, 0, 0, 0 } };
+static ActorTransform _gAkropolisRoofGardenArrivalStartPlayerPlacement = { .pos = { 0, 0, 0, 0 }, .rot = { 0, 0, 0, 0 } };
+static ActorTransform _gAkropolisRoofGardenUnusedTransform = { .pos = { 0, 0, 0, 0 }, .rot = { 0, 0, 0, 0 } };
+static ActorTransform _gAkropolisRoofGardenArrivalEndPlayerPlacement = { .pos = { -0, 0, -0, 0 }, .rot = { 0, 0, 0, 0 } };
+#endif
+#undef ROOM_IS__gAkropolisRoofGardenUnusedActorCommand
+
+#define ROOM_IS__gAkropolisRoofGardenArrivalPlayerBankCopy 1
+#if ROOM_CAT(ROOM_IS_, ROOM_PART) == 1
+static AnimationBankCopyRequest _gAkropolisRoofGardenArrivalPlayerBankCopy = { .sets = (void*)&_gAkropolisRoofGardenArrivalPlayerAnimationSets, .count = 0 };
+static AnimationPlayRequest _gAkropolisRoofGardenArrivalOpeningPlayerAnimation = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
+static AnimationPlayRequest _gAkropolisRoofGardenArrivalClosingPlayerAnimation = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
+static AnimationPlayRequest _gAkropolisRoofGardenArrivalDialoguePlayerAnimation = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
+static AnimationPlayRequest _gAkropolisRoofGardenArrivalFigureAnimation1 = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
+static AnimationPlayRequest _gAkropolisRoofGardenArrivalFigureAnimation2 = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
+static AnimationPlayRequest _gAkropolisRoofGardenArrivalFigureAnimation3 = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
+static AnimationPlayRequest _gAkropolisRoofGardenArrivalFigureAnimation4 = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
+static AnimationPlayRequest _gAkropolisRoofGardenArrivalFigureAnimation5 = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
+static EvsSceneKey _gAkropolisRoofGardenUnusedSceneKey = { .group = 0, .streamId = 0, .subId = 0 };
+static EvsCommand _gAkropolisRoofGardenArrivalScript[44] = {
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisRoofGardenArrivalPlayerBankCopy }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisRoofGardenArrivalStartPlayerPlacement }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisRoofGardenArrivalOpeningPlayerAnimation }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .storage = (void*)&_acropolisRoofGardenControlCutsceneSound }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisRoofGardenArrivalPlayerBankCopy }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisRoofGardenArrivalStartPlayerPlacement }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisRoofGardenArrivalOpeningPlayerAnimation }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .storage = (void*)&_akropolisRoofGardenControlCutsceneSound }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisRoofGardenArrivalDialoguePlayerAnimation }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisRoofGardenArrivalDialoguePlayerAnimation }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisRoofGardenArrivalFigurePlacement }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisRoofGardenArrivalFigureAnimation1 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisRoofGardenArrivalFigurePlacement }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisRoofGardenArrivalFigureAnimation1 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisRoofGardenArrivalFigureAnimation2 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisRoofGardenArrivalFigureAnimation3 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisRoofGardenArrivalFigureAnimation4 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisRoofGardenArrivalFigureAnimation5 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisRoofGardenArrivalFigureAnimation2 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisRoofGardenArrivalFigureAnimation3 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisRoofGardenArrivalFigureAnimation4 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisRoofGardenArrivalFigureAnimation5 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisRoofGardenArrivalClosingPlayerAnimation }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .storage = (void*)&_acropolisRoofGardenControlCutsceneSound }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisRoofGardenArrivalFinalPlayerAnimation }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisRoofGardenArrivalEndPlayerPlacement }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisRoofGardenArrivalClosingPlayerAnimation }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .storage = (void*)&_akropolisRoofGardenControlCutsceneSound }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisRoofGardenArrivalFinalPlayerAnimation }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisRoofGardenArrivalEndPlayerPlacement }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = -0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
 };
-static EvsCommand _gAcropolisRoofGardenArrivalSkipScript[17] = {
+static EvsCommand _gAkropolisRoofGardenArrivalSkipScript[17] = {
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisRoofGardenArrivalEndPlayerPlacement }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisRoofGardenArrivalFinalPlayerAnimation }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisRoofGardenArrivalEndPlayerPlacement }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisRoofGardenArrivalFinalPlayerAnimation }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisRoofGardenArrivalFigureAnimation1 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisRoofGardenArrivalFigureAnimation1 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .storage = (void*)&_acropolisRoofGardenControlCutsceneSound }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .storage = (void*)&_akropolisRoofGardenControlCutsceneSound }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
@@ -91,21 +95,21 @@ static EvsCommand _gAcropolisRoofGardenArrivalSkipScript[17] = {
     { .opcode = -0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
 };
 #endif
-#undef ROOM_IS__gAcropolisRoofGardenArrivalPlayerBankCopy
+#undef ROOM_IS__gAkropolisRoofGardenArrivalPlayerBankCopy
 
-#define ROOM_IS__gAcropolisRoofGardenEntrancePlayerBankCopy 1
+#define ROOM_IS__gAkropolisRoofGardenEntrancePlayerBankCopy 1
 #if ROOM_CAT(ROOM_IS_, ROOM_PART) == 1
-static AnimationBankCopyRequest _gAcropolisRoofGardenEntrancePlayerBankCopy = { .sets = (void*)&_gAcropolisRoofGardenEntrancePlayerAnimationSets, .count = 0 };
-static AnimationPlayRequest _gAcropolisRoofGardenUnusedBank1Animation1Request = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
-static AnimationPlayRequest _gAcropolisRoofGardenEntranceStartPlayerAnimation = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
-static AnimationPlayRequest _gAcropolisRoofGardenEntranceEndPlayerAnimation = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
-static AnimationPlayRequest _gAcropolisRoofGardenUnusedBank1Animation9Request = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
-static EvsCommand _gAcropolisRoofGardenMaggotCaterpillarEntranceScript[10] = {
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisRoofGardenEntrancePlayerBankCopy }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisRoofGardenEntranceStartPlayerAnimation }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .storage = (void*)&_acropolisRoofGardenReleaseMaggotCaterpillarEntrance }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+static AnimationBankCopyRequest _gAkropolisRoofGardenEntrancePlayerBankCopy = { .sets = (void*)&_gAkropolisRoofGardenEntrancePlayerAnimationSets, .count = 0 };
+static AnimationPlayRequest _gAkropolisRoofGardenUnusedBank1Animation1Request = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
+static AnimationPlayRequest _gAkropolisRoofGardenEntranceStartPlayerAnimation = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
+static AnimationPlayRequest _gAkropolisRoofGardenEntranceEndPlayerAnimation = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
+static AnimationPlayRequest _gAkropolisRoofGardenUnusedBank1Animation9Request = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
+static EvsCommand _gAkropolisRoofGardenMaggotCaterpillarEntranceScript[10] = {
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisRoofGardenEntrancePlayerBankCopy }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisRoofGardenEntranceStartPlayerAnimation }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .storage = (void*)&_akropolisRoofGardenReleaseMaggotCaterpillarEntrance }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisRoofGardenEntranceEndPlayerAnimation }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisRoofGardenEntranceEndPlayerAnimation }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .storage = (void*)&sceneEngageBattle }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
@@ -113,5 +117,5 @@ static EvsCommand _gAcropolisRoofGardenMaggotCaterpillarEntranceScript[10] = {
     { .opcode = -0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
 };
 #endif
-#undef ROOM_IS__gAcropolisRoofGardenEntrancePlayerBankCopy
+#undef ROOM_IS__gAkropolisRoofGardenEntrancePlayerBankCopy
 #undef ROOM_PART

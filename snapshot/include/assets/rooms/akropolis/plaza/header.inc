@@ -2,28 +2,33 @@
 #define ROOM_CAT_(a, b) a##b
 #define ROOM_CAT(a, b) ROOM_CAT_(a, b)
 
-#define ROOM_IS_gAcropolisPlazaRoomCollisionResources 1
+#include "types.h"
+#include "gameplay/direction.h"
+#include "gameplay/room.h"
+#include "gameplay/view.h"
+
+#define ROOM_IS_gAkropolisPlazaRoomCollisionResources 1
 #if ROOM_CAT(ROOM_IS_, ROOM_PART) == 1
-WorldCollisionRoomResources gAcropolisPlazaRoomCollisionResources[1] = {
-    { .grid = &_gAcropolisPlazaCollisionGrid, .viewBoundaryTriggers = NULL, .actionTriggers = _gAcropolisPlazaStreamSceneTrigger, .occluders = NULL },
+WorldCollisionRoomResources gAkropolisPlazaRoomCollisionResources[1] = {
+    { .grid = &_gAkropolisPlazaCollisionGrid, .viewBoundaryTriggers = NULL, .actionTriggers = _gAkropolisPlazaHelicopterWreckTrigger, .occluders = NULL },
 };
-u8* gAcropolisPlazaViewMaps[1] = {
+u8* gAkropolisPlazaViewMaps[1] = {
     (void*)&gViewIdentityMap,
 };
-ViewCount gAcropolisPlazaViewCounts[1] = {
+ViewCount gAkropolisPlazaViewCounts[1] = {
     0,
 };
-WorldCoordRoomLighting gAcropolisPlazaRoomLightingTable[1] = {
-    { .lights = &_gAcropolisPlazaRoomLights, .ambientTable = NULL },
+WorldCoordRoomLighting gAkropolisPlazaRoomLightingTable[1] = {
+    { .lights = &_gAkropolisPlazaRoomLights, .ambientTable = NULL },
 };
 #endif
-#undef ROOM_IS_gAcropolisPlazaRoomCollisionResources
+#undef ROOM_IS_gAkropolisPlazaRoomCollisionResources
 
-#define ROOM_IS_gAcropolisPlazaWarpEntries 1
+#define ROOM_IS_gAkropolisPlazaWarpEntries 1
 #if ROOM_CAT(ROOM_IS_, ROOM_PART) == 1
-DirectionWarpEntry gAcropolisPlazaWarpEntries[1] = {
+DirectionWarpEntry gAkropolisPlazaWarpEntries[1] = {
     { .player = { .yaw = { .word = 0 }, .x = 0, .y = 0, .z = 0 }, .unknown_10 = { 0, 0, 0, 0 }, .companion = { .yaw = { .word = 0 }, .x = 0, .y = 0, .z = 0 }, .unknown_24 = { 0, 0, 0, 0 }, .arrivalSound = 0, .departureSound = 0, .blockedSound = 0, .initialView = 0, .flags = 0, .mapFlagId = 0 },
 };
 #endif
-#undef ROOM_IS_gAcropolisPlazaWarpEntries
+#undef ROOM_IS_gAkropolisPlazaWarpEntries
 #undef ROOM_PART

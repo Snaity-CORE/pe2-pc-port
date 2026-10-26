@@ -2,69 +2,82 @@
 #define ROOM_CAT_(a, b) a##b
 #define ROOM_CAT(a, b) ROOM_CAT_(a, b)
 
-extern ActorCommand D_acropolis_roof_garden_80183C40;
-static AnimationPlayRequest _gAcropolisRoofGardenArrivalFinalPlayerAnimation;
-static ActorTransform _gAcropolisRoofGardenArrivalFigurePlacement;
-static ActorTransform _gAcropolisRoofGardenArrivalStartPlayerPlacement;
-extern ActorTransform D_acropolis_roof_garden_80183C88;
-static ActorTransform _gAcropolisRoofGardenArrivalEndPlayerPlacement;
-static AnimationBankCopyRequest _gAcropolisRoofGardenArrivalPlayerBankCopy;
-static AnimationPlayRequest _gAcropolisRoofGardenArrivalOpeningPlayerAnimation;
-static AnimationPlayRequest _gAcropolisRoofGardenArrivalClosingPlayerAnimation;
-static AnimationPlayRequest _gAcropolisRoofGardenArrivalDialoguePlayerAnimation;
-static AnimationPlayRequest _gAcropolisRoofGardenArrivalFigureAnimation1;
-static AnimationPlayRequest _gAcropolisRoofGardenArrivalFigureAnimation2;
-static AnimationPlayRequest _gAcropolisRoofGardenArrivalFigureAnimation3;
-static AnimationPlayRequest _gAcropolisRoofGardenArrivalFigureAnimation4;
-static AnimationPlayRequest _gAcropolisRoofGardenArrivalFigureAnimation5;
-extern EvsSceneKey D_acropolis_roof_garden_80183D6C;
-static EvsCommand _gAcropolisRoofGardenArrivalScript[44];
-static EvsCommand _gAcropolisRoofGardenArrivalSkipScript[17];
-static AnimationBankCopyRequest _gAcropolisRoofGardenEntrancePlayerBankCopy;
-static AnimationPlayRequest _gAcropolisRoofGardenUnusedBank1Animation1Request;
-static AnimationPlayRequest _gAcropolisRoofGardenEntranceStartPlayerAnimation;
-static AnimationPlayRequest _gAcropolisRoofGardenEntranceEndPlayerAnimation;
-static AnimationPlayRequest _gAcropolisRoofGardenUnusedBank1Animation9Request;
-static EvsCommand _gAcropolisRoofGardenMaggotCaterpillarEntranceScript[10];
-static SVECTOR _gAcropolisRoofGardenLightOffsets[10];
-static u16 _gAcropolisRoofGardenLightViewMasks[10];
-static s16 _gAcropolisRoofGardenFlareSineSamples[24];
-extern WorldCollisionRoomResources gAcropolisRoofGardenCollisionRoomResources[1];
-extern u8* gAcropolisRoofGardenViewMaps[1];
-extern ViewCount gAcropolisRoofGardenViewCounts[1];
-extern WorldCoordRoomLighting gAcropolisRoofGardenRoomLightingTable[1];
-extern DirectionWarpEntry gAcropolisRoofGardenWarpEntries[2];
-static SVECTOR _gAcropolisRoofGardenCollisionGridNormals[31];
-static SVECTOR _gAcropolisRoofGardenCollisionGridVerts[92];
-static WorldCollisionGridFace _gAcropolisRoofGardenCollisionGridFaces[53];
-static s16 _gAcropolisRoofGardenCollisionGridCells[136];
-static s16* _gAcropolisRoofGardenCollisionGridTable[9];
-static WorldCollisionGrid _gAcropolisRoofGardenCollisionGrid;
-static WorldCollisionTrigger _gAcropolisRoofGardenViewBoundaryTriggers[6];
-static WorldCollisionTrigger _gAcropolisRoofGardenActionTriggers[7];
-static AreaResource _gAcropolisRoofGardenVariant1Resources[3];
-static AreaResource _gAcropolisRoofGardenVariant2Resources[3];
-static AreaResource _gAcropolisRoofGardenVariant7Resources[3];
-static AreaResource _gAcropolisRoofGardenVariant8Resources[3];
-extern AreaVariant gAcropolisRoofGardenAreaVariants[12];
-static SpriteBatch _gAcropolisRoofGardenView1SpriteBatches[2];
-static SpriteSource _gAcropolisRoofGardenView2SpriteSources[26];
-static SpriteBatch _gAcropolisRoofGardenView2SpriteBatches[3];
-static SpriteSource _gAcropolisRoofGardenView3SpriteSources[57];
-static SpriteBatch _gAcropolisRoofGardenView3SpriteBatches[9];
-static SpriteSource _gAcropolisRoofGardenView4SpriteSources[21];
-static SpriteBatch _gAcropolisRoofGardenView4SpriteBatches[6];
-static SpriteSource _gAcropolisRoofGardenView5SpriteSources[47];
-static SpriteBatch _gAcropolisRoofGardenView5SpriteBatches[5];
-static SpriteBatch _gAcropolisRoofGardenView6SpriteBatches[2];
-static SpriteBatch _gAcropolisRoofGardenView7SpriteBatches[2];
-extern SpriteView gAcropolisRoofGardenSpriteViews[7];
-static WorldCoordPointLight _gAcropolisRoofGardenPointLights[14];
-static WorldCoordRoomLights _gAcropolisRoofGardenRoomLights;
-extern ViewCamera gAcropolisRoofGardenViewCameras[8];
-static WorldCollisionOccluder _gAcropolisRoofGardenOccluders[2];
-static WorldCollisionFootstepSounds _gAcropolisRoofGardenFootstepSounds;
-static WorldCollisionSurfaceProperties _gAcropolisRoofGardenSilentSurfaceProperties;
-static WorldCollisionSurfaceProperties _gAcropolisRoofGardenSurfaceClass1Properties;
-static WorldCollisionSurfaceProperties _gAcropolisRoofGardenSurfaceClass2Properties;
-extern WorldCollisionSurfaceProperties* gAcropolisRoofGardenSurfacePropertiesByClass[8];
+#include "types.h"
+#include <psyq/sys/types.h>
+#include <psyq/libgte.h>
+#include "gameplay/area.h"
+#include "gameplay/collision.h"
+#include "gameplay/direction.h"
+#include "gameplay/evs.h"
+#include "gameplay/light.h"
+#include "gameplay/message.h"
+#include "gameplay/room.h"
+#include "gameplay/sprites.h"
+#include "gameplay/view.h"
+
+static ActorCommand _gAkropolisRoofGardenUnusedActorCommand;
+static AnimationPlayRequest _gAkropolisRoofGardenArrivalFinalPlayerAnimation;
+static ActorTransform _gAkropolisRoofGardenArrivalFigurePlacement;
+static ActorTransform _gAkropolisRoofGardenArrivalStartPlayerPlacement;
+static ActorTransform _gAkropolisRoofGardenUnusedTransform;
+static ActorTransform _gAkropolisRoofGardenArrivalEndPlayerPlacement;
+static AnimationBankCopyRequest _gAkropolisRoofGardenArrivalPlayerBankCopy;
+static AnimationPlayRequest _gAkropolisRoofGardenArrivalOpeningPlayerAnimation;
+static AnimationPlayRequest _gAkropolisRoofGardenArrivalClosingPlayerAnimation;
+static AnimationPlayRequest _gAkropolisRoofGardenArrivalDialoguePlayerAnimation;
+static AnimationPlayRequest _gAkropolisRoofGardenArrivalFigureAnimation1;
+static AnimationPlayRequest _gAkropolisRoofGardenArrivalFigureAnimation2;
+static AnimationPlayRequest _gAkropolisRoofGardenArrivalFigureAnimation3;
+static AnimationPlayRequest _gAkropolisRoofGardenArrivalFigureAnimation4;
+static AnimationPlayRequest _gAkropolisRoofGardenArrivalFigureAnimation5;
+static EvsSceneKey _gAkropolisRoofGardenUnusedSceneKey;
+static EvsCommand _gAkropolisRoofGardenArrivalScript[44];
+static EvsCommand _gAkropolisRoofGardenArrivalSkipScript[17];
+static AnimationBankCopyRequest _gAkropolisRoofGardenEntrancePlayerBankCopy;
+static AnimationPlayRequest _gAkropolisRoofGardenUnusedBank1Animation1Request;
+static AnimationPlayRequest _gAkropolisRoofGardenEntranceStartPlayerAnimation;
+static AnimationPlayRequest _gAkropolisRoofGardenEntranceEndPlayerAnimation;
+static AnimationPlayRequest _gAkropolisRoofGardenUnusedBank1Animation9Request;
+static EvsCommand _gAkropolisRoofGardenMaggotCaterpillarEntranceScript[10];
+static SVECTOR _gAkropolisRoofGardenLightOffsets[10];
+static u16 _gAkropolisRoofGardenLightViewMasks[10];
+static s16 _gAkropolisRoofGardenFlareSineSamples[24];
+extern WorldCollisionRoomResources gAkropolisRoofGardenCollisionRoomResources[1];
+extern u8* gAkropolisRoofGardenViewMaps[1];
+extern ViewCount gAkropolisRoofGardenViewCounts[1];
+extern WorldCoordRoomLighting gAkropolisRoofGardenRoomLightingTable[1];
+extern DirectionWarpEntry gAkropolisRoofGardenWarpEntries[2];
+static SVECTOR _gAkropolisRoofGardenCollisionGridNormals[31];
+static SVECTOR _gAkropolisRoofGardenCollisionGridVerts[92];
+static WorldCollisionGridFace _gAkropolisRoofGardenCollisionGridFaces[53];
+static s16 _gAkropolisRoofGardenCollisionGridCells[136];
+static s16* _gAkropolisRoofGardenCollisionGridTable[9];
+static WorldCollisionGrid _gAkropolisRoofGardenCollisionGrid;
+static WorldCollisionTrigger _gAkropolisRoofGardenViewBoundaryTriggers[6];
+static WorldCollisionTrigger _gAkropolisRoofGardenActionTriggers[7];
+static AreaResource _gAkropolisRoofGardenVariant1Resources[3];
+static AreaResource _gAkropolisRoofGardenVariant2Resources[3];
+static AreaResource _gAkropolisRoofGardenVariant7Resources[3];
+static AreaResource _gAkropolisRoofGardenVariant8Resources[3];
+extern AreaVariant gAkropolisRoofGardenAreaVariants[12];
+static SpriteBatch _gAkropolisRoofGardenView1SpriteBatches[2];
+static SpriteSource _gAkropolisRoofGardenView2SpriteSources[26];
+static SpriteBatch _gAkropolisRoofGardenView2SpriteBatches[3];
+static SpriteSource _gAkropolisRoofGardenView3SpriteSources[57];
+static SpriteBatch _gAkropolisRoofGardenView3SpriteBatches[9];
+static SpriteSource _gAkropolisRoofGardenView4SpriteSources[21];
+static SpriteBatch _gAkropolisRoofGardenView4SpriteBatches[6];
+static SpriteSource _gAkropolisRoofGardenView5SpriteSources[47];
+static SpriteBatch _gAkropolisRoofGardenView5SpriteBatches[5];
+static SpriteBatch _gAkropolisRoofGardenView6SpriteBatches[2];
+static SpriteBatch _gAkropolisRoofGardenView7SpriteBatches[2];
+extern SpriteView gAkropolisRoofGardenSpriteViews[7];
+static WorldCoordPointLight _gAkropolisRoofGardenPointLights[14];
+static WorldCoordRoomLights _gAkropolisRoofGardenRoomLights;
+extern ViewCamera gAkropolisRoofGardenViewCameras[8];
+static WorldCollisionOccluder _gAkropolisRoofGardenOccluders[2];
+static WorldCollisionFootstepSounds _gAkropolisRoofGardenFootstepSounds;
+static WorldCollisionSurfaceProperties _gAkropolisRoofGardenSilentSurfaceProperties;
+static WorldCollisionSurfaceProperties _gAkropolisRoofGardenSurfaceClass1Properties;
+static WorldCollisionSurfaceProperties _gAkropolisRoofGardenSurfaceClass2Properties;
+extern WorldCollisionSurfaceProperties* gAkropolisRoofGardenSurfacePropertiesByClass[8];

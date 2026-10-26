@@ -2,7 +2,10 @@
 #define ROOM_CAT_(a, b) a##b
 #define ROOM_CAT(a, b) ROOM_CAT_(a, b)
 
-static WorldCollisionTrigger _gAcropolisCafeteriaRoom1ActionTriggers[16] = {
+#include "types.h"
+#include "gameplay/collision.h"
+
+static WorldCollisionTrigger _gAkropolisCafeteriaRoom1ActionTriggers[16] = {
     { .next = NULL, .prevLink = NULL, .coord = NULL, .origin = { -0, -0, 0, 0 }, .vertices = { { -0, 0, -0, 0 }, { 0, 0, -0, 0 }, { -0, 0, 0, 0 }, { 0, 0, 0, 0 } }, .normal = { 0, 0, 0, 0 }, .facingNormal = { 0, 0, -0, 0 }, .radius = 0, .control = 0, .parameter0 = 0, .parameter1 = 0, .flags = 0, .hit = 0 },
     { .next = NULL, .prevLink = NULL, .coord = NULL, .origin = { -0, -0, -0, 0 }, .vertices = { { 0, 0, -0, 0 }, { 0, 0, 0, 0 }, { -0, 0, -0, 0 }, { -0, 0, 0, 0 } }, .normal = { 0, 0, 0, 0 }, .facingNormal = { -0, 0, 0, 0 }, .radius = 0, .control = 0, .parameter0 = 0, .parameter1 = 0, .flags = 0, .hit = 0 },
     { .next = NULL, .prevLink = NULL, .coord = NULL, .origin = { 0, -0, -0, 0 }, .vertices = { { 0, 0, 0, 0 }, { -0, 0, 0, 0 }, { 0, 0, -0, 0 }, { -0, 0, -0, 0 } }, .normal = { 0, 0, 0, 0 }, .facingNormal = { 0, 0, 0, 0 }, .radius = 0, .control = 0, .parameter0 = 0, .parameter1 = 0, .flags = 0, .hit = 0 },
@@ -20,7 +23,7 @@ static WorldCollisionTrigger _gAcropolisCafeteriaRoom1ActionTriggers[16] = {
     { .next = NULL, .prevLink = NULL, .coord = NULL, .origin = { -0, -0, 0, 0 }, .vertices = { { -0, 0, -0, 0 }, { 0, 0, -0, 0 }, { -0, 0, 0, 0 }, { 0, 0, 0, 0 } }, .normal = { 0, 0, 0, 0 }, .facingNormal = { 0, 0, -0, 0 }, .radius = 0, .control = 0, .parameter0 = 0, .parameter1 = 0, .flags = 0, .hit = 0 },
     { .next = NULL, .prevLink = NULL, .coord = NULL, .origin = { -0, -0, -0, 0 }, .vertices = { { -0, 0, -0, 0 }, { 0, 0, -0, 0 }, { -0, 0, 0, 0 }, { 0, 0, -0, 0 } }, .normal = { 0, 0, 0, 0 }, .facingNormal = { 0, 0, -0, 0 }, .radius = 0, .control = 0, .parameter0 = 0, .parameter1 = 0, .flags = 0, .hit = 0 },
 };
-static WorldCollisionTrigger _gAcropolisCafeteriaRooms2To4ActionTriggers[20] = {
+static WorldCollisionTrigger _gAkropolisCafeteriaRooms2To4ActionTriggers[20] = {
     { .next = NULL, .prevLink = NULL, .coord = NULL, .origin = { -0, -0, 0, 0 }, .vertices = { { -0, 0, -0, 0 }, { 0, 0, -0, 0 }, { -0, 0, 0, 0 }, { 0, 0, 0, 0 } }, .normal = { 0, 0, 0, 0 }, .facingNormal = { 0, 0, -0, 0 }, .radius = 0, .control = 0, .parameter0 = 0, .parameter1 = 0, .flags = 0, .hit = 0 },
     { .next = NULL, .prevLink = NULL, .coord = NULL, .origin = { -0, -0, -0, 0 }, .vertices = { { 0, 0, -0, 0 }, { 0, 0, 0, 0 }, { -0, 0, -0, 0 }, { -0, 0, 0, 0 } }, .normal = { 0, 0, 0, 0 }, .facingNormal = { -0, 0, 0, 0 }, .radius = 0, .control = 0, .parameter0 = 0, .parameter1 = 0, .flags = 0, .hit = 0 },
     { .next = NULL, .prevLink = NULL, .coord = NULL, .origin = { 0, -0, -0, 0 }, .vertices = { { 0, 0, 0, 0 }, { -0, 0, 0, 0 }, { 0, 0, -0, 0 }, { -0, 0, -0, 0 } }, .normal = { 0, 0, 0, 0 }, .facingNormal = { 0, 0, 0, 0 }, .radius = 0, .control = 0, .parameter0 = 0, .parameter1 = 0, .flags = 0, .hit = 0 },

@@ -1,0 +1,2157 @@
+gcc2_compiled.	8017D6D4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+__gnu_compiled_c	8017D6D4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_MACRO_INC_GUARD	00000001	al	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaPlayerShowBadgeRequest	8018261C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaSergeantIdleRequest	80182630	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaSergeantClearedForEntryRequest	80182644	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaSergeantSlot3Request	80182658	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaSergeantGoRightInRequest	8018266C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaPlayerTurnToSergeantRequest	80182680	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaPlayerAskSituationRequest	80182694	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaSergeantOuttaControlRequest	801826A8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaSergeantOuttaControlGestureRequest	801826BC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaSergeantHelicopterDownRequest	801826D0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaPlayerTurnFromSergeantRequest	801826E4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaSergeantScenePlayerPutAwayBadgeRequest	801826F8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaSergeantScenePlayerIdleRequest	8018270C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaPlayerIdleRequest	80182720	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaSergeantSceneScript	80182734	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaSergeantSceneSkipScript	80182A34	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaHelicopterWreckScript	80182B24	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaPlayerAskAboutRoofRequest	80182BB4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaOfficerLookAtBadgeRequest	80182BC8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaOfficerExplainSwatRequest	80182BDC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaPlayerThankOfficerRequest	80182BF0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaOfficerStepAsideRequest	80182C04	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaPlayerAskAboutCiviliansRequest	80182C18	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaOfficerScenePlayerIdleRequest	80182C2C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaOfficerShiftStanceRequest	80182C40	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaOfficerScenePlayerIdleBlendRequest	80182C54	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaOfficerScenePlayerShowBadgeRequest	80182C68	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaOfficerScenePlayerPutAwayBadgeRequest	80182C7C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaEntranceOfficerTalkScript	80182C90	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaEntranceOfficerTalkSkipScript	80182F18	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaOfficerWalkToSergeantRequest	80182FA8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaOfficerHaltRequest	80182FBC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaOfficerReportAgentRequest	80182FD0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaOfficerAskSergeantRequest	80182FE4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaOfficerTurnAwayRequest	80182FF8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaSergeantRaiseArmRequest	8018300C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaSergeantLowerArmRequest	80183020	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaSergeantListenRequest	80183034	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaSergeantTurnHeadRequest	80183048	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaSergeantHunterFromMistRequest	8018305C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaSergeantHeardOfThemRequest	80183070	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaSergeantDamnRookiesRequest	80183084	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaSergeantTurnAwayRequest	80183098	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaOfficersTalkOfficerPlacement	801830AC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaOfficersTalkSergeantPlacement	801830C4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaOfficersTalkScript	801830DC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaOfficersTalkEndScript	801834B4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaSergeantSomethingBigRequest	8018352C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaSergeantWatchYourselfRequest	80183540	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaSergeantAgain1Script	80183554	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaSergeantAgain2Script	8018365C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaSergeantAgainLaterScript	80183764	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_akropolisPlazaSequenceTask	80180054	flt	build/USA/src/rooms/akropolis_plaza/plaza.i
+_akropolisPlazaTraversalTask	8017DFE0	flt	build/USA/src/rooms/akropolis_plaza/plaza.i
+_akropolisPlazaHelicopterWreckSceneTask	8017E9A8	flt	build/USA/src/rooms/akropolis_plaza/plaza.i
+_akropolisPlazaEntranceSceneTask	8017ECF8	flt	build/USA/src/rooms/akropolis_plaza/plaza.i
+_akropolisPlazaSergeantSceneTask	8017E7E4	flt	build/USA/src/rooms/akropolis_plaza/plaza.i
+_akropolisPlazaStartOpeningMovieTask	80180270	flt	build/USA/src/rooms/akropolis_plaza/plaza.i
+_akropolisPlazaSergeantAgainSceneTask	8017F48C	flt	build/USA/src/rooms/akropolis_plaza/plaza.i
+_akropolisPlazaFadeOutTask	8017D8AC	flt	build/USA/src/rooms/akropolis_plaza/plaza.i
+_akropolisPlazaCaptionEventTask	8017F620	flt	build/USA/src/rooms/akropolis_plaza/plaza.i
+_akropolisPlazaOpeningMovieTask	8017DBFC	flt	build/USA/src/rooms/akropolis_plaza/plaza.i
+_akropolisPlazaLetterboxTask	8017FF18	flt	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaTraversalCameraSampleCount	801838B4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaTraversalCameraSamples	801838B8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaHelicopterWreckCameraSamples	8018A938	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaOfficersTalkCameraSampleCount	8018CAF8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaOfficersTalkCameraSamples	8018CAFC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaEntranceOfficerTalkCameraSampleCount	8018F52C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaEntranceOfficerTalkCameraSamples	8018F530	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaEnteringTowerCameraSampleCount	8018F9B0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaEnteringTowerCameraSamples	8018F9B4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaTraversalShotPositions	801907C4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantClearedForEntryClipBank1	80191A84	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantClearedForEntryClipBank4	80191B38	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantClearedForEntryClipRecords	80191C74	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantClearedForEntryClipTrackStarts	80191E54	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantGoRightInClipBank1	80191EA4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantGoRightInClipBank4	80192084	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantGoRightInClipRecords	801925AC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantGoRightInClipTrackStarts	80192C4C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantTalkIdleClipBank1	80192C9C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantTalkIdleClipBank4	80192CC0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantTalkIdleClipRecords	80192D18	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantTalkIdleClipTrackStarts	80192DFC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantOuttaControlClipBank1	80192E4C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantOuttaControlClipBank4	80192E70	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantOuttaControlClipRecords	8019302C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantOuttaControlClipTrackStarts	80193260	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantOuttaControlGestureClipBank1	801932B0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantOuttaControlGestureClipBank4	801932D4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantOuttaControlGestureClipRecords	801933B8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantOuttaControlGestureClipTrackStarts	80193510	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantHelicopterDownClipBank1	80193560	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantHelicopterDownClipBank4	801935CC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantHelicopterDownClipRecords	80193674	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantHelicopterDownClipTrackStarts	801937C4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantSomethingBigClipBank1	80193814	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantSomethingBigClipBank4	80193838	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantSomethingBigClipRecords	801938BC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantSomethingBigClipTrackStarts	801939D4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantWatchYourselfClipBank1	80193A24	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantWatchYourselfClipBank4	80193A3C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantWatchYourselfClipRecords	80193AA4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantWatchYourselfClipTrackStarts	80193BA8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantRaiseArmClipBank1	80193BF8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantRaiseArmClipBank4	80193C28	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantRaiseArmClipRecords	80193D24	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantRaiseArmClipTrackStarts	80193E94	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantLowerArmClipBank1	80193EE4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantLowerArmClipBank4	80193F2C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantLowerArmClipRecords	8019409C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantLowerArmClipTrackStarts	80194298	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantListenClipBank1	801942E8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantListenClipBank4	80194300	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantListenClipRecords	80194348	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantListenClipTrackStarts	8019447C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantTurnHeadClipBank1	801944CC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantTurnHeadClipBank4	801944F0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantTurnHeadClipRecords	80194564	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantTurnHeadClipTrackStarts	80194658	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantTurnHeadBackClipBank1	801946A8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantTurnHeadBackClipBank4	801946CC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantTurnHeadBackClipRecords	8019473C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantTurnHeadBackClipTrackStarts	80194830	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantHeardOfThemClipBank1	80194880	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantHeardOfThemClipBank4	801948EC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantHeardOfThemClipRecords	8019499C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantHeardOfThemClipTrackStarts	80194AE4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantTurnedIdleClipBank1	80194B34	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantTurnedIdleClipBank4	80194B4C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantTurnedIdleClipRecords	80194C08	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantTurnedIdleClipTrackStarts	80194DB0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantDamnRookiesClipBank1	80194E00	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantDamnRookiesClipBank4	80194E18	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantDamnRookiesClipRecords	80194E94	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantDamnRookiesClipTrackStarts	80194F98	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantTurnAwayClipBank1	80194FE8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantTurnAwayClipBank4	80195018	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantTurnAwayClipRecords	801950CC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantTurnAwayClipTrackStarts	80195200	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantHunterFromMistClipBank1	80195250	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantHunterFromMistClipBank4	80195274	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantHunterFromMistClipRecords	801952BC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantHunterFromMistClipTrackStarts	801953EC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantIdleClipBank1	8019543C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantIdleClipBank4	80195454	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantIdleClipRecords	801954A8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceSergeantIdleClipTrackStarts	8019558C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceRookieStandClipBank1	801955DC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceRookieStandClipBank4	801955F4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceRookieStandClipRecords	80195634	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceRookieStandClipTrackStarts	80195764	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceRookieLookAtBadgeClipBank1	801957B4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceRookieLookAtBadgeClipBank4	801957E4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceRookieLookAtBadgeClipRecords	8019585C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceRookieLookAtBadgeClipTrackStarts	80195950	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceRookieShiftStanceClipBank1	801959A0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceRookieShiftStanceClipBank4	801959DC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceRookieShiftStanceClipRecords	80195A8C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceRookieShiftStanceClipTrackStarts	80195BAC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceRookieIdleClipBank1	80195BFC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceRookieIdleClipBank4	80195C14	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceRookieIdleClipRecords	80195CC4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceRookieIdleClipTrackStarts	80195E9C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceRookieExplainSwatClipBank1	80195EEC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceRookieExplainSwatClipBank4	80195F58	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceRookieExplainSwatClipRecords	801960AC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gPoliceRookieExplainSwatClipTrackStarts	80196378	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAyaIdleClipBank1	801963C8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAyaIdleClipBank4	801963E0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAyaIdleClipRecords	80196400	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAyaIdleClipTrackStarts	80196530	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAyaShowBadgeClipBank1	80196580	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAyaShowBadgeClipBank4	801965BC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAyaShowBadgeClipRecords	80196870	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAyaShowBadgeClipTrackStarts	80196BA8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAyaPutAwayBadgeClipBank1	80196BF8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAyaPutAwayBadgeClipBank4	80196C4C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAyaPutAwayBadgeClipRecords	80196E18	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAyaPutAwayBadgeClipTrackStarts	80197070	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAyaTurnToSergeantClipBank1	801970C0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAyaTurnToSergeantClipBank4	80197108	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAyaTurnToSergeantClipRecords	801971C4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAyaTurnToSergeantClipTrackStarts	801972FC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAyaFaceSergeantClipBank1	8019734C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAyaFaceSergeantClipBank4	80197364	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAyaFaceSergeantClipRecords	801973EC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAyaFaceSergeantClipTrackStarts	80197514	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAyaAskSituationClipBank1	80197564	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAyaAskSituationClipBank4	801975A0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAyaAskSituationClipRecords	801977C4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAyaAskSituationClipTrackStarts	80197A90	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAyaTurnFromSergeantClipBank1	80197AE0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAyaTurnFromSergeantClipBank4	80197B34	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAyaTurnFromSergeantClipRecords	80197BE8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAyaTurnFromSergeantClipTrackStarts	80197D1C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAyaAskAboutCiviliansClipBank1	80197D6C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAyaAskAboutCiviliansClipBank4	80197D84	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAyaAskAboutCiviliansClipRecords	80197E8C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAyaAskAboutCiviliansClipTrackStarts	80198044	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAyaThankOfficerClipBank1	80198094	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAyaThankOfficerClipBank4	801980AC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAyaThankOfficerClipRecords	801981E4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAyaThankOfficerClipTrackStarts	8019839C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAyaAskAboutRoofClipBank1	801983EC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAyaAskAboutRoofClipBank4	80198404	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAyaAskAboutRoofClipRecords	80198450	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAyaAskAboutRoofClipTrackStarts	8019853C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAyaLookAtWreckClipBank1	8019858C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAyaLookAtWreckClipBank4	801985C8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAyaLookAtWreckClipRecords	80198670	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAyaLookAtWreckClipTrackStarts	80198790	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaLightRingSamples	801987E0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaAmbientLightPlacements	80198820	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaCollisionGrid	80199180	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaHelicopterWreckTrigger	801991A4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaRoomLights	80199EE8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaHideImageSpriteBatches	801989F8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaShowImageSpriteBatches	80198A00	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaCollisionGridNormals	80198AA0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaCollisionGridVerts	80198B90	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaCollisionGridFaces	80198E10	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaCollisionGridCells	80198F90	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaCollisionGridTable	80199110	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaSergeantTrigger	801991F0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaEntranceAndExamineTriggers	8019923C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaVariant1Resources	8019936C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaPointLights	801993A8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaDefaultFootstepSounds	80199F00	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaClass1FootstepSounds	80199F0C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaDefaultSurfaceProperties	80199F18	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_gAkropolisPlazaClass1SurfaceProperties	80199F20	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1	8017D6D4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM2	8017D6D4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM3	8017D6D8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM4	8017D6DC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM5	8017D6E0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM6	8017D6E4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM7	8017D6F0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM8	8017D700	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM9	8017D704	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM10	8017D708	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM11	8017D70C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM12	8017D714	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM13	8017D71C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM14	8017D724	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM15	8017D72C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM16	8017D734	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM17	8017D73C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM18	8017D75C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM19	8017D79C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM20	8017D7A4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM21	8017D7C4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM22	8017D7C8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM23	8017D7CC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM24	8017D7D4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM25	8017D7E4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM26	8017D7EC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM27	8017D80C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM28	8017D814	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM29	8017D824	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM30	8017D830	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM31	8017D840	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM32	8017D860	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM33	8017D868	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM34	8017D878	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM35	8017D88C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM36	8017D894	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM37	8017D8AC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM38	8017D8AC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM39	8017D8AC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM40	8017D8BC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM41	8017D8C0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM42	8017D8C4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM43	8017D8DC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM44	8017D8E8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM45	8017D8F0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM46	8017D8F4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM47	8017D8F8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM48	8017D8FC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM49	8017D900	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM50	8017DA24	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM51	8017DA2C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM52	8017DA30	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM53	8017DA38	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM54	8017DA40	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM55	8017DA48	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM56	8017DA58	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM57	8017DA58	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM58	8017DA58	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM59	8017DA68	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM60	8017DA6C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM61	8017DA70	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM62	8017DA88	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM63	8017DA94	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM64	8017DA9C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM65	8017DAA0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM66	8017DAA8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM67	8017DAAC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM68	8017DAB0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM69	8017DBD4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM70	8017DBDC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM71	8017DBE4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM72	8017DBEC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM73	8017DBFC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM74	8017DBFC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM75	8017DBFC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM76	8017DC08	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM77	8017DC0C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM78	8017DC10	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM79	8017DC14	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM80	8017DC18	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM81	8017DC40	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM82	8017DC48	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM83	8017DC50	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM84	8017DC58	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM85	8017DC60	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM86	8017DC68	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM87	8017DC6C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM88	8017DC8C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM89	8017DC90	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM90	8017DC98	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM91	8017DCA4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM92	8017DCAC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM93	8017DCB4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM94	8017DCC4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM95	8017DCCC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM96	8017DCD4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM97	8017DCE8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM98	8017DCF0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM99	8017DD08	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM100	8017DD10	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM101	8017DD18	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM102	8017DD2C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM103	8017DD34	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM104	8017DD3C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM105	8017DD44	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM106	8017DD50	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM107	8017DD58	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM108	8017DD70	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM109	8017DD78	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM110	8017DD80	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM111	8017DD90	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM112	8017DD90	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM113	8017DD90	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_akropolisPlazaUpdateTraversalCollisionWalls	8017DD90	flt	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM114	8017DD90	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM115	8017DD90	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM116	8017DD98	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM117	8017DD9C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM118	8017DDA0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM119	8017DDA4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM120	8017DDA8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM121	8017DDAC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM122	8017DDB4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM123	8017DDB8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM124	8017DDBC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM125	8017DDC0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM126	8017DDC4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM127	8017DDC8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM128	8017DDCC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM129	8017DDD0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM130	8017DDD4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM131	8017DDD8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM132	8017DDDC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM133	8017DDE0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM134	8017DDE4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM135	8017DDE8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM136	8017DDEC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM137	8017DDF0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM138	8017DDF4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM139	8017DDF8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM140	8017DDFC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM141	8017DE00	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM142	8017DE04	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM143	8017DE08	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM144	8017DE0C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM145	8017DE10	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM146	8017DE14	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM147	8017DE18	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM148	8017DE1C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM149	8017DE24	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM150	8017DE24	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM151	8017DE24	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_akropolisPlazaApplyMovieCamera	8017DE24	flt	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM152	8017DE28	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM153	8017DE30	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM154	8017DE60	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM155	8017DE64	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM156	8017DE6C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM157	8017DE74	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM158	8017DE80	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM159	8017DE88	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM160	8017DEA0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM161	8017DEA4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM162	8017DEA8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM163	8017DEAC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM164	8017DEC8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM165	8017DED0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM166	8017DED4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM167	8017DED8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM168	8017DEDC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM169	8017DEF8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM170	8017DEF8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM171	8017DF00	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM172	8017DF04	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM173	8017DF0C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM174	8017DF10	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM175	8017DF18	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM176	8017DF1C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM177	8017DF24	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM178	8017DF2C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM179	8017DF3C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM180	8017DF48	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM181	8017DF50	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM182	8017DF58	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM183	8017DF68	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM184	8017DF7C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM185	8017DF84	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM186	8017DFA0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM187	8017DFAC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM188	8017DFB0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM189	8017DFC8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM190	8017DFD0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM191	8017DFE0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM192	8017DFE0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM193	8017DFE0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM194	8017DFEC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM195	8017DFF0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM196	8017DFF4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM197	8017E000	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM198	8017E004	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM199	8017E008	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM200	8017E010	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM201	8017E02C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM202	8017E054	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM203	8017E07C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM204	8017E09C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM205	8017E0A0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM206	8017E0A4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM207	8017E0B8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM208	8017E0E8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM209	8017E0F4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM210	8017E0FC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM211	8017E104	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM212	8017E10C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM213	8017E11C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM214	8017E120	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM215	8017E124	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM216	8017E128	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM217	8017E12C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM218	8017E130	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM219	8017E134	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM220	8017E138	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM221	8017E13C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM222	8017E140	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM223	8017E144	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM224	8017E14C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM225	8017E15C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM226	8017E170	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM227	8017E178	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM228	8017E17C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM229	8017E180	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM230	8017E184	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM231	8017E194	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM232	8017E198	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM233	8017E19C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM234	8017E1A0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM235	8017E1A4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM236	8017E1AC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM237	8017E1B4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM238	8017E1B8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM239	8017E1CC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM240	8017E1D4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM241	8017E1D8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM242	8017E1E0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM243	8017E1F4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM244	8017E1FC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM245	8017E200	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM246	8017E204	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM247	8017E208	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM248	8017E210	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM249	8017E214	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM250	8017E21C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM251	8017E22C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM252	8017E2C8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM253	8017E2D8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM254	8017E2E4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM255	8017E2E8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM256	8017E2F8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM257	8017E304	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM258	8017E30C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM259	8017E32C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM260	8017E32C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM261	8017E330	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM262	8017E338	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM263	8017E348	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM264	8017E350	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM265	8017E360	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM266	8017E36C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM267	8017E37C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM268	8017E38C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM269	8017E394	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM270	8017E39C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM271	8017E3AC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM272	8017E3B0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM273	8017E3B8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM274	8017E3C8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM275	8017E3D0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM276	8017E3D8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM277	8017E3E8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM278	8017E3F4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM279	8017E404	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM280	8017E414	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM281	8017E424	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM282	8017E434	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM283	8017E444	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM284	8017E45C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM285	8017E464	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM286	8017E480	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM287	8017E488	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM288	8017E4A0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM289	8017E4AC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM290	8017E4B0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM291	8017E4B4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM292	8017E4BC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM293	8017E4C4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM294	8017E4C8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM295	8017E4CC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM296	8017E4D4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM297	8017E4E4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM298	8017E4E8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM299	8017E57C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM300	8017E58C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM301	8017E5EC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM302	8017E5F0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM303	8017E5F4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM304	8017E688	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM305	8017E69C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM306	8017E730	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM307	8017E770	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM308	8017E774	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM309	8017E77C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM310	8017E78C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM311	8017E790	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM312	8017E794	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM313	8017E7A4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM314	8017E7AC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM315	8017E7B8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM316	8017E7BC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM317	8017E7C0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM318	8017E7C4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM319	8017E7C8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM320	8017E7E4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM321	8017E7E4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM322	8017E7E4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM323	8017E7F0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM324	8017E7F4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM325	8017E7F8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM326	8017E7FC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM327	8017E800	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM328	8017E804	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM329	8017E808	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM330	8017E830	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM331	8017E870	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM332	8017E874	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM333	8017E878	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM334	8017E880	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM335	8017E884	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM336	8017E888	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM337	8017E88C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM338	8017E8A0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM339	8017E8A8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM340	8017E8C4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM341	8017E8C8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM342	8017E8CC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM343	8017E8E0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM344	8017E8E8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM345	8017E904	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM346	8017E90C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM347	8017E944	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM348	8017E95C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM349	8017E968	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM350	8017E970	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM351	8017E98C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM352	8017E994	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM353	8017E9A8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM354	8017E9A8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM355	8017E9A8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM356	8017E9B4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM357	8017E9B8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM358	8017E9BC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM359	8017E9C0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM360	8017E9C8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM361	8017E9CC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM362	8017E9D0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM363	8017E9F8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM364	8017EA38	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM365	8017EA3C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM366	8017EA40	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM367	8017EA48	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM368	8017EA4C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM369	8017EA50	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM370	8017EA54	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM371	8017EA68	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM372	8017EA70	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM373	8017EA8C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM374	8017EA94	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM375	8017EAA8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM376	8017EAB0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM377	8017EACC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM378	8017EAD0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM379	8017EADC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM380	8017EAE4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM381	8017EAE8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM382	8017EAEC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM383	8017EAF0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM384	8017EAF4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM385	8017EB00	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM386	8017EB08	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM387	8017EB84	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM388	8017EB8C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM389	8017EB9C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM390	8017EBAC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM391	8017EBB8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM392	8017EBC0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM393	8017EBD4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM394	8017EC94	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM395	8017ECA0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM396	8017ECA8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM397	8017ECBC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM398	8017ECCC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM399	8017ECD8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM400	8017ECE0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM401	8017ECF8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM402	8017ECF8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM403	8017ECF8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM404	8017ED04	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM405	8017ED08	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM406	8017ED0C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM407	8017ED10	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM408	8017ED1C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM409	8017ED20	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM410	8017ED24	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM411	8017ED4C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM412	8017ED8C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM413	8017ED90	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM414	8017ED94	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM415	8017ED9C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM416	8017EDA0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM417	8017EDA4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM418	8017EDA8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM419	8017EDBC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM420	8017EDC4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM421	8017EDE0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM422	8017EDE8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM423	8017EDFC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM424	8017EE04	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM425	8017EE20	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM426	8017EE28	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM427	8017EE3C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM428	8017EE94	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM429	8017EE9C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM430	8017EEB0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM431	8017EEC4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM432	8017EECC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM433	8017EED4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM434	8017EEF0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM435	8017EF00	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM436	8017EF08	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM437	8017EF0C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM438	8017EF50	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM439	8017EF58	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM440	8017EF68	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM441	8017EF78	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM442	8017EF7C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM443	8017EF84	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM444	8017EF88	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM445	8017EF8C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM446	8017EF90	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM447	8017EFA4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM448	8017EFAC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM449	8017EFBC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM450	8017EFC0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM451	8017EFC4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM452	8017EFC8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM453	8017F070	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM454	8017F084	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM455	8017F094	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM456	8017F09C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM457	8017F0AC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM458	8017F0BC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM459	8017F0CC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM460	8017F0E0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM461	8017F0F4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM462	8017F104	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM463	8017F10C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM464	8017F1CC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM465	8017F1E0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM466	8017F1F4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM467	8017F1FC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM468	8017F218	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM469	8017F220	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM470	8017F228	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM471	8017F238	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM472	8017F240	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM473	8017F290	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM474	8017F294	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM475	8017F2A4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM476	8017F2B8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM477	8017F2C4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM478	8017F2CC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM479	8017F2DC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM480	8017F2F0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM481	8017F300	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM482	8017F318	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM483	8017F320	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM484	8017F330	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM485	8017F344	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM486	8017F34C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM487	8017F358	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM488	8017F360	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM489	8017F370	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM490	8017F378	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM491	8017F380	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM492	8017F3A0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM493	8017F3EC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM494	8017F3F4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM495	8017F404	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM496	8017F410	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM497	8017F41C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM498	8017F424	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM499	8017F438	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM500	8017F444	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM501	8017F458	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM502	8017F464	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM503	8017F470	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM504	8017F48C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM505	8017F48C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM506	8017F48C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM507	8017F498	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM508	8017F49C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM509	8017F4A0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM510	8017F4A8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM511	8017F53C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM512	8017F544	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM513	8017F57C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM514	8017F5B4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM515	8017F5BC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM516	8017F5C0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM517	8017F5C8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM518	8017F5D4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM519	8017F5E0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM520	8017F5E8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM521	8017F600	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM522	8017F608	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM523	8017F620	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM524	8017F620	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM525	8017F620	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM526	8017F62C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM527	8017F630	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM528	8017F634	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM529	8017F638	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM530	8017F6CC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM531	8017F6D4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM532	8017F70C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM533	8017F720	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM534	8017F72C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM535	8017F734	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM536	8017F750	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM537	8017F75C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM538	8017F770	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM539	8017F770	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM540	8017F770	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_akropolisPlazaUpdateAmbienceVoice	8017F770	flt	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM541	8017F77C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM542	8017F784	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM543	8017F788	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM544	8017F790	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM545	8017F794	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM546	8017F79C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM547	8017F7B4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM548	8017F7C4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM549	8017F7D4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM550	8017F7E0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM551	8017F7E4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM552	8017F7EC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM553	8017F7F4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM554	8017F804	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM555	8017F848	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM556	8017F850	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM557	8017F894	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM558	8017F8A4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM559	8017F8B4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM560	8017F8D0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM561	8017F8D8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM562	8017F928	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM563	8017F938	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM564	8017F964	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM565	8017F96C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM566	8017F9A8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM567	8017F9B4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM568	8017F9BC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM569	8017F9CC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM570	8017F9D4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM571	8017F9D8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM572	8017F9EC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM573	8017F9EC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM574	8017F9EC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_akropolisPlazaUpdateTraversalAmbience	8017F9EC	flt	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM575	8017F9F0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM576	8017F9F8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM577	8017FA00	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM578	8017FA04	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM579	8017FA08	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM580	8017FA2C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM581	8017FA4C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM582	8017FA74	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM583	8017FA98	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM584	8017FAC0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM585	8017FAC8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM586	8017FAD0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM587	8017FAE0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM588	8017FAF0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM589	8017FAF4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM590	8017FAFC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM591	8017FB30	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM592	8017FB40	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM593	8017FB50	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM594	8017FB50	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM595	8017FB50	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+_akropolisPlazaUpdateSequenceEvent	8017FB50	flt	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM596	8017FB60	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM597	8017FB64	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM598	8017FB70	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM599	8017FB74	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM600	8017FB80	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM601	8017FB88	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM602	8017FBA0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM603	8017FBB0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM604	8017FBE0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM605	8017FBEC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM606	8017FBF0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM607	8017FBF4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM608	8017FBF8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM609	8017FBFC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM610	8017FC00	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM611	8017FC04	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM612	8017FC14	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM613	8017FC1C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM614	8017FC24	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM615	8017FC2C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM616	8017FC44	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM617	8017FC4C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM618	8017FC84	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM619	8017FC90	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM620	8017FC98	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM621	8017FC9C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM622	8017FCA4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM623	8017FCB0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM624	8017FCB4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM625	8017FCB8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM626	8017FCBC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM627	8017FCC0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM628	8017FCC4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM629	8017FCC8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM630	8017FCCC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM631	8017FCD4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM632	8017FCD4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM633	8017FCDC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM634	8017FCE4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM635	8017FCEC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM636	8017FCF8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM637	8017FD10	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM638	8017FD14	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM639	8017FD18	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM640	8017FD1C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM641	8017FD24	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM642	8017FD2C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM643	8017FD3C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM644	8017FD54	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM645	8017FD68	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM646	8017FD84	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM647	8017FD8C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM648	8017FDA0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM649	8017FDB4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM650	8017FDCC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM651	8017FDD4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM652	8017FDE8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM653	8017FDF0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM654	8017FDF8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM655	8017FE04	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM656	8017FE0C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM657	8017FE24	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM658	8017FE34	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM659	8017FE38	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM660	8017FE3C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM661	8017FE44	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM662	8017FE50	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM663	8017FE7C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM664	8017FE84	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM665	8017FEBC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM666	8017FEC4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM667	8017FED0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM668	8017FED8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM669	8017FEE0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM670	8017FEF4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM671	8017FEF8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM672	8017FF00	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM673	8017FF04	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM674	8017FF18	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM675	8017FF18	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM676	8017FF18	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM677	8017FF20	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM678	8017FF24	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM679	8017FF28	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM680	8017FF2C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM681	8017FF30	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM682	8017FF38	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM683	8017FF50	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM684	8017FFB8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM685	8017FFBC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM686	8017FFC4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM687	8017FFC8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM688	8017FFCC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM689	80180028	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM690	80180054	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM691	80180054	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM692	80180054	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM693	80180060	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM694	80180064	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM695	80180068	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM696	8018006C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM697	80180078	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM698	8018007C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM699	80180080	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM700	801800A8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM701	801800B4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM702	801800C0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM703	801800CC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM704	801800D4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM705	801800DC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM706	801800EC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM707	801800F4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM708	80180108	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM709	8018010C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM710	80180110	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM711	80180118	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM712	8018011C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM713	80180124	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM714	80180138	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM715	80180140	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM716	80180140	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM717	80180144	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM718	8018014C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM719	80180150	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM720	80180158	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM721	80180174	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM722	8018018C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM723	80180190	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM724	80180198	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM725	8018019C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM726	801801A4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM727	801801B8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM728	801801BC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM729	801801C4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM730	801801CC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM731	801801E0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM732	801801EC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM733	8018021C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM734	80180224	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM735	80180230	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM736	80180244	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM737	80180248	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM738	8018024C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM739	80180254	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM740	80180270	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM741	80180270	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM742	80180270	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM743	8018027C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM744	8018028C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM745	80180290	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM746	80180298	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM747	801802A0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM748	801802A8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM749	801802C0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM750	801802C0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM751	801802C0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM752	801802F0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM753	801802F4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM754	801802F8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM755	8018031C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM756	80180320	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM757	80180324	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM758	8018032C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM759	80180330	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM760	80180334	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM761	80180338	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM762	80180340	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM763	8018034C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM764	8018035C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM765	8018036C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM766	80180370	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM767	80180378	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM768	80180384	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM769	80180388	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM770	80180390	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM771	80180394	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM772	80180398	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM773	8018039C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM774	801803A0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM775	801803A4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM776	801803A8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM777	801803AC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM778	801803B0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM779	801803C8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM780	801803F8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM781	80180404	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM782	80180410	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM783	80180418	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM784	8018042C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM785	80180438	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM786	8018044C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM787	8018048C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM788	80180494	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM789	80180498	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM790	801804A4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM791	801804AC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM792	801804B0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM793	801804B4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM794	801804B4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM795	801804C0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM796	80180500	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM797	80180508	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM798	8018050C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM799	80180514	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM800	80180554	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM801	80180558	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM802	80180560	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM803	80180564	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM804	8018059C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM805	801805A0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM806	801805A4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM807	801805A8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM808	801805AC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM809	801805B0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM810	801805B4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM811	801805B8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM812	801805BC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM813	801805C0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM814	801805C4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM815	801805C8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM816	801805CC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM817	801805D8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM818	801805E0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM819	801805E4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM820	801805EC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM821	801805F4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM822	801805FC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM823	80180604	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM824	8018060C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM825	80180610	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM826	80180614	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM827	8018061C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM828	80180620	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM829	80180624	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM830	80180628	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM831	80180630	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM832	80180638	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM833	8018063C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM834	80180640	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM835	80180644	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM836	80180648	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM837	8018064C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM838	80180650	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM839	80180654	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM840	80180658	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM841	8018065C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM842	80180660	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM843	80180664	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM844	80180668	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM845	80180690	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM846	8018069C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM847	801806A8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM848	801806C0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM849	801806C4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM850	801806E0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM851	801806E4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM852	801806F8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM853	801806F8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM854	80180700	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM855	8018070C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM856	8018073C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM857	80180748	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM858	80180754	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM859	80180760	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM860	80180764	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM861	80180778	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM862	8018077C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM863	80180788	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM864	80180790	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM865	80180794	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM866	80180798	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM867	8018079C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM868	801807A0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM869	801807A8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM870	801807B8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM871	801807C4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM872	801807CC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM873	801807DC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM874	801807E8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM875	801807F4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM876	801807F8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM877	801807FC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM878	80180800	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM879	80180804	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM880	80180808	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM881	8018080C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM882	80180810	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM883	80180814	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM884	80180818	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM885	8018081C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM886	80180820	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM887	80180824	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM888	80180828	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM889	8018082C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM890	80180830	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM891	80180834	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM892	8018083C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM893	80180840	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM894	80180844	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM895	80180848	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM896	8018088C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM897	80180890	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM898	801808B4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM899	801808C0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM900	801808C8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM901	801808CC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM902	801808D4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM903	801808E4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM904	801808F0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM905	80180908	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM906	80180910	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM907	80180914	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM908	80180920	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM909	8018092C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM910	80180930	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM911	8018093C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM912	80180948	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM913	80180954	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM914	80180960	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM915	80180978	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM916	80180984	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM917	8018099C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM918	801809A0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM919	801809A4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM920	801809A8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM921	801809EC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM922	801809F0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM923	80180A14	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM924	80180A20	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM925	80180A2C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM926	80180A60	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM927	80180A64	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM928	80180A68	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM929	80180A6C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM930	80180A8C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM931	80180A90	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM932	80180CAC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM933	80180CBC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM934	80180CC0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM935	80180CCC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM936	80180CD4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM937	80180CD8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM938	80180CDC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM939	80180CDC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM940	80180CE8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM941	80180D28	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM942	80180D2C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM943	80180D34	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM944	80180D38	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM945	80180D40	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM946	80180D80	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM947	80180D84	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM948	80180D88	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM949	80180D90	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM950	80180D94	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM951	80180DA4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM952	80180DAC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM953	80180DB0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM954	80180DB4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM955	80180DB8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM956	80180DE0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM957	80180DEC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM958	80180DF8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM959	80180E10	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM960	80180E2C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM961	80180E30	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM962	80180E40	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM963	80180E44	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM964	80180E4C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM965	80180E64	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM966	80180E94	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM967	80180E9C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM968	80180EA8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM969	80180EB0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM970	80180EC4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM971	80180ED8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM972	80180F18	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM973	80180F44	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM974	80180F64	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM975	80180F68	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM976	8018117C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM977	8018117C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM978	80181184	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM979	80181188	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM980	8018118C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM981	80181194	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM982	80181198	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM983	8018119C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM984	801811A0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM985	801811D0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM986	801811D0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM987	801811D0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM988	80181200	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM989	80181214	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM990	80181218	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM991	80181220	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM992	80181228	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM993	80181238	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM994	8018123C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM995	80181254	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM996	80181274	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM997	80181278	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM998	80181280	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM999	8018128C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1000	80181290	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1001	80181294	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1002	80181298	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1003	8018129C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1004	801812A0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1005	801812AC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1006	801812B0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1007	801812B8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1008	801812BC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1009	801812C0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1010	801812D8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1011	80181308	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1012	80181314	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1013	80181320	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1014	80181328	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1015	8018133C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1016	80181350	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1017	80181390	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1018	801813B0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1019	801813BC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1020	801813C0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1021	801813C8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1022	801813CC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1023	801813CC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1024	801813DC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1025	801813E8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1026	801813F4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1027	801813F8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1028	80181400	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1029	80181404	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1030	80181410	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1031	80181414	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1032	80181448	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1033	80181468	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1034	8018146C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1035	8018168C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1036	801816C0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1037	801816F4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1038	801816F8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1039	801816FC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1040	8018170C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1041	80181710	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1042	80181714	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1043	8018171C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1044	8018172C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1045	80181730	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1046	80181734	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1047	80181734	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1048	80181738	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1049	8018173C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1050	80181740	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1051	80181748	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1052	80181758	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1053	80181764	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1054	80181770	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1055	8018177C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1056	80181788	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1057	8018178C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1058	8018179C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1059	801817A8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1060	801817BC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1061	801817CC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1062	801817D8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1063	801817EC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1064	80181810	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1065	80181820	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1066	80181824	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1067	80181838	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1068	8018183C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1069	80181840	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1070	80181844	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1071	80181848	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1072	8018184C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1073	80181850	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1074	80181874	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1075	80181894	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1076	80181898	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1077	8018189C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1078	801818D8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1079	801818DC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1080	80181900	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1081	8018191C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1082	8018192C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1083	80181934	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1084	80181944	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1085	80181950	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1086	8018195C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1087	80181968	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1088	80181974	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1089	80181978	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1090	8018199C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1091	801819C0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1092	801819E4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1093	80181A08	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1094	80181A14	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1095	80181A20	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1096	80181A44	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1097	80181A64	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1098	80181A68	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1099	80181A6C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1100	80181AB0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1101	80181AB4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1102	80181AD8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1103	80181AE4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1104	80181B00	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1105	80181B10	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1106	80181B14	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1107	80181B20	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1108	80181B28	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1109	80181B2C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1110	80181B30	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1111	80181B30	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1112	80181B3C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1113	80181B80	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1114	80181B84	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1115	80181B88	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1116	80181B8C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1117	80181B90	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1118	80181B94	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1119	80181B94	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1120	80181B9C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1121	80181BEC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1122	80181BF0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1123	80181BF4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1124	80181BF8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1125	80181BFC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1126	80181C00	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1127	80181C18	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1128	80181C1C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1129	80181C20	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1130	80181C24	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1131	80181C28	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1132	80181C5C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1133	80181C68	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1134	80181C74	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1135	80181C8C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1136	80181CB8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1137	80181CBC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1138	80181CC0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1139	80181CC4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1140	80181CCC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1141	80181CE4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1142	80181D14	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1143	80181D1C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1144	80181D28	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1145	80181D30	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1146	80181D44	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1147	80181D58	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1148	80181D98	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1149	80181DC4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1150	80181DE4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1151	80181DE8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1152	80181FFC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1153	80181FFC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1154	80182004	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1155	80182008	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1156	8018200C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1157	80182010	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1158	80182014	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1159	80182020	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1160	80182024	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1161	80182054	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1162	80182054	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1163	80182054	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1164	80182084	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1165	80182090	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1166	80182098	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1167	801820A4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1168	801820A8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1169	801820B0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1170	801820B4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1171	801820B8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1172	801820BC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1173	801820C0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1174	801820C4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1175	801820C8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1176	801820CC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1177	801820D0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1178	801820E8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1179	80182118	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1180	80182124	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1181	80182130	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1182	80182138	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1183	80182148	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1184	8018215C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1185	8018219C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1186	801821B0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1187	801821E4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1188	801821FC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1189	8018220C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1190	80182210	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1191	80182214	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1192	80182218	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1193	8018221C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1194	80182220	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1195	80182228	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1196	80182240	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1197	8018224C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1198	80182250	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1199	80182258	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1200	8018225C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1201	8018225C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1202	80182290	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1203	80182294	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1204	8018229C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1205	801822A0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1206	801822A4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1207	801822A8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1208	801824D4	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1209	801824EC	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1210	8018251C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1211	8018251C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1212	8018251C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1213	80182538	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1214	8018253C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1215	80182540	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1216	80182544	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1217	8018254C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1218	80182558	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1219	80182570	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1220	80182580	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1221	80182590	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1222	801825A8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1223	801825B8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1224	801825C8	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1225	801825E0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1226	801825F0	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1227	80182600	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+LM1228	8018261C	fl	build/USA/src/rooms/akropolis_plaza/plaza.i
+__romPos	0001C988	al	
+equipmentGetWeaponLoadCapacity	800BB938	a	
+gActor443500ConsoleFollowupSkipScript	80142A74	a	
+D_80073BAC	80073BAC	a	
+D_80072174	80072174	a	
+areaSetCurrentObjectState	800BAC34	a	
+uiInitList	800489A0	a	
+D_80071072	80071072	a	
+gameFlagSetNibble	8004AC58	a	
+CdFlush	80015AF4	a	
+SetRotMatrix	8004ADF8	a	
+stageRequestModeTaskExit	8003F6F8	a	
+gActor503500StaffCardSceneTaskDesc	8014B958	a	
+sceneEngageBattle	800DB4E0	a	
+tmdAllocPrimitiveBuffer	80041B88	a	
+gActor335800BalconyBattleStartScript	80165720	a	
+gActor450200CompanionSceneScript	80137EE4	a	
+actor161500StartSoldierBRemark	80131E38	a	
+gCapCommandEntries	801156A0	a	
+displayAcquireMenuHold	8003E610	a	
+gPadMenuButtonMask	8005ED78	a	
+areaSetPlacementVariant	800B5B30	a	
+displayQueueModeTask	8003FB70	a	
+gameGetTaskSlot	8002D22C	a	
+GetTPage	80043938	a	
+displaySetFrameTiming	800280F4	a	
+gPoliceRookieIdleClip	80195EC4	f	
+textItoaUnsigned	8002F18C	a	
+gShootingGalleryPierceGalleryTrainingActive	8014D038	a	
+damagePackEnemyAttackKey	800E2BF8	a	
+viewGetMappedIndex	800AD284	a	
+worldCoordGetOriginAudioPan	800D937C	a	
+mapShelterRoomVariantResolve	80179A04	a	
+gPadInputMenuUnlockUpdates	80115716	a	
+uiGetTextColor	80048E10	a	
+cdCmdSelectScene	8001D534	a	
+SetDrawTPage	80043A38	a	
+D_801153F1	801153F1	a	
+printf	8001AF3C	a	
+worldCollisionClearContacts	800E1A6C	a	
+gMapAkropolisPlazaVariant1Placements	8017AFEC	a	
+sceneReleaseBattleRefAndClearRewards	800DB630	a	
+memMalloc	8002DABC	a	
+D_80073BA0	80073BA0	a	
+gActionPromptSlots	80114D28	a	
+D_80072836	80072836	a	
+gAttachmentTrainingLevels	80114BF0	a	
+taskPollKill	8002D3BC	a	
+actor260400RestoreHeliportPlacement	80149FA4	a	
+gRoomEffectOrangeBurst2Id	80115754	a	
+stageMusicRequestAreaStop	800430E4	a	
+taskSpawn	8002CFDC	a	
+MatrixNormal	8003D6C8	a	
+shootingGalleryPierceRequestGalleryAbort	8014A9A0	a	
+gAreaRecordsByStage	8010CBCC	a	
+gAkropolisPlazaSpriteViews	80198A08	f	
+textDrawUiLine	8002FDCC	a	
+D_8007106C	8007106C	a	
+gActor450800NurseryIntroSkipScript	8013A33C	a	
+D_80070F6C	80070F6C	a	
+capRunCommandWithTransition	800E3B60	a	
+SetSemiTrans	800439B8	a	
+gCapRoomCompletionSoundsEnabled	80115598	a	
+sndEvtRequestMidiStart	800512BC	a	
+inventoryHasCollectedBit	800BB4BC	a	
+gGfxViewCoord	80070F10	a	
+equipmentRestoreHpMp	800BC164	a	
+D_80073B8C	80073B8C	a	
+akropolis_plaza_VRAM	8017D5C0	f	
+gameFlowBeginLoadScreen	8002252C	a	
+sndEvtRequestScriptMix	80054424	a	
+worldCollisionProjectGroundCoord	800EA02C	a	
+worldCollisionUnlinkTrigger	800E1708	a	
+padScriptSpawnVariableMotorRamp	800E8D1C	a	
+gfxSetFlatLight	8003B140	a	
+gPlayerActorStateTickHeld	80115768	a	
+gItemDescriptors	8010D838	a	
+playerActorPrepareDryfieldLoadout	800BC4E4	a	
+gActor450200RoomVariantSceneScript	8013FC58	a	
+taskGetDescAt	8002D32C	a	
+rcos	8003D108	a	
+gRoomEffectTwinTrailId	8011572C	a	
+D_80072177	80072177	a	
+streamFindViewMovieSlot	8001EED8	a	
+taskKill	8002CCB8	a	
+gActor143000KeypadTaskDesc	80134564	a	
+gEffectSpriteAtlasFrames	80111E48	a	
+D_80115188	80115188	a	
+D_80072724	80072724	a	
+textDrawString	8002E53C	a	
+gDirectionInteractionRearmUpdates	80114D08	a	
+gRoomEffectSparkBurstId	80115750	a	
+D_80071078	80071078	a	
+gActor120300TaskDescriptors	80141B6C	a	
+inventoryResetIceBagTimer	800BC21C	a	
+gEffectUnitQuadCorners	80111E38	a	
+worldCoordSetActorColorMode	800D930C	a	
+gActor342400EncounterTaskDescs	8016BFE0	a	
+gActor560800ChainGlowTick	801752EC	a	
+gActor444000IncineratorEventTaskDesc	801449F4	a	
+playerActorSetScriptedControl	800E3BBC	a	
+stageMusicRequestAreaStart	80043028	a	
+itemMenuSpawnNotice	800D4E40	a	
+gAkropolisPlazaViewMaps	801988C8	f	
+actor460200SetupTentSoldiers	80132210	a	
+gActor335800BalconyEntrySkipScript	80165798	a	
+D_80115124	80115124	a	
+gPoliceSergeantTalkIdleClip	80192E24	f	
+uiStartPanelOpening	80048964	a	
+akropolis_plaza_BSS_END	80199F48	f	
+streamGetFrameLimit	80020414	a	
+gActor00100DesertChaserTaskDesc	8014D8A4	a	
+gActor04000HangingPoolTaskDesc	8013E51C	a	
+gActor560800CutsceneTaskDescriptors	801718F0	a	
+actor161500StartCompanionRequestReminder	801322A0	a	
+equipmentInitializeWeaponSupplies	800B6CF0	a	
+gFsActorBuffer1Base	8005C370	a	
+textFormatPlayTime	8002EB94	a	
+playerActorRestoreEquipment	801034C0	a	
+playerActorRemoveEquipment	801043F4	a	
+SetDrawMove	8004AD18	a	
+damageGetPlayerAttackEffectId	800E2D90	a	
+gpuSetPrimitiveBlendMode	800EC914	a	
+worldCoordUpdateActorColor	800D8EA0	a	
+enemyTaskExit	800B0234	a	
+gfxComposeNodeWorldTransform	800B1D00	a	
+gUiPromptObject	80067694	a	
+gFsActorBuffer0Base	8005C36C	a	
+gPoliceSergeantHunterFromMistClip	80195414	f	
+akropolis_plaza_TEXT_START	8017D6D4	f	
+ratan2	8003D9C8	a	
+sceneFindPlacedActor	800E86FC	a	
+animationSeekSlotWithBlend	800B4114	a	
+inventoryInitializeShootingGalleryLoadout	800BA538	a	
+D_80071090	80071090	a	
+gActor450200SoloSceneScript	8013C72C	a	
+RotTransSV	8004BD58	a	
+padIsStartPressed	8004ACF0	a	
+ApplyMatrixSV	80043A68	a	
+memSelectAuxHeapRegion	8002DC08	a	
+gActor450800NurseryIntroScript	80139964	a	
+memcpy	8001AEFC	a	
+gActor151000GardenArrivalScript	801334EC	a	
+akropolis_plaza_RODATA_END	8017D6D4	f	
+gActor341300WalkwaySceneSkipScript	80165834	a	
+gStageCountdownMusicEntry	80062735	a	
+Gp_QtyById0	8010E038	a	
+sndEvtRequestStageScriptStop	800E3E64	a	
+gActor207000SucklercephTaskDescs	80151E60	a	
+capSetTexturePage	800E6D4C	a	
+__floatsidf	8004B5D8	a	
+SetSprt	80043A18	a	
+gActor443500MapFollowupSkipScript	801432FC	a	
+areaSyncLocationVariant	800B601C	a	
+effectDrawGroundShadow	800F68AC	a	
+cdCmdCompleteHeadRequest	8001DA48	a	
+gameFlagSetNibbleIfPresent	800E3B3C	a	
+gPoliceSergeantTurnHeadBackClip	80194858	f	
+uiSizePanelForTextDefault	800490A4	a	
+worldCollisionUnlinkBody	800E1638	a	
+gRoomEffectFlyingSparkId	80115730	a	
+playerActorWriteWeaponAnimationBankIndex	800E3CEC	a	
+gGpuCurrentOt	800710A0	a	
+streamInitMoviePlayback	8002043C	a	
+gActor150400FreezerSceneScript	80132D70	a	
+gActor450200SoloSceneSkipScript	8013CAEC	a	
+sndScriptHasActiveId	8005462C	a	
+gMcDialogDescriptors	800611C8	a	
+sndEvtRequestMidiVolume	80051460	a	
+padScriptSpawn	800E8FB0	a	
+gCapFile	8011568C	a	
+gActor450200CompanionSceneSkipScript	80138694	a	
+sceneReleaseBattleRef	800DB6B4	a	
+gMcSaveData	80072168	a	
+gameSetTaskSlot	8002D214	a	
+taskSpawnFromTable	8002CFA0	a	
+gActor142900ElevatorFirstVisitSkipScript	801380F8	a	
+gActor503500BossPhaseTransitionScript	8014D158	a	
+gAyaAskAboutRoofClip	80198564	f	
+inventoryGetItemQuantity	800BB6FC	a	
+cdCmdRequestCancel	8001C970	a	
+actor450900HandleDepartureTrigger	80132834	a	
+D_80070F70	80070F70	a	
+gActor160600SceneWithoutCompanionScript	80135AC0	a	
+displayResumeGameLoop	8003E540	a	
+tmdFreePrimitiveBuffer	80041B4C	a	
+actor460200TalkToSoldierC	801322B8	a	
+itemMenuOpenHotspotCommands	800D4E78	a	
+gfxMakeRelativeTransform	800A8864	a	
+gWorldCollisionSurfacePropertiesTables	8010CBB8	a	
+streamPollGameRestore	8001EF9C	a	
+areaClearMapMark	800AED24	a	
+gItemMenuInfoPanel	80067634	a	
+cdCmdIsSlotEmpty	8001D37C	a	
+D_8007107C	8007107C	a	
+gActor461800NeoArkSceneSkipScript	80134470	a	
+itemMenuDrawTaskPrompt	800CE4F4	a	
+MargePrim	800422B8	a	
+worldCoordSetModelLighting	800D7A9C	a	
+streamResetGameRestore	80020388	a	
+gPoliceSergeantOuttaControlClip	80193288	f	
+gAyaIdleClip	80196558	f	
+gfxReadMatrixYAxis	8003C748	a	
+actor503500ClearFadeFromBlackHandle	80132F58	a	
+akropolis_plaza_BSS_SIZE	00000000	a	
+displayReleaseMenuHold	8003E64C	a	
+taskCallExit	8002D0A4	a	
+gAkropolisPlazaRoomLightingTable	801988D0	f	
+RotMatrixZYX	80044408	a	
+actor341300ResetScriptTaskHandle	8016268C	a	
+modelObjectAttachTmd	8009902C	a	
+gActor161500CompleteCompanionRequestTaskDesc	80136CDC	a	
+gGameSession	8005ED64	a	
+akropolisPlazaPollStreamCommands	8017D6D4	ft	
+D_80071076	80071076	a	
+__adddf3	8004AFE8	a	
+gRoomEffectFlashId	80115758	a	
+gAyaLookAtWreckClip	801987B8	f	
+gActor443500TourOpeningSkipScript	80141C1C	a	
+animationAimHeadAtPoint	800B0CF4	a	
+mapAkropolisOpenKeyItemMenu	80179FC8	a	
+areaSetObjectState	800BB8E8	a	
+gItemMenuPanelDescriptors	8010EAB4	a	
+SquareRoot0	8003B8A0	a	
+gameFlagSetPackedByte	800E3FAC	a	
+gAkropolisPlazaRoomCollisionResources	801988B8	f	
+gAttachmentState	80114C08	a	
+displayConfigureFramebuffers	8003DB48	a	
+gfxBuildOrthonormalBasis	8003CEC4	a	
+gActor342100EncounterBlazeTaskDescriptors	80164B78	a	
+gActor535700PawnGolemEncounterScript	80133898	a	
+sndEvtRequestScriptStop	800542D0	a	
+SetShadeTex	800439E8	a	
+sceneReleaseBattleRefWithRewards	800DB558	a	
+capRunCommand	800E34D8	a	
+gFsActorBuffer2Base	8005C374	a	
+gPoliceSergeantTurnHeadClip	80194680	f	
+capReset	800E6DF4	a	
+gActor341300WalkwaySceneScript	80165354	a	
+gEquipmentWeaponPrimaryLoadOptions	8010E238	a	
+gfxReadMatrixZAxis	8003C768	a	
+D_80071086	80071086	a	
+gfxRotMatrixY	8003C98C	a	
+gPadScriptTransitionCommands	80114A24	a	
+viewApplyCamera	800A8A48	a	
+RotTransPers4	8004C358	a	
+D_8011540E	8011540E	a	
+gPadScriptTransitionSegments	80114A34	a	
+mapDryfieldFullResolveRoomVariant	80179954	a	
+inventoryRestoreCarriedLoadout	800BA75C	a	
+D_80072176	80072176	a	
+gStreamInterFile	8006AC30	a	
+playerActorPrepareAcropolisLoadout	800BC4BC	a	
+mapAkropolisWasDryfieldMapSelected	8017A038	a	
+gStageMusicTaskDesc	80062774	a	
+gMdecMovieOutputSlot	8005EAEE	a	
+akropolisPlazaLightGlowTask	80182054	ft	
+gActor451100SubmarineTunnelSceneSkipScript	80135FD0	a	
+akropolis_plaza_TEXT_SIZE	00004F48	a	
+gStageRoomMusicSequence	80062737	a	
+worldCollisionFindContactIndex	800E19B8	a	
+gPoliceSergeantOuttaControlGestureClip	80193538	f	
+worldCollisionLinkBody	800E15AC	a	
+D_80073BA9	80073BA9	a	
+midiIsSequenceBusy	800514F8	a	
+effectKillTask	800EC7E4	a	
+memCopyBytes	8002D7A8	a	
+inventoryCountOccupiedRows	800BAF5C	a	
+itemMenuGetPrimaryPreviewItem	800CF27C	a	
+sceneSetPlacedActorDrawMode	800E3C6C	a	
+__fixdfsi	8004B4D8	a	
+gPoliceSergeantClearedForEntryClip	80191E7C	f	
+effectDrawGouraudDisc	800EAEB8	a	
+cdCmdStageSceneAudioStart	8001D6B8	a	
+D_80072A94	80072A94	a	
+textItoaSigned	8002F020	a	
+cdCmdIsIdle	8001D344	a	
+D_80072729	80072729	a	
+sceneQueueBattleEscapeResult	800A7A64	a	
+capStartSequenceSlot	800E6C70	a	
+worldCollisionReadActionHit	800E1BF0	a	
+SetTransMatrix	8004AE28	a	
+gameFlagGetNibble	8004ACAC	a	
+D_801153F4	801153F4	a	
+gRoomEffectHaloId	80115744	a	
+AddPrim	80043978	a	
+gPoliceSergeantLowerArmClip	801942C0	f	
+gCapPreserveActorControl	80115690	a	
+uiSetListSystemCursorSound	8004917C	a	
+itemSetIdentified	800BB7C0	a	
+gfxRotMatrixZ	8003CB80	a	
+worldTargetAddReadoutAmount	800DA6E8	a	
+akropolisPlazaSirenLightTask	801802C0	ft	
+inventoryGetConsumableStackQuantity	800BB26C	a	
+SetDrawOffset	80018AA4	a	
+gAkropolisPlazaSurfacePropertiesByClass	80199F28	f	
+D_8007272D	8007272D	a	
+gSceneCombatState	801153F0	a	
+itemMenuDrawItemRow	800CD924	a	
+effectDrawSpinningBillboard	800EB2C8	a	
+uiDrawPanelLabel	80047F40	a	
+gAkropolisPlazaSequenceTaskDescriptors	80183824	f	
+shootingGalleryPierceSelectCaptionResource	8014C5E0	a	
+gGameMainPersistentState	800710A8	a	
+enemySpawnFromTable	800B01AC	a	
+gfxRotMatrixYXZ	8003BD34	a	
+gAyaPutAwayBadgeClip	80197098	f	
+D_8011540A	8011540A	a	
+effectDrawModulatedBillboard	800EB6E8	a	
+equipmentHasCarriedWeaponSupply	800BBDDC	a	
+gActor461800NeoArkSceneScript	80133F90	a	
+uiPositionRowDialog	80049024	a	
+akropolis_plaza_TEXT_END	8018261C	f	
+actor260400StartHeliportConversation	80149E38	a	
+evsStartScriptWithSkip	800E8634	a	
+gShootingGalleryTargetsTaskDescriptors	80134F94	a	
+gEquipmentModeBaseStats	8010D328	a	
+gFsImageWorkspacePtr	8005C364	a	
+actor160700StartMeetingScript	80131E70	a	
+evsStartScript	800E8614	a	
+loadingRequestViewGraphicsRestore	800A99B4	a	
+actor450200InitializeObservatoryCompanion	801322F8	a	
+StoreImage	80017FA4	a	
+D_80114C12	80114C12	a	
+MoveImage	80018004	a	
+func_807245E4	807245E4	a	
+uiUpdateList	80048C10	a	
+streamGetSlot	80020278	a	
+gPoliceSergeantTurnAwayClip	80195228	f	
+textAppendString	8002F588	a	
+capGetVariantKey	800E6D3C	a	
+gActor143900ObservatoryEntrySkipScript	80133860	a	
+gActor503500BossDefeatSkipScript	8014CAF8	a	
+capIsBusy	800E6CE0	a	
+attachmentIsTrainingMode	800A74C4	a	
+gGpuPrimCursor	80071190	a	
+gPoliceSergeantWatchYourselfClip	80193BD0	f	
+worldCoordGetOriginAudioDepth	800D9340	a	
+gAyaFaceSergeantClip	8019753C	f	
+gfxRotMatrixXYZ	8003B960	a	
+gPoliceSergeantRaiseArmClip	80193EBC	f	
+actor161500StartSoldierBShopConversation	80132110	a	
+shopOpenSession	800D4D2C	a	
+gPadCancelButtonMask	8005ED74	a	
+gPadStates	80071620	a	
+SetDrawArea	80018A24	a	
+gAyaAskSituationClip	80197AB8	f	
+gShootingGalleryPierceGalleryTaskDescs	8014E13C	a	
+D_80071075	80071075	a	
+gAkropolisPlazaAreaVariants	80199390	f	
+RotTransPers3	8004C1E8	a	
+actor460200TalkToSoldierA	80132390	a	
+animationInitContext	800B3F84	a	
+gActor450200RoomVariantSceneSkipScript	80140078	a	
+equipmentFindNextCarriedWeaponSupply	800BBD40	a	
+gActor535700PawnGolemEncounterSkipScript	801341E0	a	
+uiDrawBeveledRect	80046B34	a	
+rand	80037164	a	
+gActor450900EntrySkipScript	80136308	a	
+D_80115410	80115410	a	
+companionSetDrawMode	800E3EB0	a	
+inventoryGiveItem	800BAD08	a	
+gActor560800MovieTaskDescriptors	8016EA28	a	
+gActor342000IncineratorEventTaskDescs	80164FF8	a	
+D_8010E138	8010E138	a	
+gPoliceSergeantTurnedIdleClip	80194DD8	f	
+effectSpawnHit	800FDB18	a	
+akropolis_plaza_DATA_END	80199F48	f	
+gInventoryContainerRanges	8010D550	a	
+gPoliceSergeantIdleClip	801955B4	f	
+gActor143400CompanionEntryScript	801350BC	a	
+memCalloc	8002D978	a	
+gPoliceSergeantListenClip	801944A4	f	
+effectSpawn	800EA478	a	
+gActor450900EntryScript	80136110	a	
+strncmp	8001EAC4	a	
+gInventoryConsumableStacks	8010E3B8	a	
+gActor105500MaggotCaterpillarTasks	8013A8DC	a	
+itemMenuDrawDefaultItemIcon	800CE5D0	a	
+actor161500StartSoldierBTalkB	80132038	a	
+D_80071068	80071068	a	
+gPoliceSergeantSomethingBigClip	801939FC	f	
+gRoomEffectWaterSprayId	80115738	a	
+gActor450800NurseryShootingSkipScript	8013BA84	a	
+gMdecMovieInputSlot	8005EAEC	a	
+gActor443500ConsoleFollowupScript	80141D9C	a	
+akropolis_plaza_RODATA_START	8017D5C0	f	
+actor150400SpawnSlidingModels	80131FB8	a	
+akropolis_plaza_ROM_START	00000000	a	
+akropolis_plaza_RODATA_SIZE	00000114	a	
+D_800691CA	800691CA	a	
+gActor503500SceneEffectTaskDescs	8014B964	a	
+D_80114C0B	80114C0B	a	
+gRoomEffectMoteId	80115728	a	
+areaApplySavedUpdates	800AE62C	a	
+cdCmdCancelScene	8001D588	a	
+func_800AC000	800AC000	a	
+uiSetPanelContentSize	800466E4	a	
+GsWSMATRIX	80071138	a	
+uiObjectTaskExit	800488B8	a	
+cdSyncPollCommand	8001E6AC	a	
+gActor443500MapFollowupScript	80142C24	a	
+gItemMenuTransferPanelDescriptors	8010D6F4	a	
+cdCmdEnqueue	8001D2B0	a	
+D_801150C0	801150C0	a	
+padCheckButtons	8002C868	a	
+itemMenuDrawPreview	800C7AE8	a	
+gActor160600SceneWithCompanionScript	80135D78	a	
+gCapChoiceRowStride	80115680	a	
+taskSpawnFromTableOnDefaultList	8003E4BC	a	
+SetDrawStp	80042288	a	
+gActor143900ObservatoryEntryScript	80133560	a	
+playerActorSetDrawMode	800E3B80	a	
+actor450800StartNurseryCompanionDialogue	80132000	a	
+gPoliceRookieExplainSwatClip	801963A0	f	
+itemMenuSetPreviewItem	800CDE80	a	
+equipmentRecalculateMaxMp	800B7930	a	
+effectDrawOuterGlowBand	800EAA0C	a	
+stageEnsureHeapTaskPrimitiveBuffer	8003F9AC	a	
+RotMatrixZ	8004AE48	a	
+SetDispMask	80017C00	a	
+akropolis_plaza_bss_VRAM	80199F48	f	
+SetTile	80042344	a	
+func_80724608	80724608	a	
+cdCmdEnqueueScenePlayback	8001D5CC	a	
+__muldf3	8004B828	a	
+rsin	8003D038	a	
+viewFindLogicalIndex	800ACEBC	a	
+inventoryInitializeStarterLoadout	800B7D18	a	
+shootingGalleryPierceFinishGalleryCourse	8014A908	a	
+gPadConfirmButtonMask	8005ED70	a	
+gAkropolisPlazaViewCounts	801988CC	f	
+areaIsSavedPoseRestoreEnabled	800B59A8	a	
+gActor361100PodSceneScript	80165F48	a	
+areaGetVariant	800B5CE8	a	
+gActor443500TourOpeningScript	8014152C	a	
+gGameFlagNibbleBanks	80073980	a	
+akropolis_plaza_BSS_START	80199F48	f	
+actor450800PrepareNurseryKyleMadigan	80132028	a	
+worldCoordSetAmbientColorOverride	800D94B8	a	
+gActor460200TentArrivalSkipScript	80137890	a	
+worldTargetDisableNodeLockOn	800DACF8	a	
+D_80072170	80072170	a	
+D_80070F87	80070F87	a	
+D_80072310	80072310	a	
+worldCollisionProbeGridSegment	800DE7CC	a	
+D_8011540C	8011540C	a	
+memset	800420F8	a	
+companionWriteAnimationBankIndex	800E3D24	a	
+D_80073BAE	80073BAE	a	
+gActor136300GarageCompanionSceneSkipScript	8013C388	a	
+streamPrepareMovieWorkspace	80020298	a	
+gActor136300CompanionGaragePlacement	8013B570	a	
+srand	80037194	a	
+viewQueueCurrentCameraAndPackets	800A8B6C	a	
+ApplyMatrixLV	80042128	a	
+taskMessageDispatch	800AC464	a	
+uiStartTreeClosing	80048838	a	
+gPoliceRookieStandClip	8019578C	f	
+animationResetSlot	800B3FA8	a	
+taskRequestKill	8002D340	a	
+gShootingGalleryPiercePierceStoryScript	80153274	a	
+D_8007107A	8007107A	a	
+actor161500RestoreCompanionRequestScene	8013230C	a	
+akropolisPlazaSpawnAmbientLightsTask	8018251C	ft	
+gPlayerStatus	80073B88	a	
+inventoryGetRangeTable	800BB500	a	
+gActor142600IncineratorArrivalSkipScript	80136804	a	
+gPlayerActorTasks	80115760	a	
+gActor548100PanelTaskDesc	801358D8	a	
+gPoliceSergeantDamnRookiesClip	80194FC0	f	
+equipmentConsumeWeaponLoad	800B6DA4	a	
+inventoryResetCarriedRange	800BC490	a	
+enemyDestroy	800B01F0	a	
+gFsResourceSlots	8006C338	a	
+shootingGalleryPierceStartPierceConversation	8014AF0C	a	
+gRandomLcgState	80070F60	a	
+actor160700RestoreMeetingAnimation	80131E24	a	
+func_800ABFF8	800ABFF8	a	
+gActor146300IceBagHandoverTaskDesc	8013788C	a	
+areaSpawnPlacements	800B4AF8	a	
+itemMenuDrawMeter	800C0E20	a	
+gameFlagGetPackedByte	800E3FCC	a	
+shootingGalleryPierceResolveGalleryExit	8014AA54	a	
+equipmentLoadWeaponConsumable	800B715C	a	
+displaySetShakeY	8003DE78	a	
+sndEvtRequestStageScriptStart	800E3DD8	a	
+inventoryHasAttachedItem	800BC3F8	a	
+equipmentRecalculateMaxHp	800BC0C0	a	
+RotTransPers	8004C198	a	
+D_8007216D	8007216D	a	
+gActor146300WaterTankEventScript	80137C28	a	
+roomEffectRequestCancelPe	800FC6C0	a	
+gpuUploadImages	800DB31C	a	
+gDirectionActionActive	80114CF8	a	
+D_80072830	80072830	a	
+gPoliceSergeantHeardOfThemClip	80194B0C	f	
+sndEvtRequestScriptVolume	800544B8	a	
+worldCollisionLinkTrigger	800E1688	a	
+actor450800StartNurseryInteraction	80131E2C	a	
+gActor136300TaskTable	8013B11C	a	
+gStageMusicParams	8007A39C	a	
+VectorNormalSS	8003D5D8	a	
+gActor160900TaskDescriptors	8013FB50	a	
+D_80072A93	80072A93	a	
+gWorldCollisionActiveGrid	80115448	a	
+D_80072A92	80072A92	a	
+roomEffectRequestCancelAll	800EC868	a	
+actorRenderDrawGroundShadow	800B4E54	a	
+gAkropolisPlazaWarpEntries	80198A68	f	
+D_8007218A	8007218A	a	
+capSelectLoadedFile	800E6D60	a	
+cdCmdDropQueuedTail	8001D424	a	
+Gfx_ViewWorldMtx	80070F34	a	
+gShootingGalleryPiercePierceStorySkipScript	80153D6C	a	
+actor161500StartSoldierBTalkA	80131FBC	a	
+gActor503500BossDefeatScript	8014C540	a	
+tmdBuildBufferHalf	800410F0	a	
+akropolis_plaza_DATA_START	8018261C	f	
+effectDrawScreenTint	800EA858	a	
+gActor146000WaterHoleSceneTasks	801351FC	a	
+tmdResetAuxHeapAndRestoreBuffers	80041EB4	a	
+gActor120500EmptyPlacementTaskDesc	8013843C	a	
+equipmentGetWeaponLoad	800BAFE0	a	
+DrawSync	80017C98	a	
+gAkropolisPlazaViewCameras	801988D8	f	
+damageComputePlayerAttack	800E1FEC	a	
+itemMenuClearPreviewItems	800CDEF4	a	
+actor450900StartCompanionConversation	801327A8	a	
+damageRollCriticalHit	800E25F8	a	
+gActor151000GardenArrivalSkipScript	80133954	a	
+animationTickSlot	800B4514	a	
+sceneAcquireBattleRef	800DB53C	a	
+gAyaThankOfficerClip	801983C4	f	
+gActor143400CompanionEntrySkipScript	801359D4	a	
+companionRemoveEquipment	8010B674	a	
+gPoliceOfficersPlayerAnimSets	801797FC	a	
+sndScriptResolveStageId	800E3E30	a	
+actor146300RestoreHandoverPose	8013224C	a	
+gActor150400FreezerSceneSkipScript	80133088	a	
+companionSetScriptedControl	800E3EF0	a	
+gPoliceSergeantHelicopterDownClip	801937EC	f	
+gCapInlineIconCells	8010FB70	a	
+streamPollMoviePlayback	8001FAE0	a	
+gPlayerActorWeaponReaches	80112F60	a	
+D_80072728	80072728	a	
+damagePackAttackKey	800E2C40	a	
+uiSpawnObject	800486F0	a	
+worldCollisionInitContacts	800E18E0	a	
+sndEvtRequestMidiStop	8005132C	a	
+gActor503500BossIntroSkipScript	8014C288	a	
+RotMatrix	80043AC8	a	
+gAyaTurnToSergeantClip	80197324	f	
+D_80114C11	80114C11	a	
+memConfigureImageMemory	800144F8	a	
+viewQueueCamera	800A8A1C	a	
+displaySpawnTaskFromTable	8003E324	a	
+uiStartPanelHiding	800488F8	a	
+actor260500RestoreHeliportPlacement	80149E80	a	
+gActor04400MadChaserTaskDescs	80142604	a	
+gPoliceRookieShiftStanceClip	80195BD4	f	
+actor450200StartCompanionTalk	80132220	a	
+gpuBlendRgb555ClutRow	800B27C4	a	
+D_80072834	80072834	a	
+actor361100ClearHeadAimTaskHandle	80162B0C	a	
+gCapConfirmedChoiceIndex	801156A8	a	
+itemGetText	800B8EB0	a	
+gActor451100SubmarineTunnelEntryScript	80136108	a	
+ScaleMatrix	8004A98C	a	
+uiDrawTitle	80048E38	a	
+playerActorEndScripted	80104838	a	
+gfxRotMatrixX	8003C788	a	
+D_80071071	80071071	a	
+gRoomEffectSparkEmitterId	80115720	a	
+MulMatrix0	80044208	a	
+D_80114FF8	80114FF8	a	
+gActor450900Tasks	80135E78	a	
+itemMenuIsHotspotActionConfirmed	800D4EC0	a	
+inventoryClearItems	800BAC8C	a	
+gCapRestoreView	80115694	a	
+D_801153F6	801153F6	a	
+gWorldCoordTransientPointLights	80114F30	a	
+gActor443500PowerPlantProgressDialogueScript	80143494	a	
+capSpawnEventIfIdle	800E3D8C	a	
+gDisplayState	80070F68	a	
+itemMenuSetItemDescriptionPrompt	800CEB40	a	
+D_8007217B	8007217B	a	
+gActor136300GarageCompanionSceneScript	8013B590	a	
+ApplyTransposeMatrixLV	80044050	a	
+gPoliceSergeantGoRightInClip	80192C74	f	
+gSpriteAreaTables	8010CB68	a	
+inventoryCanAddItem	800B8988	a	
+sceneFindEnemyByPlaceKey	800B584C	a	
+gMidiMusicVolume	8007A396	a	
+inventoryMeltIceBagIfExpired	800BC254	a	
+akropolis_plaza_VRAM_END	80199F48	f	
+gteMIMefunc	8004AD78	a	
+inventoryGetItemSortKey	800BC18C	a	
+uiGetTextRowsHeight	80048E2C	a	
+gCapControlFlags	801156A4	a	
+shootingGalleryPierceCheckGalleryExitInput	8014A398	a	
+gFsActorBufferWrittenBytes	8006D860	a	
+gActor142600IncineratorArrivalScript	801360E4	a	
+playerActorEnterLocomotion	801066DC	a	
+D_8007218B	8007218B	a	
+uiDrawHorizontalSeparator	80047A0C	a	
+sndEvtRequestScriptStart	8005414C	a	
+gActor335800BalconyEntryScript	80165060	a	
+stageReleaseTaskPrimitiveBuffer	8003F9F4	a	
+equipmentGetWeaponSupply	800BBDC8	a	
+animationAimHeadAt	800B17D4	a	
+gRoomEffectOrangeBurstId	8011573C	a	
+gAyaTurnFromSergeantClip	80197D44	f	
+viewGetMappedCamera	800A8C08	a	
+gCdCmdQueue	80068FA0	a	
+gActor146300WaterTankEventSkipScript	80138570	a	
+capAbortPlayback	800E6CF0	a	
+textDrawUiLines	8002FB84	a	
+streamFinishScene	800B00C4	a	
+loadingEnqueueEquippedWeaponResources	800A9BE4	a	
+gActor503500BossIntroScript	8014BD48	a	
+gActor207000SlouchTaskDescs	801575F0	a	
+companionRestoreFullHp	800E3D78	a	
+textItoaPadded	8002F44C	a	
+playerStateRestoreFullHpMp	800E3D5C	a	
+gRoomEffectWaterRippleId	8011574C	a	
+shootingGalleryPierceCapCaptionDrawCurrent	8014B0D4	a	
+memFillBytes	8002D894	a	
+D_8007106B	8007106B	a	
+gActor450800NurseryShootingScript	8013AF8C	a	
+uiFitPanelToList	80046830	a	
+gAyaAskAboutCiviliansClip	8019806C	f	
+uiSetPromptText	80049D34	a	
+RotMatrixX	8004BE58	a	
+worldCoordSetModelAmbientColor	800D9550	a	
+worldTargetLinkNode	800DABEC	a	
+damageAccumulateLifeDrainHp	800E2C78	a	
+gActor451100SubmarineTunnelSceneScript	80135220	a	
+taskReparent	8002D14C	a	
+gActor160600SceneSkipScript	80136258	a	
+playerActorTurnToYaw	80104E00	a	
+gAyaShowBadgeClip	80196BD0	f	
+gRoomEffectState	80115740	a	
+TransposeMatrix	800420B8	a	
+akropolis_plaza_DATA_SIZE	0001792C	a	
+worldCollisionProjectGroundPoint	800EA1A8	a	
+inventoryClearCollectedBit	800BAEC0	a	
+D_8007216C	8007216C	a	
+uiSpawnOptionDialog	800480A0	a	
+gPoliceRookieLookAtBadgeClip	80195978	f	
+actorRenderComposeCoord	80098F58	a	
+GetClut	80042AE0	a	
+gRoomEffectGlowDiscId	80115734	a	
+itemMenuDrawQuantity	800CDBEC	a	
+areaGetCurrentObjectState	800BB470	a	
+gActor341900GluttonEntranceTaskDescs	80164190	a	
+gWorldCollisionActionTriggerListHead	8011556C	a	
+actor260500StartHeliportConversation	80149EBC	a	
+fadeDrawOverlay	8002BA9C	a	
+worldCollisionResolvePushback	800E0C10	a	
+shootingGalleryPierceCapCaptionSelectRecord	8014B2B8	a	
+equipmentEquipCarriedArmor	800B7A50	a	
+__subdf3	8004BC28	a	
+D_80072A98	80072A98	a	
+padInputChangeSuppression	800E9BDC	a	
+gActor450800NurseryReentryScript	8013A84C	a	
+screenFadeInTileTask	8017DA58	ft	
+gEvsPlaybackPaused	801156F9	a	
+gActor460200TentArrivalScript	801362B8	a	
+gPoliceOfficersSergeantTaskDescriptors	80179920	a	
+RotMatrixY	8004BFF8	a	
+gActor361100PodSceneSkipScript	80166848	a	
+streamFindMovieSlot	8001EDC8	a	
+shootingGalleryPierceHandleGalleryAction	8014AB6C	a	
+gActor142900ElevatorFirstVisitScript	801378D0	a	
+inventoryIsItemLimitReached	800B7420	a	
+streamSetExternalScenePayloadBuffer	800B015C	a	
+gPoliceOfficersRookieTaskDescriptors	801798FC	a	
+gActor141000FlightTasks	801348D8	a	
+mapNeoArkResolveRoomVariant	80179B14	a	
+gViewIdentityMap	8010CAF8	a	
+gpuResetAndInvalidateModelBuffers	80041E4C	a	
+akropolisPlazaLightFlareTask	801811D0	ft	
+akropolis_plaza_ROM_END	0001C988	a	
+animationAimHeadAtTask	800B0928	a	
+gItemMenuEmptyPromptText	8010F8D0	a	
+padScriptHalt	800E8F68	a	
+gWorldCollisionSurfacePushbackSuppression	80115428	a	

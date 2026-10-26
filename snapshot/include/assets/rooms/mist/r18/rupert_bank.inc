@@ -3,7 +3,7 @@
 
 #include "gameplay/animation.h"
 
-static AnimationSet* _gActor113000AnimationSets[9] = {
+static AnimationSet* _gMistRupertAnimationSets[9] = {
     [1] = &_gMistR18RupertRestClip,
     [2] = &_gMistR18RupertBriefing1Clip,
     [3] = &_gMistR18RupertBriefing2Clip,

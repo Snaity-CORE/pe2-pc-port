@@ -2,18 +2,21 @@
 #define ROOM_CAT_(a, b) a##b
 #define ROOM_CAT(a, b) ROOM_CAT_(a, b)
 
-static WorldCollisionFootstepSounds _gAcropolisSanctuarySurfaceClass1FootstepSounds = { .walk = 0, .run = 0, .scriptedJump = 0 };
-static WorldCollisionFootstepSounds _gAcropolisSanctuarySurfaceClass2FootstepSounds = { .walk = 0, .run = 0, .scriptedJump = 0 };
-static WorldCollisionSurfaceProperties _gAcropolisSanctuaryDefaultSurfaceProperties = { .field_0 = 0, .probePassThrough = 0, .weaponImpactEnabled = 0, .suppressPushback = 0, .footstepSounds = NULL };
-static WorldCollisionSurfaceProperties _gAcropolisSanctuarySurfaceClass1Properties = { .field_0 = 0, .probePassThrough = 0, .weaponImpactEnabled = 0, .suppressPushback = 0, .footstepSounds = &_gAcropolisSanctuarySurfaceClass1FootstepSounds };
-static WorldCollisionSurfaceProperties _gAcropolisSanctuarySurfaceClass2Properties = { .field_0 = 0, .probePassThrough = 0, .weaponImpactEnabled = 0, .suppressPushback = 0, .footstepSounds = &_gAcropolisSanctuarySurfaceClass2FootstepSounds };
-WorldCollisionSurfaceProperties* gAcropolisSanctuarySurfacePropertiesByClass[8] = {
-    &_gAcropolisSanctuaryDefaultSurfaceProperties,
-    &_gAcropolisSanctuarySurfaceClass1Properties,
-    &_gAcropolisSanctuarySurfaceClass2Properties,
-    &_gAcropolisSanctuaryDefaultSurfaceProperties,
-    &_gAcropolisSanctuaryDefaultSurfaceProperties,
-    &_gAcropolisSanctuaryDefaultSurfaceProperties,
-    &_gAcropolisSanctuaryDefaultSurfaceProperties,
-    &_gAcropolisSanctuaryDefaultSurfaceProperties,
+#include "types.h"
+#include "gameplay/room.h"
+
+static WorldCollisionFootstepSounds _gAkropolisSanctuarySurfaceClass1FootstepSounds = { .walk = 0, .run = 0, .scriptedJump = 0 };
+static WorldCollisionFootstepSounds _gAkropolisSanctuarySurfaceClass2FootstepSounds = { .walk = 0, .run = 0, .scriptedJump = 0 };
+static WorldCollisionSurfaceProperties _gAkropolisSanctuaryDefaultSurfaceProperties = { .field_0 = 0, .probePassThrough = 0, .weaponImpactEnabled = 0, .suppressPushback = 0, .footstepSounds = NULL };
+static WorldCollisionSurfaceProperties _gAkropolisSanctuarySurfaceClass1Properties = { .field_0 = 0, .probePassThrough = 0, .weaponImpactEnabled = 0, .suppressPushback = 0, .footstepSounds = &_gAkropolisSanctuarySurfaceClass1FootstepSounds };
+static WorldCollisionSurfaceProperties _gAkropolisSanctuarySurfaceClass2Properties = { .field_0 = 0, .probePassThrough = 0, .weaponImpactEnabled = 0, .suppressPushback = 0, .footstepSounds = &_gAkropolisSanctuarySurfaceClass2FootstepSounds };
+WorldCollisionSurfaceProperties* gAkropolisSanctuarySurfacePropertiesByClass[8] = {
+    &_gAkropolisSanctuaryDefaultSurfaceProperties,
+    &_gAkropolisSanctuarySurfaceClass1Properties,
+    &_gAkropolisSanctuarySurfaceClass2Properties,
+    &_gAkropolisSanctuaryDefaultSurfaceProperties,
+    &_gAkropolisSanctuaryDefaultSurfaceProperties,
+    &_gAkropolisSanctuaryDefaultSurfaceProperties,
+    &_gAkropolisSanctuaryDefaultSurfaceProperties,
+    &_gAkropolisSanctuaryDefaultSurfaceProperties,
 };

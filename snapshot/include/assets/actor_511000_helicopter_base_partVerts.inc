@@ -1,2 +1,0 @@
-/* Generated from assets/USA/pe2pkg/actor_511000.pe2pkg; model at 0x9CF0. */
-    0,

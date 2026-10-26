@@ -1,10 +1,10 @@
 gcc2_compiled.	80149E24	fl	build/USA/src/actors/actor_202900/actor_202900.i
 __gnu_compiled_c	80149E24	fl	build/USA/src/actors/actor_202900/actor_202900.i
 _MACRO_INC_GUARD	00000001	al	build/USA/src/actors/actor_202900/actor_202900.i
-_gAkropolisCafeteriaPlayerCafeteriaOpeningClipBank1	8014A4AC	fl	build/USA/src/actors/actor_202900/actor_202900.i
-_gAkropolisCafeteriaPlayerCafeteriaOpeningClipBank4	8014AC14	fl	build/USA/src/actors/actor_202900/actor_202900.i
-_gAkropolisCafeteriaPlayerCafeteriaOpeningClipRecords	8014CDD8	fl	build/USA/src/actors/actor_202900/actor_202900.i
-_gAkropolisCafeteriaPlayerCafeteriaOpeningClipTrackStarts	8014FE90	fl	build/USA/src/actors/actor_202900/actor_202900.i
+_gAkropolisCafeteriaPlayerOpeningClipBank1	8014A4AC	fl	build/USA/src/actors/actor_202900/actor_202900.i
+_gAkropolisCafeteriaPlayerOpeningClipBank4	8014AC14	fl	build/USA/src/actors/actor_202900/actor_202900.i
+_gAkropolisCafeteriaPlayerOpeningClipRecords	8014CDD8	fl	build/USA/src/actors/actor_202900/actor_202900.i
+_gAkropolisCafeteriaPlayerOpeningClipTrackStarts	8014FE90	fl	build/USA/src/actors/actor_202900/actor_202900.i
 _gAnmcWoman2BodySkeleton	8014FEE0	fl	build/USA/src/actors/actor_202900/actor_202900.i
 _gAnmcWoman2BodyPartVerts	8015018C	fl	build/USA/src/actors/actor_202900/actor_202900.i
 _gAnmcWoman2BodyVerts	801501D8	fl	build/USA/src/actors/actor_202900/actor_202900.i
@@ -517,12 +517,12 @@ taskSpawnFromTableOnDefaultList	8003E4BC	a
 SetDrawStp	80042288	a	
 playerActorSetDrawMode	800E3B80	a	
 worldTargetGetBodyPosition	800DAE50	a	
+gAkropolisCafeteriaPlayerOpeningClip	8014FEB8	f	
 gfxReadMatrixXAxis	8003C728	a	
 D_80073BAA	80073BAA	a	
 animationBindModelContext	800B3CCC	a	
 worldCollisionBindEnemySphere	8010C980	a	
 fsUploadImageChunk	800246B0	a	
-gAkropolisCafeteriaPlayerCafeteriaOpeningClip	8014FEB8	f	
 RotMatrixZ	8004AE48	a	
 SetDispMask	80017C00	a	
 playerActorMode2State2	80108BD8	a	

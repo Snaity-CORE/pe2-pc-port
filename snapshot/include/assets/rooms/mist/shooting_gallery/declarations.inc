@@ -2,6 +2,18 @@
 #define ROOM_CAT_(a, b) a##b
 #define ROOM_CAT(a, b) ROOM_CAT_(a, b)
 
+#include "types.h"
+#include <psyq/sys/types.h>
+#include <psyq/libgte.h>
+#include "gameplay/area.h"
+#include "gameplay/collision.h"
+#include "gameplay/direction.h"
+#include "gameplay/light.h"
+#include "gameplay/room.h"
+#include "gameplay/sprites.h"
+#include "gameplay/view.h"
+#include "rooms/rooms_shared_8018055c.h"
+
 #define ROOM_IS_declarations_mist_shooting_gallery 1
 #if ROOM_CAT(ROOM_IS_, ROOM_PART) == 1
 static DATA_CONST JukeboxTrackLists _gJukeboxTrackLists;
@@ -37,7 +49,7 @@ static SVECTOR _gMistShootingGalleryLightGlowPoints[45];
 #endif
 #undef ROOM_IS_declarations_mist_shooting_gallery
 
-#define ROOM_IS_declarations_mist_shooting_gallery_2 1
+#define ROOM_IS_declarations_mist_shooting_gallery_courses 1
 #if ROOM_CAT(ROOM_IS_, ROOM_PART) == 1
 static _MistShootingGallerySpawn _gMistShootingGalleryCourse0WaveScript[60];
 static _MistShootingGallerySpawn _gMistShootingGalleryCourse1WaveScript[66];
@@ -100,5 +112,5 @@ static WorldCollisionSurfaceProperties _gMistShootingGallerySurface1Properties;
 static WorldCollisionSurfaceProperties _gMistShootingGallerySurface2Properties;
 extern WorldCollisionSurfaceProperties* gMistShootingGallerySurfacePropertiesByClass[8];
 #endif
-#undef ROOM_IS_declarations_mist_shooting_gallery_2
+#undef ROOM_IS_declarations_mist_shooting_gallery_courses
 #undef ROOM_PART

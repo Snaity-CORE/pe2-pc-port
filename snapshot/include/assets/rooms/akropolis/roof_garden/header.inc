@@ -2,19 +2,24 @@
 #define ROOM_CAT_(a, b) a##b
 #define ROOM_CAT(a, b) ROOM_CAT_(a, b)
 
-WorldCollisionRoomResources gAcropolisRoofGardenCollisionRoomResources[1] = {
-    { .grid = &_gAcropolisRoofGardenCollisionGrid, .viewBoundaryTriggers = _gAcropolisRoofGardenViewBoundaryTriggers, .actionTriggers = _gAcropolisRoofGardenActionTriggers, .occluders = _gAcropolisRoofGardenOccluders },
+#include "types.h"
+#include "gameplay/direction.h"
+#include "gameplay/room.h"
+#include "gameplay/view.h"
+
+WorldCollisionRoomResources gAkropolisRoofGardenCollisionRoomResources[1] = {
+    { .grid = &_gAkropolisRoofGardenCollisionGrid, .viewBoundaryTriggers = _gAkropolisRoofGardenViewBoundaryTriggers, .actionTriggers = _gAkropolisRoofGardenActionTriggers, .occluders = _gAkropolisRoofGardenOccluders },
 };
-u8* gAcropolisRoofGardenViewMaps[1] = {
+u8* gAkropolisRoofGardenViewMaps[1] = {
     (void*)&gViewIdentityMap,
 };
-ViewCount gAcropolisRoofGardenViewCounts[1] = {
+ViewCount gAkropolisRoofGardenViewCounts[1] = {
     0,
 };
-WorldCoordRoomLighting gAcropolisRoofGardenRoomLightingTable[1] = {
-    { .lights = &_gAcropolisRoofGardenRoomLights, .ambientTable = NULL },
+WorldCoordRoomLighting gAkropolisRoofGardenRoomLightingTable[1] = {
+    { .lights = &_gAkropolisRoofGardenRoomLights, .ambientTable = NULL },
 };
-DirectionWarpEntry gAcropolisRoofGardenWarpEntries[2] = {
+DirectionWarpEntry gAkropolisRoofGardenWarpEntries[2] = {
     { .player = { .yaw = { .word = 0 }, .x = -0, .y = 0, .z = -0 }, .unknown_10 = { 0, 0, 0, 0 }, .companion = { .yaw = { .word = 0 }, .x = -0, .y = 0, .z = -0 }, .unknown_24 = { 0, 0, 0, 0 }, .arrivalSound = 0, .departureSound = 0, .blockedSound = 0, .initialView = 0, .flags = 0, .mapFlagId = 0 },
     { .player = { .yaw = { .word = 0 }, .x = -0, .y = 0, .z = -0 }, .unknown_10 = { 0, 0, 0, 0 }, .companion = { .yaw = { .word = 0 }, .x = -0, .y = 0, .z = -0 }, .unknown_24 = { 0, 0, 0, 0 }, .arrivalSound = 0, .departureSound = 0, .blockedSound = 0, .initialView = 0, .flags = 0, .mapFlagId = 0 },
 };

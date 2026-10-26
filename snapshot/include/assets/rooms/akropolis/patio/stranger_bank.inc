@@ -3,13 +3,13 @@
 
 #include "gameplay/animation.h"
 
-static AnimationSet* _gActor317000BodyAnimSets[9] = {
-    [1] = &_gAkropolisPatioBodyAnim01Clip,
+static AnimationSet* _gPatioLeapingStrangersBodyAnimSets[9] = {
+    [1] = &_gStrangerReactClip,
     [2] = &_gStrangerOddBWalkClip,
     [3] = &_gStrangerOddBRunClip,
-    [4] = &_gAkropolisPatioBodyAnim04Clip,
+    [4] = &_gStrangerStrikeClip,
     [5] = &_gAkropolisPatioStrangerWait1Clip,
-    [6] = &_gAkropolisPatioStrangerWait2Clip,
-    [7] = &_gAkropolisPatioStrangerLeapStartClip,
+    [6] = &_gStrangerLeapCrouchClip,
+    [7] = &_gStrangerLeapStartClip,
     [8] = &_gAkropolisPatioStrangerLandClip,
 };

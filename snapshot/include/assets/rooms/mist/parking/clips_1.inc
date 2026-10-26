@@ -3,13 +3,13 @@
 
 #include "gameplay/animation.h"
 
-/* rooms/mist/parking/mist_parking_command1_player_anim_00 */
-static AnimationPackedPose _gMistParkingMistParkingCommand1PlayerAnim00ClipBank1[2] = {
+/* rooms/mist/parking/command1_player_anim_00 */
+static AnimationPackedPose _gMistParkingCommand1PlayerAnim00ClipBank1[2] = {
     { 0, 0, 0, 0, 0, 0 },
     { 0, -0, 0, 0, -0, 0 },
 };
 
-static AnimationPackedRotation _gMistParkingMistParkingCommand1PlayerAnim00ClipBank4[17] = {
+static AnimationPackedRotation _gMistParkingCommand1PlayerAnim00ClipBank4[17] = {
     { -0, 0, 0 },
     { -0, 0, 0 },
     { -0, -0, 0 },
@@ -29,7 +29,7 @@ static AnimationPackedRotation _gMistParkingMistParkingCommand1PlayerAnim00ClipB
     { 0, -0, -0 },
 };
 
-static AnimationRecord _gMistParkingMistParkingCommand1PlayerAnim00ClipRecords[76] = {
+static AnimationRecord _gMistParkingCommand1PlayerAnim00ClipRecords[76] = {
     { 0, 0, 0 },
     { 0, 0, 0 },
     { 0, 0, 0 },
@@ -108,14 +108,14 @@ static AnimationRecord _gMistParkingMistParkingCommand1PlayerAnim00ClipRecords[7
     { 0, 0, 0 },
 };
 
-static u16 _gMistParkingMistParkingCommand1PlayerAnim00ClipTrackStarts[20] = {
+static u16 _gMistParkingCommand1PlayerAnim00ClipTrackStarts[20] = {
     0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0,
 };
 
-static AnimationSet _gMistParkingMistParkingCommand1PlayerAnim00Clip = {
-    .records           = _gMistParkingMistParkingCommand1PlayerAnim00ClipRecords,
-    .trackStartIndices = _gMistParkingMistParkingCommand1PlayerAnim00ClipTrackStarts,
-    .poseBanks         = { [1] = _gMistParkingMistParkingCommand1PlayerAnim00ClipBank1, [4] = _gMistParkingMistParkingCommand1PlayerAnim00ClipBank4 },
+static AnimationSet _gMistParkingCommand1PlayerAnim00Clip = {
+    .records           = _gMistParkingCommand1PlayerAnim00ClipRecords,
+    .trackStartIndices = _gMistParkingCommand1PlayerAnim00ClipTrackStarts,
+    .poseBanks         = { [1] = _gMistParkingCommand1PlayerAnim00ClipBank1, [4] = _gMistParkingCommand1PlayerAnim00ClipBank4 },
 };

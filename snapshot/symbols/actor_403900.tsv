@@ -44,7 +44,6 @@ _gGolemAdvanceClipBank1	80140C44	fl	build/USA/src/actors/actor_403900/actor_4039
 _gGolemAdvanceClipBank4	80140DAC	fl	build/USA/src/actors/actor_403900/actor_403900.i
 _gGolemAdvanceClipRecords	80141200	fl	build/USA/src/actors/actor_403900/actor_403900.i
 _gGolemAdvanceClipTrackStarts	801417A0	fl	build/USA/src/actors/actor_403900/actor_403900.i
-_gGolemAdvanceClip	801417C8	fl	build/USA/src/actors/actor_403900/actor_403900.i
 _gGolemChargeClipBank1	801417F0	fl	build/USA/src/actors/actor_403900/actor_403900.i
 _gGolemChargeClipBank4	80141D24	fl	build/USA/src/actors/actor_403900/actor_403900.i
 _gGolemChargeClipRecords	80143918	fl	build/USA/src/actors/actor_403900/actor_403900.i
@@ -2390,6 +2389,7 @@ gameFlowBeginLoadScreen	8002252C	a
 sndEvtRequestScriptMix	80054424	a	
 worldCollisionProjectGroundCoord	800EA02C	a	
 playerActorPlayFootstepCue	80105ED4	a	
+gGolemAdvanceClip	801417C8	f	
 worldCollisionUnlinkTrigger	800E1708	a	
 __fixsfsi	8005C070	a	
 RotMatrixZXY	8004C9C8	a	

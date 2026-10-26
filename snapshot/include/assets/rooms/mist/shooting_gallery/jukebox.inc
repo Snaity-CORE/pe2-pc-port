@@ -2,6 +2,8 @@
 #define ROOM_CAT_(a, b) a##b
 #define ROOM_CAT(a, b) ROOM_CAT_(a, b)
 
+#include "rooms/rooms_shared_8018055c.h"
+
 #define ROOM_IS__gJukeboxTrackLists 1
 #if ROOM_CAT(ROOM_IS_, ROOM_PART) == 1
 static DATA_CONST JukeboxTrackLists _gJukeboxTrackLists = { .lists = { _gMistShootingGalleryJukeboxTrainingReplayTracks, _gMistShootingGalleryJukeboxTrainingBountyTracks, _gMistShootingGalleryJukeboxTrainingScavengerTracks, _gMistShootingGalleryJukeboxTrainingNightmareTracks, _gMistShootingGalleryJukeboxTrainingUnclearedTracks, _gMistShootingGalleryJukeboxRegularReplayTracks, _gMistShootingGalleryJukeboxRegularBountyTracks, _gMistShootingGalleryJukeboxRegularScavengerTracks, _gMistShootingGalleryJukeboxRegularNightmareTracks, _gMistShootingGalleryJukeboxRegularUnclearedTracks } };

@@ -2,9 +2,13 @@
 #define ROOM_CAT_(a, b) a##b
 #define ROOM_CAT(a, b) ROOM_CAT_(a, b)
 
-#define ROOM_IS_gAcropolisCafeteriaPointLights 1
+#include "types.h"
+#include "gameplay/light.h"
+#include "gameplay/room.h"
+
+#define ROOM_IS_gAkropolisCafeteriaPointLights 1
 #if ROOM_CAT(ROOM_IS_, ROOM_PART) == 1
-WorldCoordPointLight gAcropolisCafeteriaPointLights[15] = {
+WorldCoordPointLight gAkropolisCafeteriaPointLights[15] = {
     { .head = { .transform = { .lighting = { .composeStamp = 0, .local = { .m = { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }, .t = { -0, -0, -0 } }, .composed = { .m = { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }, .t = { 0, 0, 0 } }, .viewId = 0, .unknown_46 = { 0, 0, 0, 0 }, .attenuation = 0, .parent = NULL } }, .color = { .r = 0, .g = 0, .b = 0 }, .unknown_56 = { 0, 0 } }, .inner = 0, .outer = 0 },
     { .head = { .transform = { .lighting = { .composeStamp = 0, .local = { .m = { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }, .t = { -0, -0, -0 } }, .composed = { .m = { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }, .t = { 0, 0, 0 } }, .viewId = 0, .unknown_46 = { 0, 0, 0, 0 }, .attenuation = 0, .parent = NULL } }, .color = { .r = 0, .g = 0, .b = 0 }, .unknown_56 = { 0, 0 } }, .inner = 0, .outer = 0 },
     { .head = { .transform = { .lighting = { .composeStamp = 0, .local = { .m = { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }, .t = { -0, -0, -0 } }, .composed = { .m = { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }, .t = { 0, 0, 0 } }, .viewId = 0, .unknown_46 = { 0, 0, 0, 0 }, .attenuation = 0, .parent = NULL } }, .color = { .r = 0, .g = 0, .b = 0 }, .unknown_56 = { 0, 0 } }, .inner = 0, .outer = 0 },
@@ -21,7 +25,7 @@ WorldCoordPointLight gAcropolisCafeteriaPointLights[15] = {
     { .head = { .transform = { .lighting = { .composeStamp = 0, .local = { .m = { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }, .t = { -0, -0, -0 } }, .composed = { .m = { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }, .t = { 0, 0, 0 } }, .viewId = 0, .unknown_46 = { 0, 0, 0, 0 }, .attenuation = 0, .parent = NULL } }, .color = { .r = 0, .g = 0, .b = 0 }, .unknown_56 = { 0, 0 } }, .inner = 0, .outer = 0 },
     { .head = { .transform = { .lighting = { .composeStamp = 0, .local = { .m = { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }, .t = { -0, -0, -0 } }, .composed = { .m = { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }, .t = { 0, 0, 0 } }, .viewId = 0, .unknown_46 = { 0, 0, 0, 0 }, .attenuation = 0, .parent = NULL } }, .color = { .r = 0, .g = 0, .b = 0 }, .unknown_56 = { 0, 0 } }, .inner = 0, .outer = 0 },
 };
-WorldCoordSpotLight gAcropolisCafeteriaSpotLightStorage[15] = {
+WorldCoordSpotLight gAkropolisCafeteriaSpotLightStorage[15] = {
     { .head = { .transform = { .lighting = { .composeStamp = 0, .local = { .m = { { -0, -0, 0 }, { 0, -0, 0 }, { 0, 0, 0 } }, .t = { -0, -0, -0 } }, .composed = { .m = { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }, .t = { 0, 0, 0 } }, .viewId = 0, .unknown_46 = { 0, 0, 0, 0 }, .attenuation = 0, .parent = NULL } }, .color = { .r = 0, .g = 0, .b = 0 }, .unknown_56 = { 0, 0 } }, .axis = { 0, 0, 0, 0 }, .inner = 0, .outer = 0, .angle = 0 },
     { .head = { .transform = { .lighting = { .composeStamp = 0, .local = { .m = { { 0, 0, 0 }, { 0, -0, -0 }, { 0, 0, -0 } }, .t = { 0, 0, 0 } }, .composed = { .m = { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }, .t = { 0, 0, 0 } }, .viewId = 0, .unknown_46 = { 0, 0, 0, 0 }, .attenuation = 0, .parent = NULL } }, .color = { .r = 0, .g = 0, .b = 0 }, .unknown_56 = { 0, 0 } }, .axis = { 0, 0, 0, 0 }, .inner = 0, .outer = 0, .angle = 0 },
     { .head = { .transform = { .lighting = { .composeStamp = 0, .local = { .m = { { 0, 0, -0 }, { 0, 0, 0 }, { 0, 0, 0 } }, .t = { -0, 0, 0 } }, .composed = { .m = { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }, .t = { 0, 0, 0 } }, .viewId = -0, .unknown_46 = { 0, 0, 0, 0 }, .attenuation = 0, .parent = NULL } }, .color = { .r = 0, .g = 0, .b = 0 }, .unknown_56 = { 0, 0 } }, .axis = { -0, 0, 0, 0 }, .inner = 0, .outer = 0, .angle = -0 },
@@ -39,11 +43,11 @@ WorldCoordSpotLight gAcropolisCafeteriaSpotLightStorage[15] = {
     { .head = { .transform = { .lighting = { .composeStamp = 0, .local = { .m = { { -0, 0, 0 }, { -0, -0, 0 }, { 0, 0, 0 } }, .t = { 0, -0, 0 } }, .composed = { .m = { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }, .t = { 0, 0, 0 } }, .viewId = 0, .unknown_46 = { 0, 0, 0, 0 }, .attenuation = 0, .parent = NULL } }, .color = { .r = 0, .g = 0, .b = 0 }, .unknown_56 = { 0, 0 } }, .axis = { 0, 0, -0, 0 }, .inner = 0, .outer = 0, .angle = 0 },
 };
 #endif
-#undef ROOM_IS_gAcropolisCafeteriaPointLights
+#undef ROOM_IS_gAkropolisCafeteriaPointLights
 
-#define ROOM_IS_gAcropolisCafeteriaRoomLights 1
+#define ROOM_IS_gAkropolisCafeteriaRoomLights 1
 #if ROOM_CAT(ROOM_IS_, ROOM_PART) == 1
-WorldCoordRoomLights gAcropolisCafeteriaRoomLights = { .directionalLightCount = 0, .directionalLights = NULL, .pointLightCount = 0, .pointLights = gAcropolisCafeteriaPointLights, .coneLightCount = 0, .coneLights = gAcropolisCafeteriaSpotLightStorage };
+WorldCoordRoomLights gAkropolisCafeteriaRoomLights = { .directionalLightCount = 0, .directionalLights = NULL, .pointLightCount = 0, .pointLights = gAkropolisCafeteriaPointLights, .coneLightCount = 0, .coneLights = gAkropolisCafeteriaSpotLightStorage };
 #endif
-#undef ROOM_IS_gAcropolisCafeteriaRoomLights
+#undef ROOM_IS_gAkropolisCafeteriaRoomLights
 #undef ROOM_PART

@@ -1,0 +1,1532 @@
+gcc2_compiled.	8017D5E4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+__gnu_compiled_c	8017D5E4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_MACRO_INC_GUARD	00000001	al	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisBridgeWaterSurfaceModelSkeleton	8017FE04	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisBridgeWaterSurfaceModelPartVerts	8017FE28	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisBridgeWaterSurfaceModelVerts	8017FE2C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisBridgeWaterSurfaceModelNormals	80180384	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisBridgeWaterSurfaceModelStream	80180384	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisBridgeWaterSurfaceModel	80180E50	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeRoomMessages	80180E74	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_akropolisPromenadeResolveRoomTransition	8017D70C	flt	build/USA/src/rooms/akropolis_promenade/promenade.i
+_akropolisPromenadeHandleRoomCommand	8017D8E0	flt	build/USA/src/rooms/akropolis_promenade/promenade.i
+_akropolisPromenadeIgnoreRoomAction	8017D930	flt	build/USA/src/rooms/akropolis_promenade/promenade.i
+_akropolisPromenadeRejectKeyItemUse	8017D8D8	flt	build/USA/src/rooms/akropolis_promenade/promenade.i
+_akropolisPromenadeHandleSoundCue	8017D938	flt	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeTranslucentPlaneTaskDescriptors	80180EA4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_akropolisPromenadeTranslucentPlaneTask	8017D988	flt	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeBattleFollowupAnimationRequest	80180EBC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeUnusedTransforms	80180ED0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeBattleFollowupScript	80180F00	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeBattleFollowupSkipScript	80181068	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeArrivalMovieStarted	80181140	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeBattleFollowupState	80181144	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeMovieTaskDescriptors	80181148	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_akropolisPromenadeMoviePathTask	8017DB9C	flt	build/USA/src/rooms/akropolis_promenade/promenade.i
+_akropolisPromenadeMovieSkipFadeOutTask	8017DF74	flt	build/USA/src/rooms/akropolis_promenade/promenade.i
+_akropolisPromenadeSceneFadeInTask	8017DFD4	flt	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeArrivalMoviePlayerPositions	80181184	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeGroundGlowUnitCorners	80181AE4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeGlowPositions	80181AF4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeGroundGlowPosition	80181B0C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeLampGlowPositions	80181B14	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeGlowViewMask	80181B74	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeDripViewMask	80181B76	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeLampGlowViewMasks	80181B78	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeRoom1CollisionGrid	801823DC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeViewBoundaryTriggers	80182BF4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeActionTriggers	80182DBC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeRoom2CollisionGrid	80182BD0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeRoom2ViewMap	80181BB0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeRoomLights	80183A08	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeRoom1CollisionGridNormals	80181CF4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeRoom1CollisionGridVerts	80181DE4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeRoom1CollisionGridFaces	801820CC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeRoom1CollisionGridCells	80182294	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeRoom1CollisionGridTable	801823B4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeRoom2CollisionGridNormals	80182400	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeRoom2CollisionGridVerts	801824F0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeRoom2CollisionGridFaces	80182828	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeRoom2CollisionGridCells	80182A50	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeRoom2CollisionGridTable	80182BA8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeVariant1Resources	80182F84	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeVariant2Resources	80182F9C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeVariant3Resources	80182FC0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeVariant7Resources	80182FE4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeVariant8Resources	80182FFC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadePointLights	801830A8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeViews1And13SpriteBatches	80183A20	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeView2SpriteSources	80183A30	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeView2SpriteBatches	80183FF8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeView3SpriteSources	80184050	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeView3SpriteBatches	801841A4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeView4SpriteSources	801841CC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeView4SpriteBatches	8018462C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeView5SpriteSources	80184674	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeView5SpriteBatches	80184CF0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeView6SpriteSources	80184D38	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeView6SpriteBatches	80185224	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeView7SpriteSources	8018526C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeView7SpriteBatches	801854EC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeView8SpriteSources	8018552C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeView8SpriteBatches	801858C4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeView9SpriteSources	8018590C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeView9SpriteBatches	80185F24	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeView10SpriteBatches	80185F74	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeView11SpriteBatches	80185F84	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeView12SpriteBatches	80185F94	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeUnusedEmptySpriteBatches	80185FA4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeArrivalMovieVibrationCommands	80186224	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeArrivalMovieVibrationSegments	8018623C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeSurfaceClass1FootstepSounds	80186244	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeSurfaceClass2FootstepSounds	80186250	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeSurfaceClass3FootstepSounds	8018625C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeSurfaceClass4FootstepSounds	80186268	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeSurfaceClass7FootstepSounds	80186274	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeDefaultSurfaceProperties	80186280	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeSurfaceClass1Properties	80186288	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeSurfaceClass2Properties	80186290	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeSurfaceClass3Properties	80186298	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeSurfaceClass4Properties	801862A0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeSurfaceClass7Properties	801862A8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM1	8017D5E4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM2	8017D5E4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_akropolisPromenadeUpdateRoomProgress	8017D5E4	flt	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM3	8017D5E4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM4	8017D5EC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM5	8017D5F0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM6	8017D5F8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM7	8017D614	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM8	8017D61C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM9	8017D634	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM10	8017D64C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM11	8017D654	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM12	8017D660	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM13	8017D670	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM14	8017D674	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM15	8017D678	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM16	8017D688	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM17	8017D690	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM18	8017D6A8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM19	8017D6AC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM20	8017D6B8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM21	8017D6E4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM22	8017D6E8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM23	8017D6FC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM24	8017D70C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM25	8017D70C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM26	8017D70C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM27	8017D728	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM28	8017D748	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM29	8017D768	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM30	8017D78C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM31	8017D794	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM32	8017D7A8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM33	8017D7B4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM34	8017D7BC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM35	8017D7C0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM36	8017D7E0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM37	8017D7F0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM38	8017D7F8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeSanctuaryExitReply	801862D0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM39	8017D7FC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM40	8017D800	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM41	8017D824	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM42	8017D828	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM43	8017D830	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM44	8017D840	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM45	8017D850	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM46	8017D860	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM47	8017D86C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM48	8017D878	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM49	8017D880	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM50	8017D890	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM51	8017D8A0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM52	8017D8B4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM53	8017D8B8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM54	8017D8BC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM55	8017D8C0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM56	8017D8D8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM57	8017D8D8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM58	8017D8D8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM59	8017D8D8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM60	8017D8E0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM61	8017D8E0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM62	8017D8E0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM63	8017D8E4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM64	8017D8F0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM65	8017D904	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM66	8017D910	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM67	8017D918	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM68	8017D920	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM69	8017D920	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM70	8017D924	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM71	8017D928	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM72	8017D930	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM73	8017D930	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM74	8017D930	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM75	8017D930	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM76	8017D938	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM77	8017D938	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM78	8017D938	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM79	8017D93C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM80	8017D95C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM81	8017D960	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM82	8017D968	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM83	8017D978	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM84	8017D988	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeRoomStates	8017D5C4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_akropolisPromenadeInitializeRoomTask	8017D9E0	flt	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeTranslucentPlaneStates	8017D5D0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_bridgeModelSetup	8017DAA4	flt	build/USA/src/rooms/akropolis_promenade/promenade.i
+_akropolisPromenadeUpdateBridgeVisibility	8017DB48	flt	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM85	8017D988	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM86	8017D988	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM87	8017D98C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM88	8017D990	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM89	8017D994	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM90	8017D9B0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM91	8017D9D0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM92	8017D9E0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM93	8017D9E0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM94	8017D9E0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM95	8017D9EC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM96	8017D9F0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM97	8017D9F8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM98	8017D9FC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM99	8017DA04	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+_gAkropolisPromenadeTranslucentPlaneTask	801862D8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM100	8017DA24	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM101	8017DA28	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM102	8017DA2C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM103	8017DA34	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM104	8017DA3C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM105	8017DA44	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM106	8017DA4C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM107	8017DA4C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM108	8017DA4C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM109	8017DA50	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM110	8017DA54	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM111	8017DA58	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM112	8017DA74	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM113	8017DA94	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM114	8017DAA4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM115	8017DAA4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM116	8017DAA4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM117	8017DAB0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM118	8017DAB4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM119	8017DAC0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM120	8017DAC8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM121	8017DACC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM122	8017DAD4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM123	8017DADC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM124	8017DAE4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM125	8017DAEC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM126	8017DAF0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM127	8017DAF4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM128	8017DAFC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM129	8017DB00	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM130	8017DB04	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM131	8017DB0C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM132	8017DB14	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM133	8017DB1C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM134	8017DB20	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM135	8017DB30	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM136	8017DB48	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM137	8017DB48	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM138	8017DB48	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM139	8017DB58	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM140	8017DB60	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM141	8017DB64	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM142	8017DB78	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM143	8017DB80	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM144	8017DB84	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM145	8017DB88	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM146	8017DB9C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM147	8017DB9C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM148	8017DB9C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM149	8017DBA8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM150	8017DBAC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM151	8017DBB0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM152	8017DBB4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM153	8017DBB8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM154	8017DBC8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM155	8017DBCC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM156	8017DBD0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM157	8017DC0C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM158	8017DC14	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM159	8017DC1C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM160	8017DC24	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM161	8017DC40	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM162	8017DC54	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM163	8017DC6C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM164	8017DC74	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM165	8017DC78	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM166	8017DC84	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM167	8017DC88	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM168	8017DC8C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM169	8017DC90	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM170	8017DC94	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM171	8017DC98	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM172	8017DC9C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM173	8017DCA0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM174	8017DCB4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM175	8017DCC0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM176	8017DCC8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM177	8017DCD4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM178	8017DCDC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM179	8017DCEC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM180	8017DCFC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM181	8017DD04	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM182	8017DD08	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM183	8017DD18	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM184	8017DD24	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM185	8017DD2C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM186	8017DD9C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM187	8017DDAC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM188	8017DDC0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM189	8017DDC4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM190	8017DDC8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM191	8017DDCC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM192	8017DDD0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM193	8017DDD4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM194	8017DDE4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM195	8017DDE8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM196	8017DDEC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM197	8017DDF0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM198	8017DDF4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM199	8017DDFC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM200	8017DE10	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM201	8017DE28	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM202	8017DE30	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM203	8017DE40	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM204	8017DE58	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM205	8017DE5C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM206	8017DE74	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM207	8017DE78	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM208	8017DE7C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM209	8017DE80	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM210	8017DE84	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM211	8017DE9C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM212	8017DEA0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM213	8017DEA8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM214	8017DEBC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM215	8017DEC8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM216	8017DED0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM217	8017DEE8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM218	8017DEF8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM219	8017DF14	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM220	8017DF1C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM221	8017DF20	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM222	8017DF28	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM223	8017DF30	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM224	8017DF38	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM225	8017DF3C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM226	8017DF40	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM227	8017DF48	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM228	8017DF50	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM229	8017DF74	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM230	8017DF74	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM231	8017DF74	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM232	8017DF84	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM233	8017DF98	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM234	8017DFA4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM235	8017DFA8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM236	8017DFBC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM237	8017DFC4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM238	8017DFD4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM239	8017DFD4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM240	8017DFD4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM241	8017DFE4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM242	8017DFE8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM243	8017DFEC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM244	8017DFF0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM245	8017E000	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM246	8017E00C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM247	8017E010	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM248	8017E024	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM249	8017E02C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM250	8017E03C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM251	8017E03C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM252	8017E03C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM253	8017E068	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM254	8017E06C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM255	8017E070	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM256	8017E074	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM257	8017E07C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM258	8017E090	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM259	8017E09C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM260	8017E0AC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM261	8017E0BC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM262	8017E0C0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM263	8017E0C8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM264	8017E0CC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM265	8017E0D8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM266	8017E0F8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM267	8017E110	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM268	8017E12C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM269	8017E13C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM270	8017E150	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM271	8017E164	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM272	8017E178	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM273	8017E18C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM274	8017E1B0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM275	8017E1C4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM276	8017E1D8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM277	8017E1F8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM278	8017E20C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM279	8017E22C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM280	8017E248	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM281	8017E268	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM282	8017E284	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM283	8017E2A0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM284	8017E2B8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM285	8017E2D0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM286	8017E2E8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM287	8017E2FC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM288	8017E300	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM289	8017E314	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM290	8017E324	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM291	8017E32C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM292	8017E340	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM293	8017E358	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM294	8017E364	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM295	8017E394	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM296	8017E394	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM297	8017E394	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM298	8017E394	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM299	8017E39C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM300	8017E3BC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM301	8017E3C0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM302	8017E3C8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM303	8017E3E0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM304	8017E4F0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM305	8017E52C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM306	8017E530	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM307	8017E534	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM308	8017E548	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM309	8017E54C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM310	8017E554	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM311	8017E558	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM312	8017E55C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM313	8017E560	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM314	8017E564	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM315	8017E568	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM316	8017E56C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM317	8017E570	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM318	8017E574	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM319	8017E578	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM320	8017E57C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM321	8017E580	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM322	8017E588	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM323	8017E58C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM324	8017E58C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM325	8017E594	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM326	8017E5E0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM327	8017E5E4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM328	8017E5E8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM329	8017E5F0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM330	8017E60C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM331	8017E614	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM332	8017E634	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM333	8017E634	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM334	8017E634	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM335	8017E63C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM336	8017E640	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM337	8017E668	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM338	8017E66C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM339	8017E670	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM340	8017E674	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM341	8017E678	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM342	8017E680	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM343	8017E684	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM344	8017E688	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM345	8017E68C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM346	8017E690	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM347	8017E694	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM348	8017E698	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM349	8017E69C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM350	8017E6A0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM351	8017E6A4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM352	8017E6A8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM353	8017E6AC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM354	8017E6B0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM355	8017E6B4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM356	8017E6B8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM357	8017E6BC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM358	8017E6C0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM359	8017E6D8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM360	8017E708	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM361	8017E714	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM362	8017E720	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM363	8017E738	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM364	8017E73C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM365	8017E744	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM366	8017E748	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM367	8017E758	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM368	8017E76C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM369	8017E770	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM370	8017E774	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM371	8017E778	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM372	8017E77C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM373	8017E780	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM374	8017E788	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM375	8017E79C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM376	8017E7A0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM377	8017E7C8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM378	8017E7DC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM379	8017E7E0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM380	8017E80C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM381	8017E820	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM382	8017E828	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM383	8017E850	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM384	8017E864	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM385	8017E868	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM386	8017E894	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM387	8017E8D0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM388	8017E904	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM389	8017E918	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM390	8017E920	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM391	8017E924	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM392	8017E928	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM393	8017E92C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM394	8017E934	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM395	8017E93C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM396	8017E940	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM397	8017E94C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM398	8017E954	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM399	8017E958	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM400	8017E964	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM401	8017E96C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM402	8017E970	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM403	8017E97C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM404	8017E9B8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM405	8017E9BC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM406	8017E9D0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM407	8017E9D8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM408	8017E9E0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM409	8017E9E4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM410	8017E9E8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM411	8017E9F0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM412	8017E9F4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM413	8017E9FC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM414	8017EA04	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM415	8017EA08	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM416	8017EA14	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM417	8017EA18	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM418	8017EA1C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM419	8017EA24	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM420	8017EA28	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM421	8017EA2C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM422	8017EA30	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM423	8017EA34	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM424	8017EA38	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM425	8017EA3C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM426	8017EA40	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM427	8017EA44	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM428	8017EA48	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM429	8017EA4C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM430	8017EA50	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM431	8017EA58	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM432	8017EA74	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM433	8017EA78	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM434	8017EA7C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM435	8017EA80	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM436	8017EA90	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM437	8017EA98	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM438	8017EAEC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM439	8017EB38	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM440	8017EB48	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM441	8017EB54	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM442	8017EB58	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM443	8017EB6C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM444	8017EB80	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM445	8017EB94	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM446	8017EBEC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM447	8017EC38	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM448	8017EC48	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM449	8017EC54	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM450	8017EC58	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM451	8017EC6C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM452	8017EC80	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM453	8017EC88	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM454	8017EC8C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM455	8017EC94	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM456	8017ECF8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM457	8017ED08	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM458	8017ED14	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM459	8017ED44	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM460	8017ED44	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM461	8017ED44	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM462	8017ED5C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM463	8017ED68	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM464	8017ED6C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM465	8017ED74	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM466	8017ED7C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM467	8017ED8C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM468	8017ED90	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM469	8017ED94	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM470	8017ED9C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM471	8017EDA0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM472	8017EDA4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM473	8017EDA8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM474	8017EE38	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM475	8017EE44	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM476	8017EE58	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM477	8017EE78	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM478	8017EE84	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM479	8017EEA4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM480	8017EED4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM481	8017EEE0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM482	8017EF10	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM483	8017EF18	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM484	8017EF3C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM485	8017EF48	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM486	8017EF4C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM487	8017EF50	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM488	8017EF54	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM489	8017EF58	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM490	8017EF5C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM491	8017EF60	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM492	8017EF64	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM493	8017EF68	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM494	8017EF6C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM495	8017EF70	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM496	8017EF74	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM497	8017EF78	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM498	8017EF7C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM499	8017EF80	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM500	8017EF8C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM501	8017EF9C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM502	8017EFAC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM503	8017EFB8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM504	8017EFC0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM505	8017EFC4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM506	8017EFC8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM507	8017EFCC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM508	8017EFD0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM509	8017EFD4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM510	8017EFD8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM511	8017EFDC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM512	8017EFE0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM513	8017EFF0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM514	8017EFF8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM515	8017EFFC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM516	8017F000	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM517	8017F004	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM518	8017F008	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM519	8017F00C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM520	8017F010	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM521	8017F018	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM522	8017F084	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM523	8017F08C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM524	8017F090	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM525	8017F094	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM526	8017F098	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM527	8017F09C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM528	8017F0A4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM529	8017F0BC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM530	8017F0BC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM531	8017F0BC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM532	8017F0D4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM533	8017F0E0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM534	8017F0E4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM535	8017F0EC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM536	8017F0F4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM537	8017F0F8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM538	8017F0FC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM539	8017F100	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM540	8017F104	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM541	8017F108	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM542	8017F10C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM543	8017F110	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM544	8017F114	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM545	8017F118	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM546	8017F120	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM547	8017F124	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM548	8017F13C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM549	8017F16C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM550	8017F178	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM551	8017F1A8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM552	8017F1B0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM553	8017F1C0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM554	8017F1D4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM555	8017F1F4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM556	8017F1F8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM557	8017F200	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM558	8017F21C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM559	8017F238	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM560	8017F23C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM561	8017F240	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM562	8017F248	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM563	8017F250	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM564	8017F258	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM565	8017F25C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM566	8017F260	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM567	8017F264	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM568	8017F278	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM569	8017F27C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM570	8017F280	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM571	8017F288	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM572	8017F29C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM573	8017F2A0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM574	8017F2A4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM575	8017F2BC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM576	8017F2C0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM577	8017F2C8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM578	8017F2DC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM579	8017F2E0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM580	8017F2E4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM581	8017F2FC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM582	8017F338	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM583	8017F350	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM584	8017F368	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM585	8017F370	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM586	8017F374	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM587	8017F380	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM588	8017F388	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM589	8017F38C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM590	8017F398	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM591	8017F404	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM592	8017F404	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM593	8017F404	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM594	8017F408	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM595	8017F40C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM596	8017F410	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM597	8017F414	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM598	8017F41C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM599	8017F434	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM600	8017F434	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM601	8017F434	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM602	8017F438	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM603	8017F440	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM604	8017F444	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM605	8017F46C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM606	8017F470	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM607	8017F474	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM608	8017F480	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM609	8017F498	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM610	8017F4C8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM611	8017F4D0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM612	8017F4DC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM613	8017F4E4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM614	8017F4F4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM615	8017F504	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM616	8017F514	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM617	8017F518	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM618	8017F51C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM619	8017F550	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM620	8017F55C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM621	8017F560	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM622	8017F594	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM623	8017F598	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM624	8017F5A0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM625	8017F5A4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM626	8017F5B0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM627	8017F5BC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM628	8017F5C8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM629	8017F5D4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM630	8017F5D8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM631	8017F5E0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM632	8017F5E4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM633	8017F5EC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM634	8017F5F8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM635	8017F600	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM636	8017F604	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM637	8017F610	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM638	8017F61C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM639	8017F620	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM640	8017F624	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM641	8017F628	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM642	8017F62C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM643	8017F630	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM644	8017F634	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM645	8017F638	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM646	8017F63C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM647	8017F640	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM648	8017F644	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM649	8017F648	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM650	8017F64C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM651	8017F658	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM652	8017F658	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM653	8017F66C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM654	8017F670	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM655	8017F680	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM656	8017F694	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM657	8017F698	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM658	8017F69C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM659	8017F6AC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM660	8017F6C0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM661	8017F6C4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM662	8017F6D4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM663	8017F6FC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM664	8017F700	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM665	8017F704	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM666	8017F708	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM667	8017F70C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM668	8017F710	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM669	8017F724	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM670	8017F728	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM671	8017F738	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM672	8017F75C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM673	8017F764	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM674	8017F768	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM675	8017F7C8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM676	8017F7CC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM677	8017F7E0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM678	8017F7EC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM679	8017F7F4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM680	8017F7F8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM681	8017F83C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM682	8017F850	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM683	8017F854	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM684	8017F864	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM685	8017F878	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM686	8017F87C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM687	8017F88C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM688	8017F8A0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM689	8017F8A4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM690	8017F8B4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM691	8017F8DC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM692	8017F8E8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM693	8017F8EC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM694	8017F8F0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM695	8017F904	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM696	8017F908	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM697	8017F918	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM698	8017F92C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM699	8017F930	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM700	8017F940	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM701	8017F948	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM702	8017F94C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM703	8017F9AC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM704	8017F9B0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM705	8017F9C4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM706	8017F9D0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM707	8017F9DC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM708	8017F9E0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM709	8017F9EC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM710	8017F9F0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM711	8017F9F4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM712	8017F9F8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM713	8017F9F8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM714	8017F9FC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM715	8017FA00	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM716	8017FA04	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM717	8017FA48	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM718	8017FA5C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM719	8017FA60	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM720	8017FA70	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM721	8017FA84	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM722	8017FA88	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM723	8017FA98	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM724	8017FAAC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM725	8017FAB0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM726	8017FAC0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM727	8017FAE8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM728	8017FAEC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM729	8017FAF0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM730	8017FAF4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM731	8017FAF8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM732	8017FAFC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM733	8017FB10	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM734	8017FB14	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM735	8017FB24	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM736	8017FB48	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM737	8017FB50	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM738	8017FB54	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM739	8017FBB0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM740	8017FBB4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM741	8017FBC8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM742	8017FBD4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM743	8017FBDC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM744	8017FBE0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM745	8017FC24	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM746	8017FC38	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM747	8017FC3C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM748	8017FC4C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM749	8017FC60	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM750	8017FC64	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM751	8017FC74	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM752	8017FC88	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM753	8017FC8C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM754	8017FC9C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM755	8017FCC4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM756	8017FCC8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM757	8017FCCC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM758	8017FCD0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM759	8017FCD4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM760	8017FCD8	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM761	8017FCEC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM762	8017FCF0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM763	8017FD00	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM764	8017FD24	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM765	8017FD2C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM766	8017FD30	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM767	8017FD78	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM768	8017FD7C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM769	8017FD8C	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM770	8017FD90	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM771	8017FDA4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM772	8017FDB0	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM773	8017FDBC	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM774	8017FDD4	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+LM775	8017FE04	fl	build/USA/src/rooms/akropolis_promenade/promenade.i
+__romPos	00008D1C	al	
+equipmentGetWeaponLoadCapacity	800BB938	a	
+gActor443500ConsoleFollowupSkipScript	80142A74	a	
+D_80073BAC	80073BAC	a	
+D_80072174	80072174	a	
+areaSetCurrentObjectState	800BAC34	a	
+uiInitList	800489A0	a	
+D_80071072	80071072	a	
+CdFlush	80015AF4	a	
+gameFlagSetNibble	8004AC58	a	
+SetRotMatrix	8004ADF8	a	
+stageRequestModeTaskExit	8003F6F8	a	
+gActor503500StaffCardSceneTaskDesc	8014B958	a	
+sceneEngageBattle	800DB4E0	a	
+tmdAllocPrimitiveBuffer	80041B88	a	
+gActor335800BalconyBattleStartScript	80165720	a	
+gActor450200CompanionSceneScript	80137EE4	a	
+actor161500StartSoldierBRemark	80131E38	a	
+gCapCommandEntries	801156A0	a	
+displayAcquireMenuHold	8003E610	a	
+gPadMenuButtonMask	8005ED78	a	
+areaSetPlacementVariant	800B5B30	a	
+displayQueueModeTask	8003FB70	a	
+gameGetTaskSlot	8002D22C	a	
+GetTPage	80043938	a	
+displaySetFrameTiming	800280F4	a	
+textItoaUnsigned	8002F18C	a	
+gShootingGalleryPierceGalleryTrainingActive	8014D038	a	
+akropolis_promenade_DATA_START	8017FE04	f	
+damagePackEnemyAttackKey	800E2BF8	a	
+viewGetMappedIndex	800AD284	a	
+worldCoordGetOriginAudioPan	800D937C	a	
+mapShelterRoomVariantResolve	80179A04	a	
+gPadInputMenuUnlockUpdates	80115716	a	
+uiGetTextColor	80048E10	a	
+cdCmdSelectScene	8001D534	a	
+SetDrawTPage	80043A38	a	
+D_801153F1	801153F1	a	
+gActor02600MaggotCaterpillarBodyTask	8013A8D4	a	
+printf	8001AF3C	a	
+worldCollisionClearContacts	800E1A6C	a	
+sceneReleaseBattleRefAndClearRewards	800DB630	a	
+memMalloc	8002DABC	a	
+D_80073BA0	80073BA0	a	
+gActionPromptSlots	80114D28	a	
+D_80072836	80072836	a	
+gAttachmentTrainingLevels	80114BF0	a	
+taskPollKill	8002D3BC	a	
+actor260400RestoreHeliportPlacement	80149FA4	a	
+gRoomEffectOrangeBurst2Id	80115754	a	
+gAkropolisPromenadeViewCameras	80186050	f	
+stageMusicRequestAreaStop	800430E4	a	
+taskSpawn	8002CFDC	a	
+MatrixNormal	8003D6C8	a	
+shootingGalleryPierceRequestGalleryAbort	8014A9A0	a	
+gAreaRecordsByStage	8010CBCC	a	
+akropolisPromenadeRoomTask	8017DA4C	ft	
+textDrawUiLine	8002FDCC	a	
+D_8007106C	8007106C	a	
+gActor450800NurseryIntroSkipScript	8013A33C	a	
+D_80070F6C	80070F6C	a	
+capRunCommandWithTransition	800E3B60	a	
+SetSemiTrans	800439B8	a	
+gCapRoomCompletionSoundsEnabled	80115598	a	
+sndEvtRequestMidiStart	800512BC	a	
+inventoryHasCollectedBit	800BB4BC	a	
+gGfxViewCoord	80070F10	a	
+equipmentRestoreHpMp	800BC164	a	
+D_80073B8C	80073B8C	a	
+gameFlowBeginLoadScreen	8002252C	a	
+sndEvtRequestScriptMix	80054424	a	
+worldCollisionProjectGroundCoord	800EA02C	a	
+worldCollisionUnlinkTrigger	800E1708	a	
+padScriptSpawnVariableMotorRamp	800E8D1C	a	
+gfxSetFlatLight	8003B140	a	
+gPlayerActorStateTickHeld	80115768	a	
+gItemDescriptors	8010D838	a	
+playerActorPrepareDryfieldLoadout	800BC4E4	a	
+gActor450200RoomVariantSceneScript	8013FC58	a	
+taskGetDescAt	8002D32C	a	
+rcos	8003D108	a	
+gRoomEffectTwinTrailId	8011572C	a	
+D_80072177	80072177	a	
+streamFindViewMovieSlot	8001EED8	a	
+taskKill	8002CCB8	a	
+gActor143000KeypadTaskDesc	80134564	a	
+gEffectSpriteAtlasFrames	80111E48	a	
+D_80115188	80115188	a	
+D_80072724	80072724	a	
+textDrawString	8002E53C	a	
+gDirectionInteractionRearmUpdates	80114D08	a	
+gRoomEffectSparkBurstId	80115750	a	
+D_80071078	80071078	a	
+gActor120300TaskDescriptors	80141B6C	a	
+inventoryResetIceBagTimer	800BC21C	a	
+gEffectUnitQuadCorners	80111E38	a	
+worldCoordSetActorColorMode	800D930C	a	
+gActor342400EncounterTaskDescs	8016BFE0	a	
+gActor560800ChainGlowTick	801752EC	a	
+gActor444000IncineratorEventTaskDesc	801449F4	a	
+playerActorSetScriptedControl	800E3BBC	a	
+stageMusicRequestAreaStart	80043028	a	
+itemMenuSpawnNotice	800D4E40	a	
+actor460200SetupTentSoldiers	80132210	a	
+gActor335800BalconyEntrySkipScript	80165798	a	
+gActor00700MothTaskDesc	801513C8	a	
+D_80115124	80115124	a	
+uiStartPanelOpening	80048964	a	
+streamGetFrameLimit	80020414	a	
+gActor00100DesertChaserTaskDesc	8014D8A4	a	
+gActor04000HangingPoolTaskDesc	8013E51C	a	
+gActor560800CutsceneTaskDescriptors	801718F0	a	
+actor161500StartCompanionRequestReminder	801322A0	a	
+equipmentInitializeWeaponSupplies	800B6CF0	a	
+gFsActorBuffer1Base	8005C370	a	
+textFormatPlayTime	8002EB94	a	
+playerActorRestoreEquipment	801034C0	a	
+playerActorRemoveEquipment	801043F4	a	
+SetDrawMove	8004AD18	a	
+damageGetPlayerAttackEffectId	800E2D90	a	
+gpuSetPrimitiveBlendMode	800EC914	a	
+worldCoordUpdateActorColor	800D8EA0	a	
+enemyTaskExit	800B0234	a	
+gfxComposeNodeWorldTransform	800B1D00	a	
+gUiPromptObject	80067694	a	
+gFsActorBuffer0Base	8005C36C	a	
+ratan2	8003D9C8	a	
+sceneFindPlacedActor	800E86FC	a	
+animationSeekSlotWithBlend	800B4114	a	
+inventoryInitializeShootingGalleryLoadout	800BA538	a	
+D_80071090	80071090	a	
+gActor450200SoloSceneScript	8013C72C	a	
+RotTransSV	8004BD58	a	
+padIsStartPressed	8004ACF0	a	
+ApplyMatrixSV	80043A68	a	
+memSelectAuxHeapRegion	8002DC08	a	
+gActor450800NurseryIntroScript	80139964	a	
+memcpy	8001AEFC	a	
+gActor151000GardenArrivalScript	801334EC	a	
+gActor341300WalkwaySceneSkipScript	80165834	a	
+gStageCountdownMusicEntry	80062735	a	
+Gp_QtyById0	8010E038	a	
+sndEvtRequestStageScriptStop	800E3E64	a	
+gActor207000SucklercephTaskDescs	80151E60	a	
+capSetTexturePage	800E6D4C	a	
+__floatsidf	8004B5D8	a	
+akropolis_promenade_DATA_END	801862DC	f	
+SetSprt	80043A18	a	
+akropolisPromenadeRoomEffectTask	8017E03C	ft	
+gActor443500MapFollowupSkipScript	801432FC	a	
+areaSyncLocationVariant	800B601C	a	
+effectDrawGroundShadow	800F68AC	a	
+cdCmdCompleteHeadRequest	8001DA48	a	
+gameFlagSetNibbleIfPresent	800E3B3C	a	
+uiSizePanelForTextDefault	800490A4	a	
+worldCollisionUnlinkBody	800E1638	a	
+gRoomEffectFlyingSparkId	80115730	a	
+playerActorWriteWeaponAnimationBankIndex	800E3CEC	a	
+gMapAkropolisPromenadeVariant2Placements	8017B85C	a	
+gGpuCurrentOt	800710A0	a	
+streamInitMoviePlayback	8002043C	a	
+gActor150400FreezerSceneScript	80132D70	a	
+gActor450200SoloSceneSkipScript	8013CAEC	a	
+sndScriptHasActiveId	8005462C	a	
+gMcDialogDescriptors	800611C8	a	
+sndEvtRequestMidiVolume	80051460	a	
+padScriptSpawn	800E8FB0	a	
+gCapFile	8011568C	a	
+gActor450200CompanionSceneSkipScript	80138694	a	
+sceneReleaseBattleRef	800DB6B4	a	
+gMcSaveData	80072168	a	
+akropolis_promenade_TEXT_END	8017FE04	f	
+gameSetTaskSlot	8002D214	a	
+akropolis_promenade_RODATA_START	8017D5C0	f	
+taskSpawnFromTable	8002CFA0	a	
+gActor142900ElevatorFirstVisitSkipScript	801380F8	a	
+gActor503500BossPhaseTransitionScript	8014D158	a	
+inventoryGetItemQuantity	800BB6FC	a	
+cdCmdRequestCancel	8001C970	a	
+actor450900HandleDepartureTrigger	80132834	a	
+D_80070F70	80070F70	a	
+gActor160600SceneWithoutCompanionScript	80135AC0	a	
+displayResumeGameLoop	8003E540	a	
+tmdFreePrimitiveBuffer	80041B4C	a	
+actor460200TalkToSoldierC	801322B8	a	
+itemMenuOpenHotspotCommands	800D4E78	a	
+gfxMakeRelativeTransform	800A8864	a	
+gWorldCollisionSurfacePropertiesTables	8010CBB8	a	
+streamPollGameRestore	8001EF9C	a	
+areaClearMapMark	800AED24	a	
+gItemMenuInfoPanel	80067634	a	
+cdCmdIsSlotEmpty	8001D37C	a	
+D_8007107C	8007107C	a	
+gActor461800NeoArkSceneSkipScript	80134470	a	
+itemMenuDrawTaskPrompt	800CE4F4	a	
+MargePrim	800422B8	a	
+worldCoordSetModelLighting	800D7A9C	a	
+streamResetGameRestore	80020388	a	
+gfxReadMatrixYAxis	8003C748	a	
+actor503500ClearFadeFromBlackHandle	80132F58	a	
+displayReleaseMenuHold	8003E64C	a	
+taskCallExit	8002D0A4	a	
+RotMatrixZYX	80044408	a	
+actor341300ResetScriptTaskHandle	8016268C	a	
+modelObjectAttachTmd	8009902C	a	
+gActor161500CompleteCompanionRequestTaskDesc	80136CDC	a	
+gGameSession	8005ED64	a	
+D_80071076	80071076	a	
+__adddf3	8004AFE8	a	
+glowDrawTintedDiscNoBias	8017F434	ft	
+gRoomEffectFlashId	80115758	a	
+gActor443500TourOpeningSkipScript	80141C1C	a	
+animationAimHeadAtPoint	800B0CF4	a	
+mapAkropolisOpenKeyItemMenu	80179FC8	a	
+areaSetObjectState	800BB8E8	a	
+gItemMenuPanelDescriptors	8010EAB4	a	
+SquareRoot0	8003B8A0	a	
+gameFlagSetPackedByte	800E3FAC	a	
+gAttachmentState	80114C08	a	
+displayConfigureFramebuffers	8003DB48	a	
+gfxBuildOrthonormalBasis	8003CEC4	a	
+gActor342100EncounterBlazeTaskDescriptors	80164B78	a	
+gActor535700PawnGolemEncounterScript	80133898	a	
+sndEvtRequestScriptStop	800542D0	a	
+SetShadeTex	800439E8	a	
+gMapAkropolisPromenadeVariant7Placements	8017B98C	a	
+sceneReleaseBattleRefWithRewards	800DB558	a	
+capRunCommand	800E34D8	a	
+gFsActorBuffer2Base	8005C374	a	
+capReset	800E6DF4	a	
+gAkropolisPromenadeViewCounts	80181BC8	f	
+gActor341300WalkwaySceneScript	80165354	a	
+gEquipmentWeaponPrimaryLoadOptions	8010E238	a	
+gfxReadMatrixZAxis	8003C768	a	
+D_80071086	80071086	a	
+gfxRotMatrixY	8003C98C	a	
+gPadScriptTransitionCommands	80114A24	a	
+viewApplyCamera	800A8A48	a	
+RotTransPers4	8004C358	a	
+gMapAkropolisPromenadeVariant1Placements	8017B82C	a	
+D_8011540E	8011540E	a	
+gPadScriptTransitionSegments	80114A34	a	
+mapDryfieldFullResolveRoomVariant	80179954	a	
+gAkropolisPromenadeSpriteViews	80185FB4	f	
+inventoryRestoreCarriedLoadout	800BA75C	a	
+D_80072176	80072176	a	
+gStreamInterFile	8006AC30	a	
+playerActorPrepareAcropolisLoadout	800BC4BC	a	
+mapAkropolisWasDryfieldMapSelected	8017A038	a	
+gStageMusicTaskDesc	80062774	a	
+gMdecMovieOutputSlot	8005EAEE	a	
+akropolis_promenade_ROM_END	00008D1C	a	
+gAkropolisPromenadeRoomLightingTable	80181BCC	f	
+gActor451100SubmarineTunnelSceneSkipScript	80135FD0	a	
+gStageRoomMusicSequence	80062737	a	
+worldCollisionFindContactIndex	800E19B8	a	
+worldCollisionLinkBody	800E15AC	a	
+D_80073BA9	80073BA9	a	
+midiIsSequenceBusy	800514F8	a	
+memCopyBytes	8002D7A8	a	
+effectKillTask	800EC7E4	a	
+inventoryCountOccupiedRows	800BAF5C	a	
+itemMenuGetPrimaryPreviewItem	800CF27C	a	
+sceneSetPlacedActorDrawMode	800E3C6C	a	
+__fixdfsi	8004B4D8	a	
+effectDrawGouraudDisc	800EAEB8	a	
+cdCmdStageSceneAudioStart	8001D6B8	a	
+D_80072A94	80072A94	a	
+textItoaSigned	8002F020	a	
+cdCmdIsIdle	8001D344	a	
+D_80072729	80072729	a	
+sceneQueueBattleEscapeResult	800A7A64	a	
+capStartSequenceSlot	800E6C70	a	
+worldCollisionReadActionHit	800E1BF0	a	
+SetTransMatrix	8004AE28	a	
+gameFlagGetNibble	8004ACAC	a	
+D_801153F4	801153F4	a	
+gRoomEffectHaloId	80115744	a	
+AddPrim	80043978	a	
+gCapPreserveActorControl	80115690	a	
+uiSetListSystemCursorSound	8004917C	a	
+itemSetIdentified	800BB7C0	a	
+gfxRotMatrixZ	8003CB80	a	
+worldTargetAddReadoutAmount	800DA6E8	a	
+inventoryGetConsumableStackQuantity	800BB26C	a	
+SetDrawOffset	80018AA4	a	
+D_8007272D	8007272D	a	
+gSceneCombatState	801153F0	a	
+itemMenuDrawItemRow	800CD924	a	
+effectDrawSpinningBillboard	800EB2C8	a	
+uiDrawPanelLabel	80047F40	a	
+shootingGalleryPierceSelectCaptionResource	8014C5E0	a	
+akropolis_promenade_VRAM	8017D5C0	f	
+gGameMainPersistentState	800710A8	a	
+enemySpawnFromTable	800B01AC	a	
+gfxRotMatrixYXZ	8003BD34	a	
+D_8011540A	8011540A	a	
+effectDrawModulatedBillboard	800EB6E8	a	
+equipmentHasCarriedWeaponSupply	800BBDDC	a	
+gActor461800NeoArkSceneScript	80133F90	a	
+uiPositionRowDialog	80049024	a	
+actor260400StartHeliportConversation	80149E38	a	
+evsStartScriptWithSkip	800E8634	a	
+gShootingGalleryTargetsTaskDescriptors	80134F94	a	
+gEquipmentModeBaseStats	8010D328	a	
+gFsImageWorkspacePtr	8005C364	a	
+actor160700StartMeetingScript	80131E70	a	
+evsStartScript	800E8614	a	
+loadingRequestViewGraphicsRestore	800A99B4	a	
+actor450200InitializeObservatoryCompanion	801322F8	a	
+StoreImage	80017FA4	a	
+D_80114C12	80114C12	a	
+MoveImage	80018004	a	
+func_807245E4	807245E4	a	
+uiUpdateList	80048C10	a	
+streamGetSlot	80020278	a	
+textAppendString	8002F588	a	
+capGetVariantKey	800E6D3C	a	
+gActor143900ObservatoryEntrySkipScript	80133860	a	
+gActor503500BossDefeatSkipScript	8014CAF8	a	
+capIsBusy	800E6CE0	a	
+attachmentIsTrainingMode	800A74C4	a	
+gGpuPrimCursor	80071190	a	
+worldCoordGetOriginAudioDepth	800D9340	a	
+gfxRotMatrixXYZ	8003B960	a	
+actor161500StartSoldierBShopConversation	80132110	a	
+shopOpenSession	800D4D2C	a	
+gAkropolisPromenadeSurfacePropertiesByClass	801862B0	f	
+gPadCancelButtonMask	8005ED74	a	
+gPadStates	80071620	a	
+SetDrawArea	80018A24	a	
+gShootingGalleryPierceGalleryTaskDescs	8014E13C	a	
+D_80071075	80071075	a	
+RotTransPers3	8004C1E8	a	
+actor460200TalkToSoldierA	80132390	a	
+animationInitContext	800B3F84	a	
+gActor450200RoomVariantSceneSkipScript	80140078	a	
+equipmentFindNextCarriedWeaponSupply	800BBD40	a	
+gActor535700PawnGolemEncounterSkipScript	801341E0	a	
+uiDrawBeveledRect	80046B34	a	
+rand	80037164	a	
+gActor450900EntrySkipScript	80136308	a	
+D_80115410	80115410	a	
+companionSetDrawMode	800E3EB0	a	
+inventoryGiveItem	800BAD08	a	
+gActor560800MovieTaskDescriptors	8016EA28	a	
+gActor342000IncineratorEventTaskDescs	80164FF8	a	
+D_8010E138	8010E138	a	
+effectSpawnHit	800FDB18	a	
+gInventoryContainerRanges	8010D550	a	
+gActor143400CompanionEntryScript	801350BC	a	
+akropolis_promenade_VRAM_END	801862DC	f	
+memCalloc	8002D978	a	
+effectSpawn	800EA478	a	
+gActor450900EntryScript	80136110	a	
+strncmp	8001EAC4	a	
+gInventoryConsumableStacks	8010E3B8	a	
+gActor105500MaggotCaterpillarTasks	8013A8DC	a	
+itemMenuDrawDefaultItemIcon	800CE5D0	a	
+actor161500StartSoldierBTalkB	80132038	a	
+D_80071068	80071068	a	
+gRoomEffectWaterSprayId	80115738	a	
+gActor450800NurseryShootingSkipScript	8013BA84	a	
+gMdecMovieInputSlot	8005EAEC	a	
+gActor443500ConsoleFollowupScript	80141D9C	a	
+actor150400SpawnSlidingModels	80131FB8	a	
+D_800691CA	800691CA	a	
+gActor503500SceneEffectTaskDescs	8014B964	a	
+D_80114C0B	80114C0B	a	
+gRoomEffectMoteId	80115728	a	
+areaApplySavedUpdates	800AE62C	a	
+cdCmdCancelScene	8001D588	a	
+func_800AC000	800AC000	a	
+uiSetPanelContentSize	800466E4	a	
+GsWSMATRIX	80071138	a	
+uiObjectTaskExit	800488B8	a	
+cdSyncPollCommand	8001E6AC	a	
+gActor443500MapFollowupScript	80142C24	a	
+gItemMenuTransferPanelDescriptors	8010D6F4	a	
+cdCmdEnqueue	8001D2B0	a	
+D_801150C0	801150C0	a	
+akropolis_promenade_RODATA_END	8017D5E3	f	
+padCheckButtons	8002C868	a	
+itemMenuDrawPreview	800C7AE8	a	
+gActor160600SceneWithCompanionScript	80135D78	a	
+gCapChoiceRowStride	80115680	a	
+akropolis_promenade_ROM_START	00000000	a	
+taskSpawnFromTableOnDefaultList	8003E4BC	a	
+SetDrawStp	80042288	a	
+gActor143900ObservatoryEntryScript	80133560	a	
+playerActorSetDrawMode	800E3B80	a	
+actor450800StartNurseryCompanionDialogue	80132000	a	
+itemMenuSetPreviewItem	800CDE80	a	
+equipmentRecalculateMaxMp	800B7930	a	
+effectDrawOuterGlowBand	800EAA0C	a	
+stageEnsureHeapTaskPrimitiveBuffer	8003F9AC	a	
+RotMatrixZ	8004AE48	a	
+SetDispMask	80017C00	a	
+SetTile	80042344	a	
+func_80724608	80724608	a	
+cdCmdEnqueueScenePlayback	8001D5CC	a	
+__muldf3	8004B828	a	
+rsin	8003D038	a	
+viewFindLogicalIndex	800ACEBC	a	
+inventoryInitializeStarterLoadout	800B7D18	a	
+shootingGalleryPierceFinishGalleryCourse	8014A908	a	
+gPadConfirmButtonMask	8005ED70	a	
+areaIsSavedPoseRestoreEnabled	800B59A8	a	
+gActor361100PodSceneScript	80165F48	a	
+areaGetVariant	800B5CE8	a	
+gActor443500TourOpeningScript	8014152C	a	
+gGameFlagNibbleBanks	80073980	a	
+actor450800PrepareNurseryKyleMadigan	80132028	a	
+worldCoordSetAmbientColorOverride	800D94B8	a	
+gActor460200TentArrivalSkipScript	80137890	a	
+worldTargetDisableNodeLockOn	800DACF8	a	
+D_80072170	80072170	a	
+D_80070F87	80070F87	a	
+D_80072310	80072310	a	
+worldCollisionProbeGridSegment	800DE7CC	a	
+D_8011540C	8011540C	a	
+memset	800420F8	a	
+companionWriteAnimationBankIndex	800E3D24	a	
+D_80073BAE	80073BAE	a	
+gAkropolisPromenadeRoomCollisionResources	80181B90	f	
+gActor136300GarageCompanionSceneSkipScript	8013C388	a	
+gActor402200GolemTaskDesc	80154188	a	
+streamPrepareMovieWorkspace	80020298	a	
+gActor136300CompanionGaragePlacement	8013B570	a	
+srand	80037194	a	
+viewQueueCurrentCameraAndPackets	800A8B6C	a	
+ApplyMatrixLV	80042128	a	
+taskMessageDispatch	800AC464	a	
+uiStartTreeClosing	80048838	a	
+animationResetSlot	800B3FA8	a	
+taskRequestKill	8002D340	a	
+gShootingGalleryPiercePierceStoryScript	80153274	a	
+D_8007107A	8007107A	a	
+actor161500RestoreCompanionRequestScene	8013230C	a	
+gPlayerStatus	80073B88	a	
+inventoryGetRangeTable	800BB500	a	
+akropolis_promenade_TEXT_SIZE	00002821	a	
+gActor142600IncineratorArrivalSkipScript	80136804	a	
+gPlayerActorTasks	80115760	a	
+gActor548100PanelTaskDesc	801358D8	a	
+akropolis_promenade_RODATA_SIZE	00000023	a	
+equipmentConsumeWeaponLoad	800B6DA4	a	
+inventoryResetCarriedRange	800BC490	a	
+akropolis_promenade_DATA_SIZE	000064D8	a	
+enemyDestroy	800B01F0	a	
+gFsResourceSlots	8006C338	a	
+shootingGalleryPierceStartPierceConversation	8014AF0C	a	
+gRandomLcgState	80070F60	a	
+actor160700RestoreMeetingAnimation	80131E24	a	
+func_800ABFF8	800ABFF8	a	
+gActor146300IceBagHandoverTaskDesc	8013788C	a	
+areaSpawnPlacements	800B4AF8	a	
+itemMenuDrawMeter	800C0E20	a	
+gameFlagGetPackedByte	800E3FCC	a	
+gAkropolisPromenadeViewMaps	80181BC0	f	
+shootingGalleryPierceResolveGalleryExit	8014AA54	a	
+equipmentLoadWeaponConsumable	800B715C	a	
+displaySetShakeY	8003DE78	a	
+sndEvtRequestStageScriptStart	800E3DD8	a	
+inventoryHasAttachedItem	800BC3F8	a	
+equipmentRecalculateMaxHp	800BC0C0	a	
+RotTransPers	8004C198	a	
+gMapAkropolisPromenadeVariant8Placements	8017B9AC	a	
+D_8007216D	8007216D	a	
+gAkropolisPromenadeAreaVariants	80183020	f	
+gActor146300WaterTankEventScript	80137C28	a	
+roomEffectRequestCancelPe	800FC6C0	a	
+gpuUploadImages	800DB31C	a	
+gDirectionActionActive	80114CF8	a	
+D_80072830	80072830	a	
+gActor301100Tasks	80177400	a	
+sndEvtRequestScriptVolume	800544B8	a	
+worldCollisionLinkTrigger	800E1688	a	
+actor450800StartNurseryInteraction	80131E2C	a	
+gActor136300TaskTable	8013B11C	a	
+gStageMusicParams	8007A39C	a	
+VectorNormalSS	8003D5D8	a	
+gActor160900TaskDescriptors	8013FB50	a	
+D_80072A93	80072A93	a	
+gWorldCollisionActiveGrid	80115448	a	
+D_80072A92	80072A92	a	
+roomEffectRequestCancelAll	800EC868	a	
+actorRenderDrawGroundShadow	800B4E54	a	
+D_8007218A	8007218A	a	
+capSelectLoadedFile	800E6D60	a	
+cdCmdDropQueuedTail	8001D424	a	
+Gfx_ViewWorldMtx	80070F34	a	
+gShootingGalleryPiercePierceStorySkipScript	80153D6C	a	
+actor161500StartSoldierBTalkA	80131FBC	a	
+gActor503500BossDefeatScript	8014C540	a	
+tmdBuildBufferHalf	800410F0	a	
+effectDrawScreenTint	800EA858	a	
+gActor146000WaterHoleSceneTasks	801351FC	a	
+tmdResetAuxHeapAndRestoreBuffers	80041EB4	a	
+gActor120500EmptyPlacementTaskDesc	8013843C	a	
+equipmentGetWeaponLoad	800BAFE0	a	
+DrawSync	80017C98	a	
+damageComputePlayerAttack	800E1FEC	a	
+itemMenuClearPreviewItems	800CDEF4	a	
+actor450900StartCompanionConversation	801327A8	a	
+damageRollCriticalHit	800E25F8	a	
+gActor200700RatTaskDesc	80150C80	a	
+gActor151000GardenArrivalSkipScript	80133954	a	
+animationTickSlot	800B4514	a	
+sceneAcquireBattleRef	800DB53C	a	
+akropolisPromenadeScreenDripTask	8017E394	ft	
+gActor143400CompanionEntrySkipScript	801359D4	a	
+companionRemoveEquipment	8010B674	a	
+gPoliceOfficersPlayerAnimSets	801797FC	a	
+sndScriptResolveStageId	800E3E30	a	
+actor146300RestoreHandoverPose	8013224C	a	
+gActor150400FreezerSceneSkipScript	80133088	a	
+companionSetScriptedControl	800E3EF0	a	
+gCapInlineIconCells	8010FB70	a	
+streamPollMoviePlayback	8001FAE0	a	
+gPlayerActorWeaponReaches	80112F60	a	
+D_80072728	80072728	a	
+damagePackAttackKey	800E2C40	a	
+uiSpawnObject	800486F0	a	
+worldCollisionInitContacts	800E18E0	a	
+sndEvtRequestMidiStop	8005132C	a	
+gActor503500BossIntroSkipScript	8014C288	a	
+RotMatrix	80043AC8	a	
+D_80114C11	80114C11	a	
+memConfigureImageMemory	800144F8	a	
+viewQueueCamera	800A8A1C	a	
+displaySpawnTaskFromTable	8003E324	a	
+uiStartPanelHiding	800488F8	a	
+actor260500RestoreHeliportPlacement	80149E80	a	
+gActor04400MadChaserTaskDescs	80142604	a	
+actor450200StartCompanionTalk	80132220	a	
+gpuBlendRgb555ClutRow	800B27C4	a	
+D_80072834	80072834	a	
+actor361100ClearHeadAimTaskHandle	80162B0C	a	
+gCapConfirmedChoiceIndex	801156A8	a	
+itemGetText	800B8EB0	a	
+gActor451100SubmarineTunnelEntryScript	80136108	a	
+ScaleMatrix	8004A98C	a	
+uiDrawTitle	80048E38	a	
+playerActorEndScripted	80104838	a	
+gfxRotMatrixX	8003C788	a	
+D_80071071	80071071	a	
+gRoomEffectSparkEmitterId	80115720	a	
+MulMatrix0	80044208	a	
+D_80114FF8	80114FF8	a	
+gActor450900Tasks	80135E78	a	
+itemMenuIsHotspotActionConfirmed	800D4EC0	a	
+inventoryClearItems	800BAC8C	a	
+gCapRestoreView	80115694	a	
+D_801153F6	801153F6	a	
+gAkropolisPromenadeWarpEntries	80181BDC	f	
+gWorldCoordTransientPointLights	80114F30	a	
+gActor443500PowerPlantProgressDialogueScript	80143494	a	
+capSpawnEventIfIdle	800E3D8C	a	
+gDisplayState	80070F68	a	
+itemMenuSetItemDescriptionPrompt	800CEB40	a	
+D_8007217B	8007217B	a	
+gActor136300GarageCompanionSceneScript	8013B590	a	
+ApplyTransposeMatrixLV	80044050	a	
+gSpriteAreaTables	8010CB68	a	
+inventoryCanAddItem	800B8988	a	
+sceneFindEnemyByPlaceKey	800B584C	a	
+gMidiMusicVolume	8007A396	a	
+inventoryMeltIceBagIfExpired	800BC254	a	
+gteMIMefunc	8004AD78	a	
+inventoryGetItemSortKey	800BC18C	a	
+akropolisPromenadeGroundGlowTask	8017ED44	ft	
+uiGetTextRowsHeight	80048E2C	a	
+gCapControlFlags	801156A4	a	
+shootingGalleryPierceCheckGalleryExitInput	8014A398	a	
+gFsActorBufferWrittenBytes	8006D860	a	
+gMapAkropolisPromenadeVariant3Placements	8017B8DC	a	
+gActor142600IncineratorArrivalScript	801360E4	a	
+playerActorEnterLocomotion	801066DC	a	
+D_8007218B	8007218B	a	
+uiDrawHorizontalSeparator	80047A0C	a	
+sndEvtRequestScriptStart	8005414C	a	
+gActor335800BalconyEntryScript	80165060	a	
+stageReleaseTaskPrimitiveBuffer	8003F9F4	a	
+equipmentGetWeaponSupply	800BBDC8	a	
+animationAimHeadAt	800B17D4	a	
+gRoomEffectOrangeBurstId	8011573C	a	
+viewGetMappedCamera	800A8C08	a	
+gCdCmdQueue	80068FA0	a	
+gActor146300WaterTankEventSkipScript	80138570	a	
+capAbortPlayback	800E6CF0	a	
+textDrawUiLines	8002FB84	a	
+streamFinishScene	800B00C4	a	
+loadingEnqueueEquippedWeaponResources	800A9BE4	a	
+gActor503500BossIntroScript	8014BD48	a	
+gActor207000SlouchTaskDescs	801575F0	a	
+companionRestoreFullHp	800E3D78	a	
+textItoaPadded	8002F44C	a	
+playerStateRestoreFullHpMp	800E3D5C	a	
+gRoomEffectWaterRippleId	8011574C	a	
+shootingGalleryPierceCapCaptionDrawCurrent	8014B0D4	a	
+memFillBytes	8002D894	a	
+D_8007106B	8007106B	a	
+gActor450800NurseryShootingScript	8013AF8C	a	
+uiFitPanelToList	80046830	a	
+uiSetPromptText	80049D34	a	
+RotMatrixX	8004BE58	a	
+worldCoordSetModelAmbientColor	800D9550	a	
+worldTargetLinkNode	800DABEC	a	
+damageAccumulateLifeDrainHp	800E2C78	a	
+gActor451100SubmarineTunnelSceneScript	80135220	a	
+taskReparent	8002D14C	a	
+gActor160600SceneSkipScript	80136258	a	
+playerActorTurnToYaw	80104E00	a	
+gRoomEffectState	80115740	a	
+TransposeMatrix	800420B8	a	
+worldCollisionProjectGroundPoint	800EA1A8	a	
+inventoryClearCollectedBit	800BAEC0	a	
+D_8007216C	8007216C	a	
+uiSpawnOptionDialog	800480A0	a	
+actorRenderComposeCoord	80098F58	a	
+GetClut	80042AE0	a	
+gRoomEffectGlowDiscId	80115734	a	
+itemMenuDrawQuantity	800CDBEC	a	
+akropolisPromenadeGlowLampTask	8017F0BC	ft	
+areaGetCurrentObjectState	800BB470	a	
+gActor341900GluttonEntranceTaskDescs	80164190	a	
+gWorldCollisionActionTriggerListHead	8011556C	a	
+actor260500StartHeliportConversation	80149EBC	a	
+fadeDrawOverlay	8002BA9C	a	
+worldCollisionResolvePushback	800E0C10	a	
+shootingGalleryPierceCapCaptionSelectRecord	8014B2B8	a	
+equipmentEquipCarriedArmor	800B7A50	a	
+__subdf3	8004BC28	a	
+D_80072A98	80072A98	a	
+padInputChangeSuppression	800E9BDC	a	
+gActor450800NurseryReentryScript	8013A84C	a	
+gEvsPlaybackPaused	801156F9	a	
+gActor460200TentArrivalScript	801362B8	a	
+gPoliceOfficersSergeantTaskDescriptors	80179920	a	
+RotMatrixY	8004BFF8	a	
+akropolis_promenade_TEXT_START	8017D5E3	f	
+gActor361100PodSceneSkipScript	80166848	a	
+streamFindMovieSlot	8001EDC8	a	
+shootingGalleryPierceHandleGalleryAction	8014AB6C	a	
+gActor142900ElevatorFirstVisitScript	801378D0	a	
+inventoryIsItemLimitReached	800B7420	a	
+streamSetExternalScenePayloadBuffer	800B015C	a	
+gPoliceOfficersRookieTaskDescriptors	801798FC	a	
+gActor141000FlightTasks	801348D8	a	
+akropolisPromenadeGlowStarTask	8017E634	ft	
+mapNeoArkResolveRoomVariant	80179B14	a	
+gViewIdentityMap	8010CAF8	a	
+gpuResetAndInvalidateModelBuffers	80041E4C	a	
+animationAimHeadAtTask	800B0928	a	
+gItemMenuEmptyPromptText	8010F8D0	a	
+padScriptHalt	800E8F68	a	
+gWorldCollisionSurfacePushbackSuppression	80115428	a	

@@ -3,8 +3,8 @@
 
 #include "gameplay/animation.h"
 
-/* rooms/akropolis/cafeteria/player_cafeteria_follow_up_start */
-static AnimationPackedPose _gAkropolisCafeteriaPlayerCafeteriaFollowUpStartClipBank1[102] = {
+/* rooms/akropolis/cafeteria/player_follow_up_start */
+static AnimationPackedPose _gAkropolisCafeteriaPlayerFollowUpStartClipBank1[102] = {
     { 0, 0, 0, 0, 0, 0 },
     { -0, -0, 0, 0, -0, -0 },
     { -0, -0, 0, 0, -0, -0 },
@@ -109,7 +109,7 @@ static AnimationPackedPose _gAkropolisCafeteriaPlayerCafeteriaFollowUpStartClipB
     { 0, -0, -0, -0, 0, 0 },
 };
 
-static AnimationPackedRotation _gAkropolisCafeteriaPlayerCafeteriaFollowUpStartClipBank4[1555] = {
+static AnimationPackedRotation _gAkropolisCafeteriaPlayerFollowUpStartClipBank4[1555] = {
     { -0, 0, 0 },
     { -0, 0, 0 },
     { -0, 0, 0 },
@@ -1667,7 +1667,7 @@ static AnimationPackedRotation _gAkropolisCafeteriaPlayerCafeteriaFollowUpStartC
     { -0, -0, -0 },
 };
 
-static AnimationRecord _gAkropolisCafeteriaPlayerCafeteriaFollowUpStartClipRecords[1970] = {
+static AnimationRecord _gAkropolisCafeteriaPlayerFollowUpStartClipRecords[1970] = {
     { 0, 0, 0 },
     { 0, 0, 0 },
     { 0, 0, 0 },
@@ -3640,14 +3640,14 @@ static AnimationRecord _gAkropolisCafeteriaPlayerCafeteriaFollowUpStartClipRecor
     { 0, 0, 0 },
 };
 
-static u16 _gAkropolisCafeteriaPlayerCafeteriaFollowUpStartClipTrackStarts[20] = {
+static u16 _gAkropolisCafeteriaPlayerFollowUpStartClipTrackStarts[20] = {
     0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0,
 };
 
-AnimationSet gAkropolisCafeteriaPlayerCafeteriaFollowUpStartClip = {
-    .records           = _gAkropolisCafeteriaPlayerCafeteriaFollowUpStartClipRecords,
-    .trackStartIndices = _gAkropolisCafeteriaPlayerCafeteriaFollowUpStartClipTrackStarts,
-    .poseBanks         = { [1] = _gAkropolisCafeteriaPlayerCafeteriaFollowUpStartClipBank1, [4] = _gAkropolisCafeteriaPlayerCafeteriaFollowUpStartClipBank4 },
+AnimationSet gAkropolisCafeteriaPlayerFollowUpStartClip = {
+    .records           = _gAkropolisCafeteriaPlayerFollowUpStartClipRecords,
+    .trackStartIndices = _gAkropolisCafeteriaPlayerFollowUpStartClipTrackStarts,
+    .poseBanks         = { [1] = _gAkropolisCafeteriaPlayerFollowUpStartClipBank1, [4] = _gAkropolisCafeteriaPlayerFollowUpStartClipBank4 },
 };

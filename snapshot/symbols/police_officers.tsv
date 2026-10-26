@@ -1,0 +1,863 @@
+gcc2_compiled.	80161E24	fl	build/USA/src/actors/police_officers/police_officers.i
+__gnu_compiled_c	80161E24	fl	build/USA/src/actors/police_officers/police_officers.i
+_MACRO_INC_GUARD	00000001	al	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieBodySkeleton	801633BC	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieBodyPartVerts	80163668	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieBodyVerts	801636B4	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieBodyNormals	801641AC	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieBodyStream	80164EFC	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieBody	80168C00	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieCulledBodySkeleton	80168C24	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieCulledBodyPartVerts	80168ED0	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieCulledBodyVerts	80168F1C	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieCulledBodyNormals	80169984	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieCulledBodyStream	8016A4CC	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieCulledBody	8016D48C	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceSergeantBodySkeleton	8016D4B0	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceSergeantBodyPartVerts	8016D75C	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceSergeantBodyVerts	8016D7A8	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceSergeantBodyNormals	8016E2F0	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceSergeantBodyStream	8016F080	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceSergeantBody	801730B0	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceSergeantCulledBodySkeleton	801730D4	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceSergeantCulledBodyPartVerts	80173380	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceSergeantCulledBodyVerts	801733CC	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceSergeantCulledBodyNormals	80173DD4	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceSergeantCulledBodyStream	801749FC	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceSergeantCulledBody	801779AC	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieStepAsideClipBank1	801779D0	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieStepAsideClipBank4	80177ACC	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieStepAsideClipRecords	80177C00	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieStepAsideClipTrackStarts	80177DF0	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieStepAsideClip	80177E18	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieAsideIdleClipBank1	80177E40	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieAsideIdleClipBank4	80177E64	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieAsideIdleClipRecords	80177EC4	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieAsideIdleClipTrackStarts	80178004	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieAsideIdleClip	8017802C	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieWatchAyaEnterClipBank1	80178054	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieWatchAyaEnterClipBank4	801780FC	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieWatchAyaEnterClipRecords	80178180	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieWatchAyaEnterClipTrackStarts	801782B0	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieWatchAyaEnterClip	801782D8	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieWalkToSergeantClipBank1	80178300	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieWalkToSergeantClipBank4	801785AC	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieWalkToSergeantClipRecords	80178790	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieWalkToSergeantClipTrackStarts	80178AE0	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieWalkToSergeantClip	80178B08	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieHaltClipBank1	80178B30	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieHaltClipBank4	80178BA8	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieHaltClipRecords	80178C3C	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieHaltClipTrackStarts	80178D5C	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieHaltClip	80178D84	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieTalkIdleClipBank1	80178DAC	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieTalkIdleClipBank4	80178DC4	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieTalkIdleClipRecords	80178E10	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieTalkIdleClipTrackStarts	80178F40	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieTalkIdleClip	80178F68	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieAskSergeantClipBank1	80178F90	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieAskSergeantClipBank4	80178FA8	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieAskSergeantClipRecords	8017909C	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieAskSergeantClipTrackStarts	80179244	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieAskSergeantClip	8017926C	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieReportAgentClipBank1	80179294	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieReportAgentClipBank4	801792AC	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieReportAgentClipRecords	80179324	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieReportAgentClipTrackStarts	80179430	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieReportAgentClip	80179458	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieTurnAwayClipBank1	80179480	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieTurnAwayClipBank4	80179504	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieTurnAwayClipRecords	801795B8	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieTurnAwayClipTrackStarts	80179704	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceRookieTurnAwayClip	8017972C	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceOfficersRookieAnimSets	80179754	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceOfficersSergeantAnimSets	80179794	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceOfficersPlayerFollowUps	80179830	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceOfficersRookieFollowUps	80179848	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceOfficersSergeantFollowUps	80179868	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceOfficersFollowUps	8017989C	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceOfficersRookieStepSounds	801798A8	fl	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceOfficersMessages	801798B4	fl	build/USA/src/actors/police_officers/police_officers.i
+_policeOfficersPlayAnimation	80162D50	flt	build/USA/src/actors/police_officers/police_officers.i
+_policeOfficersPlace	80162EC8	flt	build/USA/src/actors/police_officers/police_officers.i
+_policeOfficersSetCulledBody	80162CDC	flt	build/USA/src/actors/police_officers/police_officers.i
+_policeOfficersSetBody	80162C64	flt	build/USA/src/actors/police_officers/police_officers.i
+_policeOfficersStopController	80162F34	flt	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceOfficersBodySwapTaskDescriptor	801798E4	fl	build/USA/src/actors/police_officers/police_officers.i
+_policeOfficersSwapBodyTask	801620FC	flt	build/USA/src/actors/police_officers/police_officers.i
+_gPoliceOfficersCulledBodySwapTaskDescriptor	801798F0	fl	build/USA/src/actors/police_officers/police_officers.i
+_policeOfficersSwapCulledBodyTask	80162284	flt	build/USA/src/actors/police_officers/police_officers.i
+_policeOfficersRookieControllerTask	801627BC	flt	build/USA/src/actors/police_officers/police_officers.i
+_policeOfficersRookieBodyTask	80162F88	flt	build/USA/src/actors/police_officers/police_officers.i
+_policeOfficersRookieCulledBodyTask	801631B0	flt	build/USA/src/actors/police_officers/police_officers.i
+_policeOfficersSergeantControllerTask	801629FC	flt	build/USA/src/actors/police_officers/police_officers.i
+_policeOfficersSergeantBodyTask	8016309C	flt	build/USA/src/actors/police_officers/police_officers.i
+_policeOfficersSergeantCulledBodyTask	801632B0	flt	build/USA/src/actors/police_officers/police_officers.i
+LM1	80161E24	fl	build/USA/src/actors/police_officers/police_officers.i
+LM2	80161E24	fl	build/USA/src/actors/police_officers/police_officers.i
+_policeOfficersTickAnimation	80161E24	flt	build/USA/src/actors/police_officers/police_officers.i
+LM3	80161E3C	fl	build/USA/src/actors/police_officers/police_officers.i
+LM4	80161E40	fl	build/USA/src/actors/police_officers/police_officers.i
+LM5	80161E44	fl	build/USA/src/actors/police_officers/police_officers.i
+LM6	80161E48	fl	build/USA/src/actors/police_officers/police_officers.i
+LM7	80161E4C	fl	build/USA/src/actors/police_officers/police_officers.i
+LM8	80161E54	fl	build/USA/src/actors/police_officers/police_officers.i
+LM9	80161E58	fl	build/USA/src/actors/police_officers/police_officers.i
+LM10	80161E5C	fl	build/USA/src/actors/police_officers/police_officers.i
+LM11	80161E64	fl	build/USA/src/actors/police_officers/police_officers.i
+LM12	80161E6C	fl	build/USA/src/actors/police_officers/police_officers.i
+LM13	80161E7C	fl	build/USA/src/actors/police_officers/police_officers.i
+LM14	80161E90	fl	build/USA/src/actors/police_officers/police_officers.i
+LM15	80161EBC	fl	build/USA/src/actors/police_officers/police_officers.i
+LM16	80161EC4	fl	build/USA/src/actors/police_officers/police_officers.i
+LM17	80161ED0	fl	build/USA/src/actors/police_officers/police_officers.i
+LM18	80161ED8	fl	build/USA/src/actors/police_officers/police_officers.i
+LM19	80161EEC	fl	build/USA/src/actors/police_officers/police_officers.i
+LM20	80161F08	fl	build/USA/src/actors/police_officers/police_officers.i
+LM21	80161F1C	fl	build/USA/src/actors/police_officers/police_officers.i
+LM22	80161F38	fl	build/USA/src/actors/police_officers/police_officers.i
+LM23	80161F3C	fl	build/USA/src/actors/police_officers/police_officers.i
+LM24	80161F40	fl	build/USA/src/actors/police_officers/police_officers.i
+LM25	80161F4C	fl	build/USA/src/actors/police_officers/police_officers.i
+LM26	80161F50	fl	build/USA/src/actors/police_officers/police_officers.i
+LM27	80161F60	fl	build/USA/src/actors/police_officers/police_officers.i
+LM28	80161F64	fl	build/USA/src/actors/police_officers/police_officers.i
+LM29	80161F74	fl	build/USA/src/actors/police_officers/police_officers.i
+LM30	80161F78	fl	build/USA/src/actors/police_officers/police_officers.i
+LM31	80161F80	fl	build/USA/src/actors/police_officers/police_officers.i
+LM32	80161F80	fl	build/USA/src/actors/police_officers/police_officers.i
+LM33	80161F80	fl	build/USA/src/actors/police_officers/police_officers.i
+_policeOfficersUpdateAnimation	80161F80	flt	build/USA/src/actors/police_officers/police_officers.i
+LM34	80161F8C	fl	build/USA/src/actors/police_officers/police_officers.i
+LM35	80161FA4	fl	build/USA/src/actors/police_officers/police_officers.i
+LM36	80161FA8	fl	build/USA/src/actors/police_officers/police_officers.i
+LM37	80161FBC	fl	build/USA/src/actors/police_officers/police_officers.i
+LM38	80161FDC	fl	build/USA/src/actors/police_officers/police_officers.i
+LM39	80161FEC	fl	build/USA/src/actors/police_officers/police_officers.i
+LM40	80161FF0	fl	build/USA/src/actors/police_officers/police_officers.i
+LM41	80161FF4	fl	build/USA/src/actors/police_officers/police_officers.i
+LM42	80161FF8	fl	build/USA/src/actors/police_officers/police_officers.i
+LM43	80162010	fl	build/USA/src/actors/police_officers/police_officers.i
+LM44	80162014	fl	build/USA/src/actors/police_officers/police_officers.i
+LM45	80162024	fl	build/USA/src/actors/police_officers/police_officers.i
+LM46	80162058	fl	build/USA/src/actors/police_officers/police_officers.i
+LM47	80162064	fl	build/USA/src/actors/police_officers/police_officers.i
+LM48	80162074	fl	build/USA/src/actors/police_officers/police_officers.i
+LM49	80162084	fl	build/USA/src/actors/police_officers/police_officers.i
+LM50	8016208C	fl	build/USA/src/actors/police_officers/police_officers.i
+LM51	8016209C	fl	build/USA/src/actors/police_officers/police_officers.i
+LM52	801620A0	fl	build/USA/src/actors/police_officers/police_officers.i
+LM53	801620AC	fl	build/USA/src/actors/police_officers/police_officers.i
+LM54	801620B0	fl	build/USA/src/actors/police_officers/police_officers.i
+LM55	801620B4	fl	build/USA/src/actors/police_officers/police_officers.i
+LM56	801620B8	fl	build/USA/src/actors/police_officers/police_officers.i
+LM57	801620BC	fl	build/USA/src/actors/police_officers/police_officers.i
+LM58	801620C0	fl	build/USA/src/actors/police_officers/police_officers.i
+LM59	801620C4	fl	build/USA/src/actors/police_officers/police_officers.i
+LM60	801620C8	fl	build/USA/src/actors/police_officers/police_officers.i
+LM61	801620D4	fl	build/USA/src/actors/police_officers/police_officers.i
+LM62	801620D8	fl	build/USA/src/actors/police_officers/police_officers.i
+LM63	801620FC	fl	build/USA/src/actors/police_officers/police_officers.i
+LM64	801620FC	fl	build/USA/src/actors/police_officers/police_officers.i
+LM65	801620FC	fl	build/USA/src/actors/police_officers/police_officers.i
+LM66	80162268	fl	build/USA/src/actors/police_officers/police_officers.i
+LM67	80162284	fl	build/USA/src/actors/police_officers/police_officers.i
+LM68	80162284	fl	build/USA/src/actors/police_officers/police_officers.i
+LM69	80162284	fl	build/USA/src/actors/police_officers/police_officers.i
+LM70	801623F8	fl	build/USA/src/actors/police_officers/police_officers.i
+LM71	80162414	fl	build/USA/src/actors/police_officers/police_officers.i
+LM72	80162414	fl	build/USA/src/actors/police_officers/police_officers.i
+LM73	80162414	fl	build/USA/src/actors/police_officers/police_officers.i
+_policeOfficersInitBody	80162414	flt	build/USA/src/actors/police_officers/police_officers.i
+LM74	8016242C	fl	build/USA/src/actors/police_officers/police_officers.i
+LM75	801625BC	fl	build/USA/src/actors/police_officers/police_officers.i
+LM76	801625E4	fl	build/USA/src/actors/police_officers/police_officers.i
+LM77	801625E4	fl	build/USA/src/actors/police_officers/police_officers.i
+LM78	801625E4	fl	build/USA/src/actors/police_officers/police_officers.i
+_policeOfficersInitCulledBody	801625E4	flt	build/USA/src/actors/police_officers/police_officers.i
+LM79	801625FC	fl	build/USA/src/actors/police_officers/police_officers.i
+LM80	80162794	fl	build/USA/src/actors/police_officers/police_officers.i
+LM81	801627BC	fl	build/USA/src/actors/police_officers/police_officers.i
+LM82	801627BC	fl	build/USA/src/actors/police_officers/police_officers.i
+LM83	801627BC	fl	build/USA/src/actors/police_officers/police_officers.i
+LM84	801627C4	fl	build/USA/src/actors/police_officers/police_officers.i
+LM85	801627CC	fl	build/USA/src/actors/police_officers/police_officers.i
+LM86	801627D8	fl	build/USA/src/actors/police_officers/police_officers.i
+LM87	801627E8	fl	build/USA/src/actors/police_officers/police_officers.i
+LM88	801627EC	fl	build/USA/src/actors/police_officers/police_officers.i
+LM89	80162828	fl	build/USA/src/actors/police_officers/police_officers.i
+LM90	80162830	fl	build/USA/src/actors/police_officers/police_officers.i
+LM91	80162838	fl	build/USA/src/actors/police_officers/police_officers.i
+LM92	80162844	fl	build/USA/src/actors/police_officers/police_officers.i
+LM93	8016284C	fl	build/USA/src/actors/police_officers/police_officers.i
+LM94	80162850	fl	build/USA/src/actors/police_officers/police_officers.i
+LM95	80162854	fl	build/USA/src/actors/police_officers/police_officers.i
+LM96	8016285C	fl	build/USA/src/actors/police_officers/police_officers.i
+LM97	80162860	fl	build/USA/src/actors/police_officers/police_officers.i
+LM98	80162868	fl	build/USA/src/actors/police_officers/police_officers.i
+LM99	801628B4	fl	build/USA/src/actors/police_officers/police_officers.i
+LM100	801628C0	fl	build/USA/src/actors/police_officers/police_officers.i
+LM101	801628C4	fl	build/USA/src/actors/police_officers/police_officers.i
+LM102	80162904	fl	build/USA/src/actors/police_officers/police_officers.i
+LM103	8016291C	fl	build/USA/src/actors/police_officers/police_officers.i
+LM104	8016295C	fl	build/USA/src/actors/police_officers/police_officers.i
+LM105	80162968	fl	build/USA/src/actors/police_officers/police_officers.i
+LM106	80162970	fl	build/USA/src/actors/police_officers/police_officers.i
+LM107	801629B8	fl	build/USA/src/actors/police_officers/police_officers.i
+LM108	801629C4	fl	build/USA/src/actors/police_officers/police_officers.i
+LM109	801629C8	fl	build/USA/src/actors/police_officers/police_officers.i
+LM110	801629CC	fl	build/USA/src/actors/police_officers/police_officers.i
+LM111	801629D4	fl	build/USA/src/actors/police_officers/police_officers.i
+LM112	801629E0	fl	build/USA/src/actors/police_officers/police_officers.i
+LM113	801629E4	fl	build/USA/src/actors/police_officers/police_officers.i
+LM114	801629FC	fl	build/USA/src/actors/police_officers/police_officers.i
+LM115	801629FC	fl	build/USA/src/actors/police_officers/police_officers.i
+LM116	801629FC	fl	build/USA/src/actors/police_officers/police_officers.i
+LM117	80162A08	fl	build/USA/src/actors/police_officers/police_officers.i
+LM118	80162A10	fl	build/USA/src/actors/police_officers/police_officers.i
+LM119	80162A14	fl	build/USA/src/actors/police_officers/police_officers.i
+LM120	80162A20	fl	build/USA/src/actors/police_officers/police_officers.i
+LM121	80162A24	fl	build/USA/src/actors/police_officers/police_officers.i
+LM122	80162A28	fl	build/USA/src/actors/police_officers/police_officers.i
+LM123	80162A30	fl	build/USA/src/actors/police_officers/police_officers.i
+LM124	80162A34	fl	build/USA/src/actors/police_officers/police_officers.i
+LM125	80162A70	fl	build/USA/src/actors/police_officers/police_officers.i
+LM126	80162A7C	fl	build/USA/src/actors/police_officers/police_officers.i
+LM127	80162A84	fl	build/USA/src/actors/police_officers/police_officers.i
+LM128	80162A90	fl	build/USA/src/actors/police_officers/police_officers.i
+LM129	80162A98	fl	build/USA/src/actors/police_officers/police_officers.i
+LM130	80162AA4	fl	build/USA/src/actors/police_officers/police_officers.i
+LM131	80162AA8	fl	build/USA/src/actors/police_officers/police_officers.i
+LM132	80162AB0	fl	build/USA/src/actors/police_officers/police_officers.i
+LM133	80162B00	fl	build/USA/src/actors/police_officers/police_officers.i
+LM134	80162B4C	fl	build/USA/src/actors/police_officers/police_officers.i
+LM135	80162B64	fl	build/USA/src/actors/police_officers/police_officers.i
+LM136	80162BA4	fl	build/USA/src/actors/police_officers/police_officers.i
+LM137	80162BB0	fl	build/USA/src/actors/police_officers/police_officers.i
+LM138	80162BB8	fl	build/USA/src/actors/police_officers/police_officers.i
+LM139	80162C04	fl	build/USA/src/actors/police_officers/police_officers.i
+LM140	80162C10	fl	build/USA/src/actors/police_officers/police_officers.i
+LM141	80162C2C	fl	build/USA/src/actors/police_officers/police_officers.i
+LM142	80162C3C	fl	build/USA/src/actors/police_officers/police_officers.i
+LM143	80162C48	fl	build/USA/src/actors/police_officers/police_officers.i
+LM144	80162C4C	fl	build/USA/src/actors/police_officers/police_officers.i
+LM145	80162C64	fl	build/USA/src/actors/police_officers/police_officers.i
+LM146	80162C64	fl	build/USA/src/actors/police_officers/police_officers.i
+LM147	80162C64	fl	build/USA/src/actors/police_officers/police_officers.i
+LM148	80162C80	fl	build/USA/src/actors/police_officers/police_officers.i
+LM149	80162C84	fl	build/USA/src/actors/police_officers/police_officers.i
+LM150	80162C88	fl	build/USA/src/actors/police_officers/police_officers.i
+LM151	80162C90	fl	build/USA/src/actors/police_officers/police_officers.i
+LM152	80162C90	fl	build/USA/src/actors/police_officers/police_officers.i
+LM153	80162C98	fl	build/USA/src/actors/police_officers/police_officers.i
+LM154	80162CA0	fl	build/USA/src/actors/police_officers/police_officers.i
+LM155	80162CA0	fl	build/USA/src/actors/police_officers/police_officers.i
+LM156	80162CB0	fl	build/USA/src/actors/police_officers/police_officers.i
+LM157	80162CB4	fl	build/USA/src/actors/police_officers/police_officers.i
+LM158	80162CB8	fl	build/USA/src/actors/police_officers/police_officers.i
+LM159	80162CC0	fl	build/USA/src/actors/police_officers/police_officers.i
+LM160	80162CDC	fl	build/USA/src/actors/police_officers/police_officers.i
+LM161	80162CDC	fl	build/USA/src/actors/police_officers/police_officers.i
+LM162	80162CDC	fl	build/USA/src/actors/police_officers/police_officers.i
+LM163	80162CF0	fl	build/USA/src/actors/police_officers/police_officers.i
+LM164	80162CF4	fl	build/USA/src/actors/police_officers/police_officers.i
+LM165	80162CF8	fl	build/USA/src/actors/police_officers/police_officers.i
+LM166	80162CFC	fl	build/USA/src/actors/police_officers/police_officers.i
+LM167	80162D00	fl	build/USA/src/actors/police_officers/police_officers.i
+LM168	80162D04	fl	build/USA/src/actors/police_officers/police_officers.i
+LM169	80162D0C	fl	build/USA/src/actors/police_officers/police_officers.i
+LM170	80162D14	fl	build/USA/src/actors/police_officers/police_officers.i
+LM171	80162D1C	fl	build/USA/src/actors/police_officers/police_officers.i
+LM172	80162D24	fl	build/USA/src/actors/police_officers/police_officers.i
+LM173	80162D3C	fl	build/USA/src/actors/police_officers/police_officers.i
+LM174	80162D50	fl	build/USA/src/actors/police_officers/police_officers.i
+LM175	80162D50	fl	build/USA/src/actors/police_officers/police_officers.i
+LM176	80162D50	fl	build/USA/src/actors/police_officers/police_officers.i
+LM177	80162D70	fl	build/USA/src/actors/police_officers/police_officers.i
+LM178	80162D78	fl	build/USA/src/actors/police_officers/police_officers.i
+LM179	80162D7C	fl	build/USA/src/actors/police_officers/police_officers.i
+LM180	80162D80	fl	build/USA/src/actors/police_officers/police_officers.i
+LM181	80162D84	fl	build/USA/src/actors/police_officers/police_officers.i
+LM182	80162D8C	fl	build/USA/src/actors/police_officers/police_officers.i
+LM183	80162D9C	fl	build/USA/src/actors/police_officers/police_officers.i
+LM184	80162DA8	fl	build/USA/src/actors/police_officers/police_officers.i
+LM185	80162DAC	fl	build/USA/src/actors/police_officers/police_officers.i
+LM186	80162DB0	fl	build/USA/src/actors/police_officers/police_officers.i
+LM187	80162DB4	fl	build/USA/src/actors/police_officers/police_officers.i
+LM188	80162DB8	fl	build/USA/src/actors/police_officers/police_officers.i
+LM189	80162DC0	fl	build/USA/src/actors/police_officers/police_officers.i
+LM190	80162DC4	fl	build/USA/src/actors/police_officers/police_officers.i
+LM191	80162DD0	fl	build/USA/src/actors/police_officers/police_officers.i
+LM192	80162DD8	fl	build/USA/src/actors/police_officers/police_officers.i
+LM193	80162DE0	fl	build/USA/src/actors/police_officers/police_officers.i
+LM194	80162DE8	fl	build/USA/src/actors/police_officers/police_officers.i
+LM195	80162DF0	fl	build/USA/src/actors/police_officers/police_officers.i
+LM196	80162DFC	fl	build/USA/src/actors/police_officers/police_officers.i
+LM197	80162E04	fl	build/USA/src/actors/police_officers/police_officers.i
+LM198	80162E08	fl	build/USA/src/actors/police_officers/police_officers.i
+LM199	80162E0C	fl	build/USA/src/actors/police_officers/police_officers.i
+LM200	80162E10	fl	build/USA/src/actors/police_officers/police_officers.i
+LM201	80162E54	fl	build/USA/src/actors/police_officers/police_officers.i
+LM202	80162E5C	fl	build/USA/src/actors/police_officers/police_officers.i
+LM203	80162E60	fl	build/USA/src/actors/police_officers/police_officers.i
+LM204	80162E78	fl	build/USA/src/actors/police_officers/police_officers.i
+LM205	80162E7C	fl	build/USA/src/actors/police_officers/police_officers.i
+LM206	80162E8C	fl	build/USA/src/actors/police_officers/police_officers.i
+LM207	80162E98	fl	build/USA/src/actors/police_officers/police_officers.i
+LM208	80162EA4	fl	build/USA/src/actors/police_officers/police_officers.i
+LM209	80162EC8	fl	build/USA/src/actors/police_officers/police_officers.i
+LM210	80162EC8	fl	build/USA/src/actors/police_officers/police_officers.i
+LM211	80162EC8	fl	build/USA/src/actors/police_officers/police_officers.i
+LM212	80162ED4	fl	build/USA/src/actors/police_officers/police_officers.i
+LM213	80162EDC	fl	build/USA/src/actors/police_officers/police_officers.i
+LM214	80162EF0	fl	build/USA/src/actors/police_officers/police_officers.i
+LM215	80162EFC	fl	build/USA/src/actors/police_officers/police_officers.i
+LM216	80162F08	fl	build/USA/src/actors/police_officers/police_officers.i
+LM217	80162F0C	fl	build/USA/src/actors/police_officers/police_officers.i
+LM218	80162F10	fl	build/USA/src/actors/police_officers/police_officers.i
+LM219	80162F14	fl	build/USA/src/actors/police_officers/police_officers.i
+LM220	80162F20	fl	build/USA/src/actors/police_officers/police_officers.i
+LM221	80162F24	fl	build/USA/src/actors/police_officers/police_officers.i
+LM222	80162F34	fl	build/USA/src/actors/police_officers/police_officers.i
+LM223	80162F34	fl	build/USA/src/actors/police_officers/police_officers.i
+LM224	80162F34	fl	build/USA/src/actors/police_officers/police_officers.i
+LM225	80162F48	fl	build/USA/src/actors/police_officers/police_officers.i
+LM226	80162F50	fl	build/USA/src/actors/police_officers/police_officers.i
+LM227	80162F60	fl	build/USA/src/actors/police_officers/police_officers.i
+LM228	80162F68	fl	build/USA/src/actors/police_officers/police_officers.i
+LM229	80162F6C	fl	build/USA/src/actors/police_officers/police_officers.i
+LM230	80162F74	fl	build/USA/src/actors/police_officers/police_officers.i
+LM231	80162F88	fl	build/USA/src/actors/police_officers/police_officers.i
+LM232	80162F88	fl	build/USA/src/actors/police_officers/police_officers.i
+LM233	80162F88	fl	build/USA/src/actors/police_officers/police_officers.i
+LM234	80163088	fl	build/USA/src/actors/police_officers/police_officers.i
+LM235	8016309C	fl	build/USA/src/actors/police_officers/police_officers.i
+LM236	8016309C	fl	build/USA/src/actors/police_officers/police_officers.i
+LM237	8016309C	fl	build/USA/src/actors/police_officers/police_officers.i
+LM238	8016319C	fl	build/USA/src/actors/police_officers/police_officers.i
+LM239	801631B0	fl	build/USA/src/actors/police_officers/police_officers.i
+LM240	801631B0	fl	build/USA/src/actors/police_officers/police_officers.i
+LM241	801631B0	fl	build/USA/src/actors/police_officers/police_officers.i
+LM242	801631C0	fl	build/USA/src/actors/police_officers/police_officers.i
+LM243	801631C4	fl	build/USA/src/actors/police_officers/police_officers.i
+LM244	801631C8	fl	build/USA/src/actors/police_officers/police_officers.i
+LM245	80163258	fl	build/USA/src/actors/police_officers/police_officers.i
+LM246	80163264	fl	build/USA/src/actors/police_officers/police_officers.i
+LM247	8016326C	fl	build/USA/src/actors/police_officers/police_officers.i
+LM248	801632A0	fl	build/USA/src/actors/police_officers/police_officers.i
+LM249	801632B0	fl	build/USA/src/actors/police_officers/police_officers.i
+LM250	801632B0	fl	build/USA/src/actors/police_officers/police_officers.i
+LM251	801632B0	fl	build/USA/src/actors/police_officers/police_officers.i
+LM252	801632C0	fl	build/USA/src/actors/police_officers/police_officers.i
+LM253	801632C4	fl	build/USA/src/actors/police_officers/police_officers.i
+LM254	801632C8	fl	build/USA/src/actors/police_officers/police_officers.i
+LM255	80163358	fl	build/USA/src/actors/police_officers/police_officers.i
+LM256	80163364	fl	build/USA/src/actors/police_officers/police_officers.i
+LM257	8016336C	fl	build/USA/src/actors/police_officers/police_officers.i
+LM258	801633AC	fl	build/USA/src/actors/police_officers/police_officers.i
+LM259	801633BC	fl	build/USA/src/actors/police_officers/police_officers.i
+__romPos	00017B24	al	
+animationInitDirectSlot	800B3CE8	a	
+D_80073BAC	80073BAC	a	
+effectSpawnPlayerBodyHit	8010B2A0	a	
+areaSetCurrentObjectState	800BAC34	a	
+gameFlagSetNibble	8004AC58	a	
+playerActorResetChildSlots	801038F8	a	
+SetRotMatrix	8004ADF8	a	
+stageRequestModeTaskExit	8003F6F8	a	
+sceneSetEnemyAlert	800DB530	a	
+sceneEngageBattle	800DB4E0	a	
+tmdAllocPrimitiveBuffer	80041B88	a	
+playerActorEnterPendingHit	8010A9D0	a	
+displayAcquireMenuHold	8003E610	a	
+companionRecoverToIdle	8010C180	a	
+displayQueueModeTask	8003FB70	a	
+gameGetTaskSlot	8002D22C	a	
+gPoliceRookieIdleClip	80195EC4	a	
+D_80115418	80115418	a	
+damagePackEnemyAttackKey	800E2BF8	a	
+viewGetMappedIndex	800AD284	a	
+worldCoordGetOriginAudioPan	800D937C	a	
+animationTickSlotPose	800B3448	a	
+D_801153F1	801153F1	a	
+D_8011541B	8011541B	a	
+printf	8001AF3C	a	
+worldCollisionClearContacts	800E1A6C	a	
+gfxBuildDirectionRotation	800E1CD4	a	
+sceneReleaseBattleRefAndClearRewards	800DB630	a	
+LoadImage2	8001A3E4	a	
+memMalloc	8002DABC	a	
+D_80073BA0	80073BA0	a	
+gActionPromptSlots	80114D28	a	
+gRoomEffectOrangeBurst2Id	80115754	a	
+__divsf3	8005BF20	a	
+taskSpawn	8002CFDC	a	
+MatrixNormal	8003D6C8	a	
+police_officers_ROM_END	00017B24	a	
+D_8007106C	8007106C	a	
+D_80070F6C	80070F6C	a	
+capRunCommandWithTransition	800E3B60	a	
+SetSemiTrans	800439B8	a	
+inventoryHasCollectedBit	800BB4BC	a	
+worldCollisionApplyResponsePushback	801011D0	a	
+gGfxViewCoord	80070F10	a	
+D_80073B8C	80073B8C	a	
+gfxMatrixToEuler	8003C4F0	a	
+gameFlowBeginLoadScreen	8002252C	a	
+sndEvtRequestScriptMix	80054424	a	
+worldCollisionProjectGroundCoord	800EA02C	a	
+playerActorPlayFootstepCue	80105ED4	a	
+worldCollisionUnlinkTrigger	800E1708	a	
+__fixsfsi	8005C070	a	
+RotMatrixZXY	8004C9C8	a	
+padScriptSpawnVariableMotorRamp	800E8D1C	a	
+gfxSetFlatLight	8003B140	a	
+playerActorSpawnWeaponModel	80104364	a	
+gPlayerActorStateTickHeld	80115768	a	
+padScriptSpawnDepthScaled	800E9188	a	
+MulRotMatrix	8004C508	a	
+rcos	8003D108	a	
+gRoomEffectTwinTrailId	8011572C	a	
+police_officers_bss_VRAM	80179944	f	
+taskKill	8002CCB8	a	
+police_officers_BSS_END	80179944	f	
+worldCollisionCalcContactWorldOffset	800B6118	a	
+gEffectSpriteAtlasFrames	80111E48	a	
+gDirectionInteractionRearmUpdates	80114D08	a	
+playerActorPlanarLength	80103D8C	a	
+gRoomEffectSparkBurstId	80115750	a	
+D_80071078	80071078	a	
+playerActorTurnBodyTowardPoint	8010BD88	a	
+gEffectUnitQuadCorners	80111E38	a	
+police_officers_DATA_START	801633BC	f	
+worldCoordSetActorColorMode	800D930C	a	
+sceneLatchActionSignal	800DB500	a	
+playerActorSetScriptedControl	800E3BBC	a	
+gPoliceSergeantTalkIdleClip	80192E24	a	
+playerActorPlayChildSlotsWithBlend	80103A18	a	
+playerActorRestoreEquipment	801034C0	a	
+playerActorRemoveEquipment	801043F4	a	
+worldTargetFindLockNodeFromPad	800DAD78	a	
+damageGetPlayerAttackEffectId	800E2D90	a	
+gpuSetPrimitiveBlendMode	800EC914	a	
+worldCoordUpdateActorColor	800D8EA0	a	
+enemyTaskExit	800B0234	a	
+gfxComposeNodeWorldTransform	800B1D00	a	
+companionEnterDamageReaction	8010B9A4	a	
+playerActorTickScriptedAnimation	80108BAC	a	
+D_80115416	80115416	a	
+gPoliceSergeantHunterFromMistClip	80195414	a	
+gPlayerActorWeaponAnimationBankBases	80112D68	a	
+gfxExtractSmallestEuler	800B114C	a	
+ratan2	8003D9C8	a	
+D_80115414	80115414	a	
+sceneFindPlacedActor	800E86FC	a	
+animationSeekSlotWithBlend	800B4114	a	
+D_80071090	80071090	a	
+padIsStartPressed	8004ACF0	a	
+police_officers_DATA_END	80179944	f	
+ApplyMatrixSV	80043A68	a	
+memcpy	8001AEFC	a	
+gStageCountdownMusicEntry	80062735	a	
+capSetTexturePage	800E6D4C	a	
+__floatsidf	8004B5D8	a	
+cdCmdEnqueueDisplayResource	80042364	a	
+LoadAverageCol	8004C808	a	
+playerActorGetTurnToPoint	8010BCF4	a	
+areaSyncLocationVariant	800B601C	a	
+effectDrawGroundShadow	800F68AC	a	
+gPoliceSergeantTurnHeadBackClip	80194858	a	
+worldCollisionUnlinkBody	800E1638	a	
+playerActorWriteWeaponAnimationBankIndex	800E3CEC	a	
+gGpuCurrentOt	800710A0	a	
+StoreImage2	8001A4D0	a	
+damageIsEnemyDamageOverTimeExpired	800E2F7C	a	
+padScriptSpawn	800E8FB0	a	
+police_officers_VRAM	80161E20	f	
+gCapFile	8011568C	a	
+sceneReleaseBattleRef	800DB6B4	a	
+damageGetPlayerAttackHitCooldown	800E3194	a	
+gMcSaveData	80072168	a	
+animationApplyBlendedPose	800B4248	a	
+gameSetTaskSlot	8002D214	a	
+worldCollisionCountContactsByKind	800E1A1C	a	
+taskSpawnFromTable	8002CFA0	a	
+gAyaAskAboutRoofClip	80198564	a	
+companionInitNativeAnimation	8010BFCC	a	
+cdCmdRequestCancel	8001C970	a	
+worldCollisionSurfaceClassFromMask	800E1ACC	a	
+D_80070F70	80070F70	a	
+displayResumeGameLoop	8003E540	a	
+gTaskBank4Descs	800676A8	a	
+gTaskBank2Descs	80067828	a	
+tmdFreePrimitiveBuffer	80041B4C	a	
+VectorNormalS	8003D594	a	
+itemMenuOpenHotspotCommands	800D4E78	a	
+gfxMakeRelativeTransform	800A8864	a	
+gWorldCollisionSurfacePropertiesTables	8010CBB8	a	
+LoadImage	80017F44	a	
+gTaskBank1Descs	800670D0	a	
+D_80062730	80062730	a	
+streamPollGameRestore	8001EF9C	a	
+areaClearMapMark	800AED24	a	
+worldCollisionSurfaceClassFromKey	800E1B24	a	
+D_8007107C	8007107C	a	
+worldCoordSetModelLighting	800D7A9C	a	
+streamResetGameRestore	80020388	a	
+gPoliceSergeantOuttaControlClip	80193288	a	
+gAyaIdleClip	80196558	a	
+gfxReadMatrixYAxis	8003C748	a	
+playerActorTickScriptedMoveTo	80107E1C	a	
+displayReleaseMenuHold	8003E64C	a	
+taskCallExit	8002D0A4	a	
+RotMatrixZYX	80044408	a	
+SetPolyFT4	8004C1C8	a	
+D_8011540D	8011540D	a	
+modelLightingSetLayerMaterials	8009EA50	a	
+damageTickEnemyBuildup	800E3084	a	
+playerActorTurnAimTowardPoint	8010BE5C	a	
+gGameSession	8005ED64	a	
+damageStartEnemyBuildup	800E301C	a	
+D_80071076	80071076	a	
+D_80115413	80115413	a	
+worldCollisionSegmentOccluded	800E0308	a	
+__adddf3	8004AFE8	a	
+gRoomEffectFlashId	80115758	a	
+gAyaLookAtWreckClip	801987B8	a	
+playerActorInitWeaponCollision	80100FCC	a	
+animationAimHeadAtPoint	800B0CF4	a	
+SquareRoot0	8003B8A0	a	
+gameFlagSetPackedByte	800E3FAC	a	
+gAttachmentState	80114C08	a	
+worldCollisionTestOccluderSegment	800DFCCC	a	
+tmdXformStreamVerts	800112DC	a	
+displayConfigureFramebuffers	8003DB48	a	
+gfxBuildOrthonormalBasis	8003CEC4	a	
+sndEvtRequestScriptStop	800542D0	a	
+actorRenderUploadTexture	800DB28C	a	
+worldCollisionResolveResponsePushback	800E0FEC	a	
+sceneReleaseBattleRefWithRewards	800DB558	a	
+capRunCommand	800E34D8	a	
+gFsActorBuffer2Base	8005C374	a	
+gPoliceSergeantTurnHeadClip	80194680	a	
+capReset	800E6DF4	a	
+damageGetPlayerAttackReaction	800E2D3C	a	
+loadingEnqueueCharacterResources	800A9B3C	a	
+worldTargetFindLockNode	800DAD54	a	
+gfxReadMatrixZAxis	8003C768	a	
+gfxRotMatrixY	8003C98C	a	
+gPadScriptTransitionCommands	80114A24	a	
+RotTransPers4	8004C358	a	
+gfxDotProduct	8003D000	a	
+playerActorSetPendingDisplacement	80105B74	a	
+padPostVibrationRequest	8002C8E4	a	
+animationBindContext	800B3F60	a	
+D_8011540E	8011540E	a	
+gPadScriptTransitionSegments	80114A34	a	
+playerActorEnterStoppedPose	8010AA28	a	
+inventoryRestoreCarriedLoadout	800BA75C	a	
+roomEffectRecordAnimationSoundCue	800EA3A0	a	
+worldTargetUnlinkNode	800DAB38	a	
+worldCollisionFindContactIndex	800E19B8	a	
+gPoliceSergeantOuttaControlGestureClip	80193538	a	
+worldCollisionLinkBody	800E15AC	a	
+D_80073BA9	80073BA9	a	
+tmdDrawStreamGt4	800110A0	a	
+D_80073BAD	80073BAD	a	
+effectKillTask	800EC7E4	a	
+memCopyBytes	8002D7A8	a	
+sceneSetPlacedActorDrawMode	800E3C6C	a	
+__fixdfsi	8004B4D8	a	
+gPoliceSergeantClearedForEntryClip	80191E7C	a	
+gWorldCollisionOccluderListHead	80115550	a	
+gEffectBurstTaskDescriptors	80114B34	a	
+cdCmdStageSceneAudioStart	8001D6B8	a	
+animationTickDirectSlot	800B3DB4	a	
+cdCmdIsIdle	8001D344	a	
+D_80115419	80115419	a	
+D_80072729	80072729	a	
+capStartSequenceSlot	800E6C70	a	
+companionGetHealthBand	8010C058	a	
+worldCollisionReadActionHit	800E1BF0	a	
+playerActorResetWeaponAttack	80106350	a	
+SetTransMatrix	8004AE28	a	
+gameFlagGetNibble	8004ACAC	a	
+D_801153F4	801153F4	a	
+gRoomEffectHaloId	80115744	a	
+playerStateSpendMp	800A7F34	a	
+gPoliceSergeantLowerArmClip	801942C0	a	
+gCapPreserveActorControl	80115690	a	
+itemSetIdentified	800BB7C0	a	
+gfxRotMatrixZ	8003CB80	a	
+worldTargetAddReadoutAmount	800DA6E8	a	
+SetDrawOffset	80018AA4	a	
+playerActorShortestTurn	80103E7C	a	
+VectorNormal	8003D5A8	a	
+D_8007272D	8007272D	a	
+gSceneCombatState	801153F0	a	
+worldCoordPlaySound	801064A4	a	
+enemySpawnFromTable	800B01AC	a	
+playerActorGetPointDelta	80103C74	a	
+gAyaPutAwayBadgeClip	80197098	a	
+D_8011540A	8011540A	a	
+tmdSetTextureOffsets	800B58D4	a	
+evsStartScriptWithSkip	800E8634	a	
+playerActorSpawnAttachment	80104258	a	
+gFsImageWorkspacePtr	8005C364	a	
+evsStartScript	800E8614	a	
+StoreImage	80017FA4	a	
+D_80114C12	80114C12	a	
+MoveImage	80018004	a	
+gPoliceSergeantTurnAwayClip	80195228	a	
+capGetVariantKey	800E6D3C	a	
+police_officers_TEXT_END	801633BC	f	
+capIsBusy	800E6CE0	a	
+gGpuPrimCursor	80071190	a	
+gPoliceSergeantWatchYourselfClip	80193BD0	a	
+worldCoordGetOriginAudioDepth	800D9340	a	
+gAyaFaceSergeantClip	8019753C	a	
+D_8011505C	8011505C	a	
+gfxRotMatrixXYZ	8003B960	a	
+gPoliceSergeantRaiseArmClip	80193EBC	a	
+shopOpenSession	800D4D2C	a	
+gPadCancelButtonMask	8005ED74	a	
+gPadStates	80071620	a	
+SetDrawArea	80018A24	a	
+gAyaAskSituationClip	80197AB8	a	
+D_80071075	80071075	a	
+worldTargetSetPlayerLock	800DACAC	a	
+RotTransPers3	8004C1E8	a	
+animationInitContext	800B3F84	a	
+rand	80037164	a	
+D_80115410	80115410	a	
+playerActorPlayChildSlots	8010397C	a	
+gPoliceSergeantTurnedIdleClip	80194DD8	a	
+effectSpawnHit	800FDB18	a	
+D_801153F2	801153F2	a	
+__floatsisf	8005C120	a	
+RotMatrix_gte	80049D84	a	
+gPoliceSergeantIdleClip	801955B4	a	
+companionBindCollisionProbe	8010C1FC	a	
+memCalloc	8002D978	a	
+gPoliceSergeantListenClip	801944A4	a	
+sndEvtRequestScriptUnmute	800543AC	a	
+effectSpawn	800EA478	a	
+strncmp	8001EAC4	a	
+gPoliceSergeantSomethingBigClip	801939FC	a	
+gRoomEffectWaterSprayId	80115738	a	
+gfxExtractEulerAngles	800B0FDC	a	
+D_800691CA	800691CA	a	
+areaSaveEnemyPose	800B48FC	a	
+playerActorSpawnGrenadeProjectile	80104490	a	
+gRoomEffectMoteId	80115728	a	
+areaApplySavedUpdates	800AE62C	a	
+D_80115415	80115415	a	
+cdCmdCancelScene	8001D588	a	
+GsWSMATRIX	80071138	a	
+cdCmdEnqueue	8001D2B0	a	
+padCheckButtons	8002C868	a	
+taskSpawnFromTableOnDefaultList	8003E4BC	a	
+SetDrawStp	80042288	a	
+playerActorSetDrawMode	800E3B80	a	
+worldTargetGetBodyPosition	800DAE50	a	
+gfxReadMatrixXAxis	8003C728	a	
+gPoliceRookieExplainSwatClip	801963A0	a	
+D_80073BAA	80073BAA	a	
+animationBindModelContext	800B3CCC	a	
+worldCollisionBindEnemySphere	8010C980	a	
+fsUploadImageChunk	800246B0	a	
+RotMatrixZ	8004AE48	a	
+SetDispMask	80017C00	a	
+playerActorMode2State2	80108BD8	a	
+SetTile	80042344	a	
+cdCmdEnqueueScenePlayback	8001D5CC	a	
+__muldf3	8004B828	a	
+rsin	8003D038	a	
+viewFindLogicalIndex	800ACEBC	a	
+D_8006C45C	8006C45C	a	
+actorRenderCopyCoordBodyTransform	800B0278	a	
+areaGetVariant	800B5CE8	a	
+gGameFlagNibbleBanks	80073980	a	
+police_officers_RODATA_START	80161E20	f	
+ScaleMatrixL	8004C888	a	
+worldCoordSetAmbientColorOverride	800D94B8	a	
+tmdDrawStreamGt3	80010F08	a	
+damageStartEnemyStagger	800E3008	a	
+worldTargetDisableNodeLockOn	800DACF8	a	
+D_80072170	80072170	a	
+D_80070F87	80070F87	a	
+worldCollisionProbeGridSegment	800DE7CC	a	
+playerActorHasWallContact	801041B4	a	
+D_8011540C	8011540C	a	
+memset	800420F8	a	
+companionWriteAnimationBankIndex	800E3D24	a	
+D_80073BAE	80073BAE	a	
+D_80115412	80115412	a	
+D_8007272F	8007272F	a	
+streamPrepareMovieWorkspace	80020298	a	
+srand	80037194	a	
+viewQueueCurrentCameraAndPackets	800A8B6C	a	
+ApplyMatrixLV	80042128	a	
+inventorySetCollectedBit	800BAE5C	a	
+taskMessageDispatch	800AC464	a	
+gPoliceRookieStandClip	8019578C	a	
+animationResetSlot	800B3FA8	a	
+taskRequestKill	8002D340	a	
+playerActorTickChildSlots	80103AC0	a	
+D_8007107A	8007107A	a	
+ClearImage	80017E1C	a	
+playerActorTickAnimationState	80101848	a	
+playerActorFinishDamageReaction	8010ABD4	a	
+gPlayerStatus	80073B88	a	
+gPlayerActorTasks	80115760	a	
+gPoliceSergeantDamnRookiesClip	80194FC0	a	
+animationStartDirectSlot	800B3AA4	a	
+enemyDestroy	800B01F0	a	
+gFsResourceSlots	8006C338	a	
+__mulsf3	8005C1F0	a	
+gRandomLcgState	80070F60	a	
+sndEvtRequestScriptMute	80054334	a	
+strcmp	80039B74	a	
+D_80115764	80115764	a	
+displaySetShakeY	8003DE78	a	
+damageTryStartEnemyDamageOverTime	800E2DE4	a	
+RotTransPers	8004C198	a	
+D_8007216D	8007216D	a	
+animationCaptureSlotWithBlend	800B4538	a	
+gTaskBank8Descs	800626EC	a	
+roomEffectRequestCancelPe	800FC6C0	a	
+gpuUploadImages	800DB31C	a	
+gDirectionActionActive	80114CF8	a	
+D_80072830	80072830	a	
+gPoliceSergeantHeardOfThemClip	80194B0C	a	
+D_80071085	80071085	a	
+spriteGetViewDrawAreas	800AD2E8	a	
+gfxBlendOrthonormalRotation	800B1460	a	
+VectorNormalSS	8003D5D8	a	
+gWorldCollisionActiveGrid	80115448	a	
+roomEffectRequestCancelAll	800EC868	a	
+actorRenderDrawGroundShadow	800B4E54	a	
+D_8007218A	8007218A	a	
+damageTickEnemyDamageOverTime	800E2EC4	a	
+capSelectLoadedFile	800E6D60	a	
+Gfx_ViewWorldMtx	80070F34	a	
+gFsImageHeaderYShiftRows	8006C234	a	
+tmdBuildBufferHalf	800410F0	a	
+GPU_printf	8005D950	a	
+gMapNeoArkCompanionDistressTicks	8017A99C	a	
+DrawSync	80017C98	a	
+effectGetGroundShadowShade	800EA318	a	
+damageComputePlayerAttack	800E1FEC	a	
+D_8006C454	8006C454	a	
+animationApplyPoseWithBlendedRotation	800B43E0	a	
+damageRollCriticalHit	800E25F8	a	
+animationTickSlot	800B4514	a	
+sceneAcquireBattleRef	800DB53C	a	
+police_officers_BSS_START	80179944	f	
+gAyaThankOfficerClip	801983C4	a	
+gPoliceOfficersPlayerAnimSets	801797FC	f	
+companionGetPlayerPlanarDistance	8010BC70	a	
+effectDrawGroundGlow	800F6560	a	
+gPoliceSergeantHelicopterDownClip	801937EC	a	
+gCapInlineIconCells	8010FB70	a	
+playerActorPlanarDistance	80103DD4	a	
+taskDetachFromParent	8002D0CC	a	
+gPlayerActorWeaponReaches	80112F60	a	
+playerActorUpdateFacing	80101F58	a	
+D_80072728	80072728	a	
+damagePackAttackKey	800E2C40	a	
+police_officers_BSS_SIZE	00000000	a	
+worldCollisionInitContacts	800E18E0	a	
+sndEvtRequestMidiStop	8005132C	a	
+RotMatrix	80043AC8	a	
+gAyaTurnToSergeantClip	80197324	a	
+D_80114C11	80114C11	a	
+viewQueueCamera	800A8A1C	a	
+displaySpawnTaskFromTable	8003E324	a	
+police_officers_RODATA_END	80161E24	f	
+gPoliceRookieShiftStanceClip	80195BD4	a	
+companionSetDecisionDelay	8010BF7C	a	
+ScaleMatrix	8004A98C	a	
+police_officers_ROM_START	00000000	a	
+gfxRotMatrixX	8003C788	a	
+D_8011540B	8011540B	a	
+playerActorResolveBodyContacts	80109BB4	a	
+gRoomEffectSparkEmitterId	80115720	a	
+MulMatrix0	80044208	a	
+D_80114FF8	80114FF8	a	
+D_80115417	80115417	a	
+itemMenuIsHotspotActionConfirmed	800D4EC0	a	
+D_801153F6	801153F6	a	
+gWorldCoordTransientPointLights	80114F30	a	
+companionTrackLockTarget	8010C098	a	
+capSpawnEventIfIdle	800E3D8C	a	
+gDisplayState	80070F68	a	
+ApplyTransposeMatrixLV	80044050	a	
+gPoliceSergeantGoRightInClip	80192C74	a	
+gSpriteAreaTables	8010CB68	a	
+sceneFindEnemyByPlaceKey	800B584C	a	
+MulMatrix	8004C248	a	
+inventoryMeltIceBagIfExpired	800BC254	a	
+gteMIMefunc	8004AD78	a	
+gFsActorBufferWrittenBytes	8006D860	a	
+playerActorIsSlotAdvancingLinearly	80105894	a	
+playerStateSetStatusEffects	8010A1B0	a	
+D_8007218B	8007218B	a	
+sndEvtRequestScriptStart	8005414C	a	
+companionApplyDamage	8010C8F0	a	
+animationAimHeadAt	800B17D4	a	
+gRoomEffectOrangeBurstId	8011573C	a	
+gAyaTurnFromSergeantClip	80197D44	a	
+viewGetMappedCamera	800A8C08	a	
+gCdCmdQueue	80068FA0	a	
+police_officers_RODATA_SIZE	00000004	a	
+streamFinishScene	800B00C4	a	
+animationGetCurrentRecord	800B4668	a	
+animationResetRemappedSlot	800B404C	a	
+gRoomEffectWaterRippleId	8011574C	a	
+memFillBytes	8002D894	a	
+playerActorStepMovement	80101A68	a	
+D_8007106B	8007106B	a	
+damageGetHazardDamage	800E2CD4	a	
+gAyaAskAboutCiviliansClip	8019806C	a	
+RotMatrixX	8004BE58	a	
+worldCoordSetModelAmbientColor	800D9550	a	
+worldTargetLinkNode	800DABEC	a	
+damageAccumulateLifeDrainHp	800E2C78	a	
+taskReparent	8002D14C	a	
+police_officers_TEXT_START	80161E24	f	
+gAyaShowBadgeClip	80196BD0	a	
+gRoomEffectState	80115740	a	
+TransposeMatrix	800420B8	a	
+companionEnterIdle	8010BC04	a	
+playerActorMode2State6	80108D68	a	
+worldCollisionProjectGroundPoint	800EA1A8	a	
+inventoryClearCollectedBit	800BAEC0	a	
+D_8007216C	8007216C	a	
+gPoliceRookieLookAtBadgeClip	80195978	a	
+actorRenderComposeCoord	80098F58	a	
+GetClut	80042AE0	a	
+police_officers_TEXT_SIZE	00001598	a	
+gRoomEffectGlowDiscId	80115734	a	
+police_officers_DATA_SIZE	00016588	a	
+actorRenderPlaceCoordOffset	801040A0	a	
+areaGetCurrentObjectState	800BB470	a	
+gWorldCollisionActionTriggerListHead	8011556C	a	
+worldTargetGetActorLockMask	800DAC54	a	
+fadeDrawOverlay	8002BA9C	a	
+worldCollisionResolvePushback	800E0C10	a	
+__subdf3	8004BC28	a	
+padInputChangeSuppression	800E9BDC	a	
+gEvsPlaybackPaused	801156F9	a	
+gPoliceOfficersSergeantTaskDescriptors	80179920	f	
+RotMatrixY	8004BFF8	a	
+playerActorScriptedState0	80108B80	a	
+streamFindMovieSlot	8001EDC8	a	
+police_officers_VRAM_END	80179944	f	
+inventoryIsItemLimitReached	800B7420	a	
+gPoliceOfficersRookieTaskDescriptors	801798FC	f	
+gPlayerActorWeaponAnimationBanks	80112D6C	a	
+playerActorSetWeaponAttackFlags	80106238	a	
+animationAimHeadAtTask	800B0928	a	
+D_80115408	80115408	a	
+padScriptHalt	800E8F68	a	

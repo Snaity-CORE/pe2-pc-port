@@ -2,56 +2,58 @@
 #define ROOM_CAT_(a, b) a##b
 #define ROOM_CAT(a, b) ROOM_CAT_(a, b)
 
-#define ROOM_IS__gAcropolisHelicopterLandingPadEncounterVibrationCommands 1
-#if ROOM_CAT(ROOM_IS_, ROOM_PART) == 1
-static PadScriptCmd _gAcropolisHelicopterLandingPadEncounterVibrationCommands[4] = {
-    { .holdCommand = { .bytes = { .opcode = 0, .operand = 0 } }, .lerpCommand = { .bytes = { .opcode = 0, .operand = 0 } } },
-    { .holdCommand = { .bytes = { .opcode = 0, .operand = 0 } }, .lerpCommand = { .bytes = { .opcode = 0, .operand = 0 } } },
-    { .holdCommand = { .bytes = { .opcode = 0, .operand = 0 } }, .lerpCommand = { .bytes = { .opcode = 0, .operand = 0 } } },
-    { .holdCommand = { .bytes = { .opcode = 0, .operand = 0 } }, .lerpCommand = { .bytes = { .opcode = 0, .operand = 0 } } },
-};
-static PadScriptVibrationSegment _gAcropolisHelicopterLandingPadEncounterVibrationSegments[2] = {
-    { .startIntensity = 0, .endIntensity = 0, .durationFrames = 0, .field_3 = 0 },
-    { .startIntensity = 0, .endIntensity = 0, .durationFrames = 0, .field_3 = 0 },
-};
-#endif
-#undef ROOM_IS__gAcropolisHelicopterLandingPadEncounterVibrationCommands
+#include "gameplay/pad_script.h"
 
-#define ROOM_IS_gAcropolisHelicopterLandingPadLethalStrikeVibrationCommands 1
+#define ROOM_IS__gAkropolisHelicopterLandingPadEncounterVibrationCommands 1
 #if ROOM_CAT(ROOM_IS_, ROOM_PART) == 1
-PadScriptCmd gAcropolisHelicopterLandingPadLethalStrikeVibrationCommands[2] = {
-    { .holdCommand = { .bytes = { .opcode = 0, .operand = 0 } }, .lerpCommand = { .bytes = { .opcode = 0, .operand = 0 } } },
-    { .holdCommand = { .bytes = { .opcode = 0, .operand = 0 } }, .lerpCommand = { .bytes = { .opcode = 0, .operand = 0 } } },
-};
-PadScriptVibrationSegment gAcropolisHelicopterLandingPadLethalStrikeVibrationSegment = { .startIntensity = 0, .endIntensity = 0, .durationFrames = 0, .field_3 = 0 };
-static PadScriptCmd _gAcropolisHelicopterLandingPadDepartureThirdVibrationCommands[2] = {
-    { .holdCommand = { .bytes = { .opcode = 0, .operand = 0 } }, .lerpCommand = { .bytes = { .opcode = 0, .operand = 0 } } },
-    { .holdCommand = { .bytes = { .opcode = 0, .operand = 0 } }, .lerpCommand = { .bytes = { .opcode = 0, .operand = 0 } } },
-};
-static PadScriptVibrationSegment _gAcropolisHelicopterLandingPadDepartureThirdVibrationSegments[2] = {
-    { .startIntensity = 0, .endIntensity = 0, .durationFrames = 0, .field_3 = 0 },
-    { .startIntensity = 0, .endIntensity = 0, .durationFrames = 0, .field_3 = 0 },
-};
-static PadScriptCmd _gAcropolisHelicopterLandingPadDepartureSecondVibrationCommands[4] = {
+static PadScriptCmd _gAkropolisHelicopterLandingPadEncounterVibrationCommands[4] = {
     { .holdCommand = { .bytes = { .opcode = 0, .operand = 0 } }, .lerpCommand = { .bytes = { .opcode = 0, .operand = 0 } } },
     { .holdCommand = { .bytes = { .opcode = 0, .operand = 0 } }, .lerpCommand = { .bytes = { .opcode = 0, .operand = 0 } } },
     { .holdCommand = { .bytes = { .opcode = 0, .operand = 0 } }, .lerpCommand = { .bytes = { .opcode = 0, .operand = 0 } } },
     { .holdCommand = { .bytes = { .opcode = 0, .operand = 0 } }, .lerpCommand = { .bytes = { .opcode = 0, .operand = 0 } } },
 };
-static PadScriptVibrationSegment _gAcropolisHelicopterLandingPadDepartureSecondVibrationSegments[2] = {
-    { .startIntensity = 0, .endIntensity = 0, .durationFrames = 0, .field_3 = 0 },
-    { .startIntensity = 0, .endIntensity = 0, .durationFrames = 0, .field_3 = 0 },
-};
-static PadScriptCmd _gAcropolisHelicopterLandingPadDepartureFirstVibrationCommands[4] = {
-    { .holdCommand = { .bytes = { .opcode = 0, .operand = 0 } }, .lerpCommand = { .bytes = { .opcode = 0, .operand = 0 } } },
-    { .holdCommand = { .bytes = { .opcode = 0, .operand = 0 } }, .lerpCommand = { .bytes = { .opcode = 0, .operand = 0 } } },
-    { .holdCommand = { .bytes = { .opcode = 0, .operand = 0 } }, .lerpCommand = { .bytes = { .opcode = 0, .operand = 0 } } },
-    { .holdCommand = { .bytes = { .opcode = 0, .operand = 0 } }, .lerpCommand = { .bytes = { .opcode = 0, .operand = 0 } } },
-};
-static PadScriptVibrationSegment _gAcropolisHelicopterLandingPadDepartureFirstVibrationSegments[2] = {
+static PadScriptVibrationSegment _gAkropolisHelicopterLandingPadEncounterVibrationSegments[2] = {
     { .startIntensity = 0, .endIntensity = 0, .durationFrames = 0, .field_3 = 0 },
     { .startIntensity = 0, .endIntensity = 0, .durationFrames = 0, .field_3 = 0 },
 };
 #endif
-#undef ROOM_IS_gAcropolisHelicopterLandingPadLethalStrikeVibrationCommands
+#undef ROOM_IS__gAkropolisHelicopterLandingPadEncounterVibrationCommands
+
+#define ROOM_IS_gAkropolisHelicopterLandingPadLethalStrikeVibrationCommands 1
+#if ROOM_CAT(ROOM_IS_, ROOM_PART) == 1
+PadScriptCmd gAkropolisHelicopterLandingPadLethalStrikeVibrationCommands[2] = {
+    { .holdCommand = { .bytes = { .opcode = 0, .operand = 0 } }, .lerpCommand = { .bytes = { .opcode = 0, .operand = 0 } } },
+    { .holdCommand = { .bytes = { .opcode = 0, .operand = 0 } }, .lerpCommand = { .bytes = { .opcode = 0, .operand = 0 } } },
+};
+PadScriptVibrationSegment gAkropolisHelicopterLandingPadLethalStrikeVibrationSegment = { .startIntensity = 0, .endIntensity = 0, .durationFrames = 0, .field_3 = 0 };
+static PadScriptCmd _gAkropolisHelicopterLandingPadDepartureThirdVibrationCommands[2] = {
+    { .holdCommand = { .bytes = { .opcode = 0, .operand = 0 } }, .lerpCommand = { .bytes = { .opcode = 0, .operand = 0 } } },
+    { .holdCommand = { .bytes = { .opcode = 0, .operand = 0 } }, .lerpCommand = { .bytes = { .opcode = 0, .operand = 0 } } },
+};
+static PadScriptVibrationSegment _gAkropolisHelicopterLandingPadDepartureThirdVibrationSegments[2] = {
+    { .startIntensity = 0, .endIntensity = 0, .durationFrames = 0, .field_3 = 0 },
+    { .startIntensity = 0, .endIntensity = 0, .durationFrames = 0, .field_3 = 0 },
+};
+static PadScriptCmd _gAkropolisHelicopterLandingPadDepartureSecondVibrationCommands[4] = {
+    { .holdCommand = { .bytes = { .opcode = 0, .operand = 0 } }, .lerpCommand = { .bytes = { .opcode = 0, .operand = 0 } } },
+    { .holdCommand = { .bytes = { .opcode = 0, .operand = 0 } }, .lerpCommand = { .bytes = { .opcode = 0, .operand = 0 } } },
+    { .holdCommand = { .bytes = { .opcode = 0, .operand = 0 } }, .lerpCommand = { .bytes = { .opcode = 0, .operand = 0 } } },
+    { .holdCommand = { .bytes = { .opcode = 0, .operand = 0 } }, .lerpCommand = { .bytes = { .opcode = 0, .operand = 0 } } },
+};
+static PadScriptVibrationSegment _gAkropolisHelicopterLandingPadDepartureSecondVibrationSegments[2] = {
+    { .startIntensity = 0, .endIntensity = 0, .durationFrames = 0, .field_3 = 0 },
+    { .startIntensity = 0, .endIntensity = 0, .durationFrames = 0, .field_3 = 0 },
+};
+static PadScriptCmd _gAkropolisHelicopterLandingPadDepartureFirstVibrationCommands[4] = {
+    { .holdCommand = { .bytes = { .opcode = 0, .operand = 0 } }, .lerpCommand = { .bytes = { .opcode = 0, .operand = 0 } } },
+    { .holdCommand = { .bytes = { .opcode = 0, .operand = 0 } }, .lerpCommand = { .bytes = { .opcode = 0, .operand = 0 } } },
+    { .holdCommand = { .bytes = { .opcode = 0, .operand = 0 } }, .lerpCommand = { .bytes = { .opcode = 0, .operand = 0 } } },
+    { .holdCommand = { .bytes = { .opcode = 0, .operand = 0 } }, .lerpCommand = { .bytes = { .opcode = 0, .operand = 0 } } },
+};
+static PadScriptVibrationSegment _gAkropolisHelicopterLandingPadDepartureFirstVibrationSegments[2] = {
+    { .startIntensity = 0, .endIntensity = 0, .durationFrames = 0, .field_3 = 0 },
+    { .startIntensity = 0, .endIntensity = 0, .durationFrames = 0, .field_3 = 0 },
+};
+#endif
+#undef ROOM_IS_gAkropolisHelicopterLandingPadLethalStrikeVibrationCommands
 #undef ROOM_PART

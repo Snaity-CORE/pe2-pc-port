@@ -1,0 +1,1573 @@
+gcc2_compiled.	80131E78	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+__gnu_compiled_c	80131E78	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_MACRO_INC_GUARD	00000001	al	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gHelicopterDepartureRupertRevolverStates	80131E24	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_modelPlacementAttachPartTask	801321A8	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDepartureIdleRupertRevolver	80132224	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gHelicopterDepartureRupertRadioStates	80131E30	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_modelPlacementAttachChild	80132284	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_modelPlacementMirrorParentDrawFlags	80132390	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gHelicopterDepartureRupertBodyStates	80131E3C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDepartureInitRupert	80132480	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDepartureTickRupert	80131E78	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gHelicopterDepartureHelicopterStates	80131E48	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDepartureInitHelicopter	80133034	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDepartureTickHelicopter	801330F0	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDepartureKillHelicopter	80133220	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gHelicopterDepartureHelicopterRotorStates	80131E54	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDepartureAttachHelicopterRotor	80133240	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDepartureTickHelicopterRotor	801332E4	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDepartureKillHelicopterRotor	801333A4	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gHelicopterDepartureHelicopterSearchlightStates	80131E60	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDepartureAttachHelicopterSearchlight	801333C4	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDepartureTickHelicopterSearchlight	801329C4	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDepartureKillHelicopterSearchlight	80133498	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gHelicopterDepartureNo9GolemStates	80131E6C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDepartureSpawnNo9Golem	80133958	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDepartureTickNo9Golem	80133B80	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadPlayerHelipadReportEscapeClipBank1	80134170	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadPlayerHelipadReportEscapeClipBank4	80134560	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadPlayerHelipadReportEscapeClipRecords	80135570	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadPlayerHelipadReportEscapeClipTrackStarts	80136AC0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadPlayerHelipadDetonatorTalkClipBank1	80136B10	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadPlayerHelipadDetonatorTalkClipBank4	80136E94	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadPlayerHelipadDetonatorTalkClipRecords	80138158	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadPlayerHelipadDetonatorTalkClipTrackStarts	801398D4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDepartureHelicopterTask	80133850	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gHelicopterDepartureHelicopterHullModel	8013BB10	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDepartureHelicopterRotorTask	801338A8	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadMainRotor	8013BEF8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadTailRotor	8013C058	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDepartureHelicopterSearchlightTask	80133900	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadSearchlight	8013C65C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gHelicopterDepartureHelicopterHullModelSkeleton	80139954	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gHelicopterDepartureHelicopterHullModelPartVerts	80139978	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gHelicopterDepartureHelicopterHullModelVerts	8013997C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gHelicopterDepartureHelicopterHullModelNormals	8013A1AC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gHelicopterDepartureHelicopterHullModelStream	8013A6C4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadMainRotorSkeleton	8013BB34	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadMainRotorPartVerts	8013BB58	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadMainRotorVerts	8013BB5C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadMainRotorNormals	8013BD34	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadMainRotorStream	8013BD3C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadTailRotorSkeleton	8013BF1C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadTailRotorPartVerts	8013BF40	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadTailRotorVerts	8013BF44	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadTailRotorNormals	8013BFA4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadTailRotorStream	8013BFB4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadSearchlightSkeleton	8013C07C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadSearchlightPartVerts	8013C0A0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadSearchlightVerts	8013C0A4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadSearchlightNormals	8013C1C4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadSearchlightStream	8013C23C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gRupertBody2Skeleton	8013C680	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gRupertBody2PartVerts	8013C950	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gRupertBody2Verts	8013C9A0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gRupertBody2Normals	8013D5B0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gRupertBody2Stream	8013E1B8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gRupertBody2	80142554	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gRupertMongooseSkeleton	80142578	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gRupertMongoosePartVerts	8014259C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gRupertMongooseVerts	801425A0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gRupertMongooseNormals	80142680	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gRupertMongooseStream	80142760	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gRupertMongoose	80142AAC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gRupertRadioSkeleton	80142AD0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gRupertRadioPartVerts	80142AF4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gRupertRadioVerts	80142AF8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gRupertRadioNormals	80142B68	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gRupertRadioStream	80142B68	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gRupertRadio	80142C90	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadRupertShootClipBank1	80142CB4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadRupertShootClipBank4	80142CF0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadRupertShootClipRecords	80142E30	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadRupertShootClipTrackStarts	80143014	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadRupertShootClip	8014303C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadRupertArriveClipBank1	80143064	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadRupertArriveClipBank4	801435EC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadRupertArriveClipRecords	80143C84	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadRupertArriveClipTrackStarts	80144ECC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadRupertArriveClip	80144EF4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadRupertDetonatorTalkClipBank1	80144F1C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadRupertDetonatorTalkClipBank4	80145000	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadRupertDetonatorTalkClipRecords	80145AFC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadRupertDetonatorTalkClipTrackStarts	80146924	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadRupertDetonatorTalkClip	8014694C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gHelicopterDepartureRupertEyesOpenPixels	80146974	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gHelicopterDepartureRupertEyesOpenUploads	80146C74	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gHelicopterDepartureRupertEyesHalfOpenPixels	80146C94	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gHelicopterDepartureRupertEyesHalfOpenUploads	80146F94	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gHelicopterDepartureRupertEyesClosedPixels	80146FB4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gHelicopterDepartureRupertEyesClosedUploads	801472B4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gHelicopterDepartureRupertAnimationSets	801472D4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gHelicopterDepartureRupertAnimationBanks	801472E4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDepartureRupertBodyTask	80132428	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDepartureRupertRevolverTask	80132150	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDepartureRupertRadioTask	8013222C	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gHelicopterDepartureRupertMessages	8014730C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDeparturePlayRupertAnimation	80132604	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDepartureSetRupertModelDraw	801327A0	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDepartureApplyRupertCommand	8013287C	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDepartureSetRupertEyes	80132904	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gHelicopterDepartureRupertMuzzleFlashOffset	8014733C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gHelicopterDepartureHelicopterSequenceRotations	80147344	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gHelicopterDepartureHelicopterSequenceTranslations	80147704	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gHelicopterDepartureHelicopterSearchlightRotations	80147AC4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gHelicopterDepartureHelicopterFlashLitPalette	80147E84	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gHelicopterDepartureHelicopterFlashPaletteUploads	80147EA4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gHelicopterDepartureHelicopterFlashDarkPalette	80147EC4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gHelicopterDepartureHelicopterSequenceCameras	80147EE4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gHelicopterDepartureHelicopterMessages	80148FC4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDepartureRestartHelicopterSequence	801334B8	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDeparturePlaceHelicopter	801334C4	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDepartureSetHelicopterModelDraw	80133554	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gHelicopterDepartureHelicopterPartOffsets	80148FE4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gHelicopterDepartureHelicopterSearchlightGlowColors	80149004	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gHelicopterDepartureHelicopterSearchlightRimDirections	80149014	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gHelicopterDepartureHelicopterChildDescriptorIndices	80149054	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gGolemNo9BodyAkropolisSkeleton	80149060	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gGolemNo9BodyAkropolisPartVerts	8014930C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gGolemNo9BodyAkropolisVerts	80149358	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gGolemNo9BodyAkropolisNormals	80149E88	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gGolemNo9BodyAkropolisStream	8014A9A8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gGolemNo9AkropolisSwordSkeleton	8014E72C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gGolemNo9AkropolisSwordPartVerts	8014E750	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gGolemNo9AkropolisSwordVerts	8014E754	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gGolemNo9AkropolisSwordNormals	8014E7C4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gGolemNo9AkropolisSwordStream	8014E824	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gGolemNo9AkropolisPropSkeleton	8014E9D0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gGolemNo9AkropolisPropPartVerts	8014E9F4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gGolemNo9AkropolisPropVerts	8014E9F8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gGolemNo9AkropolisPropNormals	8014EA68	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gGolemNo9AkropolisPropStream	8014EB00	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gGolemNo9AkropolisChestPieceSkeleton	8014ECEC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gGolemNo9AkropolisChestPiecePartVerts	8014ED10	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gGolemNo9AkropolisChestPieceVerts	8014ED14	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gGolemNo9AkropolisChestPieceNormals	8014EDA4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gGolemNo9AkropolisChestPieceStream	8014EE2C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadNo9StandoffClipBank1	8014F048	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadNo9StandoffClipBank4	8014F4BC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadNo9StandoffClipRecords	80150A90	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadNo9StandoffClipTrackStarts	801526E4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadNo9StandoffClip	8015270C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadNo9TimesUpClipBank1	80152734	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadNo9TimesUpClipBank4	801528FC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadNo9TimesUpClipRecords	801531B8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadNo9TimesUpClipTrackStarts	80153CB4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadNo9TimesUpClip	80153CDC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadNo9LeapAwayClipBank1	80153D04	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadNo9LeapAwayClipBank4	80154220	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadNo9LeapAwayClipRecords	801547E0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadNo9LeapAwayClipTrackStarts	80155020	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gAkropolisHelicopterLandingPadNo9LeapAwayClip	80155048	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDepartureNo9GolemTask	80133D90	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDepartureNo9SwordTask	80133EF4	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDepartureNo9ChestPieceTask	80133FC8	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDepartureNo9PropTask	8013409C	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gHelicopterDepartureNo9GolemMessages	801550A0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDeparturePlayNo9GolemAnimation	80133DEC	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDepartureSetNo9GolemModelDraw	80133EAC	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_gHelicopterDepartureNo9GolemAnimationSets	801550C0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM1	80131E78	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM2	80131E78	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM3	80131E9C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM4	80131EA0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM5	80131EA4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM6	80131EA8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM7	80131EB0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM8	80131EB8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM9	80131EBC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM10	80131EC8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM11	80131ED8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM12	80131EE8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM13	80131F08	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM14	80131F1C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM15	80131F24	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM16	80131F28	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM17	80131F2C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM18	80131F4C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM19	80131F68	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM20	80131F7C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM21	80131F9C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM22	80131FB0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM23	80131FCC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM24	80131FD0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM25	80131FD8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM26	80131FEC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDepartureTickRupertBlink	80132048	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM27	80131FF4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM28	80132004	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM29	8013200C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM30	80132014	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM31	80132024	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM32	80132048	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM33	80132048	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM34	80132048	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM35	80132054	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM36	80132058	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM37	80132060	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM38	80132068	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM39	8013206C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM40	80132070	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM41	80132074	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM42	801320B0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM43	801320C0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM44	801320CC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM45	801320D4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM46	801320E4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM47	8013210C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM48	80132114	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM49	80132124	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM50	80132130	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM51	8013213C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM52	80132140	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM53	80132150	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM54	80132150	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM55	80132150	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM56	80132154	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM57	80132158	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM58	8013215C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM59	80132178	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM60	80132198	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM61	801321A8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM62	801321A8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM63	801321A8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM64	801321B8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM65	801321BC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM66	801321C0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM67	801321CC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM68	801321F8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM69	801321FC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM70	80132204	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM71	80132214	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM72	80132224	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM73	80132224	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM74	80132224	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM75	80132224	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM76	8013222C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM77	8013222C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM78	8013222C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM79	80132230	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM80	80132234	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM81	80132238	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM82	80132254	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM83	80132274	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM84	80132284	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM85	80132284	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM86	80132284	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM87	801322A8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM88	801322AC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM89	801322B0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM90	801322B4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM91	801322B8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM92	801322BC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM93	801322C4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM94	801322C8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM95	801322CC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM96	801322D8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM97	801322DC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM98	801322F0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM99	801322F8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM100	801322FC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM101	80132304	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM102	8013230C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM103	8013231C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM104	80132324	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM105	80132344	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM106	80132348	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM107	80132350	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM108	80132354	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM109	8013235C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM110	8013236C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM111	80132390	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM112	80132390	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM113	80132390	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM114	80132398	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM115	801323A0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM116	801323AC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM117	80132418	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM118	80132428	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM119	80132428	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM120	80132428	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM121	8013242C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM122	80132430	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM123	80132434	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM124	80132450	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM125	80132470	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM126	80132480	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM127	80132480	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM128	80132480	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM129	8013248C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM130	80132490	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM131	8013249C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM132	801324A0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM133	801324AC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM134	801324B4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM135	801324BC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM136	801324C4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM137	801324C4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM138	801324C8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM139	801324CC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM140	801324D0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM141	801324D4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM142	801324D8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM143	801324E4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM144	801324E8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM145	801324F4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM146	80132514	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM147	80132528	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM148	80132544	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM149	80132554	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM150	8013255C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM151	80132560	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDepartureBindRupertLighting	801325A4	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM152	80132568	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM153	80132574	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM154	80132578	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM155	8013257C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM156	80132584	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM157	8013258C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM158	801325A4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM159	801325A4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM160	801325A4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM161	801325B4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM162	801325B8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM163	801325BC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM164	801325C0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM165	801325C4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM166	801325C8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM167	801325CC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM168	801325D0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM169	801325D4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM170	801325DC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM171	801325F0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM172	80132604	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM173	80132604	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM174	80132604	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM175	8013261C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM176	80132620	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM177	80132628	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM178	8013262C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM179	80132634	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM180	8013263C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM181	80132640	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM182	80132644	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM183	80132664	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM184	80132708	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM185	80132708	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM186	80132718	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM187	8013271C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM188	80132724	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM189	80132724	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM190	80132724	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM191	80132730	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM192	8013273C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM193	80132748	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM194	80132754	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM195	80132760	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM196	8013276C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM197	80132770	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM198	80132774	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM199	80132778	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM200	8013277C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM201	80132780	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM202	80132788	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM203	8013278C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM204	80132794	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM205	80132798	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM206	801327A0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM207	801327A0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM208	801327A0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM209	801327A8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM210	801327AC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM211	801327B4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM212	801327B8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM213	801327BC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM214	801327FC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM215	80132800	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM216	80132808	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM217	8013280C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM218	80132810	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM219	80132814	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM220	8013281C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM221	80132828	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM222	80132830	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM223	80132840	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM224	80132844	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM225	80132848	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM226	80132850	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM227	8013285C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM228	80132860	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM229	80132864	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM230	80132868	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM231	8013287C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM232	8013287C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM233	8013287C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM234	8013287C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM235	8013287C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM236	80132880	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM237	80132884	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM238	8013289C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM239	801328A0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM240	801328A8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM241	801328B0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM242	801328B8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM243	801328D0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM244	801328D8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM245	801328E0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM246	801328F8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM247	801328FC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM248	80132904	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM249	80132904	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM250	80132904	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM251	80132908	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM252	8013290C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM253	80132914	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM254	8013291C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM255	80132920	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM256	80132924	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM257	80132928	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM258	8013292C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM259	8013296C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM260	80132970	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM261	80132978	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM262	8013297C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM263	80132984	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM264	80132984	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM265	8013298C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM266	80132990	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM267	80132994	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM268	80132998	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM269	8013299C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM270	8013299C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM271	801329A0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM272	801329A0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM273	801329A8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM274	801329B4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM275	801329B4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM276	801329B8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM277	801329BC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM278	801329C4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM279	801329C4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM280	801329C4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM281	801329DC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM282	801329E4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM283	801329E8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM284	801329EC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM285	801329F0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM286	801329F4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM287	80132A00	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM288	80132A04	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM289	80132A0C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM290	80132A1C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM291	80132A38	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM292	80132A54	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM293	80132A70	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM294	80132A74	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM295	80132A78	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM296	80132A84	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM297	80132A88	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM298	80132A90	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM299	80132A94	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM300	80132AA0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM301	80132AA8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM302	80132AB0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM303	80132ABC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM304	80132AC0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM305	80132AC8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM306	80132AD8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM307	80132ADC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM308	80132AE0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM309	80132AE8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM310	80132AEC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM311	80132AF0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM312	80132AF4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDepartureDrawHelicopterSearchlightGlow	80132B14	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM313	80132AFC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM314	80132B14	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM315	80132B14	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM316	80132B14	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM317	80132B30	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM318	80132B44	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM319	80132B54	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM320	80132B5C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM321	80132B74	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM322	80132B7C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM323	80132B80	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM324	80132B84	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM325	80132B88	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM326	80132B8C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM327	80132B90	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM328	80132BB8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM329	80132BE0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM330	80132BE4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM331	80132BF4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM332	80132BF8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM333	80132C10	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM334	80132C34	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM335	80132CD4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM336	80132CD8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM337	80132CE0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM338	80132CE4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM339	80132CF8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM340	80132CFC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM341	80132D18	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM342	80132D1C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM343	80132D24	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM344	80132DB8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM345	80132DBC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM346	80132E00	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM347	80132E04	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM348	80132E10	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM349	80132E18	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM350	80132E20	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM351	80132E24	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM352	80132E2C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM353	80132E54	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM354	80132E6C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM355	80132E6C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM356	80132E6C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDepartureTickHelicopterPaletteFlash	80132E6C	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM357	80132E94	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM358	80132EA4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM359	80132EB4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM360	80132EC8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM361	80132ECC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM362	80132ED4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM363	80132EE8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM364	80132EF0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM365	80132F00	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM366	80132F0C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM367	80132F10	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM368	80132F14	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM369	80132F18	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM370	80132F18	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM371	80132F28	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM372	80132F34	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM373	80132F4C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM374	80132FF4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM375	80132FF8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM376	80133000	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM377	8013300C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM378	80133034	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM379	80133034	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM380	80133034	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM381	80133040	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM382	80133044	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM383	80133050	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM384	80133054	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM385	80133060	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM386	80133068	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM387	80133070	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM388	80133078	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM389	80133078	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM390	8013307C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM391	8013308C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM392	80133090	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM393	80133094	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM394	80133098	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM395	8013309C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM396	801330A0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDeparturePoseHelicopterSequenceFrame	801336E0	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM397	801330A8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDepartureBindHelicopterLighting	801337F0	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM398	801330B0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM399	801330B8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM400	801330BC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM401	801330C0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM402	801330C8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM403	801330D8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM404	801330F0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM405	801330F0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM406	801330F0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM407	8013310C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM408	80133110	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM409	80133114	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM410	80133118	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM411	8013311C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM412	80133128	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM413	80133130	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM414	80133144	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM415	80133150	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM416	801331D4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM417	801331DC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM418	801331E4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM419	801331EC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM420	801331F4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM421	801331FC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM422	80133204	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM423	80133220	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM424	80133220	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM425	80133220	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM426	80133228	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM427	80133240	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM428	80133240	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM429	80133240	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM430	8013325C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM431	80133264	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM432	80133268	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM433	8013326C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM434	80133270	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM435	80133274	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM436	80133278	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM437	8013327C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM438	80133284	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM439	80133288	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM440	8013328C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM441	80133290	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM442	8013329C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM443	801332A0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDeparturePlaceHelicopterPart	80133760	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM444	801332A8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM445	801332B0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM446	801332B8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM447	801332C8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM448	801332E4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM449	801332E4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM450	801332E4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM451	801332F0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM452	801332F8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM453	801332FC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM454	80133300	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM455	80133304	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM456	80133308	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM457	80133314	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM458	80133324	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM459	80133344	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM460	80133354	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM461	8013335C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM462	80133370	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM463	8013337C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM464	80133384	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM465	80133394	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM466	801333A4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM467	801333A4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM468	801333A4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM469	801333AC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM470	801333C4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM471	801333C4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM472	801333C4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM473	801333E0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM474	801333E8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM475	801333EC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM476	801333F0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM477	801333F4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM478	801333F8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM479	801333FC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM480	80133400	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM481	80133408	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM482	8013340C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM483	80133410	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM484	80133414	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM485	80133420	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM486	80133424	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM487	8013342C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM488	80133434	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM489	8013343C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM490	8013344C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM491	80133450	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM492	80133454	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM493	80133458	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM494	8013345C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM495	80133460	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM496	80133468	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM497	8013346C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM498	8013347C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM499	80133498	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM500	80133498	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM501	80133498	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM502	801334A0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM503	801334B8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM504	801334B8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM505	801334B8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM506	801334B8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM507	801334BC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM508	801334C4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM509	801334C4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM510	801334C4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM511	801334D4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM512	801334D8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM513	801334DC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM514	801334E4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM515	801334E8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM516	801334F4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM517	80133500	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM518	8013350C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM519	80133510	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM520	80133514	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM521	80133518	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM522	8013351C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM523	80133520	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM524	80133528	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM525	8013352C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM526	8013353C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM527	80133548	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM528	8013354C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM529	80133554	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM530	80133554	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM531	80133554	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM532	8013356C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM533	80133570	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM534	80133584	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM535	80133588	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM536	8013358C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM537	801335CC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM538	801335D0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM539	801335D8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM540	801335DC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM541	801335E0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM542	801335E4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM543	801335EC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM544	801335F8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM545	80133600	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM546	80133610	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM547	80133614	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM548	80133618	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM549	80133620	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM550	8013362C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM551	80133630	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM552	80133634	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM553	80133650	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM554	80133664	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM555	8013367C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM556	80133684	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM557	8013369C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM558	801336AC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM559	801336B4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM560	801336B8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM561	801336E0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM562	801336E0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM563	801336E0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM564	801336E4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM565	801336EC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM566	801336F4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM567	801336F8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM568	801336FC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM569	80133700	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM570	8013370C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM571	80133718	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM572	8013371C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM573	80133720	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM574	80133724	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM575	80133730	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM576	80133734	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM577	80133738	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM578	8013373C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM579	80133740	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM580	80133744	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM581	8013374C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM582	80133750	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM583	80133760	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM584	80133760	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM585	80133760	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM586	80133764	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM587	8013376C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM588	80133774	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM589	80133778	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM590	8013377C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM591	80133784	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM592	80133788	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM593	80133794	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM594	801337B0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM595	801337B4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM596	801337B8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM597	801337C4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM598	801337C8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM599	801337CC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM600	801337D0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM601	801337D4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM602	801337D4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM603	801337DC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM604	801337E0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM605	801337F0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM606	801337F0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM607	801337F0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM608	80133800	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM609	80133804	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM610	80133808	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM611	8013380C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM612	80133810	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM613	80133814	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM614	80133818	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM615	8013381C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM616	80133820	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM617	80133828	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM618	8013383C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM619	80133850	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM620	80133850	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM621	80133850	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM622	80133854	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM623	80133858	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM624	8013385C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM625	80133878	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM626	80133898	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM627	801338A8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM628	801338A8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM629	801338A8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM630	801338AC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM631	801338B0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM632	801338B4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM633	801338D0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM634	801338F0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM635	80133900	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM636	80133900	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM637	80133900	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM638	80133904	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM639	80133908	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM640	8013390C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM641	80133928	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM642	80133948	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM643	80133958	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM644	80133958	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM645	80133958	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM646	8013396C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM647	80133970	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM648	80133984	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM649	8013398C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM650	80133990	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM651	8013399C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM652	801339A4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM653	801339B0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM654	801339B8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM655	801339B8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM656	801339C8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM657	801339CC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM658	801339D0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM659	801339D4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM660	801339DC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM661	801339E4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM662	801339F0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM663	801339F8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM664	80133A08	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM665	80133A10	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM666	80133A14	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM667	80133A18	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM668	80133A18	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM669	80133A20	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM670	80133A28	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM671	80133A2C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM672	80133A30	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM673	80133A34	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM674	80133A38	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM675	80133A3C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM676	80133A40	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM677	80133A4C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM678	80133A50	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM679	80133A54	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM680	80133A58	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM681	80133A5C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM682	80133A60	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM683	80133A68	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM684	80133A70	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM685	80133A74	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM686	80133A78	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM687	80133A7C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM688	80133A8C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM689	80133A90	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM690	80133A98	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM691	80133AA0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM692	80133AA8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM693	80133ABC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM694	80133AC0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM695	80133AC4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM696	80133AC8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM697	80133ACC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM698	80133AD0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM699	80133AD4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM700	80133AD8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM701	80133AE4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM702	80133AE8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM703	80133AEC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM704	80133AF0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM705	80133AF4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM706	80133AF8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM707	80133B00	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM708	80133B08	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM709	80133B0C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM710	80133B10	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM711	80133B14	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM712	80133B24	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM713	80133B28	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM714	80133B30	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM715	80133B38	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM716	80133B40	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM717	80133B54	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM718	80133B5C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM719	80133B80	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM720	80133B80	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM721	80133B80	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM722	80133B94	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM723	80133B9C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM724	80133BB4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM725	80133BB8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM726	80133BBC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM727	80133BC0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM728	80133BC4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM729	80133BC8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM730	80133BCC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM731	80133BD0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM732	80133BD8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM733	80133BD8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM734	80133BE0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM735	80133BE4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM736	80133BF0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM737	80133C00	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM738	80133C14	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM739	80133C1C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM740	80133C20	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM741	80133C24	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM742	80133C28	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM743	80133C2C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM744	80133C30	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM745	80133C34	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM746	80133C38	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM747	80133C3C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM748	80133C40	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM749	80133C48	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM750	80133C4C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM751	80133C50	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM752	80133C54	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM753	80133C58	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM754	80133C5C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM755	80133C60	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM756	80133C64	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM757	80133C68	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM758	80133C68	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM759	80133C78	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM760	80133C8C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM761	80133C94	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM762	80133CD0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM763	80133D28	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM764	80133D3C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM765	80133D44	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM766	80133D44	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM767	80133D4C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM768	80133D50	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM769	80133D54	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM770	80133D58	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM771	80133D5C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM772	80133D60	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM773	80133D64	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM774	80133D68	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM775	80133D90	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM776	80133D90	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM777	80133D90	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM778	80133D98	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM779	80133D9C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM780	80133DA0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM781	80133DBC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM782	80133DDC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM783	80133DEC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM784	80133DEC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM785	80133DEC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM786	80133DFC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM787	80133E00	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM788	80133E04	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM789	80133E08	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM790	80133E0C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM791	80133E10	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM792	80133E14	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM793	80133E20	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM794	80133E2C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM795	80133E30	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM796	80133E3C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM797	80133E40	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM798	80133E48	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM799	80133E48	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM800	80133E48	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM801	80133E58	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM802	80133E5C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM803	80133E60	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM804	80133E64	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM805	80133E70	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM806	80133E7C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM807	80133E88	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM808	80133E8C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM809	80133E90	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM810	80133E94	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM811	80133EA0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM812	80133EA4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM813	80133EAC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM814	80133EAC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM815	80133EAC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM816	80133EAC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM817	80133EAC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM818	80133EB0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM819	80133EBC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM820	80133EC4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM821	80133EC8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM822	80133ED4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM823	80133EEC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM824	80133EEC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM825	80133EF4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM826	80133EF4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM827	80133EF4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM828	80133F00	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDepartureAttachNo9Sword	80133F48	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDepartureTickNo9Sword	80133F88	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM829	80133F18	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM830	80133F38	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM831	80133F48	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM832	80133F48	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM833	80133F48	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM834	80133F48	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM835	80133F48	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM836	80133F4C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM837	80133F50	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM838	80133F54	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM839	80133F58	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM840	80133F5C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM841	80133F60	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM842	80133F68	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM843	80133F6C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM844	80133F70	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM845	80133F74	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM846	80133F78	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM847	80133F7C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM848	80133F80	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM849	80133F88	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM850	80133F88	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM851	80133F88	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM852	80133F90	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM853	80133FA4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM854	80133FC8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM855	80133FC8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM856	80133FC8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM857	80133FD4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDepartureAttachNo9ChestPiece	8013401C	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDepartureTickNo9ChestPiece	8013405C	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM858	80133FEC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM859	8013400C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM860	8013401C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM861	8013401C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM862	8013401C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM863	8013401C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM864	8013401C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM865	80134020	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM866	80134024	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM867	80134028	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM868	8013402C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM869	80134030	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM870	80134034	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM871	8013403C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM872	80134040	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM873	80134044	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM874	80134048	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM875	8013404C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM876	80134050	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM877	80134054	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM878	8013405C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM879	8013405C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM880	8013405C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM881	80134064	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM882	80134078	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM883	8013409C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM884	8013409C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM885	8013409C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM886	801340A8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDepartureAttachNo9Prop	801340F0	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+_helicopterDepartureTickNo9Prop	80134130	flt	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM887	801340C0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM888	801340E0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM889	801340F0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM890	801340F0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM891	801340F0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM892	801340F0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM893	801340F0	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM894	801340F4	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM895	801340F8	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM896	801340FC	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM897	80134100	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM898	80134104	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM899	80134108	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM900	80134110	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM901	80134114	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM902	80134118	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM903	8013411C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM904	80134120	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM905	80134124	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM906	80134128	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM907	80134130	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM908	80134130	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM909	80134130	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM910	80134138	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM911	8013414C	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+LM912	80134170	fl	build/USA/src/actors/helicopter_departure/helicopter_departure.i
+__romPos	000232B0	al	
+animationInitDirectSlot	800B3CE8	a	
+D_80073BAC	80073BAC	a	
+effectSpawnPlayerBodyHit	8010B2A0	a	
+areaSetCurrentObjectState	800BAC34	a	
+gameFlagSetNibble	8004AC58	a	
+playerActorResetChildSlots	801038F8	a	
+SetRotMatrix	8004ADF8	a	
+stageRequestModeTaskExit	8003F6F8	a	
+sceneSetEnemyAlert	800DB530	a	
+sceneEngageBattle	800DB4E0	a	
+tmdAllocPrimitiveBuffer	80041B88	a	
+playerActorEnterPendingHit	8010A9D0	a	
+displayAcquireMenuHold	8003E610	a	
+companionRecoverToIdle	8010C180	a	
+displayQueueModeTask	8003FB70	a	
+gameGetTaskSlot	8002D22C	a	
+D_80115418	80115418	a	
+damagePackEnemyAttackKey	800E2BF8	a	
+viewGetMappedIndex	800AD284	a	
+worldCoordGetOriginAudioPan	800D937C	a	
+animationTickSlotPose	800B3448	a	
+D_801153F1	801153F1	a	
+D_8011541B	8011541B	a	
+printf	8001AF3C	a	
+worldCollisionClearContacts	800E1A6C	a	
+gfxBuildDirectionRotation	800E1CD4	a	
+sceneReleaseBattleRefAndClearRewards	800DB630	a	
+LoadImage2	8001A3E4	a	
+memMalloc	8002DABC	a	
+D_80073BA0	80073BA0	a	
+gActionPromptSlots	80114D28	a	
+helicopter_departure_BSS_START	801550D0	f	
+gRoomEffectOrangeBurst2Id	80115754	a	
+__divsf3	8005BF20	a	
+taskSpawn	8002CFDC	a	
+MatrixNormal	8003D6C8	a	
+D_8007106C	8007106C	a	
+D_80070F6C	80070F6C	a	
+capRunCommandWithTransition	800E3B60	a	
+SetSemiTrans	800439B8	a	
+inventoryHasCollectedBit	800BB4BC	a	
+worldCollisionApplyResponsePushback	801011D0	a	
+gGfxViewCoord	80070F10	a	
+D_80073B8C	80073B8C	a	
+gfxMatrixToEuler	8003C4F0	a	
+gameFlowBeginLoadScreen	8002252C	a	
+sndEvtRequestScriptMix	80054424	a	
+worldCollisionProjectGroundCoord	800EA02C	a	
+playerActorPlayFootstepCue	80105ED4	a	
+worldCollisionUnlinkTrigger	800E1708	a	
+helicopter_departure_DATA_START	80134170	f	
+__fixsfsi	8005C070	a	
+RotMatrixZXY	8004C9C8	a	
+padScriptSpawnVariableMotorRamp	800E8D1C	a	
+gfxSetFlatLight	8003B140	a	
+playerActorSpawnWeaponModel	80104364	a	
+gPlayerActorStateTickHeld	80115768	a	
+padScriptSpawnDepthScaled	800E9188	a	
+MulRotMatrix	8004C508	a	
+rcos	8003D108	a	
+gRoomEffectTwinTrailId	8011572C	a	
+taskKill	8002CCB8	a	
+worldCollisionCalcContactWorldOffset	800B6118	a	
+gEffectSpriteAtlasFrames	80111E48	a	
+gDirectionInteractionRearmUpdates	80114D08	a	
+playerActorPlanarLength	80103D8C	a	
+gRoomEffectSparkBurstId	80115750	a	
+D_80071078	80071078	a	
+playerActorTurnBodyTowardPoint	8010BD88	a	
+gEffectUnitQuadCorners	80111E38	a	
+worldCoordSetActorColorMode	800D930C	a	
+sceneLatchActionSignal	800DB500	a	
+playerActorSetScriptedControl	800E3BBC	a	
+playerActorPlayChildSlotsWithBlend	80103A18	a	
+playerActorRestoreEquipment	801034C0	a	
+playerActorRemoveEquipment	801043F4	a	
+worldTargetFindLockNodeFromPad	800DAD78	a	
+damageGetPlayerAttackEffectId	800E2D90	a	
+gpuSetPrimitiveBlendMode	800EC914	a	
+helicopter_departure_ROM_START	00000000	a	
+worldCoordUpdateActorColor	800D8EA0	a	
+enemyTaskExit	800B0234	a	
+gfxComposeNodeWorldTransform	800B1D00	a	
+companionEnterDamageReaction	8010B9A4	a	
+playerActorTickScriptedAnimation	80108BAC	a	
+D_80115416	80115416	a	
+gPlayerActorWeaponAnimationBankBases	80112D68	a	
+gfxExtractSmallestEuler	800B114C	a	
+ratan2	8003D9C8	a	
+D_80115414	80115414	a	
+sceneFindPlacedActor	800E86FC	a	
+animationSeekSlotWithBlend	800B4114	a	
+D_80071090	80071090	a	
+padIsStartPressed	8004ACF0	a	
+gGolemNo9AkropolisSword	8014E9AC	f	
+ApplyMatrixSV	80043A68	a	
+memcpy	8001AEFC	a	
+gStageCountdownMusicEntry	80062735	a	
+capSetTexturePage	800E6D4C	a	
+__floatsidf	8004B5D8	a	
+cdCmdEnqueueDisplayResource	80042364	a	
+LoadAverageCol	8004C808	a	
+playerActorGetTurnToPoint	8010BCF4	a	
+areaSyncLocationVariant	800B601C	a	
+effectDrawGroundShadow	800F68AC	a	
+worldCollisionUnlinkBody	800E1638	a	
+playerActorWriteWeaponAnimationBankIndex	800E3CEC	a	
+StoreImage2	8001A4D0	a	
+gGpuCurrentOt	800710A0	a	
+damageIsEnemyDamageOverTimeExpired	800E2F7C	a	
+padScriptSpawn	800E8FB0	a	
+gCapFile	8011568C	a	
+sceneReleaseBattleRef	800DB6B4	a	
+damageGetPlayerAttackHitCooldown	800E3194	a	
+gMcSaveData	80072168	a	
+animationApplyBlendedPose	800B4248	a	
+gameSetTaskSlot	8002D214	a	
+worldCollisionCountContactsByKind	800E1A1C	a	
+taskSpawnFromTable	8002CFA0	a	
+companionInitNativeAnimation	8010BFCC	a	
+cdCmdRequestCancel	8001C970	a	
+worldCollisionSurfaceClassFromMask	800E1ACC	a	
+helicopter_departure_VRAM_END	801550D0	f	
+helicopter_departure_BSS_END	801550D0	f	
+D_80070F70	80070F70	a	
+displayResumeGameLoop	8003E540	a	
+gTaskBank4Descs	800676A8	a	
+gTaskBank2Descs	80067828	a	
+tmdFreePrimitiveBuffer	80041B4C	a	
+VectorNormalS	8003D594	a	
+itemMenuOpenHotspotCommands	800D4E78	a	
+gfxMakeRelativeTransform	800A8864	a	
+gWorldCollisionSurfacePropertiesTables	8010CBB8	a	
+LoadImage	80017F44	a	
+gTaskBank1Descs	800670D0	a	
+D_80062730	80062730	a	
+streamPollGameRestore	8001EF9C	a	
+areaClearMapMark	800AED24	a	
+worldCollisionSurfaceClassFromKey	800E1B24	a	
+D_8007107C	8007107C	a	
+worldCoordSetModelLighting	800D7A9C	a	
+streamResetGameRestore	80020388	a	
+gfxReadMatrixYAxis	8003C748	a	
+playerActorTickScriptedMoveTo	80107E1C	a	
+displayReleaseMenuHold	8003E64C	a	
+taskCallExit	8002D0A4	a	
+RotMatrixZYX	80044408	a	
+SetPolyFT4	8004C1C8	a	
+D_8011540D	8011540D	a	
+modelLightingSetLayerMaterials	8009EA50	a	
+damageTickEnemyBuildup	800E3084	a	
+playerActorTurnAimTowardPoint	8010BE5C	a	
+helicopter_departure_TEXT_SIZE	000022F8	a	
+gGameSession	8005ED64	a	
+damageStartEnemyBuildup	800E301C	a	
+D_80071076	80071076	a	
+D_80115413	80115413	a	
+worldCollisionSegmentOccluded	800E0308	a	
+__adddf3	8004AFE8	a	
+gRoomEffectFlashId	80115758	a	
+playerActorInitWeaponCollision	80100FCC	a	
+animationAimHeadAtPoint	800B0CF4	a	
+SquareRoot0	8003B8A0	a	
+helicopter_departure_RODATA_START	80131E20	f	
+gameFlagSetPackedByte	800E3FAC	a	
+gAttachmentState	80114C08	a	
+worldCollisionTestOccluderSegment	800DFCCC	a	
+tmdXformStreamVerts	800112DC	a	
+displayConfigureFramebuffers	8003DB48	a	
+gfxBuildOrthonormalBasis	8003CEC4	a	
+sndEvtRequestScriptStop	800542D0	a	
+actorRenderUploadTexture	800DB28C	a	
+actorMsgPlaceRotMatrix	80133E48	ft	
+worldCollisionResolveResponsePushback	800E0FEC	a	
+sceneReleaseBattleRefWithRewards	800DB558	a	
+capRunCommand	800E34D8	a	
+gFsActorBuffer2Base	8005C374	a	
+helicopter_departure_VRAM	80131E20	f	
+capReset	800E6DF4	a	
+damageGetPlayerAttackReaction	800E2D3C	a	
+loadingEnqueueCharacterResources	800A9B3C	a	
+worldTargetFindLockNode	800DAD54	a	
+gfxReadMatrixZAxis	8003C768	a	
+gfxRotMatrixY	8003C98C	a	
+gPadScriptTransitionCommands	80114A24	a	
+RotTransPers4	8004C358	a	
+gfxDotProduct	8003D000	a	
+playerActorSetPendingDisplacement	80105B74	a	
+padPostVibrationRequest	8002C8E4	a	
+animationBindContext	800B3F60	a	
+D_8011540E	8011540E	a	
+gPadScriptTransitionSegments	80114A34	a	
+playerActorEnterStoppedPose	8010AA28	a	
+inventoryRestoreCarriedLoadout	800BA75C	a	
+roomEffectRecordAnimationSoundCue	800EA3A0	a	
+helicopter_departure_RODATA_SIZE	00000058	a	
+worldTargetUnlinkNode	800DAB38	a	
+worldCollisionFindContactIndex	800E19B8	a	
+worldCollisionLinkBody	800E15AC	a	
+D_80073BA9	80073BA9	a	
+tmdDrawStreamGt4	800110A0	a	
+D_80073BAD	80073BAD	a	
+effectKillTask	800EC7E4	a	
+memCopyBytes	8002D7A8	a	
+helicopter_departure_DATA_END	801550D0	f	
+sceneSetPlacedActorDrawMode	800E3C6C	a	
+__fixdfsi	8004B4D8	a	
+gAkropolisHelicopterLandingPadPlayerHelipadReportEscapeClip	80136AE8	f	
+gWorldCollisionOccluderListHead	80115550	a	
+gEffectBurstTaskDescriptors	80114B34	a	
+cdCmdStageSceneAudioStart	8001D6B8	a	
+helicopter_departure_ROM_END	000232B0	a	
+animationTickDirectSlot	800B3DB4	a	
+cdCmdIsIdle	8001D344	a	
+D_80115419	80115419	a	
+D_80072729	80072729	a	
+capStartSequenceSlot	800E6C70	a	
+companionGetHealthBand	8010C058	a	
+worldCollisionReadActionHit	800E1BF0	a	
+playerActorResetWeaponAttack	80106350	a	
+SetTransMatrix	8004AE28	a	
+gameFlagGetNibble	8004ACAC	a	
+D_801153F4	801153F4	a	
+gRoomEffectHaloId	80115744	a	
+playerStateSpendMp	800A7F34	a	
+gCapPreserveActorControl	80115690	a	
+itemSetIdentified	800BB7C0	a	
+gfxRotMatrixZ	8003CB80	a	
+worldTargetAddReadoutAmount	800DA6E8	a	
+SetDrawOffset	80018AA4	a	
+playerActorShortestTurn	80103E7C	a	
+VectorNormal	8003D5A8	a	
+D_8007272D	8007272D	a	
+gSceneCombatState	801153F0	a	
+worldCoordPlaySound	801064A4	a	
+enemySpawnFromTable	800B01AC	a	
+playerActorGetPointDelta	80103C74	a	
+D_8011540A	8011540A	a	
+tmdSetTextureOffsets	800B58D4	a	
+evsStartScriptWithSkip	800E8634	a	
+playerActorSpawnAttachment	80104258	a	
+gFsImageWorkspacePtr	8005C364	a	
+gGolemNo9BodyAkropolis	8014E708	f	
+evsStartScript	800E8614	a	
+StoreImage	80017FA4	a	
+D_80114C12	80114C12	a	
+MoveImage	80018004	a	
+capGetVariantKey	800E6D3C	a	
+capIsBusy	800E6CE0	a	
+gGpuPrimCursor	80071190	a	
+worldCoordGetOriginAudioDepth	800D9340	a	
+D_8011505C	8011505C	a	
+gfxRotMatrixXYZ	8003B960	a	
+shopOpenSession	800D4D2C	a	
+gPadCancelButtonMask	8005ED74	a	
+gPadStates	80071620	a	
+SetDrawArea	80018A24	a	
+D_80071075	80071075	a	
+worldTargetSetPlayerLock	800DACAC	a	
+RotTransPers3	8004C1E8	a	
+animationInitContext	800B3F84	a	
+rand	80037164	a	
+D_80115410	80115410	a	
+playerActorPlayChildSlots	8010397C	a	
+effectSpawnHit	800FDB18	a	
+D_801153F2	801153F2	a	
+__floatsisf	8005C120	a	
+RotMatrix_gte	80049D84	a	
+companionBindCollisionProbe	8010C1FC	a	
+memCalloc	8002D978	a	
+sndEvtRequestScriptUnmute	800543AC	a	
+effectSpawn	800EA478	a	
+strncmp	8001EAC4	a	
+gRoomEffectWaterSprayId	80115738	a	
+gfxExtractEulerAngles	800B0FDC	a	
+D_800691CA	800691CA	a	
+areaSaveEnemyPose	800B48FC	a	
+gGolemNo9AkropolisProp	8014ECC8	f	
+playerActorSpawnGrenadeProjectile	80104490	a	
+gRoomEffectMoteId	80115728	a	
+areaApplySavedUpdates	800AE62C	a	
+D_80115415	80115415	a	
+cdCmdCancelScene	8001D588	a	
+gHelicopterDepartureNo9GolemTaskDescriptors	80155070	f	
+GsWSMATRIX	80071138	a	
+cdCmdEnqueue	8001D2B0	a	
+padCheckButtons	8002C868	a	
+gAkropolisHelicopterLandingPadPlayerHelipadDetonatorTalkClip	801398FC	f	
+taskSpawnFromTableOnDefaultList	8003E4BC	a	
+SetDrawStp	80042288	a	
+helicopter_departure_TEXT_END	80134170	f	
+playerActorSetDrawMode	800E3B80	a	
+worldTargetGetBodyPosition	800DAE50	a	
+gfxReadMatrixXAxis	8003C728	a	
+D_80073BAA	80073BAA	a	
+animationBindModelContext	800B3CCC	a	
+worldCollisionBindEnemySphere	8010C980	a	
+fsUploadImageChunk	800246B0	a	
+RotMatrixZ	8004AE48	a	
+SetDispMask	80017C00	a	
+playerActorMode2State2	80108BD8	a	
+SetTile	80042344	a	
+cdCmdEnqueueScenePlayback	8001D5CC	a	
+__muldf3	8004B828	a	
+rsin	8003D038	a	
+viewFindLogicalIndex	800ACEBC	a	
+D_8006C45C	8006C45C	a	
+actorRenderCopyCoordBodyTransform	800B0278	a	
+areaGetVariant	800B5CE8	a	
+gGameFlagNibbleBanks	80073980	a	
+ScaleMatrixL	8004C888	a	
+worldCoordSetAmbientColorOverride	800D94B8	a	
+tmdDrawStreamGt3	80010F08	a	
+damageStartEnemyStagger	800E3008	a	
+worldTargetDisableNodeLockOn	800DACF8	a	
+D_80072170	80072170	a	
+D_80070F87	80070F87	a	
+worldCollisionProbeGridSegment	800DE7CC	a	
+playerActorHasWallContact	801041B4	a	
+D_8011540C	8011540C	a	
+memset	800420F8	a	
+companionWriteAnimationBankIndex	800E3D24	a	
+D_80073BAE	80073BAE	a	
+gGolemNo9AkropolisChestPiece	8014F024	f	
+actorMsgPlaceEuler	80132724	ft	
+D_80115412	80115412	a	
+D_8007272F	8007272F	a	
+streamPrepareMovieWorkspace	80020298	a	
+srand	80037194	a	
+viewQueueCurrentCameraAndPackets	800A8B6C	a	
+ApplyMatrixLV	80042128	a	
+inventorySetCollectedBit	800BAE5C	a	
+taskMessageDispatch	800AC464	a	
+gHelicopterDepartureRupertTaskDescriptors	801472E8	f	
+animationResetSlot	800B3FA8	a	
+taskRequestKill	8002D340	a	
+playerActorTickChildSlots	80103AC0	a	
+D_8007107A	8007107A	a	
+ClearImage	80017E1C	a	
+playerActorTickAnimationState	80101848	a	
+playerActorFinishDamageReaction	8010ABD4	a	
+gPlayerStatus	80073B88	a	
+gPlayerActorTasks	80115760	a	
+animationStartDirectSlot	800B3AA4	a	
+enemyDestroy	800B01F0	a	
+gFsResourceSlots	8006C338	a	
+__mulsf3	8005C1F0	a	
+gRandomLcgState	80070F60	a	
+sndEvtRequestScriptMute	80054334	a	
+strcmp	80039B74	a	
+D_80115764	80115764	a	
+displaySetShakeY	8003DE78	a	
+damageTryStartEnemyDamageOverTime	800E2DE4	a	
+RotTransPers	8004C198	a	
+D_8007216D	8007216D	a	
+animationCaptureSlotWithBlend	800B4538	a	
+gTaskBank8Descs	800626EC	a	
+roomEffectRequestCancelPe	800FC6C0	a	
+gpuUploadImages	800DB31C	a	
+gDirectionActionActive	80114CF8	a	
+D_80072830	80072830	a	
+gHelicopterDepartureHelicopterTaskDescriptors	80139924	f	
+D_80071085	80071085	a	
+helicopter_departure_BSS_SIZE	00000000	a	
+helicopter_departure_DATA_SIZE	00020F60	a	
+spriteGetViewDrawAreas	800AD2E8	a	
+gfxBlendOrthonormalRotation	800B1460	a	
+VectorNormalSS	8003D5D8	a	
+gWorldCollisionActiveGrid	80115448	a	
+roomEffectRequestCancelAll	800EC868	a	
+actorRenderDrawGroundShadow	800B4E54	a	
+D_8007218A	8007218A	a	
+damageTickEnemyDamageOverTime	800E2EC4	a	
+capSelectLoadedFile	800E6D60	a	
+Gfx_ViewWorldMtx	80070F34	a	
+gFsImageHeaderYShiftRows	8006C234	a	
+tmdBuildBufferHalf	800410F0	a	
+GPU_printf	8005D950	a	
+gMapNeoArkCompanionDistressTicks	8017A99C	a	
+DrawSync	80017C98	a	
+effectGetGroundShadowShade	800EA318	a	
+damageComputePlayerAttack	800E1FEC	a	
+D_8006C454	8006C454	a	
+animationApplyPoseWithBlendedRotation	800B43E0	a	
+damageRollCriticalHit	800E25F8	a	
+animationTickSlot	800B4514	a	
+sceneAcquireBattleRef	800DB53C	a	
+companionGetPlayerPlanarDistance	8010BC70	a	
+effectDrawGroundGlow	800F6560	a	
+gCapInlineIconCells	8010FB70	a	
+playerActorPlanarDistance	80103DD4	a	
+taskDetachFromParent	8002D0CC	a	
+gPlayerActorWeaponReaches	80112F60	a	
+playerActorUpdateFacing	80101F58	a	
+D_80072728	80072728	a	
+damagePackAttackKey	800E2C40	a	
+worldCollisionInitContacts	800E18E0	a	
+sndEvtRequestMidiStop	8005132C	a	
+RotMatrix	80043AC8	a	
+D_80114C11	80114C11	a	
+viewQueueCamera	800A8A1C	a	
+displaySpawnTaskFromTable	8003E324	a	
+companionSetDecisionDelay	8010BF7C	a	
+ScaleMatrix	8004A98C	a	
+gfxRotMatrixX	8003C788	a	
+D_8011540B	8011540B	a	
+playerActorResolveBodyContacts	80109BB4	a	
+gRoomEffectSparkEmitterId	80115720	a	
+MulMatrix0	80044208	a	
+D_80114FF8	80114FF8	a	
+D_80115417	80115417	a	
+itemMenuIsHotspotActionConfirmed	800D4EC0	a	
+D_801153F6	801153F6	a	
+gWorldCoordTransientPointLights	80114F30	a	
+companionTrackLockTarget	8010C098	a	
+capSpawnEventIfIdle	800E3D8C	a	
+gDisplayState	80070F68	a	
+ApplyTransposeMatrixLV	80044050	a	
+gSpriteAreaTables	8010CB68	a	
+sceneFindEnemyByPlaceKey	800B584C	a	
+MulMatrix	8004C248	a	
+inventoryMeltIceBagIfExpired	800BC254	a	
+gteMIMefunc	8004AD78	a	
+gFsActorBufferWrittenBytes	8006D860	a	
+playerActorIsSlotAdvancingLinearly	80105894	a	
+playerStateSetStatusEffects	8010A1B0	a	
+D_8007218B	8007218B	a	
+sndEvtRequestScriptStart	8005414C	a	
+helicopter_departure_TEXT_START	80131E78	f	
+companionApplyDamage	8010C8F0	a	
+animationAimHeadAt	800B17D4	a	
+gRoomEffectOrangeBurstId	8011573C	a	
+viewGetMappedCamera	800A8C08	a	
+gCdCmdQueue	80068FA0	a	
+streamFinishScene	800B00C4	a	
+animationGetCurrentRecord	800B4668	a	
+animationResetRemappedSlot	800B404C	a	
+gRoomEffectWaterRippleId	8011574C	a	
+memFillBytes	8002D894	a	
+playerActorStepMovement	80101A68	a	
+D_8007106B	8007106B	a	
+damageGetHazardDamage	800E2CD4	a	
+RotMatrixX	8004BE58	a	
+worldCoordSetModelAmbientColor	800D9550	a	
+worldTargetLinkNode	800DABEC	a	
+damageAccumulateLifeDrainHp	800E2C78	a	
+taskReparent	8002D14C	a	
+gRoomEffectState	80115740	a	
+TransposeMatrix	800420B8	a	
+companionEnterIdle	8010BC04	a	
+playerActorMode2State6	80108D68	a	
+worldCollisionProjectGroundPoint	800EA1A8	a	
+inventoryClearCollectedBit	800BAEC0	a	
+D_8007216C	8007216C	a	
+actorRenderComposeCoord	80098F58	a	
+GetClut	80042AE0	a	
+gRoomEffectGlowDiscId	80115734	a	
+helicopter_departure_RODATA_END	80131E78	f	
+actorRenderPlaceCoordOffset	801040A0	a	
+areaGetCurrentObjectState	800BB470	a	
+gWorldCollisionActionTriggerListHead	8011556C	a	
+worldTargetGetActorLockMask	800DAC54	a	
+fadeDrawOverlay	8002BA9C	a	
+worldCollisionResolvePushback	800E0C10	a	
+__subdf3	8004BC28	a	
+padInputChangeSuppression	800E9BDC	a	
+gEvsPlaybackPaused	801156F9	a	
+RotMatrixY	8004BFF8	a	
+playerActorScriptedState0	80108B80	a	
+streamFindMovieSlot	8001EDC8	a	
+inventoryIsItemLimitReached	800B7420	a	
+gPlayerActorWeaponAnimationBanks	80112D6C	a	
+helicopter_departure_bss_VRAM	801550D0	f	
+playerActorSetWeaponAttackFlags	80106238	a	
+animationAimHeadAtTask	800B0928	a	
+D_80115408	80115408	a	
+padScriptHalt	800E8F68	a	

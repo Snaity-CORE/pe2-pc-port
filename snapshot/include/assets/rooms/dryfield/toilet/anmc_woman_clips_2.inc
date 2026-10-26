@@ -1432,15 +1432,15 @@ static AnimationSet _gDryfieldToiletStrangerTransformClip = {
     .poseBanks         = { [1] = _gDryfieldToiletStrangerTransformClipBank1, [4] = _gDryfieldToiletStrangerTransformClipBank4 },
 };
 
-/* rooms/akropolis/patio/body_anim_01 */
-static AnimationPackedPose _gAkropolisPatioBodyAnim01ClipBank1[4] = {
+/* enemies/stranger/react */
+static AnimationPackedPose _gStrangerReactClipBank1[4] = {
     { 0, 0, 0, 0, 0, 0 },
     { 0, -0, -0, -0, 0, 0 },
     { 0, -0, -0, -0, 0, 0 },
     { 0, -0, -0, -0, 0, 0 },
 };
 
-static AnimationPackedRotation _gAkropolisPatioBodyAnim01ClipBank4[69] = {
+static AnimationPackedRotation _gStrangerReactClipBank4[69] = {
     { -0, 0, 0 },
     { -0, 0, 0 },
     { -0, 0, 0 },
@@ -1512,7 +1512,7 @@ static AnimationPackedRotation _gAkropolisPatioBodyAnim01ClipBank4[69] = {
     { 0, -0, -0 },
 };
 
-static AnimationRecord _gAkropolisPatioBodyAnim01ClipRecords[162] = {
+static AnimationRecord _gStrangerReactClipRecords[162] = {
     { 0, 0, 0 },
     { 0, 0, 0 },
     { 0, 0, 0 },
@@ -1677,16 +1677,16 @@ static AnimationRecord _gAkropolisPatioBodyAnim01ClipRecords[162] = {
     { 0, 0, 0 },
 };
 
-static u16 _gAkropolisPatioBodyAnim01ClipTrackStarts[20] = {
+static u16 _gStrangerReactClipTrackStarts[20] = {
     0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0,
 };
 
-static AnimationSet _gAkropolisPatioBodyAnim01Clip = {
-    .records           = _gAkropolisPatioBodyAnim01ClipRecords,
-    .trackStartIndices = _gAkropolisPatioBodyAnim01ClipTrackStarts,
-    .poseBanks         = { [1] = _gAkropolisPatioBodyAnim01ClipBank1, [4] = _gAkropolisPatioBodyAnim01ClipBank4 },
+static AnimationSet _gStrangerReactClip = {
+    .records           = _gStrangerReactClipRecords,
+    .trackStartIndices = _gStrangerReactClipTrackStarts,
+    .poseBanks         = { [1] = _gStrangerReactClipBank1, [4] = _gStrangerReactClipBank4 },
 };
 
 /* enemies/stranger/odd/alert */

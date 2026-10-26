@@ -1,14 +1,14 @@
 gcc2_compiled.	80149E30	fl	build/USA/src/actors/actor_210600/actor_210600.i
 __gnu_compiled_c	80149E30	fl	build/USA/src/actors/actor_210600/actor_210600.i
 _MACRO_INC_GUARD	00000001	al	build/USA/src/actors/actor_210600/actor_210600.i
-_gAkropolisCafeteriaPlayerCafeteriaRupertTalkClipBank1	8014CF28	fl	build/USA/src/actors/actor_210600/actor_210600.i
-_gAkropolisCafeteriaPlayerCafeteriaRupertTalkClipBank4	8014D468	fl	build/USA/src/actors/actor_210600/actor_210600.i
-_gAkropolisCafeteriaPlayerCafeteriaRupertTalkClipRecords	8014EDA0	fl	build/USA/src/actors/actor_210600/actor_210600.i
-_gAkropolisCafeteriaPlayerCafeteriaRupertTalkClipTrackStarts	80151CEC	fl	build/USA/src/actors/actor_210600/actor_210600.i
-_gAkropolisCafeteriaPlayerCafeteriaFollowUpEndClipBank1	80151D3C	fl	build/USA/src/actors/actor_210600/actor_210600.i
-_gAkropolisCafeteriaPlayerCafeteriaFollowUpEndClipBank4	80152234	fl	build/USA/src/actors/actor_210600/actor_210600.i
-_gAkropolisCafeteriaPlayerCafeteriaFollowUpEndClipRecords	80152CF0	fl	build/USA/src/actors/actor_210600/actor_210600.i
-_gAkropolisCafeteriaPlayerCafeteriaFollowUpEndClipTrackStarts	80153E48	fl	build/USA/src/actors/actor_210600/actor_210600.i
+_gAkropolisCafeteriaPlayerRupertTalkClipBank1	8014CF28	fl	build/USA/src/actors/actor_210600/actor_210600.i
+_gAkropolisCafeteriaPlayerRupertTalkClipBank4	8014D468	fl	build/USA/src/actors/actor_210600/actor_210600.i
+_gAkropolisCafeteriaPlayerRupertTalkClipRecords	8014EDA0	fl	build/USA/src/actors/actor_210600/actor_210600.i
+_gAkropolisCafeteriaPlayerRupertTalkClipTrackStarts	80151CEC	fl	build/USA/src/actors/actor_210600/actor_210600.i
+_gAkropolisCafeteriaPlayerFollowUpEndClipBank1	80151D3C	fl	build/USA/src/actors/actor_210600/actor_210600.i
+_gAkropolisCafeteriaPlayerFollowUpEndClipBank4	80152234	fl	build/USA/src/actors/actor_210600/actor_210600.i
+_gAkropolisCafeteriaPlayerFollowUpEndClipRecords	80152CF0	fl	build/USA/src/actors/actor_210600/actor_210600.i
+_gAkropolisCafeteriaPlayerFollowUpEndClipTrackStarts	80153E48	fl	build/USA/src/actors/actor_210600/actor_210600.i
 _gStrangerGrinningBodySkeleton	80153E98	fl	build/USA/src/actors/actor_210600/actor_210600.i
 _gStrangerGrinningBodyPartVerts	80154144	fl	build/USA/src/actors/actor_210600/actor_210600.i
 _gStrangerGrinningBodyVerts	80154190	fl	build/USA/src/actors/actor_210600/actor_210600.i
@@ -857,6 +857,7 @@ D_80071076	80071076	a
 D_80115413	80115413	a	
 worldCollisionSegmentOccluded	800E0308	a	
 __adddf3	8004AFE8	a	
+gAkropolisCafeteriaPlayerRupertTalkClip	80151D14	f	
 gRoomEffectFlashId	80115758	a	
 playerActorInitWeaponCollision	80100FCC	a	
 animationAimHeadAtPoint	800B0CF4	a	
@@ -1012,7 +1013,6 @@ D_8011540C	8011540C	a
 memset	800420F8	a	
 companionWriteAnimationBankIndex	800E3D24	a	
 D_80073BAE	80073BAE	a	
-gAkropolisCafeteriaPlayerCafeteriaFollowUpEndClip	80153E70	f	
 D_80115412	80115412	a	
 D_8007272F	8007272F	a	
 streamPrepareMovieWorkspace	80020298	a	
@@ -1030,7 +1030,6 @@ playerActorTickAnimationState	80101848	a
 playerActorFinishDamageReaction	8010ABD4	a	
 gPlayerStatus	80073B88	a	
 actor_210600_RODATA_SIZE	00000010	a	
-gAkropolisCafeteriaPlayerCafeteriaRupertTalkClip	80151D14	f	
 gPlayerActorTasks	80115760	a	
 animationStartDirectSlot	800B3AA4	a	
 enemyDestroy	800B01F0	a	
@@ -1166,6 +1165,7 @@ actor_210600_TEXT_SIZE	000030F8	a
 streamFindMovieSlot	8001EDC8	a	
 inventoryIsItemLimitReached	800B7420	a	
 gPlayerActorWeaponAnimationBanks	80112D6C	a	
+gAkropolisCafeteriaPlayerFollowUpEndClip	80153E70	f	
 playerActorSetWeaponAttackFlags	80106238	a	
 animationAimHeadAtTask	800B0928	a	
 D_80115408	80115408	a	

@@ -3,8 +3,8 @@
 
 #include "gameplay/animation.h"
 
-/* rooms/akropolis/cafeteria/player_cafeteria_rupert_talk */
-static AnimationPackedPose _gAkropolisCafeteriaPlayerCafeteriaRupertTalkClipBank1[112] = {
+/* rooms/akropolis/cafeteria/player_rupert_talk */
+static AnimationPackedPose _gAkropolisCafeteriaPlayerRupertTalkClipBank1[112] = {
     { 0, 0, 0, 0, 0, 0 },
     { -0, -0, -0, 0, 0, 0 },
     { -0, -0, -0, 0, 0, 0 },
@@ -119,7 +119,7 @@ static AnimationPackedPose _gAkropolisCafeteriaPlayerCafeteriaRupertTalkClipBank
     { -0, -0, -0, 0, -0, -0 },
 };
 
-static AnimationPackedRotation _gAkropolisCafeteriaPlayerCafeteriaRupertTalkClipBank4[1614] = {
+static AnimationPackedRotation _gAkropolisCafeteriaPlayerRupertTalkClipBank4[1614] = {
     { 0, -0, -0 },
     { 0, -0, -0 },
     { 0, -0, -0 },
@@ -1736,7 +1736,7 @@ static AnimationPackedRotation _gAkropolisCafeteriaPlayerCafeteriaRupertTalkClip
     { 0, 0, -0 },
 };
 
-static AnimationRecord _gAkropolisCafeteriaPlayerCafeteriaRupertTalkClipRecords[3027] = {
+static AnimationRecord _gAkropolisCafeteriaPlayerRupertTalkClipRecords[3027] = {
     { 0, 0, 0 },
     { 0, 0, 0 },
     { 0, 0, 0 },
@@ -4766,20 +4766,20 @@ static AnimationRecord _gAkropolisCafeteriaPlayerCafeteriaRupertTalkClipRecords[
     { 0, 0, 0 },
 };
 
-static u16 _gAkropolisCafeteriaPlayerCafeteriaRupertTalkClipTrackStarts[20] = {
+static u16 _gAkropolisCafeteriaPlayerRupertTalkClipTrackStarts[20] = {
     0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0,
 };
 
-AnimationSet gAkropolisCafeteriaPlayerCafeteriaRupertTalkClip = {
-    .records           = _gAkropolisCafeteriaPlayerCafeteriaRupertTalkClipRecords,
-    .trackStartIndices = _gAkropolisCafeteriaPlayerCafeteriaRupertTalkClipTrackStarts,
-    .poseBanks         = { [1] = _gAkropolisCafeteriaPlayerCafeteriaRupertTalkClipBank1, [4] = _gAkropolisCafeteriaPlayerCafeteriaRupertTalkClipBank4 },
+AnimationSet gAkropolisCafeteriaPlayerRupertTalkClip = {
+    .records           = _gAkropolisCafeteriaPlayerRupertTalkClipRecords,
+    .trackStartIndices = _gAkropolisCafeteriaPlayerRupertTalkClipTrackStarts,
+    .poseBanks         = { [1] = _gAkropolisCafeteriaPlayerRupertTalkClipBank1, [4] = _gAkropolisCafeteriaPlayerRupertTalkClipBank4 },
 };
 
-/* rooms/akropolis/cafeteria/player_cafeteria_follow_up_end */
-static AnimationPackedPose _gAkropolisCafeteriaPlayerCafeteriaFollowUpEndClipBank1[106] = {
+/* rooms/akropolis/cafeteria/player_follow_up_end */
+static AnimationPackedPose _gAkropolisCafeteriaPlayerFollowUpEndClipBank1[106] = {
     { 0, 0, 0, 0, 0, 0 },
     { -0, -0, -0, 0, -0, 0 },
     { -0, -0, -0, 0, -0, 0 },
@@ -4888,7 +4888,7 @@ static AnimationPackedPose _gAkropolisCafeteriaPlayerCafeteriaFollowUpEndClipBan
     { -0, -0, -0, -0, -0, -0 },
 };
 
-static AnimationPackedRotation _gAkropolisCafeteriaPlayerCafeteriaFollowUpEndClipBank4[687] = {
+static AnimationPackedRotation _gAkropolisCafeteriaPlayerFollowUpEndClipBank4[687] = {
     { 0, -0, -0 },
     { 0, -0, -0 },
     { 0, 0, -0 },
@@ -5578,7 +5578,7 @@ static AnimationPackedRotation _gAkropolisCafeteriaPlayerCafeteriaFollowUpEndCli
     { 0, 0, -0 },
 };
 
-static AnimationRecord _gAkropolisCafeteriaPlayerCafeteriaFollowUpEndClipRecords[1110] = {
+static AnimationRecord _gAkropolisCafeteriaPlayerFollowUpEndClipRecords[1110] = {
     { 0, 0, 0 },
     { 0, 0, 0 },
     { 0, 0, 0 },
@@ -6691,14 +6691,14 @@ static AnimationRecord _gAkropolisCafeteriaPlayerCafeteriaFollowUpEndClipRecords
     { 0, 0, 0 },
 };
 
-static u16 _gAkropolisCafeteriaPlayerCafeteriaFollowUpEndClipTrackStarts[20] = {
+static u16 _gAkropolisCafeteriaPlayerFollowUpEndClipTrackStarts[20] = {
     0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0,
 };
 
-AnimationSet gAkropolisCafeteriaPlayerCafeteriaFollowUpEndClip = {
-    .records           = _gAkropolisCafeteriaPlayerCafeteriaFollowUpEndClipRecords,
-    .trackStartIndices = _gAkropolisCafeteriaPlayerCafeteriaFollowUpEndClipTrackStarts,
-    .poseBanks         = { [1] = _gAkropolisCafeteriaPlayerCafeteriaFollowUpEndClipBank1, [4] = _gAkropolisCafeteriaPlayerCafeteriaFollowUpEndClipBank4 },
+AnimationSet gAkropolisCafeteriaPlayerFollowUpEndClip = {
+    .records           = _gAkropolisCafeteriaPlayerFollowUpEndClipRecords,
+    .trackStartIndices = _gAkropolisCafeteriaPlayerFollowUpEndClipTrackStarts,
+    .poseBanks         = { [1] = _gAkropolisCafeteriaPlayerFollowUpEndClipBank1, [4] = _gAkropolisCafeteriaPlayerFollowUpEndClipBank4 },
 };

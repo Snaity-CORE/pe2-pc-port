@@ -2,6 +2,11 @@
 #define ROOM_CAT_(a, b) a##b
 #define ROOM_CAT(a, b) ROOM_CAT_(a, b)
 
+#include "types.h"
+#include <psyq/sys/types.h>
+#include <psyq/libgte.h>
+#include "gameplay/collision.h"
+
 static SVECTOR _gAkropolisSquareCollisionGridNormals[82] = {
 #include "assets/akropolis_square_collision_07BDC_normals.inc"
 };

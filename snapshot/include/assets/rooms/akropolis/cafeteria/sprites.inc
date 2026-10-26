@@ -2,11 +2,14 @@
 #define ROOM_CAT_(a, b) a##b
 #define ROOM_CAT(a, b) ROOM_CAT_(a, b)
 
-static SpriteBatch _gAcropolisCafeteriaViews1And4SpriteBatches[2] = {
+#include "types.h"
+#include "gameplay/sprites.h"
+
+static SpriteBatch _gAkropolisCafeteriaViews1And4SpriteBatches[2] = {
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
 };
-static SpriteSource _gAcropolisCafeteriaView2SpriteSources[40] = {
+static SpriteSource _gAkropolisCafeteriaView2SpriteSources[40] = {
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = 0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = 0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = 0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
@@ -48,7 +51,7 @@ static SpriteSource _gAcropolisCafeteriaView2SpriteSources[40] = {
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = 0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = 0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
 };
-static SpriteBatch _gAcropolisCafeteriaView2SpriteBatches[10] = {
+static SpriteBatch _gAkropolisCafeteriaView2SpriteBatches[10] = {
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
@@ -60,7 +63,7 @@ static SpriteBatch _gAcropolisCafeteriaView2SpriteBatches[10] = {
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
 };
-static SpriteSource _gAcropolisCafeteriaView3SpriteSources[67] = {
+static SpriteSource _gAkropolisCafeteriaView3SpriteSources[67] = {
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = 0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = 0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = 0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
@@ -129,7 +132,7 @@ static SpriteSource _gAcropolisCafeteriaView3SpriteSources[67] = {
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = 0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = 0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
 };
-static SpriteBatch _gAcropolisCafeteriaView3SpriteBatches[19] = {
+static SpriteBatch _gAkropolisCafeteriaView3SpriteBatches[19] = {
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
@@ -150,19 +153,19 @@ static SpriteBatch _gAcropolisCafeteriaView3SpriteBatches[19] = {
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
 };
-static SpriteBatch _gAcropolisCafeteriaUnusedBackgroundSpriteBatches1[2] = {
+static SpriteBatch _gAkropolisCafeteriaUnusedBackgroundSpriteBatches1[2] = {
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
 };
-static SpriteBatch _gAcropolisCafeteriaView5SpriteBatches[2] = {
+static SpriteBatch _gAkropolisCafeteriaView5SpriteBatches[2] = {
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
 };
-static SpriteDrawArea _gAcropolisCafeteriaView5DrawAreas[2] = {
+static SpriteDrawArea _gAkropolisCafeteriaView5DrawAreas[2] = {
     { .clipRect = { .x = 0, .y = 0, .w = 0, .h = 0 }, .restoreDepth = 0 },
     { .clipRect = { .x = 0, .y = 0, .w = 0, .h = 0 }, .restoreDepth = 0 },
 };
-static SpriteSource _gAcropolisCafeteriaView6SpriteSources[39] = {
+static SpriteSource _gAkropolisCafeteriaView6SpriteSources[39] = {
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
@@ -203,7 +206,7 @@ static SpriteSource _gAcropolisCafeteriaView6SpriteSources[39] = {
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = 0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = 0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
 };
-static SpriteBatch _gAcropolisCafeteriaView6SpriteBatches[6] = {
+static SpriteBatch _gAkropolisCafeteriaView6SpriteBatches[6] = {
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
@@ -211,23 +214,23 @@ static SpriteBatch _gAcropolisCafeteriaView6SpriteBatches[6] = {
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
 };
-static SpriteBatch _gAcropolisCafeteriaView7SpriteBatches[2] = {
+static SpriteBatch _gAkropolisCafeteriaView7SpriteBatches[2] = {
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
 };
-static SpriteBatch _gAcropolisCafeteriaView8SpriteBatches[2] = {
+static SpriteBatch _gAkropolisCafeteriaView8SpriteBatches[2] = {
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
 };
-static SpriteBatch _gAcropolisCafeteriaView9SpriteBatches[2] = {
+static SpriteBatch _gAkropolisCafeteriaView9SpriteBatches[2] = {
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
 };
-static SpriteBatch _gAcropolisCafeteriaView10SpriteBatches[2] = {
+static SpriteBatch _gAkropolisCafeteriaView10SpriteBatches[2] = {
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
 };
-static SpriteSource _gAcropolisCafeteriaView11SpriteSources[7] = {
+static SpriteSource _gAkropolisCafeteriaView11SpriteSources[7] = {
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = 0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = 0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
@@ -236,25 +239,25 @@ static SpriteSource _gAcropolisCafeteriaView11SpriteSources[7] = {
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = 0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
 };
-static SpriteBatch _gAcropolisCafeteriaView11SpriteBatches[3] = {
+static SpriteBatch _gAkropolisCafeteriaView11SpriteBatches[3] = {
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
 };
-static SpriteSource _gAcropolisCafeteriaView12SpriteSources[2] = {
+static SpriteSource _gAkropolisCafeteriaView12SpriteSources[2] = {
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
 };
-static SpriteBatch _gAcropolisCafeteriaView12SpriteBatches[3] = {
+static SpriteBatch _gAkropolisCafeteriaView12SpriteBatches[3] = {
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
 };
-static SpriteBatch _gAcropolisCafeteriaView13SpriteBatches[2] = {
+static SpriteBatch _gAkropolisCafeteriaView13SpriteBatches[2] = {
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
 };
-static SpriteSource _gAcropolisCafeteriaViews14And22SpriteSources[31] = {
+static SpriteSource _gAkropolisCafeteriaViews14And22SpriteSources[31] = {
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
@@ -287,7 +290,7 @@ static SpriteSource _gAcropolisCafeteriaViews14And22SpriteSources[31] = {
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
 };
-static SpriteBatch _gAcropolisCafeteriaViews14And22SpriteBatches[17] = {
+static SpriteBatch _gAkropolisCafeteriaViews14And22SpriteBatches[17] = {
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
@@ -306,7 +309,7 @@ static SpriteBatch _gAcropolisCafeteriaViews14And22SpriteBatches[17] = {
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
 };
-static SpriteSource _gAcropolisCafeteriaView15SpriteSources[12] = {
+static SpriteSource _gAkropolisCafeteriaView15SpriteSources[12] = {
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
@@ -320,32 +323,32 @@ static SpriteSource _gAcropolisCafeteriaView15SpriteSources[12] = {
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
 };
-static SpriteBatch _gAcropolisCafeteriaView15SpriteBatches[3] = {
+static SpriteBatch _gAkropolisCafeteriaView15SpriteBatches[3] = {
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
 };
-static SpriteBatch _gAcropolisCafeteriaView16SpriteBatches[2] = {
+static SpriteBatch _gAkropolisCafeteriaView16SpriteBatches[2] = {
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
 };
-static SpriteBatch _gAcropolisCafeteriaView17SpriteBatches[2] = {
+static SpriteBatch _gAkropolisCafeteriaView17SpriteBatches[2] = {
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
 };
-static SpriteBatch _gAcropolisCafeteriaView18SpriteBatches[2] = {
+static SpriteBatch _gAkropolisCafeteriaView18SpriteBatches[2] = {
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
 };
-static SpriteBatch _gAcropolisCafeteriaView19SpriteBatches[2] = {
+static SpriteBatch _gAkropolisCafeteriaView19SpriteBatches[2] = {
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
 };
-static SpriteBatch _gAcropolisCafeteriaView20SpriteBatches[2] = {
+static SpriteBatch _gAkropolisCafeteriaView20SpriteBatches[2] = {
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
 };
-static SpriteSource _gAcropolisCafeteriaView21SpriteSources[75] = {
+static SpriteSource _gAkropolisCafeteriaView21SpriteSources[75] = {
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = 0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = 0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = 0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
@@ -422,7 +425,7 @@ static SpriteSource _gAcropolisCafeteriaView21SpriteSources[75] = {
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = 0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = 0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
 };
-static SpriteBatch _gAcropolisCafeteriaView21SpriteBatches[19] = {
+static SpriteBatch _gAkropolisCafeteriaView21SpriteBatches[19] = {
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
@@ -443,11 +446,11 @@ static SpriteBatch _gAcropolisCafeteriaView21SpriteBatches[19] = {
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
 };
-static SpriteBatch _gAcropolisCafeteriaUnusedBackgroundSpriteBatches2[2] = {
+static SpriteBatch _gAkropolisCafeteriaUnusedBackgroundSpriteBatches2[2] = {
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
 };
-static SpriteSource _gAcropolisCafeteriaView23SpriteSources[16] = {
+static SpriteSource _gAkropolisCafeteriaView23SpriteSources[16] = {
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = -0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
@@ -465,44 +468,44 @@ static SpriteSource _gAcropolisCafeteriaView23SpriteSources[16] = {
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = 0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = 0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
 };
-static SpriteBatch _gAcropolisCafeteriaView23SpriteBatches[5] = {
+static SpriteBatch _gAkropolisCafeteriaView23SpriteBatches[5] = {
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
 };
-static SpriteSource _gAcropolisCafeteriaView24SpriteSources[1] = {
+static SpriteSource _gAkropolisCafeteriaView24SpriteSources[1] = {
     { .tpage = 0, .clut = 0, .size = { .fields = { .w = 0, .h = 0 } }, .x0 = -0, .y0 = 0, .depth = 0, .uv = { .fields = { .u0 = 0, .v0 = 0 } }, .r0 = 0, .g0 = 0, .b0 = 0, .codeFlags = 0 },
 };
-static SpriteBatch _gAcropolisCafeteriaView24SpriteBatches[3] = {
+static SpriteBatch _gAkropolisCafeteriaView24SpriteBatches[3] = {
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
     { .firstSprite = 0, .spriteCount = 0, .hidden = 0, .skipCachedPackets = 0, .field_6 = { 0, 0 } },
 };
-SpriteView gAcropolisCafeteriaSpriteViews[24] = {
-    { .sources = { .empty = _gAcropolisCafeteriaViews1And4SpriteBatches }, .batches = _gAcropolisCafeteriaViews1And4SpriteBatches, .drawAreas = NULL },
-    { .sources = { .elements = _gAcropolisCafeteriaView2SpriteSources }, .batches = _gAcropolisCafeteriaView2SpriteBatches, .drawAreas = NULL },
-    { .sources = { .elements = _gAcropolisCafeteriaView3SpriteSources }, .batches = _gAcropolisCafeteriaView3SpriteBatches, .drawAreas = NULL },
-    { .sources = { .empty = _gAcropolisCafeteriaViews1And4SpriteBatches }, .batches = _gAcropolisCafeteriaViews1And4SpriteBatches, .drawAreas = NULL },
-    { .sources = { .empty = _gAcropolisCafeteriaView5SpriteBatches }, .batches = _gAcropolisCafeteriaView5SpriteBatches, .drawAreas = _gAcropolisCafeteriaView5DrawAreas },
-    { .sources = { .elements = _gAcropolisCafeteriaView6SpriteSources }, .batches = _gAcropolisCafeteriaView6SpriteBatches, .drawAreas = NULL },
-    { .sources = { .empty = _gAcropolisCafeteriaView7SpriteBatches }, .batches = _gAcropolisCafeteriaView7SpriteBatches, .drawAreas = NULL },
-    { .sources = { .empty = _gAcropolisCafeteriaView8SpriteBatches }, .batches = _gAcropolisCafeteriaView8SpriteBatches, .drawAreas = NULL },
-    { .sources = { .empty = _gAcropolisCafeteriaView9SpriteBatches }, .batches = _gAcropolisCafeteriaView9SpriteBatches, .drawAreas = NULL },
-    { .sources = { .empty = _gAcropolisCafeteriaView10SpriteBatches }, .batches = _gAcropolisCafeteriaView10SpriteBatches, .drawAreas = NULL },
-    { .sources = { .elements = _gAcropolisCafeteriaView11SpriteSources }, .batches = _gAcropolisCafeteriaView11SpriteBatches, .drawAreas = NULL },
-    { .sources = { .elements = _gAcropolisCafeteriaView12SpriteSources }, .batches = _gAcropolisCafeteriaView12SpriteBatches, .drawAreas = NULL },
-    { .sources = { .empty = _gAcropolisCafeteriaView13SpriteBatches }, .batches = _gAcropolisCafeteriaView13SpriteBatches, .drawAreas = NULL },
-    { .sources = { .elements = _gAcropolisCafeteriaViews14And22SpriteSources }, .batches = _gAcropolisCafeteriaViews14And22SpriteBatches, .drawAreas = NULL },
-    { .sources = { .elements = _gAcropolisCafeteriaView15SpriteSources }, .batches = _gAcropolisCafeteriaView15SpriteBatches, .drawAreas = NULL },
-    { .sources = { .empty = _gAcropolisCafeteriaView16SpriteBatches }, .batches = _gAcropolisCafeteriaView16SpriteBatches, .drawAreas = NULL },
-    { .sources = { .empty = _gAcropolisCafeteriaView17SpriteBatches }, .batches = _gAcropolisCafeteriaView17SpriteBatches, .drawAreas = NULL },
-    { .sources = { .empty = _gAcropolisCafeteriaView18SpriteBatches }, .batches = _gAcropolisCafeteriaView18SpriteBatches, .drawAreas = NULL },
-    { .sources = { .empty = _gAcropolisCafeteriaView19SpriteBatches }, .batches = _gAcropolisCafeteriaView19SpriteBatches, .drawAreas = NULL },
-    { .sources = { .empty = _gAcropolisCafeteriaView20SpriteBatches }, .batches = _gAcropolisCafeteriaView20SpriteBatches, .drawAreas = NULL },
-    { .sources = { .elements = _gAcropolisCafeteriaView21SpriteSources }, .batches = _gAcropolisCafeteriaView21SpriteBatches, .drawAreas = NULL },
-    { .sources = { .elements = _gAcropolisCafeteriaViews14And22SpriteSources }, .batches = _gAcropolisCafeteriaViews14And22SpriteBatches, .drawAreas = NULL },
-    { .sources = { .elements = _gAcropolisCafeteriaView23SpriteSources }, .batches = _gAcropolisCafeteriaView23SpriteBatches, .drawAreas = NULL },
-    { .sources = { .elements = _gAcropolisCafeteriaView24SpriteSources }, .batches = _gAcropolisCafeteriaView24SpriteBatches, .drawAreas = NULL },
+SpriteView gAkropolisCafeteriaSpriteViews[24] = {
+    { .sources = { .empty = _gAkropolisCafeteriaViews1And4SpriteBatches }, .batches = _gAkropolisCafeteriaViews1And4SpriteBatches, .drawAreas = NULL },
+    { .sources = { .elements = _gAkropolisCafeteriaView2SpriteSources }, .batches = _gAkropolisCafeteriaView2SpriteBatches, .drawAreas = NULL },
+    { .sources = { .elements = _gAkropolisCafeteriaView3SpriteSources }, .batches = _gAkropolisCafeteriaView3SpriteBatches, .drawAreas = NULL },
+    { .sources = { .empty = _gAkropolisCafeteriaViews1And4SpriteBatches }, .batches = _gAkropolisCafeteriaViews1And4SpriteBatches, .drawAreas = NULL },
+    { .sources = { .empty = _gAkropolisCafeteriaView5SpriteBatches }, .batches = _gAkropolisCafeteriaView5SpriteBatches, .drawAreas = _gAkropolisCafeteriaView5DrawAreas },
+    { .sources = { .elements = _gAkropolisCafeteriaView6SpriteSources }, .batches = _gAkropolisCafeteriaView6SpriteBatches, .drawAreas = NULL },
+    { .sources = { .empty = _gAkropolisCafeteriaView7SpriteBatches }, .batches = _gAkropolisCafeteriaView7SpriteBatches, .drawAreas = NULL },
+    { .sources = { .empty = _gAkropolisCafeteriaView8SpriteBatches }, .batches = _gAkropolisCafeteriaView8SpriteBatches, .drawAreas = NULL },
+    { .sources = { .empty = _gAkropolisCafeteriaView9SpriteBatches }, .batches = _gAkropolisCafeteriaView9SpriteBatches, .drawAreas = NULL },
+    { .sources = { .empty = _gAkropolisCafeteriaView10SpriteBatches }, .batches = _gAkropolisCafeteriaView10SpriteBatches, .drawAreas = NULL },
+    { .sources = { .elements = _gAkropolisCafeteriaView11SpriteSources }, .batches = _gAkropolisCafeteriaView11SpriteBatches, .drawAreas = NULL },
+    { .sources = { .elements = _gAkropolisCafeteriaView12SpriteSources }, .batches = _gAkropolisCafeteriaView12SpriteBatches, .drawAreas = NULL },
+    { .sources = { .empty = _gAkropolisCafeteriaView13SpriteBatches }, .batches = _gAkropolisCafeteriaView13SpriteBatches, .drawAreas = NULL },
+    { .sources = { .elements = _gAkropolisCafeteriaViews14And22SpriteSources }, .batches = _gAkropolisCafeteriaViews14And22SpriteBatches, .drawAreas = NULL },
+    { .sources = { .elements = _gAkropolisCafeteriaView15SpriteSources }, .batches = _gAkropolisCafeteriaView15SpriteBatches, .drawAreas = NULL },
+    { .sources = { .empty = _gAkropolisCafeteriaView16SpriteBatches }, .batches = _gAkropolisCafeteriaView16SpriteBatches, .drawAreas = NULL },
+    { .sources = { .empty = _gAkropolisCafeteriaView17SpriteBatches }, .batches = _gAkropolisCafeteriaView17SpriteBatches, .drawAreas = NULL },
+    { .sources = { .empty = _gAkropolisCafeteriaView18SpriteBatches }, .batches = _gAkropolisCafeteriaView18SpriteBatches, .drawAreas = NULL },
+    { .sources = { .empty = _gAkropolisCafeteriaView19SpriteBatches }, .batches = _gAkropolisCafeteriaView19SpriteBatches, .drawAreas = NULL },
+    { .sources = { .empty = _gAkropolisCafeteriaView20SpriteBatches }, .batches = _gAkropolisCafeteriaView20SpriteBatches, .drawAreas = NULL },
+    { .sources = { .elements = _gAkropolisCafeteriaView21SpriteSources }, .batches = _gAkropolisCafeteriaView21SpriteBatches, .drawAreas = NULL },
+    { .sources = { .elements = _gAkropolisCafeteriaViews14And22SpriteSources }, .batches = _gAkropolisCafeteriaViews14And22SpriteBatches, .drawAreas = NULL },
+    { .sources = { .elements = _gAkropolisCafeteriaView23SpriteSources }, .batches = _gAkropolisCafeteriaView23SpriteBatches, .drawAreas = NULL },
+    { .sources = { .elements = _gAkropolisCafeteriaView24SpriteSources }, .batches = _gAkropolisCafeteriaView24SpriteBatches, .drawAreas = NULL },
 };

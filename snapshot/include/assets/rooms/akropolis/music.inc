@@ -2,6 +2,8 @@
 #define ROOM_CAT_(a, b) a##b
 #define ROOM_CAT(a, b) ROOM_CAT_(a, b)
 
+#include "main/stage_types.h"
+
 StageMusicEntry gMapAkropolisAreaMusicEntries[168] = {
     { .sequenceId = 0, .startMode = 0 },
     { .sequenceId = 0, .startMode = 0 },

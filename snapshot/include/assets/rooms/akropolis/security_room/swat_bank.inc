@@ -3,6 +3,6 @@
 
 #include "gameplay/animation.h"
 
-static AnimationSet* _gActor311900SwatAnimationSets[3] = {
+static AnimationSet* _gSecurityMonitorsSwatAnimationSets[3] = {
     [1] = &_gAkropolisSecurityRoomSwatMonitorIdleClip,
 };

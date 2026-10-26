@@ -3,7 +3,7 @@
 
 #include "gameplay/animation.h"
 
-static AnimationSet* _gActor113100PierceAnimationBank[36] = {
+static AnimationSet* _gParkingPierceAnimationSets[36] = {
     [1] = &_gPierceRestClip,
     [2] = &_gPierceWalkClip,
     [3] = &_gMistParkingPierceAnim03Clip,

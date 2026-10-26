@@ -417,8 +417,8 @@ AnimationSet gMistParkingTalkStartCopyClip = {
     .poseBanks         = { [1] = _gMistParkingTalkStartCopyClipBank1, [4] = _gMistParkingTalkStartCopyClipBank4 },
 };
 
-/* rooms/mist/parking/mist_parking_player_conversation_anim_21_copy */
-static AnimationPackedPose _gMistParkingMistParkingPlayerConversationAnim21CopyClipBank1[5] = {
+/* rooms/mist/parking/player_conversation_anim_21_copy */
+static AnimationPackedPose _gMistParkingPlayerConversationAnim21CopyClipBank1[5] = {
     { 0, 0, 0, 0, 0, 0 },
     { 0, -0, 0, 0, 0, 0 },
     { 0, -0, -0, 0, 0, 0 },
@@ -426,7 +426,7 @@ static AnimationPackedPose _gMistParkingMistParkingPlayerConversationAnim21CopyC
     { 0, -0, -0, 0, -0, 0 },
 };
 
-static AnimationPackedRotation _gMistParkingMistParkingPlayerConversationAnim21CopyClipBank4[99] = {
+static AnimationPackedRotation _gMistParkingPlayerConversationAnim21CopyClipBank4[99] = {
     { 0, 0, 0 },
     { 0, 0, 0 },
     { 0, 0, 0 },
@@ -528,7 +528,7 @@ static AnimationPackedRotation _gMistParkingMistParkingPlayerConversationAnim21C
     { 0, 0, 0 },
 };
 
-static AnimationRecord _gMistParkingMistParkingPlayerConversationAnim21CopyClipRecords[150] = {
+static AnimationRecord _gMistParkingPlayerConversationAnim21CopyClipRecords[150] = {
     { 0, 0, 0 },
     { 0, 0, 0 },
     { 0, 0, 0 },
@@ -681,14 +681,14 @@ static AnimationRecord _gMistParkingMistParkingPlayerConversationAnim21CopyClipR
     { 0, 0, 0 },
 };
 
-static u16 _gMistParkingMistParkingPlayerConversationAnim21CopyClipTrackStarts[20] = {
+static u16 _gMistParkingPlayerConversationAnim21CopyClipTrackStarts[20] = {
     0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0,
 };
 
-AnimationSet gMistParkingMistParkingPlayerConversationAnim21CopyClip = {
-    .records           = _gMistParkingMistParkingPlayerConversationAnim21CopyClipRecords,
-    .trackStartIndices = _gMistParkingMistParkingPlayerConversationAnim21CopyClipTrackStarts,
-    .poseBanks         = { [1] = _gMistParkingMistParkingPlayerConversationAnim21CopyClipBank1, [4] = _gMistParkingMistParkingPlayerConversationAnim21CopyClipBank4 },
+AnimationSet gMistParkingPlayerConversationAnim21CopyClip = {
+    .records           = _gMistParkingPlayerConversationAnim21CopyClipRecords,
+    .trackStartIndices = _gMistParkingPlayerConversationAnim21CopyClipTrackStarts,
+    .poseBanks         = { [1] = _gMistParkingPlayerConversationAnim21CopyClipBank1, [4] = _gMistParkingPlayerConversationAnim21CopyClipBank4 },
 };

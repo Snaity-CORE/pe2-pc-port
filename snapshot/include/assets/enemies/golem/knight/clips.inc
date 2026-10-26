@@ -3618,7 +3618,7 @@ static u16 _gGolemAdvanceClipTrackStarts[20] = {
     0, 0, 0, 0,
 };
 
-static AnimationSet _gGolemAdvanceClip = {
+AnimationSet gGolemAdvanceClip = {
     .records           = _gGolemAdvanceClipRecords,
     .trackStartIndices = _gGolemAdvanceClipTrackStarts,
     .poseBanks         = { [1] = _gGolemAdvanceClipBank1, [4] = _gGolemAdvanceClipBank4 },

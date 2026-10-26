@@ -3,7 +3,7 @@
 
 #include "gameplay/animation.h"
 
-static AnimationSet* _gActor311500StrangerAnimationSets[2] = {
+static AnimationSet* _gLesserStrangerAnimationSets[2] = {
     [0] = &gStrangerLesserIdleClip,
     [1] = &_gStrangerDownBackClip,
 };

@@ -178,8 +178,8 @@ def save() -> None:
     units = json.loads(units_file.read_text(encoding="utf-8"))
     (SNAPSHOT / "units.json").write_text(json.dumps(units, indent=1) + "\n", encoding="utf-8", newline="\n")
     shutil.copyfile(fingerprints, SNAPSHOT / pclink.FINGERPRINTS)
-    shutil.copyfile(DECOMP / "linkers" / "USA" / "undefined_funcs_auto.main.txt",
-                    SNAPSHOT / "undefined_funcs_auto.main.txt")
+    functions = (DECOMP / "linkers" / "USA" / "undefined_funcs_auto.main.txt").read_text(encoding="utf-8")
+    (SNAPSHOT / "undefined_funcs_auto.main.txt").write_text(functions, encoding="utf-8", newline="\n")
     images = sorted({i for u in units for i in u["overlays"]})
     for image in images:
         lines = [pclink.symbol_line(s) for s in pclink.read_elf_symbols(pclink.image_file(image))]

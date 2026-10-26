@@ -2,6 +2,19 @@
 #define ROOM_CAT_(a, b) a##b
 #define ROOM_CAT(a, b) ROOM_CAT_(a, b)
 
+#include "types.h"
+#include <psyq/sys/types.h>
+#include <psyq/libgte.h>
+#include "gameplay/area.h"
+#include "gameplay/collision.h"
+#include "gameplay/direction.h"
+#include "gameplay/evs.h"
+#include "gameplay/light.h"
+#include "gameplay/message.h"
+#include "gameplay/room.h"
+#include "gameplay/sprites.h"
+#include "gameplay/view.h"
+
 static AnimationBankCopyRequest _gMistR18PlayerBriefingBankCopyRequest;
 static AnimationPlayRequest _gMistR18PlayerBaseClip1Request;
 static AnimationPlayRequest _gMistR18PlayerBriefingClip48Request;

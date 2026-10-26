@@ -16,10 +16,10 @@ _actor310600FaceWalkTarget	80162AD8	flt	build/USA/src/actors/actor_310600/actor_
 _actor310600StartWalkVelocity	80162B98	flt	build/USA/src/actors/actor_310600/actor_310600.i
 _actor310600CheckWalkArrival	8016231C	flt	build/USA/src/actors/actor_310600/actor_310600.i
 _gActor310600WalkLocalVelocity	80161E54	fl	build/USA/src/actors/actor_310600/actor_310600.i
-_gAkropolisCafeteriaPlayerCafeteriaFollowUpStartClipBank1	80162CF8	fl	build/USA/src/actors/actor_310600/actor_310600.i
-_gAkropolisCafeteriaPlayerCafeteriaFollowUpStartClipBank4	801631C0	fl	build/USA/src/actors/actor_310600/actor_310600.i
-_gAkropolisCafeteriaPlayerCafeteriaFollowUpStartClipRecords	80164A0C	fl	build/USA/src/actors/actor_310600/actor_310600.i
-_gAkropolisCafeteriaPlayerCafeteriaFollowUpStartClipTrackStarts	801668D4	fl	build/USA/src/actors/actor_310600/actor_310600.i
+_gAkropolisCafeteriaPlayerFollowUpStartClipBank1	80162CF8	fl	build/USA/src/actors/actor_310600/actor_310600.i
+_gAkropolisCafeteriaPlayerFollowUpStartClipBank4	801631C0	fl	build/USA/src/actors/actor_310600/actor_310600.i
+_gAkropolisCafeteriaPlayerFollowUpStartClipRecords	80164A0C	fl	build/USA/src/actors/actor_310600/actor_310600.i
+_gAkropolisCafeteriaPlayerFollowUpStartClipTrackStarts	801668D4	fl	build/USA/src/actors/actor_310600/actor_310600.i
 _gRupertBodySkeleton	80166924	fl	build/USA/src/actors/actor_310600/actor_310600.i
 _gRupertBodyPartVerts	80166BF4	fl	build/USA/src/actors/actor_310600/actor_310600.i
 _gRupertBodyVerts	80166C44	fl	build/USA/src/actors/actor_310600/actor_310600.i
@@ -479,6 +479,7 @@ printf	8001AF3C	a
 worldCollisionClearContacts	800E1A6C	a	
 gfxBuildDirectionRotation	800E1CD4	a	
 sceneReleaseBattleRefAndClearRewards	800DB630	a	
+gAkropolisCafeteriaSceneTasks	80182AD8	a	
 LoadImage2	8001A3E4	a	
 memMalloc	8002DABC	a	
 D_80073BA0	80073BA0	a	
@@ -659,7 +660,6 @@ gEffectBurstTaskDescriptors	80114B34	a
 cdCmdStageSceneAudioStart	8001D6B8	a	
 animationTickDirectSlot	800B3DB4	a	
 cdCmdIsIdle	8001D344	a	
-gAkropolisCafeteriaPlayerCafeteriaFollowUpStartClip	801668FC	f	
 D_80115419	80115419	a	
 D_80072729	80072729	a	
 capStartSequenceSlot	800E6C70	a	
@@ -779,6 +779,7 @@ animationResetSlot	800B3FA8	a
 taskRequestKill	8002D340	a	
 playerActorTickChildSlots	80103AC0	a	
 D_8007107A	8007107A	a	
+gAkropolisCafeteriaPlayerFollowUpStartClip	801668FC	f	
 ClearImage	80017E1C	a	
 playerActorTickAnimationState	80101848	a	
 playerActorFinishDamageReaction	8010ABD4	a	
@@ -803,7 +804,6 @@ roomEffectRequestCancelPe	800FC6C0	a
 gpuUploadImages	800DB31C	a	
 gDirectionActionActive	80114CF8	a	
 D_80072830	80072830	a	
-gAcropolisCafeteriaSceneTasks	80182AD8	a	
 D_80071085	80071085	a	
 actor_310600_BSS_END	801796E4	f	
 spriteGetViewDrawAreas	800AD2E8	a	

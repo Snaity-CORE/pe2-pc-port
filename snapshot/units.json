@@ -1716,233 +1716,223 @@
   ]
  },
  {
-  "object": "rooms/acropolis_bridge/acropolis_bridge",
-  "source": "src/rooms/acropolis_bridge/acropolis_bridge.c",
+  "object": "rooms/akropolis_bridge/bridge",
+  "source": "src/stages/akropolis/rooms/bridge/bridge.c",
   "defines": {
    "VER_USA": null
   },
   "overlays": [
-   "acropolis_bridge"
+   "akropolis_bridge"
   ]
  },
  {
-  "object": "rooms/acropolis_cafeteria/acropolis_cafeteria",
-  "source": "src/rooms/acropolis_cafeteria/acropolis_cafeteria.c",
+  "object": "rooms/akropolis_cafeteria/cafeteria",
+  "source": "src/stages/akropolis/rooms/cafeteria/cafeteria.c",
   "defines": {
    "VER_USA": null
   },
   "overlays": [
-   "acropolis_cafeteria"
+   "akropolis_cafeteria"
   ]
  },
  {
-  "object": "rooms/acropolis_cafeteria/acropolis_cafeteria_2",
-  "source": "src/rooms/acropolis_cafeteria/acropolis_cafeteria_2.c",
+  "object": "rooms/akropolis_cafeteria/cafeteria_effects",
+  "source": "src/stages/akropolis/rooms/cafeteria/cafeteria_effects.c",
   "defines": {
    "VER_USA": null
   },
   "overlays": [
-   "acropolis_cafeteria"
+   "akropolis_cafeteria"
   ]
  },
  {
-  "object": "rooms/acropolis_east_elevator_hall/acropolis_east_elevator_hall",
-  "source": "src/rooms/acropolis_east_elevator_hall/acropolis_east_elevator_hall.c",
+  "object": "rooms/akropolis_east_elevator_hall/east_elevator_hall",
+  "source": "src/stages/akropolis/rooms/east_elevator_hall/east_elevator_hall.c",
   "defines": {
    "VER_USA": null
   },
   "overlays": [
-   "acropolis_east_elevator_hall"
+   "akropolis_east_elevator_hall"
   ]
  },
  {
-  "object": "rooms/acropolis_fire_escape/acropolis_fire_escape",
-  "source": "src/rooms/acropolis_fire_escape/acropolis_fire_escape.c",
+  "object": "rooms/akropolis_fire_escape/fire_escape",
+  "source": "src/stages/akropolis/rooms/fire_escape/fire_escape.c",
   "defines": {
    "VER_USA": null
   },
   "overlays": [
-   "acropolis_fire_escape"
+   "akropolis_fire_escape"
   ]
  },
  {
-  "object": "rooms/acropolis_forked_road/acropolis_forked_road",
-  "source": "src/rooms/acropolis_forked_road/acropolis_forked_road.c",
+  "object": "rooms/akropolis_forked_road/forked_road",
+  "source": "src/stages/akropolis/rooms/forked_road/forked_road.c",
   "defines": {
    "VER_USA": null
   },
   "overlays": [
-   "acropolis_forked_road"
+   "akropolis_forked_road"
   ]
  },
  {
-  "object": "rooms/acropolis_forked_road/acropolis_forked_road_2",
-  "source": "src/rooms/acropolis_forked_road/acropolis_forked_road_2.c",
+  "object": "rooms/akropolis_forked_road/forked_road_effects",
+  "source": "src/stages/akropolis/rooms/forked_road/forked_road_effects.c",
   "defines": {
    "VER_USA": null
   },
   "overlays": [
-   "acropolis_forked_road"
+   "akropolis_forked_road"
   ]
  },
  {
-  "object": "rooms/acropolis_fountain/acropolis_fountain",
-  "source": "src/rooms/acropolis_fountain/acropolis_fountain.c",
+  "object": "rooms/akropolis_fountain/fountain",
+  "source": "src/stages/akropolis/rooms/fountain/fountain.c",
   "defines": {
    "VER_USA": null
   },
   "overlays": [
-   "acropolis_fountain"
+   "akropolis_fountain"
   ]
  },
  {
-  "object": "rooms/acropolis_fountain/acropolis_fountain_2",
-  "source": "src/rooms/acropolis_fountain/acropolis_fountain_2.c",
+  "object": "rooms/akropolis_fountain/fountain_water",
+  "source": "src/stages/akropolis/rooms/fountain/fountain_water.c",
   "defines": {
    "VER_USA": null
   },
   "overlays": [
-   "acropolis_fountain"
+   "akropolis_fountain"
   ]
  },
  {
-  "object": "rooms/acropolis_hallway/acropolis_hallway",
-  "source": "src/rooms/acropolis_hallway/acropolis_hallway.c",
+  "object": "rooms/akropolis_hallway/hallway",
+  "source": "src/stages/akropolis/rooms/hallway/hallway.c",
   "defines": {
    "VER_USA": null
   },
   "overlays": [
-   "acropolis_hallway"
+   "akropolis_hallway"
   ]
  },
  {
-  "object": "rooms/acropolis_helicopter_landing_pad/acropolis_helicopter_landing_pad",
-  "source": "src/rooms/acropolis_helicopter_landing_pad/acropolis_helicopter_landing_pad.c",
+  "object": "rooms/akropolis_helicopter_landing_pad/helicopter_landing_pad",
+  "source": "src/stages/akropolis/rooms/helicopter_landing_pad/helicopter_landing_pad.c",
   "defines": {
    "VER_USA": null
   },
   "overlays": [
-   "acropolis_helicopter_landing_pad"
+   "akropolis_helicopter_landing_pad"
   ]
  },
  {
-  "object": "rooms/acropolis_helicopter_landing_pad/acropolis_helicopter_landing_pad_2",
-  "source": "src/rooms/acropolis_helicopter_landing_pad/acropolis_helicopter_landing_pad_2.c",
+  "object": "rooms/akropolis_helicopter_landing_pad/helicopter_landing_pad_departure",
+  "source": "src/stages/akropolis/rooms/helicopter_landing_pad/helicopter_landing_pad_departure.c",
   "defines": {
    "VER_USA": null
   },
   "overlays": [
-   "acropolis_helicopter_landing_pad"
+   "akropolis_helicopter_landing_pad"
   ]
  },
  {
-  "object": "rooms/acropolis_helicopter_landing_pad/acropolis_helicopter_landing_pad_3",
-  "source": "src/rooms/acropolis_helicopter_landing_pad/acropolis_helicopter_landing_pad_3.c",
+  "object": "rooms/akropolis_helicopter_landing_pad/helicopter_landing_pad_effects",
+  "source": "src/stages/akropolis/rooms/helicopter_landing_pad/helicopter_landing_pad_effects.c",
   "defines": {
    "VER_USA": null
   },
   "overlays": [
-   "acropolis_helicopter_landing_pad"
+   "akropolis_helicopter_landing_pad"
   ]
  },
  {
-  "object": "rooms/acropolis_observatory/acropolis_observatory",
-  "source": "src/rooms/acropolis_observatory/acropolis_observatory.c",
+  "object": "rooms/akropolis_observatory/observatory",
+  "source": "src/stages/akropolis/rooms/observatory/observatory.c",
   "defines": {
    "VER_USA": null
   },
   "overlays": [
-   "acropolis_observatory"
+   "akropolis_observatory"
   ]
  },
  {
-  "object": "rooms/acropolis_observatory/acropolis_observatory_2",
-  "source": "src/rooms/acropolis_observatory/acropolis_observatory_2.c",
+  "object": "rooms/akropolis_observatory/observatory_rides",
+  "source": "src/stages/akropolis/rooms/observatory/observatory_rides.c",
   "defines": {
    "VER_USA": null
   },
   "overlays": [
-   "acropolis_observatory"
+   "akropolis_observatory"
   ]
  },
  {
-  "object": "rooms/acropolis_observatory/acropolis_observatory_3",
-  "source": "src/rooms/acropolis_observatory/acropolis_observatory_3.c",
+  "object": "rooms/akropolis_observatory/observatory_effects",
+  "source": "src/stages/akropolis/rooms/observatory/observatory_effects.c",
   "defines": {
    "VER_USA": null
   },
   "overlays": [
-   "acropolis_observatory"
+   "akropolis_observatory"
   ]
  },
  {
-  "object": "rooms/acropolis_patio/acropolis_patio",
-  "source": "src/rooms/acropolis_patio/acropolis_patio.c",
+  "object": "rooms/akropolis_patio/patio",
+  "source": "src/stages/akropolis/rooms/patio/patio.c",
   "defines": {
    "VER_USA": null
   },
   "overlays": [
-   "acropolis_patio"
+   "akropolis_patio"
   ]
  },
  {
-  "object": "rooms/acropolis_plaza/acropolis_plaza",
-  "source": "src/rooms/acropolis_plaza/acropolis_plaza.c",
+  "object": "rooms/akropolis_plaza/plaza",
+  "source": "src/stages/akropolis/rooms/plaza/plaza.c",
   "defines": {
    "VER_USA": null
   },
   "overlays": [
-   "acropolis_plaza"
+   "akropolis_plaza"
   ]
  },
  {
-  "object": "rooms/acropolis_promenade/acropolis_promenade",
-  "source": "src/rooms/acropolis_promenade/acropolis_promenade.c",
+  "object": "rooms/akropolis_promenade/promenade",
+  "source": "src/stages/akropolis/rooms/promenade/promenade.c",
   "defines": {
    "VER_USA": null
   },
   "overlays": [
-   "acropolis_promenade"
+   "akropolis_promenade"
   ]
  },
  {
-  "object": "rooms/acropolis_roof_garden/acropolis_roof_garden",
-  "source": "src/rooms/acropolis_roof_garden/acropolis_roof_garden.c",
+  "object": "rooms/akropolis_roof_garden/roof_garden",
+  "source": "src/stages/akropolis/rooms/roof_garden/roof_garden.c",
   "defines": {
    "VER_USA": null
   },
   "overlays": [
-   "acropolis_roof_garden"
+   "akropolis_roof_garden"
   ]
  },
  {
-  "object": "rooms/acropolis_sanctuary/acropolis_sanctuary",
-  "source": "src/rooms/acropolis_sanctuary/acropolis_sanctuary.c",
+  "object": "rooms/akropolis_sanctuary/sanctuary",
+  "source": "src/stages/akropolis/rooms/sanctuary/sanctuary.c",
   "defines": {
    "VER_USA": null
   },
   "overlays": [
-   "acropolis_sanctuary"
+   "akropolis_sanctuary"
   ]
  },
  {
-  "object": "rooms/acropolis_security_room/acropolis_security_room",
-  "source": "src/rooms/acropolis_security_room/acropolis_security_room.c",
+  "object": "rooms/akropolis_security_room/security_room",
+  "source": "src/stages/akropolis/rooms/security_room/security_room.c",
   "defines": {
    "VER_USA": null
   },
   "overlays": [
-   "acropolis_security_room"
-  ]
- },
- {
-  "object": "rooms/acropolis_west_elevator_hall/acropolis_west_elevator_hall",
-  "source": "src/rooms/acropolis_west_elevator_hall/acropolis_west_elevator_hall.c",
-  "defines": {
-   "VER_USA": null
-  },
-  "overlays": [
-   "acropolis_west_elevator_hall"
+   "akropolis_security_room"
   ]
  },
  {
@@ -1953,6 +1943,16 @@
   },
   "overlays": [
    "akropolis_square"
+  ]
+ },
+ {
+  "object": "rooms/akropolis_west_elevator_hall/west_elevator_hall",
+  "source": "src/stages/akropolis/rooms/west_elevator_hall/west_elevator_hall.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "akropolis_west_elevator_hall"
   ]
  },
  {
@@ -3033,7 +3033,7 @@
  },
  {
   "object": "rooms/mist_parking/mist_parking",
-  "source": "src/rooms/mist_parking/mist_parking.c",
+  "source": "src/stages/akropolis/rooms/mist_parking/mist_parking.c",
   "defines": {
    "VER_USA": null
   },
@@ -3042,8 +3042,8 @@
   ]
  },
  {
-  "object": "rooms/mist_parking/mist_parking_2",
-  "source": "src/rooms/mist_parking/mist_parking_2.c",
+  "object": "rooms/mist_parking/mist_parking_conversation",
+  "source": "src/stages/akropolis/rooms/mist_parking/mist_parking_conversation.c",
   "defines": {
    "VER_USA": null
   },
@@ -3052,8 +3052,8 @@
   ]
  },
  {
-  "object": "rooms/mist_parking/mist_parking_3",
-  "source": "src/rooms/mist_parking/mist_parking_3.c",
+  "object": "rooms/mist_parking/mist_parking_scenes",
+  "source": "src/stages/akropolis/rooms/mist_parking/mist_parking_scenes.c",
   "defines": {
    "VER_USA": null
   },
@@ -3062,8 +3062,8 @@
   ]
  },
  {
-  "object": "rooms/mist_parking/mist_parking_4",
-  "source": "src/rooms/mist_parking/mist_parking_4.c",
+  "object": "rooms/mist_parking/mist_parking_shop",
+  "source": "src/stages/akropolis/rooms/mist_parking/mist_parking_shop.c",
   "defines": {
    "VER_USA": null
   },
@@ -3072,8 +3072,8 @@
   ]
  },
  {
-  "object": "rooms/mist_parking/mist_parking_5",
-  "source": "src/rooms/mist_parking/mist_parking_5.c",
+  "object": "rooms/mist_parking/mist_parking_glows",
+  "source": "src/stages/akropolis/rooms/mist_parking/mist_parking_glows.c",
   "defines": {
    "VER_USA": null
   },
@@ -3083,7 +3083,7 @@
  },
  {
   "object": "rooms/mist_r18/mist_r18",
-  "source": "src/rooms/mist_r18/mist_r18.c",
+  "source": "src/stages/akropolis/rooms/mist_r18/mist_r18.c",
   "defines": {
    "VER_USA": null
   },
@@ -3093,7 +3093,7 @@
  },
  {
   "object": "rooms/mist_r21/mist_r21",
-  "source": "src/rooms/mist_r21/mist_r21.c",
+  "source": "src/stages/akropolis/rooms/mist_r21/mist_r21.c",
   "defines": {
    "VER_USA": null
   },
@@ -3103,7 +3103,7 @@
  },
  {
   "object": "rooms/mist_shooting_gallery/mist_shooting_gallery",
-  "source": "src/rooms/mist_shooting_gallery/mist_shooting_gallery.c",
+  "source": "src/stages/akropolis/rooms/mist_shooting_gallery/mist_shooting_gallery.c",
   "defines": {
    "VER_USA": null
   },
@@ -3112,8 +3112,8 @@
   ]
  },
  {
-  "object": "rooms/mist_shooting_gallery/mist_shooting_gallery_2",
-  "source": "src/rooms/mist_shooting_gallery/mist_shooting_gallery_2.c",
+  "object": "rooms/mist_shooting_gallery/mist_shooting_gallery_courses",
+  "source": "src/stages/akropolis/rooms/mist_shooting_gallery/mist_shooting_gallery_courses.c",
   "defines": {
    "VER_USA": null
   },
@@ -4865,86 +4865,6 @@
   ]
  },
  {
-  "object": "actors/actor_107600/actor_107600",
-  "source": "src/actors/actor_107600/actor_107600.c",
-  "defines": {
-   "VER_USA": null
-  },
-  "overlays": [
-   "actor_107600"
-  ]
- },
- {
-  "object": "actors/actor_110300/actor_110300",
-  "source": "src/actors/actor_110300/actor_110300.c",
-  "defines": {
-   "VER_USA": null
-  },
-  "overlays": [
-   "actor_110300"
-  ]
- },
- {
-  "object": "actors/actor_110600/actor_110600",
-  "source": "src/actors/actor_110600/actor_110600.c",
-  "defines": {
-   "VER_USA": null
-  },
-  "overlays": [
-   "actor_110600"
-  ]
- },
- {
-  "object": "actors/actor_110700/actor_110700",
-  "source": "src/actors/actor_110700/actor_110700.c",
-  "defines": {
-   "VER_USA": null
-  },
-  "overlays": [
-   "actor_110700"
-  ]
- },
- {
-  "object": "actors/actor_110800/actor_110800",
-  "source": "src/actors/actor_110800/actor_110800.c",
-  "defines": {
-   "VER_USA": null
-  },
-  "overlays": [
-   "actor_110800"
-  ]
- },
- {
-  "object": "actors/actor_111800/actor_111800",
-  "source": "src/actors/actor_111800/actor_111800.c",
-  "defines": {
-   "VER_USA": null
-  },
-  "overlays": [
-   "actor_111800"
-  ]
- },
- {
-  "object": "actors/actor_113000/actor_113000",
-  "source": "src/actors/actor_113000/actor_113000.c",
-  "defines": {
-   "VER_USA": null
-  },
-  "overlays": [
-   "actor_113000"
-  ]
- },
- {
-  "object": "actors/actor_113100/actor_113100",
-  "source": "src/actors/actor_113100/actor_113100.c",
-  "defines": {
-   "VER_USA": null
-  },
-  "overlays": [
-   "actor_113100"
-  ]
- },
- {
   "object": "actors/actor_120300/actor_120300",
   "source": "src/actors/actor_120300/actor_120300.c",
   "defines": {
@@ -5295,26 +5215,6 @@
   ]
  },
  {
-  "object": "actors/actor_215100/actor_215100",
-  "source": "src/actors/actor_215100/actor_215100.c",
-  "defines": {
-   "VER_USA": null
-  },
-  "overlays": [
-   "actor_215100"
-  ]
- },
- {
-  "object": "actors/actor_215100/actor_215100_2",
-  "source": "src/actors/actor_215100/actor_215100_2.c",
-  "defines": {
-   "VER_USA": null
-  },
-  "overlays": [
-   "actor_215100"
-  ]
- },
- {
   "object": "actors/actor_223600/actor_223600",
   "source": "src/actors/actor_223600/actor_223600.c",
   "defines": {
@@ -5375,16 +5275,6 @@
   ]
  },
  {
-  "object": "actors/actor_310100/actor_310100",
-  "source": "src/actors/actor_310100/actor_310100.c",
-  "defines": {
-   "VER_USA": null
-  },
-  "overlays": [
-   "actor_310100"
-  ]
- },
- {
   "object": "actors/actor_310600/actor_310600",
   "source": "src/actors/actor_310600/actor_310600.c",
   "defines": {
@@ -5392,46 +5282,6 @@
   },
   "overlays": [
    "actor_310600"
-  ]
- },
- {
-  "object": "actors/actor_311500/actor_311500",
-  "source": "src/actors/actor_311500/actor_311500.c",
-  "defines": {
-   "VER_USA": null
-  },
-  "overlays": [
-   "actor_311500"
-  ]
- },
- {
-  "object": "actors/actor_311900/actor_311900",
-  "source": "src/actors/actor_311900/actor_311900.c",
-  "defines": {
-   "VER_USA": null
-  },
-  "overlays": [
-   "actor_311900"
-  ]
- },
- {
-  "object": "actors/actor_312200/actor_312200",
-  "source": "src/actors/actor_312200/actor_312200.c",
-  "defines": {
-   "VER_USA": null
-  },
-  "overlays": [
-   "actor_312200"
-  ]
- },
- {
-  "object": "actors/actor_317000/actor_317000",
-  "source": "src/actors/actor_317000/actor_317000.c",
-  "defines": {
-   "VER_USA": null
-  },
-  "overlays": [
-   "actor_317000"
   ]
  },
  {
@@ -5875,36 +5725,6 @@
   ]
  },
  {
-  "object": "actors/actor_510900/actor_510900",
-  "source": "src/actors/actor_510900/actor_510900.c",
-  "defines": {
-   "VER_USA": null
-  },
-  "overlays": [
-   "actor_510900"
-  ]
- },
- {
-  "object": "actors/actor_510900/actor_510900_2",
-  "source": "src/actors/actor_510900/actor_510900_2.c",
-  "defines": {
-   "VER_USA": null
-  },
-  "overlays": [
-   "actor_510900"
-  ]
- },
- {
-  "object": "actors/actor_511000/actor_511000",
-  "source": "src/actors/actor_511000/actor_511000.c",
-  "defines": {
-   "VER_USA": null
-  },
-  "overlays": [
-   "actor_511000"
-  ]
- },
- {
   "object": "actors/actor_521100/actor_521100",
   "source": "src/actors/actor_521100/actor_521100.c",
   "defines": {
@@ -5982,6 +5802,186 @@
   },
   "overlays": [
    "actor_800300"
+  ]
+ },
+ {
+  "object": "actors/cafeteria_boss_stranger/cafeteria_boss_stranger",
+  "source": "src/stages/akropolis/actors/cafeteria_boss_stranger/cafeteria_boss_stranger.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "cafeteria_boss_stranger"
+  ]
+ },
+ {
+  "object": "actors/east_elevator_hall_swat_member/east_elevator_hall_swat_member",
+  "source": "src/stages/akropolis/actors/east_elevator_hall_swat_member/east_elevator_hall_swat_member.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "east_elevator_hall_swat_member"
+  ]
+ },
+ {
+  "object": "actors/helicopter_departure/helicopter_departure",
+  "source": "src/stages/akropolis/actors/helicopter_departure/helicopter_departure.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "helicopter_departure"
+  ]
+ },
+ {
+  "object": "actors/helicopter_landing_pad_no_9/helicopter_landing_pad_no_9",
+  "source": "src/stages/akropolis/actors/helicopter_landing_pad_no_9/helicopter_landing_pad_no_9.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "helicopter_landing_pad_no_9"
+  ]
+ },
+ {
+  "object": "actors/helicopter_landing_pad_no_9/helicopter_landing_pad_no_9_combat",
+  "source": "src/stages/akropolis/actors/helicopter_landing_pad_no_9/helicopter_landing_pad_no_9_combat.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "helicopter_landing_pad_no_9"
+  ]
+ },
+ {
+  "object": "actors/lesser_stranger/lesser_stranger",
+  "source": "src/enemies/stranger/lesser/lesser_stranger.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "lesser_stranger"
+  ]
+ },
+ {
+  "object": "actors/mist_rupert/mist_rupert",
+  "source": "src/stages/akropolis/actors/mist_rupert/mist_rupert.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "mist_rupert"
+  ]
+ },
+ {
+  "object": "actors/parking_pierce/parking_pierce",
+  "source": "src/stages/akropolis/actors/parking_pierce/parking_pierce.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "parking_pierce"
+  ]
+ },
+ {
+  "object": "actors/patio_leaping_strangers/patio_leaping_strangers",
+  "source": "src/stages/akropolis/actors/patio_leaping_strangers/patio_leaping_strangers.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "patio_leaping_strangers"
+  ]
+ },
+ {
+  "object": "actors/patio_swat_member/patio_swat_member",
+  "source": "src/stages/akropolis/actors/patio_swat_member/patio_swat_member.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "patio_swat_member"
+  ]
+ },
+ {
+  "object": "actors/police_officers/police_officers",
+  "source": "src/stages/akropolis/actors/police_officers/police_officers.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "police_officers"
+  ]
+ },
+ {
+  "object": "actors/roof_garden_swat_member/roof_garden_swat_member",
+  "source": "src/stages/akropolis/actors/roof_garden_swat_member/roof_garden_swat_member.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "roof_garden_swat_member"
+  ]
+ },
+ {
+  "object": "actors/sanctuary_no_9/sanctuary_no_9",
+  "source": "src/stages/akropolis/actors/sanctuary_no_9/sanctuary_no_9.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "sanctuary_no_9"
+  ]
+ },
+ {
+  "object": "actors/security_monitors/security_monitors",
+  "source": "src/stages/akropolis/actors/security_monitors/security_monitors.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "security_monitors"
+  ]
+ },
+ {
+  "object": "actors/shooting_gallery_pierce/shooting_gallery_pierce",
+  "source": "src/stages/akropolis/actors/shooting_gallery_pierce/shooting_gallery_pierce.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shooting_gallery_pierce"
+  ]
+ },
+ {
+  "object": "actors/shooting_gallery_pierce/shooting_gallery_pierce_gallery",
+  "source": "src/stages/akropolis/actors/shooting_gallery_pierce/shooting_gallery_pierce_gallery.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shooting_gallery_pierce"
+  ]
+ },
+ {
+  "object": "actors/shooting_gallery_targets/shooting_gallery_targets",
+  "source": "src/stages/akropolis/actors/shooting_gallery_targets/shooting_gallery_targets.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "shooting_gallery_targets"
+  ]
+ },
+ {
+  "object": "actors/square_grinning_stranger/square_grinning_stranger",
+  "source": "src/stages/akropolis/actors/square_grinning_stranger/square_grinning_stranger.c",
+  "defines": {
+   "VER_USA": null
+  },
+  "overlays": [
+   "square_grinning_stranger"
   ]
  },
  {

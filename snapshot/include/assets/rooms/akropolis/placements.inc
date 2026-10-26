@@ -2,6 +2,8 @@
 #define ROOM_CAT_(a, b) a##b
 #define ROOM_CAT(a, b) ROOM_CAT_(a, b)
 
+#include "gameplay/areaplace.h"
+
 AreaPlacement gMapAkropolisSquareVariant1Placements[2] = {
     { .entryId = 0, .variant = 0, .mode = 0, .x = 0, .y = -0, .z = 0, .yaw = 0, .fileIdLow = 0, .texturePageOffset = -0, .clutRowOffset = 0, .rowIndex = 0 },
     { .entryId = 0, .variant = 0, .mode = 0, .x = 0, .y = 0, .z = 0, .yaw = 0, .fileIdLow = 0, .texturePageOffset = 0, .clutRowOffset = 0, .rowIndex = 0 },

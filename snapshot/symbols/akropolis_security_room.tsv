@@ -1,0 +1,2388 @@
+gcc2_compiled.	8017D6AC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+__gnu_compiled_c	8017D6AC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_MACRO_INC_GUARD	00000001	al	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomRoomMessages	801825DC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_akropolisSecurityRoomResolveRoomTransition	8017D6AC	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+_akropolisSecurityRoomHandleRoomAction	8017D740	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+_akropolisSecurityRoomHandleRoomCommand	8017D708	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+_akropolisSecurityRoomForwardKeyItemUse	8017D6D4	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomUnusedBank1Animation1Request	80182604	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomPanelOpenerTaskDescs	80182618	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_akropolisSecurityRoomOpenMonitorTask	8017D77C	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+_akropolisSecurityRoomOpenPowerSupplyTask	8017D834	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomMonitorCursorTaskDesc	8018263C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_akropolisSecurityRoomMonitorCursorTask	8017E9D8	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomMonitorHotspots	80182648	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomMonitorWashDetents	801826B4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomPowerSupplyCursorTaskDesc	801826C0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_akropolisSecurityRoomPowerSupplyCursorTask	8017F9C8	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomPowerSupplyMessages	801826CC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_akropolisSecurityRoomPowerSupplyUseKeyItem	8017FE24	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomPowerSupplyHotspots	801826DC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomUnlockSceneTaskDescs	80182700	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_akropolisSecurityRoomRightUnlockSoundTask	80180368	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+_akropolisSecurityRoomLeftUnlockMovieTask	801804CC	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomLockIndicatorOffPalette	80182718	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomLeftLockedPalette	80182918	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomLeftReleasedPalette	80182B18	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomRightLockedPalette	80182D18	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomRightReleasedPalette	80182F18	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomLeftLockedClut	80183118	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomLeftReleasedClut	80183318	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomRightLockedClut	80183518	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomRightReleasedClut	80183718	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomLockIndicatorClutUploads	80183918	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomLockIndicatorMasksByReleasedLocks	80183968	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomLockIndicatorQuads	80183970	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomLockIndicatorGlowOffsets	80183998	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomLockIndicatorGlowColorMasks	801839B8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomFallingQuadUnitCorners	801839C0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomCollisionGrid	80183D94	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomViewBoundaryTriggers	80183DB8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomActionTriggers	80183EE8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomLights	801841C8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomCollisionGridNormals	80183A28	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomCollisionGridVerts	80183A80	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomCollisionGridFaces	80183C10	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomCollisionGridCells	80183D30	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomCollisionGridTable	80183D8C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomActorResources	80184064	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomPointLights	801840A8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomView1SpriteBatches	801841E0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomView2SpriteSources	801841F0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomView2SpriteBatches	80184358	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomView3SpriteBatches	80184370	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomView4SpriteBatches	80184380	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomMonitorFrameSpriteSources	80184390	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomMonitorFrameSpriteBatches	80184458	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomReleasedLockSpriteSources	80184470	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomReleasedLockSpriteBatches	80184498	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomView7SpriteBatches	801844B8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomUnusedEmptySpriteBatchLists	801844C8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomRightUnlockSpriteSources	80184548	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomRightUnlockSpriteBatches	80184BD8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomRightUnlockAreaUpdates	80184F50	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomRightUnlockEarlyStoryAreaUpdates	80184F78	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomRightUnlockLateStoryAreaUpdates	80184F7C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomLeftUnlockAreaUpdates	80184F80	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomFloorFootstepSounds	80184F84	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomSilentSurfaceProperties	80184F90	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomFloorSurfaceProperties	80184F98	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gItemBoxModelSkeleton	80184FC0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gItemBoxModelPartVerts	8018502C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gItemBoxModelVerts	80185038	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gItemBoxModelNormals	801851F8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gItemBoxModelStream	80185228	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gItemBoxModel	80185584	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1	8017D6AC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM2	8017D6AC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM3	8017D6AC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM4	8017D6CC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM5	8017D6D4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM6	8017D6D4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM7	8017D6D4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM8	8017D6D4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomPowerSupplyTask	801855AC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM9	8017D6DC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM10	8017D6E0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM11	8017D6E8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM12	8017D6F0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM13	8017D6F8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM14	8017D708	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM15	8017D708	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM16	8017D708	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM17	8017D70C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM18	8017D718	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM19	8017D730	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM20	8017D730	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM21	8017D734	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM22	8017D738	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM23	8017D740	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM24	8017D740	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM25	8017D740	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM26	8017D748	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM27	8017D758	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM28	8017D76C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM29	8017D77C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomMessageStates	8017D5C4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_akropolisSecurityRoomInitializeRoomTask	8017D930	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+_akropolisSecurityRoomIdleRoomTask	8017D97C	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM30	8017D77C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM31	8017D77C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM32	8017D78C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomMonitorPanelTask	801855A8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM33	8017D7AC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM34	8017D7B8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM35	8017D7CC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM36	8017D7D0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM37	8017D7D4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM38	8017D7DC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM39	8017D7E4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM40	8017D7F0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM41	8017D7F8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM42	8017D80C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM43	8017D814	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM44	8017D81C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM45	8017D824	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM46	8017D834	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomPowerSupplyDebugText	8017D5DC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM47	8017D834	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM48	8017D834	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM49	8017D848	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM50	8017D868	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM51	8017D874	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM52	8017D888	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM53	8017D88C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM54	8017D890	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM55	8017D898	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM56	8017D8A0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM57	8017D8AC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM58	8017D8B4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM59	8017D8C8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM60	8017D8E4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM61	8017D900	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM62	8017D908	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM63	8017D910	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM64	8017D914	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM65	8017D91C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM66	8017D930	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM67	8017D930	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM68	8017D930	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM69	8017D93C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM70	8017D944	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM71	8017D948	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM72	8017D94C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM73	8017D954	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM74	8017D96C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM75	8017D974	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM76	8017D97C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM77	8017D97C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM78	8017D97C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM79	8017D97C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM80	8017D984	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomMonitorStates	8017D5EC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_akropolisSecurityRoomMonitorInit	8017D9DC	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+_akropolisSecurityRoomMonitorArmCursor	8017EA28	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+_akropolisSecurityRoomMonitorScanHotspots	8017DB30	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+_akropolisSecurityRoomMonitorOpenPrompt	8017EA5C	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+_akropolisSecurityRoomMonitorHandlePrompt	8017DC7C	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+_akropolisSecurityRoomMonitorClose	8017EADC	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+_akropolisSecurityRoomMonitorScanRestrictedHotspots	8017EB9C	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM81	8017D984	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM82	8017D984	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM83	8017D988	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM84	8017D98C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM85	8017D990	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM86	8017D9AC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM87	8017D9CC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM88	8017D9DC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM89	8017D9DC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM90	8017D9DC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM91	8017D9E8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM92	8017D9F0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM93	8017D9F4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM94	8017DA00	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM95	8017DA08	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM96	8017DA10	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM97	8017DA18	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM98	8017DA2C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM99	8017DA30	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM100	8017DA34	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM101	8017DA38	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM102	8017DA44	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM103	8017DA54	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM104	8017DA68	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM105	8017DA70	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM106	8017DA7C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM107	8017DA90	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM108	8017DA98	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM109	8017DA9C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM110	8017DAA4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM111	8017DAB0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM112	8017DAB4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM113	8017DABC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM114	8017DACC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM115	8017DAD8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM116	8017DAE4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM117	8017DAEC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM118	8017DAFC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM119	8017DB04	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM120	8017DB08	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM121	8017DB0C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM122	8017DB1C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM123	8017DB30	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM124	8017DB30	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM125	8017DB30	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM126	8017DB3C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM127	8017DB40	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM128	8017DB44	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM129	8017DB48	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM130	8017DB58	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM131	8017DB5C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM132	8017DB60	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM133	8017DB64	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM134	8017DB68	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_akropolisSecurityRoomDrawMonitorWash	8017E0C4	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM135	8017DB78	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_akropolisSecurityRoomDrawMonitorSweep	8017E37C	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM136	8017DB80	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM137	8017DB90	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM138	8017DB94	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM139	8017DBA4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM140	8017DBA8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM141	8017DBB0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM142	8017DBB0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM143	8017DBB8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM144	8017DBBC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_actionPromptHitTestDefault	8017ECB4	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM145	8017DBCC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM146	8017DBD0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM147	8017DBD4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM148	8017DBF0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM149	8017DBF4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM150	8017DC04	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM151	8017DC0C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM152	8017DC14	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM153	8017DC1C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM154	8017DC20	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM155	8017DC24	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM156	8017DC30	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM157	8017DC3C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM158	8017DC44	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM159	8017DC48	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM160	8017DC58	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM161	8017DC5C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM162	8017DC7C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM163	8017DC7C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM164	8017DC7C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM165	8017DC88	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM166	8017DC8C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM167	8017DC94	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM168	8017DC98	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM169	8017DCA0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM170	8017DCB0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM171	8017DCC0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM172	8017DCC4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM173	8017DCD4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM174	8017DCDC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM175	8017DCE0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM176	8017DCE4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM177	8017DCEC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM178	8017DD10	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM179	8017DD14	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM180	8017DD24	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM181	8017DD3C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM182	8017DD40	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM183	8017DD44	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM184	8017DD54	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM185	8017DD68	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM186	8017DD6C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM187	8017DD80	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM188	8017DDB8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM189	8017DDC8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM190	8017DDDC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM191	8017DE30	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM192	8017DE3C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM193	8017DE44	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM194	8017DE5C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM195	8017DE64	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM196	8017DE6C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM197	8017DE80	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM198	8017DE80	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM199	8017DE80	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_akropolisSecurityRoomOutlinePromptRect	8017DE80	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM200	8017DE80	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM201	8017DE80	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM202	8017DE84	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM203	8017DE88	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM204	8017DE8C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM205	8017DE90	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM206	8017DE98	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM207	8017DEB0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM208	8017DEB4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM209	8017DEC0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM210	8017DEC4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM211	8017DED0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM212	8017DED4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM213	8017DEE0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM214	8017DEEC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM215	8017DEF0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM216	8017DF0C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM217	8017DF10	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM218	8017DF1C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM219	8017DF24	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM220	8017DF74	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM221	8017DF78	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM222	8017DF7C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM223	8017DF80	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM224	8017DF84	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM225	8017DFA0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM226	8017DFA4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM227	8017DFB0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM228	8017DFB8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM229	8017E008	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM230	8017E00C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM231	8017E010	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM232	8017E014	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM233	8017E018	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM234	8017E034	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM235	8017E038	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM236	8017E044	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM237	8017E04C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM238	8017E078	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM239	8017E07C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM240	8017E090	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM241	8017E094	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM242	8017E098	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM243	8017E0BC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM244	8017E0C4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM245	8017E0C4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM246	8017E0C4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM247	8017E0C4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM248	8017E0C4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM249	8017E0D0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM250	8017E0D0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM251	8017E0D8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM252	8017E0DC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM253	8017E0E0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM254	8017E0E4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM255	8017E0E8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM256	8017E0EC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM257	8017E0F4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM258	8017E110	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM259	8017E114	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM260	8017E118	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM261	8017E120	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM262	8017E124	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM263	8017E130	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM264	8017E134	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM265	8017E14C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM266	8017E164	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM267	8017E16C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM268	8017E17C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM269	8017E184	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM270	8017E18C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM271	8017E194	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM272	8017E1A0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM273	8017E1A8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM274	8017E1AC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM275	8017E1B0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM276	8017E1B4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM277	8017E1B8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM278	8017E1BC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM279	8017E1C4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM280	8017E1E0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM281	8017E1E4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM282	8017E1E8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM283	8017E1F0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM284	8017E1F4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM285	8017E200	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM286	8017E204	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM287	8017E21C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM288	8017E234	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM289	8017E23C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM290	8017E24C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM291	8017E254	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM292	8017E25C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM293	8017E264	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM294	8017E28C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM295	8017E28C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM296	8017E294	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM297	8017E298	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM298	8017E29C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM299	8017E2A0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM300	8017E2A4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM301	8017E2A8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM302	8017E2B0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM303	8017E2C0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM304	8017E2C4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM305	8017E2C8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM306	8017E2CC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM307	8017E2D0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM308	8017E2D4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM309	8017E2D8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM310	8017E2DC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM311	8017E2E4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM312	8017E2E8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM313	8017E2EC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM314	8017E2F0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM315	8017E2F8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM316	8017E2FC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM317	8017E304	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM318	8017E308	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM319	8017E320	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM320	8017E328	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM321	8017E338	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM322	8017E340	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM323	8017E348	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM324	8017E350	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM325	8017E374	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM326	8017E37C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM327	8017E37C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM328	8017E37C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM329	8017E37C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM330	8017E37C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM331	8017E37C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM332	8017E384	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM333	8017E388	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM334	8017E38C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM335	8017E394	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM336	8017E398	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM337	8017E39C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM338	8017E3D4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM339	8017E3D8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM340	8017E3E0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM341	8017E3E4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM342	8017E3E8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM343	8017E3EC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM344	8017E3F0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM345	8017E404	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM346	8017E408	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM347	8017E410	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM348	8017E414	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM349	8017E420	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM350	8017E428	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM351	8017E430	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM352	8017E438	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM353	8017E460	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM354	8017E470	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM355	8017E484	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM356	8017E488	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM357	8017E490	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM358	8017E490	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM359	8017E490	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_actionPromptMoveCursorsDefault	8017E490	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM360	8017E4BC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM361	8017E4DC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM362	8017E4E0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM363	8017E4E8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM364	8017E4EC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM365	8017E4F4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM366	8017E52C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM367	8017E538	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM368	8017E544	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM369	8017E548	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM370	8017E554	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM371	8017E558	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM372	8017E55C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM373	8017E564	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM374	8017E588	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM375	8017E598	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM376	8017E5A8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM377	8017E5B0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM378	8017E5B8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM379	8017E5C0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM380	8017E5C4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM381	8017E5F0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM382	8017E5F8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM383	8017E600	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM384	8017E608	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM385	8017E60C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM386	8017E638	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM387	8017E670	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM388	8017E678	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM389	8017E680	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM390	8017E688	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM391	8017E690	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM392	8017E698	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM393	8017E6A0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM394	8017E6A8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM395	8017E6B0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM396	8017E6B4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM397	8017E6C0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM398	8017E6E4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM399	8017E6E8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM400	8017E6F8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM401	8017E78C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM402	8017E790	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM403	8017E798	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM404	8017E7A4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM405	8017E7BC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM406	8017E7E8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM407	8017E7EC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM408	8017E7F0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM409	8017E7F8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM410	8017E7FC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM411	8017E808	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM412	8017E80C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM413	8017E828	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM414	8017E848	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM415	8017E850	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM416	8017E854	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM417	8017E858	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM418	8017E860	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM419	8017E864	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM420	8017E86C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM421	8017E878	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM422	8017E880	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM423	8017E884	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM424	8017E888	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM425	8017E890	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM426	8017E894	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM427	8017E898	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM428	8017E89C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM429	8017E8A4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_actionPromptDrawCursorDefault	8017E8F0	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM430	8017E8AC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM431	8017E8C0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM432	8017E8F0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM433	8017E8F0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM434	8017E8F0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM435	8017E8F0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM436	8017E8F0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM437	8017E8F8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM438	8017E900	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM439	8017E938	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM440	8017E940	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM441	8017E94C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM442	8017E950	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM443	8017E954	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM444	8017E954	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM445	8017E95C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM446	8017E978	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM447	8017E980	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM448	8017E988	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM449	8017E990	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM450	8017E9A0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM451	8017E9D0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM452	8017E9D8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM453	8017E9D8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM454	8017E9D8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM455	8017E9E0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_actionPromptResetDefault	8017EDE4	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM456	8017E9F8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM457	8017EA18	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM458	8017EA28	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM459	8017EA28	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM460	8017EA28	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM461	8017EA28	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM462	8017EA30	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM463	8017EA38	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM464	8017EA40	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM465	8017EA44	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM466	8017EA48	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM467	8017EA54	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM468	8017EA5C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM469	8017EA5C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM470	8017EA5C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM471	8017EA6C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM472	8017EA70	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM473	8017EA78	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM474	8017EA7C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM475	8017EA80	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM476	8017EA84	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM477	8017EA88	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM478	8017EAA0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM479	8017EAA8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM480	8017EABC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM481	8017EAC4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM482	8017EADC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM483	8017EADC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM484	8017EADC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM485	8017EAF4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM486	8017EAF8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM487	8017EAFC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM488	8017EB00	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM489	8017EB08	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM490	8017EB3C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM491	8017EB44	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM492	8017EB4C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM493	8017EB5C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM494	8017EB68	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM495	8017EB74	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM496	8017EB80	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM497	8017EB8C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM498	8017EB9C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM499	8017EB9C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM500	8017EB9C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM501	8017EB9C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM502	8017EBA4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM503	8017EBAC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM504	8017EBB0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM505	8017EBC0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM506	8017EBC4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM507	8017EBC8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM508	8017EBCC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM509	8017EBD0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM510	8017EBD8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM511	8017EBDC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM512	8017EBEC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM513	8017EBF0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM514	8017EBF8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM515	8017EBF8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM516	8017EC00	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM517	8017EC04	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM518	8017EC14	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM519	8017EC18	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM520	8017EC1C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM521	8017EC28	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM522	8017EC3C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM523	8017EC4C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM524	8017EC5C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM525	8017EC64	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM526	8017EC6C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM527	8017EC70	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM528	8017EC78	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM529	8017EC80	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM530	8017EC84	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM531	8017EC94	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM532	8017EC98	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM533	8017ECB4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM534	8017ECB4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM535	8017ECB4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM536	8017ECB8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM537	8017ECE4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM538	8017ED3C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM539	8017ED40	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM540	8017ED48	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM541	8017ED4C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM542	8017ED50	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM543	8017ED58	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM544	8017ED60	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM545	8017ED60	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM546	8017ED68	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_gAkropolisSecurityRoomPowerSupplyStates	8017D63C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_akropolisSecurityRoomPowerSupplyInit	8017FA18	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+_akropolisSecurityRoomPowerSupplyArmCursor	8017FB20	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+_akropolisSecurityRoomPowerSupplyScanHotspots	8017EE44	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+_akropolisSecurityRoomPowerSupplyOpenPrompt	8017FB54	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+_akropolisSecurityRoomPowerSupplyHandlePrompt	8017FBA4	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+_akropolisSecurityRoomPowerSupplyClose	8017FC30	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+_akropolisSecurityRoomPowerSupplyFadeToLeftUnlock	801800A4	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+_akropolisSecurityRoomPowerSupplyStartLeftUnlock	8018014C	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+_akropolisSecurityRoomPowerSupplyWaitLeftUnlock	801801C4	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+_akropolisSecurityRoomPowerSupplyFinishLeftUnlock	80180218	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+_akropolisSecurityRoomPowerSupplyFadeToRightUnlock	8017FE6C	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+_akropolisSecurityRoomPowerSupplyStartRightUnlock	8017FF0C	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+_akropolisSecurityRoomPowerSupplyWaitRightUnlock	8017FF84	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+_akropolisSecurityRoomPowerSupplyPreparePlayerModel	8017FFD0	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+_akropolisSecurityRoomPowerSupplyRestoreRoomView	80180010	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+_akropolisSecurityRoomPowerSupplyFinishRightUnlock	80180030	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM547	8017ED68	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM548	8017ED68	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM549	8017ED6C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM550	8017ED70	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM551	8017ED74	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM552	8017EDB4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM553	8017EDD4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM554	8017EDE4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM555	8017EDE4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM556	8017EDE4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM557	8017EDE4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM558	8017EDEC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM559	8017EE00	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM560	8017EE20	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM561	8017EE30	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM562	8017EE3C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM563	8017EE44	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM564	8017EE44	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM565	8017EE44	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM566	8017EE50	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM567	8017EE54	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM568	8017EE68	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM569	8017EE6C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM570	8017EE78	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM571	8017EE80	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM572	8017EE84	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM573	8017EE88	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM574	8017EE8C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM575	8017EE9C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM576	8017EEA0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM577	8017EEA8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM578	8017EEB4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_actionPromptHitTest	8017FCB0	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM579	8017EEC4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM580	8017EEC8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM581	8017EECC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM582	8017EED8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM583	8017EEEC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM584	8017EEFC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM585	8017EF0C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM586	8017EF14	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM587	8017EF18	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM588	8017EF1C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM589	8017EF28	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM590	8017EF34	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM591	8017EF3C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM592	8017EF40	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM593	8017EF44	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM594	8017EF54	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM595	8017EF58	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM596	8017EF78	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM597	8017EF78	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM598	8017EF78	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_actionPromptOutlineRectDefault	8017EF78	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM599	8017EF78	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM600	8017EF78	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM601	8017EF7C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM602	8017EF80	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM603	8017EF84	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM604	8017EF88	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM605	8017EF90	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM606	8017EFA8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM607	8017EFAC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM608	8017EFB8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM609	8017EFBC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM610	8017EFC8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM611	8017EFCC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM612	8017EFD8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM613	8017EFE4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM614	8017EFE8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM615	8017F004	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM616	8017F008	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM617	8017F014	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM618	8017F01C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM619	8017F06C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM620	8017F070	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM621	8017F074	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM622	8017F078	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM623	8017F07C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM624	8017F098	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM625	8017F09C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM626	8017F0A8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM627	8017F0B0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM628	8017F100	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM629	8017F104	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM630	8017F108	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM631	8017F10C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM632	8017F110	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM633	8017F12C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM634	8017F130	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM635	8017F13C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM636	8017F144	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM637	8017F170	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM638	8017F174	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM639	8017F188	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM640	8017F18C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM641	8017F190	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM642	8017F1B4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM643	8017F1BC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM644	8017F1BC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM645	8017F1BC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_akropolisSecurityRoomPowerSupplyUseLeftLock	8017F1BC	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM646	8017F1C8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM647	8017F1D0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM648	8017F1D4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM649	8017F1E0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM650	8017F1F0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM651	8017F1F8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM652	8017F200	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM653	8017F208	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_akropolisSecurityRoomShowReleasedLocks	8017FD64	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM654	8017F294	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM655	8017F29C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM656	8017F2A0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM657	8017F2B8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM658	8017F2C8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM659	8017F2CC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM660	8017F2D4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM661	8017F2E4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM662	8017F2EC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM663	8017F300	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM664	8017F300	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM665	8017F300	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_akropolisSecurityRoomPowerSupplyUseRightLock	8017F300	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM666	8017F30C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM667	8017F318	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM668	8017F31C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM669	8017F328	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM670	8017F334	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM671	8017F33C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM672	8017F344	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM673	8017F34C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM674	8017F408	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM675	8017F410	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM676	8017F420	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM677	8017F428	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM678	8017F434	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM679	8017F444	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM680	8017F448	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM681	8017F450	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM682	8017F460	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM683	8017F468	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM684	8017F480	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM685	8017F480	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM686	8017F480	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_actionPromptMoveCursors	8017F480	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM687	8017F4AC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM688	8017F4CC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM689	8017F4D0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM690	8017F4D8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM691	8017F4DC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM692	8017F4E4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM693	8017F51C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM694	8017F528	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM695	8017F534	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM696	8017F538	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM697	8017F544	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM698	8017F548	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM699	8017F54C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM700	8017F554	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM701	8017F578	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM702	8017F588	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM703	8017F598	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM704	8017F5A0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM705	8017F5A8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM706	8017F5B0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM707	8017F5B4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM708	8017F5E0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM709	8017F5E8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM710	8017F5F0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM711	8017F5F8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM712	8017F5FC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM713	8017F628	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM714	8017F660	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM715	8017F668	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM716	8017F670	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM717	8017F678	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM718	8017F680	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM719	8017F688	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM720	8017F690	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM721	8017F698	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM722	8017F6A0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM723	8017F6A4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM724	8017F6B0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM725	8017F6D4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM726	8017F6D8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM727	8017F6E8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM728	8017F77C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM729	8017F780	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM730	8017F788	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM731	8017F794	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM732	8017F7AC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM733	8017F7D8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM734	8017F7DC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM735	8017F7E0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM736	8017F7E8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM737	8017F7EC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM738	8017F7F8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM739	8017F7FC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM740	8017F818	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM741	8017F838	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM742	8017F840	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM743	8017F844	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM744	8017F848	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM745	8017F850	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM746	8017F854	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM747	8017F85C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM748	8017F868	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM749	8017F870	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM750	8017F874	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM751	8017F878	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM752	8017F880	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM753	8017F884	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM754	8017F888	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM755	8017F88C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM756	8017F894	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_actionPromptDrawCursor	8017F8E0	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM757	8017F89C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM758	8017F8B0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM759	8017F8E0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM760	8017F8E0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM761	8017F8E0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM762	8017F8E0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM763	8017F8E0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM764	8017F8E8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM765	8017F8F0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM766	8017F928	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM767	8017F930	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM768	8017F93C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM769	8017F940	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM770	8017F944	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM771	8017F944	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM772	8017F94C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM773	8017F968	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM774	8017F970	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM775	8017F978	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM776	8017F980	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM777	8017F990	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM778	8017F9C0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM779	8017F9C8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM780	8017F9C8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM781	8017F9C8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM782	8017F9D0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_actionPromptReset	80180308	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM783	8017F9E8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM784	8017FA08	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM785	8017FA18	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM786	8017FA18	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM787	8017FA18	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM788	8017FA24	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM789	8017FA2C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM790	8017FA30	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM791	8017FA3C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM792	8017FA44	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM793	8017FA4C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM794	8017FA54	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM795	8017FA6C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM796	8017FA74	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM797	8017FA78	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM798	8017FA7C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM799	8017FA80	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM800	8017FA84	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM801	8017FA88	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM802	8017FA8C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM803	8017FA90	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM804	8017FA98	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM805	8017FA9C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM806	8017FAAC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM807	8017FAB4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM808	8017FAB8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM809	8017FABC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM810	8017FAC8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM811	8017FACC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM812	8017FAD4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM813	8017FAF4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM814	8017FAF8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM815	8017FB0C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM816	8017FB20	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM817	8017FB20	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM818	8017FB20	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM819	8017FB20	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM820	8017FB28	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM821	8017FB30	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM822	8017FB38	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM823	8017FB3C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM824	8017FB40	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM825	8017FB4C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM826	8017FB54	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM827	8017FB54	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM828	8017FB54	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM829	8017FB60	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM830	8017FB68	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM831	8017FB6C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM832	8017FB70	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM833	8017FB78	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM834	8017FB7C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM835	8017FB80	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM836	8017FB8C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM837	8017FB94	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM838	8017FBA4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM839	8017FBA4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM840	8017FBA4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM841	8017FBB0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM842	8017FBB4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM843	8017FBBC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM844	8017FBC0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM845	8017FBC4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM846	8017FBC8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM847	8017FBE8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM848	8017FBF8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM849	8017FC00	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM850	8017FC08	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM851	8017FC10	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM852	8017FC18	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM853	8017FC1C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM854	8017FC30	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM855	8017FC30	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM856	8017FC30	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM857	8017FC3C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM858	8017FC40	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM859	8017FC48	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM860	8017FC4C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM861	8017FC54	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM862	8017FC64	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM863	8017FC70	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM864	8017FC74	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM865	8017FC78	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM866	8017FC7C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM867	8017FC80	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM868	8017FC88	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM869	8017FC94	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM870	8017FCA0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM871	8017FCB0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM872	8017FCB0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM873	8017FCB0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM874	8017FCB4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM875	8017FCE0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM876	8017FD38	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM877	8017FD3C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM878	8017FD44	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM879	8017FD48	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM880	8017FD4C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM881	8017FD54	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM882	8017FD5C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM883	8017FD5C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM884	8017FD64	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM885	8017FD64	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM886	8017FD64	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM887	8017FD64	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM888	8017FD64	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM889	8017FD68	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM890	8017FD6C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM891	8017FD70	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM892	8017FD74	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM893	8017FD78	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM894	8017FD7C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM895	8017FD80	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM896	8017FDB0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM897	8017FDB4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM898	8017FDB8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM899	8017FDF4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM900	8017FDF8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM901	8017FE00	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM902	8017FE04	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM903	8017FE0C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM904	8017FE10	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM905	8017FE18	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM906	8017FE1C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM907	8017FE24	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM908	8017FE24	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM909	8017FE24	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM910	8017FE24	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM911	8017FE28	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM912	8017FE34	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM913	8017FE38	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM914	8017FE40	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM915	8017FE4C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM916	8017FE58	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM917	8017FE5C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM918	8017FE64	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM919	8017FE64	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM920	8017FE6C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM921	8017FE6C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM922	8017FE6C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM923	8017FE80	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM924	8017FE88	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM925	8017FE9C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM926	8017FEA0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM927	8017FEA4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM928	8017FEAC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM929	8017FEB8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM930	8017FEC8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM931	8017FEDC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM932	8017FEE0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM933	8017FEE4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM934	8017FEE8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM935	8017FEF8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM936	8017FF0C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM937	8017FF0C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM938	8017FF0C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM939	8017FF20	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM940	8017FF28	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM941	8017FF38	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM942	8017FF50	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM943	8017FF60	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM944	8017FF70	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM945	8017FF84	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM946	8017FF84	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM947	8017FF84	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM948	8017FF94	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM949	8017FF9C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM950	8017FFB0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM951	8017FFC0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM952	8017FFD0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM953	8017FFD0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM954	8017FFD0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM955	8017FFDC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM956	8017FFE0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM957	8017FFE8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM958	8017FFF0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM959	80180010	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM960	80180010	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM961	80180010	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM962	80180010	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM963	80180010	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM964	8018001C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM965	80180028	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM966	80180030	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM967	80180030	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM968	80180030	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM969	8018003C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM970	80180040	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM971	80180048	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM972	8018004C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM973	80180054	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM974	8018005C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM975	8018006C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM976	80180070	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM977	80180074	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM978	80180078	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM979	8018007C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM980	80180080	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM981	80180088	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM982	801800A4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM983	801800A4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM984	801800A4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM985	801800B0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM986	801800B4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM987	801800BC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM988	801800C0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM989	801800C8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM990	801800DC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM991	801800E0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM992	801800E4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM993	801800EC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM994	801800F8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM995	80180108	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM996	8018011C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM997	80180120	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM998	80180124	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM999	80180128	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1000	80180138	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1001	8018014C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1002	8018014C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1003	8018014C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1004	80180160	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1005	80180168	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1006	80180178	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1007	80180190	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1008	801801A0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1009	801801B0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1010	801801C4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1011	801801C4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1012	801801C4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1013	801801D4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1014	801801DC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1015	801801F0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1016	801801F8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1017	80180208	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1018	80180218	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1019	80180218	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1020	80180218	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1021	80180224	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1022	80180230	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1023	80180238	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1024	8018023C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1025	80180244	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1026	80180250	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1027	8018025C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1028	8018026C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1029	80180278	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1030	80180284	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1031	80180294	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1032	80180294	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1033	80180294	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1034	8018029C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1035	801802D8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1036	801802F8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1037	80180308	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1038	80180308	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1039	80180308	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1040	80180308	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1041	80180310	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1042	80180324	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1043	80180344	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1044	80180354	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1045	80180360	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1046	80180368	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1047	80180368	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1048	80180368	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1049	80180374	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1050	8018037C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1051	80180380	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1052	8018038C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1053	80180390	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1054	80180394	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1055	801803C8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1056	801803D0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1057	801803D8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1058	801803E0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1059	801803E8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1060	801803F8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1061	8018040C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1062	80180414	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1063	80180438	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1064	80180444	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1065	80180448	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1066	8018045C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1067	8018046C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1068	8018047C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1069	8018048C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1070	80180498	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1071	801804A4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1072	801804AC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1073	801804B4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1074	801804CC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1075	801804CC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1076	801804CC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1077	801804D8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1078	801804DC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1079	801804E0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1080	80180520	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1081	80180520	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1082	8018052C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1083	80180530	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1084	80180538	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1085	80180544	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1086	8018054C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1087	80180554	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1088	80180578	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1089	80180584	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1090	8018058C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1091	80180594	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1092	801805A4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1093	801805A4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1094	801805A4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1095	801805D0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1096	801805D4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1097	801805D8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1098	801805DC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1099	801805E0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1100	801805F8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1101	801805F8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1102	801805FC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1103	80180600	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1104	80180604	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1105	8018060C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1106	80180610	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1107	80180614	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1108	80180644	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1109	80180648	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1110	8018064C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1111	80180654	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1112	80180658	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1113	80180688	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1114	8018068C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1115	80180690	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1116	80180698	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1117	8018069C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1118	801806CC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1119	801806D0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1120	801806D4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1121	801806DC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1122	801806E0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1123	80180710	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1124	8018071C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1125	80180728	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1126	80180730	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1127	80180730	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1128	8018074C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1129	80180764	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1130	80180768	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1131	80180770	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1132	80180774	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1133	80180778	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1134	8018077C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1135	80180784	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1136	80180788	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1137	80180790	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1138	801807BC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1139	801807C4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1140	801807F0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1141	801807F8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1142	80180824	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1143	8018082C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1144	8018085C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1145	8018089C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1146	801808A0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1147	801808A4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1148	801808AC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1149	801808B0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1150	801808E4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1151	801808E8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1152	801808EC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1153	801808F4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1154	801808F8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1155	8018092C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1156	80180930	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1157	80180934	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1158	8018093C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1159	80180940	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1160	80180974	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1161	8018097C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1162	80180980	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1163	80180998	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1164	801809A8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1165	801809E0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1166	801809F0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1167	80180A08	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1168	80180A1C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1169	80180A30	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1170	80180A44	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_akropolisSecurityRoomDrawSweepLine	80180A78	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1171	80180A4C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1172	80180A78	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1173	80180A78	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1174	80180A78	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1175	80180A78	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1176	80180A80	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1177	80180A90	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1178	80180AA0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1179	80180AA4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1180	80180AA8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1181	80180AAC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1182	80180AB4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1183	80180ABC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1184	80180AC0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1185	80180AC4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1186	80180AC8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1187	80180AEC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1188	80180AF0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1189	80180AF4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1190	80180AF8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1191	80180AFC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1192	80180B00	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1193	80180B30	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1194	80180BB8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1195	80180BC0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1196	80180BC8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1197	80180BE0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1198	80180BE4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1199	80180C14	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1200	80180C88	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1201	80180C8C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1202	80180C9C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1203	80180CA0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1204	80180CA8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1205	80180CC0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1206	80180CF0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1207	80180CF8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1208	80180D04	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1209	80180D10	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1210	80180D18	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1211	80180D28	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1212	80180D30	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1213	80180D38	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1214	80180D44	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1215	80180D54	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1216	80180D5C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1217	80180D6C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1218	80180D80	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1219	80180D84	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1220	80180D88	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1221	80180D94	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1222	80180DFC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1223	80180E00	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1224	80180E04	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1225	80180E10	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1226	80180E20	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1227	80180E34	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1228	80180E34	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1229	80180E34	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1230	80180E48	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1231	80180E50	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1232	80180E54	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1233	80180E58	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1234	80180E60	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1235	80180E80	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1236	80180EB0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1237	80180EBC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1238	80180EC4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1239	80180ED4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1240	80180ED8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1241	80180EDC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1242	80180EE4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1243	80180EE8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1244	80180EF0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1245	80180EF8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1246	80180F20	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1247	80180F38	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1248	80180F3C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1249	80180F40	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1250	80180F44	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1251	80180F48	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1252	80180F6C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1253	80180F94	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1254	80180FB8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1255	80180FDC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1256	80181004	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1257	80181008	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1258	8018100C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1259	80181020	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1260	80181024	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1261	8018102C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1262	80181030	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1263	80181034	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1264	80181048	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1265	8018104C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1266	80181050	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1267	80181054	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1268	80181058	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1269	8018105C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1270	80181060	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1271	80181068	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1272	8018106C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1273	80181070	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1274	80181074	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1275	80181078	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1276	8018107C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1277	80181080	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1278	80181084	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1279	8018108C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1280	801810C4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1281	801810C8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1282	801810EC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1283	801810F4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1284	80181108	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1285	80181108	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1286	80181108	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1287	80181114	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1288	8018111C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1289	8018112C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1290	80181130	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1291	80181134	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1292	80181138	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1293	8018113C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1294	80181140	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1295	80181144	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1296	80181148	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1297	80181150	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1298	80181160	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1299	80181170	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1300	80181224	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1301	801812C8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1302	801812D4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1303	801812E8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1304	80181308	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1305	80181314	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1306	80181334	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1307	80181364	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1308	80181370	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1309	8018137C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1310	80181388	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1311	80181390	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1312	801813A0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1313	801813A8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1314	801813CC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1315	801813D8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1316	801813DC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1317	801813E4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1318	801813E8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1319	801813EC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1320	801813F0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1321	801813F4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1322	801813F8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1323	801813FC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1324	80181400	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1325	80181404	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1326	80181408	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1327	80181414	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1328	80181424	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1329	80181438	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1330	8018143C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1331	80181440	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1332	80181444	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1333	8018144C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1334	80181450	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1335	80181454	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1336	80181458	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1337	8018145C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1338	80181464	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1339	801814D0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1340	801814DC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1341	801814E0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1342	801814E4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1343	801814EC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1344	80181500	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1345	80181508	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1346	8018150C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1347	80181514	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1348	8018151C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1349	80181520	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1350	80181528	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1351	80181534	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1352	80181544	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1353	80181548	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1354	80181550	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1355	8018155C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1356	80181564	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1357	80181568	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1358	80181568	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1359	80181570	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1360	80181570	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1361	80181578	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1362	80181594	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1363	801815A4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1364	801815A8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1365	801815D4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1366	801815DC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1367	801815E4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1368	801815EC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1369	801815F0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1370	801815F4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1371	801815F4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1372	801815FC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1373	80181604	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1374	80181618	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1375	80181634	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1376	80181644	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1377	80181658	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1378	8018165C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1379	80181688	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1380	80181690	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1381	80181698	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1382	801816A0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1383	801816A4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1384	801816A8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1385	801816C4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1386	801816D4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1387	801816DC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1388	801816E0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1389	801816E4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1390	801816EC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1391	80181718	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1392	80181744	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1393	80181748	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1394	8018174C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1395	8018174C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1396	80181758	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1397	8018175C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1398	8018175C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1399	80181760	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1400	80181764	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1401	80181768	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1402	80181770	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1403	80181780	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1404	80181788	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1405	801817A4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1406	801817A4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1407	801817A4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1408	801817D4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1409	801817D8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1410	801817DC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1411	801817E0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1412	801817E4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1413	801817EC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1414	801817F8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1415	801817FC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1416	80181804	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1417	80181808	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1418	8018180C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1419	80181810	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1420	80181814	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1421	80181818	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1422	8018181C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1423	80181820	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1424	80181824	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1425	8018183C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1426	8018186C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1427	80181878	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1428	80181884	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1429	8018188C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1430	8018189C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1431	801818B0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1432	801818E4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1433	801818F0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1434	801818F4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1435	801818F8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1436	80181900	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1437	80181908	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1438	80181910	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1439	80181914	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1440	80181918	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1441	8018191C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1442	80181920	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1443	8018192C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1444	80181940	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1445	80181944	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1446	80181948	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1447	8018194C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1448	80181950	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1449	8018195C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1450	801819A8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1451	801819BC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1452	801819CC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1453	801819E0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1454	801819F4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1455	80181A1C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1456	80181A60	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1457	80181A64	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1458	80181A88	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1459	80181A8C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1460	80181A8C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1461	80181A94	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1462	80181AA0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1463	80181ABC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1464	80181ACC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1465	80181AD8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1466	80181B28	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1467	80181B48	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1468	80181B64	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1469	80181B70	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1470	80181B7C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1471	80181B98	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1472	80181BB4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1473	80181BF8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1474	80181BFC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1475	80181C20	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1476	80181C24	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1477	80181C24	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1478	80181C2C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1479	80181C38	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1480	80181C3C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1481	80181C40	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1482	80181C44	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1483	80181C48	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1484	80181C4C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1485	80181C54	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1486	80181C84	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1487	80181C84	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1488	80181C84	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_actorContactApplyGridPushback	80181C84	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1489	80181C90	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1490	80181C98	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1491	80181CA4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1492	80181CB0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1493	80181CB4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1494	80181CB8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1495	80181CC0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1496	80181CC4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1497	80181CC8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1498	80181CD8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1499	80181CEC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1500	80181D00	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1501	80181D08	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1502	80181D0C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1503	80181D14	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1504	80181D18	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1505	80181D24	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1506	80181D2C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1507	80181D7C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1508	80181D84	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1509	80181D98	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1510	80181DA0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1511	80181DB4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1512	80181DBC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1513	80181DD4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1514	80181DF4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1515	80181DF8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1516	80181E04	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1517	80181E08	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1518	80181E10	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1519	80181E28	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1520	80181E28	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1521	80181E28	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_actorContactApplyBearingPushback	80181E28	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1522	80181E28	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1523	80181E30	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1524	80181E60	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1525	80181E70	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1526	80181E78	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1527	80181E80	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1528	80181E88	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1529	80181E94	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1530	80181E98	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1531	80181E9C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1532	80181EA0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1533	80181EA4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1534	80181EB0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1535	80181EB4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1536	80181EC0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1537	80181FE4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1538	80181FE8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1539	80181FEC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1540	80181FF0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1541	80182110	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1542	80182118	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1543	80182120	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1544	80182148	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1545	8018214C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1546	80182164	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1547	80182168	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1548	80182170	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1549	80182190	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1550	80182194	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1551	8018219C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1552	801821C0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1553	801821D8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1554	801821DC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1555	801821E0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1556	801821E8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1557	80182204	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1558	8018220C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1559	80182210	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1560	80182214	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1561	80182218	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1562	8018221C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1563	80182220	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1564	80182224	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1565	8018222C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1566	80182234	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1567	80182238	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1568	8018223C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1569	80182264	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1570	801822BC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1571	801822D0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1572	801822F0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1573	801822F8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1574	801822FC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1575	80182310	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1576	80182330	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1577	80182338	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1578	80182340	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1579	80182354	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1580	8018236C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1581	80182374	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1582	80182388	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1583	801823D4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1584	801823D8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1585	801823F0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1586	80182410	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1587	8018241C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1588	801824E8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1589	801824F0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1590	80182514	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1591	80182534	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1592	80182540	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1593	80182544	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1594	8018254C	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1595	80182574	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1596	80182574	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1597	80182574	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+_akropolisSecurityRoomUpdatePlacedObjectVisibility	80182574	flt	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1598	80182588	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1599	80182590	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1600	80182594	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1601	80182598	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1602	801825A0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1603	801825A8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1604	801825B4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1605	801825B8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1606	801825C0	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1607	801825C4	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1608	801825C8	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+LM1609	801825DC	fl	build/USA/src/rooms/akropolis_security_room/security_room.i
+__romPos	00007FF8	al	
+equipmentGetWeaponLoadCapacity	800BB938	a	
+gActor443500ConsoleFollowupSkipScript	80142A74	a	
+D_80073BAC	80073BAC	a	
+D_80072174	80072174	a	
+areaSetCurrentObjectState	800BAC34	a	
+uiInitList	800489A0	a	
+D_80071072	80071072	a	
+CdFlush	80015AF4	a	
+gameFlagSetNibble	8004AC58	a	
+SetRotMatrix	8004ADF8	a	
+stageRequestModeTaskExit	8003F6F8	a	
+gActor503500StaffCardSceneTaskDesc	8014B958	a	
+sceneEngageBattle	800DB4E0	a	
+tmdAllocPrimitiveBuffer	80041B88	a	
+gActor335800BalconyBattleStartScript	80165720	a	
+gActor450200CompanionSceneScript	80137EE4	a	
+actor161500StartSoldierBRemark	80131E38	a	
+gCapCommandEntries	801156A0	a	
+displayAcquireMenuHold	8003E610	a	
+gPadMenuButtonMask	8005ED78	a	
+areaSetPlacementVariant	800B5B30	a	
+displayQueueModeTask	8003FB70	a	
+gameGetTaskSlot	8002D22C	a	
+GetTPage	80043938	a	
+displaySetFrameTiming	800280F4	a	
+textItoaUnsigned	8002F18C	a	
+gShootingGalleryPierceGalleryTrainingActive	8014D038	a	
+damagePackEnemyAttackKey	800E2BF8	a	
+viewGetMappedIndex	800AD284	a	
+worldCoordGetOriginAudioPan	800D937C	a	
+mapShelterRoomVariantResolve	80179A04	a	
+gPadInputMenuUnlockUpdates	80115716	a	
+uiGetTextColor	80048E10	a	
+cdCmdSelectScene	8001D534	a	
+SetDrawTPage	80043A38	a	
+D_801153F1	801153F1	a	
+printf	8001AF3C	a	
+worldCollisionClearContacts	800E1A6C	a	
+sceneReleaseBattleRefAndClearRewards	800DB630	a	
+gSecurityMonitorsSwatTaskDesc	8016EC00	a	
+memMalloc	8002DABC	a	
+D_80073BA0	80073BA0	a	
+gActionPromptSlots	80114D28	a	
+D_80072836	80072836	a	
+gAttachmentTrainingLevels	80114BF0	a	
+taskPollKill	8002D3BC	a	
+actor260400RestoreHeliportPlacement	80149FA4	a	
+gRoomEffectOrangeBurst2Id	80115754	a	
+akropolisSecurityRoomLockLampsTask	801805A4	ft	
+stageMusicRequestAreaStop	800430E4	a	
+taskSpawn	8002CFDC	a	
+MatrixNormal	8003D6C8	a	
+shootingGalleryPierceRequestGalleryAbort	8014A9A0	a	
+gAreaRecordsByStage	8010CBCC	a	
+textDrawUiLine	8002FDCC	a	
+D_8007106C	8007106C	a	
+gActor450800NurseryIntroSkipScript	8013A33C	a	
+D_80070F6C	80070F6C	a	
+capRunCommandWithTransition	800E3B60	a	
+SetSemiTrans	800439B8	a	
+gCapRoomCompletionSoundsEnabled	80115598	a	
+sndEvtRequestMidiStart	800512BC	a	
+inventoryHasCollectedBit	800BB4BC	a	
+gGfxViewCoord	80070F10	a	
+equipmentRestoreHpMp	800BC164	a	
+D_80073B8C	80073B8C	a	
+gameFlowBeginLoadScreen	8002252C	a	
+sndEvtRequestScriptMix	80054424	a	
+worldCollisionProjectGroundCoord	800EA02C	a	
+worldCollisionUnlinkTrigger	800E1708	a	
+padScriptSpawnVariableMotorRamp	800E8D1C	a	
+gfxSetFlatLight	8003B140	a	
+gPlayerActorStateTickHeld	80115768	a	
+gItemDescriptors	8010D838	a	
+playerActorPrepareDryfieldLoadout	800BC4E4	a	
+gActor450200RoomVariantSceneScript	8013FC58	a	
+taskGetDescAt	8002D32C	a	
+rcos	8003D108	a	
+gRoomEffectTwinTrailId	8011572C	a	
+D_80072177	80072177	a	
+streamFindViewMovieSlot	8001EED8	a	
+taskKill	8002CCB8	a	
+gActor143000KeypadTaskDesc	80134564	a	
+gAkropolisSecurityRoomViewMaps	801839E0	f	
+gEffectSpriteAtlasFrames	80111E48	a	
+D_80115188	80115188	a	
+D_80072724	80072724	a	
+textDrawString	8002E53C	a	
+gDirectionInteractionRearmUpdates	80114D08	a	
+gRoomEffectSparkBurstId	80115750	a	
+D_80071078	80071078	a	
+gActor120300TaskDescriptors	80141B6C	a	
+inventoryResetIceBagTimer	800BC21C	a	
+gEffectUnitQuadCorners	80111E38	a	
+gAkropolisSecurityRoomViewCameras	80184D10	f	
+worldCoordSetActorColorMode	800D930C	a	
+gActor342400EncounterTaskDescs	8016BFE0	a	
+gActor560800ChainGlowTick	801752EC	a	
+gAkropolisSecurityRoomSpriteViews	80184C50	f	
+gActor444000IncineratorEventTaskDesc	801449F4	a	
+playerActorSetScriptedControl	800E3BBC	a	
+stageMusicRequestAreaStart	80043028	a	
+gAkropolisSecurityRoomItemBoxModel	80185584	f	
+itemMenuSpawnNotice	800D4E40	a	
+actor460200SetupTentSoldiers	80132210	a	
+gActor335800BalconyEntrySkipScript	80165798	a	
+D_80115124	80115124	a	
+uiStartPanelOpening	80048964	a	
+streamGetFrameLimit	80020414	a	
+gActor00100DesertChaserTaskDesc	8014D8A4	a	
+gActor04000HangingPoolTaskDesc	8013E51C	a	
+gActor560800CutsceneTaskDescriptors	801718F0	a	
+actor161500StartCompanionRequestReminder	801322A0	a	
+equipmentInitializeWeaponSupplies	800B6CF0	a	
+gFsActorBuffer1Base	8005C370	a	
+textFormatPlayTime	8002EB94	a	
+playerActorRestoreEquipment	801034C0	a	
+playerActorRemoveEquipment	801043F4	a	
+SetDrawMove	8004AD18	a	
+damageGetPlayerAttackEffectId	800E2D90	a	
+gpuSetPrimitiveBlendMode	800EC914	a	
+worldCoordUpdateActorColor	800D8EA0	a	
+enemyTaskExit	800B0234	a	
+gfxComposeNodeWorldTransform	800B1D00	a	
+gUiPromptObject	80067694	a	
+gFsActorBuffer0Base	8005C36C	a	
+ratan2	8003D9C8	a	
+sceneFindPlacedActor	800E86FC	a	
+animationSeekSlotWithBlend	800B4114	a	
+inventoryInitializeShootingGalleryLoadout	800BA538	a	
+D_80071090	80071090	a	
+gActor450200SoloSceneScript	8013C72C	a	
+RotTransSV	8004BD58	a	
+padIsStartPressed	8004ACF0	a	
+ApplyMatrixSV	80043A68	a	
+memSelectAuxHeapRegion	8002DC08	a	
+gActor450800NurseryIntroScript	80139964	a	
+memcpy	8001AEFC	a	
+gAkropolisSecurityRoomRoomCollisionResources	801839D0	f	
+gActor151000GardenArrivalScript	801334EC	a	
+gActor341300WalkwaySceneSkipScript	80165834	a	
+gStageCountdownMusicEntry	80062735	a	
+Gp_QtyById0	8010E038	a	
+sndEvtRequestStageScriptStop	800E3E64	a	
+gActor207000SucklercephTaskDescs	80151E60	a	
+capSetTexturePage	800E6D4C	a	
+__floatsidf	8004B5D8	a	
+akropolisSecurityRoomLockLampGlowTask	801817A4	ft	
+SetSprt	80043A18	a	
+gActor443500MapFollowupSkipScript	801432FC	a	
+areaSyncLocationVariant	800B601C	a	
+effectDrawGroundShadow	800F68AC	a	
+cdCmdCompleteHeadRequest	8001DA48	a	
+gameFlagSetNibbleIfPresent	800E3B3C	a	
+uiSizePanelForTextDefault	800490A4	a	
+worldCollisionUnlinkBody	800E1638	a	
+gRoomEffectFlyingSparkId	80115730	a	
+playerActorWriteWeaponAnimationBankIndex	800E3CEC	a	
+gGpuCurrentOt	800710A0	a	
+streamInitMoviePlayback	8002043C	a	
+gActor150400FreezerSceneScript	80132D70	a	
+gActor450200SoloSceneSkipScript	8013CAEC	a	
+sndScriptHasActiveId	8005462C	a	
+gMcDialogDescriptors	800611C8	a	
+sndEvtRequestMidiVolume	80051460	a	
+padScriptSpawn	800E8FB0	a	
+gCapFile	8011568C	a	
+gActor450200CompanionSceneSkipScript	80138694	a	
+sceneReleaseBattleRef	800DB6B4	a	
+gMcSaveData	80072168	a	
+akropolis_security_room_VRAM	8017D5C0	f	
+gameSetTaskSlot	8002D214	a	
+taskSpawnFromTable	8002CFA0	a	
+gActor142900ElevatorFirstVisitSkipScript	801380F8	a	
+gActor503500BossPhaseTransitionScript	8014D158	a	
+inventoryGetItemQuantity	800BB6FC	a	
+cdCmdRequestCancel	8001C970	a	
+actor450900HandleDepartureTrigger	80132834	a	
+D_80070F70	80070F70	a	
+gActor160600SceneWithoutCompanionScript	80135AC0	a	
+displayResumeGameLoop	8003E540	a	
+tmdFreePrimitiveBuffer	80041B4C	a	
+actor460200TalkToSoldierC	801322B8	a	
+gfxMakeRelativeTransform	800A8864	a	
+itemMenuOpenHotspotCommands	800D4E78	a	
+gWorldCollisionSurfacePropertiesTables	8010CBB8	a	
+streamPollGameRestore	8001EF9C	a	
+areaClearMapMark	800AED24	a	
+gItemMenuInfoPanel	80067634	a	
+cdCmdIsSlotEmpty	8001D37C	a	
+D_8007107C	8007107C	a	
+gActor461800NeoArkSceneSkipScript	80134470	a	
+itemMenuDrawTaskPrompt	800CE4F4	a	
+MargePrim	800422B8	a	
+worldCoordSetModelLighting	800D7A9C	a	
+streamResetGameRestore	80020388	a	
+gfxReadMatrixYAxis	8003C748	a	
+actor503500ClearFadeFromBlackHandle	80132F58	a	
+displayReleaseMenuHold	8003E64C	a	
+taskCallExit	8002D0A4	a	
+RotMatrixZYX	80044408	a	
+actor341300ResetScriptTaskHandle	8016268C	a	
+modelObjectAttachTmd	8009902C	a	
+gActor161500CompleteCompanionRequestTaskDesc	80136CDC	a	
+gGameSession	8005ED64	a	
+D_80071076	80071076	a	
+__adddf3	8004AFE8	a	
+gRoomEffectFlashId	80115758	a	
+gActor443500TourOpeningSkipScript	80141C1C	a	
+animationAimHeadAtPoint	800B0CF4	a	
+mapAkropolisOpenKeyItemMenu	80179FC8	a	
+areaSetObjectState	800BB8E8	a	
+gItemMenuPanelDescriptors	8010EAB4	a	
+SquareRoot0	8003B8A0	a	
+akropolis_security_room_RODATA_SIZE	000000EC	a	
+gameFlagSetPackedByte	800E3FAC	a	
+gAttachmentState	80114C08	a	
+displayConfigureFramebuffers	8003DB48	a	
+gfxBuildOrthonormalBasis	8003CEC4	a	
+gActor342100EncounterBlazeTaskDescriptors	80164B78	a	
+gActor535700PawnGolemEncounterScript	80133898	a	
+sndEvtRequestScriptStop	800542D0	a	
+SetShadeTex	800439E8	a	
+sceneReleaseBattleRefWithRewards	800DB558	a	
+capRunCommand	800E34D8	a	
+gFsActorBuffer2Base	8005C374	a	
+ActorContact_ScratchPosition	801855B0	f	
+capReset	800E6DF4	a	
+gActor341300WalkwaySceneScript	80165354	a	
+gEquipmentWeaponPrimaryLoadOptions	8010E238	a	
+gfxReadMatrixZAxis	8003C768	a	
+D_80071086	80071086	a	
+gfxRotMatrixY	8003C98C	a	
+gPadScriptTransitionCommands	80114A24	a	
+viewApplyCamera	800A8A48	a	
+RotTransPers4	8004C358	a	
+D_8011540E	8011540E	a	
+gPadScriptTransitionSegments	80114A34	a	
+mapDryfieldFullResolveRoomVariant	80179954	a	
+akropolisSecurityRoomPowerSupplyTask	80180294	ft	
+inventoryRestoreCarriedLoadout	800BA75C	a	
+D_80072176	80072176	a	
+gStreamInterFile	8006AC30	a	
+playerActorPrepareAcropolisLoadout	800BC4BC	a	
+mapAkropolisWasDryfieldMapSelected	8017A038	a	
+gStageMusicTaskDesc	80062774	a	
+gMdecMovieOutputSlot	8005EAEE	a	
+gActor451100SubmarineTunnelSceneSkipScript	80135FD0	a	
+gStageRoomMusicSequence	80062737	a	
+worldCollisionFindContactIndex	800E19B8	a	
+worldCollisionLinkBody	800E15AC	a	
+D_80073BA9	80073BA9	a	
+midiIsSequenceBusy	800514F8	a	
+memCopyBytes	8002D7A8	a	
+effectKillTask	800EC7E4	a	
+inventoryCountOccupiedRows	800BAF5C	a	
+itemMenuGetPrimaryPreviewItem	800CF27C	a	
+sceneSetPlacedActorDrawMode	800E3C6C	a	
+__fixdfsi	8004B4D8	a	
+effectDrawGouraudDisc	800EAEB8	a	
+cdCmdStageSceneAudioStart	8001D6B8	a	
+D_80072A94	80072A94	a	
+textItoaSigned	8002F020	a	
+cdCmdIsIdle	8001D344	a	
+D_80072729	80072729	a	
+sceneQueueBattleEscapeResult	800A7A64	a	
+capStartSequenceSlot	800E6C70	a	
+worldCollisionReadActionHit	800E1BF0	a	
+akropolis_security_room_RODATA_START	8017D5C0	f	
+SetTransMatrix	8004AE28	a	
+gameFlagGetNibble	8004ACAC	a	
+D_801153F4	801153F4	a	
+gRoomEffectHaloId	80115744	a	
+AddPrim	80043978	a	
+gCapPreserveActorControl	80115690	a	
+uiSetListSystemCursorSound	8004917C	a	
+itemSetIdentified	800BB7C0	a	
+gfxRotMatrixZ	8003CB80	a	
+worldTargetAddReadoutAmount	800DA6E8	a	
+inventoryGetConsumableStackQuantity	800BB26C	a	
+SetDrawOffset	80018AA4	a	
+D_8007272D	8007272D	a	
+gSceneCombatState	801153F0	a	
+itemMenuDrawItemRow	800CD924	a	
+effectDrawSpinningBillboard	800EB2C8	a	
+uiDrawPanelLabel	80047F40	a	
+shootingGalleryPierceSelectCaptionResource	8014C5E0	a	
+gGameMainPersistentState	800710A8	a	
+enemySpawnFromTable	800B01AC	a	
+gfxRotMatrixYXZ	8003BD34	a	
+D_8011540A	8011540A	a	
+effectDrawModulatedBillboard	800EB6E8	a	
+equipmentHasCarriedWeaponSupply	800BBDDC	a	
+gActor461800NeoArkSceneScript	80133F90	a	
+uiPositionRowDialog	80049024	a	
+actor260400StartHeliportConversation	80149E38	a	
+gSecurityMonitorsRupertTaskDesc	8016EC0C	a	
+evsStartScriptWithSkip	800E8634	a	
+gShootingGalleryTargetsTaskDescriptors	80134F94	a	
+gEquipmentModeBaseStats	8010D328	a	
+gFsImageWorkspacePtr	8005C364	a	
+actor160700StartMeetingScript	80131E70	a	
+akropolis_security_room_RODATA_END	8017D6AC	f	
+evsStartScript	800E8614	a	
+loadingRequestViewGraphicsRestore	800A99B4	a	
+actor450200InitializeObservatoryCompanion	801322F8	a	
+StoreImage	80017FA4	a	
+D_80114C12	80114C12	a	
+MoveImage	80018004	a	
+func_807245E4	807245E4	a	
+uiUpdateList	80048C10	a	
+streamGetSlot	80020278	a	
+textAppendString	8002F588	a	
+capGetVariantKey	800E6D3C	a	
+gActor143900ObservatoryEntrySkipScript	80133860	a	
+gActor503500BossDefeatSkipScript	8014CAF8	a	
+attachmentIsTrainingMode	800A74C4	a	
+gGpuPrimCursor	80071190	a	
+capIsBusy	800E6CE0	a	
+worldCoordGetOriginAudioDepth	800D9340	a	
+gfxRotMatrixXYZ	8003B960	a	
+gAkropolisSecurityRoomWarpEntries	801839F0	f	
+actor161500StartSoldierBShopConversation	80132110	a	
+shopOpenSession	800D4D2C	a	
+gPadCancelButtonMask	8005ED74	a	
+gPadStates	80071620	a	
+SetDrawArea	80018A24	a	
+akropolisSecurityRoomLockLampTask	80180E34	ft	
+gShootingGalleryPierceGalleryTaskDescs	8014E13C	a	
+D_80071075	80071075	a	
+RotTransPers3	8004C1E8	a	
+actor460200TalkToSoldierA	80132390	a	
+animationInitContext	800B3F84	a	
+gActor450200RoomVariantSceneSkipScript	80140078	a	
+equipmentFindNextCarriedWeaponSupply	800BBD40	a	
+gActor535700PawnGolemEncounterSkipScript	801341E0	a	
+uiDrawBeveledRect	80046B34	a	
+rand	80037164	a	
+gActor450900EntrySkipScript	80136308	a	
+D_80115410	80115410	a	
+companionSetDrawMode	800E3EB0	a	
+inventoryGiveItem	800BAD08	a	
+gActor560800MovieTaskDescriptors	8016EA28	a	
+gActor342000IncineratorEventTaskDescs	80164FF8	a	
+D_8010E138	8010E138	a	
+effectSpawnHit	800FDB18	a	
+gInventoryContainerRanges	8010D550	a	
+gActor143400CompanionEntryScript	801350BC	a	
+memCalloc	8002D978	a	
+effectSpawn	800EA478	a	
+gActor450900EntryScript	80136110	a	
+strncmp	8001EAC4	a	
+gInventoryConsumableStacks	8010E3B8	a	
+gActor105500MaggotCaterpillarTasks	8013A8DC	a	
+itemMenuDrawDefaultItemIcon	800CE5D0	a	
+actor161500StartSoldierBTalkB	80132038	a	
+D_80071068	80071068	a	
+gRoomEffectWaterSprayId	80115738	a	
+akropolisSecurityRoomMonitorTask	8017ED68	ft	
+gActor450800NurseryShootingSkipScript	8013BA84	a	
+gMdecMovieInputSlot	8005EAEC	a	
+gActor443500ConsoleFollowupScript	80141D9C	a	
+actor150400SpawnSlidingModels	80131FB8	a	
+D_800691CA	800691CA	a	
+akropolis_security_room_VRAM_END	801855B8	f	
+gActor503500SceneEffectTaskDescs	8014B964	a	
+D_80114C0B	80114C0B	a	
+gRoomEffectMoteId	80115728	a	
+areaApplySavedUpdates	800AE62C	a	
+cdCmdCancelScene	8001D588	a	
+func_800AC000	800AC000	a	
+uiSetPanelContentSize	800466E4	a	
+GsWSMATRIX	80071138	a	
+uiObjectTaskExit	800488B8	a	
+cdSyncPollCommand	8001E6AC	a	
+gActor443500MapFollowupScript	80142C24	a	
+gItemMenuTransferPanelDescriptors	8010D6F4	a	
+cdCmdEnqueue	8001D2B0	a	
+D_801150C0	801150C0	a	
+padCheckButtons	8002C868	a	
+itemMenuDrawPreview	800C7AE8	a	
+gActor160600SceneWithCompanionScript	80135D78	a	
+akropolisSecurityRoomFallingQuadTask	80181108	ft	
+gCapChoiceRowStride	80115680	a	
+taskSpawnFromTableOnDefaultList	8003E4BC	a	
+SetDrawStp	80042288	a	
+gActor143900ObservatoryEntryScript	80133560	a	
+playerActorSetDrawMode	800E3B80	a	
+actor450800StartNurseryCompanionDialogue	80132000	a	
+itemMenuSetPreviewItem	800CDE80	a	
+equipmentRecalculateMaxMp	800B7930	a	
+effectDrawOuterGlowBand	800EAA0C	a	
+stageEnsureHeapTaskPrimitiveBuffer	8003F9AC	a	
+RotMatrixZ	8004AE48	a	
+SetDispMask	80017C00	a	
+SetTile	80042344	a	
+func_80724608	80724608	a	
+cdCmdEnqueueScenePlayback	8001D5CC	a	
+__muldf3	8004B828	a	
+rsin	8003D038	a	
+viewFindLogicalIndex	800ACEBC	a	
+inventoryInitializeStarterLoadout	800B7D18	a	
+shootingGalleryPierceFinishGalleryCourse	8014A908	a	
+gPadConfirmButtonMask	8005ED70	a	
+areaIsSavedPoseRestoreEnabled	800B59A8	a	
+gAkropolisSecurityRoomViewCounts	801839E4	f	
+gActor361100PodSceneScript	80165F48	a	
+areaGetVariant	800B5CE8	a	
+gActor443500TourOpeningScript	8014152C	a	
+gGameFlagNibbleBanks	80073980	a	
+actor450800PrepareNurseryKyleMadigan	80132028	a	
+worldCoordSetAmbientColorOverride	800D94B8	a	
+gActor460200TentArrivalSkipScript	80137890	a	
+worldTargetDisableNodeLockOn	800DACF8	a	
+D_80072170	80072170	a	
+D_80070F87	80070F87	a	
+D_80072310	80072310	a	
+worldCollisionProbeGridSegment	800DE7CC	a	
+D_8011540C	8011540C	a	
+memset	800420F8	a	
+companionWriteAnimationBankIndex	800E3D24	a	
+D_80073BAE	80073BAE	a	
+akropolis_security_room_ROM_START	00000000	a	
+gActor136300GarageCompanionSceneSkipScript	8013C388	a	
+streamPrepareMovieWorkspace	80020298	a	
+gActor136300CompanionGaragePlacement	8013B570	a	
+srand	80037194	a	
+viewQueueCurrentCameraAndPackets	800A8B6C	a	
+akropolis_security_room_TEXT_START	8017D6AC	f	
+ApplyMatrixLV	80042128	a	
+taskMessageDispatch	800AC464	a	
+uiStartTreeClosing	80048838	a	
+animationResetSlot	800B3FA8	a	
+taskRequestKill	8002D340	a	
+gShootingGalleryPiercePierceStoryScript	80153274	a	
+D_8007107A	8007107A	a	
+actor161500RestoreCompanionRequestScene	8013230C	a	
+gPlayerStatus	80073B88	a	
+inventoryGetRangeTable	800BB500	a	
+gActor142600IncineratorArrivalSkipScript	80136804	a	
+gPlayerActorTasks	80115760	a	
+gMapAkropolisSecurityRoomVariant1Placements	8017B01C	a	
+gActor548100PanelTaskDesc	801358D8	a	
+equipmentConsumeWeaponLoad	800B6DA4	a	
+inventoryResetCarriedRange	800BC490	a	
+enemyDestroy	800B01F0	a	
+gFsResourceSlots	8006C338	a	
+shootingGalleryPierceStartPierceConversation	8014AF0C	a	
+gRandomLcgState	80070F60	a	
+actor160700RestoreMeetingAnimation	80131E24	a	
+func_800ABFF8	800ABFF8	a	
+gActor146300IceBagHandoverTaskDesc	8013788C	a	
+areaSpawnPlacements	800B4AF8	a	
+itemMenuDrawMeter	800C0E20	a	
+gameFlagGetPackedByte	800E3FCC	a	
+akropolis_security_room_TEXT_END	801825DC	f	
+shootingGalleryPierceResolveGalleryExit	8014AA54	a	
+equipmentLoadWeaponConsumable	800B715C	a	
+displaySetShakeY	8003DE78	a	
+sndEvtRequestStageScriptStart	800E3DD8	a	
+inventoryHasAttachedItem	800BC3F8	a	
+equipmentRecalculateMaxHp	800BC0C0	a	
+RotTransPers	8004C198	a	
+D_8007216D	8007216D	a	
+gActor146300WaterTankEventScript	80137C28	a	
+roomEffectRequestCancelPe	800FC6C0	a	
+gpuUploadImages	800DB31C	a	
+gDirectionActionActive	80114CF8	a	
+D_80072830	80072830	a	
+sndEvtRequestScriptVolume	800544B8	a	
+worldCollisionLinkTrigger	800E1688	a	
+actor450800StartNurseryInteraction	80131E2C	a	
+gActor136300TaskTable	8013B11C	a	
+gStageMusicParams	8007A39C	a	
+VectorNormalSS	8003D5D8	a	
+gActor160900TaskDescriptors	8013FB50	a	
+D_80072A93	80072A93	a	
+gWorldCollisionActiveGrid	80115448	a	
+D_80072A92	80072A92	a	
+roomEffectRequestCancelAll	800EC868	a	
+akropolis_security_room_DATA_SIZE	00002FDC	a	
+actorRenderDrawGroundShadow	800B4E54	a	
+D_8007218A	8007218A	a	
+capSelectLoadedFile	800E6D60	a	
+cdCmdDropQueuedTail	8001D424	a	
+Gfx_ViewWorldMtx	80070F34	a	
+gShootingGalleryPiercePierceStorySkipScript	80153D6C	a	
+actor161500StartSoldierBTalkA	80131FBC	a	
+gActor503500BossDefeatScript	8014C540	a	
+tmdBuildBufferHalf	800410F0	a	
+effectDrawScreenTint	800EA858	a	
+gActor146000WaterHoleSceneTasks	801351FC	a	
+tmdResetAuxHeapAndRestoreBuffers	80041EB4	a	
+gActor120500EmptyPlacementTaskDesc	8013843C	a	
+equipmentGetWeaponLoad	800BAFE0	a	
+DrawSync	80017C98	a	
+damageComputePlayerAttack	800E1FEC	a	
+itemMenuClearPreviewItems	800CDEF4	a	
+actor450900StartCompanionConversation	801327A8	a	
+damageRollCriticalHit	800E25F8	a	
+gActor151000GardenArrivalSkipScript	80133954	a	
+animationTickSlot	800B4514	a	
+sceneAcquireBattleRef	800DB53C	a	
+akropolis_security_room_DATA_START	801825DC	f	
+gActor143400CompanionEntrySkipScript	801359D4	a	
+companionRemoveEquipment	8010B674	a	
+gPoliceOfficersPlayerAnimSets	801797FC	a	
+sndScriptResolveStageId	800E3E30	a	
+actor146300RestoreHandoverPose	8013224C	a	
+gActor150400FreezerSceneSkipScript	80133088	a	
+companionSetScriptedControl	800E3EF0	a	
+gCapInlineIconCells	8010FB70	a	
+streamPollMoviePlayback	8001FAE0	a	
+gPlayerActorWeaponReaches	80112F60	a	
+D_80072728	80072728	a	
+damagePackAttackKey	800E2C40	a	
+uiSpawnObject	800486F0	a	
+worldCollisionInitContacts	800E18E0	a	
+sndEvtRequestMidiStop	8005132C	a	
+gActor503500BossIntroSkipScript	8014C288	a	
+RotMatrix	80043AC8	a	
+D_80114C11	80114C11	a	
+memConfigureImageMemory	800144F8	a	
+viewQueueCamera	800A8A1C	a	
+displaySpawnTaskFromTable	8003E324	a	
+uiStartPanelHiding	800488F8	a	
+actor260500RestoreHeliportPlacement	80149E80	a	
+gActor04400MadChaserTaskDescs	80142604	a	
+actor450200StartCompanionTalk	80132220	a	
+gpuBlendRgb555ClutRow	800B27C4	a	
+D_80072834	80072834	a	
+actor361100ClearHeadAimTaskHandle	80162B0C	a	
+gCapConfirmedChoiceIndex	801156A8	a	
+itemGetText	800B8EB0	a	
+gActor451100SubmarineTunnelEntryScript	80136108	a	
+ScaleMatrix	8004A98C	a	
+uiDrawTitle	80048E38	a	
+playerActorEndScripted	80104838	a	
+gfxRotMatrixX	8003C788	a	
+D_80071071	80071071	a	
+gRoomEffectSparkEmitterId	80115720	a	
+MulMatrix0	80044208	a	
+D_80114FF8	80114FF8	a	
+gActor450900Tasks	80135E78	a	
+inventoryClearItems	800BAC8C	a	
+itemMenuIsHotspotActionConfirmed	800D4EC0	a	
+gCapRestoreView	80115694	a	
+D_801153F6	801153F6	a	
+gWorldCoordTransientPointLights	80114F30	a	
+gActor443500PowerPlantProgressDialogueScript	80143494	a	
+capSpawnEventIfIdle	800E3D8C	a	
+gDisplayState	80070F68	a	
+itemMenuSetItemDescriptionPrompt	800CEB40	a	
+D_8007217B	8007217B	a	
+gActor136300GarageCompanionSceneScript	8013B590	a	
+ApplyTransposeMatrixLV	80044050	a	
+inventoryCanAddItem	800B8988	a	
+gSpriteAreaTables	8010CB68	a	
+sceneFindEnemyByPlaceKey	800B584C	a	
+gMidiMusicVolume	8007A396	a	
+gAkropolisSecurityRoomRoomLightingTable	801839E8	f	
+inventoryMeltIceBagIfExpired	800BC254	a	
+gteMIMefunc	8004AD78	a	
+inventoryGetItemSortKey	800BC18C	a	
+uiGetTextRowsHeight	80048E2C	a	
+gCapControlFlags	801156A4	a	
+akropolis_security_room_ROM_END	00007FF8	a	
+shootingGalleryPierceCheckGalleryExitInput	8014A398	a	
+gFsActorBufferWrittenBytes	8006D860	a	
+gActor142600IncineratorArrivalScript	801360E4	a	
+playerActorEnterLocomotion	801066DC	a	
+D_8007218B	8007218B	a	
+uiDrawHorizontalSeparator	80047A0C	a	
+sndEvtRequestScriptStart	8005414C	a	
+gActor335800BalconyEntryScript	80165060	a	
+stageReleaseTaskPrimitiveBuffer	8003F9F4	a	
+equipmentGetWeaponSupply	800BBDC8	a	
+animationAimHeadAt	800B17D4	a	
+gRoomEffectOrangeBurstId	8011573C	a	
+viewGetMappedCamera	800A8C08	a	
+gCdCmdQueue	80068FA0	a	
+gActor146300WaterTankEventSkipScript	80138570	a	
+capAbortPlayback	800E6CF0	a	
+textDrawUiLines	8002FB84	a	
+streamFinishScene	800B00C4	a	
+loadingEnqueueEquippedWeaponResources	800A9BE4	a	
+gActor503500BossIntroScript	8014BD48	a	
+gActor207000SlouchTaskDescs	801575F0	a	
+companionRestoreFullHp	800E3D78	a	
+textItoaPadded	8002F44C	a	
+playerStateRestoreFullHpMp	800E3D5C	a	
+gRoomEffectWaterRippleId	8011574C	a	
+shootingGalleryPierceCapCaptionDrawCurrent	8014B0D4	a	
+memFillBytes	8002D894	a	
+D_8007106B	8007106B	a	
+gActor450800NurseryShootingScript	8013AF8C	a	
+akropolis_security_room_TEXT_SIZE	00004F30	a	
+akropolisSecurityRoomMessageTask	8017D984	ft	
+uiFitPanelToList	80046830	a	
+uiSetPromptText	80049D34	a	
+RotMatrixX	8004BE58	a	
+worldCoordSetModelAmbientColor	800D9550	a	
+worldTargetLinkNode	800DABEC	a	
+damageAccumulateLifeDrainHp	800E2C78	a	
+gActor451100SubmarineTunnelSceneScript	80135220	a	
+taskReparent	8002D14C	a	
+gActor160600SceneSkipScript	80136258	a	
+playerActorTurnToYaw	80104E00	a	
+gRoomEffectState	80115740	a	
+TransposeMatrix	800420B8	a	
+worldCollisionProjectGroundPoint	800EA1A8	a	
+inventoryClearCollectedBit	800BAEC0	a	
+D_8007216C	8007216C	a	
+uiSpawnOptionDialog	800480A0	a	
+actorRenderComposeCoord	80098F58	a	
+GetClut	80042AE0	a	
+gRoomEffectGlowDiscId	80115734	a	
+itemMenuDrawQuantity	800CDBEC	a	
+areaGetCurrentObjectState	800BB470	a	
+gAkropolisSecurityRoomSurfacePropertiesByClass	80184FA0	f	
+gActor341900GluttonEntranceTaskDescs	80164190	a	
+gWorldCollisionActionTriggerListHead	8011556C	a	
+actor260500StartHeliportConversation	80149EBC	a	
+fadeDrawOverlay	8002BA9C	a	
+worldCollisionResolvePushback	800E0C10	a	
+shootingGalleryPierceCapCaptionSelectRecord	8014B2B8	a	
+equipmentEquipCarriedArmor	800B7A50	a	
+__subdf3	8004BC28	a	
+D_80072A98	80072A98	a	
+padInputChangeSuppression	800E9BDC	a	
+gActor450800NurseryReentryScript	8013A84C	a	
+gEvsPlaybackPaused	801156F9	a	
+gActor460200TentArrivalScript	801362B8	a	
+gPoliceOfficersSergeantTaskDescriptors	80179920	a	
+RotMatrixY	8004BFF8	a	
+gActor361100PodSceneSkipScript	80166848	a	
+streamFindMovieSlot	8001EDC8	a	
+akropolis_security_room_DATA_END	801855B8	f	
+shootingGalleryPierceHandleGalleryAction	8014AB6C	a	
+gActor142900ElevatorFirstVisitScript	801378D0	a	
+inventoryIsItemLimitReached	800B7420	a	
+streamSetExternalScenePayloadBuffer	800B015C	a	
+gPoliceOfficersRookieTaskDescriptors	801798FC	a	
+gActor141000FlightTasks	801348D8	a	
+gAkropolisSecurityRoomAreaVariants	80184088	f	
+mapNeoArkResolveRoomVariant	80179B14	a	
+gViewIdentityMap	8010CAF8	a	
+gpuResetAndInvalidateModelBuffers	80041E4C	a	
+animationAimHeadAtTask	800B0928	a	
+gItemMenuEmptyPromptText	8010F8D0	a	
+padScriptHalt	800E8F68	a	
+gWorldCollisionSurfacePushbackSuppression	80115428	a	

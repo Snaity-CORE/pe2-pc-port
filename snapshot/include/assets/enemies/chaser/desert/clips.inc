@@ -8448,8 +8448,8 @@ static AnimationSet _gStingerPuppetPlayerKnockbackRecoverBackClip = {
     .poseBanks         = { [1] = _gStingerPuppetPlayerKnockbackRecoverBackClipBank1, [4] = _gStingerPuppetPlayerKnockbackRecoverBackClipBank4 },
 };
 
-/* enemies/chaser/desert/player_knocked_back_front */
-static AnimationPackedPose _gChaserDesertPlayerKnockedBackFrontClipBank1[5] = {
+/* characters/aya/hit_head */
+static AnimationPackedPose _gAyaHitHeadClipBank1[5] = {
     { 0, 0, 0, 0, 0, 0 },
     { 0, -0, -0, 0, 0, 0 },
     { 0, -0, -0, 0, 0, -0 },
@@ -8457,7 +8457,7 @@ static AnimationPackedPose _gChaserDesertPlayerKnockedBackFrontClipBank1[5] = {
     { 0, -0, -0, 0, 0, -0 },
 };
 
-static AnimationPackedRotation _gChaserDesertPlayerKnockedBackFrontClipBank4[55] = {
+static AnimationPackedRotation _gAyaHitHeadClipBank4[55] = {
     { 0, 0, 0 },
     { 0, 0, 0 },
     { 0, 0, 0 },
@@ -8515,7 +8515,7 @@ static AnimationPackedRotation _gChaserDesertPlayerKnockedBackFrontClipBank4[55]
     { 0, -0, 0 },
 };
 
-static AnimationRecord _gChaserDesertPlayerKnockedBackFrontClipRecords[83] = {
+static AnimationRecord _gAyaHitHeadClipRecords[83] = {
     { 0, 0, 0 },
     { 0, 0, 0 },
     { 0, 0, 0 },
@@ -8601,20 +8601,20 @@ static AnimationRecord _gChaserDesertPlayerKnockedBackFrontClipRecords[83] = {
     { 0, 0, 0 },
 };
 
-static u16 _gChaserDesertPlayerKnockedBackFrontClipTrackStarts[20] = {
+static u16 _gAyaHitHeadClipTrackStarts[20] = {
     0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0,
 };
 
-static AnimationSet _gChaserDesertPlayerKnockedBackFrontClip = {
-    .records           = _gChaserDesertPlayerKnockedBackFrontClipRecords,
-    .trackStartIndices = _gChaserDesertPlayerKnockedBackFrontClipTrackStarts,
-    .poseBanks         = { [1] = _gChaserDesertPlayerKnockedBackFrontClipBank1, [4] = _gChaserDesertPlayerKnockedBackFrontClipBank4 },
+static AnimationSet _gAyaHitHeadClip = {
+    .records           = _gAyaHitHeadClipRecords,
+    .trackStartIndices = _gAyaHitHeadClipTrackStarts,
+    .poseBanks         = { [1] = _gAyaHitHeadClipBank1, [4] = _gAyaHitHeadClipBank4 },
 };
 
-/* enemies/chaser/desert/player_knocked_back_rear */
-static AnimationPackedPose _gChaserDesertPlayerKnockedBackRearClipBank1[6] = {
+/* characters/aya/hit_body */
+static AnimationPackedPose _gAyaHitBodyClipBank1[6] = {
     { 0, 0, 0, 0, 0, 0 },
     { 0, -0, -0, 0, 0, 0 },
     { 0, -0, -0, 0, 0, 0 },
@@ -8623,7 +8623,7 @@ static AnimationPackedPose _gChaserDesertPlayerKnockedBackRearClipBank1[6] = {
     { 0, -0, -0, 0, 0, 0 },
 };
 
-static AnimationPackedRotation _gChaserDesertPlayerKnockedBackRearClipBank4[66] = {
+static AnimationPackedRotation _gAyaHitBodyClipBank4[66] = {
     { -0, 0, -0 },
     { -0, 0, -0 },
     { -0, -0, -0 },
@@ -8692,7 +8692,7 @@ static AnimationPackedRotation _gChaserDesertPlayerKnockedBackRearClipBank4[66] 
     { 0, -0, -0 },
 };
 
-static AnimationRecord _gChaserDesertPlayerKnockedBackRearClipRecords[96] = {
+static AnimationRecord _gAyaHitBodyClipRecords[96] = {
     { 0, 0, 0 },
     { 0, 0, 0 },
     { 0, 0, 0 },
@@ -8791,14 +8791,14 @@ static AnimationRecord _gChaserDesertPlayerKnockedBackRearClipRecords[96] = {
     { 0, 0, 0 },
 };
 
-static u16 _gChaserDesertPlayerKnockedBackRearClipTrackStarts[20] = {
+static u16 _gAyaHitBodyClipTrackStarts[20] = {
     0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0,
 };
 
-static AnimationSet _gChaserDesertPlayerKnockedBackRearClip = {
-    .records           = _gChaserDesertPlayerKnockedBackRearClipRecords,
-    .trackStartIndices = _gChaserDesertPlayerKnockedBackRearClipTrackStarts,
-    .poseBanks         = { [1] = _gChaserDesertPlayerKnockedBackRearClipBank1, [4] = _gChaserDesertPlayerKnockedBackRearClipBank4 },
+static AnimationSet _gAyaHitBodyClip = {
+    .records           = _gAyaHitBodyClipRecords,
+    .trackStartIndices = _gAyaHitBodyClipTrackStarts,
+    .poseBanks         = { [1] = _gAyaHitBodyClipBank1, [4] = _gAyaHitBodyClipBank4 },
 };

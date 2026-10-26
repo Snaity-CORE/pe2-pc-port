@@ -1,4 +1,0 @@
-/* Generated from assets/USA/pe2pkg/actor_510900.pe2pkg; model at 0x1131C. */
-    { -0, 0, -0, 0 },
-    { 0, 0, 0, 0 },
-    { -0, 0, 0, 0 },

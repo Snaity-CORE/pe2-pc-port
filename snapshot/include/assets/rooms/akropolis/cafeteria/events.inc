@@ -2,241 +2,236 @@
 #define ROOM_CAT_(a, b) a##b
 #define ROOM_CAT(a, b) ROOM_CAT_(a, b)
 
-#define ROOM_IS__gAcropolisCafeteriaPlayerAnimation1 1
-#if ROOM_CAT(ROOM_IS_, ROOM_PART) == 1
-static AnimationPlayRequest _gAcropolisCafeteriaPlayerAnimation1 = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
-AnimationPlayRequest D_acropolis_cafeteria_80182B1C = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
-static AnimationPlayRequest _gAcropolisCafeteriaPlayerPostBattleAnimation8 = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
-static AnimationPlayRequest _gAcropolisCafeteriaPlayerPostBattleAnimation9 = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
-static AnimationPlayRequest _gAcropolisCafeteriaOpeningWomanAnimation1 = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
-static ActorTransform _gAcropolisCafeteriaPlayerOpeningScenePlacement = { .pos = { 0, 0, 0, 0 }, .rot = { 0, 0, 0, 0 } };
-static ActorTransform _gAcropolisCafeteriaPlayerOpeningResumePlacement = { .pos = { -0, -0, 0, 0 }, .rot = { 0, 0, 0, 0 } };
-static ActorTransform _gAcropolisCafeteriaPlayerFollowUpStartPlacement = { .pos = { -0, -0, -0, 0 }, .rot = { 0, 0, 0, 0 } };
-static ActorTransform _gAcropolisCafeteriaPlayerBeforeRupertArrivalPlacement = { .pos = { -0, -0, -0, 0 }, .rot = { 0, 0, 0, 0 } };
-static ActorTransform _gAcropolisCafeteriaPlayerBattleStartPlacement = { .pos = { -0, -0, -0, 0 }, .rot = { 0, 0, 0, 0 } };
-static ActorTransform _gAcropolisCafeteriaPlayerFollowUpWalkStartPlacement = { .pos = { -0, -0, 0, 0 }, .rot = { 0, 0, 0, 0 } };
-static ActorTransform _gAcropolisCafeteriaPlayerFollowUpWalkTarget = { .pos = { -0, -0, -0, 0 }, .rot = { 0, 0, 0, 0 } };
-ActorTransform D_acropolis_cafeteria_80182C14 = { .pos = { -0, -0, -0, 0 }, .rot = { 0, 0, 0, 0 } };
-AnimationPlayRequest D_acropolis_cafeteria_80182C2C = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
-#endif
-#undef ROOM_IS__gAcropolisCafeteriaPlayerAnimation1
+#include <psyq/sys/types.h>
+#include <psyq/libgte.h>
+#include <psyq/libgpu.h>
+#include "gameplay/evs.h"
+#include "gameplay/message.h"
+#include "gameplay/scene_combat.h"
 
-#define ROOM_IS__gAcropolisCafeteriaOpeningPlayerBankCopy 1
+#define ROOM_IS__gAkropolisCafeteriaPlayerAnimation1 1
 #if ROOM_CAT(ROOM_IS_, ROOM_PART) == 1
-static AnimationBankCopyRequest _gAcropolisCafeteriaOpeningPlayerBankCopy = { .sets = (void*)&_gAcropolisCafeteriaOpeningPlayerAnimationSets, .count = 0 };
-static AnimationPlayRequest _gAcropolisCafeteriaPlayerOpeningAnimation47 = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
+static AnimationPlayRequest _gAkropolisCafeteriaPlayerAnimation1 = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
+static AnimationPlayRequest _gAkropolisCafeteriaUnusedPlayerAnimation = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
+static AnimationPlayRequest _gAkropolisCafeteriaPlayerPostBattleAnimation8 = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
+static AnimationPlayRequest _gAkropolisCafeteriaPlayerPostBattleAnimation9 = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
+static AnimationPlayRequest _gAkropolisCafeteriaOpeningWomanAnimation1 = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
+static ActorTransform _gAkropolisCafeteriaPlayerOpeningScenePlacement = { .pos = { 0, 0, 0, 0 }, .rot = { 0, 0, 0, 0 } };
+static ActorTransform _gAkropolisCafeteriaPlayerOpeningResumePlacement = { .pos = { -0, -0, 0, 0 }, .rot = { 0, 0, 0, 0 } };
+static ActorTransform _gAkropolisCafeteriaPlayerFollowUpStartPlacement = { .pos = { -0, -0, -0, 0 }, .rot = { 0, 0, 0, 0 } };
+static ActorTransform _gAkropolisCafeteriaPlayerBeforeRupertArrivalPlacement = { .pos = { -0, -0, -0, 0 }, .rot = { 0, 0, 0, 0 } };
+static ActorTransform _gAkropolisCafeteriaPlayerBattleStartPlacement = { .pos = { -0, -0, -0, 0 }, .rot = { 0, 0, 0, 0 } };
+static ActorTransform _gAkropolisCafeteriaPlayerFollowUpWalkStartPlacement = { .pos = { -0, -0, 0, 0 }, .rot = { 0, 0, 0, 0 } };
+static ActorTransform _gAkropolisCafeteriaPlayerFollowUpWalkTarget = { .pos = { -0, -0, -0, 0 }, .rot = { 0, 0, 0, 0 } };
+static ActorTransform _gAkropolisCafeteriaUnusedPlayerPlacement = { .pos = { -0, -0, -0, 0 }, .rot = { 0, 0, 0, 0 } };
+static AnimationPlayRequest _gAkropolisCafeteriaUnusedActorAnimation = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
 #endif
-#undef ROOM_IS__gAcropolisCafeteriaOpeningPlayerBankCopy
+#undef ROOM_IS__gAkropolisCafeteriaPlayerAnimation1
 
-#define ROOM_IS__gAcropolisCafeteriaFollowUpPlayerBankCopy 1
+#define ROOM_IS__gAkropolisCafeteriaOpeningPlayerBankCopy 1
 #if ROOM_CAT(ROOM_IS_, ROOM_PART) == 1
-static AnimationBankCopyRequest _gAcropolisCafeteriaFollowUpPlayerBankCopy = { .sets = (void*)&_gAcropolisCafeteriaFollowUpPlayerAnimationSets, .count = 0 };
-static AnimationPlayRequest _gAcropolisCafeteriaPlayerFollowUpAnimation47 = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
-static AnimationPlayRequest _gAcropolisCafeteriaPlayerFollowUpAnimation48 = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
-static AnimationPlayRequest _gAcropolisCafeteriaPlayerFollowUpAnimation49 = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
-static AnimationPlayRequest _gAcropolisCafeteriaPlayerFollowUpAnimation50 = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
-static ActorTransform _gAcropolisCafeteriaStrangerBattleIntroPlacement = { .pos = { -0, -0, -0, 0 }, .rot = { 0, 0, 0, 0 } };
-static ActorTransform _gAcropolisCafeteriaStrangerPostBattlePlacement = { .pos = { -0, -0, -0, 0 }, .rot = { 0, 0, 0, 0 } };
-static ActorTransform _gAcropolisCafeteriaStrangerFollowUpStartPlacement = { .pos = { -0, -0, -0, 0 }, .rot = { 0, 0, 0, 0 } };
-static ActorTransform _gAcropolisCafeteriaStrangerFollowUpAnimation48Placement = { .pos = { -0, -0, -0, 0 }, .rot = { 0, 0, 0, 0 } };
-static ActorTransform _gAcropolisCafeteriaStrangerRecoilPlacement = { .pos = { -0, -0, -0, 0 }, .rot = { 0, 0, 0, 0 } };
-static ActorTransform _gAcropolisCafeteriaStrangerFollowUpSlot0Placement = { .pos = { -0, -0, -0, 0 }, .rot = { 0, 0, 0, 0 } };
-static ActorTransform _gAcropolisCafeteriaStrangerFollowUpBurnPlacement = { .pos = { -0, -0, -0, 0 }, .rot = { 0, 0, 0, 0 } };
-static ActorTransform _gAcropolisCafeteriaStrangerBattleStartPlacement = { .pos = { -0, -0, -0, 0 }, .rot = { 0, -0, 0, 0 } };
-static ActorTransform _gAcropolisCafeteriaGrinningStrangerScenePlacement = { .pos = { -0, -0, 0, 0 }, .rot = { 0, -0, 0, 0 } };
-ActorCommand D_acropolis_cafeteria_80182DA0 = { .context = { .loc = { .stage = 0, .area = 0 } }, .command = 0 };
-static ActorCommand _gAcropolisCafeteriaStrangerStartCommand = { .context = { .loc = { .stage = 0, .area = 0 } }, .command = 0 };
-static ActorCommand _gAcropolisCafeteriaStrangerPostBattleSlot1Command = { .context = { .loc = { .stage = 0, .area = 0 } }, .command = 0 };
-static ActorCommand _gAcropolisCafeteriaStrangerFollowUpSlot2Command = { .context = { .loc = { .stage = 0, .area = 0 } }, .command = 0 };
-static ActorCommand _gAcropolisCafeteriaStrangerRecoilCommand = { .context = { .loc = { .stage = 0, .area = 0 } }, .command = 0 };
-static ActorCommand _gAcropolisCafeteriaStrangerFollowUpSlot0Command = { .context = { .loc = { .stage = 0, .area = 0 } }, .command = 0 };
-static ActorCommand _gAcropolisCafeteriaStrangerSettleCommand = { .context = { .loc = { .stage = 0, .area = 0 } }, .command = 0 };
-static ActorCommand _gAcropolisCafeteriaStrangerFollowUpBurnCommand = { .context = { .loc = { .stage = 0, .area = 0 } }, .command = 0 };
-static ActorCommand _gAcropolisCafeteriaStrangerFollowUpClip17Command = { .context = { .loc = { .stage = 0, .area = 0 } }, .command = 0 };
-static ActorTransform _gAcropolisCafeteriaRupertArrivalPlacement = { .pos = { -0, -0, 0, 0 }, .rot = { 0, 0, 0, 0 } };
-static ActorTransform _gAcropolisCafeteriaRupertConversationPlacement = { .pos = { -0, -0, -0, 0 }, .rot = { 0, 0, 0, 0 } };
-static ActorTransform _gAcropolisCafeteriaRupertDeparturePlacement = { .pos = { -0, -0, -0, 0 }, .rot = { 0, 0, 0, 0 } };
-static AnimationPlayRequest _gAcropolisCafeteriaRupertShootingAnimation1 = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
-static AnimationPlayRequest _gAcropolisCafeteriaRupertArrivalAnimation2 = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
-static AnimationPlayRequest _gAcropolisCafeteriaRupertReloadAnimation3 = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
-static AnimationPlayRequest _gAcropolisCafeteriaRupertDepartureAnimation4 = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
-EvsSceneKey D_acropolis_cafeteria_80182E5C = { .group = 0, .streamId = 0, .subId = 0 };
-static EvsSceneKey _gAcropolisCafeteriaFollowUpSceneKey = { .group = 0, .streamId = 0, .subId = 0 };
-static GameActorMoveAnim _gAcropolisCafeteriaPlayerFollowUpWalkAnimations = { .approachAnimId = 0, .arrivalAnimId = 0 };
-static EvsCommand _gAcropolisCafeteriaOpeningSceneScript[35] = {
-    { .opcode = 0, .operand0 = { .storage = (void*)&_acropolisCafeteriaCancelPeEffects }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+static AnimationBankCopyRequest _gAkropolisCafeteriaOpeningPlayerBankCopy = { .sets = (void*)&_gAkropolisCafeteriaOpeningPlayerAnimationSets, .count = 0 };
+static AnimationPlayRequest _gAkropolisCafeteriaPlayerOpeningAnimation47 = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
+#endif
+#undef ROOM_IS__gAkropolisCafeteriaOpeningPlayerBankCopy
+
+#define ROOM_IS__gAkropolisCafeteriaFollowUpPlayerBankCopy 1
+#if ROOM_CAT(ROOM_IS_, ROOM_PART) == 1
+static AnimationBankCopyRequest _gAkropolisCafeteriaFollowUpPlayerBankCopy = { .sets = (void*)&_gAkropolisCafeteriaFollowUpPlayerAnimationSets, .count = 0 };
+static AnimationPlayRequest _gAkropolisCafeteriaPlayerFollowUpAnimation47 = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
+static AnimationPlayRequest _gAkropolisCafeteriaPlayerFollowUpAnimation48 = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
+static AnimationPlayRequest _gAkropolisCafeteriaPlayerFollowUpAnimation49 = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
+static AnimationPlayRequest _gAkropolisCafeteriaPlayerFollowUpAnimation50 = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
+static ActorTransform _gAkropolisCafeteriaStrangerBattleIntroPlacement = { .pos = { -0, -0, -0, 0 }, .rot = { 0, 0, 0, 0 } };
+static ActorTransform _gAkropolisCafeteriaStrangerPostBattlePlacement = { .pos = { -0, -0, -0, 0 }, .rot = { 0, 0, 0, 0 } };
+static ActorTransform _gAkropolisCafeteriaStrangerFollowUpStartPlacement = { .pos = { -0, -0, -0, 0 }, .rot = { 0, 0, 0, 0 } };
+static ActorTransform _gAkropolisCafeteriaStrangerFollowUpAnimation48Placement = { .pos = { -0, -0, -0, 0 }, .rot = { 0, 0, 0, 0 } };
+static ActorTransform _gAkropolisCafeteriaStrangerRecoilPlacement = { .pos = { -0, -0, -0, 0 }, .rot = { 0, 0, 0, 0 } };
+static ActorTransform _gAkropolisCafeteriaStrangerFollowUpPlacement = { .pos = { -0, -0, -0, 0 }, .rot = { 0, 0, 0, 0 } };
+static ActorTransform _gAkropolisCafeteriaStrangerFollowUpBurnPlacement = { .pos = { -0, -0, -0, 0 }, .rot = { 0, 0, 0, 0 } };
+static ActorTransform _gAkropolisCafeteriaStrangerBattleStartPlacement = { .pos = { -0, -0, -0, 0 }, .rot = { 0, -0, 0, 0 } };
+static ActorTransform _gAkropolisCafeteriaGrinningStrangerScenePlacement = { .pos = { -0, -0, 0, 0 }, .rot = { 0, -0, 0, 0 } };
+static ActorCommand _gAkropolisCafeteriaUnusedActorCommand = { .context = { .loc = { .stage = 0, .area = 0 } }, .command = 0 };
+static ActorCommand _gAkropolisCafeteriaStrangerStartCommand = { .context = { .loc = { .stage = 0, .area = 0 } }, .command = 0 };
+static ActorCommand _gAkropolisCafeteriaStrangerPostBattleCommand = { .context = { .loc = { .stage = 0, .area = 0 } }, .command = 0 };
+static ActorCommand _gAkropolisCafeteriaStrangerFollowUpTripleHitCommand = { .context = { .loc = { .stage = 0, .area = 0 } }, .command = 0 };
+static ActorCommand _gAkropolisCafeteriaStrangerRecoilCommand = { .context = { .loc = { .stage = 0, .area = 0 } }, .command = 0 };
+static ActorCommand _gAkropolisCafeteriaStrangerFollowUpCommand = { .context = { .loc = { .stage = 0, .area = 0 } }, .command = 0 };
+static ActorCommand _gAkropolisCafeteriaStrangerSettleCommand = { .context = { .loc = { .stage = 0, .area = 0 } }, .command = 0 };
+static ActorCommand _gAkropolisCafeteriaStrangerFollowUpBurnCommand = { .context = { .loc = { .stage = 0, .area = 0 } }, .command = 0 };
+static ActorCommand _gAkropolisCafeteriaStrangerFollowUpClipCommand = { .context = { .loc = { .stage = 0, .area = 0 } }, .command = 0 };
+static ActorTransform _gAkropolisCafeteriaRupertArrivalPlacement = { .pos = { -0, -0, 0, 0 }, .rot = { 0, 0, 0, 0 } };
+static ActorTransform _gAkropolisCafeteriaRupertConversationPlacement = { .pos = { -0, -0, -0, 0 }, .rot = { 0, 0, 0, 0 } };
+static ActorTransform _gAkropolisCafeteriaRupertDeparturePlacement = { .pos = { -0, -0, -0, 0 }, .rot = { 0, 0, 0, 0 } };
+static AnimationPlayRequest _gAkropolisCafeteriaRupertShootingAnimation1 = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
+static AnimationPlayRequest _gAkropolisCafeteriaRupertArrivalAnimation2 = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
+static AnimationPlayRequest _gAkropolisCafeteriaRupertReloadAnimation3 = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
+static AnimationPlayRequest _gAkropolisCafeteriaRupertDepartureAnimation4 = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
+static EvsSceneKey _gAkropolisCafeteriaUnusedSceneKey = { .group = 0, .streamId = 0, .subId = 0 };
+static EvsSceneKey _gAkropolisCafeteriaFollowUpSceneKey = { .group = 0, .streamId = 0, .subId = 0 };
+static GameActorMoveAnim _gAkropolisCafeteriaPlayerFollowUpWalkAnimations = { .approachAnimId = 0, .arrivalAnimId = 0 };
+static EvsCommand _gAkropolisCafeteriaOpeningSceneScript[35] = {
+    { .opcode = 0, .operand0 = { .storage = (void*)&_akropolisCafeteriaCancelPeEffects }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaOpeningPlayerBankCopy }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaOpeningWomanAnimation1 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaPlayerOpeningAnimation47 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaPlayerOpeningScenePlacement }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .storage = (void*)&_acropolisCafeteriaSetPlayerSurface }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaOpeningPlayerBankCopy }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaOpeningWomanAnimation1 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaPlayerOpeningAnimation47 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaPlayerOpeningScenePlacement }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .storage = (void*)&_akropolisCafeteriaSetPlayerSurface }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaPlayerAnimation1 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaPlayerAnimation1 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaPlayerAnimation1 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaPlayerOpeningResumePlacement }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaPlayerAnimation1 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaPlayerOpeningResumePlacement }, .operand4 = { .value = 0 } },
     { .opcode = -0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
 };
-static EvsCommand _gAcropolisCafeteriaOpeningSceneSkipScript[14] = {
+static EvsCommand _gAkropolisCafeteriaOpeningSceneSkipScript[14] = {
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaPlayerAnimation1 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaPlayerAnimation1 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaPlayerAnimation1 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaPlayerAnimation1 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaPlayerOpeningResumePlacement }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = -0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-};
-static EvsCommand _gAcropolisCafeteriaPostBattleSceneScript[19] = {
-    { .opcode = 0, .operand0 = { .storage = (void*)&_acropolisCafeteriaPreparePostBattleScene }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaPlayerPostBattleAnimation9 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .storage = (void*)&_acropolisCafeteriaCopyPostBattleVram }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaStrangerPostBattlePlacement }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaStrangerPostBattleSlot1Command }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaPlayerPostBattleAnimation8 }, .operand4 = { .value = 0 } },
-    { .opcode = -0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-};
-static EvsCommand _gAcropolisCafeteriaPostBattleSceneSkipScript[15] = {
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaStrangerRecoilCommand }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .storage = (void*)&_acropolisCafeteriaCopyPostBattleVram }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaStrangerPostBattlePlacement }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaPlayerPostBattleAnimation8 }, .operand4 = { .value = 0 } },
-    { .opcode = -0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-};
-static EvsCommand _gAcropolisCafeteriaFollowUpSceneScript[80] = {
-    { .opcode = 0, .operand0 = { .storage = &_gAcropolisCafeteriaFollowUpSceneKey }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaStrangerFollowUpStartPlacement }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaFollowUpPlayerBankCopy }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaPlayerFollowUpStartPlacement }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaPlayerFollowUpAnimation47 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaStrangerFollowUpClip17Command }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaStrangerRecoilCommand }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaPlayerBeforeRupertArrivalPlacement }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaStrangerFollowUpSlot0Placement }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaStrangerFollowUpSlot0Command }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaRupertArrivalPlacement }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaRupertArrivalAnimation2 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaStrangerFollowUpAnimation48Placement }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaStrangerFollowUpSlot2Command }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaPlayerFollowUpAnimation48 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaStrangerRecoilPlacement }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaRupertConversationPlacement }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaStrangerFollowUpClip17Command }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaRupertShootingAnimation1 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaPlayerFollowUpWalkStartPlacement }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaPlayerFollowUpWalkTarget }, .operand4 = { .storage = &_gAcropolisCafeteriaPlayerFollowUpWalkAnimations } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaPlayerFollowUpWalkTarget }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaPlayerAnimation1 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaStrangerFollowUpBurnPlacement }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaStrangerFollowUpBurnCommand }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaRupertConversationPlacement }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaRupertReloadAnimation3 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaRupertConversationPlacement }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaPlayerFollowUpAnimation49 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaGrinningStrangerScenePlacement }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaStrangerStartCommand }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaRupertDeparturePlacement }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaRupertDepartureAnimation4 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaRupertDeparturePlacement }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaPlayerFollowUpAnimation50 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaPlayerOpeningResumePlacement }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = -0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
 };
-static EvsCommand _gAcropolisCafeteriaFollowUpSceneSkipScript[10] = {
+static EvsCommand _gAkropolisCafeteriaPostBattleSceneScript[19] = {
+    { .opcode = 0, .operand0 = { .storage = (void*)&_akropolisCafeteriaPreparePostBattleScene }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaPlayerPostBattleAnimation9 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .storage = (void*)&_akropolisCafeteriaCopyPostBattleVram }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaStrangerPostBattlePlacement }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaStrangerPostBattleCommand }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaPlayerPostBattleAnimation8 }, .operand4 = { .value = 0 } },
+    { .opcode = -0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+};
+static EvsCommand _gAkropolisCafeteriaPostBattleSceneSkipScript[15] = {
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaStrangerRecoilCommand }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .storage = (void*)&_akropolisCafeteriaCopyPostBattleVram }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaStrangerPostBattlePlacement }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaPlayerPostBattleAnimation8 }, .operand4 = { .value = 0 } },
+    { .opcode = -0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+};
+static EvsCommand _gAkropolisCafeteriaFollowUpSceneScript[80] = {
+    { .opcode = 0, .operand0 = { .storage = &_gAkropolisCafeteriaFollowUpSceneKey }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaStrangerFollowUpStartPlacement }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaFollowUpPlayerBankCopy }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaPlayerFollowUpStartPlacement }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaPlayerFollowUpAnimation47 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaStrangerFollowUpClipCommand }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaStrangerRecoilCommand }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaPlayerBeforeRupertArrivalPlacement }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaStrangerFollowUpPlacement }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaStrangerFollowUpCommand }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaRupertArrivalPlacement }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaRupertArrivalAnimation2 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaStrangerFollowUpAnimation48Placement }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaStrangerFollowUpTripleHitCommand }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaPlayerFollowUpAnimation48 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaStrangerRecoilPlacement }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaRupertConversationPlacement }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaStrangerFollowUpClipCommand }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaRupertShootingAnimation1 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaPlayerFollowUpWalkStartPlacement }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaPlayerFollowUpWalkTarget }, .operand4 = { .storage = &_gAkropolisCafeteriaPlayerFollowUpWalkAnimations } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaPlayerFollowUpWalkTarget }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaPlayerAnimation1 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaStrangerFollowUpBurnPlacement }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaStrangerFollowUpBurnCommand }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaRupertConversationPlacement }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaRupertReloadAnimation3 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaRupertConversationPlacement }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaPlayerFollowUpAnimation49 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaGrinningStrangerScenePlacement }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaStrangerStartCommand }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaRupertDeparturePlacement }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaRupertDepartureAnimation4 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaRupertDeparturePlacement }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaPlayerFollowUpAnimation50 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
@@ -248,41 +243,53 @@ static EvsCommand _gAcropolisCafeteriaFollowUpSceneSkipScript[10] = {
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = -0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
 };
-static EvsCommand _gAcropolisCafeteriaCap13ShakeScript[6] = {
+static EvsCommand _gAkropolisCafeteriaFollowUpSceneSkipScript[10] = {
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaPlayerAnimation1 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = -0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
 };
-static EvsCommand _gAcropolisCafeteriaBattleIntroScript[19] = {
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaPlayerAnimation1 }, .operand4 = { .value = 0 } },
+static EvsCommand _gAkropolisCafeteriaCap13ShakeScript[6] = {
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaStrangerBattleIntroPlacement }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaStrangerStartCommand }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaPlayerAnimation1 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = -0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = -0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+};
+static EvsCommand _gAkropolisCafeteriaBattleIntroScript[19] = {
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaPlayerAnimation1 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaStrangerBattleIntroPlacement }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaStrangerStartCommand }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .storage = (void*)&SetDispMask }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .storage = (void*)&sceneEngageBattle }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaPlayerBattleStartPlacement }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaStrangerBattleStartPlacement }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaPlayerBattleStartPlacement }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaStrangerBattleStartPlacement }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = -0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
 };
-static EvsCommand _gAcropolisCafeteriaGrinningStrangerAppearanceScript[4] = {
+static EvsCommand _gAkropolisCafeteriaGrinningStrangerAppearanceScript[4] = {
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaGrinningStrangerScenePlacement }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAcropolisCafeteriaStrangerStartCommand }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaGrinningStrangerScenePlacement }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &_gAkropolisCafeteriaStrangerStartCommand }, .operand4 = { .value = 0 } },
     { .opcode = -0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
 };
 #endif
-#undef ROOM_IS__gAcropolisCafeteriaFollowUpPlayerBankCopy
+#undef ROOM_IS__gAkropolisCafeteriaFollowUpPlayerBankCopy
 #undef ROOM_PART

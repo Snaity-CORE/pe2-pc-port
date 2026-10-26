@@ -17075,6 +17075,7 @@ MemCardGetDirentry	80038BCC	fat
 func_807127A8	807127A8	a	
 _copy_memcard_patch	80037514	fat	
 viewGetMappedIndex	800AD284	a	
+gAkropolisCafeteriaLooseProp3Model	80186CAC	a	
 _card_close	80039FB0	fat	
 _padWaitRXready	800299A0	fat	
 gKyle800104HandLeft	8016D81C	a	
@@ -17094,7 +17095,6 @@ MemCardReadFile	8003871C	fat
 gSndBankSlotsByType	800680AC	f	
 gGpuTaskOrderingTables	8007A0E8		
 _padSetActAlign	8002A2B0	fat	
-acropolisSecurityRoomPowerSupplyTask	80180294	a	
 tmdBuildStreamGt4	8009EE28	a	
 LoadImage2	8001A3E4	fat	
 SpuSetIRQ	8005BD00	fat	
@@ -17230,6 +17230,7 @@ midiSetMasterVolume	800517B4	ft
 AverageZ4	8003D8D8	fat	
 AverageZ3	8003D8B8	fat	
 mdecRequestSceneImageDecode	8003FF14	ft	
+akropolisCafeteriaLoosePropTask	80181E70	a	
 uiStartPanelOpening	80048964	ft	
 _spu_AllocBlockNum	80068144	a	
 tmdDrawStreamPrimGt3PreXformOffsetLayer	8009A348	a	
@@ -17270,6 +17271,7 @@ SetDrawMove	8004AD18	fat
 Square12	8003D868	fat	
 evsSoundAttenuationFadeTask	800E84B8	a	
 gDisplayTaskList	8007A110		
+gAkropolisCafeteriaLooseProp4Model	80187518	a	
 SetColorMatrix	8003B930	fat	
 midiApplyMusicVolume	800429C8	ft	
 tmdSkipStreamRecord	800105AC	ft	
@@ -17326,7 +17328,6 @@ __floatsidf	8004B5D8	fat
 gSndLoadSavedCharacterRestartState	80082121		
 gKyleP229	8016DC60	a	
 cdCmdEnqueueDisplayResource	80042364	ft	
-acropolisHelicopterLandingPadExitTask	8017EF8C	a	
 gEveCompanionBody	8016885C	a	
 gTaskBank7Descs	800678F4	f	
 CdIntstr	80015B5C	fat	
@@ -17413,7 +17414,6 @@ gMemActiveAuxHeap	80068F8C
 cdCmdRequestCancel	8001C970	ft	
 _SpuIsInAllocateArea	8004EC30	fat	
 _padSetVsyncParam	80028D1C	fat	
-acropolisPlazaPollStreamCommands	8017D6D4	a	
 objectTaskRoomTask	800E4028	a	
 MemCardWriteData	80038528	fat	
 MemCardExist	80037AD4	fat	
@@ -17422,7 +17422,6 @@ gTaskBank4Descs	800676A8	f
 gDisplayTaskFlipControlSnapshot	80070E38		
 gTaskBank2Descs	80067828	f	
 tonfaBatonModelTask	8011DB98	a	
-acropolisSecurityRoomMonitorTask	8017ED68	a	
 tmdFreePrimitiveBuffer	80041B4C	ft	
 CD_datasync	8001738C	fat	
 nextfile	800398B4	fat	
@@ -17448,7 +17447,6 @@ tmdBuildStreamGt4ElemColor	8009EFFC	a
 gameClearSession	8002BB9C	ft	
 streamPollGameRestore	8001EF9C	ft	
 tmdDrawStreamGt4SemiTrans	8001108C	ft	
-acropolisCafeteriaLoosePropTask	80181E70	a	
 gameFlowLaunchSessionTask	8002B834	ft	
 worldCollisionUpdateTask	800DB72C	a	
 uiQueueTexturePage	80049100	ft	
@@ -17459,7 +17457,6 @@ cdCmdIsSlotEmpty	8001D37C	ft
 tmdDrawStreamPrimGt4ElemColor	8009D0DC	a	
 _qin	8005DA7C	a	
 displayRunTaskFrame	8003DFB0	ft	
-gAcropolisCafeteriaModel08638	8018625C	a	
 gAya10300BodyModel	8011ACE8	a	
 StMode	80069230	a	
 PAD_init2	80037904	fat	
@@ -17492,6 +17489,7 @@ DecDCToutSync	8001AAAC	fat
 RotMatrixZYX	80044408	fat	
 sceneManagerTask	800B5DB8	a	
 _padClrIntSio0	80029910	fat	
+gAkropolisCafeteriaLooseProp2Model	8018625C	a	
 main_VRAM_END	80082948		
 SetPolyFT4	8004C1C8	fat	
 GsIDMATRIX	80071118	a	
@@ -17509,6 +17507,7 @@ gGameSession	8005ED64	f
 DeliverEvent	8001BA8C	fat	
 D_800710C8	800710C8		
 _gDisplayHoldStateSelector	8007A118		
+akropolisPlazaPollStreamCommands	8017D6D4	a	
 actor800300Task	801625F4	a	
 worldCoordUpdateRoomLightsTask	800D6B20	a	
 tmdDrawStreamPrimGt4OffsetLayer	8009C024	a	
@@ -17534,6 +17533,7 @@ playerSeedNewGameStatus	8004C4D0	ft
 _padInitSioMode	80029064	fat	
 memInitHeaps	8002DBC0	ft	
 SquareRoot0	8003B8A0	fat	
+akropolisHelicopterLandingPadExitTask	8017EF8C	a	
 SpuSetKey	8004FCB0	fat	
 _gSpuVoiceState	8007E338		
 _padSioRW2	80029698	fat	
@@ -17554,7 +17554,6 @@ gGpuPrimitiveBufferBase	80068F88
 __SN_ENTRY_POINT.NON_MATCHING	80014358	f	
 gSpuPanGainTable	80068D78	f	
 DrawOTag	8001828C	fat	
-gAcropolisCafeteriaModel07CA8	801858C4	a	
 bzero	8002B284	fat	
 gFsActorBuffer2Base	8005C374	f	
 gStreamMovieVolumeTableIndex	8006AC58		
@@ -17591,6 +17590,7 @@ padPostVibrationRequest	8002C8E4	ft
 tmdBuildStreamGt4LayeredBase	8009F824	a	
 gFsCdOperationStatus	8006C228		
 mcInit	80033BBC	ft	
+akropolisSecurityRoomPowerSupplyTask	80180294	a	
 cdVolStepFadeOut	800262A8	ft	
 stageRequestFrameCapture	8003F848	ft	
 _que	800693D0	a	
@@ -17696,6 +17696,7 @@ gSndLoadCharacterRestartState	80082135
 gameFlagGetNibble	8004ACAC	ft	
 tmdDrawStreamPrimG3	80011678	ft	
 gKyle800103HandLeft	8016D81C	a	
+gAkropolisCafeteriaLooseProp1Model	801858C4	a	
 InitPAD	80037680	fat	
 AddPrim	80043978	fat	
 StRgb24	80069240	a	
@@ -17746,7 +17747,6 @@ _padFuncClrInfo	8005ECB0	a
 tmdBuildStreamGt4OneNormal	8009F1DC	a	
 gMcPreviewExpLabel	80013BA8	f	
 _padSioRW	80029488	fat	
-acropolisBridgeKeypadTask	8017F788	a	
 cdCmdEnqueueUnlessSceneAudioPending	8001D990	ft	
 gMcPreviewScavengerLabel	80013B88	f	
 gM4a1BayonetWeaponModel	8011E9FC	a	
@@ -17867,6 +17867,7 @@ SpuSetReverbModeParam	8004ED40	fat
 uiRefreshListViewport	80048AEC	ft	
 uiSizePanelForText	80048560	ft	
 _spu_trans_mode	800680D4	a	
+akropolisSecurityRoomMonitorTask	8017ED68	a	
 fsBuildFolderTables	8002397C	ft	
 gMdecMovieInputSlot	8005EAEC	f	
 cdCmdSaveHeadRequest	8001DAB8	ft	
@@ -17926,6 +17927,7 @@ EnablePAD	80037914	fat
 modelObjectFreeTmd	80099214	a	
 taskSpawnFromTableOnDefaultList	8003E4BC	ft	
 SetDrawStp	80042288	fat	
+akropolisBridgeKeypadTask	8017F788	a	
 gStreamMovieReleasePauseOnStop	8006AC3C		
 GsSetFlatLight	8003B330	fat	
 mdecStepImageDecode	80040820	ft	
@@ -17989,6 +17991,7 @@ jtbl_Fs_DecompressChunk	80010008	f
 H_ln_tbl	80067714	a	
 CD_intstr	8005D650	a	
 gGrenadePistolShellModel	8012B5A4	a	
+akropolisFountainClimbTask	8017DCD4	a	
 ContinueDraw	800259E8	fat	
 DecDCTvlcSize2	8002130C	fat	
 gKyle800103Body	8016C594	a	
@@ -18351,7 +18354,6 @@ CD_pos	8005D5C4	a
 modelObjectUnlinkCoordBody	80099258	a	
 ApplyTransposeMatrixLV	80044050	fat	
 _spu_Fr_	80026B90	fat	
-acropolisFountainClimbTask	8017DCD4	a	
 stageRequestViewTransitionAndModeExit	8003F7A8	ft	
 gMidiMusicVolume	8007A396		
 gMcMenuPromptDesc	800612D0	f	
@@ -18413,11 +18415,9 @@ _gCdAudioReadState	80082758
 textDrawUiLines	8002FB84	ft	
 gMcSaveFileList	80061194	f	
 DsReadyCallback	8001BB30	fat	
-gAcropolisCafeteriaModel09090	80186CAC	a	
 PCinit	8004AC4C	fat	
 MemCardCreateFile	80038F58	fat	
 streamFinishScene	800B00C4	a	
-gAcropolisCafeteriaModel09A20	80187518	a	
 modelLightingStreamPrimF3	8009F504	a	
 firstfile	800398D4	fat	
 fsResumeRequestedRead	80024EC0	ft	

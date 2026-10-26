@@ -5,6 +5,6 @@
 
 static AnimationSet* _gActor323300StrangerAnimationSets[4] = {
     [1] = &_gDryfieldToiletStrangerTransformClip,
-    [2] = &_gAkropolisPatioBodyAnim01Clip,
+    [2] = &_gStrangerReactClip,
     [3] = &_gStrangerOddAlertClip,
 };

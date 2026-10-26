@@ -2,6 +2,11 @@
 #define ROOM_CAT_(a, b) a##b
 #define ROOM_CAT(a, b) ROOM_CAT_(a, b)
 
+#include "gameplay/evs.h"
+#include "gameplay/item_menu.h"
+#include "gameplay/message.h"
+#include "stages/akropolis/rooms/mist_parking.h"
+
 #define ROOM_IS__gMistParkingRoom2PlayerPlacement 1
 #if ROOM_CAT(ROOM_IS_, ROOM_PART) == 1
 static ActorTransform _gMistParkingRoom2PlayerPlacement = { .pos = { 0, 0, -0, 0 }, .rot = { 0, 0, 0, 0 } };
@@ -473,7 +478,7 @@ static EvsCommand _gMistParkingShootingGalleryDepartureScript[16] = {
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .storage = (void*)&mistParkingQueueDelayedDisplayModeExit }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .storage = (void*)&_mistParkingReloadAcropolisArea }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .storage = (void*)&_mistParkingReloadAkropolisArea }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .storage = (void*)&mistParkingSelectDialogueResource }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = -0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
 };
@@ -616,7 +621,7 @@ static EvsCommand _gMistParkingShopStayScript[12] = {
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = -0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
 };
-static EvsCommand _gMistParkingShopDepartForAcropolisScript[18] = {
+static EvsCommand _gMistParkingShopDepartForAkropolisScript[18] = {
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .storage = &gMistParkingShopPlayerAnimationBankCopy }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .storage = (void*)&_mistParkingRunShopDialogueCommand }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
@@ -633,7 +638,7 @@ static EvsCommand _gMistParkingShopDepartForAcropolisScript[18] = {
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .storage = (void*)&_mistParkingStartShopDepartureMovie }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .storage = (void*)&_mistParkingQueueAcropolisDeparture }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .storage = (void*)&_mistParkingQueueAkropolisDeparture }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = -0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
 };
 static EvsCommand _gMistParkingShopDepartForShootingGalleryScript[12] = {
@@ -647,7 +652,7 @@ static EvsCommand _gMistParkingShopDepartForShootingGalleryScript[12] = {
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .storage = (void*)&_mistParkingQueueDelayedShopDisplayModeExit }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = 0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
-    { .opcode = 0, .operand0 = { .storage = (void*)&_mistParkingReloadShopAcropolisArea }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
+    { .opcode = 0, .operand0 = { .storage = (void*)&_mistParkingReloadShopAkropolisArea }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
     { .opcode = -0, .operand0 = { .value = 0 }, .operand1 = { .value = 0 }, .operand2 = { .value = 0 }, .operand3 = { .value = 0 }, .operand4 = { .value = 0 } },
 };
 #endif

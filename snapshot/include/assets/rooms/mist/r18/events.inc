@@ -2,6 +2,9 @@
 #define ROOM_CAT_(a, b) a##b
 #define ROOM_CAT(a, b) ROOM_CAT_(a, b)
 
+#include "gameplay/evs.h"
+#include "gameplay/message.h"
+
 static AnimationBankCopyRequest _gMistR18PlayerBriefingBankCopyRequest = { .sets = (void*)&_gMistR18PlayerBriefingAnimationSets, .count = 0 };
 static AnimationPlayRequest _gMistR18PlayerBaseClip1Request = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
 static AnimationPlayRequest _gMistR18PlayerBriefingClip48Request = { .source = { .index = 0 }, .animationId = 0, .blend = 0, .blendFrames = 0, .enableWorldCollision = 0 };
