@@ -177,8 +177,14 @@ impl Tracker {
     /// aligned) is recognized.
     pub fn upload(&mut self, x: i32, y: i32, w: i32, h: i32, pixels: &[u16]) {
         let rows_per = PIECE_ROWS as i32;
-        // Pieces it overlaps are no longer what loaded them.
-        for c in (x / 64).max(0)..((x + w + 63) / 64).min(COLUMNS) {
+        // The columns it covers whole, whose rows it loads anew.
+        let (c0, c1) = ((x + 63) / 64, (x + w) / 64);
+        // Their pieces it overlaps are no longer what loaded them. A column
+        // it covers in part keeps its pieces: `write` unmarked the rows it
+        // wrote, so only what is still as loaded is drawn replaced (a
+        // palette loaded into a font sheet's last row leaves the glyphs
+        // above it theirs).
+        for c in c0.max(0)..c1.min(COLUMNS) {
             for p in (y / rows_per).max(0)..((y + h + rows_per - 1) / rows_per).min(PIECES) {
                 self.pieces[(c * PIECES + p) as usize] = None;
             }
@@ -193,7 +199,6 @@ impl Tracker {
                 self.hosted.push((x, y, h, e.id));
             }
         }
-        let (c0, c1) = ((x + 63) / 64, (x + w) / 64);
         if c1 > c0 && c0 >= 0 && c1 <= COLUMNS {
             let bits = column_bits(c0, c1 - 1);
             for r in rows(y, h) {
@@ -322,5 +327,34 @@ impl Tracker {
         let h = (0..n).fold(FNV_OFFSET, |h, i| fnv(h, vram.get(x + i, y)));
         self.palettes.push((x, y, n, h));
         h
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    /// A piece loaded whole is recognized; a palette loaded into part of
+    /// its last row leaves it known, that row no longer loaded; a column
+    /// loaded whole over it forgets it.
+    #[test]
+    fn a_palette_in_a_sheet_keeps_its_pieces() {
+        let mut t = Tracker::default();
+        let piece = vec![7u16; 64 * PIECE_ROWS];
+        t.write(960, 480, 64, 32);
+        t.upload(960, 480, 64, 32, &piece);
+        let at = (15 * PIECES + 15) as usize;
+        assert!(t.pieces[at].is_some());
+        assert_eq!(t.loaded[496] & (1 << 15), 1 << 15);
+
+        t.write(976, 511, 48, 1);
+        t.upload(976, 511, 48, 1, &[1u16; 48]);
+        assert!(t.pieces[at].is_some());
+        assert_eq!(t.loaded[496] & (1 << 15), 1 << 15);
+        assert_eq!(t.loaded[511] & (1 << 15), 0);
+
+        t.write(960, 496, 64, 8);
+        t.upload(960, 496, 64, 8, &[2u16; 64 * 8]);
+        assert!(t.pieces[at].is_none());
     }
 }
