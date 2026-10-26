@@ -1,6 +1,5 @@
-# Checks that need no game discs. Building needs them (docs/BUILDING.md), so
-# builds and releases are made on a machine that has them: tools/release.py
-# (docs/RELEASING.md).
+# Quick checks on every push and pull request. Building, testing and
+# releases are build.yml's (docs/RELEASING.md).
 name: CI
 
 on:

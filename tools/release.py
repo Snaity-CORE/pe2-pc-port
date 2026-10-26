@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Build a release on this machine and publish it as a draft GitHub Release.
+"""Build a release and publish it as a draft GitHub Release.
 
-The build needs the game discs (docs/BUILDING.md), so releases are made
-where they are, not on GitHub's runners. For version X.Y.Z:
+Pushing a tag vX.Y.Z makes one on GitHub (.github/workflows/build.yml:
+built from snapshot/, then `release.py X.Y.Z --ci`). This makes one on
+this machine instead, from the decomp's PSX build. For version X.Y.Z:
 
 1. checks: both trees clean (port and decomp), their commits on GitHub,
    the tag new, crates/pe2-host/Cargo.toml at version X.Y.Z, and the GitHub
@@ -17,6 +18,8 @@ where they are, not on GitHub's runners. For version X.Y.Z:
 
     python tools/release.py 0.2.0             # all of it
     python tools/release.py 0.2.0 --dry-run   # 1-4 only: no tag, no release
+    python tools/release.py 0.2.0 --ci        # on GitHub, for a pushed tag:
+                                              # 3-5 of a finished build
 """
 
 import argparse
@@ -107,6 +110,15 @@ def build() -> None:
 
 def check_no_game_data() -> None:
     run([sys.executable, "tools/check_no_game_data.py"])
+    sys.path.insert(0, str(ROOT / "tools"))
+    import pclink
+
+    if pclink.from_snapshot():
+        # Built from snapshot/, where the game's data never was: there is
+        # nothing to compare the exe with (no discs here) and nothing it
+        # could have taken.
+        print("built from snapshot/: no game data to find in the exe")
+        return
     run([sys.executable, "tools/check_exe_game_data.py", EXE])
 
 
@@ -122,9 +134,10 @@ def package(tag: str) -> tuple[Path, str]:
     return out, digest
 
 
-def publish(tag: str, zip_path: Path, digest: str) -> None:
-    git("tag", "-a", tag, "-m", f"pe2-pc-port {tag}")
-    run(["git", "push", "origin", f"refs/tags/{tag}"])
+def publish(tag: str, zip_path: Path, digest: str, tagged: bool = False) -> None:
+    if not tagged:
+        git("tag", "-a", tag, "-m", f"pe2-pc-port {tag}")
+        run(["git", "push", "origin", f"refs/tags/{tag}"])
     notes = DIST / f"{tag}-notes.md"
     notes.write_text(
         "Needs your own Parasite Eve II (USA) discs: the game reads them at runtime "
@@ -141,6 +154,8 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("version", help="X.Y.Z (or vX.Y.Z)")
     parser.add_argument("--dry-run", action="store_true", help="build, check and package; no tag, no release")
+    parser.add_argument("--ci", action="store_true",
+                        help="for a pushed tag, after the workflow's build: check, package, draft release")
     args = parser.parse_args()
     version = args.version.removeprefix("v")
     if not re.fullmatch(r"\d+\.\d+\.\d+", version):
@@ -149,6 +164,11 @@ def main() -> int:
     tag = f"v{version}"
     try:
         check_version(version)
+        if args.ci:
+            check_no_game_data()
+            zip_path, digest = package(tag)
+            publish(tag, zip_path, digest, tagged=True)
+            return 0
         if not args.dry_run:
             check_tree(ROOT, "the port", BRANCH)
             check_tree(DECOMP, "the decomp", None)

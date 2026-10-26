@@ -1,58 +1,69 @@
 # Releasing
 
-A build needs the game discs (see [BUILDING.md](BUILDING.md)), so releases
-are made on a machine that has them, with `tools/release.py`, not on
-GitHub's runners. GitHub Actions (`.github/workflows/ci.yml`) runs the
-checks that need no discs on every push and pull request: no game data in
-the repository, the Python tools compile, Rust formatting.
+GitHub builds the port without the game discs, from `snapshot/` (see
+[BUILDING.md](BUILDING.md), "Without the discs"):
 
-## Once
+- `.github/workflows/build.yml`, on every push to `main`, pull request and
+  tag: builds the game library and the host (release), runs the tests and
+  keeps `pe2.exe` as the run's artifact. A tag `vX.Y.Z` also packages it
+  and opens a draft release.
+- `.github/workflows/ci.yml`, on every push and pull request: no game data
+  in the repository, the Python tools compile, Rust formatting.
 
-- The [GitHub CLI](https://cli.github.com/): `winget install GitHub.cli`,
-  then `gh auth login`.
-- A working build (BUILDING.md, steps 1 to 3).
+If the decomp is a private repository, the build needs a secret
+`DECOMP_TOKEN`: a token that can read it (fine-grained, read-only
+contents).
 
 ## Making a release
 
 1. Set the version in `crates/pe2-host/Cargo.toml` (`version = "X.Y.Z"`)
-   and commit.
+   and commit. The snapshot must match the decomp commit the port points
+   to (`snapshot/decomp.txt`; `tools/make_snapshot.py` refreshes it).
 2. Push the port's `main` and the decomp commit it points to.
-3. Try it without publishing anything:
+3. Tag and push the tag:
 
    ```sh
-   python tools/release.py X.Y.Z --dry-run
+   git tag -a vX.Y.Z -m "pe2-pc-port vX.Y.Z"
+   git push origin vX.Y.Z
    ```
 
-   It builds (units, game library, host in release, tests), checks for game
-   data and writes `dist/pe2-pc-port-vX.Y.Z-windows-x86.zip`.
-4. Release:
+   The Build workflow builds and tests it, then `release.py X.Y.Z --ci`
+   checks the version matches, packages
+   `pe2-pc-port-vX.Y.Z-windows-x86.zip` and opens a draft release with it,
+   its SHA-256 and notes generated from the commits since the last release.
+4. Review the draft on GitHub and publish it.
 
-   ```sh
-   python tools/release.py X.Y.Z
-   ```
+### From this machine instead
 
-   Before building it also checks that both trees are clean and their
-   commits are on GitHub, and that the tag is new. After packaging it tags
-   the commit `vX.Y.Z`, pushes the tag and opens a draft release with the
-   zip, its SHA-256 and notes generated from the commits since the last
-   release.
-5. Review the draft on GitHub and publish it.
+With the discs and a normal build, `tools/release.py` does the same here
+(the [GitHub CLI](https://cli.github.com/), logged in with `gh auth login`,
+is needed):
+
+```sh
+python tools/release.py X.Y.Z --dry-run   # build, check, package: no tag, no release
+python tools/release.py X.Y.Z             # also tag, push the tag, draft release
+```
+
+It first checks that both trees are clean, their commits on GitHub, and
+the tag new.
 
 ## The zip
 
 `pe2.exe`, `pe2.example.toml`, `README.md`, `MODDING.md` and the licenses of
-the fonts `pe2.exe` embeds (`LICENSE-DejaVu.txt`, `LICENSE-CourierPrime.txt`). Players bring
-their own discs; the game reads them at runtime.
+the fonts `pe2.exe` embeds (`LICENSE-DejaVu.txt`, `LICENSE-CourierPrime.txt`).
+Players bring their own discs; the game reads them at runtime.
 
 ## No game data
 
-A release must not carry anything from the discs. Two checks run before
-anything is packaged:
+A release must not carry anything from the discs:
 
-- `tools/check_no_game_data.py`: no tracked file looks like disc data
-  (also the pre-commit hook and CI).
-- `tools/check_exe_game_data.py`: no 32-byte run of the game's executables,
-  and no run of 32 values of the asset tables the decomp generates from the
-  discs, appears in `pe2.exe`. Data the port holds on purpose is listed in
-  its `ALLOWED`, with why (libspu's reverb presets, from the public hardware
+- `tools/check_no_game_data.py`: no tracked file looks like disc data, and
+  the snapshot's includes hold no values (also the pre-commit hook and CI).
+- Built on GitHub, from the snapshot, the game's data was never there to
+  take.
+- Built here, `tools/check_exe_game_data.py` checks the exe itself: no
+  32-byte run of the game's executables, and no run of 32 values of the
+  asset tables the decomp generates from the discs (nor their texts),
+  appears in `pe2.exe`. Data the port holds on purpose is listed in its
+  `ALLOWED`, with why (libspu's reverb presets, from the public hardware
   documentation). It takes a few minutes.
