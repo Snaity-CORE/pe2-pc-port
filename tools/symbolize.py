@@ -4,7 +4,9 @@
     python tools/symbolize.py 0x005523BC 0x00537D8D ...
     python tools/symbolize.py --map target/i686-pc-windows-msvc/release/deps/pe2.map 0x...
 
-Game functions appear as pcfn_<image>_<PSX address>_<name>.
+The map is by default the newest of the release and debug builds': it must
+be the one of the pe2.exe that crashed. Game functions appear as
+pcfn_<image>_<PSX address>_<name>.
 """
 
 import argparse
@@ -13,7 +15,8 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-DEFAULT_MAP = ROOT / "target" / "i686-pc-windows-msvc" / "debug" / "deps" / "pe2.map"
+MAPS = [ROOT / "target" / "i686-pc-windows-msvc" / build / "deps" / "pe2.map" for build in ("release", "debug")]
+DEFAULT_MAP = max((m for m in MAPS if m.exists()), key=lambda m: m.stat().st_mtime, default=MAPS[0])
 LINE_RE = re.compile(r"^\s*[0-9a-fA-F]{4}:[0-9a-fA-F]{8}\s+(\S+)\s+([0-9a-fA-F]{8})\s")
 
 
