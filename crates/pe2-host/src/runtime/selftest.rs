@@ -21,9 +21,9 @@ struct Lib {
 }
 
 fn call(addr: u32, args: &[u32]) -> u32 {
-    let mut a = [0u32; 8];
+    let mut a = [0u32; super::mips::MIPS_CALL_ARGS];
     a[..args.len()].copy_from_slice(args);
-    // SAFETY: `a` holds eight words; `addr` is library MIPS code in RAM.
+    // SAFETY: `a` holds MIPS_CALL_ARGS words; `addr` is library MIPS code in RAM.
     unsafe { pc_mips_call(addr, a.as_ptr()) }
 }
 

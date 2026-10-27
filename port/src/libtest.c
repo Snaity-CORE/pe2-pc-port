@@ -33,7 +33,8 @@ void pcgte_restore(const uint32_t in[64]);
 #define A2           (SCRATCH + 0x200u)
 #define A3           (SCRATCH + 0x300u)
 
-typedef uint32_t (*LibFn)(uint32_t, uint32_t, uint32_t, uint32_t, uint32_t, uint32_t, uint32_t, uint32_t);
+typedef uint32_t (*LibFn)(uint32_t, uint32_t, uint32_t, uint32_t, uint32_t, uint32_t, uint32_t, uint32_t, uint32_t,
+                          uint32_t);
 
 /* ---- random inputs -------------------------------------------------------- */
 
@@ -105,17 +106,17 @@ typedef struct {
     const char* name;
     LibFn native;
     LibFn original;
-    void (*setup)(uint32_t args[8]);
+    void (*setup)(uint32_t args[10]);
 } LibCase;
 
-static void s_angle(uint32_t a[8]) { a[0] = (uint32_t)rnd_angle(); }
-static void s_value(uint32_t a[8]) { a[0] = (uint32_t)rnd_value(); }
+static void s_angle(uint32_t a[10]) { a[0] = (uint32_t)rnd_angle(); }
+static void s_value(uint32_t a[10]) { a[0] = (uint32_t)rnd_value(); }
 /* A non-negative value (square roots: negative inputs are not meaningful). */
-static void s_unsigned(uint32_t a[8]) { a[0] = (uint32_t)rnd_value() & 0x7FFFFFFF; }
-static void s_value2(uint32_t a[8]) { a[0] = (uint32_t)rnd_value(); a[1] = (uint32_t)rnd_value(); }
-static void s_sangles_m(uint32_t a[8]) { rnd_svector(A0, 1); rnd_matrix(A1); a[0] = A0; a[1] = A1; }
-static void s_angle_m(uint32_t a[8]) { rnd_matrix(A1); a[0] = (uint32_t)rnd_angle(); a[1] = A1; }
-static void s_m(uint32_t a[8]) { rnd_matrix(A0); a[0] = A0; }
+static void s_unsigned(uint32_t a[10]) { a[0] = (uint32_t)rnd_value() & 0x7FFFFFFF; }
+static void s_value2(uint32_t a[10]) { a[0] = (uint32_t)rnd_value(); a[1] = (uint32_t)rnd_value(); }
+static void s_sangles_m(uint32_t a[10]) { rnd_svector(A0, 1); rnd_matrix(A1); a[0] = A0; a[1] = A1; }
+static void s_angle_m(uint32_t a[10]) { rnd_matrix(A1); a[0] = (uint32_t)rnd_angle(); a[1] = A1; }
+static void s_m(uint32_t a[10]) { rnd_matrix(A0); a[0] = A0; }
 /* A matrix of rotation size (|m| <= 4096). */
 static void rnd_rotation_matrix(uint32_t at)
 {
@@ -124,13 +125,13 @@ static void rnd_rotation_matrix(uint32_t at)
         w16(at + 2 * i, (int32_t)(rnd() % 8193) - 4096);
     }
 }
-static void s_rot_m_m(uint32_t a[8]) { rnd_rotation_matrix(A0); rnd_matrix(A1); a[0] = A0; a[1] = A1; }
-static void s_m_m(uint32_t a[8]) { rnd_matrix(A0); rnd_matrix(A1); a[0] = A0; a[1] = A1; }
-static void s_m_m_m(uint32_t a[8]) { rnd_matrix(A0); rnd_matrix(A1); rnd_matrix(A2); a[0] = A0; a[1] = A1; a[2] = A2; }
-static void s_m_v(uint32_t a[8]) { rnd_matrix(A0); rnd_vector(A1); a[0] = A0; a[1] = A1; }
-static void s_m_v_v(uint32_t a[8]) { rnd_matrix(A0); rnd_vector(A1); rnd_vector(A2); a[0] = A0; a[1] = A1; a[2] = A2; }
-static void s_m_sv_v(uint32_t a[8]) { rnd_matrix(A0); rnd_svector(A1, 0); rnd_vector(A2); a[0] = A0; a[1] = A1; a[2] = A2; }
-static void s_m_sv_sv(uint32_t a[8]) { rnd_matrix(A0); rnd_svector(A1, 0); rnd_svector(A2, 0); a[0] = A0; a[1] = A1; a[2] = A2; }
+static void s_rot_m_m(uint32_t a[10]) { rnd_rotation_matrix(A0); rnd_matrix(A1); a[0] = A0; a[1] = A1; }
+static void s_m_m(uint32_t a[10]) { rnd_matrix(A0); rnd_matrix(A1); a[0] = A0; a[1] = A1; }
+static void s_m_m_m(uint32_t a[10]) { rnd_matrix(A0); rnd_matrix(A1); rnd_matrix(A2); a[0] = A0; a[1] = A1; a[2] = A2; }
+static void s_m_v(uint32_t a[10]) { rnd_matrix(A0); rnd_vector(A1); a[0] = A0; a[1] = A1; }
+static void s_m_v_v(uint32_t a[10]) { rnd_matrix(A0); rnd_vector(A1); rnd_vector(A2); a[0] = A0; a[1] = A1; a[2] = A2; }
+static void s_m_sv_v(uint32_t a[10]) { rnd_matrix(A0); rnd_svector(A1, 0); rnd_vector(A2); a[0] = A0; a[1] = A1; a[2] = A2; }
+static void s_m_sv_sv(uint32_t a[10]) { rnd_matrix(A0); rnd_svector(A1, 0); rnd_svector(A2, 0); a[0] = A0; a[1] = A1; a[2] = A2; }
 /* Vectors to normalize: any high bits (the routines use the low 16), low
  * halves small enough that the sum of squares stays below 2^31. */
 static int32_t rnd_normal_component(void)
@@ -141,24 +142,24 @@ static int32_t rnd_normal_component(void)
     }
     return (int32_t)((rnd() << 16) | (uint16_t)low);
 }
-static void s_normal_v_v(uint32_t a[8])
+static void s_normal_v_v(uint32_t a[10])
 {
     for (int i = 0; i < 4; i++) { w32(A0 + 4 * i, rnd_normal_component()); }
     rnd_vector(A1); a[0] = A0; a[1] = A1;
 }
-static void s_normal_v_sv(uint32_t a[8])
+static void s_normal_v_sv(uint32_t a[10])
 {
     for (int i = 0; i < 4; i++) { w32(A0 + 4 * i, rnd_normal_component()); }
     rnd_svector(A1, 0); a[0] = A0; a[1] = A1;
 }
-static void s_normal_sv_sv(uint32_t a[8])
+static void s_normal_sv_sv(uint32_t a[10])
 {
     for (int i = 0; i < 4; i++) { w16(A0 + 2 * i, rnd_normal_component()); }
     rnd_svector(A1, 0); a[0] = A0; a[1] = A1;
 }
-static void s_v_v(uint32_t a[8]) { rnd_vector(A0); rnd_vector(A1); a[0] = A0; a[1] = A1; }
-static void s_v_sv(uint32_t a[8]) { rnd_vector(A0); rnd_svector(A1, 0); a[0] = A0; a[1] = A1; }
-static void s_sv_sv(uint32_t a[8]) { rnd_svector(A0, 0); rnd_svector(A1, 0); a[0] = A0; a[1] = A1; }
+static void s_v_v(uint32_t a[10]) { rnd_vector(A0); rnd_vector(A1); a[0] = A0; a[1] = A1; }
+static void s_v_sv(uint32_t a[10]) { rnd_vector(A0); rnd_svector(A1, 0); a[0] = A0; a[1] = A1; }
+static void s_sv_sv(uint32_t a[10]) { rnd_svector(A0, 0); rnd_svector(A1, 0); a[0] = A0; a[1] = A1; }
 
 /* Graphics library set-ups: packets of random words, small integers. */
 static void rnd_words(uint32_t at, int n)
@@ -168,8 +169,8 @@ static void rnd_words(uint32_t at, int n)
     }
 }
 static int32_t rnd_small(int n) { return (int32_t)(rnd() % (uint32_t)n); }
-static void s_ot_p(uint32_t a[8]) { rnd_words(A0, 4); rnd_words(A1, 8); a[0] = A0; a[1] = A1; }
-static void s_p_p(uint32_t a[8])
+static void s_ot_p(uint32_t a[10]) { rnd_words(A0, 4); rnd_words(A1, 8); a[0] = A0; a[1] = A1; }
+static void s_p_p(uint32_t a[10])
 {
     rnd_words(A0, 16); rnd_words(A1, 16);
     /* Packet lengths that sometimes fit together and sometimes do not. */
@@ -177,51 +178,86 @@ static void s_p_p(uint32_t a[8])
     *(uint8_t*)(uintptr_t)(A1 + 3) = (uint8_t)rnd_small(12);
     a[0] = A0; a[1] = A1;
 }
-static void s_none(uint32_t a[8]) { (void)a; }
+static void s_none(uint32_t a[10]) { (void)a; }
 /* DecDCTBufSize: a BS header with a varied size field. */
-static void s_bsheader(uint32_t a[8]) { rnd_words(A0, 4); a[0] = A0; }
+static void s_bsheader(uint32_t a[10]) { rnd_words(A0, 4); a[0] = A0; }
 /* DecDCTin: a run-length buffer whose header word holds a varied command and
  * a small size, and a mode 0-3. */
-static void s_dctin(uint32_t a[8])
+static void s_dctin(uint32_t a[10])
 {
     rnd_words(A0, 40);
     w32(A0, (int32_t)((rnd() & 0xFFFF0000u) | 16u));
     a[0] = A0;
     a[1] = (uint32_t)rnd_small(4);
 }
-static void s_p(uint32_t a[8]) { rnd_words(A0, 16); a[0] = A0; }
-static void s_p_flag(uint32_t a[8]) { rnd_words(A0, 16); a[0] = A0; a[1] = rnd() % 3 ? (uint32_t)rnd_small(2) : rnd(); }
-static void s_tpage(uint32_t a[8])
+static void s_p(uint32_t a[10]) { rnd_words(A0, 16); a[0] = A0; }
+static void s_p_flag(uint32_t a[10]) { rnd_words(A0, 16); a[0] = A0; a[1] = rnd() % 3 ? (uint32_t)rnd_small(2) : rnd(); }
+static void s_tpage(uint32_t a[10])
 {
     a[0] = (uint32_t)rnd_small(4); a[1] = (uint32_t)rnd_small(4);
     a[2] = rnd() % 4 ? (uint32_t)rnd_small(1024) : rnd(); a[3] = rnd() % 4 ? (uint32_t)rnd_small(1024) : rnd();
 }
-static void s_clut(uint32_t a[8]) { a[0] = rnd() % 4 ? (uint32_t)rnd_small(1024) : rnd(); a[1] = rnd() % 4 ? (uint32_t)rnd_small(512) : rnd(); }
-static void s_drawtpage(uint32_t a[8])
+static void s_clut(uint32_t a[10]) { a[0] = rnd() % 4 ? (uint32_t)rnd_small(1024) : rnd(); a[1] = rnd() % 4 ? (uint32_t)rnd_small(512) : rnd(); }
+static void s_drawtpage(uint32_t a[10])
 {
     rnd_words(A0, 4); a[0] = A0;
     a[1] = rnd() % 3 ? (uint32_t)rnd_small(2) : rnd(); a[2] = rnd() % 3 ? (uint32_t)rnd_small(2) : rnd(); a[3] = rnd();
 }
-static void s_drawoffset(uint32_t a[8]) { rnd_words(A0, 4); rnd_words(A1, 2); a[0] = A0; a[1] = A1; }
-static void s_drawmove(uint32_t a[8])
+static void s_drawoffset(uint32_t a[10]) { rnd_words(A0, 4); rnd_words(A1, 2); a[0] = A0; a[1] = A1; }
+static void s_drawmove(uint32_t a[10])
 {
     rnd_words(A0, 8); rnd_words(A1, 2);
     if (rnd() % 4 == 0) { w16(A1 + 4, 0); }
     a[0] = A0; a[1] = A1; a[2] = (uint32_t)rnd_small(1024); a[3] = (uint32_t)rnd_small(512);
 }
-static void s_defenv(uint32_t a[8])
+static void s_defenv(uint32_t a[10])
 {
     rnd_words(A0, 32); a[0] = A0;
     a[1] = (uint32_t)rnd_small(1024); a[2] = (uint32_t)rnd_small(512);
     a[3] = (uint32_t)(rnd() % 2 ? 256 + rnd_small(385) : rnd_small(1024));
     a[4] = (uint32_t)(rnd() % 2 ? 200 + rnd_small(300) : rnd_small(512));
 }
-static void s_gsclearot(uint32_t a[8])
+static void s_gsclearot(uint32_t a[10])
 {
     rnd_words(A0, 8); rnd_words(A1, 64);
     w32(A0, (int32_t)(rnd() % 7));   /* length: up to 64 entries */
     w32(A0 + 4, (int32_t)A1);        /* org */
     a[0] = (uint32_t)rnd() & 0xFFFF; a[1] = (uint32_t)rnd() & 0xFFFF; a[2] = A0;
+}
+
+/* RotTransPers4: four vectors in A0, their screen positions, depth cue and
+ * flags written to A1. Three times in four, a scene as games set one up
+ * (rotation-sized matrix, the points ahead of the camera, a usual
+ * projection), so the four depths differ; otherwise the random registers,
+ * which mostly saturate. */
+static void s_rtp4(uint32_t a[10])
+{
+    int scene = rnd() % 4 != 0;
+    if (scene) {
+        for (int r = 0; r < 5; r++) {
+            uint32_t lo = (uint32_t)(rnd() % 8193) - 4096, hi = (uint32_t)(rnd() % 8193) - 4096;
+            pcgte_write_ctrl(PCGTE_RT0 + r, (lo & 0xFFFF) | (hi << 16));
+        }
+        pcgte_write_ctrl(PCGTE_TRX, (uint32_t)(rnd_small(8001) - 4000));
+        pcgte_write_ctrl(PCGTE_TRY, (uint32_t)(rnd_small(8001) - 4000));
+        pcgte_write_ctrl(PCGTE_TRZ, (uint32_t)(rnd_small(30000) + 200));
+        pcgte_write_ctrl(PCGTE_OFX, (uint32_t)rnd_small(321) << 16);
+        pcgte_write_ctrl(PCGTE_OFY, (uint32_t)rnd_small(241) << 16);
+        pcgte_write_ctrl(PCGTE_H, (uint32_t)(rnd_small(800) + 100));
+    }
+    for (int i = 0; i < 4; i++) {
+        rnd_svector(A0 + 8 * i, 0);
+        if (scene) {
+            for (int c = 0; c < 3; c++) {
+                w16(A0 + 8 * i + 2 * c, rnd_small(6001) - 3000);
+            }
+        }
+        a[i] = A0 + 8 * i;
+    }
+    rnd_words(A1, 8);
+    for (int i = 0; i < 6; i++) {
+        a[4 + i] = A1 + 4 * i;
+    }
 }
 
 #define LIB_CASES(X)                                \
@@ -256,6 +292,7 @@ static void s_gsclearot(uint32_t a[8])
     X(VectorNormal, s_normal_v_v)                          \
     X(VectorNormalS, s_normal_v_sv)                        \
     X(VectorNormalSS, s_normal_sv_sv)              \
+    X(RotTransPers4, s_rtp4)                        \
     X(AddPrim, s_ot_p)                              \
     X(MargePrim, s_p_p)                             \
     X(SetSprt, s_p)                                 \
@@ -323,7 +360,7 @@ static const char* gte_reg_name(int i)
 
 /* Prints how `got` (port) differs from `want` (original), after the inputs
  * in `before`; returns 1 if it does. */
-static int report(const LibCase* c, const uint32_t args[8], const State* before, const State* want,
+static int report(const LibCase* c, const uint32_t args[10], const State* before, const State* want,
                   const State* got)
 {
     int differs = want->ret != got->ret || memcmp(want->ram, got->ram, SCRATCH_SIZE) != 0 ||
@@ -408,7 +445,7 @@ static int probe(const char* spec)
         }
         for (long long k = 0; k < count; k++) {
             uint32_t a0 = (uint32_t)(first + k * step);
-            uint32_t r = c->original(a0, (uint32_t)second, 0, 0, 0, 0, 0, 0);
+            uint32_t r = c->original(a0, (uint32_t)second, 0, 0, 0, 0, 0, 0, 0, 0);
             printf("%u %d\n", a0, (int32_t)r);
         }
         if (psx_addr) {
@@ -446,7 +483,7 @@ static int dump(const char* spec)
         }
         static State before, after;
         for (int n = 0; n < count; n++) {
-            uint32_t args[8] = {0};
+            uint32_t args[10] = {0};
             uint32_t gte[64];
             for (int r = 0; r < 64; r++) {
                 gte[r] = rnd();
@@ -457,7 +494,7 @@ static int dump(const char* spec)
             if (psx_addr) {
                 pc_runtime_fn_interpret(psx_addr, 1);
             }
-            uint32_t ret = c->original(args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7]);
+            uint32_t ret = c->original(args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8], args[9]);
             if (psx_addr) {
                 pc_runtime_fn_interpret(psx_addr, 0);
             }
@@ -512,13 +549,13 @@ static uint32_t psx_address_of(LibFn native)
 static uint32_t heap_call(int original, uint32_t (*native)(), uint32_t (*stub)(), uint32_t a0, uint32_t a1)
 {
     if (!original) {
-        return ((LibFn)native)(a0, a1, 0, 0, 0, 0, 0, 0);
+        return ((LibFn)native)(a0, a1, 0, 0, 0, 0, 0, 0, 0, 0);
     }
     uint32_t addr = psx_address_of((LibFn)native);
     if (addr && (LibFn)native != (LibFn)stub) {
         pc_runtime_fn_interpret(addr, 1);
     }
-    uint32_t r = ((LibFn)stub)(a0, a1, 0, 0, 0, 0, 0, 0);
+    uint32_t r = ((LibFn)stub)(a0, a1, 0, 0, 0, 0, 0, 0, 0, 0);
     if (addr && (LibFn)native != (LibFn)stub) {
         pc_runtime_fn_interpret(addr, 0);
     }
@@ -643,12 +680,12 @@ static int mdec_reset(void)
     if (addr && (LibFn)pcrt_DecDCTReset != (LibFn)pcrt_stub_DecDCTReset) {
         pc_runtime_fn_interpret(addr, 1);
     }
-    ((LibFn)pcrt_stub_DecDCTReset)(0, 0, 0, 0, 0, 0, 0, 0);
+    ((LibFn)pcrt_stub_DecDCTReset)(0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
     if (addr) {
         pc_runtime_fn_interpret(addr, 0);
     }
     pc_mdec_tables(want);
-    ((LibFn)pcrt_DecDCTReset)(0, 0, 0, 0, 0, 0, 0, 0);
+    ((LibFn)pcrt_DecDCTReset)(0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
     pc_mdec_tables(got);
     for (int i = 0; i < 256; i++) {
         if (want[i] != got[i]) {
@@ -676,7 +713,7 @@ static int vlc_build(int compare)
     if (addr && native) {
         pc_runtime_fn_interpret(addr, 1);
     }
-    ((LibFn)pcrt_stub_DecDCTvlcBuild)(VLC_TABLE, 0, 0, 0, 0, 0, 0, 0);
+    ((LibFn)pcrt_stub_DecDCTvlcBuild)(VLC_TABLE, 0, 0, 0, 0, 0, 0, 0, 0, 0);
     if (addr && native) {
         pc_runtime_fn_interpret(addr, 0);
     }
@@ -689,7 +726,7 @@ static int vlc_build(int compare)
     }
     memcpy(want, table, VLC_TABLE_BYTES);
     memset(table, 0xCD, VLC_TABLE_BYTES);
-    ((LibFn)pcrt_DecDCTvlcBuild)(VLC_TABLE, 0, 0, 0, 0, 0, 0, 0);
+    ((LibFn)pcrt_DecDCTvlcBuild)(VLC_TABLE, 0, 0, 0, 0, 0, 0, 0, 0, 0);
     for (uint32_t i = 0; i < VLC_TABLE_BYTES / 2; i++) {
         uint16_t w = ((const uint16_t*)want)[i], g = ((const uint16_t*)table)[i];
         if (w != g) {
@@ -716,14 +753,14 @@ uint64_t pc_mips_executed(uint64_t* loads);
 static uint32_t call_lib(int original, LibFn native, LibFn stub, uint32_t a0, uint32_t a1, uint32_t a2)
 {
     if (!original) {
-        return native(a0, a1, a2, 0, 0, 0, 0, 0);
+        return native(a0, a1, a2, 0, 0, 0, 0, 0, 0, 0);
     }
     uint32_t addr = psx_address_of(native);
     int replaced = native != stub;
     if (addr && replaced) {
         pc_runtime_fn_interpret(addr, 1);
     }
-    uint32_t r = stub(a0, a1, a2, 0, 0, 0, 0, 0);
+    uint32_t r = stub(a0, a1, a2, 0, 0, 0, 0, 0, 0, 0);
     if (addr && replaced) {
         pc_runtime_fn_interpret(addr, 0);
     }
@@ -1002,7 +1039,7 @@ static int tmd_test(const char* spec)
             tmd_scene(h, gte, &flags);
             memcpy(before, region, TMD_REGION_SZ);
 
-            uint32_t args[8] = {TMD_WS, flags, TMD_STREAM};
+            uint32_t args[10] = {TMD_WS, flags, TMD_STREAM};
             pcgte_restore(gte);
             pc_runtime_fn_interpret(TMD_DISPATCH, 1);
             pc_runtime_fn_interpret(TMD_SKIP, 1);
@@ -1115,7 +1152,7 @@ int pc_libtest(const char* spec)
         }
         int failures = 0;
         for (int it = 0; it < iterations; it++) {
-            uint32_t args[8] = {0};
+            uint32_t args[10] = {0};
             uint32_t gte[64];
             for (int r = 0; r < 64; r++) {
                 gte[r] = rnd();
@@ -1125,13 +1162,13 @@ int pc_libtest(const char* spec)
             capture(&before, 0);
 
             pc_runtime_fn_interpret(psx_addr, 1);
-            uint32_t ret = c->original(args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7]);
+            uint32_t ret = c->original(args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8], args[9]);
             pc_runtime_fn_interpret(psx_addr, 0);
             capture(&want, ret);
 
             memcpy((void*)(uintptr_t)SCRATCH, before.ram, SCRATCH_SIZE);
             pcgte_restore(before.gte);
-            ret = c->native(args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7]);
+            ret = c->native(args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8], args[9]);
             capture(&got, ret);
             if (is_void(c->name)) {
                 got.ret = want.ret;

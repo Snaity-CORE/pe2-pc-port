@@ -751,10 +751,12 @@ def write_outputs(results: list[Result], linker: "Linker") -> None:
             if addr is None:
                 raise SystemExit(f"runtime function {n} has no address in the main image")
             f.write(f"unsigned pcrt_{n}();\n")
+            # Ten words, as pc_mips_call passes: the most a routine takes
+            # (RotTransPers4); fewer read the caller's frame, as cdecl allows.
             f.write(f"unsigned pcrt_stub_{n}(unsigned a0, unsigned a1, unsigned a2, unsigned a3,\n"
-                    f"    unsigned a4, unsigned a5, unsigned a6, unsigned a7)\n"
+                    f"    unsigned a4, unsigned a5, unsigned a6, unsigned a7, unsigned a8, unsigned a9)\n"
                     f"{{\n"
-                    f"    const unsigned args[8] = {{a0, a1, a2, a3, a4, a5, a6, a7}};\n"
+                    f"    const unsigned args[10] = {{a0, a1, a2, a3, a4, a5, a6, a7, a8, a9}};\n"
                     f"    return pc_mips_call(0x{addr:08X}u, args);\n"
                     f"}}\n")
             f.write(f'#pragma comment(linker, "/alternatename:_pcrt_{n}=_pcrt_stub_{n}")\n')

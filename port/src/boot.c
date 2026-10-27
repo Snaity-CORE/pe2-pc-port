@@ -345,7 +345,7 @@ unsigned pc_shadow_call(unsigned slot, const unsigned* args)
     memcpy(shadow_pad_before, pad, SCRATCHPAD_SIZE);
     pcgte_save(gte_before);
 
-    unsigned a[8];
+    unsigned a[10]; /* pc_mips_call reads ten words */
     memcpy(a, args, sizeof a);
     pc_runtime_fn_interpret(shadow[slot].addr, 1);
     unsigned want = pc_mips_call(shadow[slot].addr, a);

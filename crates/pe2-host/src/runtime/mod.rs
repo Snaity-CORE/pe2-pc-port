@@ -27,7 +27,7 @@ unsafe extern "C" {
 /// registered) with up to four word arguments. Game functions run natively
 /// through their thunk; library code without one runs in the interpreter.
 pub fn call_psx(addr: u32, args: &[u32]) -> u32 {
-    let mut a = [0u32; 8];
+    let mut a = [0u32; mips::MIPS_CALL_ARGS];
     a[..args.len()].copy_from_slice(args);
     // SAFETY: plain query of the thunk bitmap.
     if unsafe { pc_thunk_at(addr) } != 0 {
@@ -37,7 +37,7 @@ pub fn call_psx(addr: u32, args: &[u32]) -> u32 {
         let f: Native = unsafe { std::mem::transmute(addr as usize) };
         f(a[0], a[1], a[2], a[3])
     } else {
-        // SAFETY: `a` holds eight words; `addr` is library MIPS code.
+        // SAFETY: `a` holds MIPS_CALL_ARGS words; `addr` is library MIPS code.
         unsafe { mips::pc_mips_call(addr, a.as_ptr()) }
     }
 }

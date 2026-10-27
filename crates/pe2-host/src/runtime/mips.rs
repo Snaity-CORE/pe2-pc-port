@@ -427,15 +427,19 @@ impl Cpu {
     }
 }
 
-/// Runs the MIPS function at `addr` with up to eight word arguments (o32:
+/// Word arguments `pc_mips_call` passes: the most any library routine the
+/// game calls takes (RotTransPers4's ten).
+pub const MIPS_CALL_ARGS: usize = 10;
+
+/// Runs the MIPS function at `addr` with up to ten word arguments (o32:
 /// four in registers, the rest on the stack) and returns v0.
 ///
 /// # Safety
-/// `args` must point at eight readable words; `addr` must be MIPS code.
+/// `args` must point at ten readable words; `addr` must be MIPS code.
 #[unsafe(no_mangle)]
 pub unsafe extern "C" fn pc_mips_call(addr: u32, args: *const u32) -> u32 {
-    // SAFETY: the caller passes eight words (unused ones are its own frame).
-    let args = unsafe { std::slice::from_raw_parts(args, 8) };
+    // SAFETY: the caller passes ten words (unused ones are its own frame).
+    let args = unsafe { std::slice::from_raw_parts(args, MIPS_CALL_ARGS) };
     if super::trace("interp") {
         count_entry(addr);
     }
@@ -444,7 +448,7 @@ pub unsafe extern "C" fn pc_mips_call(addr: u32, args: *const u32) -> u32 {
         vec![0u32; STACK_WORDS]
     };
     let sp_index = STACK_WORDS - 64;
-    stack[sp_index..sp_index + 8].copy_from_slice(args);
+    stack[sp_index..sp_index + MIPS_CALL_ARGS].copy_from_slice(args);
     let sp = stack[sp_index..].as_ptr() as u32;
 
     let mut cpu = Cpu {

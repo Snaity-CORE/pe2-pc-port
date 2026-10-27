@@ -721,6 +721,39 @@ void pcrt_MatrixNormal(Matrix* m, Matrix* n)
     pcgte_write_data(PCGTE_VXY1, (uint32_t)r2);
 }
 
+/* ---- perspective transformation ------------------------------------------ */
+
+/* Four points through the rotation, translation and perspective in the GTE:
+ * v0..v2 together (RTPT), then v3 (RTPS). Their screen positions go to
+ * sxy0..sxy3 (with their exact ones, pgxp.c); p gets the last point's depth
+ * cue (IR0) and flag both projections' GTE flags together. Returns the last
+ * point's depth, a quarter (SZ3 / 4): not the four's average, which the
+ * name of its result in the library's documentation suggests, and no AVSZ4,
+ * so OTZ and MAC0 keep what they held. */
+long pcrt_RotTransPers4(SVector* v0, SVector* v1, SVector* v2, SVector* v3, long* sxy0, long* sxy1, long* sxy2,
+                        long* sxy3, long* p, long* flag)
+{
+    uint32_t first_flags;
+
+    pcgte_write_data(PCGTE_VXY0, *(const uint32_t*)&v0->vx);
+    pcgte_write_data(PCGTE_VZ0, *(const uint32_t*)&v0->vz);
+    pcgte_write_data(PCGTE_VXY1, *(const uint32_t*)&v1->vx);
+    pcgte_write_data(PCGTE_VZ1, *(const uint32_t*)&v1->vz);
+    pcgte_write_data(PCGTE_VXY2, *(const uint32_t*)&v2->vx);
+    pcgte_write_data(PCGTE_VZ2, *(const uint32_t*)&v2->vz);
+    pcgte_op(0x4A280030u); /* RTPT */
+    pcgte_store_sxy(PCGTE_SXY0, (uint32_t*)sxy0);
+    pcgte_store_sxy(PCGTE_SXY1, (uint32_t*)sxy1);
+    pcgte_store_sxy(PCGTE_SXY2, (uint32_t*)sxy2);
+    first_flags = pcgte_read_ctrl(PCGTE_FLAG);
+    load_v0(v3);
+    pcgte_op(0x4A180001u); /* RTPS */
+    pcgte_store_sxy(PCGTE_SXY2, (uint32_t*)sxy3);
+    *p = (long)pcgte_read_data(PCGTE_IR0);
+    *flag = (long)(first_flags | pcgte_read_ctrl(PCGTE_FLAG));
+    return (long)(pcgte_read_data(PCGTE_SZ3) >> 2);
+}
+
 /* ---- start-up ------------------------------------------------------------ */
 
 /* The geometry defaults: screen offset 0, projection distance 1000, depth
