@@ -107,6 +107,13 @@ scale = 4
 # infinite_hp = false
 # Every hit of the player's kills.
 # one_hit_kill = false
+# The player's MP never goes down: Parasite Energy costs none, and enemies
+# that drain MP take none.
+# infinite_mp = false
+# What a won battle's EXP and BP are multiplied by (1 to 100). The game
+# still caps both totals at 999999.
+# exp_multiplier = 1
+# bp_multiplier = 1
 
 [debug]
 # Record each session's controller input into recordings/ in the data

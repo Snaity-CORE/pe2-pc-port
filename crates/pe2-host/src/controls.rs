@@ -155,6 +155,34 @@ pub extern "C" fn pc_cheat_one_hit_kill() -> i32 {
     i32::from(*ON.get_or_init(|| crate::config::get().cheats.one_hit_kill.unwrap_or(false)))
 }
 
+/// Cheats ([cheats] infinite_mp): the player's MP never goes down, neither
+/// by Parasite Energy nor by enemies draining it (attachment_stats.c,
+/// item_panels.c and hud_sprites.c in the fork).
+#[unsafe(no_mangle)]
+pub extern "C" fn pc_cheat_infinite_mp() -> i32 {
+    static ON: std::sync::OnceLock<bool> = std::sync::OnceLock::new();
+    i32::from(*ON.get_or_init(|| crate::config::get().cheats.infinite_mp.unwrap_or(false)))
+}
+
+/// The most a battle's rewards may be multiplied by.
+const MULTIPLIER_MAX: u32 = 100;
+
+/// Cheats ([cheats] exp_multiplier): what a won battle's EXP is multiplied
+/// by, 1 to 100 (ending.c in the fork).
+#[unsafe(no_mangle)]
+pub extern "C" fn pc_cheat_exp_multiplier() -> i32 {
+    static N: std::sync::OnceLock<u32> = std::sync::OnceLock::new();
+    *N.get_or_init(|| crate::config::get().cheats.exp_multiplier.unwrap_or(1).clamp(1, MULTIPLIER_MAX)) as i32
+}
+
+/// Cheats ([cheats] bp_multiplier): what a won battle's BP is multiplied by,
+/// 1 to 100 (ending.c in the fork).
+#[unsafe(no_mangle)]
+pub extern "C" fn pc_cheat_bp_multiplier() -> i32 {
+    static N: std::sync::OnceLock<u32> = std::sync::OnceLock::new();
+    *N.get_or_init(|| crate::config::get().cheats.bp_multiplier.unwrap_or(1).clamp(1, MULTIPLIER_MAX)) as i32
+}
+
 /// PE2_TRACE=move: the stick (or d-pad) direction, the yaw it asks for,
 /// the player's yaw and position, each tick of modern movement.
 #[unsafe(no_mangle)]

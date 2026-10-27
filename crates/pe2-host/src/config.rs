@@ -39,6 +39,12 @@ pub struct Cheats {
     pub infinite_hp: Option<bool>,
     /// Every hit of the player's kills (default off).
     pub one_hit_kill: Option<bool>,
+    /// The player's MP never goes down (default off).
+    pub infinite_mp: Option<bool>,
+    /// What a won battle's EXP is multiplied by (default 1).
+    pub exp_multiplier: Option<u32>,
+    /// What a won battle's BP is multiplied by (default 1).
+    pub bp_multiplier: Option<u32>,
 }
 
 #[derive(Debug, Default, Deserialize)]
