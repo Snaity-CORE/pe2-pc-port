@@ -401,6 +401,17 @@ fn bytemuck_u32(words: &[u32]) -> &[u8] {
 mod tests {
     use super::viewport;
 
+    /// The shader parses and validates (the card only reports otherwise
+    /// when the game starts).
+    #[test]
+    fn shader_is_valid() {
+        use wgpu::naga::valid::{Capabilities, ValidationFlags, Validator};
+        let module = wgpu::naga::front::wgsl::parse_str(super::SHADER).unwrap_or_else(|e| panic!("{e}"));
+        Validator::new(ValidationFlags::all(), Capabilities::all())
+            .validate(&module)
+            .unwrap_or_else(|e| panic!("{e:?}"));
+    }
+
     /// Filling keeps 4:3 and centres the picture.
     #[test]
     fn fills_at_four_thirds() {

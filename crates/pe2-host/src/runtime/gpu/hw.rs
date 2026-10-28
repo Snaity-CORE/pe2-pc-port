@@ -167,12 +167,7 @@ fn fs(o: Out) -> @location(0) vec4<f32> {
             // The texel the game reads (the polygon's clamp, the texture
             // window), and where in it this pixel is: the finer texels of a
             // larger replacement keep the game's texel coordinates.
-            var at = vec2<i32>(floor(o.uv));
-            if (((o.mode >> 29u) & 1u) != 0u) {
-                let lo = vec2<i32>(i32(o.limits & 0xFFu), i32((o.limits >> 8u) & 0xFFu));
-                let hi = vec2<i32>(i32((o.limits >> 16u) & 0xFFu), i32((o.limits >> 24u) & 0xFFu));
-                at = clamp(at, lo, hi);
-            }
+            let at = texel_at(o.uv, o.mode, o.limits);
             let within = clamp(o.uv - floor(o.uv), vec2<f32>(0.0), vec2<f32>(0.999));
             let uv = vec2<f32>(windowed(o.window, at)) + within;
             let column = min(u32(uv.x / width), 3u);
@@ -205,12 +200,7 @@ fn fs(o: Out) -> @location(0) vec4<f32> {
                 discard;
             }
             tc = floor(s.rgb * 255.0);
-            var at = vec2<i32>(floor(o.uv));
-            if (((o.mode >> 29u) & 1u) != 0u) {
-                let lo = vec2<i32>(i32(o.limits & 0xFFu), i32((o.limits >> 8u) & 0xFFu));
-                let hi = vec2<i32>(i32((o.limits >> 16u) & 0xFFu), i32((o.limits >> 24u) & 0xFFu));
-                at = clamp(at, lo, hi);
-            }
+            let at = texel_at(o.uv, o.mode, o.limits);
             t = texel(o.mode, o.clut, o.window, at.x, at.y);
         } else if (((o.mode >> 28u) & 1u) != 0u && !from_layer) {
             // Bilinear: the four texels around the sample point, kept inside
@@ -218,8 +208,8 @@ fn fs(o: Out) -> @location(0) vec4<f32> {
             // in the texture page do not bleed in). Transparent texels
             // (value 0) weigh nothing: colour is premultiplied by coverage,
             // and a pixel less than half covered is not drawn.
-            let lo = vec2<i32>(i32(o.limits & 0xFFu), i32((o.limits >> 8u) & 0xFFu));
-            let hi = vec2<i32>(i32((o.limits >> 16u) & 0xFFu), i32((o.limits >> 24u) & 0xFFu));
+            let lo = limits_lo(o.limits);
+            let hi = limits_hi(o.limits);
             let p = o.uv - vec2<f32>(0.5, 0.5);
             let base = vec2<i32>(floor(p));
             let f = p - floor(p);
@@ -247,12 +237,7 @@ fn fs(o: Out) -> @location(0) vec4<f32> {
             }
             tc = sum / cover;
         } else {
-            var at = vec2<i32>(floor(o.uv));
-            if (((o.mode >> 29u) & 1u) != 0u) {
-                let lo = vec2<i32>(i32(o.limits & 0xFFu), i32((o.limits >> 8u) & 0xFFu));
-                let hi = vec2<i32>(i32((o.limits >> 16u) & 0xFFu), i32((o.limits >> 24u) & 0xFFu));
-                at = clamp(at, lo, hi);
-            }
+            let at = texel_at(o.uv, o.mode, o.limits);
             if (from_layer) {
                 // The card's pixel under this point of the texel: finer
                 // than the console's.
@@ -290,6 +275,26 @@ fn fs(o: Out) -> @location(0) vec4<f32> {
 fn word15(s: vec4<f32>) -> u32 {
     let c = vec3<u32>(s.rgb * 255.0 + 0.5) >> vec3<u32>(3u);
     return c.r | (c.g << 5u) | (c.b << 10u) | select(0u, 0x8000u, s.a > 0.5);
+}
+
+// The polygon's texel rectangle (limits: u, v minimum and maximum, a byte
+// each), its lower and upper corners.
+fn limits_lo(limits: u32) -> vec2<i32> {
+    return vec2<i32>(i32(limits & 0xFFu), i32((limits >> 8u) & 0xFFu));
+}
+
+fn limits_hi(limits: u32) -> vec2<i32> {
+    return vec2<i32>(i32((limits >> 16u) & 0xFFu), i32((limits >> 24u) & 0xFFu));
+}
+
+// The texel at `uv`, kept inside the polygon's rectangle when mode bit 29
+// asks for it.
+fn texel_at(uv: vec2<f32>, mode: u32, limits: u32) -> vec2<i32> {
+    let at = vec2<i32>(floor(uv));
+    if (((mode >> 29u) & 1u) != 0u) {
+        return clamp(at, limits_lo(limits), limits_hi(limits));
+    }
+    return at;
 }
 
 // Texel coordinates (u, v) through the texture window.
@@ -1139,12 +1144,7 @@ impl Hw {
             pass.draw(0..3, 0..1);
         }
         encoder.copy_texture_to_buffer(
-            wgpu::TexelCopyTextureInfo {
-                texture,
-                mip_level: 0,
-                origin: wgpu::Origin3d { x, y, z: 0 },
-                aspect: wgpu::TextureAspect::All,
-            },
+            origin_at(texture, x, y),
             wgpu::TexelCopyBufferInfo {
                 buffer: &buffer,
                 layout: wgpu::TexelCopyBufferLayout { offset: 0, bytes_per_row: Some(row), rows_per_image: Some(h) },
@@ -1701,12 +1701,7 @@ impl Hw {
         let mut encoder =
             self.gfx.device.create_command_encoder(&wgpu::CommandEncoderDescriptor { label: Some("hw keep") });
         encoder.copy_texture_to_texture(
-            wgpu::TexelCopyTextureInfo {
-                texture: &self.target,
-                mip_level: 0,
-                origin: wgpu::Origin3d { x: px, y: py, z: 0 },
-                aspect: wgpu::TextureAspect::All,
-            },
+            origin_at(&self.target, px, py),
             texture.as_image_copy(),
             wgpu::Extent3d { width: pw, height: ph, depth_or_array_layers: 1 },
         );
@@ -1967,15 +1962,9 @@ impl Hw {
                     _ => true,
                 };
                 let from = if on_screen { into } else { &self.target };
-                let at = |texture| wgpu::TexelCopyTextureInfo {
-                    texture,
-                    mip_level: 0,
-                    origin: wgpu::Origin3d { x, y, z: 0 },
-                    aspect: wgpu::TextureAspect::All,
-                };
                 encoder.copy_texture_to_texture(
-                    at(from),
-                    at(&self.scratch),
+                    origin_at(from, x, y),
+                    origin_at(&self.scratch, x, y),
                     wgpu::Extent3d { width: w, height: h, depth_or_array_layers: 1 },
                 );
                 i += 1;
@@ -1985,12 +1974,7 @@ impl Hw {
                 if let Some((picture, _)) = self.pictures.get(&hash) {
                     encoder.copy_texture_to_texture(
                         picture.as_image_copy(),
-                        wgpu::TexelCopyTextureInfo {
-                            texture: &self.scratch,
-                            mip_level: 0,
-                            origin: wgpu::Origin3d { x, y, z: 0 },
-                            aspect: wgpu::TextureAspect::All,
-                        },
+                        origin_at(&self.scratch, x, y),
                         picture.size(),
                     );
                 }
@@ -1999,16 +1983,7 @@ impl Hw {
             }
             if let Op::Picture { hash, x, y } = ops[i] {
                 if let Some((picture, _)) = self.pictures.get(&hash) {
-                    encoder.copy_texture_to_texture(
-                        picture.as_image_copy(),
-                        wgpu::TexelCopyTextureInfo {
-                            texture: into,
-                            mip_level: 0,
-                            origin: wgpu::Origin3d { x, y, z: 0 },
-                            aspect: wgpu::TextureAspect::All,
-                        },
-                        picture.size(),
-                    );
+                    encoder.copy_texture_to_texture(picture.as_image_copy(), origin_at(into, x, y), picture.size());
                 }
                 i += 1;
                 continue;
@@ -2085,20 +2060,14 @@ impl Hw {
     /// Copies a region of one layer-sized texture to the same place in
     /// another (clipped to the layer).
     fn copy_region(&self, from: &wgpu::Texture, to: &wgpu::Texture, (x, y, w, h): interp::Region) {
-        let at = |texture| wgpu::TexelCopyTextureInfo {
-            texture,
-            mip_level: 0,
-            origin: wgpu::Origin3d { x, y, z: 0 },
-            aspect: wgpu::TextureAspect::All,
-        };
         let (w, h) = (w.min(self.width.saturating_sub(x)), h.min(self.height.saturating_sub(y)));
         if w == 0 || h == 0 {
             return;
         }
         let mut encoder = self.gfx.device.create_command_encoder(&Default::default());
         encoder.copy_texture_to_texture(
-            at(from),
-            at(to),
+            origin_at(from, x, y),
+            origin_at(to, x, y),
             wgpu::Extent3d { width: w, height: h, depth_or_array_layers: 1 },
         );
         self.gfx.queue.submit([encoder.finish()]);
@@ -2268,15 +2237,20 @@ fn ways_back(
     ways.into_iter().map(|w| if let Way::Known(d) = w { d } else { [0.0; 2] }).collect()
 }
 
+/// Where a copy reads or writes `texture`: from (x, y).
+fn origin_at(texture: &wgpu::Texture, x: u32, y: u32) -> wgpu::TexelCopyTextureInfo<'_> {
+    wgpu::TexelCopyTextureInfo {
+        texture,
+        mip_level: 0,
+        origin: wgpu::Origin3d { x, y, z: 0 },
+        aspect: wgpu::TextureAspect::All,
+    }
+}
+
 /// Sends native VRAM halfwords to a VRAM-sized texture.
 fn write_vram(gfx: &Gfx, texture: &wgpu::Texture, u: &VramUpdate) {
     gfx.queue.write_texture(
-        wgpu::TexelCopyTextureInfo {
-            texture,
-            mip_level: 0,
-            origin: wgpu::Origin3d { x: u.x, y: u.y, z: 0 },
-            aspect: wgpu::TextureAspect::All,
-        },
+        origin_at(texture, u.x, u.y),
         bytes(&u.rows),
         wgpu::TexelCopyBufferLayout { offset: 0, bytes_per_row: Some(u.w * 2), rows_per_image: Some(u.h) },
         wgpu::Extent3d { width: u.w, height: u.h, depth_or_array_layers: 1 },
@@ -2296,6 +2270,36 @@ fn bytes<T: Copy>(v: &[T]) -> &[u8] {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    /// Past its size, a set of areas merges them (it may claim more), but
+    /// the exact set (what the scratch texture holds) never claims an area
+    /// that was not added.
+    #[test]
+    fn exact_areas_never_claim_more() {
+        let (mut coarse, mut exact) = (Areas::default(), Areas::default());
+        let strip = |i: i32| Area::new(448 + 4 * i, 256 + 2 * i, 2, 2);
+        for i in 0..40 {
+            coarse.add(strip(i));
+            exact.add_exact(strip(i));
+        }
+        let between = Area::new(450, 256, 2, 2);
+        assert!(coarse.covers(between));
+        assert!(!exact.covers(between));
+        assert!(exact.covers(strip(39)));
+    }
+
+    /// The shaders parse and validate (the card only reports otherwise
+    /// when the game starts).
+    #[test]
+    fn shaders_are_valid() {
+        use wgpu::naga::valid::{Capabilities, ValidationFlags, Validator};
+        for (name, source) in [("SHADER", SHADER), ("DOWN_SHADER", DOWN_SHADER)] {
+            let module = wgpu::naga::front::wgsl::parse_str(source).unwrap_or_else(|e| panic!("{name}: {e}"));
+            Validator::new(ValidationFlags::all(), Capabilities::all())
+                .validate(&module)
+                .unwrap_or_else(|e| panic!("{name}: {e:?}"));
+        }
+    }
 
     /// A vertex the last frame had goes back to where it was; a new one goes
     /// back with the vertices of its triangles; a cut and an unkeyed vertex
