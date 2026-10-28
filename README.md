@@ -63,9 +63,10 @@ guesswork, and fixes went in only after they held up in play.
 
 You need Windows 10 or 11 and a graphics card with Vulkan or OpenGL 3.3.
 
-Build it as [docs/BUILDING.md](docs/BUILDING.md) explains, or take the
-[last build of `main`](https://github.com/Snaity-CORE/pe2-pc-port/releases/download/nightly/pe2-pc-port-nightly-windows-x86.zip)
-(the nightly pre-release: untested beyond CI), then start `pe2.exe`. The
+Take the [latest release](https://github.com/Snaity-CORE/pe2-pc-port/releases/latest),
+or the [last build of `main`](https://github.com/Snaity-CORE/pe2-pc-port/releases/download/nightly/pe2-pc-port-nightly-windows-x86.zip)
+(the nightly pre-release: untested beyond CI), or build it as
+[docs/BUILDING.md](docs/BUILDING.md) explains; then start `pe2.exe`. The
 launcher's Setup asks for your disc images, memory cards and a quality
 level; after that, Play starts the game. Settings and Controls change
 everything later.
@@ -117,6 +118,9 @@ runs `tools/check_no_game_data.py` and blocks them.
 - **Port**: Snaity (Adriano Teodoro), developed with AI assistance (Claude
   Code, by Anthropic) under Snaity's direction and review (see
   [How it was made](#how-it-was-made)).
+- **Launcher art** (the background, the PE2PC logo and the icon): made
+  with AI image generation under Snaity's direction; CC0 1.0 as the rest
+  of the project.
 - **Decompilation**: [GabeRealB](https://github.com/GabeRealB/parasite-eve-2-decomp)
   and its contributors. The port stands on their work.
 - **Parasite Eve II**: Square, and everyone who made the original game.
