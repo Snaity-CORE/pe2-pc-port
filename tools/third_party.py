@@ -137,7 +137,7 @@ def main() -> int:
         parts.append("-" * 72 + "\n\n" + "\n".join(users) + "\n\n" + body + "\n")
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text("\n".join(parts), encoding="utf-8", newline="\n")
-    print(f"third_party: {len(crates)} crates, {len(texts)} license texts in {out.relative_to(ROOT)}")
+    print(f"third_party: {len(crates)} crates, {len(texts)} license texts in {out.relative_to(ROOT) if out.is_relative_to(ROOT) else out}")
     return 0
 
 

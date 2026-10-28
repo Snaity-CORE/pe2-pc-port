@@ -38,6 +38,8 @@ It plays as the console does and adds what a PC can, all optional:
   the dialogue with translations; cheats and memory patches; the game's
   pictures, textures, music, movies, files and dialogue extracted from your
   discs with `pe2 --extract` to make them (see [docs/MODDING.md](docs/MODDING.md)).
+- **Cheats** (in `pe2.toml`, `[cheats]`): infinite HP or MP, one-hit kills,
+  every hit critical, and EXP and BP multipliers.
 - **Comfort**: a launcher worked by mouse, keyboard or controller (English or
   Portuguese), remappable keys and controller buttons, pause, screenshots,
   borderless full screen.
@@ -58,6 +60,8 @@ commit. Bugs were tracked down by measuring the running game, not by
 guesswork, and fixes went in only after they held up in play.
 
 ## Playing
+
+You need Windows 10 or 11 and a graphics card with Vulkan or OpenGL 3.3.
 
 Build it as [docs/BUILDING.md](docs/BUILDING.md) explains, or take the
 [last build of `main`](https://github.com/Snaity-CORE/pe2-pc-port/releases/download/nightly/pe2-pc-port-nightly-windows-x86.zip)
@@ -133,7 +137,7 @@ runs `tools/check_no_game_data.py` and blocks them.
   [egui/eframe](https://github.com/emilk/egui), [gilrs](https://gitlab.com/gilrs-project/gilrs),
   [cpal](https://github.com/RustAudio/cpal), [chd-rs](https://github.com/SnowflakePowered/chd-rs),
   [iced-x86](https://github.com/icedland/iced), [rfd](https://github.com/PolyMeilex/rfd),
-  [softbuffer](https://github.com/rust-windowing/softbuffer), png, image-webp, toml, toml_edit, serde,
+  [ab_glyph](https://github.com/alexheretic/ab-glyph) (the fonts), png, image-webp, toml, toml_edit, serde,
   pollster, windows-sys, lewton, claxon and hound (mods' music),
   [openh264](https://github.com/ralfbiedert/openh264-rs) with Cisco's
   [OpenH264](https://github.com/cisco/openh264) (BSD-2-Clause, © Cisco Systems),
