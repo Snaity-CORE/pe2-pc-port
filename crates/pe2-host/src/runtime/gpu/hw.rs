@@ -581,6 +581,15 @@ impl Areas {
         }
     }
 
+    /// Adds `a` to a set that must not claim more than was added (what the
+    /// scratch texture holds): when full, it forgets the others instead.
+    fn add_exact(&mut self, a: Area) {
+        if self.0.len() == Self::MAX {
+            self.0.clear();
+        }
+        self.add(a);
+    }
+
     fn hits(&self, a: Area) -> bool {
         self.0.iter().any(|b| b.hits(a))
     }
@@ -1332,7 +1341,7 @@ impl Hw {
             if x1 > x0 && y1 > y0 {
                 self.ops.push(Op::ToScratch { x: x0 as u32, y: y0 as u32, w: (x1 - x0) as u32, h: (y1 - y0) as u32 });
             }
-            self.snapped.add(read);
+            self.snapped.add_exact(read);
         }
         true
     }

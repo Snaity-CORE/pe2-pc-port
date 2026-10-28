@@ -820,7 +820,8 @@ fn save_vram_png(vram: &Vram, path: &str) {
 }
 
 /// PE2_GPUDUMP=<seconds>: dumps the first command lists drawn after that
-/// time (DUMPED_LISTS of them: a frame can have more than one).
+/// time (DUMPED_LISTS of them: a frame can have more than one), as F12 does
+/// (each list overwrites the files of the one before).
 fn dump_due() -> bool {
     use std::sync::OnceLock;
     use std::sync::atomic::{AtomicU32, Ordering};
@@ -844,7 +845,7 @@ pub extern "C" fn pcrt_DrawOTag(p: *const u32) {
     with_gpu(|g| {
         let requested = DUMP_REQUEST.swap(false, std::sync::atomic::Ordering::SeqCst);
         g.dump = requested || dump_due();
-        if requested {
+        if g.dump {
             g.dump_out = std::fs::File::create("pe2-gpudump.txt").ok().map(std::io::BufWriter::new);
             g.hw.sync(&mut g.vram, 0, 0, VRAM_WIDTH as i32, VRAM_HEIGHT as i32);
             save_vram_png(&g.vram, "pe2-vram-before.png");
@@ -876,7 +877,7 @@ pub extern "C" fn pcrt_DrawOTag(p: *const u32) {
         if g.dump_out.take().is_some() {
             g.hw.sync(&mut g.vram, 0, 0, VRAM_WIDTH as i32, VRAM_HEIGHT as i32);
             save_vram_png(&g.vram, "pe2-vram.png");
-            eprintln!("pe2: F12: wrote pe2-gpudump.txt, pe2-vram-before.png and pe2-vram.png");
+            eprintln!("pe2: gpu dump: wrote pe2-gpudump.txt, pe2-vram-before.png and pe2-vram.png");
         }
         g.dump = false;
         if trace("gpu") {
