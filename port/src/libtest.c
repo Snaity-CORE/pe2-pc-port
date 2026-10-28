@@ -225,39 +225,98 @@ static void s_gsclearot(uint32_t a[10])
     a[0] = (uint32_t)rnd() & 0xFFFF; a[1] = (uint32_t)rnd() & 0xFFFF; a[2] = A0;
 }
 
-/* RotTransPers4: four vectors in A0, their screen positions, depth cue and
- * flags written to A1. Three times in four, a scene as games set one up
+/* Projections. Three times in four, a scene as games set one up
  * (rotation-sized matrix, the points ahead of the camera, a usual
- * projection), so the four depths differ; otherwise the random registers,
- * which mostly saturate. */
-static void s_rtp4(uint32_t a[10])
+ * projection), so results vary; otherwise the random registers, which
+ * mostly saturate. Returns whether it set a scene. */
+static int rnd_scene(void)
 {
-    int scene = rnd() % 4 != 0;
-    if (scene) {
-        for (int r = 0; r < 5; r++) {
-            uint32_t lo = (uint32_t)(rnd() % 8193) - 4096, hi = (uint32_t)(rnd() % 8193) - 4096;
-            pcgte_write_ctrl(PCGTE_RT0 + r, (lo & 0xFFFF) | (hi << 16));
-        }
-        pcgte_write_ctrl(PCGTE_TRX, (uint32_t)(rnd_small(8001) - 4000));
-        pcgte_write_ctrl(PCGTE_TRY, (uint32_t)(rnd_small(8001) - 4000));
-        pcgte_write_ctrl(PCGTE_TRZ, (uint32_t)(rnd_small(30000) + 200));
-        pcgte_write_ctrl(PCGTE_OFX, (uint32_t)rnd_small(321) << 16);
-        pcgte_write_ctrl(PCGTE_OFY, (uint32_t)rnd_small(241) << 16);
-        pcgte_write_ctrl(PCGTE_H, (uint32_t)(rnd_small(800) + 100));
+    if (rnd() % 4 == 0) {
+        return 0;
     }
-    for (int i = 0; i < 4; i++) {
-        rnd_svector(A0 + 8 * i, 0);
+    for (int r = 0; r < 5; r++) {
+        uint32_t lo = (uint32_t)(rnd() % 8193) - 4096, hi = (uint32_t)(rnd() % 8193) - 4096;
+        pcgte_write_ctrl(PCGTE_RT0 + r, (lo & 0xFFFF) | (hi << 16));
+    }
+    pcgte_write_ctrl(PCGTE_TRX, (uint32_t)(rnd_small(8001) - 4000));
+    pcgte_write_ctrl(PCGTE_TRY, (uint32_t)(rnd_small(8001) - 4000));
+    pcgte_write_ctrl(PCGTE_TRZ, (uint32_t)(rnd_small(30000) + 200));
+    pcgte_write_ctrl(PCGTE_OFX, (uint32_t)rnd_small(321) << 16);
+    pcgte_write_ctrl(PCGTE_OFY, (uint32_t)rnd_small(241) << 16);
+    pcgte_write_ctrl(PCGTE_H, (uint32_t)(rnd_small(800) + 100));
+    return 1;
+}
+
+/* n vectors at `at`, scene-sized when `scene`. */
+static void rnd_points(uint32_t at, int n, int scene)
+{
+    for (int i = 0; i < n; i++) {
+        rnd_svector(at + 8 * i, 0);
         if (scene) {
             for (int c = 0; c < 3; c++) {
-                w16(A0 + 8 * i + 2 * c, rnd_small(6001) - 3000);
+                w16(at + 8 * i + 2 * c, rnd_small(6001) - 3000);
             }
         }
+    }
+}
+
+/* RotTransPers, RotTransPers3, RotTransPers4: n vectors in A0, their screen
+ * positions, depth cue and flags written to A1. */
+static void s_rtp(uint32_t a[10], int n)
+{
+    rnd_points(A0, n, rnd_scene());
+    rnd_words(A1, 8);
+    for (int i = 0; i < n; i++) {
         a[i] = A0 + 8 * i;
     }
-    rnd_words(A1, 8);
-    for (int i = 0; i < 6; i++) {
-        a[4 + i] = A1 + 4 * i;
+    for (int i = 0; i < n + 2; i++) {
+        a[n + i] = A1 + 4 * i;
     }
+}
+static void s_rtp1(uint32_t a[10]) { s_rtp(a, 1); }
+static void s_rtp3(uint32_t a[10]) { s_rtp(a, 3); }
+static void s_rtp4(uint32_t a[10]) { s_rtp(a, 4); }
+
+/* RotTransSV: a vector in A0, the result and flags to A1. */
+static void s_rtsv(uint32_t a[10])
+{
+    rnd_points(A0, 1, rnd_scene());
+    rnd_words(A1, 4);
+    a[0] = A0; a[1] = A1; a[2] = A1 + 8;
+}
+
+/* A weight: mostly within 0..4096, sometimes any. */
+static uint32_t rnd_weight(void) { return rnd() % 4 ? (uint32_t)rnd_small(4097) : rnd(); }
+
+/* LoadAverageCol: two colours in A0, the average to A1. */
+static void s_avgcol(uint32_t a[10])
+{
+    rnd_words(A0, 2); rnd_words(A1, 1);
+    a[0] = A0; a[1] = A0 + 4; a[2] = rnd_weight(); a[3] = rnd_weight(); a[4] = A1;
+}
+
+/* gteMIMefunc: 1 to 16 vectors in A0 moved by deltas in A1 (the original
+ * counts n down after each vector: 0 would run on past the RAM). */
+static void s_mime(uint32_t a[10])
+{
+    rnd_points(A0, 16, rnd() % 2); rnd_points(A1, 16, rnd() % 2);
+    a[0] = A0; a[1] = A1; a[2] = (uint32_t)(1 + rnd_small(16)); a[3] = rnd_weight();
+}
+
+/* SetDrawArea: a packet in A0, a rectangle in A1, mostly on screen; the
+ * VRAM size in GEnv mostly the console's (1024 x 512), sometimes any. */
+extern const unsigned pc_sym_GEnv;
+static void s_drawarea(uint32_t a[10])
+{
+    w16(pc_sym_GEnv + 4, rnd() % 4 ? 1024 : rnd_small(2048));
+    w16(pc_sym_GEnv + 6, rnd() % 4 ? 512 : rnd_small(2048));
+    rnd_words(A0, 4); rnd_words(A1, 2);
+    if (rnd() % 4) {
+        for (int i = 0; i < 4; i++) {
+            w16(A1 + 2 * i, rnd_small(1200) - 50);
+        }
+    }
+    a[0] = A0; a[1] = A1;
 }
 
 #define LIB_CASES(X)                                \
@@ -292,7 +351,13 @@ static void s_rtp4(uint32_t a[10])
     X(VectorNormal, s_normal_v_v)                          \
     X(VectorNormalS, s_normal_v_sv)                        \
     X(VectorNormalSS, s_normal_sv_sv)              \
+    X(RotTransPers, s_rtp1)                         \
+    X(RotTransPers3, s_rtp3)                        \
     X(RotTransPers4, s_rtp4)                        \
+    X(RotTransSV, s_rtsv)                           \
+    X(LoadAverageCol, s_avgcol)                     \
+    X(gteMIMefunc, s_mime)                          \
+    X(SetDrawArea, s_drawarea)                      \
     X(AddPrim, s_ot_p)                              \
     X(MargePrim, s_p_p)                             \
     X(SetSprt, s_p)                                 \
@@ -327,7 +392,8 @@ static int is_void(const char* name)
                                         "MatrixNormal_1", "MatrixNormal_2", "AddPrim", "SetSprt",
                                         "SetTile", "SetPolyFT4", "SetSemiTrans", "SetShadeTex", "SetDrawTPage",
                                         "SetDrawStp", "SetDrawOffset", "SetDrawMove", "GsClearOt",
-                                        "InitGeom", "DecDCTin"};
+                                        "InitGeom", "DecDCTin", "RotTransSV", "LoadAverageCol", "gteMIMefunc",
+                                        "SetDrawArea"};
     for (size_t i = 0; i < sizeof names / sizeof names[0]; i++) {
         if (strcmp(name, names[i]) == 0) {
             return 1;

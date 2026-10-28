@@ -136,6 +136,28 @@ void pcrt_SetDrawOffset(uint32_t* p, uint16_t* ofs)
     p[2] = 0;
 }
 
+/* The drawing area's corners (E3, E4), kept inside the VRAM whose size
+ * ResetGraph left in GEnv (+4 width, +6 height; runtime/gpu init_genv),
+ * ten bits each. */
+extern const uint32_t pc_sym_GEnv;
+
+static int clamp_to(int v, int size)
+{
+    return v < 0 ? 0 : v >= size ? size - 1 : v;
+}
+
+void pcrt_SetDrawArea(uint32_t* p, Rect* r)
+{
+    const uint8_t* genv = (const uint8_t*)(uintptr_t)pc_sym_GEnv;
+    int w = *(const int16_t*)(genv + 4), h = *(const int16_t*)(genv + 6);
+    int x0 = clamp_to(r->x, w), y0 = clamp_to(r->y, h);
+    /* The far corner is worked out in halfwords: it wraps past 32767. */
+    int x1 = clamp_to((int16_t)(r->x + r->w - 1), w), y1 = clamp_to((int16_t)(r->y + r->h - 1), h);
+    set_len(p, 2);
+    p[1] = 0xE3000000u | (((uint32_t)y0 & 0x3FF) << 10) | ((uint32_t)x0 & 0x3FF);
+    p[2] = 0xE4000000u | (((uint32_t)y1 & 0x3FF) << 10) | ((uint32_t)x1 & 0x3FF);
+}
+
 /* A texture-cache flush, then the VRAM-to-VRAM copy. */
 void pcrt_SetDrawMove(uint32_t* p, Rect* rect, int x, int y)
 {

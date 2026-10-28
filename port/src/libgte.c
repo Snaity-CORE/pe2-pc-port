@@ -723,6 +723,87 @@ void pcrt_MatrixNormal(Matrix* m, Matrix* n)
 
 /* ---- perspective transformation ------------------------------------------ */
 
+/* One point through the rotation, translation and perspective (RTPS): its
+ * screen position to sxy (with its exact one, pgxp.c), its depth cue (IR0)
+ * to p and the GTE flags to flag. Returns its depth, a quarter (SZ3 / 4). */
+long pcrt_RotTransPers(SVector* v0, long* sxy, long* p, long* flag)
+{
+    load_v0(v0);
+    pcgte_op(0x4A180001u); /* RTPS */
+    pcgte_store_sxy(PCGTE_SXY2, (uint32_t*)sxy);
+    *p = (long)pcgte_read_data(PCGTE_IR0);
+    *flag = (long)pcgte_read_ctrl(PCGTE_FLAG);
+    return (long)(pcgte_read_data(PCGTE_SZ3) >> 2);
+}
+
+/* Three points at once (RTPT), as RotTransPers: the last one's depth cue,
+ * the flags and depth. */
+long pcrt_RotTransPers3(SVector* v0, SVector* v1, SVector* v2, long* sxy0, long* sxy1, long* sxy2, long* p,
+                        long* flag)
+{
+    pcgte_write_data(PCGTE_VXY0, *(const uint32_t*)&v0->vx);
+    pcgte_write_data(PCGTE_VZ0, *(const uint32_t*)&v0->vz);
+    pcgte_write_data(PCGTE_VXY1, *(const uint32_t*)&v1->vx);
+    pcgte_write_data(PCGTE_VZ1, *(const uint32_t*)&v1->vz);
+    pcgte_write_data(PCGTE_VXY2, *(const uint32_t*)&v2->vx);
+    pcgte_write_data(PCGTE_VZ2, *(const uint32_t*)&v2->vz);
+    pcgte_op(0x4A280030u); /* RTPT */
+    pcgte_store_sxy(PCGTE_SXY0, (uint32_t*)sxy0);
+    pcgte_store_sxy(PCGTE_SXY1, (uint32_t*)sxy1);
+    pcgte_store_sxy(PCGTE_SXY2, (uint32_t*)sxy2);
+    *p = (long)pcgte_read_data(PCGTE_IR0);
+    *flag = (long)pcgte_read_ctrl(PCGTE_FLAG);
+    return (long)(pcgte_read_data(PCGTE_SZ3) >> 2);
+}
+
+/* v0 rotated and translated (MVMVA with RT and TR, by 4096) into v1, as
+ * halfwords (IR1-3, saturated to them; vz as a word, over the padding after
+ * it); the GTE flags to flag. */
+void pcrt_RotTransSV(SVector* v0, SVector* v1, long* flag)
+{
+    load_v0(v0);
+    mvmva(1, 0, V_V0, CV_TR, 0);
+    v1->vx = (int16_t)ir(0);
+    v1->vy = (int16_t)ir(1);
+    *(int32_t*)&v1->vz = ir(2);
+    *flag = (long)pcgte_read_ctrl(PCGTE_FLAG);
+}
+
+/* ---- interpolation ------------------------------------------------------- */
+
+/* v2's RGB = (v0 * p0 + v1 * p1) / 4096: the products summed in the GTE
+ * (GPF then GPL, unshifted), each MAC / 4096 kept to its low byte. v2's
+ * fourth byte is left as it is. */
+void pcrt_LoadAverageCol(uint8_t* v0, uint8_t* v1, long p0, long p1, uint8_t* v2)
+{
+    pcgte_write_data(PCGTE_IR0, (uint32_t)p0);
+    load_ir(v0[0], v0[1], v0[2]);
+    pcgte_op(0x4A00003Du); /* GPF, sf=0 */
+    pcgte_write_data(PCGTE_IR0, (uint32_t)p1);
+    load_ir(v1[0], v1[1], v1[2]);
+    pcgte_op(0x4A00003Eu); /* GPL, sf=0 */
+    for (int i = 0; i < 3; i++) {
+        v2[i] = (uint8_t)(mac(i) >> 12);
+    }
+}
+
+/* Morphing: each of the n vectors of otp (n >= 1) moves by its dfp delta
+ * times p / 4096, the products in the GTE (GPF, saturated to IR's halfwords),
+ * the sums on the CPU, wrapping to halfwords. */
+void pcrt_gteMIMefunc(SVector* otp, SVector* dfp, long n, long p)
+{
+    pcgte_write_data(PCGTE_IR0, (uint32_t)p);
+    for (long i = 0; i < n; i++) {
+        load_ir(dfp[i].vx, dfp[i].vy, dfp[i].vz);
+        pcgte_op(0x4A08003Du); /* GPF, sf=1 */
+        otp[i].vx = (int16_t)(otp[i].vx + ir(0));
+        otp[i].vy = (int16_t)(otp[i].vy + ir(1));
+        otp[i].vz = (int16_t)(otp[i].vz + ir(2));
+    }
+}
+
+/* ---- four points ---------------------------------------------------------- */
+
 /* Four points through the rotation, translation and perspective in the GTE:
  * v0..v2 together (RTPT), then v3 (RTPS). Their screen positions go to
  * sxy0..sxy3 (with their exact ones, pgxp.c); p gets the last point's depth
