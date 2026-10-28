@@ -128,6 +128,9 @@ pub struct General {
     pub language: Option<String>,
     /// Experimental features: mods (default off).
     pub experimental: Option<bool>,
+    /// Discord shows where the player is, with their EXP and BP (default
+    /// on; nothing happens without Discord running).
+    pub discord: Option<bool>,
 }
 
 #[derive(Debug, Default, Deserialize)]

@@ -18,6 +18,9 @@
 # confirm_exit = true
 # Experimental features: mods (see [mods] below).
 # experimental = false
+# Discord shows the game while it runs: where the player is, their EXP and
+# BP, and for how long (nothing happens without Discord running).
+# discord = true
 
 [discs]
 # Your own dumps of Parasite Eve II (USA), .cue or .chd. With these set,

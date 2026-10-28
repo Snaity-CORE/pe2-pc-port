@@ -42,7 +42,8 @@ It plays as the console does and adds what a PC can, all optional:
   every hit critical, and EXP and BP multipliers.
 - **Comfort**: a launcher worked by mouse, keyboard or controller (English or
   Portuguese), remappable keys and controller buttons, pause, screenshots,
-  borderless full screen.
+  borderless full screen, and Discord showing where you are in the game,
+  with your EXP and BP.
 
 Memory cards are raw `.mcd` images, so saves move both ways with DuckStation.
 
@@ -141,7 +142,8 @@ runs `tools/check_no_game_data.py` and blocks them.
   [egui/eframe](https://github.com/emilk/egui), [gilrs](https://gitlab.com/gilrs-project/gilrs),
   [cpal](https://github.com/RustAudio/cpal), [chd-rs](https://github.com/SnowflakePowered/chd-rs),
   [iced-x86](https://github.com/icedland/iced), [rfd](https://github.com/PolyMeilex/rfd),
-  [ab_glyph](https://github.com/alexheretic/ab-glyph) (the fonts), png, image-webp, toml, toml_edit, serde,
+  [ab_glyph](https://github.com/alexheretic/ab-glyph) (the fonts),
+  [discord-rich-presence](https://github.com/vionya/discord-rich-presence), png, image-webp, toml, toml_edit, serde,
   pollster, windows-sys, lewton, claxon and hound (mods' music),
   [openh264](https://github.com/ralfbiedert/openh264-rs) with Cisco's
   [OpenH264](https://github.com/cisco/openh264) (BSD-2-Clause, © Cisco Systems),

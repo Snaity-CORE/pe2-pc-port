@@ -330,6 +330,8 @@ struct Settings {
     confirm_exit: bool,
     /// [general] experimental: mods.
     experimental: bool,
+    /// [general] discord: the Discord presence.
+    discord: bool,
     discs: [String; 2],
     scale: i64,
     subpixel: bool,
@@ -373,6 +375,7 @@ impl Settings {
             language: Lang::from_code(get("general", "language").and_then(|v| v.as_str())),
             confirm_exit: flag("general", "confirm_exit", true),
             experimental: flag("general", "experimental", false),
+            discord: flag("general", "discord", true),
             discs: [text("discs", "disc1"), text("discs", "disc2")],
             scale: get("video", "scale").and_then(|v| v.as_integer()).unwrap_or(1).clamp(1, 8),
             subpixel: flag("video", "subpixel", true),
@@ -431,6 +434,7 @@ impl Settings {
         doc["general"]["language"] = value(self.language.code());
         doc["general"]["confirm_exit"] = value(self.confirm_exit);
         doc["general"]["experimental"] = value(self.experimental);
+        doc["general"]["discord"] = value(self.discord);
         let mut path = |table: &str, key: &str, text: &str| {
             if text.trim().is_empty() {
                 if let Some(t) = doc.get_mut(table).and_then(|t| t.as_table_like_mut()) {
@@ -1111,6 +1115,12 @@ impl Launcher {
                         ui,
                         &mut self.edit.confirm_exit,
                         lang.t("Ask before Esc quits", "Perguntar antes de Esc sair"),
+                        true,
+                    );
+                    self.focus.checkbox(
+                        ui,
+                        &mut self.edit.discord,
+                        lang.t("Show the game on Discord", "Mostrar o jogo no Discord"),
                         true,
                     );
                 });
@@ -1827,6 +1837,7 @@ mod tests {
         s.language = Lang::Pt;
         s.confirm_exit = false;
         s.experimental = true;
+        s.discord = false;
         s.hd_fonts = false;
         s.discs = [r"D:\Games\PE2 (Disc 1).chd".into(), String::new()];
         s.scale = 6;
@@ -1848,6 +1859,7 @@ mod tests {
         assert_eq!(config.general.language.as_deref(), Some("pt"));
         assert_eq!(config.general.confirm_exit, Some(false));
         assert_eq!(config.general.experimental, Some(true));
+        assert_eq!(config.general.discord, Some(false));
         assert_eq!(config.video.hd_fonts, Some(false));
         assert_eq!(config.discs.disc1.as_deref(), Some(Path::new(r"D:\Games\PE2 (Disc 1).chd")));
         assert_eq!(config.discs.disc2, None);

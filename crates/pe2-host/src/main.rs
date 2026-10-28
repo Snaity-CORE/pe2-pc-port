@@ -5,6 +5,7 @@
 mod config;
 mod controls;
 mod disc;
+mod discord;
 mod gamepad;
 mod gfx;
 mod icon;
@@ -300,6 +301,7 @@ fn main() -> ExitCode {
     runtime::start(discs);
     video::start();
     gamepad::start();
+    discord::start();
 
     // SAFETY: memory and thunks are set up by pc_boot_load.
     let ret = unsafe { ffi::pc_boot_run() };
