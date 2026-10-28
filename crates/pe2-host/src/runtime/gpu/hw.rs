@@ -1913,7 +1913,10 @@ impl Hw {
 
     /// Runs recorded operations on the card, drawing into `into`, with
     /// textures from the CPU's VRAM copy (`replay`: the one frames are drawn
-    /// again with). Copies read the layer itself.
+    /// again with). Copies read what is being drawn (`into`): a frame drawn
+    /// again reads the screen it draws as it goes (the water refracting it
+    /// row by row), not the finished frame. Outside that screen, which
+    /// `into` does not keep, they read the layer.
     fn run(&mut self, ops: &[Op], vertices: &[GpuVertex], uploads: &[u16], into: &wgpu::Texture, replay: bool) {
         let gfx = self.gfx;
         let device = &gfx.device;
@@ -1950,6 +1953,11 @@ impl Hw {
         let mut i = 0;
         while i < ops.len() {
             if let Op::ToScratch { x, y, w, h } = ops[i] {
+                let on_screen = match (&self.before, replay) {
+                    (Some((_, (rx, ry, rw, rh))), true) => x >= *rx && y >= *ry && x + w <= rx + rw && y + h <= ry + rh,
+                    _ => true,
+                };
+                let from = if on_screen { into } else { &self.target };
                 let at = |texture| wgpu::TexelCopyTextureInfo {
                     texture,
                     mip_level: 0,
@@ -1957,7 +1965,7 @@ impl Hw {
                     aspect: wgpu::TextureAspect::All,
                 };
                 encoder.copy_texture_to_texture(
-                    at(&self.target),
+                    at(from),
                     at(&self.scratch),
                     wgpu::Extent3d { width: w, height: h, depth_or_array_layers: 1 },
                 );
