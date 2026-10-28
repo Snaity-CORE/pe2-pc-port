@@ -127,6 +127,19 @@ fn vram_at(x: u32, y: u32) -> u32 {
 @fragment
 fn fs(o: Out) -> @location(0) vec4<f32> {
     let kind = (o.mode >> 26u) & 3u;
+    // A polygon's texel as the console takes it: the coordinate at the
+    // console pixel's integer position, rounded to the nearest (plus half a
+    // texel, then truncated), so a quad squeezing 7 texels into 8 pixels (a
+    // menu's separator) shows them where the console does. Its fixed point
+    // lands exactly on whole numbers where floating point can fall just
+    // short and take the texel before (icons and frames, a texel a pixel,
+    // shifted by one): a little more than half a texel. Above the console's
+    // resolution, the same about each pixel's centre: the interpolation runs
+    // at this pixel's top-left (vs), so step to half a console pixel before
+    // its centre.
+    let to_console = 0.5 - 0.5 * u.scale;
+    let console_uv = o.uv + (dpdx(o.uv) + dpdy(o.uv)) * to_console + vec2<f32>(0.5 + 1.0 / 512.0);
+    let uv = select(o.uv, console_uv, ((o.mode >> 29u) & 1u) != 0u);
     if (kind == 1u) {
         // Upload: clut = first halfword in `uploads`, window = row width,
         // limits = rows; bit 28: smoothed (bicubic) rather than blocks.
@@ -167,13 +180,13 @@ fn fs(o: Out) -> @location(0) vec4<f32> {
             // The texel the game reads (the polygon's clamp, the texture
             // window), and where in it this pixel is: the finer texels of a
             // larger replacement keep the game's texel coordinates.
-            let at = texel_at(o.uv, o.mode, o.limits);
-            let within = clamp(o.uv - floor(o.uv), vec2<f32>(0.0), vec2<f32>(0.999));
-            let uv = vec2<f32>(windowed(o.window, at)) + within;
-            let column = min(u32(uv.x / width), 3u);
+            let at = texel_at(uv, o.mode, o.limits);
+            let within = clamp(uv - floor(uv), vec2<f32>(0.0), vec2<f32>(0.999));
+            let page_uv = vec2<f32>(windowed(o.window, at)) + within;
+            let column = min(u32(page_uv.x / width), 3u);
             texture = atlas_pages[(o.repl - 1u) * 2u][column];
             let top = atlas_pages[(o.repl - 1u) * 2u + 1u][column];
-            sheet_texel = vec2<f32>(uv.x - f32(column) * width, f32((o.mode >> 10u) & 511u) + uv.y - f32(top));
+            sheet_texel = vec2<f32>(page_uv.x - f32(column) * width, f32((o.mode >> 10u) & 511u) + page_uv.y - f32(top));
         }
         let d = atlas_table[max(texture, 1u) - 1u];
         let texels = vec2<f32>(f32(d.w & 0xFFFFu), f32(d.w >> 16u));
@@ -200,7 +213,7 @@ fn fs(o: Out) -> @location(0) vec4<f32> {
                 discard;
             }
             tc = floor(s.rgb * 255.0);
-            let at = texel_at(o.uv, o.mode, o.limits);
+            let at = texel_at(uv, o.mode, o.limits);
             t = texel(o.mode, o.clut, o.window, at.x, at.y);
         } else if (((o.mode >> 28u) & 1u) != 0u && !from_layer) {
             // Bilinear: the four texels around the sample point, kept inside
@@ -210,7 +223,7 @@ fn fs(o: Out) -> @location(0) vec4<f32> {
             // and a pixel less than half covered is not drawn.
             let lo = limits_lo(o.limits);
             let hi = limits_hi(o.limits);
-            let p = o.uv - vec2<f32>(0.5, 0.5);
+            let p = uv - vec2<f32>(0.5, 0.5);
             let base = vec2<i32>(floor(p));
             let f = p - floor(p);
             var sum = vec3<f32>(0.0);
@@ -237,13 +250,13 @@ fn fs(o: Out) -> @location(0) vec4<f32> {
             }
             tc = sum / cover;
         } else {
-            let at = texel_at(o.uv, o.mode, o.limits);
+            let at = texel_at(uv, o.mode, o.limits);
             if (from_layer) {
                 // The card's pixel under this point of the texel: finer
                 // than the console's.
                 let w = windowed(o.window, at);
                 let base = vec2<f32>(f32(((o.mode & 1023u) + w.x) & 1023u), f32((((o.mode >> 10u) & 511u) + w.y) & 511u));
-                let within = clamp(o.uv - floor(o.uv), vec2<f32>(0.0), vec2<f32>(0.999));
+                let within = clamp(uv - floor(uv), vec2<f32>(0.0), vec2<f32>(0.999));
                 let s = textureLoad(scratch, vec2<u32>((base + within) * u.scale), 0);
                 t = word15(s);
                 tc = floor(s.rgb * 255.0);
@@ -431,7 +444,8 @@ const SET_MASK: u32 = 1 << 30;
 
 /// Whether 3D polygons' textures are filtered: PE2_TEXTURE_FILTER, else
 /// pe2.toml's [video] texture_filter ("nearest", the default, or
-/// "bilinear"). Sprites (text, interface) are never filtered.
+/// "bilinear"). Only 3D polygons are: sprites and the interface's polygons
+/// (text, menus) never are.
 fn bilinear() -> bool {
     static ON: std::sync::OnceLock<bool> = std::sync::OnceLock::new();
     *ON.get_or_init(|| {
@@ -1478,11 +1492,15 @@ impl Hw {
         let s = self.scale as f32;
         let gouraud = sh.gouraud;
         // Texels are kept inside the polygon's own rectangle (see
-        // Shading::uv_limits), and filtered when asked.
+        // Shading::uv_limits), and filtered when asked: 3D polygons only,
+        // known by the projection's exact positions or depths. The
+        // interface's (a menu bar's middle, a window's frame) stay sharp,
+        // as sprites do: filtered, their one-texel edges blur.
+        let projected = v.iter().any(|q| q.exact.is_some() || q.w > 0.0);
         let (filter, limits) = match sh.uv_limits {
             Some((u0, v0, u1, v1)) if sh.textured => {
                 let byte = |n: i32| n.clamp(0, 255) as u32;
-                let flags = UV_CLAMP | if bilinear() { FILTER_BILINEAR } else { 0 };
+                let flags = UV_CLAMP | if bilinear() && projected { FILTER_BILINEAR } else { 0 };
                 (flags, byte(u0) | (byte(v0) << 8) | (byte(u1) << 16) | (byte(v1) << 24))
             }
             _ => (0, 0),

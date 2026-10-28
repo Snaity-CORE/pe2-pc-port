@@ -849,6 +849,8 @@ pub extern "C" fn pcrt_DrawOTag(p: *const u32) {
             g.dump_out = std::fs::File::create("pe2-gpudump.txt").ok().map(std::io::BufWriter::new);
             g.hw.sync(&mut g.vram, 0, 0, VRAM_WIDTH as i32, VRAM_HEIGHT as i32);
             save_vram_png(&g.vram, "pe2-vram-before.png");
+            let raw: Vec<u8> = g.vram.pixels.iter().flat_map(|p| p.to_le_bytes()).collect();
+            let _ = std::fs::write("pe2-vram-before.bin", raw);
         }
         if g.dump {
             eprintln!("[gpudump] ---- DrawOTag 0x{:08X} ----", p as u32);
@@ -877,7 +879,7 @@ pub extern "C" fn pcrt_DrawOTag(p: *const u32) {
         if g.dump_out.take().is_some() {
             g.hw.sync(&mut g.vram, 0, 0, VRAM_WIDTH as i32, VRAM_HEIGHT as i32);
             save_vram_png(&g.vram, "pe2-vram.png");
-            eprintln!("pe2: gpu dump: wrote pe2-gpudump.txt, pe2-vram-before.png and pe2-vram.png");
+            eprintln!("pe2: gpu dump: wrote pe2-gpudump.txt, pe2-vram-before.png/.bin and pe2-vram.png");
         }
         g.dump = false;
         if trace("gpu") {
