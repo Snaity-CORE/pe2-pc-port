@@ -42,8 +42,8 @@ scale = 4
 # "nearest" (blocks of console pixels, as now) or "bicubic" (enlarged
 # smoothly; text and the interface stay sharp).
 # background_filter = "nearest"
-# The game's text drawn from high-definition fonts instead of its small
-# pictures of text: the dialogue and the menus (built in: DejaVu Sans Bold)
+# At scales above 1, the game's text drawn from high-definition fonts
+# instead of its small pictures of text: the dialogue and the menus (built in: DejaVu Sans Bold)
 # and the loading captions (Courier Prime). A mod's font or indexed
 # texture of the same text wins.
 # hd_fonts = true

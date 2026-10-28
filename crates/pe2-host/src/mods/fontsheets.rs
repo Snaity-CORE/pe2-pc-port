@@ -41,9 +41,10 @@ const SS: usize = 4;
 /// Size the fonts' letters are first drawn at, in pixels.
 const INK_PX: f32 = 400.0;
 
-/// Whether the built-in fonts redraw the game's text ([video] hd_fonts).
+/// Whether the built-in fonts redraw the game's text ([video] hd_fonts),
+/// above the console's resolution (super::above_console).
 pub fn enabled() -> bool {
-    crate::config::get().video.hd_fonts.unwrap_or(true)
+    crate::config::get().video.hd_fonts.unwrap_or(true) && super::above_console()
 }
 
 static SHEETS: OnceLock<HashMap<(u64, u32), Arc<Indexed>>> = OnceLock::new();

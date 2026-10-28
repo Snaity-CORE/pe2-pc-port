@@ -29,7 +29,8 @@ It plays as the console does and adds what a PC can, all optional:
   turn (back + run).
 - **Sharp text**: the dialogue, the menus, the loading captions and the
   disc change's lines drawn from high-definition fonts (the built-in DejaVu
-  Sans Bold and Courier Prime) instead of the game's small pictures of text.
+  Sans Bold and Courier Prime) instead of the game's small pictures of text,
+  at internal resolutions above the console's.
 - **Mods** (experimental, turned on in Settings): replace the pre-rendered
   backgrounds and full-screen pictures and the textures with your own at
   any resolution, the music with

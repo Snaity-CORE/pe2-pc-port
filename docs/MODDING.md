@@ -102,7 +102,9 @@ What to know:
 
 Models (Aya, enemies, weapons), the interface (fonts, the HUD, menus) and the
 pieces of rooms drawn over backgrounds are drawn from textures, and a mod can
-replace them at a higher resolution.
+replace them at a higher resolution. Replaced textures (and a mod's dialogue
+font) are drawn at internal resolutions above 1 only: at the console's own,
+they would be shrunk to its texels, worse than the game's.
 
 The game's textures are stored in its `.pe2img` pictures as sheets: columns
 of texels (256 wide at 4 bits per texel, 128 at 8 bits, up to 256 tall),
@@ -244,7 +246,7 @@ when not known); the UI font's also give each glyph's `face` and
 | `disc-prompt` | the disc change's lines: Change to DISC 1, Change to DISC 2, Wrong DISC |
 
 PE2PC already redraws the menus' font (`ui-font`), the loading captions
-and the disc change's lines from its built-in fonts by default (`[video] hd_fonts`); a mod's indexed
+and the disc change's lines from its built-in fonts by default (`[video] hd_fonts`, at scales above 1); a mod's indexed
 replacement of the same sheet wins. To use other fonts,
 `tools/hd_fonts.py` redraws the first three from fonts of your choice
 (needs Python with numpy, pillow and scipy):

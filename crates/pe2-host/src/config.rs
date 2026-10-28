@@ -104,7 +104,7 @@ pub struct Video {
     pub texture_filter: Option<String>,
     /// The game's text drawn from high-definition fonts instead of its
     /// pictures of text: the dialogue (the built-in font, or a mod's), the
-    /// menus and the loading captions (default on).
+    /// menus and the loading captions (default on; only above scale 1).
     pub hd_fonts: Option<bool>,
     /// Pre-rendered backgrounds and full-screen pictures: "nearest" (the
     /// default) or "bicubic".

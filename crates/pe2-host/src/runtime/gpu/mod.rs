@@ -170,7 +170,7 @@ fn perspective() -> bool {
 
 /// The internal resolution, a multiple of the console's (1-8): PE2_SCALE,
 /// else pe2.toml's [video] scale, else 1.
-fn scale() -> i32 {
+pub fn scale() -> i32 {
     std::env::var("PE2_SCALE")
         .ok()
         .and_then(|v| v.trim().parse().ok())

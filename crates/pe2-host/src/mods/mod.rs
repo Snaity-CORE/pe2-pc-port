@@ -390,7 +390,14 @@ pub fn indexed_texture(sheet: u64, depth: u32) -> Option<Arc<indexed::Indexed>> 
 /// Whether anything here wants to know the textures drawn: mods with
 /// textures, or the menus' and captions' sheets redrawn from fonts.
 pub fn wants_textures() -> bool {
-    !textures().files.is_empty() || !indexed_textures().files.is_empty() || fontsheets::enabled()
+    (above_console() && (!textures().files.is_empty() || !indexed_textures().files.is_empty())) || fontsheets::enabled()
+}
+
+/// Whether the game is drawn above the console's resolution. Finer
+/// textures and fonts are only drawn there: at it, they would be shrunk to
+/// its texels, worse than the game's own (backgrounds are averaged down).
+pub fn above_console() -> bool {
+    crate::runtime::gpu::scale() > 1
 }
 
 /// A PNG as RGBA (any colour type or depth png can expand to 8 bits),

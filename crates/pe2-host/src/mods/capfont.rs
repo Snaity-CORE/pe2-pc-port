@@ -82,9 +82,10 @@ fn loaded() -> Option<&'static Loaded> {
         .as_ref()
 }
 
-/// The highest priority mod's font and its settings, with mods on.
+/// The highest priority mod's font and its settings, with mods on, above
+/// the console's resolution (super::above_console).
 fn mod_font() -> Option<(FontVec, Settings)> {
-    if !super::enabled() {
+    if !super::enabled() || !super::above_console() {
         return None;
     }
     let dir = super::installed()

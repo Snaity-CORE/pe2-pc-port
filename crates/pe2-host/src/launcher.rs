@@ -999,7 +999,7 @@ impl Launcher {
             ui,
             &mut e.hd_fonts,
             lang.t("Text in high-definition fonts", "Textos em fontes de alta definição"),
-            true,
+            hi,
         );
         f.checkbox(
             ui,
