@@ -1,0 +1,21 @@
+{
+  "$schema": "https://recomp.fyi/schema/v1.json",
+  "game": "Parasite Eve II",
+  "system": "PS1",
+  "type": "port",
+  "original": [
+    { "region": "USA", "revision": "Disc 1", "serial": "SLUS-01042" },
+    { "region": "USA", "revision": "Disc 2", "serial": "SLUS-01055" }
+  ],
+  "project": "PE2PC",
+  "status": "playable",
+  "targets": ["Windows"],
+  "approach": "The community decompilation compiled natively in C, with a Rust host: no emulator, no Sony code",
+  "maintainers": [{ "name": "Snaity", "link": "https://github.com/adrianopteodoro" }],
+  "links": [
+    { "label": "Releases", "url": "https://github.com/Snaity-CORE/pe2-pc-port/releases" },
+    { "label": "Decompilation", "url": "https://github.com/GabeRealB/parasite-eve-2-decomp" }
+  ],
+  "tags": ["pc-port", "hd", "60fps", "mods"],
+  "notes": "Up to 8x resolution on the GPU (Vulkan or OpenGL), sub-pixel precision and perspective-correct textures, 60 fps frame interpolation, HD fonts, modern movement, keyboard and controller remapping, Discord presence. Mods (HD movies, backgrounds, UI) are experimental. Players supply their own copy of the game."
+}
