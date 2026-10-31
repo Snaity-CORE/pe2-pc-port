@@ -578,6 +578,56 @@ For mods that redraw the glyph pictures instead (indexed replacements of
 the pages), the extract also maps each dialogue glyph page: see "Text
 redrawn from fonts" under Textures.
 
+## Texts of the menus
+
+The menus, items, Parasite Energy, places, options, shops and memory card
+messages are texts in the game's code (the executable and its code
+packages), in the menus' font's encoding: ASCII, the accented letters of
+Latin-1, and `\` codes (`\B9`, `\Sm`: columns, faces, offsets; `}` `{`
+`~` `|` draw the pad's buttons). The extract lists them in
+`dumps/strings/<file>/<load address>.toml`, each text once (where it is
+first found):
+
+```toml
+[[string]]
+at = 0x800FC16C            # where it is, for you
+original = '''
+Customize game settings.'''
+text = ''
+```
+
+Finding them is a guess (runs of letters ended by a zero), so a few entries
+are bytes of code that happen to read as letters: leave those empty.
+
+### Translating them
+
+Copy the files into `mods/<your mod>/strings/` (any folders inside) and
+write each translation in its `text`; empty ones keep the original. The
+game reads only `original` and `text`, so a file of your own with entries
+from anywhere works as well. A translation applies wherever the game uses
+that exact text.
+
+- Keep the `\` codes and the buttons where they belong.
+- Keep the number of lines. An item's text is fields, one per line (its
+  name, its description's lines, then the same unidentified), and the game
+  draws a field from the middle of the text; a translation with another
+  number of lines is used for its first line only.
+- A line holds up to 63 characters (the game copies lines into buffers of
+  64 bytes); longer ones are cut. Menus and boxes keep their sizes, so
+  translations longer than the original may spill out of them.
+- The font has the accented letters of Latin-1 (á à â ä é è ê ë í ì î ï ó
+  ò ô ö ú ù û ü ç ñ ¿ ¡ and capitals), and PE2PC adds ã õ Ã Õ: made from
+  the font's own â ô Â Ô with a tilde, and drawn from the high-definition
+  font above the console's resolution. The menus' small face (Lv., some
+  labels) has no accents at all. Typographic quotes, dashes and the
+  ellipsis become the plain ones; any other character shows as `?`.
+- Texts the game puts together (`Obtained` + an item's name + `.`) are
+  translated piece by piece, in the original's order.
+
+The added letters' cells are in the menus' font's glyph map (see "Text
+redrawn from fonts"), with `like`, the cell of the letter each is made
+from: a mod redrawing that sheet should draw them there.
+
 ## Cheats and memory patches
 
 A mod's `patches.toml` changes the game's memory each frame, as a cheat
@@ -630,8 +680,8 @@ changing the game's own data in memory unless the kind is meant to.
    movies.)
 5. **Game files** (done): extracted, and replaced chunk by chunk or whole,
    at any size, as above.
-6. **Dialogue** (done): extracted as text and translated, as above. Still to
-   come: speakers' names, and the texts held in the executable (menus).
+6. **Dialogue** (done): extracted as text and translated, as above, and
+   the texts of the menus. Still to come: speakers' names.
 7. **Textures** (done): extracted from the disc and dumped in colour, and
    replaced at any resolution, by sheet, as above.
 8. **Movies** (done): FMVs replaced by MP4 files, as above.

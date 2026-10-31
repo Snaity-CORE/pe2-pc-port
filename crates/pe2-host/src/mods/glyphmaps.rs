@@ -28,17 +28,20 @@ pub struct Map {
 
 /// A glyph: its cell (u, v, width, height, in texels of the sheets side by
 /// side), the text it shows (empty: not known; `{name}` an icon or logo),
-/// and for the UI font its face and the cell row its letters stand on.
+/// for the UI font its face and the cell row its letters stand on, and for
+/// a letter the sheet leaves blank (menuglyphs.rs) the cell of the letter
+/// it is made from, whose ink tells where its own goes.
 pub struct Glyph {
     pub cell: [u16; 4],
     pub text: String,
     pub face: Option<&'static str>,
     pub baseline: Option<u16>,
+    pub like: Option<[u16; 4]>,
 }
 
 impl Glyph {
     fn new(cell: [u16; 4], text: impl Into<String>) -> Glyph {
-        Glyph { cell, text: text.into(), face: None, baseline: None }
+        Glyph { cell, text: text.into(), face: None, baseline: None, like: None }
     }
 }
 
@@ -116,8 +119,14 @@ pub fn ui_font(catalog: &Catalog, exe: &[u8]) -> Option<Map> {
             }
             // The last row is drawn y_offset below the pen's baseline.
             let baseline = (h as i16 - i16::from(y_offset)).clamp(0, h as i16) as u16;
-            glyphs.push(Glyph { cell, text, face: Some(face), baseline: Some(baseline) });
+            glyphs.push(Glyph { cell, text, face: Some(face), baseline: Some(baseline), like: None });
         }
+    }
+    // The letters translations add (menuglyphs.rs), where they go.
+    for a in super::menuglyphs::cells(exe) {
+        let text = char::from(a.code).to_string();
+        let face = Some(UI_FACES[a.face].0);
+        glyphs.push(Glyph { cell: a.cell, text, face, baseline: Some(a.baseline), like: Some(a.like) });
     }
     Some(Map { kind: "ui-font", sheets: vec![sheet], depth: 4, palette: None, glyphs })
 }

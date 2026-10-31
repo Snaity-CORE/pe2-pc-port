@@ -495,7 +495,8 @@ fn add_source(out: &mut super::dialogue::Sources, disc: &mut dyn Disc, f: &DiscF
 /// goes under `disc<n>/`), each room background as the picture the game
 /// shows, as `dumps/backgrounds/<hash>.png` (see mods::background), the
 /// texture sheets under `dumps/textures` (see sheets.rs), and the dialogue
-/// as text under `dumps/text` (see dialogue.rs).
+/// as text under `dumps/text` (see dialogue.rs), and the texts of the
+/// menus under `dumps/strings` (see strings.rs).
 pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path, full: bool) -> std::io::Result<()> {
     let out = dumps.join("files");
     let pictures = dumps.join("backgrounds");
@@ -553,11 +554,15 @@ pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path, full: bool) -> std::io
     eprintln!("pe2: extract: {} backgrounds in {}", backgrounds.len(), pictures.display());
     let textures = dumps.join("textures");
     let mut catalog = super::sheets::Catalog::new(&dialogue);
-    let executable = discs
-        .first_mut()
-        .and_then(|disc| iso9660::boot_executable(disc.as_mut()).ok())
-        .map(|(_, bytes)| bytes)
-        .unwrap_or_default();
+    // The executable too, as the disc has it (tools/import_strings.py
+    // reads its texts).
+    let executable = match discs.first_mut().and_then(|disc| iso9660::boot_executable(disc.as_mut()).ok()) {
+        Some((name, bytes)) => {
+            std::fs::write(out.join(&name), &bytes)?;
+            bytes
+        }
+        None => Vec::new(),
+    };
     catalog.apply_ui_font_palette(&executable);
     let (mut painted, checked, mismatched) = super::rooms::paint(&dialogue, &catalog);
     for (sheet, page) in catalog.glyph_pages(&dialogue) {
@@ -598,6 +603,9 @@ pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path, full: bool) -> std::io
     let text = dumps.join("text");
     let (caps, lines) = super::dialogue::extract(&dialogue, &text)?;
     eprintln!("pe2: extract: {lines} lines of dialogue in {caps} files in {}", text.display());
+    let strings = dumps.join("strings");
+    let (files, texts) = super::strings::extract(&executable, &dialogue.packages, &strings)?;
+    eprintln!("pe2: extract: {texts} texts of the menus in {files} files in {}", strings.display());
     Ok(())
 }
 

@@ -9,7 +9,8 @@
 //! VRAM: the game sees its own data, and only the picture changes.
 //!
 //! Music: music.rs; movies: movies.rs; game files: files.rs; dialogue:
-//! dialogue.rs and translate.rs; textures: runtime/gpu/textures.rs.
+//! dialogue.rs and translate.rs; the menus' texts: strings.rs; textures:
+//! runtime/gpu/textures.rs.
 //! Backgrounds and full-screen pictures, as `backgrounds/<hash>.png`, where
 //! the hash is `screen_hash` of the 320x240 (or so) image the game sends to
 //! the GPU; the extract saves each one the discs hold as
@@ -28,10 +29,12 @@ pub mod files;
 pub mod fontsheets;
 pub mod glyphmaps;
 pub mod indexed;
+pub mod menuglyphs;
 pub mod movies;
 pub mod music;
 pub mod rooms;
 pub mod sheets;
+pub mod strings;
 pub mod translate;
 
 /// A mod's `mod.toml` (every field optional).
@@ -102,6 +105,7 @@ pub fn installed() -> Vec<Mod> {
 /// need: the texture sheets' catalog, the dialogue font for translations
 /// (disc 1), and what character each dialogue glyph is.
 pub fn start(discs: &[PathBuf]) {
+    strings::load();
     if let Some(first) = discs.first() {
         fontsheets::start(first.clone());
     }

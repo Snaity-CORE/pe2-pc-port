@@ -720,7 +720,9 @@ fn redraw(catalog: &Catalog, map: &Map, faces: &[Face], scheme: &Scheme) -> Opti
         let &(_, font, stretch) = faces.iter().find(|f| f.0 == g.face)?;
         let stretch = widen.get(&g.face).copied().or(stretch);
         let (u, v, cw, ch) = cell_of(g)?;
-        let (fx0, fy0, fx1, fy1) = fill_box(u, v, cw, ch)?;
+        // A letter the sheet leaves blank goes where its model's ink is.
+        let (iu, iv) = g.like.map_or((u, v), |[lu, lv, ..]| (usize::from(lu), usize::from(lv)));
+        let (fx0, fy0, fx1, fy1) = fill_box(iu, iv, cw, ch)?;
         let mut big = Mask::new(cw * s, ch * s);
         if let Some(name) = g.text.strip_prefix('{').and_then(|t| t.strip_suffix('}')) {
             let stroke = if g.face == Some("large") { 2.0 } else { 1.6 } * s as f32;
@@ -730,7 +732,7 @@ fn redraw(catalog: &Catalog, map: &Map, faces: &[Face], scheme: &Scheme) -> Opti
             let base = g.baseline.map(usize::from).or(page_base);
             let mut placed = None;
             if let (Some(&cap), Some(base), None) = (caps.get(&g.face), base, stretch) {
-                let rows = fill_rows(u, v, cw, ch);
+                let rows = fill_rows(iu, iv, cw, ch);
                 let descends = rows.last().is_some_and(|&r| r + 1 > base);
                 placed = on_baseline(font, &g.text, cap, base, ch, fx0, fx1, descends);
             }
@@ -755,7 +757,7 @@ fn redraw(catalog: &Catalog, map: &Map, faces: &[Face], scheme: &Scheme) -> Opti
         let block = (0..ch * K * cw * K)
             .map(|i| {
                 let (y, x) = (i / (cw * K), i % (cw * K));
-                let keep_zero = scheme.keep_zero && idx[(v + y / K) * w + u + x / K] == 0;
+                let keep_zero = scheme.keep_zero && g.like.is_none() && idx[(v + y / K) * w + u + x / K] == 0;
                 if keep_zero { 0 } else { (scheme.levels)(fill[i], ring[i]) }
             })
             .collect();
