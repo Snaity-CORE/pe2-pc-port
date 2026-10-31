@@ -521,10 +521,14 @@ def main():
     for record in seen:
         places_of.setdefault(record[0], []).append(record)
     for original, records in places_of.items():
+        # Told apart by more than capitals: in the small face, which has
+        # capitals only, small letters show as capitals anyway.
         counts = {}
         for record in records:
-            counts[record[4]] = counts.get(record[4], 0) + 1
-        main = max(counts, key=lambda t: (counts[t], t == records[0][4]))
+            counts[record[4].lower()] = counts.get(record[4].lower(), 0) + 1
+        wanted = max(counts, key=lambda t: (counts[t], t == records[0][4].lower()))
+        variants = [record[4] for record in records if record[4].lower() == wanted]
+        main = next((t for t in variants if not t.isupper()), variants[0])
         shown = False
         for _, rel, at, raw, text in records:
             same = text == main or any(decode_in(raw, face)[0] == main for face, *_ in FACES)
