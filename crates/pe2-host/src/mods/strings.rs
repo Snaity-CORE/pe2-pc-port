@@ -391,11 +391,11 @@ pub fn references(data: &[u8]) -> std::collections::HashSet<u32> {
 }
 
 /// The texts in `data` (loaded at `base`): runs of the font's bytes ended
-/// by a zero, starting at a word boundary after a byte no text has (a
-/// zero, or a pointer's or code's: strings are word-aligned in the game's
-/// data, and some follow a table), that look like text; two letters
-/// only where the code or data refer to them, among other texts (two
-/// random bytes often read as letters).
+/// by a zero, starting at a word boundary after a word with a byte no text
+/// has (a zero, or a pointer's or code's: strings are word-aligned in the
+/// game's data, and some follow a table or code), that look like text; two
+/// letters only where the code or data refer to them, among other texts
+/// (two random bytes often read as letters).
 pub fn scan(data: &[u8], base: u32) -> Vec<(u32, Vec<u8>)> {
     let found = scan_all(data, base);
     let near_text = |at: u32| {
@@ -409,7 +409,7 @@ fn scan_all(data: &[u8], base: u32) -> Vec<(u32, Vec<u8>)> {
     let mut referred: Option<std::collections::HashSet<u32>> = None;
     let mut i = 0;
     while i < data.len() {
-        if i % 4 != 0 || (i > 0 && data[i - 1] != 0 && in_font(data[i - 1])) {
+        if i % 4 != 0 || (i >= 4 && data[i - 4..i].iter().all(|&b| b != 0 && in_font(b))) {
             i += 1;
             continue;
         }

@@ -666,8 +666,9 @@ Translations of discs rewrite the texts in place and repoint what uses
 them, so each text is found where the translated version's data and code
 point instead of the original (texts nothing points at, between their
 neighbours, or where they were: tables of names in records of a fixed
-size). The same English elsewhere is looked up too, and translated for
-that place only (`here_only`) where the other version says it otherwise.
+size). The same English elsewhere is looked up too: a text's translation
+is the one most of its places have, and a place translated otherwise
+gets its own, for there only (`here_only`).
 Their bytes are read through the translated version's own
 font: such translations draw the letters they need, and whole syllables,
 over codes the menus did not use, a different set in each of the font's

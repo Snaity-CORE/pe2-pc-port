@@ -38,6 +38,9 @@ ODD = re.compile(r"(?<=[^\W\d_])[^\w\s'.,!?&-]+(?=[^\W\d_])")
 # A capital after a small letter: likely the same (IfNS), though names
 # have some (FateKeeper).
 CAMEL = re.compile(r"(?<=[^\W\d_A-ZÀ-Þ])[A-ZÀ-Þ]")
+# A small letter after two capitals (JOg, ARk): the same, in the small
+# face, whose small letters' codes are its own syllables.
+SHOUTED = re.compile(r"(?<=[A-ZÀ-Þ]{2})[a-zß-ÿ]")
 # The font's codes (\B9, \Sm, \Co, \Z): not words.
 CODES = re.compile(r"\\[A-Za-z][A-Za-z0-9]?")
 
@@ -349,7 +352,8 @@ def main():
         best share of words the translation knows (a word 1, only its stem
         1/4), less 1/4 for each labelled picture (a face's own letter is
         likelier than a drawing over it) and 1/2 for each capital after a
-        small letter; the first face on a tie."""
+        small letter, small letter after two capitals or one-letter word
+        not a vowel; the first face on a tie."""
         readings = [decode_in(raw, face) for face, *_ in FACES]
         for _, missing, _ in readings:
             for name, code, picture in missing:
@@ -360,7 +364,11 @@ def main():
             words = WORD.findall(text.lower())
             foreign = sum(c not in alphabet for w in words for c in w)
             known = sum(1 if w in vocabulary else 0.25 if w[:4] in stems and len(w) >= 4 else 0 for w in words)
-            doubt = labelled * 0.25 + len(CAMEL.findall(text)) * 0.5 - known / max(1, len(words))
+            # A word of one letter that is not a vowel (d, q: words of one
+            # letter are a, e, o, é, à; a dialogue's q is short for que).
+            lone = sum(len(w) == 1 and w not in 'aeiouáàâãéêíóôõú' for w in words)
+            odd_case = len(CAMEL.findall(text)) + len(SHOUTED.findall(text)) + lone
+            doubt = labelled * 0.25 + odd_case * 0.5 - known / max(1, len(words))
             return len(missing), len(ODD.findall(text)), foreign, doubt
         return min(readings, key=score)[0]
 
@@ -400,7 +408,7 @@ def main():
 
     outputs = {}    # file -> its entries' lines
     places = []     # the code packages read: (file, base, data, theirs, references, listed addresses)
-    chosen = {}     # original -> its translation where first listed
+    seen = []       # each place translated: (original, file, address, their bytes, its translation)
     lists = sorted(glob.glob(os.path.join(args.game, 'strings', '**', '*.toml'), recursive=True))
     newest = max(os.path.getmtime(f) for f in lists)
     for path in lists:
@@ -478,25 +486,20 @@ def main():
             if at not in found and offset < len(theirs) and (offset == 0 or theirs[offset - 1] == 0):
                 if read_text(theirs, offset).strip():
                     found[at] = at
-        out = outputs.setdefault(rel, [])
         for s in listed:
             if s['at'] not in found:
                 continue
-            text = translation(rel, s['original'], s['at'], read_text(theirs, found[s['at']] - base))
-            if text is None:
-                continue
-            chosen.setdefault(s['original'], text)
-            out += ['[[string]]', f'at = 0x{s["at"]:08X}', f'original = {literal(s["original"])}',
-                    f'text = {literal(text)}', '']
+            raw = read_text(theirs, found[s['at']] - base)
+            text = translation(rel, s['original'], s['at'], raw)
+            if text is not None:
+                seen.append((s['original'], rel, s['at'], raw, text))
 
-    # The same texts elsewhere (the extract lists each once): where the
-    # other version translates one otherwise, a translation for that place
-    # only (Help, the key configuration's, and Help, a panel's title).
+    # The same texts elsewhere (the extract lists each once), found as the
+    # other version's code and data point at them.
     by_bytes = {o.encode('latin-1'): o for o in originals if '%' not in o and len(o) >= 2}
     for rel, base, data, theirs, refs, listed in places:
-        out = outputs.setdefault(rel, [])
         for offset in range(0, len(data), 4):
-            if offset and data[offset - 1] != 0 and in_font(data[offset - 1]):
+            if offset >= 4 and all(b != 0 and in_font(b) for b in data[offset - 4:offset]):
                 continue
             original = by_bytes.get(read_text(data, offset))
             at = base + offset
@@ -506,14 +509,31 @@ def main():
             if there is None:
                 continue
             raw = read_text(theirs, there - base)
-            # Read in some face as the translation chosen: the same one.
-            if any(decode_in(raw, face)[0] == chosen.get(original) for face, *_ in FACES):
-                continue
             text = translation(rel, original, at, raw)
-            if text is None or text == chosen.get(original):
+            if text is not None:
+                seen.append((original, rel, at, raw, text))
+
+    # Each text's translation is the one most of its places have (the
+    # first listed on a tie); a place translated otherwise gets its own,
+    # for there only (Help: the key configuration's, a panel's title),
+    # unless its bytes read as the chosen one in some face.
+    places_of = {}
+    for record in seen:
+        places_of.setdefault(record[0], []).append(record)
+    for original, records in places_of.items():
+        counts = {}
+        for record in records:
+            counts[record[4]] = counts.get(record[4], 0) + 1
+        main = max(counts, key=lambda t: (counts[t], t == records[0][4]))
+        shown = False
+        for _, rel, at, raw, text in records:
+            same = text == main or any(decode_in(raw, face)[0] == main for face, *_ in FACES)
+            if same and shown:
                 continue
-            out += ['[[string]]', f'at = 0x{at:08X}', 'here_only = true', f'original = {literal(original)}',
-                    f'text = {literal(text)}', '']
+            out = outputs.setdefault(rel, [])
+            out += ['[[string]]', f'at = 0x{at:08X}'] + ([] if same else ['here_only = true'])
+            out += [f'original = {literal(original)}', f'text = {literal(main if same else text)}', '']
+            shown = shown or same
 
     for rel, out in outputs.items():
         if not out:
