@@ -618,8 +618,9 @@ that exact text.
 - The font has the accented letters of Latin-1 (á à â ä é è ê ë í ì î ï ó
   ò ô ö ú ù û ü ç ñ ¿ ¡ and capitals), and PE2PC adds ã õ Ã Õ: made from
   the font's own â ô Â Ô with a tilde, and drawn from the high-definition
-  font above the console's resolution. The menus' small face (Lv., some
-  labels) has no accents at all. Typographic quotes, dashes and the
+  font above the console's resolution. The menus' small face (panels'
+  titles, Lv., some labels) has no accents at all: there, accented letters
+  are drawn plain (SELEÇÃO as SELECAO). Typographic quotes, dashes and the
   ellipsis become the plain ones; any other character shows as `?`.
 - Texts the game puts together (`Obtained` + an item's name + `.`) are
   translated piece by piece, in the original's order.
@@ -627,6 +628,29 @@ that exact text.
 The added letters' cells are in the menus' font's glyph map (see "Text
 redrawn from fonts"), with `like`, the cell of the letter each is made
 from: a mod redrawing that sheet should draw them there.
+
+### From another version's discs
+
+`tools/import_strings.py` makes a translation mod of the menus' texts of
+translated discs: extract the game's discs and the translated ones, each
+with its own data folder (the extract saves the executable too), and
+
+```text
+python tools/import_strings.py <game's dumps> <translated dumps> mods/my-menus --name "My menus"
+```
+
+Translations of discs rewrite the texts in place and repoint what uses
+them, so each text is found where the translated version's data and code
+point instead of the original (texts nothing points at, between their
+neighbours). Their bytes are read through the translated version's own
+font: such translations draw the letters they need, and whole syllables,
+over codes the menus did not use, a different set in each of the font's
+three faces. A code reads as the game's letter of the same picture in the
+same face, or as a picture labelled in the tool's `LABELS` (the Brazilian
+Portuguese fan translation's are there); each text is read in the face
+where the most codes are known and the most words are the translation's
+own (from its dialogue, `dumps/text`). `report.txt` lists what was left
+out, and pictures not known are saved in `report-glyphs/` to be labelled.
 
 ## Cheats and memory patches
 

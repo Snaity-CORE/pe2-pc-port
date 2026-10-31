@@ -202,6 +202,60 @@ pub extern "C" fn pc_text_translate(text: *const u8) -> *const u8 {
     }
 }
 
+/// The last code the menus' small face has a glyph for (textdraw.c
+/// FONT_GLYPH_SMALL_COUNT): past it, the game would read other data as
+/// glyphs.
+const SMALL_LAST: u8 = b'z';
+
+/// A Latin-1 letter without its accent (anything else past the small
+/// face's codes a `?`).
+fn plain(b: u8) -> u8 {
+    match b {
+        0xC0..=0xC5 => b'A',
+        0xC7 => b'C',
+        0xC8..=0xCB => b'E',
+        0xCC..=0xCF => b'I',
+        0xD1 => b'N',
+        0xD2..=0xD6 => b'O',
+        0xD9..=0xDC => b'U',
+        0xE0..=0xE5 => b'a',
+        0xE7 => b'c',
+        0xE8..=0xEB => b'e',
+        0xEC..=0xEF => b'i',
+        0xF1 => b'n',
+        0xF2..=0xF6 => b'o',
+        0xF9..=0xFC => b'u',
+        b if b <= SMALL_LAST => b,
+        _ => b'?',
+    }
+}
+
+/// The text to draw in a face of the menus' font: `text`, or for the small
+/// face, when a translation put letters there it has no glyphs for, a copy
+/// with them made plain (SELEÇÃO drawn as SELECAO, not as other data).
+#[unsafe(no_mangle)]
+pub extern "C" fn pc_text_for_face(text: *const u8, small: i32) -> *const u8 {
+    if small == 0 || text.is_null() || TABLE.get().is_none_or(|t| t.is_empty()) {
+        return text;
+    }
+    let mut len = 0;
+    // SAFETY: as in pc_text_translate.
+    while len < MAX_TEXT && unsafe { *text.add(len) } != 0 {
+        len += 1;
+    }
+    // SAFETY: the `len` bytes just read.
+    let bytes = unsafe { std::slice::from_raw_parts(text, len) };
+    if bytes.iter().all(|&b| b <= SMALL_LAST) {
+        return text;
+    }
+    // Made once for each text, kept for as long as the game runs.
+    let _g = crate::runtime::irq::guard();
+    type Made = std::sync::Mutex<HashMap<Vec<u8>, Box<[u8]>>>;
+    static PLAIN: OnceLock<Made> = OnceLock::new();
+    let mut made = PLAIN.get_or_init(Default::default).lock().unwrap();
+    made.entry(bytes.to_vec()).or_insert_with(|| bytes.iter().map(|&b| plain(b)).chain([0]).collect()).as_ptr()
+}
+
 /// Bytes a string of the game's may hold besides ASCII: the accented
 /// letters and the marks the menus' font has (textdraw.c's glyph tables).
 fn in_font(b: u8) -> bool {
@@ -229,11 +283,43 @@ fn looks_like_text(s: &[u8]) -> bool {
         && !s.windows(2).any(|w| w[0].is_ascii_lowercase() && w[1].is_ascii_uppercase())
 }
 
+/// The addresses `data` (loaded at `base`) refers to: its words, and what
+/// its code's `lui` + `addiu` (or `ori`) pairs put together.
+pub fn references(data: &[u8]) -> std::collections::HashSet<u32> {
+    let words: Vec<u32> = data.as_chunks::<4>().0.iter().map(|w| u32::from_le_bytes(*w)).collect();
+    let mut out: std::collections::HashSet<u32> = words.iter().copied().collect();
+    for (i, &lui) in words.iter().enumerate() {
+        if lui >> 26 != 0x0F {
+            continue;
+        }
+        let (reg, high) = ((lui >> 16) & 31, lui << 16);
+        for &next in words.iter().skip(i + 1).take(16) {
+            let op = next >> 26;
+            if (op == 0x09 || op == 0x0D) && (next >> 21) & 31 == reg {
+                let low = next & 0xFFFF;
+                out.insert(if op == 0x09 { high.wrapping_add(low as u16 as i16 as u32) } else { high | low });
+            }
+        }
+    }
+    out
+}
+
 /// The texts in `data` (loaded at `base`): runs of the font's bytes ended
 /// by a zero, starting at a word boundary after a zero (strings are
-/// word-aligned in the game's data), that look like text.
+/// word-aligned in the game's data), that look like text; two letters
+/// only where the code or data refer to them, among other texts (two
+/// random bytes often read as letters).
 pub fn scan(data: &[u8], base: u32) -> Vec<(u32, Vec<u8>)> {
+    let found = scan_all(data, base);
+    let near_text = |at: u32| {
+        found.iter().any(|(a, s)| s.len() > 2 && (a.abs_diff(at) <= 16 || (a + s.len() as u32).abs_diff(at) <= 16))
+    };
+    found.iter().filter(|(at, s)| s.len() > 2 || near_text(*at)).cloned().collect()
+}
+
+fn scan_all(data: &[u8], base: u32) -> Vec<(u32, Vec<u8>)> {
     let mut out = Vec::new();
+    let mut referred: Option<std::collections::HashSet<u32>> = None;
     let mut i = 0;
     while i < data.len() {
         if i % 4 != 0 || (i > 0 && data[i - 1] != 0) {
@@ -241,8 +327,14 @@ pub fn scan(data: &[u8], base: u32) -> Vec<(u32, Vec<u8>)> {
             continue;
         }
         let end = data[i..].iter().position(|&b| !in_font(b)).map_or(data.len(), |n| i + n);
-        if end < data.len() && data[end] == 0 && end - i >= 2 && looks_like_text(&data[i..end]) {
-            out.push((base + i as u32, data[i..end].to_vec()));
+        let at = base + i as u32;
+        if end < data.len()
+            && data[end] == 0
+            && end - i >= 2
+            && looks_like_text(&data[i..end])
+            && (end - i > 2 || referred.get_or_insert_with(|| references(data)).contains(&at))
+        {
+            out.push((at, data[i..end].to_vec()));
             i = (end + 4) & !3;
         } else {
             i += 4;
@@ -308,7 +400,9 @@ mod tests {
     fn scan_finds_texts() {
         let mut data = b"Option\0\0Exit\0\0\0\0EkTkP\0\0\0Customize game settings.\0".to_vec();
         data.extend_from_slice(&[0, 0, 0, 0x10, 0x20, 0, 0]);
-        data.extend_from_slice(b"On\0\0x2\0\0");
+        data.extend_from_slice(b"On\0\0Bq\0\0x2\0\0");
+        // A word referring to "On" (at 0x38); none to "Bq".
+        data.extend_from_slice(&0x8000_0038u32.to_le_bytes());
         let found: Vec<String> = scan(&data, 0x8000_0000).into_iter().map(|(_, s)| decode(&s)).collect();
         assert_eq!(found, ["Option", "Exit", "Customize game settings.", "On"]);
         assert_eq!(scan(&data, 0x8000_0000)[2].0, 0x8000_0018);
@@ -329,6 +423,13 @@ mod tests {
         assert_eq!(get(b"PA3\nPump-action\nshotgun.\n\n").unwrap(), b"PA3\nEspingarda\nde repeti\xE7\xE3o.\n\n\0");
         assert_eq!(get(b"shotgun.\n\n").unwrap(), b"de repeti\xE7\xE3o.\n\n\0");
         assert!(get(b"").is_none());
+    }
+
+    /// The small face gets plain letters.
+    #[test]
+    fn small_face_plain() {
+        let latin: Vec<u8> = encode("SELEÇÃO {x}").iter().map(|&b| plain(b)).collect();
+        assert_eq!(latin, b"SELECAO ?x?");
     }
 
     /// Typographic marks become the font's; a line too long is cut.
