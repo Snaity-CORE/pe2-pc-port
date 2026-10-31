@@ -13,6 +13,7 @@ ones used so far are free: DejaVu, Courier Prime).
     python tools/hd_fonts.py loading DUMPS FONT.ttf OUT [--weight 0.15]
     python tools/hd_fonts.py title   DUMPS REGULAR.ttf BOLD.ttf OUT
                                      [--serif SERIF.ttf] [--logo LOGO.svg]
+                                     [--text "New Game=Novo Jogo"]... [--over DIR]
 
 Each sheet is first enlarged smoothly (its indices' greys or colours
 Lanczos-enlarged, each finer texel taking, of its own texel's index and its
@@ -27,7 +28,11 @@ its cell from the font, in the indices the game's glyphs use:
 - title:   each row of text fitted to the original's ink, its coverage
            turned into the row's own shades (by brightness); a logo, from
            an SVG's paths (M, L, C, z) left of x = 320 in its units (the
-           Squaresoft wordmark's SQUARE), in the logo's own colours.
+           Squaresoft wordmark's SQUARE), in the logo's own colours;
+           --text draws a row in another text (a translation), at the
+           original's scale, on its baseline, centred where it was;
+           --over starts from a mod's replacements of the page (redrawing
+           only the rows given another text).
 
 Needs numpy, pillow and scipy.
 """
@@ -381,8 +386,17 @@ def title(args):
     # Clear: the commonest colour of the rows of text.
     rows = np.concatenate([idx[g['cell'][1]:g['cell'][1] + g['cell'][3]].ravel() for g in m['glyph']])
     clear = int(np.bincount(rows).argmax())
-    out = smooth(idx, k, pal)
+    if args.over:
+        # A mod's replacement of the page to start from: only the rows
+        # given another text are redrawn.
+        out = np.hstack([np.array(Image.open(os.path.join(args.over, f'{s}-{m["depth"]}bit.idx.png')))
+                         for s in m['sheets']]).astype(np.int64)
+        k = out.shape[0] // idx.shape[0]
+    else:
+        out = smooth(idx, k, pal)
     fonts = {'PRESS START BUTTON': args.bold, '© 1999 , 2000': args.serif}
+    # --text "New Game=Novo Jogo": a row's text translated.
+    translations = dict(t.split('=', 1) for t in args.text)
     for g in m['glyph']:
         u, v, w, h = g['cell']
         text = g['text']
@@ -391,7 +405,7 @@ def title(args):
                 draw_logo(out, idx, (u, v, w, h), args.logo, pal, clear, k)
             continue
         font = fonts.get(text, args.regular)
-        if font is None:
+        if font is None or (args.over and text not in translations):
             continue
         band = np.full((h, idx.shape[1]), clear)
         band[:, u:u + w] = idx[v:v + h, u:u + w]
@@ -412,8 +426,21 @@ def title(args):
         grey = lambda c: np.ptp(pal[c, :3]) <= 16
         shades = [c for c in letters if known[c] and grey(c)] + [bg]
         fill = max(letters, key=lambda c: bright[c])
-        cover = Font(font).ink(text)[0]
-        cover = np.array(Image.fromarray(cover).resize(((x1 - x0) * k, (y1 - y0) * k), Image.LANCZOS)) / 255.0
+        f = Font(font)
+        cover, base = f.ink(text)
+        # The font's scale that fits the original text to its ink.
+        sx, sy = (x1 - x0) * k / cover.shape[1], (y1 - y0) * k / cover.shape[0]
+        new = translations.get(text, text)
+        if new != text:
+            # Another text at the same scale, on the same baseline, centred
+            # where the original was (within its cell).
+            cover, new_base = f.ink(new)
+            gw, gh = max(1, round(cover.shape[1] * sx)), max(1, round(cover.shape[0] * sy))
+            top = round(y0 * k + base * sy - new_base * sy)
+            left = min(max(round((x0 + x1) * k / 2 - gw / 2), u * k), (u + w) * k - gw)
+        else:
+            gw, gh, top, left = (x1 - x0) * k, (y1 - y0) * k, y0 * k, x0 * k
+        cover = np.array(Image.fromarray(cover).resize((gw, gh), Image.LANCZOS)) / 255.0
         target = bright[bg] + cover * (bright[fill] - bright[bg])
         vals = np.array([bright[c] for c in shades])
         pick = np.array(shades)[np.abs(target[..., None] - vals).argmin(-1)]
@@ -422,10 +449,32 @@ def title(args):
         near[:, :u] = near[:, u + w:] = False
         region = out[v * k:(v + h) * k]
         region[np.kron(near, np.ones((k, k), bool))] = bg
-        part = region[y0 * k:y1 * k, x0 * k:x1 * k]
-        ink = cover > 0.02
-        part[ink] = pick[ink]
-        print(f'{text!r}: {x1 - x0}x{y1 - y0} texels at ({x0}, {v + y0})')
+        # What of the new ink falls inside the row.
+        cy0, cx0 = max(0, -top), max(0, -left)
+        cy1, cx1 = min(gh, region.shape[0] - top), min(gw, region.shape[1] - left)
+        if plate is not None and new != text:
+            # Other words need their own plate: the old one cleared, and a
+            # box behind each new word (a texel around its ink).
+            whole = np.zeros_like(band, bool)
+            whole[:, u:u + w] = band[:, u:u + w] != clear
+            region[np.kron(whole, np.ones((k, k), bool))] = clear
+            cols = (cover[cy0:cy1, cx0:cx1] > 0.02).any(axis=0)
+            gap = round(0.4 * gh)
+            xs = np.nonzero(cols)[0]
+            words, start = [], xs[0]
+            for a, b in zip(xs, xs[1:]):
+                if b - a > gap:
+                    words.append((start, a + 1))
+                    start = b
+            words.append((start, xs[-1] + 1))
+            for a, b in words:
+                y_a, y_b = max(0, top + cy0 - k), min(region.shape[0], top + cy1 + k)
+                x_a, x_b = max(0, left + cx0 + a - k), min(region.shape[1], left + cx0 + b + k)
+                region[y_a:y_b, x_a:x_b] = plate
+        part = region[top + cy0:top + cy1, left + cx0:left + cx1]
+        ink = cover[cy0:cy1, cx0:cx1] > 0.02
+        part[ink] = pick[cy0:cy1, cx0:cx1][ink]
+        print(f'{new!r}: {gw / k:.0f}x{gh / k:.0f} texels at ({left / k:.0f}, {v + top / k:.0f})')
     write_sheets(args.out, m, out, k, 'title text redrawn from vector fonts')
 
 
@@ -512,6 +561,9 @@ def main():
     s.add_argument('out')
     s.add_argument('--serif', help='font for the copyright line (else it is kept)')
     s.add_argument('--logo', help='SVG of the logo (else it is kept)')
+    s.add_argument('--over', metavar='DIR', help="a mod's textures to start from (its title page's replacements)")
+    s.add_argument('--text', action='append', default=[], metavar='ORIGINAL=NEW',
+                   help='draw a row in another text, e.g. "New Game=Novo Jogo" (repeatable)')
     s.add_argument('--factor', type=int, default=8)
     args = p.parse_args()
     {'ui': ui, 'loading': loading, 'title': title}[args.command](args)
