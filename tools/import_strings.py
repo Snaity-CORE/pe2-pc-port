@@ -50,6 +50,7 @@ LABELS = {
     # The Brazilian Portuguese fan translation's discs: syllables and the
     # letters the font lacked, drawn over codes the menus did not use.
     'large-0158da9273d7': 'io',
+    'large-1b050a518fbe': '—',
     'large-1baa457baa82': 'de',
     'large-406ec412273b': 'do',
     'large-4177e2eca2e8': 'ar',
@@ -65,6 +66,7 @@ LABELS = {
     'medium-073462714d8d': 'as',
     'medium-0a45cc0f6186': 'õ',
     'medium-2e5267f6cb82': 'das',
+    'medium-3360c1ba4dcb': 'tar',
     'medium-80c2b2ca3cc4': 'Ven',
     'medium-8595b6bd9b04': 'antia Máxima de',
     'medium-af41d3c4e548': 'ipal',
@@ -221,6 +223,16 @@ class Version:
         return out
 
 
+# Bytes a text may hold besides ASCII (strings.rs `in_font`): the menus'
+# font's accented letters and marks.
+FONT = (set(range(0x20, 0x7F)) | {0x0A, 0xA1, 0xBF} | set(range(0xC0, 0xD0)) | set(range(0xD1, 0xD7))
+        | set(range(0xD9, 0xDD)) | {0xDF} | set(range(0xE0, 0xF0)) | set(range(0xF1, 0xF7)) | set(range(0xF9, 0xFD)))
+
+
+def in_font(b):
+    return b in FONT
+
+
 def references(data):
     """Offset of each word of `data` -> its value, and of each `lui` that a
     later `addiu`/`ori` completes -> (that one's offset, the address): the
@@ -360,6 +372,35 @@ def main():
     originals = set()
     for path in glob.glob(os.path.join(args.game, 'strings', '**', '*.toml'), recursive=True):
         originals.update(e['original'] for e in tomllib.load(open(path, 'rb')).get('string', []))
+
+    def translation(rel, original, at, raw):
+        """The other version's text `raw` for `original` (at `at`), read, or
+        None (noted in the report when it is not a translation)."""
+        # The libraries' messages to a debugger are not the game's.
+        if '%' in original or '->' in original:
+            return None
+        # The same bytes: not translated (read in another face, it might
+        # seem to be).
+        if raw == original.encode('latin-1'):
+            return None
+        text = decode(raw)
+        if text == original or not text.strip():
+            return None
+        # Pointers there that lead elsewhere: no words, or another text.
+        letters = sum(c.isalpha() for c in text)
+        wrong = letters < min(2, sum(c.isalpha() for c in original)) or text in originals
+        if wrong or any(ord(c) < 0x20 and c != '\n' for c in text) or '%' in text:
+            report.append(f'{rel} 0x{at:08X}: not its text there, left out\n'
+                          f'    here:  {original!r}\n    there: {text!r}')
+            return None
+        if text.count('\n') != original.count('\n'):
+            report.append(f'{rel} 0x{at:08X}: another number of lines\n'
+                          f'    here:  {original!r}\n    there: {text!r}')
+        return text
+
+    outputs = {}    # file -> its entries' lines
+    places = []     # the code packages read: (file, base, data, theirs, references, listed addresses)
+    chosen = {}     # original -> its translation where first listed
     lists = sorted(glob.glob(os.path.join(args.game, 'strings', '**', '*.toml'), recursive=True))
     newest = max(os.path.getmtime(f) for f in lists)
     for path in lists:
@@ -382,15 +423,8 @@ def main():
             if raw == original.encode('latin-1'):
                 continue
             text = decode(raw)
-            if text == original:
-                continue
-            out =[f'# {args.name}: {rel.replace(os.sep, "/")}', '', '[[string]]',
-                   f'original = {literal(original)}', f'text = {literal(text)}', '']
-            dest = os.path.join(args.out, 'strings', rel)
-            os.makedirs(os.path.dirname(dest), exist_ok=True)
-            with open(dest, 'w', encoding='utf-8', newline='\n') as f:
-                f.write('\n'.join(out))
-            files, texts = files + 1, texts + 1
+            if text != original:
+                outputs[rel] = ['[[string]]', f'original = {literal(original)}', f'text = {literal(text)}', '']
             continue
         base = int(name, 16)
         first = listed[0]['original'].encode('latin-1')
@@ -406,6 +440,7 @@ def main():
             continue
         _, data, theirs = pairs[0]
         refs = references(data)
+        places.append((rel, base, data, theirs, refs, {s['at'] for s in listed}))
         found = {}
         for s in listed:
             there = where_there(s['at'], refs, theirs, base)
@@ -436,40 +471,59 @@ def main():
                     for k, a in zip(range(i, j), between):
                         found[ats[k]] = base + a
             i = j
-        out = [f'# {args.name}: {rel.replace(os.sep, "/")}', '']
+        # Then where it was, if a text starts there (tables of names in
+        # records of a fixed size, translated in place: the map's rooms).
+        for at in ats:
+            offset = at - base
+            if at not in found and offset < len(theirs) and (offset == 0 or theirs[offset - 1] == 0):
+                if read_text(theirs, offset).strip():
+                    found[at] = at
+        out = outputs.setdefault(rel, [])
         for s in listed:
             if s['at'] not in found:
                 continue
-            # The libraries' messages to a debugger are not the game's.
-            if '%' in s['original'] or '->' in s['original']:
+            text = translation(rel, s['original'], s['at'], read_text(theirs, found[s['at']] - base))
+            if text is None:
                 continue
-            raw = read_text(theirs, found[s['at']] - base)
-            # The same bytes: not translated (read in another face, it
-            # might seem to be).
-            if raw == s['original'].encode('latin-1'):
-                continue
-            text = decode(raw)
-            if text == s['original'] or not text.strip():
-                continue
-            # Pointers there that lead elsewhere: no words, or another text.
-            letters = sum(c.isalpha() for c in text)
-            wrong = letters < min(2, sum(c.isalpha() for c in s['original'])) or text in originals
-            if wrong or any(ord(c) < 0x20 and c != '\n' for c in text) or '%' in text:
-                report.append(f'{rel} 0x{s["at"]:08X}: not its text there, left out\n'
-                              f'    here:  {s["original"]!r}\n    there: {text!r}')
-                continue
-            if text.count('\n') != s['original'].count('\n'):
-                report.append(f'{rel} 0x{s["at"]:08X}: another number of lines\n'
-                              f'    here:  {s["original"]!r}\n    there: {text!r}')
+            chosen.setdefault(s['original'], text)
             out += ['[[string]]', f'at = 0x{s["at"]:08X}', f'original = {literal(s["original"])}',
                     f'text = {literal(text)}', '']
-            texts += 1
-        if len(out) > 2:
-            dest = os.path.join(args.out, 'strings', rel)
-            os.makedirs(os.path.dirname(dest), exist_ok=True)
-            with open(dest, 'w', encoding='utf-8', newline='\n') as f:
-                f.write('\n'.join(out))
-            files += 1
+
+    # The same texts elsewhere (the extract lists each once): where the
+    # other version translates one otherwise, a translation for that place
+    # only (Help, the key configuration's, and Help, a panel's title).
+    by_bytes = {o.encode('latin-1'): o for o in originals if '%' not in o and len(o) >= 2}
+    for rel, base, data, theirs, refs, listed in places:
+        out = outputs.setdefault(rel, [])
+        for offset in range(0, len(data), 4):
+            if offset and data[offset - 1] != 0 and in_font(data[offset - 1]):
+                continue
+            original = by_bytes.get(read_text(data, offset))
+            at = base + offset
+            if original is None or at in listed:
+                continue
+            there = where_there(at, refs, theirs, base)
+            if there is None:
+                continue
+            raw = read_text(theirs, there - base)
+            # Read in some face as the translation chosen: the same one.
+            if any(decode_in(raw, face)[0] == chosen.get(original) for face, *_ in FACES):
+                continue
+            text = translation(rel, original, at, raw)
+            if text is None or text == chosen.get(original):
+                continue
+            out += ['[[string]]', f'at = 0x{at:08X}', 'here_only = true', f'original = {literal(original)}',
+                    f'text = {literal(text)}', '']
+
+    for rel, out in outputs.items():
+        if not out:
+            continue
+        dest = os.path.join(args.out, 'strings', rel)
+        os.makedirs(os.path.dirname(dest), exist_ok=True)
+        with open(dest, 'w', encoding='utf-8', newline='\n') as f:
+            f.write('\n'.join([f'# {args.name}: {rel.replace(os.sep, "/")}', ''] + out))
+        files += 1
+        texts += out.count('[[string]]')
 
     os.makedirs(args.out, exist_ok=True)
     if unknown:

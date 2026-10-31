@@ -42,12 +42,32 @@ struct Entry {
     original: String,
     #[serde(default)]
     text: String,
+    /// Where the original is (in RAM, as the extract lists it).
+    at: Option<u32>,
+    /// The translation is for the original there only (the same text
+    /// elsewhere is translated otherwise, or not).
+    #[serde(default)]
+    here_only: bool,
 }
 
-/// Original text (as the game stores it) -> translation, with its ending
-/// zero, where the game reads it, and whether it uses letters the font
-/// lacks (menuglyphs.rs).
-type Table = HashMap<u64, (Box<[u8]>, Box<[u8]>, bool)>;
+/// An original text (as the game stores it), its translation with its
+/// ending zero, where the game reads it, and whether that uses letters the
+/// font lacks (menuglyphs.rs).
+type Translation = (Box<[u8]>, Box<[u8]>, bool);
+
+/// The translations: by the original's contents (its hash), and those of
+/// one place by the original's address.
+#[derive(Default)]
+struct Table {
+    by_text: HashMap<u64, Translation>,
+    by_place: HashMap<u32, Translation>,
+}
+
+impl Table {
+    fn is_empty(&self) -> bool {
+        self.by_text.is_empty() && self.by_place.is_empty()
+    }
+}
 
 static TABLE: OnceLock<Table> = OnceLock::new();
 
@@ -97,18 +117,19 @@ fn fit_lines(text: &[u8], what: &str) -> Vec<u8> {
     out
 }
 
-fn add(table: &mut Table, original: &[u8], text: &[u8]) {
+fn translation(original: &[u8], text: &[u8]) -> Translation {
     let mut stored = text.to_vec();
     stored.push(0);
     let added = text.iter().any(|&b| super::menuglyphs::is_added(b));
-    table.insert(super::fnv1a(original.iter().copied()), (original.into(), stored.into(), added));
+    (original.into(), stored.into(), added)
 }
 
-/// Adds a translation, and one for each line's rest of the text when the
-/// translation has as many lines.
-fn add_with_lines(table: &mut Table, original: &[u8], text: &[u8], what: &str) {
+/// A translation, and one for each line's rest of the text when the
+/// translation has as many lines: (where in the original it starts, the
+/// original from there with its translation).
+fn with_lines(original: &[u8], text: &[u8], what: &str) -> Vec<(usize, Translation)> {
     let text = fit_lines(text, what);
-    add(table, original, &text);
+    let mut out = vec![(0, translation(original, &text))];
     let (from, to) = (line_starts(original), line_starts(&text));
     if from.len() != to.len() {
         if !from.is_empty() {
@@ -118,14 +139,15 @@ fn add_with_lines(table: &mut Table, original: &[u8], text: &[u8], what: &str) {
                 from.len() + 1
             );
         }
-        return;
+        return out;
     }
     for (&a, &b) in from.iter().zip(&to) {
         // An empty rest (a text ending with a line break) is any text's.
         if a < original.len() {
-            add(table, &original[a..], &text[b..]);
+            out.push((a, translation(&original[a..], &text[b..])));
         }
     }
+    out
 }
 
 /// The enabled mods' translation files, lowest priority first (so the
@@ -175,7 +197,7 @@ fn text_file(rel: &str) -> Option<(&str, usize)> {
 
 /// Reads the enabled mods' translations of the game's code's texts.
 fn read() -> Table {
-    let mut table = Table::new();
+    let mut table = Table::default();
     for (rel, file) in mod_files() {
         if text_file(&rel).is_some() {
             continue;
@@ -183,7 +205,12 @@ fn read() -> Table {
         for entry in file.string.iter().filter(|e| !e.text.is_empty()) {
             let what = format!("strings/{rel}: {:?}", entry.original.lines().next().unwrap_or(""));
             let original: Vec<u8> = encode(&entry.original).into_iter().filter(|&b| b != b'\r').collect();
-            add_with_lines(&mut table, &original, &encode(&entry.text), &what);
+            for (offset, t) in with_lines(&original, &encode(&entry.text), &what) {
+                match entry.at {
+                    Some(at) if entry.here_only => _ = table.by_place.insert(at + offset as u32, t),
+                    _ => _ = table.by_text.insert(super::fnv1a(t.0.iter().copied()), t),
+                }
+            }
         }
     }
     table
@@ -217,7 +244,11 @@ pub fn file_texts() -> Vec<(String, usize, Vec<u8>)> {
 pub fn load() {
     let table = TABLE.get_or_init(read);
     if !table.is_empty() {
-        eprintln!("pe2: mods: {} texts of the menus translated", table.len());
+        eprintln!(
+            "pe2: mods: {} texts of the menus translated, {} of them in one place only",
+            table.by_text.len() + table.by_place.len(),
+            table.by_place.len()
+        );
     }
 }
 
@@ -240,8 +271,14 @@ pub extern "C" fn pc_text_translate(text: *const u8) -> *const u8 {
     let bytes = unsafe { std::slice::from_raw_parts(text, len) };
     // Line ends of the disc's text files are CR LF; the game skips the CRs.
     let lines = || bytes.iter().copied().filter(|&b| b != b'\r');
-    match table.get(&super::fnv1a(lines())) {
-        Some((original, translated, added)) if original.iter().copied().eq(lines()) => {
+    // This place's own translation first, then the text's.
+    let found = table
+        .by_place
+        .get(&(text as usize as u32))
+        .filter(|t| t.0.iter().copied().eq(lines()))
+        .or_else(|| table.by_text.get(&super::fnv1a(lines())).filter(|t| t.0.iter().copied().eq(lines())));
+    match found {
+        Some((_, translated, added)) => {
             if *added {
                 super::menuglyphs::ensure();
             }
@@ -354,8 +391,9 @@ pub fn references(data: &[u8]) -> std::collections::HashSet<u32> {
 }
 
 /// The texts in `data` (loaded at `base`): runs of the font's bytes ended
-/// by a zero, starting at a word boundary after a zero (strings are
-/// word-aligned in the game's data), that look like text; two letters
+/// by a zero, starting at a word boundary after a byte no text has (a
+/// zero, or a pointer's or code's: strings are word-aligned in the game's
+/// data, and some follow a table), that look like text; two letters
 /// only where the code or data refer to them, among other texts (two
 /// random bytes often read as letters).
 pub fn scan(data: &[u8], base: u32) -> Vec<(u32, Vec<u8>)> {
@@ -371,7 +409,7 @@ fn scan_all(data: &[u8], base: u32) -> Vec<(u32, Vec<u8>)> {
     let mut referred: Option<std::collections::HashSet<u32>> = None;
     let mut i = 0;
     while i < data.len() {
-        if i % 4 != 0 || (i > 0 && data[i - 1] != 0) {
+        if i % 4 != 0 || (i > 0 && data[i - 1] != 0 && in_font(data[i - 1])) {
             i += 1;
             continue;
         }
@@ -482,14 +520,10 @@ mod tests {
     /// it from each line on.
     #[test]
     fn translates_fields() {
-        let mut table = Table::new();
-        add_with_lines(
-            &mut table,
-            b"PA3\nPump-action\nshotgun.\n\n",
-            &encode("PA3\nEspingarda\nde repetição.\n\n"),
-            "test",
-        );
-        let get = |s: &[u8]| table.get(&super::super::fnv1a(s.iter().copied())).map(|(_, t, _)| t.to_vec());
+        let pieces =
+            with_lines(b"PA3\nPump-action\nshotgun.\n\n", &encode("PA3\nEspingarda\nde repetição.\n\n"), "test");
+        assert_eq!(pieces.iter().map(|p| p.0).collect::<Vec<_>>(), [0, 4, 16, 25]);
+        let get = |s: &[u8]| pieces.iter().find(|p| *p.1.0 == *s).map(|p| p.1.1.to_vec());
         assert_eq!(get(b"PA3\nPump-action\nshotgun.\n\n").unwrap(), b"PA3\nEspingarda\nde repeti\xE7\xE3o.\n\n\0");
         assert_eq!(get(b"shotgun.\n\n").unwrap(), b"de repeti\xE7\xE3o.\n\n\0");
         assert!(get(b"").is_none());

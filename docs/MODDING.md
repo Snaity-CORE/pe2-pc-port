@@ -615,7 +615,18 @@ Copy the files into `mods/<your mod>/strings/` (any folders inside) and
 write each translation in its `text`; empty ones keep the original. The
 game reads only `original` and `text`, so a file of your own with entries
 from anywhere works as well. A translation applies wherever the game uses
-that exact text.
+that exact text; for one place only (the same English elsewhere meaning
+something else), give its `at` and `here_only = true`:
+
+```toml
+[[string]]
+at = 0x801D5BDC            # the key configuration's Help, not a panel's title
+here_only = true
+original = '''
+Help'''
+text = '''
+Ajuda'''
+```
 
 - Keep the `\` codes and the buttons where they belong.
 - Keep the number of lines. An item's text is fields, one per line (its
@@ -654,7 +665,10 @@ python tools/import_strings.py <game's dumps> <translated dumps> mods/my-menus -
 Translations of discs rewrite the texts in place and repoint what uses
 them, so each text is found where the translated version's data and code
 point instead of the original (texts nothing points at, between their
-neighbours). Their bytes are read through the translated version's own
+neighbours, or where they were: tables of names in records of a fixed
+size). The same English elsewhere is looked up too, and translated for
+that place only (`here_only`) where the other version says it otherwise.
+Their bytes are read through the translated version's own
 font: such translations draw the letters they need, and whole syllables,
 over codes the menus did not use, a different set in each of the font's
 three faces. A code reads as the game's letter of the same picture in the
