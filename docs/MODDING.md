@@ -255,14 +255,16 @@ replacement of the same sheet wins. To use other fonts,
 (needs Python with numpy, pillow and scipy):
 
 ```text
-python tools/hd_fonts.py ui      <dumps> DejaVuSans-Bold.ttf mods/my-mod/textures
+python tools/hd_fonts.py ui      <dumps> Hind-Bold.ttf mods/my-mod/textures --fill-width --weight 0
 python tools/hd_fonts.py loading <dumps> DejaVuSerif.ttf mods/my-mod/textures
 python tools/hd_fonts.py title   <dumps> CourierPrime-Regular.ttf CourierPrime-Bold.ttf mods/my-mod/textures --serif DejaVuSerif.ttf --logo logo.svg
 ```
 
 Each glyph is drawn 8 times finer (`--factor`) in its cell, in the indices
 the game's glyphs use, so the game's palettes still colour it; `--weight`
-makes strokes thicker or thinner (in the game's pixels). The UI font's
+makes strokes thicker or thinner (in the game's pixels), and
+`--fill-width` widens each face's letters alike to the game's widths, so
+any font keeps its spacing (narrow letters stay narrow). The UI font's
 letters share one scale per face and stand on their records' baselines,
 as the game lays them out (pairs the game kerns together, as Wr or MM,
 overlap as in the original). Without `--serif` or `--logo` the title keeps

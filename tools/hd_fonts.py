@@ -174,14 +174,15 @@ def boxed(font, text, w, h, stretch):
     return full
 
 
-def on_baseline(font, text, cap, base, h, fx0, fx1, s, descends):
-    """`text` at the scale whose capitals' fill is `cap` texels, standing on
-    cell row boundary `base`, centred between fx0 and fx1; squeezed about the
-    baseline only as much as leaves a texel above and below for the ring, a
-    mark too low for its cell lifted whole. None when it cannot fit."""
+def on_baseline(font, text, cap, base, h, fx0, fx1, s, descends, widen=1.0):
+    """`text` at the scale whose capitals' fill is `cap` texels (`widen`
+    times wider), standing on cell row boundary `base`, centred between fx0
+    and fx1; squeezed about the baseline only as much as leaves a texel
+    above and below for the ring, a mark too low for its cell lifted whole.
+    None when it cannot fit."""
     a, b0 = font.ink(text)
     scale = cap * s / font.cap
-    gw = min(max(1, int(round(a.shape[1] * scale))), (fx1 - fx0) * s)
+    gw = min(max(1, int(round(a.shape[1] * scale * widen))), (fx1 - fx0) * s)
     above, below = b0 * scale, (a.shape[0] - b0) * scale
     if below > s / 3 and not descends:
         above, below = above + below, 0.0
@@ -212,9 +213,12 @@ def coverage(fill, w, h, k, weight):
     return down(fill), down(ring)
 
 
-def draw_cells(idx, glyphs, k, fonts, scheme, weight):
+def draw_cells(idx, glyphs, k, fonts, scheme, weight, fill=False):
     """Each glyph of `glyphs` drawn from `fonts` (face -> (Font, stretch)) into
-    a smooth enlargement of `idx`; `scheme` the page's indices."""
+    a smooth enlargement of `idx`; `scheme` the page's indices; with `fill`,
+    each face's letters widened alike as much as makes most as wide as the
+    game's (one stretch for all, so every stroke is as thick: narrow letters
+    stay narrow)."""
     out = smooth(idx, k, np.arange(256) * scheme['ramp'])
     s = k * SS
     fill_of = lambda cell: cell >= scheme['fill_from']
@@ -230,6 +234,24 @@ def draw_cells(idx, glyphs, k, fonts, scheme, weight):
                 bases.append(rows.max() + 1)
     caps = {f: float(np.median(c)) for f, c in caps.items()}
     page_base = int(np.median(bases)) if bases else None
+    # Each face's widening: the median of how much wider the game's letters'
+    # fill is than the font's at the capitals' scale (narrow letters left
+    # out: their few texels say little).
+    widen = {}
+    if fill:
+        ratios = {}
+        for g in glyphs:
+            text, face = g['text'], g.get('face')
+            if len(text) != 1 or not text.isalpha() or text in 'iIjJlft' or face not in fonts or face not in caps:
+                continue
+            u, v, w, h = g['cell']
+            ys, xs = np.nonzero(idx[v:v + h, u:u + w] >= scheme['fill_from'])
+            if len(xs):
+                a, _ = fonts[face][0].ink(text)
+                natural = a.shape[1] * caps[face] / fonts[face][0].cap
+                ratios.setdefault(face, []).append((xs.max() - xs.min() + 1) / natural)
+        widen = {f: float(np.median(r)) for f, r in ratios.items()}
+        print('widened: ' + ', '.join(f'{f} {r:.2f}' for f, r in sorted(widen.items())))
     # A texel around each cell first: the old ring may spill past it.
     for g in glyphs:
         u, v, w, h = g['cell']
@@ -265,7 +287,7 @@ def draw_cells(idx, glyphs, k, fonts, scheme, weight):
             if face in caps and base is not None and stretch is None:
                 rows = np.nonzero(fill_of(cell).any(axis=1))[0]
                 descends = len(rows) and rows.max() + 1 > base
-                placed = on_baseline(font, text, caps[face], base, h, fx0, fx1, s, descends)
+                placed = on_baseline(font, text, caps[face], base, h, fx0, fx1, s, descends, widen.get(face, 1.0))
             if placed:
                 top, left, shape = placed
                 big[top:top + shape.shape[0], left:left + shape.shape[1]] = shape
@@ -273,8 +295,14 @@ def draw_cells(idx, glyphs, k, fonts, scheme, weight):
                 big[fy0 * s:fy1 * s, fx0 * s:fx1 * s] = boxed(font, text, (fx1 - fx0) * s, (fy1 - fy0) * s,
                                                             stretch or 1.25)
         fc, oc = coverage(big, w, h, k, weight)
-        keep0 = np.kron(cell == 0, np.ones((k, k), bool)) if scheme['keep_zero'] and 'like' not in g else False
-        out[v * k:(v + h) * k, u * k:(u + w) * k] = np.where(keep0, 0, scheme['levels'](fc, oc))
+        levels = scheme['levels'](fc, oc)
+        # Clear texels stay clear: an added letter's (`like`) only where its
+        # new ink is not.
+        own = idx[v:v + h, u:u + w]
+        keep0 = np.kron(own == 0, np.ones((k, k), bool)) if scheme['keep_zero'] else False
+        if 'like' in g:
+            keep0 = keep0 & (levels == scheme['clear'])
+        out[v * k:(v + h) * k, u * k:(u + w) * k] = np.where(keep0, 0, levels)
         drawn += 1
     return out, drawn
 
@@ -527,7 +555,7 @@ def ui(args):
     fonts = {'medium': (font, None), 'large': (font, None), 'small': (font, 3.0)}
     scheme = {'ramp': 17, 'clear': 5, 'fill_from': 13, 'ink_from': 8, 'keep_zero': True,
               'levels': lambda f, o: np.rint(5 + 5 * o + 5 * f).astype(np.int64).clip(5, 15)}
-    out, drawn = draw_cells(idx, m['glyph'], args.factor, fonts, scheme, args.weight)
+    out, drawn = draw_cells(idx, m['glyph'], args.factor, fonts, scheme, args.weight, args.fill_width)
     print(f'{drawn} glyphs drawn')
     write_sheets(args.out, m, out, args.factor, 'UI font redrawn from a vector font')
 
@@ -542,7 +570,7 @@ def loading(args):
     # The loading screen's sheet, and the M.I.S.T. briefing's copy of its font.
     for m in find_maps(args.dumps, 'loading'):
         idx = read_sheets(args.dumps, m)
-        out, drawn = draw_cells(idx, m['glyph'], args.factor, fonts, scheme, args.weight)
+        out, drawn = draw_cells(idx, m['glyph'], args.factor, fonts, scheme, args.weight, args.fill_width)
         print(f'{drawn} glyphs drawn')
         write_sheets(args.out, m, out, args.factor, 'loading captions redrawn from a vector font')
 
@@ -557,6 +585,8 @@ def main():
         s.add_argument('out')
         s.add_argument('--factor', type=int, default=8)
         s.add_argument('--weight', type=float, default=weight, help='texels the strokes grow (negative: thinner)')
+        s.add_argument('--fill-width', action='store_true',
+                       help="each face's letters widened alike to the game's widths (any font then keeps its spacing)")
     s = sub.add_parser('title')
     s.add_argument('dumps')
     s.add_argument('regular')
