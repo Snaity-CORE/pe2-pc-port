@@ -59,6 +59,7 @@ PACKAGE = [
     # The fonts pe2.exe embeds: their licenses go with them.
     (ROOT / "crates" / "pe2-host" / "res" / "fonts" / "LICENSE-DejaVu.txt", "LICENSE-DejaVu.txt"),
     (ROOT / "crates" / "pe2-host" / "res" / "fonts" / "LICENSE-CourierPrime.txt", "LICENSE-CourierPrime.txt"),
+    (ROOT / "crates" / "pe2-host" / "res" / "fonts" / "LICENSE-Hind.txt", "LICENSE-Hind.txt"),
 ]
 
 

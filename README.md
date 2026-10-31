@@ -29,15 +29,17 @@ It plays as the console does and adds what a PC can, all optional:
   turn (back + run).
 - **Sharp text**: the dialogue, the menus, the loading captions and the
   disc change's lines drawn from high-definition fonts (the built-in DejaVu
-  Sans Bold and Courier Prime) instead of the game's small pictures of text,
-  at internal resolutions above the console's.
+  Sans Bold, Hind Bold and Courier Prime) instead of the game's small
+  pictures of text, at internal resolutions above the console's.
 - **Mods** (experimental, turned on in Settings): replace the pre-rendered
   backgrounds and full-screen pictures and the textures with your own at
   any resolution, the music with
   recordings, the movies with video files, any of the game's files, and
-  the dialogue with translations; cheats and memory patches; the game's
-  pictures, textures, music, movies, files and dialogue extracted from your
-  discs with `pe2 --extract` to make them (see [docs/MODDING.md](docs/MODDING.md)).
+  its texts with translations (the dialogue, the menus, the items'
+  details); cheats and memory patches; the game's pictures, textures,
+  music, movies, files and texts extracted from your discs with
+  `pe2 --extract` to make them, and translations imported from translated
+  discs (see [docs/MODDING.md](docs/MODDING.md)).
 - **Cheats** (in `pe2.toml`, `[cheats]`): infinite HP or MP, one-hit kills,
   every hit critical, and EXP and BP multipliers.
 - **Comfort**: a launcher worked by mouse, keyboard or controller (English or
@@ -131,11 +133,12 @@ runs `tools/check_no_game_data.py` and blocks them.
   written from.
 - **Sub-pixel precision**: the idea of PGXP, by iCatButler.
 - **Fonts**: [DejaVu Sans](https://dejavu-fonts.github.io/) Bold, built in for
-  the dialogue and the menus (Bitstream Vera license with DejaVu's changes
-  in the public domain), and
+  the dialogue (Bitstream Vera license with DejaVu's changes in the public
+  domain), [Hind](https://github.com/itfoundry/hind) Bold by the Indian Type
+  Foundry for the menus, and
   [Courier Prime](https://github.com/quoteunquoteapps/CourierPrime) for the
-  loading captions and the disc change (SIL Open Font License 1.1); their
-  licenses are in `crates/pe2-host/res/fonts/`.
+  loading captions and the disc change (both SIL Open Font License 1.1);
+  their licenses are in `crates/pe2-host/res/fonts/`.
 - **Reference**: [DuckStation](https://github.com/stenzek/duckstation), used
   to compare behaviour (none of its code is used).
 - **Libraries**: [wgpu](https://wgpu.rs), [winit](https://github.com/rust-windowing/winit),

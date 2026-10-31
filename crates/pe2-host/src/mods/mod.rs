@@ -9,7 +9,8 @@
 //! VRAM: the game sees its own data, and only the picture changes.
 //!
 //! Music: music.rs; movies: movies.rs; game files: files.rs; dialogue:
-//! dialogue.rs and translate.rs; textures: runtime/gpu/textures.rs.
+//! dialogue.rs and translate.rs; the menus' texts: strings.rs; textures:
+//! runtime/gpu/textures.rs.
 //! Backgrounds and full-screen pictures, as `backgrounds/<hash>.png`, where
 //! the hash is `screen_hash` of the 320x240 (or so) image the game sends to
 //! the GPU; the extract saves each one the discs hold as
@@ -28,10 +29,12 @@ pub mod files;
 pub mod fontsheets;
 pub mod glyphmaps;
 pub mod indexed;
+pub mod menuglyphs;
 pub mod movies;
 pub mod music;
 pub mod rooms;
 pub mod sheets;
+pub mod strings;
 pub mod translate;
 
 /// A mod's `mod.toml` (every field optional).
@@ -102,6 +105,7 @@ pub fn installed() -> Vec<Mod> {
 /// need: the texture sheets' catalog, the dialogue font for translations
 /// (disc 1), and what character each dialogue glyph is.
 pub fn start(discs: &[PathBuf]) {
+    strings::load();
     if let Some(first) = discs.first() {
         fontsheets::start(first.clone());
     }
@@ -381,10 +385,15 @@ fn indexed_textures() -> &'static Library<(u64, u32), indexed::Indexed> {
     INDEX.get_or_init(|| Library::scan("textures", ".idx.png", indexed::parse_stem, indexed::read))
 }
 
-/// The indexed replacement a mod supplies for `sheet` drawn at `depth` (0:
-/// 4 bits, 1: 8), once loaded (see Library::get).
-pub fn indexed_texture(sheet: u64, depth: u32) -> Option<Arc<indexed::Indexed>> {
-    indexed_textures().get((sheet, depth)).or_else(|| fontsheets::get(sheet, depth))
+/// The indexed replacement for `sheet` drawn at `depth` (0: 4 bits, 1: 8):
+/// a mod's, once loaded (see Library::get), else one redrawn from the
+/// built-in fonts; and whether it is a mod's (a mod's loads later and must
+/// then take the built-in one's place).
+pub fn indexed_texture(sheet: u64, depth: u32) -> Option<(Arc<indexed::Indexed>, bool)> {
+    match indexed_textures().get((sheet, depth)) {
+        Some(m) => Some((m, true)),
+        None => fontsheets::get(sheet, depth).map(|f| (f, false)),
+    }
 }
 
 /// Whether anything here wants to know the textures drawn: mods with

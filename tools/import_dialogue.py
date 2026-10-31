@@ -5,8 +5,9 @@
 Extract both versions (`pe2 --extract`, each with its own data folder):
 this reads each dialogue file's lines from the other version's dumps/text
 and puts them, as translations, into the lines in the same place of the
-game's own (same file, same order), where both have the same controls
-(camera changes, choices, icons). Writes `text/**/*.toml`, `mod.toml` and
+game's own (same file, same order, a line dropped or added there
+allowed for), where both have the same controls (camera changes,
+choices, icons). Writes `text/**/*.toml`, `mod.toml` and
 `report.txt` (what was left out, and lines whose glyphs were not read,
 shown as ?) into the mod folder.
 
@@ -32,6 +33,68 @@ def literal(text):
     return "'''\n" + text + "'''"
 
 
+END = re.compile(r'(\.\.\.|[.?!"\]]|)\s*$')
+DIGITS = re.compile(r'\d+')
+GAP = -2
+
+
+def features(lines):
+    """What a line and its translation share: its controls, the distance to
+    the next record (the script's layout, kept by translators who only
+    retype the text), its number of lines, its closing punctuation, its
+    numbers, its bracketed labels and colour changes."""
+    out = []
+    for i, line in enumerate(lines):
+        text = line['original']
+        step = lines[i + 1]['record'] - line['record'] if i + 1 < len(lines) else None
+        out.append((CONTROL.findall(text), step, text.count('\n'), END.search(text).group(1),
+                    DIGITS.findall(text), text.count('['), text.count('{color')))
+    return out
+
+
+def similarity(a, b):
+    controls, step, breaks, end, digits, brackets, colours = a
+    score = 3 if controls == b[0] else -3
+    score += 2 if step is not None and step == b[1] else 0
+    score += 1 if breaks == b[2] else 0
+    score += 1 if end == b[3] else 0
+    score += 2 if digits and digits == b[4] else 0
+    score += 1 if brackets and brackets == b[5] else 0
+    score += 1 if colours and colours == b[6] else 0
+    return score
+
+
+def align(mine, theirs):
+    """Pairs each of the game's lines with the other version's line in the
+    same place: in order, but translators may have dropped or added a line
+    (an empty one with only a camera change, say), so this is the best
+    alignment of the two lists (Needleman-Wunsch on `similarity`). Yields
+    (game line, other line), either None where the other list has none."""
+    a, b = features(mine), features(theirs)
+    n, m = len(a), len(b)
+    best = [[0] * (m + 1) for _ in range(n + 1)]
+    for i in range(1, n + 1):
+        best[i][0] = i * GAP
+    for j in range(1, m + 1):
+        best[0][j] = j * GAP
+    for i in range(1, n + 1):
+        for j in range(1, m + 1):
+            best[i][j] = max(best[i - 1][j - 1] + similarity(a[i - 1], b[j - 1]),
+                             best[i - 1][j] + GAP, best[i][j - 1] + GAP)
+    pairs, i, j = [], n, m
+    while i or j:
+        if i and j and best[i][j] == best[i - 1][j - 1] + similarity(a[i - 1], b[j - 1]):
+            pairs.append((mine[i - 1], theirs[j - 1]))
+            i, j = i - 1, j - 1
+        elif i and best[i][j] == best[i - 1][j] + GAP:
+            pairs.append((mine[i - 1], None))
+            i -= 1
+        else:
+            pairs.append((None, theirs[j - 1]))
+            j -= 1
+    return reversed(pairs)
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__.split('\n\n')[0])
     p.add_argument('game')
@@ -53,11 +116,15 @@ def main():
         with open(other_path, 'rb') as f:
             other = tomllib.load(f)
         mine, theirs = game.get('line', []), other.get('line', [])
-        if len(mine) != len(theirs):
-            report.append(f'{rel}: {len(mine)} lines here, {len(theirs)} there: left out')
-            continue
         out = [f'# {args.name}: {rel.replace(os.sep, "/")}', f'cap = "{game["cap"]}"', '']
-        for m, t in zip(mine, theirs):
+        for m, t in align(mine, theirs):
+            if m is None:
+                report.append(f'{rel}: a line only there, left out\n    there: {t["original"]!r}')
+                continue
+            if t is None:
+                report.append(f'{rel} record 0x{m["record"]:04X}: no line there, left out\n'
+                              f'    here:  {m["original"]!r}')
+                continue
             text = t['original']
             if CONTROL.findall(text) != CONTROL.findall(m['original']):
                 report.append(f'{rel} record 0x{m["record"]:04X}: controls differ, left out\n'

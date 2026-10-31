@@ -2,7 +2,7 @@
 """Redraw the game's pictures of text from vector fonts, as indexed texture
 replacements (docs/MODDING.md, "Indexed replacements").
 
-Reads only what `pe2 --extract-visuals` writes under the data folder's
+Reads only what `pe2 --extract textures,files` writes under the data folder's
 dumps: each picture's map (dumps/textures-glyphs, its glyphs' cells and
 text), its sheets' indices (dumps/textures-indexed) and, for the title, its
 palette (dumps/files). Writes `<sheet>-<4|8>bit.idx.png` and `.toml` into
@@ -13,6 +13,7 @@ ones used so far are free: DejaVu, Courier Prime).
     python tools/hd_fonts.py loading DUMPS FONT.ttf OUT [--weight 0.15]
     python tools/hd_fonts.py title   DUMPS REGULAR.ttf BOLD.ttf OUT
                                      [--serif SERIF.ttf] [--logo LOGO.svg]
+                                     [--text "New Game=Novo Jogo"]... [--over DIR]
 
 Each sheet is first enlarged smoothly (its indices' greys or colours
 Lanczos-enlarged, each finer texel taking, of its own texel's index and its
@@ -27,7 +28,11 @@ its cell from the font, in the indices the game's glyphs use:
 - title:   each row of text fitted to the original's ink, its coverage
            turned into the row's own shades (by brightness); a logo, from
            an SVG's paths (M, L, C, z) left of x = 320 in its units (the
-           Squaresoft wordmark's SQUARE), in the logo's own colours.
+           Squaresoft wordmark's SQUARE), in the logo's own colours;
+           --text draws a row in another text (a translation), at the
+           original's scale, on its baseline, centred where it was;
+           --over starts from a mod's replacements of the page (redrawing
+           only the rows given another text).
 
 Needs numpy, pillow and scipy.
 """
@@ -169,14 +174,15 @@ def boxed(font, text, w, h, stretch):
     return full
 
 
-def on_baseline(font, text, cap, base, h, fx0, fx1, s, descends):
-    """`text` at the scale whose capitals' fill is `cap` texels, standing on
-    cell row boundary `base`, centred between fx0 and fx1; squeezed about the
-    baseline only as much as leaves a texel above and below for the ring, a
-    mark too low for its cell lifted whole. None when it cannot fit."""
+def on_baseline(font, text, cap, base, h, fx0, fx1, s, descends, widen=1.0):
+    """`text` at the scale whose capitals' fill is `cap` texels (`widen`
+    times wider), standing on cell row boundary `base`, centred between fx0
+    and fx1; squeezed about the baseline only as much as leaves a texel
+    above and below for the ring, a mark too low for its cell lifted whole.
+    None when it cannot fit."""
     a, b0 = font.ink(text)
     scale = cap * s / font.cap
-    gw = min(max(1, int(round(a.shape[1] * scale))), (fx1 - fx0) * s)
+    gw = min(max(1, int(round(a.shape[1] * scale * widen))), (fx1 - fx0) * s)
     above, below = b0 * scale, (a.shape[0] - b0) * scale
     if below > s / 3 and not descends:
         above, below = above + below, 0.0
@@ -207,9 +213,12 @@ def coverage(fill, w, h, k, weight):
     return down(fill), down(ring)
 
 
-def draw_cells(idx, glyphs, k, fonts, scheme, weight):
+def draw_cells(idx, glyphs, k, fonts, scheme, weight, fill=False):
     """Each glyph of `glyphs` drawn from `fonts` (face -> (Font, stretch)) into
-    a smooth enlargement of `idx`; `scheme` the page's indices."""
+    a smooth enlargement of `idx`; `scheme` the page's indices; with `fill`,
+    each face's letters widened alike as much as makes most as wide as the
+    game's (one stretch for all, so every stroke is as thick: narrow letters
+    stay narrow)."""
     out = smooth(idx, k, np.arange(256) * scheme['ramp'])
     s = k * SS
     fill_of = lambda cell: cell >= scheme['fill_from']
@@ -225,6 +234,34 @@ def draw_cells(idx, glyphs, k, fonts, scheme, weight):
                 bases.append(rows.max() + 1)
     caps = {f: float(np.median(c)) for f, c in caps.items()}
     page_base = int(np.median(bases)) if bases else None
+    # Each face's widening: the median of how much wider the game's letters'
+    # fill is than the font's at the capitals' scale (narrow letters left
+    # out: their few texels say little).
+    widen = {}
+    if fill:
+        ratios = {}
+        for g in glyphs:
+            text, face = g['text'], g.get('face')
+            if len(text) != 1 or face not in fonts or face not in caps or 'like' in g:
+                continue
+            # Letters and digits apart: the game's digits are as wide as its
+            # widest letters, a font's are narrower.
+            if text.isdigit():
+                group = (face, True)
+                if text == '1':
+                    continue
+            elif text.isalpha() and text not in 'iIjJlft':
+                group = (face, False)
+            else:
+                continue
+            u, v, w, h = g['cell']
+            ys, xs = np.nonzero(idx[v:v + h, u:u + w] >= scheme['fill_from'])
+            if len(xs):
+                a, _ = fonts[face][0].ink(text)
+                natural = a.shape[1] * caps[face] / fonts[face][0].cap
+                ratios.setdefault(group, []).append((xs.max() - xs.min() + 1) / natural)
+        widen = {f: float(np.median(r)) for f, r in ratios.items()}
+        print('widened: ' + ', '.join(f'{f}{" digits" if d else ""} {r:.2f}' for (f, d), r in sorted(widen.items())))
     # A texel around each cell first: the old ring may spill past it.
     for g in glyphs:
         u, v, w, h = g['cell']
@@ -236,7 +273,10 @@ def draw_cells(idx, glyphs, k, fonts, scheme, weight):
         if not text or face not in fonts:
             continue
         u, v, w, h = g['cell']
-        cell = idx[v:v + h, u:u + w]
+        # A letter the sheet leaves blank (one PE2PC adds, `like` its model's
+        # cell) goes where its model's ink is.
+        lu, lv = g.get('like', g['cell'])[:2]
+        cell = idx[lv:lv + h, lu:lu + w]
         ys, xs = np.nonzero(cell >= scheme['ink_from'])
         if len(ys) == 0:
             continue
@@ -257,7 +297,8 @@ def draw_cells(idx, glyphs, k, fonts, scheme, weight):
             if face in caps and base is not None and stretch is None:
                 rows = np.nonzero(fill_of(cell).any(axis=1))[0]
                 descends = len(rows) and rows.max() + 1 > base
-                placed = on_baseline(font, text, caps[face], base, h, fx0, fx1, s, descends)
+                placed = on_baseline(font, text, caps[face], base, h, fx0, fx1, s, descends,
+                                     widen.get((face, text.isdigit()), widen.get((face, False), 1.0)))
             if placed:
                 top, left, shape = placed
                 big[top:top + shape.shape[0], left:left + shape.shape[1]] = shape
@@ -265,8 +306,14 @@ def draw_cells(idx, glyphs, k, fonts, scheme, weight):
                 big[fy0 * s:fy1 * s, fx0 * s:fx1 * s] = boxed(font, text, (fx1 - fx0) * s, (fy1 - fy0) * s,
                                                             stretch or 1.25)
         fc, oc = coverage(big, w, h, k, weight)
-        keep0 = np.kron(cell == 0, np.ones((k, k), bool)) if scheme['keep_zero'] else False
-        out[v * k:(v + h) * k, u * k:(u + w) * k] = np.where(keep0, 0, scheme['levels'](fc, oc))
+        levels = scheme['levels'](fc, oc)
+        # Clear texels stay clear: an added letter's (`like`) only where its
+        # new ink is not.
+        own = idx[v:v + h, u:u + w]
+        keep0 = np.kron(own == 0, np.ones((k, k), bool)) if scheme['keep_zero'] else False
+        if 'like' in g:
+            keep0 = keep0 & (levels == scheme['clear'])
+        out[v * k:(v + h) * k, u * k:(u + w) * k] = np.where(keep0, 0, levels)
         drawn += 1
     return out, drawn
 
@@ -381,8 +428,17 @@ def title(args):
     # Clear: the commonest colour of the rows of text.
     rows = np.concatenate([idx[g['cell'][1]:g['cell'][1] + g['cell'][3]].ravel() for g in m['glyph']])
     clear = int(np.bincount(rows).argmax())
-    out = smooth(idx, k, pal)
+    if args.over:
+        # A mod's replacement of the page to start from: only the rows
+        # given another text are redrawn.
+        out = np.hstack([np.array(Image.open(os.path.join(args.over, f'{s}-{m["depth"]}bit.idx.png')))
+                         for s in m['sheets']]).astype(np.int64)
+        k = out.shape[0] // idx.shape[0]
+    else:
+        out = smooth(idx, k, pal)
     fonts = {'PRESS START BUTTON': args.bold, '© 1999 , 2000': args.serif}
+    # --text "New Game=Novo Jogo": a row's text translated.
+    translations = dict(t.split('=', 1) for t in args.text)
     for g in m['glyph']:
         u, v, w, h = g['cell']
         text = g['text']
@@ -391,7 +447,7 @@ def title(args):
                 draw_logo(out, idx, (u, v, w, h), args.logo, pal, clear, k)
             continue
         font = fonts.get(text, args.regular)
-        if font is None:
+        if font is None or (args.over and text not in translations):
             continue
         band = np.full((h, idx.shape[1]), clear)
         band[:, u:u + w] = idx[v:v + h, u:u + w]
@@ -412,8 +468,21 @@ def title(args):
         grey = lambda c: np.ptp(pal[c, :3]) <= 16
         shades = [c for c in letters if known[c] and grey(c)] + [bg]
         fill = max(letters, key=lambda c: bright[c])
-        cover = Font(font).ink(text)[0]
-        cover = np.array(Image.fromarray(cover).resize(((x1 - x0) * k, (y1 - y0) * k), Image.LANCZOS)) / 255.0
+        f = Font(font)
+        cover, base = f.ink(text)
+        # The font's scale that fits the original text to its ink.
+        sx, sy = (x1 - x0) * k / cover.shape[1], (y1 - y0) * k / cover.shape[0]
+        new = translations.get(text, text)
+        if new != text:
+            # Another text at the same scale, on the same baseline, centred
+            # where the original was (within its cell).
+            cover, new_base = f.ink(new)
+            gw, gh = max(1, round(cover.shape[1] * sx)), max(1, round(cover.shape[0] * sy))
+            top = round(y0 * k + base * sy - new_base * sy)
+            left = min(max(round((x0 + x1) * k / 2 - gw / 2), u * k), (u + w) * k - gw)
+        else:
+            gw, gh, top, left = (x1 - x0) * k, (y1 - y0) * k, y0 * k, x0 * k
+        cover = np.array(Image.fromarray(cover).resize((gw, gh), Image.LANCZOS)) / 255.0
         target = bright[bg] + cover * (bright[fill] - bright[bg])
         vals = np.array([bright[c] for c in shades])
         pick = np.array(shades)[np.abs(target[..., None] - vals).argmin(-1)]
@@ -422,10 +491,32 @@ def title(args):
         near[:, :u] = near[:, u + w:] = False
         region = out[v * k:(v + h) * k]
         region[np.kron(near, np.ones((k, k), bool))] = bg
-        part = region[y0 * k:y1 * k, x0 * k:x1 * k]
-        ink = cover > 0.02
-        part[ink] = pick[ink]
-        print(f'{text!r}: {x1 - x0}x{y1 - y0} texels at ({x0}, {v + y0})')
+        # What of the new ink falls inside the row.
+        cy0, cx0 = max(0, -top), max(0, -left)
+        cy1, cx1 = min(gh, region.shape[0] - top), min(gw, region.shape[1] - left)
+        if plate is not None and new != text:
+            # Other words need their own plate: the old one cleared, and a
+            # box behind each new word (a texel around its ink).
+            whole = np.zeros_like(band, bool)
+            whole[:, u:u + w] = band[:, u:u + w] != clear
+            region[np.kron(whole, np.ones((k, k), bool))] = clear
+            cols = (cover[cy0:cy1, cx0:cx1] > 0.02).any(axis=0)
+            gap = round(0.4 * gh)
+            xs = np.nonzero(cols)[0]
+            words, start = [], xs[0]
+            for a, b in zip(xs, xs[1:]):
+                if b - a > gap:
+                    words.append((start, a + 1))
+                    start = b
+            words.append((start, xs[-1] + 1))
+            for a, b in words:
+                y_a, y_b = max(0, top + cy0 - k), min(region.shape[0], top + cy1 + k)
+                x_a, x_b = max(0, left + cx0 + a - k), min(region.shape[1], left + cx0 + b + k)
+                region[y_a:y_b, x_a:x_b] = plate
+        part = region[top + cy0:top + cy1, left + cx0:left + cx1]
+        ink = cover[cy0:cy1, cx0:cx1] > 0.02
+        part[ink] = pick[cy0:cy1, cx0:cx1][ink]
+        print(f'{new!r}: {gw / k:.0f}x{gh / k:.0f} texels at ({left / k:.0f}, {v + top / k:.0f})')
     write_sheets(args.out, m, out, k, 'title text redrawn from vector fonts')
 
 
@@ -475,7 +566,7 @@ def ui(args):
     fonts = {'medium': (font, None), 'large': (font, None), 'small': (font, 3.0)}
     scheme = {'ramp': 17, 'clear': 5, 'fill_from': 13, 'ink_from': 8, 'keep_zero': True,
               'levels': lambda f, o: np.rint(5 + 5 * o + 5 * f).astype(np.int64).clip(5, 15)}
-    out, drawn = draw_cells(idx, m['glyph'], args.factor, fonts, scheme, args.weight)
+    out, drawn = draw_cells(idx, m['glyph'], args.factor, fonts, scheme, args.weight, args.fill_width)
     print(f'{drawn} glyphs drawn')
     write_sheets(args.out, m, out, args.factor, 'UI font redrawn from a vector font')
 
@@ -490,7 +581,7 @@ def loading(args):
     # The loading screen's sheet, and the M.I.S.T. briefing's copy of its font.
     for m in find_maps(args.dumps, 'loading'):
         idx = read_sheets(args.dumps, m)
-        out, drawn = draw_cells(idx, m['glyph'], args.factor, fonts, scheme, args.weight)
+        out, drawn = draw_cells(idx, m['glyph'], args.factor, fonts, scheme, args.weight, args.fill_width)
         print(f'{drawn} glyphs drawn')
         write_sheets(args.out, m, out, args.factor, 'loading captions redrawn from a vector font')
 
@@ -505,6 +596,8 @@ def main():
         s.add_argument('out')
         s.add_argument('--factor', type=int, default=8)
         s.add_argument('--weight', type=float, default=weight, help='texels the strokes grow (negative: thinner)')
+        s.add_argument('--fill-width', action='store_true',
+                       help="each face's letters widened alike to the game's widths (any font then keeps its spacing)")
     s = sub.add_parser('title')
     s.add_argument('dumps')
     s.add_argument('regular')
@@ -512,6 +605,9 @@ def main():
     s.add_argument('out')
     s.add_argument('--serif', help='font for the copyright line (else it is kept)')
     s.add_argument('--logo', help='SVG of the logo (else it is kept)')
+    s.add_argument('--over', metavar='DIR', help="a mod's textures to start from (its title page's replacements)")
+    s.add_argument('--text', action='append', default=[], metavar='ORIGINAL=NEW',
+                   help='draw a row in another text, e.g. "New Game=Novo Jogo" (repeatable)')
     s.add_argument('--factor', type=int, default=8)
     args = p.parse_args()
     {'ui': ui, 'loading': loading, 'title': title}[args.command](args)

@@ -1,6 +1,6 @@
 //! The game's pictures of text redrawn from built-in fonts, with
-//! [video] hd_fonts (the default): the menus' font (DejaVu Sans Bold) and
-//! the loading screen's captions (Courier Prime, a typewriter face), as
+//! [video] hd_fonts (the default): the menus' font (Hind Bold) and the
+//! loading screen's captions (Courier Prime, a typewriter face), as
 //! tools/hd_fonts.py draws them for mods, made here when the game starts.
 //!
 //! Each sheet becomes an indexed replacement K times finer (indexed.rs),
@@ -12,9 +12,9 @@
 //! its cell, in the indices the game's glyphs use:
 //!
 //! - menus: 5 the page, 10 the outline ring, 15 the fill, those between
-//!   the edges; letters of a face share one scale (its capitals') and
-//!   stand on the baseline their record gives; the pad's buttons drawn as
-//!   outlines;
+//!   the edges; letters of a face share one scale (its capitals', widened
+//!   alike to the game's letters' widths) and stand on the baseline their
+//!   record gives; the pad's buttons drawn as outlines;
 //! - loading: 0 clear, 1 the ring, 15 the fill, those between the edges;
 //!   also the M.I.S.T. briefing's copy of its font;
 //! - the disc change's lines: 15 clear (black), 0 the fill (white), 1 to
@@ -30,6 +30,10 @@ use ab_glyph::{Font as _, FontRef, PxScale, point};
 use super::glyphmaps::{Glyph, Map};
 use super::indexed::Indexed;
 use super::sheets::Catalog;
+
+/// The menus' font: Hind Bold, a humanist face near the game's (its
+/// license: res/fonts/LICENSE-Hind.txt).
+const HIND: &[u8] = include_bytes!("../../res/fonts/Hind-Bold.ttf");
 
 /// The loading captions' font (its license: res/fonts/LICENSE-CourierPrime.txt).
 const COURIER_PRIME: &[u8] = include_bytes!("../../res/fonts/CourierPrime-Regular.ttf");
@@ -89,7 +93,7 @@ pub fn start(disc1: std::path::PathBuf) {
 /// `exe` gives.
 pub fn build(catalog: &Catalog, exe: &[u8]) {
     let since = std::time::Instant::now();
-    let ui = Font::new(super::capfont::BUILT_IN);
+    let ui = Font::new(HIND);
     let typewriter = Font::new(COURIER_PRIME);
     // The small face is wide capitals: stretched into its cells.
     let ui_faces = [(Some("medium"), &ui, None), (Some("large"), &ui, None), (Some("small"), &ui, Some(3.0))];
@@ -100,11 +104,10 @@ pub fn build(catalog: &Catalog, exe: &[u8]) {
         keep_zero: true,
         rank: in_order,
         levels: ui_levels,
-        weight: -0.25,
-        // A whole texel of ring is heavy around strokes drawn finer than
-        // the game's.
-        ring: 0.6,
+        weight: 0.0,
+        ring: 1.0,
         inset: 1,
+        fill_widths: true,
     };
     let typewriter_faces = [(None, &typewriter, None)];
     let loading_scheme = Scheme {
@@ -117,6 +120,7 @@ pub fn build(catalog: &Catalog, exe: &[u8]) {
         weight: 0.15,
         ring: 1.0,
         inset: 1,
+        fill_widths: false,
     };
     let prompt_scheme = Scheme {
         clear: 15,
@@ -128,6 +132,7 @@ pub fn build(catalog: &Catalog, exe: &[u8]) {
         weight: 0.15,
         ring: 0.0,
         inset: 0,
+        fill_widths: false,
     };
     let mut jobs: Vec<(Map, &[Face], &Scheme)> = Vec::new();
     jobs.extend(super::glyphmaps::ui_font(catalog, exe).map(|m| (m, &ui_faces[..], &ui_scheme)));
@@ -179,6 +184,10 @@ struct Scheme {
     /// Texels between a glyph's old ink and the new one's box: room for
     /// the ring, where there is one.
     inset: usize,
+    /// Each face's letters widened alike as much as makes most as wide as
+    /// the game's (one stretch for all, so every stroke is as thick and
+    /// narrow letters stay narrow): the font then keeps the game's spacing.
+    fill_widths: bool,
 }
 
 fn in_order(i: u8) -> u8 {
@@ -504,8 +513,9 @@ fn boxed(font: &Font, text: &str, w: usize, h: usize, stretch: f32) -> Option<Ma
     Some(full)
 }
 
-/// `text` at the scale whose capitals' fill is `cap` texels, standing on
-/// cell row boundary `base`, centred between fx0 and fx1; squeezed about
+/// `text` at the scale whose capitals' fill is `cap` texels (`widen` times
+/// wider), standing on cell row boundary `base`, centred between fx0 and
+/// fx1; squeezed about
 /// the baseline only as much as leaves a texel above and below for the
 /// ring, a mark too low for its cell lifted whole. None when it cannot fit.
 #[allow(clippy::too_many_arguments)]
@@ -518,11 +528,12 @@ fn on_baseline(
     fx0: usize,
     fx1: usize,
     descends: bool,
+    widen: f32,
 ) -> Option<(usize, usize, Mask)> {
     let s = (K * SS) as f32;
     let (a, b0) = font.ink(text)?;
     let scale = cap * s / font.cap;
-    let gw = ((a.w as f32 * scale).round_ties_even() as usize).max(1).min((fx1 - fx0) * K * SS);
+    let gw = ((a.w as f32 * scale * widen).round_ties_even() as usize).max(1).min((fx1 - fx0) * K * SS);
     let (mut above, mut below) = (b0 * scale, (a.h as f32 - b0) * scale);
     if below > s / 3.0 && !descends {
         (above, below) = (above + below, 0.0);
@@ -712,6 +723,42 @@ fn redraw(catalog: &Catalog, map: &Map, faces: &[Face], scheme: &Scheme) -> Opti
             widen.insert(face, m.min(limit));
         }
     }
+    // The other faces' widening (fill_widths): the median of how much wider
+    // the game's letters are than the font's at the capitals' scale.
+    // Letters and digits apart: the game's digits are as wide as its
+    // widest letters, a font's are narrower.
+    let digit = |g: &Glyph| g.text.len() == 1 && g.text.as_bytes()[0].is_ascii_digit();
+    let mut wider: HashMap<(Option<&str>, bool), f32> = HashMap::new();
+    for &(face, font, limit) in faces {
+        let Some(&cap) = caps.get(&face) else { continue };
+        if limit.is_some() || !scheme.fill_widths {
+            continue;
+        }
+        for digits in [false, true] {
+            let mut ratios: Vec<f32> = map
+                .glyphs
+                .iter()
+                .filter(|g| {
+                    let mut c = g.text.chars();
+                    let wanted = if digits {
+                        digit(g) && g.text != "1"
+                    } else {
+                        c.next().is_some_and(|c| c.is_alphabetic() && !"iIjJlft".contains(c)) && c.next().is_none()
+                    };
+                    g.face == face && g.like.is_none() && wanted
+                })
+                .filter_map(|g| {
+                    let (u, v, cw, ch) = cell_of(g)?;
+                    let (fx0, _, fx1, _) = fill_box(u, v, cw, ch)?;
+                    let (a, _) = font.ink(&g.text)?;
+                    Some((fx1 - fx0) as f32 / (a.w as f32 * cap / font.cap))
+                })
+                .collect();
+            if let Some(m) = median(&mut ratios) {
+                wider.insert((face, digits), m);
+            }
+        }
+    }
     // One glyph drawn: its cell and its finer texels' indices.
     let draw = |g: &Glyph| -> Option<(usize, usize, usize, usize, Vec<u8>)> {
         if g.text.is_empty() {
@@ -720,7 +767,9 @@ fn redraw(catalog: &Catalog, map: &Map, faces: &[Face], scheme: &Scheme) -> Opti
         let &(_, font, stretch) = faces.iter().find(|f| f.0 == g.face)?;
         let stretch = widen.get(&g.face).copied().or(stretch);
         let (u, v, cw, ch) = cell_of(g)?;
-        let (fx0, fy0, fx1, fy1) = fill_box(u, v, cw, ch)?;
+        // A letter the sheet leaves blank goes where its model's ink is.
+        let (iu, iv) = g.like.map_or((u, v), |[lu, lv, ..]| (usize::from(lu), usize::from(lv)));
+        let (fx0, fy0, fx1, fy1) = fill_box(iu, iv, cw, ch)?;
         let mut big = Mask::new(cw * s, ch * s);
         if let Some(name) = g.text.strip_prefix('{').and_then(|t| t.strip_suffix('}')) {
             let stroke = if g.face == Some("large") { 2.0 } else { 1.6 } * s as f32;
@@ -730,9 +779,10 @@ fn redraw(catalog: &Catalog, map: &Map, faces: &[Face], scheme: &Scheme) -> Opti
             let base = g.baseline.map(usize::from).or(page_base);
             let mut placed = None;
             if let (Some(&cap), Some(base), None) = (caps.get(&g.face), base, stretch) {
-                let rows = fill_rows(u, v, cw, ch);
+                let rows = fill_rows(iu, iv, cw, ch);
                 let descends = rows.last().is_some_and(|&r| r + 1 > base);
-                placed = on_baseline(font, &g.text, cap, base, ch, fx0, fx1, descends);
+                let widen = wider.get(&(g.face, digit(g))).or(wider.get(&(g.face, false))).copied().unwrap_or(1.0);
+                placed = on_baseline(font, &g.text, cap, base, ch, fx0, fx1, descends, widen);
             }
             // The menus' I has slab serifs, as wide as the other capitals'
             // strokes are long; the font's is a bare stem.
@@ -755,8 +805,11 @@ fn redraw(catalog: &Catalog, map: &Map, faces: &[Face], scheme: &Scheme) -> Opti
         let block = (0..ch * K * cw * K)
             .map(|i| {
                 let (y, x) = (i / (cw * K), i % (cw * K));
-                let keep_zero = scheme.keep_zero && idx[(v + y / K) * w + u + x / K] == 0;
-                if keep_zero { 0 } else { (scheme.levels)(fill[i], ring[i]) }
+                let level = (scheme.levels)(fill[i], ring[i]);
+                // Clear texels stay clear: an added letter's only where its
+                // new ink is not.
+                let clear = idx[(v + y / K) * w + u + x / K] == 0 && (g.like.is_none() || level == scheme.clear);
+                if scheme.keep_zero && clear { 0 } else { level }
             })
             .collect();
         Some((u, v, cw, ch, block))

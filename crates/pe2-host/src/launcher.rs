@@ -1757,9 +1757,11 @@ fn add_fonts(ctx: &egui::Context) -> bool {
     found
 }
 
-/// The dark look, lit in the art's teal.
+/// The dark look, lit in the art's teal, whatever the system's theme (egui
+/// follows it by default, and would draw light widgets on the dark art).
 fn set_style(ctx: &egui::Context) {
     use egui::{Color32, FontFamily, FontId, Stroke, TextStyle};
+    ctx.set_theme(egui::ThemePreference::Dark);
     let mut v = egui::Visuals::dark();
     v.selection.bg_fill = TEAL_DARK;
     v.selection.stroke = Stroke::new(1.0, TEAL);

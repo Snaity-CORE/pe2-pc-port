@@ -54,14 +54,17 @@ in a terminal from the folder `pe2.exe` is in:
 pe2 --extract
 ```
 
-For backgrounds and texture sheets only, without rendering music or decoding
-movies and dialogue, use `pe2 --extract-visuals [disc1.chd disc2.chd]`.
-It also writes the raw files needed to trace each picture's source.
-
 It reads the discs `pe2.toml` names (or the images given after
 `--extract`) and saves what it finds in `dumps/` in the data folder: the
-files, pictures, textures, songs, movies and dialogue (see each kind
-below). It takes a minute or two.
+files, pictures, textures, songs, movies and texts (see each kind below).
+It takes a minute or two. To save some of them only, name them, separated
+by commas: `files` (the discs' files, and the executable), `backgrounds`,
+`textures`, `music`, `movies` and `texts` (the dialogue and the menus'
+texts); `all` is the default:
+
+```text
+pe2 --extract textures,backgrounds [disc1.chd disc2.chd]
+```
 
 ## Backgrounds and full-screen pictures
 
@@ -129,7 +132,7 @@ An indexed replacement wins where both exist for a sheet.
 
 ### Indexed replacements
 
-1. Extract (`pe2 --extract` or `pe2 --extract-visuals`, see above): every
+1. Extract (`pe2 --extract` or `pe2 --extract textures`, see above): every
    4- and 8-bit sheet, about 2,090, is saved in `dumps/textures-indexed/`
    at its own size, as indices, at both depths:
    `<sheet>-4bit.idx.png` and `<sheet>-8bit.idx.png`, each with its header
@@ -252,14 +255,16 @@ replacement of the same sheet wins. To use other fonts,
 (needs Python with numpy, pillow and scipy):
 
 ```text
-python tools/hd_fonts.py ui      <dumps> DejaVuSans-Bold.ttf mods/my-mod/textures
+python tools/hd_fonts.py ui      <dumps> Hind-Bold.ttf mods/my-mod/textures --fill-width --weight 0
 python tools/hd_fonts.py loading <dumps> DejaVuSerif.ttf mods/my-mod/textures
 python tools/hd_fonts.py title   <dumps> CourierPrime-Regular.ttf CourierPrime-Bold.ttf mods/my-mod/textures --serif DejaVuSerif.ttf --logo logo.svg
 ```
 
 Each glyph is drawn 8 times finer (`--factor`) in its cell, in the indices
 the game's glyphs use, so the game's palettes still colour it; `--weight`
-makes strokes thicker or thinner (in the game's pixels). The UI font's
+makes strokes thicker or thinner (in the game's pixels), and
+`--fill-width` widens each face's letters alike to the game's widths, so
+any font keeps its spacing (narrow letters stay narrow). The UI font's
 letters share one scale per face and stand on their records' baselines,
 as the game lays them out (pairs the game kerns together, as Wr or MM,
 overlap as in the original). Without `--serif` or `--logo` the title keeps
@@ -533,8 +538,11 @@ python tools/import_dialogue.py <game's dumps/text> <translated dumps/text> mods
 
 puts each translated line into the `text` of the game's line in the same
 place (same file, same order: translated files' records are moved), where
-both have the same controls. `report.txt` lists what was left out (files
-with another number of lines, lines whose controls differ) and lines with
+both have the same controls. Translators may have dropped a line (an empty
+one holding only a camera change, say) or added one, so the lines are
+paired by their shape: controls, the distance to the next record, line
+breaks, closing punctuation, numbers. `report.txt` lists what was left out
+(lines with no counterpart, lines whose controls differ) and lines with
 glyphs not read (shown as `?`). Drawn in a mod's font (below), any accent
 shows.
 
@@ -574,6 +582,104 @@ lines inside the screen.
 For mods that redraw the glyph pictures instead (indexed replacements of
 the pages), the extract also maps each dialogue glyph page: see "Text
 redrawn from fonts" under Textures.
+
+## Texts of the menus
+
+The menus, items, Parasite Energy, places, options, shops and memory card
+messages are texts in the game's code (the executable and its code
+packages), in the menus' font's encoding: ASCII, the accented letters of
+Latin-1, and `\` codes (`\B9`, `\Sm`: columns, faces, offsets; `}` `{`
+`~` `|` draw the pad's buttons). The extract lists them in
+`dumps/strings/<file>/<load address>.toml`, each text once (where it is
+first found):
+
+```toml
+[[string]]
+at = 0x800FC16C            # where it is, for you
+original = '''
+Customize game settings.'''
+text = ''
+```
+
+Finding them is a guess (runs of letters ended by a zero), so a few entries
+are bytes of code that happen to read as letters: leave those empty.
+
+Items' details (Triangle on an item: specifications and the long
+description) are text files on the disc, one for each item; the extract
+lists each as `dumps/strings/<file>/txt-<chunk>.toml`, the whole file in
+one entry. The game reads a translated one in place of the disc's, so it
+may have any number of lines (its first five are the specifications'
+rows, and `\Z` ends it).
+
+### Translating them
+
+Copy the files into `mods/<your mod>/strings/` (any folders inside) and
+write each translation in its `text`; empty ones keep the original. The
+game reads only `original` and `text`, so a file of your own with entries
+from anywhere works as well. A translation applies wherever the game uses
+that exact text; for one place only (the same English elsewhere meaning
+something else), give its `at` and `here_only = true`:
+
+```toml
+[[string]]
+at = 0x801D5BDC            # the key configuration's Help, not a panel's title
+here_only = true
+original = '''
+Help'''
+text = '''
+Ajuda'''
+```
+
+- Keep the `\` codes and the buttons where they belong.
+- Keep the number of lines. An item's text is fields, one per line (its
+  name, its description's lines, then the same unidentified), and the game
+  draws a field from the middle of the text; a translation with another
+  number of lines is used for its first line only.
+- A line holds up to 63 characters (the game copies lines into buffers of
+  64 bytes); longer ones are cut. Menus and boxes keep their sizes, so
+  translations longer than the original may spill out of them.
+- The font has the accented letters of Latin-1 (á à â ä é è ê ë í ì î ï ó
+  ò ô ö ú ù û ü ç ñ ¿ ¡ and capitals), and PE2PC adds ã õ Ã Õ: made from
+  the font's own â ô Â Ô with a tilde, and drawn from the high-definition
+  font above the console's resolution. The menus' small face (panels'
+  titles, Lv., some labels) has no accents at all: there, accented letters
+  are drawn plain (SELEÇÃO as SELECAO). Typographic quotes, dashes and the
+  ellipsis become the plain ones; any other character shows as `?`.
+- Texts the game puts together (`Obtained` + an item's name + `.`) are
+  translated piece by piece, in the original's order.
+
+The added letters' cells are in the menus' font's glyph map (see "Text
+redrawn from fonts"), with `like`, the cell of the letter each is made
+from: a mod redrawing that sheet should draw them there.
+
+### From another version's discs
+
+`tools/import_strings.py` makes a translation mod of the menus' texts of
+translated discs: extract the game's discs and the translated ones, each
+with its own data folder (`pe2 --extract files,texts` is enough: the
+importer reads the code from `dumps/files` and the words of the dialogue
+from `dumps/text`), and
+
+```text
+python tools/import_strings.py <game's dumps> <translated dumps> mods/my-menus --name "My menus"
+```
+
+Translations of discs rewrite the texts in place and repoint what uses
+them, so each text is found where the translated version's data and code
+point instead of the original (texts nothing points at, between their
+neighbours, or where they were: tables of names in records of a fixed
+size). The same English elsewhere is looked up too: a text's translation
+is the one most of its places have, and a place translated otherwise
+gets its own, for there only (`here_only`).
+Their bytes are read through the translated version's own
+font: such translations draw the letters they need, and whole syllables,
+over codes the menus did not use, a different set in each of the font's
+three faces. A code reads as the game's letter of the same picture in the
+same face, or as a picture labelled in the tool's `LABELS` (the Brazilian
+Portuguese fan translation's are there); each text is read in the face
+where the most codes are known and the most words are the translation's
+own (from its dialogue, `dumps/text`). `report.txt` lists what was left
+out, and pictures not known are saved in `report-glyphs/` to be labelled.
 
 ## Cheats and memory patches
 
@@ -627,8 +733,8 @@ changing the game's own data in memory unless the kind is meant to.
    movies.)
 5. **Game files** (done): extracted, and replaced chunk by chunk or whole,
    at any size, as above.
-6. **Dialogue** (done): extracted as text and translated, as above. Still to
-   come: speakers' names, and the texts held in the executable (menus).
+6. **Dialogue** (done): extracted as text and translated, as above, and
+   the texts of the menus. Still to come: speakers' names.
 7. **Textures** (done): extracted from the disc and dumped in colour, and
    replaced at any resolution, by sheet, as above.
 8. **Movies** (done): FMVs replaced by MP4 files, as above.
