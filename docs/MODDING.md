@@ -533,8 +533,11 @@ python tools/import_dialogue.py <game's dumps/text> <translated dumps/text> mods
 
 puts each translated line into the `text` of the game's line in the same
 place (same file, same order: translated files' records are moved), where
-both have the same controls. `report.txt` lists what was left out (files
-with another number of lines, lines whose controls differ) and lines with
+both have the same controls. Translators may have dropped a line (an empty
+one holding only a camera change, say) or added one, so the lines are
+paired by their shape: controls, the distance to the next record, line
+breaks, closing punctuation, numbers. `report.txt` lists what was left out
+(lines with no counterpart, lines whose controls differ) and lines with
 glyphs not read (shown as `?`). Drawn in a mod's font (below), any accent
 shows.
 

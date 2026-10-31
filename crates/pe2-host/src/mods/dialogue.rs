@@ -697,12 +697,14 @@ pub fn text_by<S: AsRef<str>>(codes: &[u16], glyph_text: impl Fn(usize) -> Optio
 
 /// Capital I and small l are one glyph: an `l` alone, before an
 /// apostrophe, after a capital (not before a small letter: Ele), before
-/// one, or starting a word as I does (In, It, If, Is) is an I.
+/// one, or starting a word before a consonant as I does (In, It, Inform,
+/// Isso: words that start with l go on with a vowel, or lh: lhe) is an I.
 fn fix_capital_i(s: &str) -> String {
     let chars: Vec<char> = s.chars().collect();
     let letter = |i: usize| chars.get(i).is_some_and(|c| c.is_alphabetic());
     let upper = |i: usize| chars.get(i).is_some_and(|c| c.is_uppercase());
     let lower = |i: usize| chars.get(i).is_some_and(|c| c.is_lowercase());
+    let vowel = |c: char| "aeiouyáàâãäéèêëíìîïóòôõöúùûü".contains(c);
     (0..chars.len())
         .map(|i| {
             if chars[i] != 'l' {
@@ -712,7 +714,7 @@ fn fix_capital_i(s: &str) -> String {
             let next = chars.get(i + 1).copied();
             let is_i = (starts && !letter(i + 1))
                 || (starts && next == Some('\''))
-                || (starts && matches!(next, Some('n' | 't' | 'f' | 's')) && !letter(i + 2))
+                || (starts && next.is_some_and(|c| c.is_lowercase() && c != 'l' && c != 'h' && !vowel(c)))
                 || (i > 0 && upper(i - 1) && !lower(i + 1))
                 || (starts && upper(i + 1));
             if is_i { 'I' } else { 'l' }
@@ -981,6 +983,11 @@ mod tests {
             "I've seen it. Is it? It's all, I think. OK IT"
         );
         assert_eq!(fix_capital_i("lots of lines fill the hall"), "lots of lines fill the hall");
+        // Longer words: I before a consonant, l before a vowel.
+        assert_eq!(
+            fix_capital_i("lnform me. lsso é. lmagine. Look, lá, lugar, lhe, lyrics"),
+            "Inform me. Isso é. Imagine. Look, lá, lugar, lhe, lyrics"
+        );
         // After a capital, before a small letter: an l (All, Ele, Please).
         assert_eq!(fix_capital_i("All. Ele. Please. MlST"), "All. Ele. Please. MIST");
     }
