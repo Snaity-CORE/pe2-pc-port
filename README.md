@@ -35,9 +35,11 @@ It plays as the console does and adds what a PC can, all optional:
   backgrounds and full-screen pictures and the textures with your own at
   any resolution, the music with
   recordings, the movies with video files, any of the game's files, and
-  the dialogue with translations; cheats and memory patches; the game's
-  pictures, textures, music, movies, files and dialogue extracted from your
-  discs with `pe2 --extract` to make them (see [docs/MODDING.md](docs/MODDING.md)).
+  its texts with translations (the dialogue, the menus, the items'
+  details); cheats and memory patches; the game's pictures, textures,
+  music, movies, files and texts extracted from your discs with
+  `pe2 --extract` to make them, and translations imported from translated
+  discs (see [docs/MODDING.md](docs/MODDING.md)).
 - **Cheats** (in `pe2.toml`, `[cheats]`): infinite HP or MP, one-hit kills,
   every hit critical, and EXP and BP multipliers.
 - **Comfort**: a launcher worked by mouse, keyboard or controller (English or
