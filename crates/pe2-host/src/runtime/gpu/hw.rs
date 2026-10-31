@@ -1260,7 +1260,7 @@ impl Hw {
         if depth > 1 {
             return None;
         }
-        let replacement = crate::mods::indexed_texture(sheet, depth)?;
+        let (replacement, from_mod) = crate::mods::indexed_texture(sheet, depth)?;
         if replacement.depth != depth || replacement.native != native {
             static WARNED: std::sync::Mutex<Option<std::collections::HashSet<u64>>> = std::sync::Mutex::new(None);
             if WARNED.lock().unwrap().get_or_insert_with(Default::default).insert(sheet) {
@@ -1276,7 +1276,7 @@ impl Hw {
             }
             return None;
         }
-        self.atlas_indexed(vram, &replacement)
+        self.atlas_indexed(vram, &replacement, !from_mod)
     }
 
     /// The atlas entry (index + 1) of hosted texture `id` (textures.rs
@@ -1286,13 +1286,20 @@ impl Hw {
         if depth != replacement.depth {
             return None;
         }
-        self.atlas_indexed(vram, &replacement)
+        self.atlas_indexed(vram, &replacement, false)
     }
 
-    /// The atlas entry (index + 1) of `replacement`, added if not there yet.
-    fn atlas_indexed(&mut self, vram: &Vram, replacement: &crate::mods::indexed::Indexed) -> Option<u32> {
+    /// The atlas entry (index + 1) of `replacement`, added if not there yet;
+    /// `built_in` when redrawn from the built-in fonts (a mod's replacement
+    /// of the same sheet, loaded later, has a key of its own and wins).
+    fn atlas_indexed(
+        &mut self,
+        vram: &Vram,
+        replacement: &crate::mods::indexed::Indexed,
+        built_in: bool,
+    ) -> Option<u32> {
         // Its own key: one replacement serves every palette.
-        let key = (replacement.sheet, INDEXED_KEY - u64::from(replacement.depth));
+        let key = (replacement.sheet, INDEXED_KEY - u64::from(replacement.depth) - if built_in { 2 } else { 0 });
         if let Some(i) = self.atlas.index(key) {
             return Some(i);
         }

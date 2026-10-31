@@ -241,7 +241,10 @@ def draw_cells(idx, glyphs, k, fonts, scheme, weight):
         if not text or face not in fonts:
             continue
         u, v, w, h = g['cell']
-        cell = idx[v:v + h, u:u + w]
+        # A letter the sheet leaves blank (one PE2PC adds, `like` its model's
+        # cell) goes where its model's ink is.
+        lu, lv = g.get('like', g['cell'])[:2]
+        cell = idx[lv:lv + h, lu:lu + w]
         ys, xs = np.nonzero(cell >= scheme['ink_from'])
         if len(ys) == 0:
             continue
@@ -270,7 +273,7 @@ def draw_cells(idx, glyphs, k, fonts, scheme, weight):
                 big[fy0 * s:fy1 * s, fx0 * s:fx1 * s] = boxed(font, text, (fx1 - fx0) * s, (fy1 - fy0) * s,
                                                             stretch or 1.25)
         fc, oc = coverage(big, w, h, k, weight)
-        keep0 = np.kron(cell == 0, np.ones((k, k), bool)) if scheme['keep_zero'] else False
+        keep0 = np.kron(cell == 0, np.ones((k, k), bool)) if scheme['keep_zero'] and 'like' not in g else False
         out[v * k:(v + h) * k, u * k:(u + w) * k] = np.where(keep0, 0, scheme['levels'](fc, oc))
         drawn += 1
     return out, drawn

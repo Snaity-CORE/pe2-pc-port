@@ -385,10 +385,15 @@ fn indexed_textures() -> &'static Library<(u64, u32), indexed::Indexed> {
     INDEX.get_or_init(|| Library::scan("textures", ".idx.png", indexed::parse_stem, indexed::read))
 }
 
-/// The indexed replacement a mod supplies for `sheet` drawn at `depth` (0:
-/// 4 bits, 1: 8), once loaded (see Library::get).
-pub fn indexed_texture(sheet: u64, depth: u32) -> Option<Arc<indexed::Indexed>> {
-    indexed_textures().get((sheet, depth)).or_else(|| fontsheets::get(sheet, depth))
+/// The indexed replacement for `sheet` drawn at `depth` (0: 4 bits, 1: 8):
+/// a mod's, once loaded (see Library::get), else one redrawn from the
+/// built-in fonts; and whether it is a mod's (a mod's loads later and must
+/// then take the built-in one's place).
+pub fn indexed_texture(sheet: u64, depth: u32) -> Option<(Arc<indexed::Indexed>, bool)> {
+    match indexed_textures().get((sheet, depth)) {
+        Some(m) => Some((m, true)),
+        None => fontsheets::get(sheet, depth).map(|f| (f, false)),
+    }
 }
 
 /// Whether anything here wants to know the textures drawn: mods with

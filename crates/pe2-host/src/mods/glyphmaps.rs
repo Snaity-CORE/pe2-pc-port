@@ -221,6 +221,9 @@ pub fn write(maps: &[Map], dir: &Path) -> std::io::Result<usize> {
             if let Some(b) = g.baseline {
                 toml.push_str(&format!("baseline = {b}\n"));
             }
+            if let Some([u, v, w, h]) = g.like {
+                toml.push_str(&format!("like = [{u}, {v}, {w}, {h}]\n"));
+            }
         }
         std::fs::write(dir.join(format!("{:016x}-{}bit.toml", m.sheets[0], m.depth)), toml)?;
     }
