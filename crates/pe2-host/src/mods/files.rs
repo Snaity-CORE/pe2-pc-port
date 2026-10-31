@@ -239,19 +239,28 @@ pub fn read_chunks(disc: &mut dyn Disc, lba: u32) -> Vec<Chunk> {
     chunks
 }
 
-/// What the mods replace in one file.
+/// What the mods replace in one file: all of it, or chunks, from their
+/// files or made from translations (strings.rs).
 #[derive(Default)]
 struct Replacement {
     whole: Option<PathBuf>,
-    chunks: BTreeMap<usize, PathBuf>,
+    chunks: BTreeMap<usize, ChunkSource>,
+}
+
+enum ChunkSource {
+    File(PathBuf),
+    Made(Vec<u8>),
 }
 
 /// The file replacements of the mods in use, by file key (higher-priority
-/// mods last, so they win).
+/// mods last, so they win; a mod's own chunk over a translation's).
 fn replacements() -> HashMap<String, Replacement> {
     let mut out: HashMap<String, Replacement> = HashMap::new();
     if !super::enabled() {
         return out;
+    }
+    for (key, chunk, bytes) in super::strings::file_texts() {
+        out.entry(key).or_default().chunks.insert(chunk, ChunkSource::Made(bytes));
     }
     for m in super::installed().into_iter().filter(|m| m.enabled).rev() {
         let root = m.dir.join("files");
@@ -272,7 +281,7 @@ fn replacements() -> HashMap<String, Replacement> {
                 } else if let Some((file, index)) = stem.rsplit_once('/')
                     && let Ok(index) = index.parse::<usize>()
                 {
-                    out.entry(file.to_string()).or_default().chunks.insert(index, path);
+                    out.entry(file.to_string()).or_default().chunks.insert(index, ChunkSource::File(path));
                 }
             }
         }
@@ -313,14 +322,17 @@ pub fn overrides(disc: &mut dyn Disc, number: usize) -> (Overrides, Starts) {
             }
         } else {
             let mut chunks = read_chunks(disc, f.lba);
-            for (&index, path) in &r.chunks {
+            for (&index, source) in &r.chunks {
                 let Some(chunk) = chunks.get_mut(index) else {
-                    eprintln!("pe2: mods: {}: {} has no chunk {index}", path.display(), f.key);
+                    eprintln!("pe2: mods: {} has no chunk {index}", f.key);
                     continue;
                 };
-                match std::fs::read(path) {
-                    Ok(b) => chunk.payload = b,
-                    Err(e) => eprintln!("pe2: mods: {}: {e}", path.display()),
+                match source {
+                    ChunkSource::Made(b) => chunk.payload = b.clone(),
+                    ChunkSource::File(path) => match std::fs::read(path) {
+                        Ok(b) => chunk.payload = b,
+                        Err(e) => eprintln!("pe2: mods: {}: {e}", path.display()),
+                    },
                 }
             }
             let count = chunks.len();
@@ -490,17 +502,56 @@ fn add_source(out: &mut super::dialogue::Sources, disc: &mut dyn Disc, f: &DiscF
     }
 }
 
-/// Saves every file of the discs' file systems, chunk by chunk, under
-/// `dumps/files` (`<file>/<index>.<ext>`; a file differing on a later disc
-/// goes under `disc<n>/`), each room background as the picture the game
-/// shows, as `dumps/backgrounds/<hash>.png` (see mods::background), the
-/// texture sheets under `dumps/textures` (see sheets.rs), and the dialogue
-/// as text under `dumps/text` (see dialogue.rs), and the texts of the
-/// menus under `dumps/strings` (see strings.rs).
-pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path, full: bool) -> std::io::Result<()> {
+/// What `pe2 --extract` saves: any of its parts, by name (all of them by
+/// default).
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct Parts {
+    pub files: bool,
+    pub backgrounds: bool,
+    pub textures: bool,
+    pub music: bool,
+    pub movies: bool,
+    pub texts: bool,
+}
+
+impl Parts {
+    pub const ALL: Parts =
+        Parts { files: true, backgrounds: true, textures: true, music: true, movies: true, texts: true };
+    pub const NAMES: &str = "files, backgrounds, textures, music, movies, texts";
+
+    /// The parts named in `list`, separated by commas (or `all`); None when
+    /// a name is not one.
+    pub fn parse(list: &str) -> Option<Parts> {
+        let mut p =
+            Parts { files: false, backgrounds: false, textures: false, music: false, movies: false, texts: false };
+        for name in list.split(',').map(str::trim) {
+            match name {
+                "all" => p = Parts::ALL,
+                "files" => p.files = true,
+                "backgrounds" => p.backgrounds = true,
+                "textures" => p.textures = true,
+                "music" => p.music = true,
+                "movies" => p.movies = true,
+                "texts" => p.texts = true,
+                _ => return None,
+            }
+        }
+        Some(p)
+    }
+}
+
+/// Saves the discs' contents under `dumps`, the `parts` asked for: every
+/// file of their file systems, chunk by chunk, under `dumps/files`
+/// (`<file>/<index>.<ext>`; a file differing on a later disc goes under
+/// `disc<n>/`; and the executable); each room background as the picture
+/// the game shows, as `dumps/backgrounds/<hash>.png` (see
+/// mods::background); the texture sheets under `dumps/textures` (see
+/// sheets.rs); the songs and the movies (music.rs, movies.rs); and the
+/// texts: the dialogue under `dumps/text` (see dialogue.rs) and the texts
+/// of the menus under `dumps/strings` (see strings.rs).
+pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path, parts: Parts) -> std::io::Result<()> {
     let out = dumps.join("files");
     let pictures = dumps.join("backgrounds");
-    std::fs::create_dir_all(&pictures)?;
     let mut seen: HashMap<String, u64> = HashMap::new();
     let mut backgrounds = HashSet::new();
     let mut dialogue = super::dialogue::Sources::default();
@@ -509,28 +560,34 @@ pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path, full: bool) -> std::io
         let layout = layout(disc.as_mut());
         eprintln!("pe2: extract: disc {}: {} files", n + 1, layout.len());
         for f in &layout {
-            let parts = read_chunks(disc.as_mut(), f.lba);
-            let hash = super::fnv1a(parts.iter().flat_map(|c| c.header.iter().chain(&c.payload)).copied());
+            let read = read_chunks(disc.as_mut(), f.lba);
+            let hash = super::fnv1a(read.iter().flat_map(|c| c.header.iter().chain(&c.payload)).copied());
             let dir = match seen.get(&f.key) {
                 Some(&h) if h == hash => continue,
                 Some(_) => out.join(format!("disc{}", n + 1)).join(&f.key),
                 None => out.join(&f.key),
             };
             seen.insert(f.key.clone(), hash);
-            std::fs::create_dir_all(&dir)?;
-            for (k, c) in parts.iter().enumerate() {
-                // Text without the zeros padding it, for editing.
-                let data = match c.extension() {
-                    "txt" => &c.payload[..c.payload.iter().rposition(|&b| b != 0).map_or(0, |e| e + 1)],
-                    _ => &c.payload[..],
-                };
-                std::fs::write(dir.join(format!("{k}.{}", c.extension())), data)?;
-                if c.header[0] == 5
+            if parts.files {
+                std::fs::create_dir_all(&dir)?;
+            }
+            for (k, c) in read.iter().enumerate() {
+                if parts.files {
+                    // Text without the zeros padding it, for editing.
+                    let data = match c.extension() {
+                        "txt" => &c.payload[..c.payload.iter().rposition(|&b| b != 0).map_or(0, |e| e + 1)],
+                        _ => &c.payload[..],
+                    };
+                    std::fs::write(dir.join(format!("{k}.{}", c.extension())), data)?;
+                }
+                if parts.backgrounds
+                    && c.header[0] == 5
                     && let Some(pixels) = background_pixels(&c.payload)
                 {
                     let hash = super::screen_hash(320, 240, &pixels);
                     let path = pictures.join(format!("{hash:016x}.png"));
                     if backgrounds.insert(hash) && !path.exists() {
+                        std::fs::create_dir_all(&pictures)?;
                         super::save_png(&path, 320, 240, &pixels).map_err(std::io::Error::other)?;
                     }
                 }
@@ -542,6 +599,7 @@ pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path, full: bool) -> std::io
                     2 => dialogue.palettes.entry(f.key.clone()).or_default().push(c.payload.clone()),
                     5 => dialogue.backgrounds.entry(f.key.clone()).or_default().push(c.payload.clone()),
                     4 => dialogue.bundles.push((f.key.clone(), k, c.payload.clone())),
+                    7 => dialogue.texts.push((f.key.clone(), k, c.payload.clone())),
                     _ => {}
                 }
                 chunks += 1;
@@ -550,68 +608,88 @@ pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path, full: bool) -> std::io
             files += 1;
         }
     }
-    eprintln!("pe2: extract: {files} files, {chunks} chunks, {} MB in {}", bytes >> 20, out.display());
-    eprintln!("pe2: extract: {} backgrounds in {}", backgrounds.len(), pictures.display());
-    let textures = dumps.join("textures");
-    let mut catalog = super::sheets::Catalog::new(&dialogue);
-    // The executable too, as the disc has it (tools/import_strings.py
-    // reads its texts).
-    let executable = match discs.first_mut().and_then(|disc| iso9660::boot_executable(disc.as_mut()).ok()) {
-        Some((name, bytes)) => {
-            std::fs::write(out.join(&name), &bytes)?;
-            bytes
+    let (name, executable) =
+        discs.first_mut().and_then(|disc| iso9660::boot_executable(disc.as_mut()).ok()).unwrap_or_default();
+    if parts.files {
+        // The executable too, as the disc has it (tools/import_strings.py
+        // reads its texts).
+        if !executable.is_empty() {
+            std::fs::write(out.join(&name), &executable)?;
         }
-        None => Vec::new(),
-    };
-    catalog.apply_ui_font_palette(&executable);
-    let (mut painted, checked, mismatched) = super::rooms::paint(&dialogue, &catalog);
-    for (sheet, page) in catalog.glyph_pages(&dialogue) {
-        painted.entry(sheet).or_insert(page);
+        eprintln!("pe2: extract: {files} files, {chunks} chunks, {} MB in {}", bytes >> 20, out.display());
     }
-    for (sheet, credit) in super::credits::paint(&dialogue, &catalog) {
-        painted.entry(sheet).or_insert(credit);
+    if parts.backgrounds {
+        eprintln!("pe2: extract: {} backgrounds in {}", backgrounds.len(), pictures.display());
     }
-    let coloured = super::sheets::extract(&catalog, &painted, &textures)?;
-    eprintln!("pe2: extract: {} texture sheets ({coloured} in colour) in {}", catalog.sheets.len(), textures.display());
-    let indexed = dumps.join("textures-indexed");
-    let ramps = dumps.join("textures-ramp");
-    let (written, guessed) = super::sheets::extract_indexed(&catalog, &painted, &indexed, &ramps)?;
-    eprintln!("pe2: extract: {written} indexed sheets ({guessed} of a guessed depth) in {}", indexed.display());
-    let glyphs = dumps.join("textures-glyphs");
-    let mut maps = super::glyphmaps::dialogue(&dialogue);
-    maps.extend(super::glyphmaps::ui_font(&catalog, &executable));
-    maps.extend(super::glyphmaps::loading(&catalog, &executable));
-    maps.extend(super::glyphmaps::title(&catalog));
-    maps.extend(super::glyphmaps::disc_prompt(&catalog));
-    let count = super::glyphmaps::write(&maps, &glyphs)?;
-    eprintln!("pe2: extract: {count} maps of pictures of text in {}", glyphs.display());
-    eprintln!(
-        "pe2: extract: {} sheets coloured from rooms' sprites, {} from rooms' code, {} glyph pages; {checked} sprite tables checked against their backgrounds, {mismatched} differ",
-        painted.values().filter(|p| p.source == "rooms' sprites").count(),
-        painted.values().filter(|p| p.source == "rooms' code").count(),
-        painted.values().filter(|p| p.source == "the captions' palettes").count()
-    );
-    if !full {
-        return Ok(());
+    if parts.textures {
+        let textures = dumps.join("textures");
+        let mut catalog = super::sheets::Catalog::new(&dialogue);
+        catalog.apply_ui_font_palette(&executable);
+        let (mut painted, checked, mismatched) = super::rooms::paint(&dialogue, &catalog);
+        for (sheet, page) in catalog.glyph_pages(&dialogue) {
+            painted.entry(sheet).or_insert(page);
+        }
+        for (sheet, credit) in super::credits::paint(&dialogue, &catalog) {
+            painted.entry(sheet).or_insert(credit);
+        }
+        let coloured = super::sheets::extract(&catalog, &painted, &textures)?;
+        eprintln!(
+            "pe2: extract: {} texture sheets ({coloured} in colour) in {}",
+            catalog.sheets.len(),
+            textures.display()
+        );
+        let indexed = dumps.join("textures-indexed");
+        let ramps = dumps.join("textures-ramp");
+        let (written, guessed) = super::sheets::extract_indexed(&catalog, &painted, &indexed, &ramps)?;
+        eprintln!("pe2: extract: {written} indexed sheets ({guessed} of a guessed depth) in {}", indexed.display());
+        let glyphs = dumps.join("textures-glyphs");
+        let mut maps = super::glyphmaps::dialogue(&dialogue);
+        maps.extend(super::glyphmaps::ui_font(&catalog, &executable));
+        maps.extend(super::glyphmaps::loading(&catalog, &executable));
+        maps.extend(super::glyphmaps::title(&catalog));
+        maps.extend(super::glyphmaps::disc_prompt(&catalog));
+        let count = super::glyphmaps::write(&maps, &glyphs)?;
+        eprintln!("pe2: extract: {count} maps of pictures of text in {}", glyphs.display());
+        eprintln!(
+            "pe2: extract: {} sheets coloured from rooms' sprites, {} from rooms' code, {} glyph pages; {checked} sprite tables checked against their backgrounds, {mismatched} differ",
+            painted.values().filter(|p| p.source == "rooms' sprites").count(),
+            painted.values().filter(|p| p.source == "rooms' code").count(),
+            painted.values().filter(|p| p.source == "the captions' palettes").count()
+        );
     }
-    let music = dumps.join("music");
-    let count = super::music::extract(discs, &music)?;
-    eprintln!("pe2: extract: {count} songs in {}", music.display());
-    let movies = dumps.join("movies");
-    let count = super::movies::extract(discs, &movies)?;
-    eprintln!("pe2: extract: {count} movies in {}", movies.display());
-    let text = dumps.join("text");
-    let (caps, lines) = super::dialogue::extract(&dialogue, &text)?;
-    eprintln!("pe2: extract: {lines} lines of dialogue in {caps} files in {}", text.display());
-    let strings = dumps.join("strings");
-    let (files, texts) = super::strings::extract(&executable, &dialogue.packages, &strings)?;
-    eprintln!("pe2: extract: {texts} texts of the menus in {files} files in {}", strings.display());
+    if parts.music {
+        let music = dumps.join("music");
+        let count = super::music::extract(discs, &music)?;
+        eprintln!("pe2: extract: {count} songs in {}", music.display());
+    }
+    if parts.movies {
+        let movies = dumps.join("movies");
+        let count = super::movies::extract(discs, &movies)?;
+        eprintln!("pe2: extract: {count} movies in {}", movies.display());
+    }
+    if parts.texts {
+        let text = dumps.join("text");
+        let (caps, lines) = super::dialogue::extract(&dialogue, &text)?;
+        eprintln!("pe2: extract: {lines} lines of dialogue in {caps} files in {}", text.display());
+        let strings = dumps.join("strings");
+        let (files, texts) = super::strings::extract(&executable, &dialogue.packages, &dialogue.texts, &strings)?;
+        eprintln!("pe2: extract: {texts} texts of the menus in {files} files in {}", strings.display());
+    }
     Ok(())
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    /// The extract's parts by name, all by default.
+    #[test]
+    fn extract_parts() {
+        let p = Parts::parse("texts, music").unwrap();
+        assert!(p.texts && p.music && !p.files && !p.textures);
+        assert_eq!(Parts::parse("all"), Some(Parts::ALL));
+        assert_eq!(Parts::parse("text"), None);
+    }
 
     /// Packing strides the payload over sectors at the chunk's sector_len
     /// and counts the sectors in the header.

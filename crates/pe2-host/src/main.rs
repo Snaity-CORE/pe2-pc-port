@@ -31,8 +31,10 @@ mod ffi {
 const USAGE: &str = "usage: pe2 [disc 1 image] [disc 2 image]\n\
                      Images are your own Parasite Eve II (USA) dumps, as .cue or .chd.\n\
                      Without arguments, the launcher opens; with --play, pe2.toml's [discs]\n\
-                     disc1 and disc2 are played. --extract [images] saves the discs' files\n\
-                     to dumps/files in the data folder, for making mods.\n\
+                     disc1 and disc2 are played. --extract [parts] [images] saves the discs'\n\
+                     contents to dumps/ in the data folder, for making mods: all of them, or\n\
+                     the parts named, separated by commas (files, backgrounds, textures,\n\
+                     music, movies, texts).\n\
                      --indexed-check <file.idx.png>... checks indexed texture replacements;\n\
                      --indexed-scale <file.idx.png> <factor> <folder> enlarges one, each\n\
                      texel repeated (its values stay the same palette indices);\n\
@@ -205,10 +207,19 @@ fn main() -> ExitCode {
     if let Some(code) = indexed_tool(&images) {
         return code;
     }
-    let visuals = images.first().is_some_and(|a| a.as_os_str() == "--extract-visuals");
-    let extract = visuals || images.first().is_some_and(|a| a.as_os_str() == "--extract");
+    // `--extract [parts] [images]`: all parts unless named (files.rs Parts).
+    let extract = images.first().is_some_and(|a| a.as_os_str() == "--extract");
+    let mut parts = mods::files::Parts::ALL;
     if extract {
         images.remove(0);
+        if let Some(named) = images.first().and_then(|a| a.to_str()).filter(|a| !a.contains(['.', '/', '\\'])) {
+            let Some(named) = mods::files::Parts::parse(named) else {
+                eprintln!("pe2: --extract {named}: parts are all, {}", mods::files::Parts::NAMES);
+                return ExitCode::FAILURE;
+            };
+            parts = named;
+            images.remove(0);
+        }
     }
     // No arguments: the launcher, except for the unattended and test runs
     // the PE2_* variables drive. It plays with `--play`.
@@ -274,7 +285,7 @@ fn main() -> ExitCode {
     // The extract runs the game's sound code for its songs (music.rs).
     if extract {
         let out = paths::user_file("dumps");
-        return match mods::files::extract(&mut discs, &out, !visuals) {
+        return match mods::files::extract(&mut discs, &out, parts) {
             Ok(()) => ExitCode::SUCCESS,
             Err(e) => {
                 eprintln!("pe2: extract: {}: {e}", out.display());

@@ -4,7 +4,8 @@
 //! They are strings in the executable's and the code packages' data, in
 //! the menus' font's encoding (ASCII, Latin-1 accents, `\` codes). The
 //! extract lists them in `dumps/strings/<file>/<load address>.toml`, each
-//! once; a mod's `strings/**/*.toml` gives them new text. Everything the
+//! once (and the disc's text files, items' details, in
+//! `<file>/txt-<chunk>.toml`); a mod's `strings/**/*.toml` gives them new text. Everything the
 //! game draws, measures or appends with the menus' font passes through
 //! pc_text_translate first (the fork's textdraw.c and textutil.c), which
 //! hands back the translation of a known original (found by its contents,
@@ -127,14 +128,17 @@ fn add_with_lines(table: &mut Table, original: &[u8], text: &[u8], what: &str) {
     }
 }
 
-/// Reads the enabled mods' translations (highest priority wins).
-fn read() -> Table {
-    let mut table = Table::new();
+/// The enabled mods' translation files, lowest priority first (so the
+/// highest wins): (the file's path under `strings/`, with `/`, and its
+/// contents).
+fn mod_files() -> Vec<(String, StringsFile)> {
+    let mut out = Vec::new();
     if !super::enabled() {
-        return table;
+        return out;
     }
     for m in super::installed().into_iter().filter(|m| m.enabled).rev() {
-        let mut stack = vec![m.dir.join("strings")];
+        let root = m.dir.join("strings");
+        let mut stack = vec![root.clone()];
         while let Some(dir) = stack.pop() {
             let Ok(entries) = std::fs::read_dir(&dir) else { continue };
             for e in entries.flatten() {
@@ -146,24 +150,67 @@ fn read() -> Table {
                 if path.extension().is_none_or(|x| x != "toml") {
                     continue;
                 }
-                let file = match std::fs::read_to_string(&path)
+                match std::fs::read_to_string(&path)
                     .map_err(|e| e.to_string())
                     .and_then(|t| toml::from_str::<StringsFile>(&t).map_err(|e| e.to_string()))
                 {
-                    Ok(f) => f,
-                    Err(err) => {
-                        eprintln!("pe2: mods: {}: {err}", path.display());
-                        continue;
+                    Ok(f) => {
+                        let rel = path.strip_prefix(&root).unwrap_or(&path).to_string_lossy().replace('\\', "/");
+                        out.push((rel, f));
                     }
-                };
-                for entry in file.string.iter().filter(|e| !e.text.is_empty()) {
-                    let what = format!("{}: {:?}", path.display(), entry.original.lines().next().unwrap_or(""));
-                    add_with_lines(&mut table, &encode(&entry.original), &encode(&entry.text), &what);
+                    Err(err) => eprintln!("pe2: mods: {}: {err}", path.display()),
                 }
             }
         }
     }
+    out
+}
+
+/// A translation file for one of the disc's text files: its file key and
+/// chunk (`<key>/txt-<chunk>.toml`).
+fn text_file(rel: &str) -> Option<(&str, usize)> {
+    let (key, name) = rel.rsplit_once('/')?;
+    Some((key, name.strip_prefix("txt-")?.strip_suffix(".toml")?.parse().ok()?))
+}
+
+/// Reads the enabled mods' translations of the game's code's texts.
+fn read() -> Table {
+    let mut table = Table::new();
+    for (rel, file) in mod_files() {
+        if text_file(&rel).is_some() {
+            continue;
+        }
+        for entry in file.string.iter().filter(|e| !e.text.is_empty()) {
+            let what = format!("strings/{rel}: {:?}", entry.original.lines().next().unwrap_or(""));
+            let original: Vec<u8> = encode(&entry.original).into_iter().filter(|&b| b != b'\r').collect();
+            add_with_lines(&mut table, &original, &encode(&entry.text), &what);
+        }
+    }
     table
+}
+
+/// The disc's text files the mods translate (files.rs serves them in place
+/// of the disc's): file key, chunk, and the chunk's new contents (lines
+/// ended by CR LF as the disc's are, then a zero). The game reads a whole
+/// file, so a translation may have any number of lines.
+pub fn file_texts() -> Vec<(String, usize, Vec<u8>)> {
+    let mut out: Vec<(String, usize, Vec<u8>)> = Vec::new();
+    for (rel, file) in mod_files() {
+        let Some((key, chunk)) = text_file(&rel) else { continue };
+        let Some(entry) = file.string.iter().find(|e| !e.text.is_empty()) else { continue };
+        let text = fit_lines(&encode(&entry.text), &format!("strings/{rel}"));
+        let mut bytes = Vec::with_capacity(text.len() + text.len() / 16 + 1);
+        for &b in &text {
+            if b == b'\n' {
+                bytes.push(b'\r');
+            }
+            bytes.push(b);
+        }
+        bytes.push(0);
+        out.retain(|(k, c, _)| (k.as_str(), *c) != (key, chunk));
+        out.push((key.to_string(), chunk, bytes));
+    }
+    out
 }
 
 /// Reads the mods' translations, before the game draws any text.
@@ -191,8 +238,10 @@ pub extern "C" fn pc_text_translate(text: *const u8) -> *const u8 {
     }
     // SAFETY: the `len` bytes just read.
     let bytes = unsafe { std::slice::from_raw_parts(text, len) };
-    match table.get(&super::fnv1a(bytes.iter().copied())) {
-        Some((original, translated, added)) if **original == *bytes => {
+    // Line ends of the disc's text files are CR LF; the game skips the CRs.
+    let lines = || bytes.iter().copied().filter(|&b| b != b'\r');
+    match table.get(&super::fnv1a(lines())) {
+        Some((original, translated, added)) if original.iter().copied().eq(lines()) => {
             if *added {
                 super::menuglyphs::ensure();
             }
@@ -348,11 +397,14 @@ fn literal(text: &str) -> String {
 }
 
 /// Writes the texts of the executable and of every code package, each text
-/// once (where it is first found), into `out/<file>/<load address>.toml`.
-/// Returns how many files and texts.
+/// once (where it is first found), into `out/<file>/<load address>.toml`,
+/// and the disc's text files (`texts`: file key, chunk, contents; items'
+/// details) into `out/<file>/txt-<chunk>.toml`. Returns how many files and
+/// texts.
 pub fn extract(
     executable: &[u8],
     packages: &HashMap<String, Vec<(u32, Vec<u8>)>>,
+    texts: &[(String, usize, Vec<u8>)],
     out: &Path,
 ) -> std::io::Result<(usize, usize)> {
     let mut sources: Vec<(String, u32, Vec<u8>)> = Vec::new();
@@ -367,7 +419,7 @@ pub fn extract(
             sources.push((key.clone(), *base, super::dialogue::lzss(payload, &mut 0)));
         }
     }
-    let (mut seen, mut files, mut texts) = (std::collections::HashSet::new(), 0, 0);
+    let (mut seen, mut files, mut count) = (std::collections::HashSet::new(), 0, 0);
     for (key, base, data) in &sources {
         let found: Vec<_> = scan(data, *base).into_iter().filter(|(_, s)| seen.insert(s.clone())).collect();
         if found.is_empty() {
@@ -386,9 +438,27 @@ pub fn extract(
         std::fs::create_dir_all(path.parent().unwrap())?;
         std::fs::write(&path, toml)?;
         files += 1;
-        texts += found.len();
+        count += found.len();
     }
-    Ok((files, texts))
+    for (key, chunk, data) in texts {
+        let text: Vec<u8> = data.iter().copied().take_while(|&b| b != 0).filter(|&b| b != b'\r').collect();
+        if !text.iter().any(u8::is_ascii_alphabetic) || !seen.insert(text.clone()) {
+            continue;
+        }
+        let toml = format!(
+            "# Text of the game's file {key}, chunk {chunk} (an item's details: lines after the first five).\n\
+             # Write its translation in `text`; an empty one keeps the original.\n\
+             # Keep the `\\` codes and the number of lines; a line holds up to {LINE_BYTES} characters.\n\
+             \n[[string]]\noriginal = {}\ntext = ''\n",
+            literal(&decode(&text))
+        );
+        let path = out.join(key).join(format!("txt-{chunk}.toml"));
+        std::fs::create_dir_all(path.parent().unwrap())?;
+        std::fs::write(&path, toml)?;
+        files += 1;
+        count += 1;
+    }
+    Ok((files, count))
 }
 
 #[cfg(test)]

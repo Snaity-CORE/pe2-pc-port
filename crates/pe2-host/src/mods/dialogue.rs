@@ -737,6 +737,8 @@ pub struct Sources {
     pub backgrounds: HashMap<String, Vec<Vec<u8>>>,
     /// (file key, chunk index, contents) of each `.pe2cap2` chunk.
     pub bundles: Vec<(String, usize, Vec<u8>)>,
+    /// The same of each text chunk (`.txt`: items' details).
+    pub texts: Vec<(String, usize, Vec<u8>)>,
 }
 
 /// Where a CAP file's glyph page may be, most likely first: its own file's

@@ -2,7 +2,7 @@
 """Redraw the game's pictures of text from vector fonts, as indexed texture
 replacements (docs/MODDING.md, "Indexed replacements").
 
-Reads only what `pe2 --extract-visuals` writes under the data folder's
+Reads only what `pe2 --extract textures,files` writes under the data folder's
 dumps: each picture's map (dumps/textures-glyphs, its glyphs' cells and
 text), its sheets' indices (dumps/textures-indexed) and, for the title, its
 palette (dumps/files). Writes `<sheet>-<4|8>bit.idx.png` and `.toml` into

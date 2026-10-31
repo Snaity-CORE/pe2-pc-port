@@ -54,14 +54,17 @@ in a terminal from the folder `pe2.exe` is in:
 pe2 --extract
 ```
 
-For backgrounds and texture sheets only, without rendering music or decoding
-movies and dialogue, use `pe2 --extract-visuals [disc1.chd disc2.chd]`.
-It also writes the raw files needed to trace each picture's source.
-
 It reads the discs `pe2.toml` names (or the images given after
 `--extract`) and saves what it finds in `dumps/` in the data folder: the
-files, pictures, textures, songs, movies and dialogue (see each kind
-below). It takes a minute or two.
+files, pictures, textures, songs, movies and texts (see each kind below).
+It takes a minute or two. To save some of them only, name them, separated
+by commas: `files` (the discs' files, and the executable), `backgrounds`,
+`textures`, `music`, `movies` and `texts` (the dialogue and the menus'
+texts); `all` is the default:
+
+```text
+pe2 --extract textures,backgrounds [disc1.chd disc2.chd]
+```
 
 ## Backgrounds and full-screen pictures
 
@@ -129,7 +132,7 @@ An indexed replacement wins where both exist for a sheet.
 
 ### Indexed replacements
 
-1. Extract (`pe2 --extract` or `pe2 --extract-visuals`, see above): every
+1. Extract (`pe2 --extract` or `pe2 --extract textures`, see above): every
    4- and 8-bit sheet, about 2,090, is saved in `dumps/textures-indexed/`
    at its own size, as indices, at both depths:
    `<sheet>-4bit.idx.png` and `<sheet>-8bit.idx.png`, each with its header
@@ -599,6 +602,13 @@ text = ''
 Finding them is a guess (runs of letters ended by a zero), so a few entries
 are bytes of code that happen to read as letters: leave those empty.
 
+Items' details (Triangle on an item: specifications and the long
+description) are text files on the disc, one for each item; the extract
+lists each as `dumps/strings/<file>/txt-<chunk>.toml`, the whole file in
+one entry. The game reads a translated one in place of the disc's, so it
+may have any number of lines (its first five are the specifications'
+rows, and `\Z` ends it).
+
 ### Translating them
 
 Copy the files into `mods/<your mod>/strings/` (any folders inside) and
@@ -633,7 +643,9 @@ from: a mod redrawing that sheet should draw them there.
 
 `tools/import_strings.py` makes a translation mod of the menus' texts of
 translated discs: extract the game's discs and the translated ones, each
-with its own data folder (the extract saves the executable too), and
+with its own data folder (`pe2 --extract files,texts` is enough: the
+importer reads the code from `dumps/files` and the words of the dialogue
+from `dumps/text`), and
 
 ```text
 python tools/import_strings.py <game's dumps> <translated dumps> mods/my-menus --name "My menus"

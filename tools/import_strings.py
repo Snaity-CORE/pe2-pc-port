@@ -301,7 +301,7 @@ def main():
         for line in tomllib.load(open(path, 'rb')).get('line', []):
             vocabulary.update(WORD.findall(line['original'].lower()))
 
-    def decode(raw):
+    def decode_line(raw):
         """The reading in the face that knows most of its codes, then
         most of its words."""
         readings = [decode_in(raw, face) for face, *_ in FACES]
@@ -313,6 +313,10 @@ def main():
             return len(reading[1]), len(ODD.findall(reading[0])), -sum(w in vocabulary for w in words)
         return min(readings, key=score)[0]
 
+    def decode(raw):
+        """Line by line: a text may change faces from one to the next."""
+        return '\n'.join(decode_line(line) for line in raw.split(b'\n'))
+
     report, files, texts = [], 0, 0
     originals = set()
     for path in glob.glob(os.path.join(args.game, 'strings', '**', '*.toml'), recursive=True):
@@ -323,10 +327,30 @@ def main():
         if os.path.getmtime(path) < newest - 600:
             continue  # left from an older extract
         rel = os.path.relpath(path, os.path.join(args.game, 'strings'))
-        key, base = os.path.dirname(rel).replace(os.sep, '/'), int(os.path.basename(rel)[:-5], 16)
+        key, name = os.path.dirname(rel).replace(os.sep, '/'), os.path.basename(rel)[:-5]
         listed = tomllib.load(open(path, 'rb')).get('string', [])
         if not listed:
             continue
+        if name.startswith('txt-'):
+            # A text file of the disc (an item's details): the other
+            # version's file of the same place.
+            there = os.path.join(args.other, 'files', key, name[4:] + '.txt')
+            if not os.path.exists(there):
+                report.append(f'{rel}: not found in the other version')
+                continue
+            raw = open(there, 'rb').read().split(b'\0')[0].replace(b'\r', b'')
+            text, original = decode(raw), listed[0]['original']
+            if text == original:
+                continue
+            out =[f'# {args.name}: {rel.replace(os.sep, "/")}', '', '[[string]]',
+                   f'original = {literal(original)}', f'text = {literal(text)}', '']
+            dest = os.path.join(args.out, 'strings', rel)
+            os.makedirs(os.path.dirname(dest), exist_ok=True)
+            with open(dest, 'w', encoding='utf-8', newline='\n') as f:
+                f.write('\n'.join(out))
+            files, texts = files + 1, texts + 1
+            continue
+        base = int(name, 16)
         first = listed[0]['original'].encode('latin-1')
         if key == 'exe':
             pairs = [('exe', game.exe, other.exe)]
