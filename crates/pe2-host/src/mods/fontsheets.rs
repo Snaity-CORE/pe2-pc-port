@@ -725,31 +725,38 @@ fn redraw(catalog: &Catalog, map: &Map, faces: &[Face], scheme: &Scheme) -> Opti
     }
     // The other faces' widening (fill_widths): the median of how much wider
     // the game's letters are than the font's at the capitals' scale.
-    let mut wider: HashMap<Option<&str>, f32> = HashMap::new();
+    // Letters and digits apart: the game's digits are as wide as its
+    // widest letters, a font's are narrower.
+    let digit = |g: &Glyph| g.text.len() == 1 && g.text.as_bytes()[0].is_ascii_digit();
+    let mut wider: HashMap<(Option<&str>, bool), f32> = HashMap::new();
     for &(face, font, limit) in faces {
         let Some(&cap) = caps.get(&face) else { continue };
         if limit.is_some() || !scheme.fill_widths {
             continue;
         }
-        let mut ratios: Vec<f32> = map
-            .glyphs
-            .iter()
-            .filter(|g| {
-                let mut c = g.text.chars();
-                g.face == face
-                    && g.like.is_none()
-                    && c.next().is_some_and(|c| c.is_alphabetic() && !"iIjJlft".contains(c))
-                    && c.next().is_none()
-            })
-            .filter_map(|g| {
-                let (u, v, cw, ch) = cell_of(g)?;
-                let (fx0, _, fx1, _) = fill_box(u, v, cw, ch)?;
-                let (a, _) = font.ink(&g.text)?;
-                Some((fx1 - fx0) as f32 / (a.w as f32 * cap / font.cap))
-            })
-            .collect();
-        if let Some(m) = median(&mut ratios) {
-            wider.insert(face, m);
+        for digits in [false, true] {
+            let mut ratios: Vec<f32> = map
+                .glyphs
+                .iter()
+                .filter(|g| {
+                    let mut c = g.text.chars();
+                    let wanted = if digits {
+                        digit(g) && g.text != "1"
+                    } else {
+                        c.next().is_some_and(|c| c.is_alphabetic() && !"iIjJlft".contains(c)) && c.next().is_none()
+                    };
+                    g.face == face && g.like.is_none() && wanted
+                })
+                .filter_map(|g| {
+                    let (u, v, cw, ch) = cell_of(g)?;
+                    let (fx0, _, fx1, _) = fill_box(u, v, cw, ch)?;
+                    let (a, _) = font.ink(&g.text)?;
+                    Some((fx1 - fx0) as f32 / (a.w as f32 * cap / font.cap))
+                })
+                .collect();
+            if let Some(m) = median(&mut ratios) {
+                wider.insert((face, digits), m);
+            }
         }
     }
     // One glyph drawn: its cell and its finer texels' indices.
@@ -774,7 +781,7 @@ fn redraw(catalog: &Catalog, map: &Map, faces: &[Face], scheme: &Scheme) -> Opti
             if let (Some(&cap), Some(base), None) = (caps.get(&g.face), base, stretch) {
                 let rows = fill_rows(iu, iv, cw, ch);
                 let descends = rows.last().is_some_and(|&r| r + 1 > base);
-                let widen = wider.get(&g.face).copied().unwrap_or(1.0);
+                let widen = wider.get(&(g.face, digit(g))).or(wider.get(&(g.face, false))).copied().unwrap_or(1.0);
                 placed = on_baseline(font, &g.text, cap, base, ch, fx0, fx1, descends, widen);
             }
             // The menus' I has slab serifs, as wide as the other capitals'

@@ -242,16 +242,26 @@ def draw_cells(idx, glyphs, k, fonts, scheme, weight, fill=False):
         ratios = {}
         for g in glyphs:
             text, face = g['text'], g.get('face')
-            if len(text) != 1 or not text.isalpha() or text in 'iIjJlft' or face not in fonts or face not in caps:
+            if len(text) != 1 or face not in fonts or face not in caps or 'like' in g:
+                continue
+            # Letters and digits apart: the game's digits are as wide as its
+            # widest letters, a font's are narrower.
+            if text.isdigit():
+                group = (face, True)
+                if text == '1':
+                    continue
+            elif text.isalpha() and text not in 'iIjJlft':
+                group = (face, False)
+            else:
                 continue
             u, v, w, h = g['cell']
             ys, xs = np.nonzero(idx[v:v + h, u:u + w] >= scheme['fill_from'])
             if len(xs):
                 a, _ = fonts[face][0].ink(text)
                 natural = a.shape[1] * caps[face] / fonts[face][0].cap
-                ratios.setdefault(face, []).append((xs.max() - xs.min() + 1) / natural)
+                ratios.setdefault(group, []).append((xs.max() - xs.min() + 1) / natural)
         widen = {f: float(np.median(r)) for f, r in ratios.items()}
-        print('widened: ' + ', '.join(f'{f} {r:.2f}' for f, r in sorted(widen.items())))
+        print('widened: ' + ', '.join(f'{f}{" digits" if d else ""} {r:.2f}' for (f, d), r in sorted(widen.items())))
     # A texel around each cell first: the old ring may spill past it.
     for g in glyphs:
         u, v, w, h = g['cell']
@@ -287,7 +297,8 @@ def draw_cells(idx, glyphs, k, fonts, scheme, weight, fill=False):
             if face in caps and base is not None and stretch is None:
                 rows = np.nonzero(fill_of(cell).any(axis=1))[0]
                 descends = len(rows) and rows.max() + 1 > base
-                placed = on_baseline(font, text, caps[face], base, h, fx0, fx1, s, descends, widen.get(face, 1.0))
+                placed = on_baseline(font, text, caps[face], base, h, fx0, fx1, s, descends,
+                                     widen.get((face, text.isdigit()), widen.get((face, False), 1.0)))
             if placed:
                 top, left, shape = placed
                 big[top:top + shape.shape[0], left:left + shape.shape[1]] = shape
