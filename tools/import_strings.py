@@ -35,6 +35,11 @@ import zlib
 WORD = re.compile(r"[^\W\d_]+")
 # A mark inside a word: a code read in the wrong face (SELE#"O).
 ODD = re.compile(r"(?<=[^\W\d_])[^\w\s'.,!?&-]+(?=[^\W\d_])")
+# A capital after a small letter: likely the same (IfNS), though names
+# have some (FateKeeper).
+CAMEL = re.compile(r"(?<=[^\W\d_A-ZÀ-Þ])[A-ZÀ-Þ]")
+# The font's codes (\B9, \Sm, \Co, \Z): not words.
+CODES = re.compile(r"\\[A-Za-z][A-Za-z0-9]?")
 
 FACES = [('medium', 0x8005EFB0, 224, 38), ('large', 0x8005FA30, 224, 128), ('small', 0x800604B0, 91, 0)]
 
@@ -49,12 +54,20 @@ LABELS = {
     'large-406ec412273b': 'do',
     'large-4177e2eca2e8': 'ar',
     'large-5021140827b2': 'õ',
+    'large-58cf6d2b598b': 'rer',
+    'large-84f85202d0c3': 'Cor',
     'large-577ad7cf6e43': 'sa',
     'large-5b272cfcf7fe': 'se',
     'large-7de77b179639': 'co',
     'large-c9ca3031fa01': 'ã',
     'large-fcf46ec0b7f4': 'Ã',
+    'medium-06090fce5b7d': 'ce',
+    'medium-073462714d8d': 'as',
     'medium-0a45cc0f6186': 'õ',
+    'medium-2e5267f6cb82': 'das',
+    'medium-80c2b2ca3cc4': 'Ven',
+    'medium-8595b6bd9b04': 'antia Máxima de',
+    'medium-af41d3c4e548': 'ipal',
     'medium-294854820591': 'ta',
     'medium-523c043291e2': 'CIL',
     'medium-84207a359a11': 'Ã',
@@ -78,6 +91,7 @@ LABELS = {
     'small-7afb9f4aa994': 'LE',
     'small-81381c2a2407': 'GO',
     'small-9ab632be65c8': 'TA',
+    'small-c213aa7d1a24': 'Ú',
     'small-a8cb4caec790': 'Ó',
     'small-b55af57150c5': 'EL',
     'small-cef2f54878a4': 'SO',
@@ -209,7 +223,8 @@ class Version:
 
 def references(data):
     """Offset of each word of `data` -> its value, and of each `lui` that a
-    later `addiu`/`ori` completes -> (that one's offset, the address)."""
+    later `addiu`/`ori` completes -> (that one's offset, the address): the
+    first such, before another `lui` sets the register again."""
     words = {i: struct.unpack_from('<I', data, i)[0] for i in range(0, len(data) - 3, 4)}
     pairs = {}
     for i, lui in words.items():
@@ -219,11 +234,20 @@ def references(data):
         for j in range(i + 4, min(i + 68, len(data) - 3), 4):
             op = words[j] >> 26
             if op in (0x09, 0x0D) and (words[j] >> 21) & 31 == reg:
-                low = words[j] & 0xFFFF
-                if op == 0x09 and low & 0x8000:
-                    low -= 0x10000
-                pairs[i] = (j, ((lui & 0xFFFF) << 16) + low & 0xFFFFFFFF)
+                pairs[i] = (j, address_of(lui, words[j]))
+                break
+            if op == 0x0F and (words[j] >> 16) & 31 == reg:
+                break
     return words, pairs
+
+
+def address_of(lui, low):
+    """The address a `lui` and the `addiu` (sign-extended) or `ori` after
+    it put together."""
+    imm = low & 0xFFFF
+    if low >> 26 == 0x09 and imm & 0x8000:
+        imm -= 0x10000
+    return ((lui & 0xFFFF) << 16) + imm & 0xFFFFFFFF
 
 
 def where_there(at, mine, theirs, base):
@@ -238,13 +262,10 @@ def where_there(at, mine, theirs, base):
             votes[there] = votes.get(there, 0) + 1
     for i, (j, address) in pairs.items():
         if address == at and j + 4 <= len(theirs):
-            lui, low = struct.unpack_from('<II', theirs, i)
-            if lui >> 26 != 0x0F:
+            lui, low = struct.unpack_from('<I', theirs, i)[0], struct.unpack_from('<I', theirs, j)[0]
+            if lui >> 26 != 0x0F or low >> 26 not in (0x09, 0x0D):
                 continue
-            imm = low & 0xFFFF
-            if low >> 26 == 0x09 and imm & 0x8000:
-                imm -= 0x10000
-            there = ((lui & 0xFFFF) << 16) + imm & 0xFFFFFFFF
+            there = address_of(lui, low)
             votes[there] = votes.get(there, 0) + 1
     good = {a: n for a, n in votes.items() if base <= a < base + len(theirs)}
     return max(good, key=good.get) if good else None
@@ -280,19 +301,24 @@ def main():
     unknown = {}
 
     def decode_in(raw, face):
-        out, missing = [], []
+        """`raw` read in `face`: the text, the pictures not known, and how
+        many codes read as labelled pictures."""
+        out, missing, labelled = [], [], 0
         for b in raw:
             picture = their_fonts[face].get(b)
             if b < 0x21 or b == 0x5C or chr(b) in '{|}~' or picture is None:
                 out.append(chr(b))
                 continue
             name = f'{face}-' + hashlib.sha1(repr(picture).encode()).hexdigest()[:12]
-            text = by_picture[face].get(picture) or LABELS.get(name)
+            text = by_picture[face].get(picture)
+            if text is None:
+                text = LABELS.get(name)
+                labelled += text is not None
             if text is None:
                 missing.append((name, b, picture))
                 text = '{?' + name + '}'
             out.append(text)
-        return ''.join(out), missing
+        return ''.join(out), missing, labelled
 
     # The other version's words, from its dialogue: what tells which face
     # a text is read in when all know its codes.
@@ -300,17 +326,30 @@ def main():
     for path in glob.glob(os.path.join(args.other, 'text', '**', '*.toml'), recursive=True):
         for line in tomllib.load(open(path, 'rb')).get('line', []):
             vocabulary.update(WORD.findall(line['original'].lower()))
+    # Their first four letters too: a word the dialogue has in another form
+    # (correr: corre, corremos).
+    stems = {w[:4] for w in vocabulary if len(w) >= 4}
+    alphabet = {c for w in vocabulary for c in w}
 
     def decode_line(raw):
-        """The reading in the face that knows most of its codes, then
-        most of its words."""
+        """The reading in the face that knows all its codes, with no mark
+        inside a word and no letter the translation never writes, and the
+        best share of words the translation knows (a word 1, only its stem
+        1/4), less 1/4 for each labelled picture (a face's own letter is
+        likelier than a drawing over it) and 1/2 for each capital after a
+        small letter; the first face on a tie."""
         readings = [decode_in(raw, face) for face, *_ in FACES]
-        for _, missing in readings:
+        for _, missing, _ in readings:
             for name, code, picture in missing:
                 unknown.setdefault(name, (code, picture))
         def score(reading):
-            words = WORD.findall(reading[0].lower())
-            return len(reading[1]), len(ODD.findall(reading[0])), -sum(w in vocabulary for w in words)
+            text, missing, labelled = reading
+            text = CODES.sub(' ', text)
+            words = WORD.findall(text.lower())
+            foreign = sum(c not in alphabet for w in words for c in w)
+            known = sum(1 if w in vocabulary else 0.25 if w[:4] in stems and len(w) >= 4 else 0 for w in words)
+            doubt = labelled * 0.25 + len(CAMEL.findall(text)) * 0.5 - known / max(1, len(words))
+            return len(missing), len(ODD.findall(text)), foreign, doubt
         return min(readings, key=score)[0]
 
     def decode(raw):
@@ -339,7 +378,10 @@ def main():
                 report.append(f'{rel}: not found in the other version')
                 continue
             raw = open(there, 'rb').read().split(b'\0')[0].replace(b'\r', b'')
-            text, original = decode(raw), listed[0]['original']
+            original = listed[0]['original']
+            if raw == original.encode('latin-1'):
+                continue
+            text = decode(raw)
             if text == original:
                 continue
             out =[f'# {args.name}: {rel.replace(os.sep, "/")}', '', '[[string]]',
@@ -401,7 +443,12 @@ def main():
             # The libraries' messages to a debugger are not the game's.
             if '%' in s['original'] or '->' in s['original']:
                 continue
-            text = decode(read_text(theirs, found[s['at']] - base))
+            raw = read_text(theirs, found[s['at']] - base)
+            # The same bytes: not translated (read in another face, it
+            # might seem to be).
+            if raw == s['original'].encode('latin-1'):
+                continue
+            text = decode(raw)
             if text == s['original'] or not text.strip():
                 continue
             # Pointers there that lead elsewhere: no words, or another text.
