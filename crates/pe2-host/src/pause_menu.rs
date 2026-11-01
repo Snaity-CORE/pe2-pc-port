@@ -3,8 +3,8 @@
 //! src/main/pc/menu.c, drawn with the game's own dialogs); its Quit game
 //! ends the process here.
 //!
-//! The game cannot open it while it does not draw its own frames (the title
-//! screen, movies), as it tells each frame: there Esc asks to quit at once,
+//! The game cannot open it while it does not draw its own frames (movies,
+//! the intro), as it tells each frame: there Esc asks to quit at once,
 //! with the window's prompt (video.rs). Where it is only held up a moment
 //! (a scene, a load), a second ask after a while, unanswered, falls back
 //! to the prompt too, and an ask left unanswered lapses, so the menu does
