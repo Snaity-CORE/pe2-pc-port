@@ -417,7 +417,8 @@ def main():
         rel = os.path.relpath(path, os.path.join(args.game, 'strings'))
         key, name = os.path.dirname(rel).replace(os.sep, '/'), os.path.basename(rel)[:-5]
         listed = tomllib.load(open(path, 'rb')).get('string', [])
-        if not listed:
+        # PE2PC's own texts (pc/): on no disc, translated by hand.
+        if not listed or key == 'pc':
             continue
         if name.startswith('txt-'):
             # A text file of the disc (an item's details): the other
