@@ -58,8 +58,13 @@ struct Def {
 }
 
 const ON_OFF: &[(&str, Value)] = &[("Off", Value::Bool(false)), ("On", Value::Bool(true))];
-const MULTIPLIERS: &[(&str, Value)] =
-    &[("x1", Value::Int(1)), ("x2", Value::Int(2)), ("x3", Value::Int(3)), ("x5", Value::Int(5)), ("x10", Value::Int(10))];
+const MULTIPLIERS: &[(&str, Value)] = &[
+    ("x1", Value::Int(1)),
+    ("x2", Value::Int(2)),
+    ("x3", Value::Int(3)),
+    ("x5", Value::Int(5)),
+    ("x10", Value::Int(10)),
+];
 
 const CATEGORIES: [&str; 4] = ["Video", "Audio", "Controls", "Cheats"];
 
@@ -113,7 +118,16 @@ const DEFS: &[Def] = &[
         default: 0,
         live: true,
     },
-    Def { id: Id::Crt, category: 0, label: "CRT look", section: "video", key: "crt", choices: ON_OFF, default: 0, live: true },
+    Def {
+        id: Id::Crt,
+        category: 0,
+        label: "CRT look",
+        section: "video",
+        key: "crt",
+        choices: ON_OFF,
+        default: 0,
+        live: true,
+    },
     Def {
         id: Id::IntegerScaling,
         category: 0,
@@ -134,7 +148,16 @@ const DEFS: &[Def] = &[
         default: 0,
         live: true,
     },
-    Def { id: Id::HdFonts, category: 0, label: "HD fonts", section: "video", key: "hd_fonts", choices: ON_OFF, default: 1, live: false },
+    Def {
+        id: Id::HdFonts,
+        category: 0,
+        label: "HD fonts",
+        section: "video",
+        key: "hd_fonts",
+        choices: ON_OFF,
+        default: 1,
+        live: false,
+    },
     Def {
         id: Id::Volume,
         category: 1,
