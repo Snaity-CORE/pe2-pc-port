@@ -349,6 +349,8 @@ struct Settings {
     window_size: String,
     /// [mods] enabled and dump.
     mods_enabled: bool,
+    /// [audio] volume, 0-100 in steps of 10.
+    volume: i64,
     fullscreen: bool,
     hide_cursor: bool,
     /// Empty: the default card in memcards/ in the folder of the player's
@@ -396,6 +398,7 @@ impl Settings {
                 .and_then(crate::video::parse_size)
                 .map_or_else(|| "auto".to_string(), |(w, h)| format!("{w}x{h}")),
             mods_enabled: flag("mods", "enabled", true),
+            volume: get("audio", "volume").and_then(|v| v.as_integer()).unwrap_or(100).clamp(0, 100) / 10 * 10,
             fullscreen: flag("video", "fullscreen", false),
             hide_cursor: flag("video", "hide_cursor", true),
             card: text("memcard", "slot1"),
@@ -459,6 +462,10 @@ impl Settings {
         doc["video"]["graphics_api"] = value(self.graphics_api.as_str());
         doc["video"]["window_size"] = value(self.window_size.as_str());
         doc["mods"]["enabled"] = value(self.mods_enabled);
+        if !doc.contains_table("audio") {
+            doc["audio"] = toml_edit::table();
+        }
+        doc["audio"]["volume"] = value(self.volume);
         doc["video"]["fullscreen"] = value(self.fullscreen);
         doc["video"]["hide_cursor"] = value(self.hide_cursor);
         doc["input"]["controller"] = value(if self.controller.is_empty() { "auto" } else { self.controller.as_str() });
@@ -630,8 +637,9 @@ impl Launcher {
 
     /// Runs the game as a child process. Starting it, and waiting for its
     /// window, happen on a thread of their own, so the launcher keeps
-    /// drawing ("Starting the game..."); it hides once the game's window
-    /// shows, and comes back when the game quits.
+    /// drawing ("Starting the game..."); once the game's window shows, the
+    /// launcher closes. It stays only if the game quits before that, to
+    /// show what went wrong.
     fn play(&mut self, ctx: &egui::Context, window: Option<isize>) {
         let exe = match std::env::current_exe() {
             Ok(e) => e,
@@ -681,8 +689,11 @@ impl Launcher {
                 std::thread::sleep(std::time::Duration::from_millis(50));
             }
             starting.store(false, Ordering::SeqCst);
-            show_window(window, false);
-            let _ = child.wait();
+            if child.try_wait().ok().flatten().is_none() {
+                // The game runs on its own; it changes pe2.toml itself
+                // (its Options), which a launcher left open would undo.
+                std::process::exit(0);
+            }
             running.store(false, Ordering::SeqCst);
             show_window(window, true);
             ctx.request_repaint();
@@ -1123,6 +1134,11 @@ impl Launcher {
                         lang.t("Show the game on Discord", "Mostrar o jogo no Discord"),
                         true,
                     );
+                });
+                ui.add_space(12.0);
+                card(ui, lang.t("Sound", "Som"), |ui| {
+                    let volumes: Vec<(i64, String)> = (0..=10).map(|v| (v * 10, format!("{}%", v * 10))).collect();
+                    self.focus.choice(ui, lang.t("Volume", "Volume"), &mut self.edit.volume, &volumes, true);
                 });
                 ui.add_space(12.0);
                 card(ui, lang.t("Experimental", "Experimental"), |ui| {
@@ -1852,6 +1868,7 @@ mod tests {
         s.card = "cards/one.mcd".into();
         s.controller = "Xbox 360 Controller".into();
         s.vibration = false;
+        s.volume = 40;
         s.keys[4] = "KeyJ".into(); // cross
         s.pads[8] = "Mode".into(); // start
         s.store(&mut doc);
@@ -1874,6 +1891,7 @@ mod tests {
         assert_eq!(config.memcard.slot1.as_deref(), Some(Path::new("cards/one.mcd")));
         assert_eq!(config.input.controller.as_deref(), Some("Xbox 360 Controller"));
         assert_eq!(config.input.vibration, Some(false));
+        assert_eq!(config.audio.volume, Some(40));
         assert_eq!(config.input.keyboard.get("cross").map(String::as_str), Some("KeyJ"));
         assert_eq!(config.input.keyboard.get("up").map(String::as_str), Some("ArrowUp"));
         assert_eq!(config.input.gamepad.get("start").map(String::as_str), Some("Mode"));
