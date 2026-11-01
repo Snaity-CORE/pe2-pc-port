@@ -57,6 +57,11 @@ fn run() {
                     active.get_or_insert(ev.id);
                 }
                 EventType::Disconnected if active == Some(ev.id) => active = None,
+                // Guide (the Xbox or PS button): the pause menu, which the
+                // game's buttons leave free.
+                EventType::ButtonPressed(gilrs::Button::Mode, _) if active.is_none_or(|a| a == ev.id) => {
+                    crate::pause_menu::ask();
+                }
                 // The controller last used takes over port 1, unless one
                 // is chosen.
                 EventType::ButtonPressed(..) if wanted.is_none() => active = Some(ev.id),

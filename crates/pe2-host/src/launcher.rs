@@ -1114,7 +1114,7 @@ impl Launcher {
                     self.focus.checkbox(
                         ui,
                         &mut self.edit.confirm_exit,
-                        lang.t("Ask before Esc quits", "Perguntar antes de Esc sair"),
+                        lang.t("Ask before quitting the game", "Perguntar antes de sair do jogo"),
                         true,
                     );
                     self.focus.checkbox(

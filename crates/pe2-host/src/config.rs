@@ -122,7 +122,7 @@ pub struct Video {
 #[derive(Debug, Default, Deserialize)]
 #[serde(default, deny_unknown_fields)]
 pub struct General {
-    /// Ask before Esc quits (default on).
+    /// Ask before the pause menu's Quit game quits (default on).
     pub confirm_exit: Option<bool>,
     /// The launcher's language: "en" (the default) or "pt".
     pub language: Option<String>,

@@ -108,6 +108,7 @@ SDK_HEADERS = ROOT / "port" / "include" / "psyq"
 # extra units: (object, source, image, unit whose defines they share).
 PORT_UNITS = [
     ("main/pc/hasm", "src/main/pc/hasm.c", "main", "main/fs"),
+    ("main/pc/menu", "src/main/pc/menu.c", "main", "main/fs"),
 ]
 
 

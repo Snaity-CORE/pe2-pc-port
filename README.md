@@ -89,7 +89,7 @@ Default keys (Controls remaps them):
 | P | Pause and resume |
 | F9 | Screenshot (in the data folder's `screenshots/`) |
 | F10 | Swap discs by hand (the game normally asks and it happens by itself) |
-| Esc | Quit (asks first, unless turned off in Settings) |
+| Esc (or a controller's Guide button) | Pause menu, in the game's own windows: resume, quit to the title screen, quit the game (asks first, unless turned off in Settings) |
 
 ### Where your files go
 
