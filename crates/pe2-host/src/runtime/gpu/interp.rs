@@ -14,14 +14,14 @@ use std::collections::HashMap;
 
 use super::hw::{self, Hw};
 
-/// Whether frames in between are drawn: PE2_INTERPOLATION=0/1, else
-/// pe2.toml's [video] frame_interpolation, else on.
+/// Whether frames in between are drawn: PE2_INTERPOLATION=0/1, else the
+/// setting (pe2.toml's [video] frame_interpolation, the pause menu's
+/// Options; on by default).
 pub fn enabled() -> bool {
-    std::env::var("PE2_INTERPOLATION")
-        .ok()
-        .map(|v| v.trim() != "0")
-        .or(crate::config::get().video.frame_interpolation)
-        .unwrap_or(true)
+    static FORCED: std::sync::OnceLock<Option<bool>> = std::sync::OnceLock::new();
+    FORCED
+        .get_or_init(|| std::env::var("PE2_INTERPOLATION").ok().map(|v| v.trim() != "0"))
+        .unwrap_or_else(|| crate::settings::flag(crate::settings::Id::Interpolation))
 }
 
 /// How far between the two frames the frame in between is: halfway, or

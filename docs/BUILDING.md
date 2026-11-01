@@ -145,8 +145,9 @@ Debug output:
   seconds. Screenshots show your game's content; keep them out of the
   repository.
 - `PE2_INPUT=start@20,cross@31.5` presses buttons at given times (seconds
-  after start) for unattended runs; `pause@t` toggles pause and
-  `screenshot@t` saves one, as P and F9 do.
+  after start) for unattended runs; `pause@t` toggles pause,
+  `screenshot@t` saves one and `menu@t` asks for the pause menu, as P, F9
+  and Esc do.
 - `PE2_WATCH=0x801D49C4[,...]` (up to four addresses) logs every write to
   those words with the writing instruction's address, using the CPU's debug
   registers.
@@ -169,8 +170,11 @@ Debug output:
 Keyboard: arrows = d-pad, Z/X/A/S = Cross/Circle/Square/Triangle,
 Enter = Start, Backspace = Select, Q/W/E/R = L1/R1/L2/R2, Alt+Enter toggles
 borderless full screen (`fullscreen = true` in pe2.toml starts in it; the mouse
-cursor is hidden there unless `hide_cursor = false`), Esc asks to
-quit (`[general] confirm_exit = false` quits at once), P pauses and resumes, F9
+cursor is hidden there unless `hide_cursor = false`), Esc (or a controller's
+Guide button) opens the pause menu (the fork's src/main/pc/menu.c, its
+Options from crates/pe2-host/src/settings.rs; where the game cannot open it,
+as in movies, Esc asks to quit;
+`[general] confirm_exit = false` quits at once), P pauses and resumes, F9
 saves a screenshot at the internal resolution in `screenshots/` in the data
 folder, F10 swaps discs by hand; for debugging, F11 writes a timed mark in
 the log and F12 dumps the GPU's current command list.

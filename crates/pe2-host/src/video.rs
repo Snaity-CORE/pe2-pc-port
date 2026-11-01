@@ -133,7 +133,7 @@ impl ApplicationHandler for App {
             // the user is typing in.
             .with_active(!scripted());
         let window = Arc::new(event_loop.create_window(attrs).expect("create window"));
-        set_fullscreen(&window, crate::config::get().video.fullscreen.unwrap_or(false) && !scripted());
+        set_fullscreen(&window, crate::settings::flag(crate::settings::Id::Fullscreen) && !scripted());
         self.hardware = crate::gfx::get().and_then(|gfx| crate::present::Presenter::new(gfx, window.clone()));
         if self.hardware.is_none() {
             eprintln!("pe2: video: cannot draw into the window");
@@ -160,7 +160,9 @@ impl ApplicationHandler for App {
                             && !event.repeat
                             && let Some(w) = &self.window
                         {
-                            set_fullscreen(w, w.fullscreen().is_none());
+                            let on = w.fullscreen().is_none();
+                            crate::settings::set_flag(crate::settings::Id::Fullscreen, on);
+                            set_fullscreen(w, on);
                         }
                         return;
                     }
@@ -181,7 +183,13 @@ impl ApplicationHandler for App {
                         eprintln!("[mark {:8.3}] F11 pressed", crate::runtime::spu::stamp());
                     }
                     if code == KeyCode::Escape {
-                        if event.state == ElementState::Pressed && !event.repeat && self.confirm_quit() {
+                        // The pause menu; the window's prompt when the game
+                        // cannot open it (pause_menu.rs).
+                        if event.state == ElementState::Pressed
+                            && !event.repeat
+                            && crate::pause_menu::ask()
+                            && self.confirm_quit()
+                        {
                             crate::logfile::exit(0);
                         }
                         return;
@@ -218,6 +226,13 @@ impl ApplicationHandler for App {
 
     fn about_to_wait(&mut self, event_loop: &ActiveEventLoop) {
         let now = Instant::now();
+        // Full screen as the setting asks (the pause menu's Options).
+        if !scripted()
+            && let Some(w) = &self.window
+            && w.fullscreen().is_some() != crate::settings::flag(crate::settings::Id::Fullscreen)
+        {
+            set_fullscreen(w, w.fullscreen().is_none());
+        }
         if now >= self.next_redraw {
             if let Some(w) = &self.window {
                 w.request_redraw();
@@ -268,8 +283,9 @@ fn present_trace() {
 }
 
 impl App {
-    /// Esc: asks before quitting ([general] confirm_exit, default on). Cancel
-    /// is the default button, so Enter or a second Esc keep playing.
+    /// Esc where the game cannot open its pause menu: asks before quitting
+    /// ([general] confirm_exit, default on). Cancel is the default button, so
+    /// Enter or a second Esc keep playing.
     fn confirm_quit(&self) -> bool {
         if !crate::config::get().general.confirm_exit.unwrap_or(true) {
             return true;
@@ -404,13 +420,15 @@ fn start_screenshots() {
 /// triangle start select l1 r1 l2 r2.
 fn start_input_script() {
     let Ok(script) = std::env::var("PE2_INPUT") else { return };
-    /// Scripted actions: buttons pressed and released, and the P and F9
-    /// keys (`pause@t` toggles pause, `screenshot@t` saves one).
+    /// Scripted actions: buttons pressed and released, and the P, F9 and
+    /// Esc keys (`pause@t` toggles pause, `screenshot@t` saves one, `menu@t`
+    /// asks for the pause menu).
     enum Action {
         Press(u16),
         Release(u16),
         Pause,
         Screenshot,
+        Menu,
     }
     let mut events: Vec<(f64, Action)> = Vec::new();
     for item in script.split(',') {
@@ -418,6 +436,7 @@ fn start_input_script() {
         let key = match name.to_ascii_lowercase().as_str() {
             "pause" => Some(Action::Pause),
             "screenshot" => Some(Action::Screenshot),
+            "menu" => Some(Action::Menu),
             _ => None,
         };
         if let Some(action) = key {
@@ -467,6 +486,7 @@ fn start_input_script() {
                 Action::Release(bit) => _ = PAD1_BUTTONS.fetch_and(!bit, Ordering::SeqCst),
                 Action::Pause => crate::runtime::irq::set_paused(!crate::runtime::irq::PAUSED.load(Ordering::SeqCst)),
                 Action::Screenshot => save_screenshot(),
+                Action::Menu => _ = crate::pause_menu::ask(),
             }
         }
     });

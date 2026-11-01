@@ -496,7 +496,58 @@ pub fn extract(
         files += 1;
         count += 1;
     }
+    // PE2PC's own texts (its pause menu's), in the game's code but not on
+    // the disc: translated as the game's are.
+    let own = port_texts();
+    if !own.is_empty() {
+        let mut toml = String::from(
+            "# Texts of PE2PC's own screens (its pause menu: the fork's src/main/pc/menu.c).\n\
+             # Write each one's translation in `text`; an empty one keeps the original.\n\
+             # Titles are drawn in the menus' small face, which has no accents.\n",
+        );
+        for s in &own {
+            toml.push_str(&format!("\n[[string]]\noriginal = {}\ntext = ''\n", literal(&decode(s))));
+        }
+        let path = out.join("pc").join("menu.toml");
+        std::fs::create_dir_all(path.parent().unwrap())?;
+        std::fs::write(&path, toml)?;
+        files += 1;
+        count += own.len();
+    }
+    // And its Options' (settings.rs): categories, settings and choices.
+    let options = crate::settings::texts();
+    let mut toml = String::from(
+        "# Texts of PE2PC's Options (the pause menu's): categories, settings and their choices.\n\
+         # Write each one's translation in `text`; an empty one keeps the original.\n\
+         # Panel titles (in capitals) are drawn in the menus' small face, which has no accents.\n",
+    );
+    for s in &options {
+        toml.push_str(&format!("\n[[string]]\noriginal = {}\ntext = ''\n", literal(s)));
+    }
+    let path = out.join("pc").join("options.toml");
+    std::fs::create_dir_all(path.parent().unwrap())?;
+    std::fs::write(&path, toml)?;
+    files += 1;
+    count += options.len();
     Ok((files, count))
+}
+
+unsafe extern "C" {
+    fn pcMenuTexts(count: *mut i32) -> *const *const u8;
+}
+
+/// PE2PC's own texts (the fork's src/main/pc/menu.c `pcMenuTexts`).
+fn port_texts() -> Vec<Vec<u8>> {
+    let mut count = 0;
+    // SAFETY: a static table of `count` pointers to static zero-ended texts.
+    let table = unsafe { pcMenuTexts(&mut count) };
+    (0..count.max(0) as usize)
+        .map(|i| {
+            // SAFETY: as above.
+            let text = unsafe { *table.add(i) };
+            unsafe { std::ffi::CStr::from_ptr(text.cast()) }.to_bytes().to_vec()
+        })
+        .collect()
 }
 
 #[cfg(test)]

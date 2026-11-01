@@ -13,8 +13,8 @@
 [general]
 # The launcher's language: "en" or "pt".
 # language = "en"
-# Esc asks before quitting (Cancel is the default: Enter or Esc again keep
-# playing); false quits at once.
+# The pause menu's Quit game (Esc) asks first (No is the default); false
+# quits at once.
 # confirm_exit = true
 # Experimental features: mods (see [mods] below).
 # experimental = false
@@ -71,6 +71,10 @@ scale = 4
 # fullscreen = false
 # Hide the mouse cursor over the picture in full screen.
 # hide_cursor = true
+
+[audio]
+# The sound's volume, 0 to 100 percent.
+# volume = 100
 
 [input]
 # Player 1's controller: "auto" (the one last used) or its name, as the

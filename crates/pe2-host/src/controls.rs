@@ -105,54 +105,43 @@ pub fn pad_label(name: &str) -> String {
     }
 }
 
-/// Whether movement is camera-relative ([input] movement = "modern").
+use crate::settings::{self, Id};
+
+/// Whether movement is camera-relative ([input] movement = "modern"; the
+/// pause menu's Options).
 pub fn modern_movement() -> bool {
-    match crate::config::get().input.movement.as_deref().map(str::trim) {
-        None | Some("tank") => false,
-        Some("modern") => true,
-        Some(other) => {
-            eprintln!("pe2: unknown movement {other:?} (tank or modern); using tank");
-            false
-        }
-    }
+    settings::word(Id::Movement) == "modern"
 }
 
 /// The game's movement options (pad_input.c in the fork): bit 0 modern
-/// movement, bit 1 quick turn.
+/// movement, bit 1 quick turn; a replay's own, else the settings'.
 #[unsafe(no_mangle)]
 pub extern "C" fn pc_input_options() -> u32 {
-    static OPTIONS: std::sync::OnceLock<u32> = std::sync::OnceLock::new();
-    *OPTIONS.get_or_init(|| {
-        if let Some(options) = crate::runtime::replay::input_options() {
-            return options;
-        }
-        let quick_turn = crate::config::get().input.quick_turn.unwrap_or(true);
-        u32::from(modern_movement()) | (u32::from(quick_turn) << 1)
-    })
+    static REPLAY: std::sync::OnceLock<Option<u32>> = std::sync::OnceLock::new();
+    REPLAY
+        .get_or_init(crate::runtime::replay::input_options)
+        .unwrap_or_else(|| u32::from(modern_movement()) | (u32::from(settings::flag(Id::QuickTurn)) << 1))
 }
 
 /// Cheats ([cheats] always_critical): every weapon hit is a critical hit
 /// (damage.c in the fork).
 #[unsafe(no_mangle)]
 pub extern "C" fn pc_cheat_always_critical() -> i32 {
-    static ON: std::sync::OnceLock<bool> = std::sync::OnceLock::new();
-    i32::from(*ON.get_or_init(|| crate::config::get().cheats.always_critical.unwrap_or(false)))
+    i32::from(settings::flag(Id::AlwaysCritical))
 }
 
 /// Cheats ([cheats] infinite_hp): the player takes no damage (damage.c in
 /// the fork).
 #[unsafe(no_mangle)]
 pub extern "C" fn pc_cheat_infinite_hp() -> i32 {
-    static ON: std::sync::OnceLock<bool> = std::sync::OnceLock::new();
-    i32::from(*ON.get_or_init(|| crate::config::get().cheats.infinite_hp.unwrap_or(false)))
+    i32::from(settings::flag(Id::InfiniteHp))
 }
 
 /// Cheats ([cheats] one_hit_kill): every hit of the player's kills
 /// (damage.c in the fork).
 #[unsafe(no_mangle)]
 pub extern "C" fn pc_cheat_one_hit_kill() -> i32 {
-    static ON: std::sync::OnceLock<bool> = std::sync::OnceLock::new();
-    i32::from(*ON.get_or_init(|| crate::config::get().cheats.one_hit_kill.unwrap_or(false)))
+    i32::from(settings::flag(Id::OneHitKill))
 }
 
 /// Cheats ([cheats] infinite_mp): the player's MP never goes down, neither
@@ -160,27 +149,24 @@ pub extern "C" fn pc_cheat_one_hit_kill() -> i32 {
 /// item_panels.c and hud_sprites.c in the fork).
 #[unsafe(no_mangle)]
 pub extern "C" fn pc_cheat_infinite_mp() -> i32 {
-    static ON: std::sync::OnceLock<bool> = std::sync::OnceLock::new();
-    i32::from(*ON.get_or_init(|| crate::config::get().cheats.infinite_mp.unwrap_or(false)))
+    i32::from(settings::flag(Id::InfiniteMp))
 }
 
 /// The most a battle's rewards may be multiplied by.
-const MULTIPLIER_MAX: u32 = 100;
+const MULTIPLIER_MAX: i64 = 100;
 
 /// Cheats ([cheats] exp_multiplier): what a won battle's EXP is multiplied
 /// by, 1 to 100 (ending.c in the fork).
 #[unsafe(no_mangle)]
 pub extern "C" fn pc_cheat_exp_multiplier() -> i32 {
-    static N: std::sync::OnceLock<u32> = std::sync::OnceLock::new();
-    *N.get_or_init(|| crate::config::get().cheats.exp_multiplier.unwrap_or(1).clamp(1, MULTIPLIER_MAX)) as i32
+    settings::number(Id::ExpMultiplier).clamp(1, MULTIPLIER_MAX) as i32
 }
 
 /// Cheats ([cheats] bp_multiplier): what a won battle's BP is multiplied by,
 /// 1 to 100 (ending.c in the fork).
 #[unsafe(no_mangle)]
 pub extern "C" fn pc_cheat_bp_multiplier() -> i32 {
-    static N: std::sync::OnceLock<u32> = std::sync::OnceLock::new();
-    *N.get_or_init(|| crate::config::get().cheats.bp_multiplier.unwrap_or(1).clamp(1, MULTIPLIER_MAX)) as i32
+    settings::number(Id::BpMultiplier).clamp(1, MULTIPLIER_MAX) as i32
 }
 
 /// PE2_TRACE=move: the stick (or d-pad) direction, the yaw it asks for,

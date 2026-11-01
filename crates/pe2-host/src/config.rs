@@ -15,6 +15,7 @@ pub struct Config {
     pub general: General,
     pub discs: Discs,
     pub video: Video,
+    pub audio: Audio,
     pub input: Input,
     pub memcard: Memcard,
     pub mods: Mods,
@@ -121,8 +122,15 @@ pub struct Video {
 
 #[derive(Debug, Default, Deserialize)]
 #[serde(default, deny_unknown_fields)]
+pub struct Audio {
+    /// The sound's volume, 0 to 100 percent (default 100).
+    pub volume: Option<u32>,
+}
+
+#[derive(Debug, Default, Deserialize)]
+#[serde(default, deny_unknown_fields)]
 pub struct General {
-    /// Ask before Esc quits (default on).
+    /// Ask before the pause menu's Quit game quits (default on).
     pub confirm_exit: Option<bool>,
     /// The launcher's language: "en" (the default) or "pt".
     pub language: Option<String>,

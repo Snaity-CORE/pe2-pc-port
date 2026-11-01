@@ -46,7 +46,6 @@ fn run() {
     let map = crate::controls::gamepad();
     let input = &crate::config::get().input;
     let wanted = input.controller.as_deref().filter(|n| !n.is_empty() && *n != "auto");
-    let vibration = input.vibration.unwrap_or(true);
     let mut active: Option<GamepadId> = None;
     let mut rumble: (u32, Option<Effect>) = (0, None);
     loop {
@@ -57,6 +56,11 @@ fn run() {
                     active.get_or_insert(ev.id);
                 }
                 EventType::Disconnected if active == Some(ev.id) => active = None,
+                // Guide (the Xbox or PS button): the pause menu, which the
+                // game's buttons leave free.
+                EventType::ButtonPressed(gilrs::Button::Mode, _) if active.is_none_or(|a| a == ev.id) => {
+                    crate::pause_menu::ask();
+                }
                 // The controller last used takes over port 1, unless one
                 // is chosen.
                 EventType::ButtonPressed(..) if wanted.is_none() => active = Some(ev.id),
@@ -93,6 +97,8 @@ fn run() {
             }
         }
 
+        // The setting may change at any time (the pause menu's Options).
+        let vibration = crate::settings::flag(crate::settings::Id::Vibration);
         let want = if vibration { RUMBLE.load(Ordering::SeqCst) } else { 0 };
         if want != rumble.0 {
             rumble = (want, active.and_then(|id| start_rumble(&mut gilrs, id, want)));
