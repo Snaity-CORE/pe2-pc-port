@@ -224,14 +224,22 @@ fn open_output() -> Result<Output, String> {
         (f32::from(last.0) / 32768.0, f32::from(last.1) / 32768.0)
     };
 
+    // The sound's volume ([audio] volume; the pause menu's Options), read
+    // for each buffer: as heard, a square law.
+    let volume = || {
+        let v = crate::settings::number(crate::settings::Id::Volume) as f32 / 100.0;
+        v * v
+    };
     let err = |e| eprintln!("pe2: audio stream error: {e}");
     let stream = match format {
         cpal::SampleFormat::F32 => device.build_output_stream(
             &config,
             move |data: &mut [f32], _| {
                 watch_gaps();
+                let gain = volume();
                 for frame in data.chunks_mut(channels) {
                     let (l, r) = next_frame();
+                    let (l, r) = (l * gain, r * gain);
                     frame[0] = l;
                     if channels > 1 {
                         frame[1] = r;
@@ -248,8 +256,10 @@ fn open_output() -> Result<Output, String> {
             &config,
             move |data: &mut [i16], _| {
                 watch_gaps();
+                let gain = volume();
                 for frame in data.chunks_mut(channels) {
                     let (l, r) = next_frame();
+                    let (l, r) = (l * gain, r * gain);
                     frame[0] = (l * 32767.0) as i16;
                     if channels > 1 {
                         frame[1] = (r * 32767.0) as i16;

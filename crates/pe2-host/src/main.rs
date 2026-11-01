@@ -16,6 +16,7 @@ mod paths;
 mod pause_menu;
 mod present;
 mod runtime;
+mod settings;
 mod video;
 
 use std::path::PathBuf;

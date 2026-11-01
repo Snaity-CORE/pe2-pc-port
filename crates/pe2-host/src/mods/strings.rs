@@ -514,6 +514,21 @@ pub fn extract(
         files += 1;
         count += own.len();
     }
+    // And its Options' (settings.rs): categories, settings and choices.
+    let options = crate::settings::texts();
+    let mut toml = String::from(
+        "# Texts of PE2PC's Options (the pause menu's): categories, settings and their choices.\n\
+         # Write each one's translation in `text`; an empty one keeps the original.\n\
+         # Panel titles (in capitals) are drawn in the menus' small face, which has no accents.\n",
+    );
+    for s in &options {
+        toml.push_str(&format!("\n[[string]]\noriginal = {}\ntext = ''\n", literal(s)));
+    }
+    let path = out.join("pc").join("options.toml");
+    std::fs::create_dir_all(path.parent().unwrap())?;
+    std::fs::write(&path, toml)?;
+    files += 1;
+    count += options.len();
     Ok((files, count))
 }
 

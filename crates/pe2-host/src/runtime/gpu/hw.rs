@@ -442,45 +442,26 @@ const UV_CLAMP: u32 = 1 << 29;
 const FROM_CARD: u32 = 1 << 19;
 const SET_MASK: u32 = 1 << 30;
 
-/// Whether 3D polygons' textures are filtered: PE2_TEXTURE_FILTER, else
-/// pe2.toml's [video] texture_filter ("nearest", the default, or
-/// "bilinear"). Only 3D polygons are: sprites and the interface's polygons
-/// (text, menus) never are.
+/// Whether 3D polygons' textures are filtered: PE2_TEXTURE_FILTER, else the
+/// setting (pe2.toml's [video] texture_filter, "nearest", the default, or
+/// "bilinear"; the pause menu's Options). Only 3D polygons are: sprites and
+/// the interface's polygons (text, menus) never are.
 fn bilinear() -> bool {
-    static ON: std::sync::OnceLock<bool> = std::sync::OnceLock::new();
-    *ON.get_or_init(|| {
-        let choice =
-            std::env::var("PE2_TEXTURE_FILTER").ok().or_else(|| crate::config::get().video.texture_filter.clone());
-        match choice.as_deref().map(str::trim) {
-            None | Some("nearest") => false,
-            Some("bilinear") => true,
-            Some(other) => {
-                eprintln!("pe2: unknown texture filter {other:?} (nearest or bilinear); using nearest");
-                false
-            }
-        }
-    })
+    static FORCED: std::sync::OnceLock<Option<bool>> = std::sync::OnceLock::new();
+    FORCED
+        .get_or_init(|| std::env::var("PE2_TEXTURE_FILTER").ok().map(|v| v.trim() == "bilinear"))
+        .unwrap_or_else(|| crate::settings::word(crate::settings::Id::TextureFilter) == "bilinear")
 }
 
 /// Whether image transfers (the pre-rendered backgrounds, full-screen
-/// pictures) are enlarged smoothly: PE2_BACKGROUND_FILTER, else pe2.toml's
-/// [video] background_filter ("nearest", the default: blocks of whole
-/// console pixels, or "bicubic").
+/// pictures) are enlarged smoothly: PE2_BACKGROUND_FILTER, else the setting
+/// (pe2.toml's [video] background_filter, "nearest", the default: blocks
+/// of whole console pixels, or "bicubic"; the pause menu's Options).
 fn smooth_uploads() -> bool {
-    static ON: std::sync::OnceLock<bool> = std::sync::OnceLock::new();
-    *ON.get_or_init(|| {
-        let choice = std::env::var("PE2_BACKGROUND_FILTER")
-            .ok()
-            .or_else(|| crate::config::get().video.background_filter.clone());
-        match choice.as_deref().map(str::trim) {
-            None | Some("nearest") => false,
-            Some("bicubic") => true,
-            Some(other) => {
-                eprintln!("pe2: unknown background filter {other:?} (nearest or bicubic); using nearest");
-                false
-            }
-        }
-    })
+    static FORCED: std::sync::OnceLock<Option<bool>> = std::sync::OnceLock::new();
+    FORCED
+        .get_or_init(|| std::env::var("PE2_BACKGROUND_FILTER").ok().map(|v| v.trim() == "bicubic"))
+        .unwrap_or_else(|| crate::settings::word(crate::settings::Id::BackgroundFilter) == "bicubic")
 }
 
 /// Smaller transfers stay in blocks: bits of interface, not pictures.

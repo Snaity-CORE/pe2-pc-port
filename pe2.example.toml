@@ -72,6 +72,10 @@ scale = 4
 # Hide the mouse cursor over the picture in full screen.
 # hide_cursor = true
 
+[audio]
+# The sound's volume, 0 to 100 percent.
+# volume = 100
+
 [input]
 # Player 1's controller: "auto" (the one last used) or its name, as the
 # launcher's Controls screen lists it.

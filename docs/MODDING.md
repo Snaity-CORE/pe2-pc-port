@@ -605,8 +605,10 @@ Finding them is a guess (runs of letters ended by a zero), so a few entries
 are bytes of code that happen to read as letters: leave those empty.
 
 PE2PC's own screens (the pause menu, Esc) have texts of their own, on no
-disc: the extract lists them in `dumps/strings/pc/menu.toml`, translated
-the same way (their titles are drawn in the small face, without accents).
+disc: the extract lists them in `dumps/strings/pc/menu.toml`, and the
+Options' (categories, settings, their choices) in
+`dumps/strings/pc/options.toml`, translated the same way (their titles are
+drawn in the small face, without accents).
 
 Items' details (Triangle on an item: specifications and the long
 description) are text files on the disc, one for each item; the extract

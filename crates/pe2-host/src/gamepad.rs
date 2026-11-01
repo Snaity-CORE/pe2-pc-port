@@ -46,7 +46,6 @@ fn run() {
     let map = crate::controls::gamepad();
     let input = &crate::config::get().input;
     let wanted = input.controller.as_deref().filter(|n| !n.is_empty() && *n != "auto");
-    let vibration = input.vibration.unwrap_or(true);
     let mut active: Option<GamepadId> = None;
     let mut rumble: (u32, Option<Effect>) = (0, None);
     loop {
@@ -98,6 +97,8 @@ fn run() {
             }
         }
 
+        // The setting may change at any time (the pause menu's Options).
+        let vibration = crate::settings::flag(crate::settings::Id::Vibration);
         let want = if vibration { RUMBLE.load(Ordering::SeqCst) } else { 0 };
         if want != rumble.0 {
             rumble = (want, active.and_then(|id| start_rumble(&mut gilrs, id, want)));

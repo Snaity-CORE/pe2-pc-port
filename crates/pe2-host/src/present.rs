@@ -80,10 +80,11 @@ pub struct Presenter {
     gfx: &'static Gfx,
     surface: wgpu::Surface<'static>,
     config: wgpu::SurfaceConfiguration,
-    /// For CPU pictures, and for the hardware layer's (with the gain); as a
-    /// CRT when asked.
-    pipeline: wgpu::RenderPipeline,
-    card_pipeline: wgpu::RenderPipeline,
+    /// For CPU pictures, and for the hardware layer's (with the gain); each
+    /// without and with the CRT look (a setting that may change at any
+    /// time).
+    pipeline: [wgpu::RenderPipeline; 2],
+    card_pipeline: [wgpu::RenderPipeline; 2],
     /// The shader's parameters (see `params` there), and what they hold.
     params: wgpu::Buffer,
     params_now: [f32; 4],
@@ -200,9 +201,8 @@ impl Presenter {
                 cache: None,
             })
         };
-        let crt = if crt() { 1.0 } else { 0.0 };
-        let pipeline = make_pipeline(&[("crt", crt)]);
-        let card_pipeline = make_pipeline(&[("gain", 255.0 / 248.0), ("crt", crt)]);
+        let pipeline = [0.0, 1.0].map(|crt| make_pipeline(&[("crt", crt)]));
+        let card_pipeline = [0.0, 1.0].map(|crt| make_pipeline(&[("gain", 255.0 / 248.0), ("crt", crt)]));
         // Nearest texels when the window is an integer multiple of the
         // picture; linear smooths other sizes.
         let sampler = device.create_sampler(&wgpu::SamplerDescriptor {
@@ -343,7 +343,8 @@ impl Presenter {
                 ..Default::default()
             });
             pass.set_viewport(x as f32, y as f32, pw as f32, ph as f32, 0.0, 1.0);
-            pass.set_pipeline(if card { &self.card_pipeline } else { &self.pipeline });
+            let look = usize::from(crt());
+            pass.set_pipeline(if card { &self.card_pipeline[look] } else { &self.pipeline[look] });
             pass.set_bind_group(0, bind, &[]);
             pass.draw(0..3, 0..1);
         }
@@ -372,24 +373,22 @@ fn viewport(ww: u32, wh: u32, tw: u32, th: u32, integer: bool) -> (u32, u32, u32
     ((ww - pw) / 2, (wh - ph) / 2, pw, ph, whole)
 }
 
-/// Whether the picture is shown at whole multiples of its height:
-/// PE2_INTEGER_SCALING=0/1, else pe2.toml's [video] integer_scaling, else
-/// off.
+/// Whole multiples of the picture: PE2_INTEGER_SCALING, else the setting
+/// ([video] integer_scaling; the pause menu's Options).
 fn integer_scaling() -> bool {
-    static ON: std::sync::OnceLock<bool> = std::sync::OnceLock::new();
-    *ON.get_or_init(|| {
-        std::env::var("PE2_INTEGER_SCALING")
-            .ok()
-            .map(|v| v.trim() != "0")
-            .or(crate::config::get().video.integer_scaling)
-            .unwrap_or(false)
-    })
+    static FORCED: std::sync::OnceLock<Option<bool>> = std::sync::OnceLock::new();
+    FORCED
+        .get_or_init(|| std::env::var("PE2_INTEGER_SCALING").ok().map(|v| v.trim() != "0"))
+        .unwrap_or_else(|| crate::settings::flag(crate::settings::Id::IntegerScaling))
 }
 
-/// Whether the picture looks like a CRT television's: PE2_CRT=0/1, else
-/// pe2.toml's [video] crt, else off.
+/// The CRT look: PE2_CRT, else the setting ([video] crt; the pause menu's
+/// Options).
 fn crt() -> bool {
-    std::env::var("PE2_CRT").ok().map(|v| v.trim() != "0").or(crate::config::get().video.crt).unwrap_or(false)
+    static FORCED: std::sync::OnceLock<Option<bool>> = std::sync::OnceLock::new();
+    FORCED
+        .get_or_init(|| std::env::var("PE2_CRT").ok().map(|v| v.trim() != "0"))
+        .unwrap_or_else(|| crate::settings::flag(crate::settings::Id::Crt))
 }
 
 fn bytemuck_u32(words: &[u32]) -> &[u8] {

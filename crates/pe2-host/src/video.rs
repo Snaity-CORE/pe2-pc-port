@@ -133,7 +133,7 @@ impl ApplicationHandler for App {
             // the user is typing in.
             .with_active(!scripted());
         let window = Arc::new(event_loop.create_window(attrs).expect("create window"));
-        set_fullscreen(&window, crate::config::get().video.fullscreen.unwrap_or(false) && !scripted());
+        set_fullscreen(&window, crate::settings::flag(crate::settings::Id::Fullscreen) && !scripted());
         self.hardware = crate::gfx::get().and_then(|gfx| crate::present::Presenter::new(gfx, window.clone()));
         if self.hardware.is_none() {
             eprintln!("pe2: video: cannot draw into the window");
@@ -160,7 +160,9 @@ impl ApplicationHandler for App {
                             && !event.repeat
                             && let Some(w) = &self.window
                         {
-                            set_fullscreen(w, w.fullscreen().is_none());
+                            let on = w.fullscreen().is_none();
+                            crate::settings::set_flag(crate::settings::Id::Fullscreen, on);
+                            set_fullscreen(w, on);
                         }
                         return;
                     }
@@ -224,6 +226,13 @@ impl ApplicationHandler for App {
 
     fn about_to_wait(&mut self, event_loop: &ActiveEventLoop) {
         let now = Instant::now();
+        // Full screen as the setting asks (the pause menu's Options).
+        if !scripted()
+            && let Some(w) = &self.window
+            && w.fullscreen().is_some() != crate::settings::flag(crate::settings::Id::Fullscreen)
+        {
+            set_fullscreen(w, w.fullscreen().is_none());
+        }
         if now >= self.next_redraw {
             if let Some(w) = &self.window {
                 w.request_redraw();
