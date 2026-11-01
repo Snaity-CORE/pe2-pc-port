@@ -172,8 +172,8 @@ Enter = Start, Backspace = Select, Q/W/E/R = L1/R1/L2/R2, Alt+Enter toggles
 borderless full screen (`fullscreen = true` in pe2.toml starts in it; the mouse
 cursor is hidden there unless `hide_cursor = false`), Esc (or a controller's
 Guide button) opens the pause menu (the fork's src/main/pc/menu.c; where the
-game cannot open it, as on the title screen or in movies, a second Esc asks
-to quit; `[general] confirm_exit = false` quits at once), P pauses and resumes, F9
+game cannot open it, as on the title screen or in movies, Esc asks to quit;
+`[general] confirm_exit = false` quits at once), P pauses and resumes, F9
 saves a screenshot at the internal resolution in `screenshots/` in the data
 folder, F10 swaps discs by hand; for debugging, F11 writes a timed mark in
 the log and F12 dumps the GPU's current command list.

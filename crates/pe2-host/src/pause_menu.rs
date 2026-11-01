@@ -3,16 +3,22 @@
 //! src/main/pc/menu.c, drawn with the game's own dialogs); its Quit game
 //! ends the process here.
 //!
-//! The game cannot open it while it does not run its own frames (the title
-//! screen, movies, some scenes): a second ask after a while, unanswered,
-//! falls back to the window's quit prompt (video.rs), and an ask left
-//! unanswered lapses, so the menu does not open by surprise later.
+//! The game cannot open it while it does not draw its own frames (the title
+//! screen, movies), as it tells each frame: there Esc asks to quit at once,
+//! with the window's prompt (video.rs). Where it is only held up a moment
+//! (a scene, a load), a second ask after a while, unanswered, falls back
+//! to the prompt too, and an ask left unanswered lapses, so the menu does
+//! not open by surprise later.
 
 use std::sync::Mutex;
+use std::sync::atomic::{AtomicBool, Ordering};
 use std::time::{Duration, Instant};
 
 /// When the menu was asked for and not yet opened.
 static ASKED: Mutex<Option<Instant>> = Mutex::new(None);
+
+/// Whether the game draws its own frames, where the menu can open.
+static AVAILABLE: AtomicBool = AtomicBool::new(false);
 
 /// How long an ask may wait before another one falls back to the prompt,
 /// and before it lapses.
@@ -20,9 +26,14 @@ const PATIENCE: Duration = Duration::from_secs(1);
 const LAPSE: Duration = Duration::from_secs(2);
 
 /// Asks for the menu (or, open, closes it as Cancel does). Returns true when
-/// an earlier ask has waited unanswered too long: the game cannot open it now.
+/// the game cannot open it now: it does not draw its own frames, or an
+/// earlier ask has waited unanswered too long.
 pub fn ask() -> bool {
     let mut asked = ASKED.lock().unwrap();
+    if !AVAILABLE.load(Ordering::SeqCst) {
+        *asked = None;
+        return true;
+    }
     match *asked {
         Some(at) if at.elapsed() >= LAPSE => {
             *asked = Some(Instant::now());
@@ -38,6 +49,12 @@ pub fn ask() -> bool {
             false
         }
     }
+}
+
+/// Whether the game draws its own frames (it tells each frame).
+#[unsafe(no_mangle)]
+pub extern "C" fn pc_menu_available(available: i32) {
+    AVAILABLE.store(available != 0, Ordering::SeqCst);
 }
 
 /// Whether the menu is asked for (the game polls it each frame).
@@ -79,6 +96,11 @@ mod tests {
     /// back; one left longer lapses.
     #[test]
     fn asks_fall_back_when_unanswered() {
+        // Where the game cannot open it: the prompt at once.
+        pc_menu_available(0);
+        assert!(ask());
+        assert_eq!(pc_menu_requested(), 0);
+        pc_menu_available(1);
         *ASKED.lock().unwrap() = None;
         assert!(!ask());
         assert!(!ask());
