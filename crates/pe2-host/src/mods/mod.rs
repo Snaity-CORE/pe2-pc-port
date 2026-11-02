@@ -228,27 +228,51 @@ pub struct Picture {
     pub rgba: Vec<u8>,
 }
 
+/// What a loaded file weighs in memory, for the libraries' budgets.
+trait Weight {
+    fn bytes(&self) -> usize;
+}
+
+impl Weight for Picture {
+    fn bytes(&self) -> usize {
+        self.rgba.len()
+    }
+}
+
+impl Weight for indexed::Indexed {
+    fn bytes(&self) -> usize {
+        self.indices.len()
+    }
+}
+
 enum Slot<T> {
     Loading,
-    Ready(Arc<T>),
+    /// Loaded, and when last wanted (Library::clock).
+    Ready(Arc<T>, u64),
     Failed,
 }
 
 /// The files mods supply of one kind (`<mod>/<dir>/<name><suffix>`), by
-/// the key their name gives, loaded (by `load`) when first wanted.
+/// the key their name gives, loaded (by `load`) when first wanted. What is
+/// loaded stays up to `budget` bytes: past it the files wanted longest ago
+/// are let go (to be loaded again if wanted again). The 32-bit game has
+/// 4 GB in all, and a mod's backgrounds at 8x weigh 20 MB each.
 struct Library<K, T = Picture> {
     /// Key -> the file of the mod that wins for it.
     files: HashMap<K, PathBuf>,
     loaded: Mutex<HashMap<K, Slot<T>>>,
     load: fn(&Path) -> Result<T, String>,
+    budget: usize,
+    clock: std::sync::atomic::AtomicU64,
 }
 
-impl<K: std::hash::Hash + Eq + Copy + Send + Sync + 'static, T: Send + Sync + 'static> Library<K, T> {
+impl<K: std::hash::Hash + Eq + Copy + Send + Sync + 'static, T: Weight + Send + Sync + 'static> Library<K, T> {
     fn scan(
         dir: &str,
         suffix: &str,
         key: impl Fn(&str) -> Option<K>,
         load: fn(&Path) -> Result<T, String>,
+        budget: usize,
     ) -> Library<K, T> {
         let mut files = HashMap::new();
         if enabled() {
@@ -272,7 +296,7 @@ impl<K: std::hash::Hash + Eq + Copy + Send + Sync + 'static, T: Send + Sync + 's
                 }
             }
         }
-        Library { files, loaded: Mutex::new(HashMap::new()), load }
+        Library { files, loaded: Mutex::new(HashMap::new()), load, budget, clock: Default::default() }
     }
 
     /// What is loaded for `key`, once loaded: the first call starts loading
@@ -280,9 +304,13 @@ impl<K: std::hash::Hash + Eq + Copy + Send + Sync + 'static, T: Send + Sync + 's
     /// until it is ready).
     fn get(&'static self, key: K) -> Option<Arc<T>> {
         let path = self.files.get(&key)?;
+        let now = self.clock.fetch_add(1, std::sync::atomic::Ordering::Relaxed) + 1;
         let mut loaded = self.loaded.lock().unwrap();
-        match loaded.get(&key) {
-            Some(Slot::Ready(p)) => return Some(p.clone()),
+        match loaded.get_mut(&key) {
+            Some(Slot::Ready(p, when)) => {
+                *when = now;
+                return Some(p.clone());
+            }
             Some(Slot::Loading | Slot::Failed) => return None,
             None => {}
         }
@@ -290,22 +318,51 @@ impl<K: std::hash::Hash + Eq + Copy + Send + Sync + 'static, T: Send + Sync + 's
         let path = path.clone();
         std::thread::spawn(move || {
             let slot = match (self.load)(&path) {
-                Ok(p) => Slot::Ready(Arc::new(p)),
+                Ok(p) => Slot::Ready(Arc::new(p), self.clock.load(std::sync::atomic::Ordering::Relaxed)),
                 Err(err) => {
                     eprintln!("pe2: mods: {}: {err}", path.display());
                     Slot::Failed
                 }
             };
-            self.loaded.lock().unwrap().insert(key, slot);
+            let mut loaded = self.loaded.lock().unwrap();
+            loaded.insert(key, slot);
+            self.trim(&mut loaded, key);
         });
         None
     }
+
+    /// Lets go of the files wanted longest ago while past the budget, but
+    /// never `keep` (just loaded).
+    fn trim(&self, loaded: &mut HashMap<K, Slot<T>>, keep: K) {
+        let weight = |s: &Slot<T>| if let Slot::Ready(p, _) = s { p.bytes() } else { 0 };
+        let mut total: usize = loaded.values().map(weight).sum();
+        while total > self.budget {
+            let oldest = loaded
+                .iter()
+                .filter(|(k, _)| **k != keep)
+                .filter_map(|(k, s)| if let Slot::Ready(_, when) = s { Some((*k, *when)) } else { None })
+                .min_by_key(|(_, when)| *when);
+            let Some((k, _)) = oldest else { break };
+            total -= loaded.remove(&k).as_ref().map_or(0, weight);
+        }
+    }
 }
+
+/// Bytes of loaded mod files kept: backgrounds (a few rooms' worth at 8x),
+/// and each kind of texture.
+const BACKGROUNDS_BUDGET: usize = 320 << 20;
+const TEXTURES_BUDGET: usize = 256 << 20;
 
 fn backgrounds() -> &'static Library<u64> {
     static INDEX: OnceLock<Library<u64>> = OnceLock::new();
     INDEX.get_or_init(|| {
-        let library = Library::scan("backgrounds", ".png", |s| u64::from_str_radix(s, 16).ok(), |p| read_png(p, false));
+        let library = Library::scan(
+            "backgrounds",
+            ".png",
+            |s| u64::from_str_radix(s, 16).ok(),
+            |p| read_png(p, false),
+            BACKGROUNDS_BUDGET,
+        );
         if enabled() {
             let mods: Vec<Mod> = installed().into_iter().filter(|m| m.enabled).collect();
             for m in &mods {
@@ -369,7 +426,7 @@ fn textures() -> &'static Library<TextureKey> {
             let (t, p) = s.split_once('-').unwrap_or((s, "0"));
             Some((u64::from_str_radix(t, 16).ok()?, u64::from_str_radix(p, 16).ok()?))
         };
-        Library::scan("textures", ".png", key, |p| read_png(p, true))
+        Library::scan("textures", ".png", key, |p| read_png(p, true), TEXTURES_BUDGET)
     })
 }
 
@@ -382,7 +439,7 @@ pub fn texture(key: TextureKey) -> Option<Arc<Picture>> {
 /// and its header), by sheet and depth (0: 4 bits, 1: 8).
 fn indexed_textures() -> &'static Library<(u64, u32), indexed::Indexed> {
     static INDEX: OnceLock<Library<(u64, u32), indexed::Indexed>> = OnceLock::new();
-    INDEX.get_or_init(|| Library::scan("textures", ".idx.png", indexed::parse_stem, indexed::read))
+    INDEX.get_or_init(|| Library::scan("textures", ".idx.png", indexed::parse_stem, indexed::read, TEXTURES_BUDGET))
 }
 
 /// The indexed replacement for `sheet` drawn at `depth` (0: 4 bits, 1: 8):
@@ -711,6 +768,29 @@ pub fn apply_patches() {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    /// Past its budget a library lets go of what was wanted longest ago,
+    /// never what was just loaded.
+    #[test]
+    fn libraries_keep_to_their_budget() {
+        let picture = |n: usize| Picture { width: 1, height: 1, rgba: vec![0; n] };
+        let library: Library<u64> = Library {
+            files: HashMap::new(),
+            loaded: Mutex::new(HashMap::new()),
+            load: |_| Err(String::new()),
+            budget: 25,
+            clock: Default::default(),
+        };
+        let mut loaded = library.loaded.lock().unwrap();
+        loaded.insert(1, Slot::Ready(Arc::new(picture(10)), 3));
+        loaded.insert(2, Slot::Ready(Arc::new(picture(10)), 1));
+        loaded.insert(3, Slot::Loading);
+        loaded.insert(4, Slot::Ready(Arc::new(picture(10)), 0));
+        library.trim(&mut loaded, 4);
+        let mut kept: Vec<u64> = loaded.keys().copied().collect();
+        kept.sort();
+        assert_eq!(kept, [1, 3, 4]);
+    }
 
     /// The hash names files, so it must never change.
     #[test]
