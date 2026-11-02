@@ -29,6 +29,10 @@
  * much a call decodes, so a frame can be spread over several calls; the
  * original splits frames at other points (its count is not in words), the
  * decoded data being the same.
+ *
+ * The decoder's state is each thread's own: besides the game, the host
+ * decodes backgrounds on threads of its own (mods' backgrounds found on the
+ * discs, the extract), at the same time.
  */
 #include <stdint.h>
 #include <stdio.h>
@@ -117,9 +121,13 @@ static void add_code(int len, uint32_t code, uint32_t run, uint32_t level)
     }
 }
 
+/* Set once the tables are complete. Threads starting at once may each fill
+ * them, with the same values. */
+static int lut_ready;
+
 static void init_lut(void)
 {
-    if (lut[0x8000] != 0) {
+    if (__atomic_load_n(&lut_ready, __ATOMIC_ACQUIRE)) {
         return;
     }
     for (size_t i = 0; i < sizeof ac_codes / sizeof ac_codes[0]; i++) {
@@ -128,10 +136,11 @@ static void init_lut(void)
     add_code(2, 0x2, CODE_EOB, 0);    /* 10: end of block */
     add_code(6, 0x1, CODE_ESCAPE, 0); /* 000001: escape */
     init_dc_sizes();
+    __atomic_store_n(&lut_ready, 1, __ATOMIC_RELEASE);
 }
 
-/* Decoder state between calls. */
-static struct {
+/* Decoder state between calls, the thread's own. */
+static _Thread_local struct {
     const uint16_t* in;  /* next input halfword */
     uint32_t bits;       /* bit buffer, most significant first */
     int count;           /* bits in the buffer */
@@ -146,7 +155,7 @@ static struct {
     int32_t pred[3];     /* version 3 DC predictors: Cr, Cb, Y */
 } dec;
 
-static int words_per_call;
+static _Thread_local int words_per_call;
 
 static uint32_t peek(int n)
 {

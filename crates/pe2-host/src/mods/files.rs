@@ -544,6 +544,29 @@ fn add_source(out: &mut super::dialogue::Sources, disc: &mut dyn Disc, f: &DiscF
     }
 }
 
+/// A chunk of a disc file: the file's key and the chunk's index.
+pub type Place = (String, usize);
+
+/// The hashes of the pictures the game shows (mods::screen_hash) for the
+/// backgrounds at `places` of the disc image `image`.
+pub fn background_hashes(image: &Path, places: &HashSet<Place>) -> Result<Vec<(Place, u64)>, String> {
+    let mut disc = crate::disc::open(image).map_err(|e| e.to_string())?;
+    let keys: HashSet<&str> = places.iter().map(|(key, _)| key.as_str()).collect();
+    let mut out = Vec::new();
+    for f in layout(disc.as_mut()).into_iter().filter(|f| keys.contains(f.key.as_str())) {
+        for (k, c) in read_chunks(disc.as_mut(), f.lba).into_iter().enumerate() {
+            let place = (f.key.clone(), k);
+            if c.header[0] == 5
+                && places.contains(&place)
+                && let Some(pixels) = background_pixels(&c.payload)
+            {
+                out.push((place, super::screen_hash(320, 240, &pixels)));
+            }
+        }
+    }
+    Ok(out)
+}
+
 /// What `pe2 --extract` saves: any of its parts, by name (all of them by
 /// default).
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -586,7 +609,7 @@ impl Parts {
 /// file of their file systems, chunk by chunk, under `dumps/files`
 /// (`<file>/<index>.<ext>`; a file differing on a later disc goes under
 /// `disc<n>/`; and the executable); each room background as the picture
-/// the game shows, as `dumps/backgrounds/<hash>.png` (see
+/// the game shows, as `dumps/backgrounds/<folder>/<place>.png` (see
 /// mods::background); the texture sheets under `dumps/textures` (see
 /// sheets.rs); the songs and the movies (music.rs, movies.rs); and the
 /// texts: the dialogue under `dumps/text` (see dialogue.rs) and the texts
@@ -629,9 +652,11 @@ pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path, parts: Parts) -> std::
                     && c.header[0] == 5
                     && let Some(pixels) = background_pixels(&c.payload)
                 {
+                    // Named by where it is (a picture in several places: by
+                    // the first), which any version's discs share.
                     let hash = super::screen_hash(320, 240, &pixels);
                     let dir = pictures.join(super::names::folder(&f.key, k));
-                    let path = dir.join(format!("{hash:016x}.png"));
+                    let path = dir.join(format!("{}.png", super::place_name(&f.key, k)));
                     if backgrounds.insert(hash) && !path.exists() {
                         std::fs::create_dir_all(&dir)?;
                         super::save_png(&path, 320, 240, &pixels).map_err(std::io::Error::other)?;

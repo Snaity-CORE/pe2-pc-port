@@ -23,7 +23,7 @@ mods/
   better-backgrounds/
     mod.toml
     backgrounds/
-      20ddfa255291fdb6.png
+      rooms/dryfield/gas_station/stage2_101_file10_0.png
       ...
 ```
 
@@ -76,16 +76,34 @@ setups, and the picture is scaled to the internal resolution.
 1. Get the pictures: the extract (`pe2 --extract`, see above) decodes all of
    them from the discs, about 1,760 (rooms, title and menu screens, close-ups
    shown when examining things), as the game does, into
-   `dumps/backgrounds/<folder>/<hash>.png` in the data folder, filed by
+   `dumps/backgrounds/<folder>/<place>.png` in the data folder, filed by
    what they are: `rooms/<area>/<room>/` (rooms/dryfield/gas_station),
    `load_screens/`, `title/`...
 2. Make your version of a picture (paint over it, upscale it, ...) and save it
-   as `mods/<your mod>/backgrounds/<same hash>.png`, in any folder inside
+   as `mods/<your mod>/backgrounds/<same name>.png`, in any folder inside
    `backgrounds/` (the extract's, if you like: the name is what counts).
 
-The file name is what ties a replacement to the picture it replaces: a 64-bit
-FNV-1a hash of the picture's size and pixels exactly as the game sends them to
-the graphics chip. Keep the name; the content can be anything.
+The file name is what ties a replacement to the picture it replaces. The
+extract names each picture by where it is on the discs: the disc file and
+its chunk, `stage1_1001_file2_3` for chunk 3 of file 2 of stage 1's folder
+1001 (`stage0_file30_2` in stage 0); a picture found in several places, by
+the first. Keep the name; the content can be anything. When the game
+starts, PE2PC reads those places on your discs (a few seconds, on a thread
+of its own; until then the game's own pictures show) to know which
+picture each replaces.
+
+Places are the same on every version's discs, so another version's
+pictures (a translation's loading screens, with their captions translated)
+work as they are: extract that version's discs with a data folder of its
+own (`pe2 --extract backgrounds` is enough) and copy its
+`dumps/backgrounds` into your mod. Those the same as the game's change
+nothing.
+
+A picture may also be named by the hash of what the game shows: a 64-bit
+FNV-1a hash of the picture's size and pixels exactly as the game sends them
+to the graphics chip, as 16 hexadecimal digits (`9d80a9a2bc7a103c.png`). It
+needs no reading of the discs, but only matches the game's own discs'
+picture. Older extracts named them so, and such mods keep working.
 
 What to know:
 

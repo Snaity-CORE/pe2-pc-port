@@ -13,8 +13,10 @@
 //! runtime/gpu/textures.rs.
 //! Backgrounds and full-screen pictures, as `backgrounds/<hash>.png`, where
 //! the hash is `screen_hash` of the 320x240 (or so) image the game sends to
-//! the GPU; the extract saves each one the discs hold as
-//! `dumps/backgrounds/<hash>.png`.
+//! the GPU, or as `backgrounds/<place>.png` (`place_name`: the disc file and
+//! chunk it comes from, the same on any version's discs), found on the
+//! discs when the game starts; the extract saves each one the discs hold as
+//! `dumps/backgrounds/<folder>/<place>.png`.
 
 use std::collections::HashMap;
 use std::path::{Path, PathBuf};
@@ -107,6 +109,7 @@ pub fn installed() -> Vec<Mod> {
 /// (disc 1), and what character each dialogue glyph is.
 pub fn start(discs: &[PathBuf]) {
     strings::load();
+    resolve_background_places(discs);
     if let Some(first) = discs.first() {
         fontsheets::start(first.clone());
     }
@@ -261,10 +264,39 @@ enum Slot<T> {
 struct Library<K, T = Picture> {
     /// Key -> the file of the mod that wins for it.
     files: HashMap<K, PathBuf>,
+    /// The same, once complete, when some of the files name their keys only
+    /// by what must be found first (backgrounds named by place).
+    resolved: OnceLock<HashMap<K, PathBuf>>,
     loaded: Mutex<HashMap<K, Slot<T>>>,
     load: fn(&Path) -> Result<T, String>,
     budget: usize,
     clock: std::sync::atomic::AtomicU64,
+}
+
+/// The files mods supply in `<mod>/<dir>/` and the folders inside it (the
+/// extract files them by what they are: characters/aya, rooms/akropolis/
+/// square...) whose names end in `suffix`, with the rest of their names:
+/// lowest priority first, so the highest overwrites it.
+fn mod_files(dir: &str, suffix: &str) -> Vec<(PathBuf, String)> {
+    let mut out = Vec::new();
+    if enabled() {
+        for m in installed().iter().filter(|m| m.enabled).rev() {
+            for path in files_under(&m.dir.join(dir)) {
+                let stem = path
+                    .file_name()
+                    .and_then(|s| s.to_str())
+                    .filter(|n| n.len() > suffix.len() && n.is_char_boundary(n.len() - suffix.len()))
+                    .and_then(|n| {
+                        let (stem, end) = n.split_at(n.len() - suffix.len());
+                        end.eq_ignore_ascii_case(suffix).then(|| stem.to_string())
+                    });
+                if let Some(stem) = stem {
+                    out.push((path, stem));
+                }
+            }
+        }
+    }
+    out
 }
 
 impl<K: std::hash::Hash + Eq + Copy + Send + Sync + 'static, T: Weight + Send + Sync + 'static> Library<K, T> {
@@ -275,36 +307,22 @@ impl<K: std::hash::Hash + Eq + Copy + Send + Sync + 'static, T: Weight + Send + 
         load: fn(&Path) -> Result<T, String>,
         budget: usize,
     ) -> Library<K, T> {
-        let mut files = HashMap::new();
-        if enabled() {
-            // Lowest priority first, so the highest overwrites it.
-            for m in installed().iter().filter(|m| m.enabled).rev() {
-                // In any folder inside (the extract files them by what they
-                // are: characters/aya, rooms/akropolis/square...).
-                for path in files_under(&m.dir.join(dir)) {
-                    let found = path
-                        .file_name()
-                        .and_then(|s| s.to_str())
-                        .filter(|n| n.len() > suffix.len() && n.is_char_boundary(n.len() - suffix.len()))
-                        .and_then(|n| {
-                            let (stem, end) = n.split_at(n.len() - suffix.len());
-                            end.eq_ignore_ascii_case(suffix).then_some(stem)
-                        })
-                        .and_then(&key);
-                    if let Some(k) = found {
-                        files.insert(k, path);
-                    }
-                }
-            }
+        let files = mod_files(dir, suffix).into_iter().filter_map(|(path, stem)| Some((key(&stem)?, path))).collect();
+        Library {
+            files,
+            resolved: OnceLock::new(),
+            loaded: Mutex::new(HashMap::new()),
+            load,
+            budget,
+            clock: Default::default(),
         }
-        Library { files, loaded: Mutex::new(HashMap::new()), load, budget, clock: Default::default() }
     }
 
     /// What is loaded for `key`, once loaded: the first call starts loading
     /// it on a thread of its own and answers None (the game's own shows
     /// until it is ready).
     fn get(&'static self, key: K) -> Option<Arc<T>> {
-        let path = self.files.get(&key)?;
+        let path = self.resolved.get().unwrap_or(&self.files).get(&key)?;
         let now = self.clock.fetch_add(1, std::sync::atomic::Ordering::Relaxed) + 1;
         let mut loaded = self.loaded.lock().unwrap();
         match loaded.get_mut(&key) {
@@ -376,7 +394,10 @@ fn backgrounds() -> &'static Library<u64> {
         let library = Library::scan(
             "backgrounds",
             ".png",
-            |s| u64::from_str_radix(s, 16).ok(),
+            |s| match background_name(s)? {
+                BackgroundName::Hash(hash) => Some(hash),
+                BackgroundName::Place(..) => None,
+            },
             |p| read_png(p, false),
             BACKGROUNDS_BUDGET,
         );
@@ -390,9 +411,10 @@ fn backgrounds() -> &'static Library<u64> {
             }
             if !mods.is_empty() {
                 eprintln!(
-                    "pe2: mods: {} on, {} backgrounds, {} textures, {} indexed textures",
+                    "pe2: mods: {} on, {} backgrounds ({} by place), {} textures, {} indexed textures",
                     mods.len(),
-                    library.files.len(),
+                    library.files.len() + background_places().len(),
+                    background_places().len(),
                     textures().files.len(),
                     indexed_textures().files.len()
                 );
@@ -400,6 +422,109 @@ fn backgrounds() -> &'static Library<u64> {
         }
         library
     })
+}
+
+/// What a background's file name says: the hash of the picture the game
+/// shows, or where the picture is on the discs (`place_name`).
+#[derive(Debug, PartialEq)]
+enum BackgroundName {
+    Hash(u64),
+    Place(String, usize),
+}
+
+/// The name of the background at chunk `chunk` of the disc file `key`:
+/// `stage1/1001/file2` chunk 3 is `stage1_1001_file2_3`.
+pub fn place_name(key: &str, chunk: usize) -> String {
+    format!("{}_{chunk}", key.replace('/', "_"))
+}
+
+fn background_name(stem: &str) -> Option<BackgroundName> {
+    if stem.len() == 16
+        && let Ok(hash) = u64::from_str_radix(stem, 16)
+    {
+        return Some(BackgroundName::Hash(hash));
+    }
+    let (key, chunk) = stem.rsplit_once('_')?;
+    let key = key.replace('_', "/");
+    if !(key.starts_with("stage") && key.contains("/file")) {
+        return None;
+    }
+    Some(BackgroundName::Place(key, chunk.parse().ok()?))
+}
+
+/// The mods' backgrounds named by place, lowest priority first.
+fn background_places() -> &'static [(PathBuf, String)] {
+    static PLACES: OnceLock<Vec<(PathBuf, String)>> = OnceLock::new();
+    PLACES.get_or_init(|| {
+        mod_files("backgrounds", ".png")
+            .into_iter()
+            .filter(|(_, stem)| matches!(background_name(stem), Some(BackgroundName::Place(..))))
+            .collect()
+    })
+}
+
+/// Finds on the discs the pictures of the backgrounds mods name by place,
+/// then lets them be used: until then (a few seconds at most, while the
+/// title shows), only those named by hash are.
+fn resolve_background_places(discs: &[PathBuf]) {
+    if background_places().is_empty() || discs.is_empty() {
+        return;
+    }
+    let discs = discs.to_vec();
+    std::thread::spawn(move || {
+        let since = std::time::Instant::now();
+        let wanted: std::collections::HashSet<files::Place> = background_places()
+            .iter()
+            .filter_map(|(_, stem)| match background_name(stem)? {
+                BackgroundName::Place(key, chunk) => Some((key, chunk)),
+                BackgroundName::Hash(_) => None,
+            })
+            .collect();
+        // Each disc on a thread of its own.
+        let found: Vec<_> = std::thread::scope(|scope| {
+            let jobs: Vec<_> =
+                discs.iter().map(|image| scope.spawn(|| files::background_hashes(image, &wanted))).collect();
+            jobs.into_iter()
+                .zip(&discs)
+                .filter_map(|(job, image)| match job.join() {
+                    Ok(Ok(found)) => Some(found),
+                    Ok(Err(e)) => {
+                        eprintln!("pe2: mods: {}: {e}", image.display());
+                        None
+                    }
+                    Err(_) => None,
+                })
+                .flatten()
+                .collect()
+        });
+        let mut hashes: HashMap<files::Place, Vec<u64>> = HashMap::new();
+        for (place, hash) in found {
+            hashes.entry(place).or_default().push(hash);
+        }
+        // All of them again in priority order, those named by hash too.
+        let mut files = HashMap::new();
+        for (path, stem) in mod_files("backgrounds", ".png") {
+            match background_name(&stem) {
+                Some(BackgroundName::Hash(hash)) => {
+                    files.insert(hash, path);
+                }
+                Some(BackgroundName::Place(key, chunk)) => {
+                    for &hash in hashes.get(&(key, chunk)).into_iter().flatten() {
+                        files.insert(hash, path.clone());
+                    }
+                }
+                None => {}
+            }
+        }
+        let missing = wanted.iter().filter(|p| !hashes.contains_key(*p)).count();
+        let not = if missing > 0 { format!(", {missing} not (no background there)") } else { String::new() };
+        eprintln!(
+            "pe2: mods: {} backgrounds by place found on the discs in {:.1} s{not}",
+            wanted.len() - missing,
+            since.elapsed().as_secs_f32()
+        );
+        let _ = backgrounds().resolved.set(files);
+    });
 }
 
 /// The background a mod supplies for the screen image `hash`, once loaded
@@ -793,6 +918,7 @@ mod tests {
         let picture = |n: usize| Picture { width: 1, height: 1, rgba: vec![0; n] };
         let library: Library<u64> = Library {
             files: HashMap::new(),
+            resolved: OnceLock::new(),
             loaded: Mutex::new(HashMap::new()),
             load: |_| Err(String::new()),
             budget: 25,
@@ -821,6 +947,17 @@ mod tests {
         let found = files_under(&dir);
         std::fs::remove_dir_all(&dir).unwrap();
         assert_eq!(found, [dir.join("a.png"), nested.join("b.png")]);
+    }
+
+    /// Backgrounds are named by hash or by place.
+    #[test]
+    fn background_names() {
+        assert_eq!(place_name("stage1/1001/file2", 3), "stage1_1001_file2_3");
+        assert_eq!(background_name("stage1_1001_file2_3"), Some(BackgroundName::Place("stage1/1001/file2".into(), 3)));
+        assert_eq!(background_name("stage0_file120_0"), Some(BackgroundName::Place("stage0/file120".into(), 0)));
+        assert_eq!(background_name("00000000deadbeef"), Some(BackgroundName::Hash(0xDEAD_BEEF)));
+        assert_eq!(background_name("my_picture_1"), None);
+        assert_eq!(background_name("stage1_1001_file2"), None);
     }
 
     /// The hash names files, so it must never change.
