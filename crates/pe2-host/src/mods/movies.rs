@@ -31,8 +31,13 @@ const GAME_FPS: f64 = 15.0;
 fn game_fps(number: u32, elapsed: f64) -> f64 {
     if number > 15 && f64::from(number - 1) / elapsed.max(0.001) > 22.0 { 30.0 } else { GAME_FPS }
 }
-/// A movie whose frames stop coming for this long has ended.
-const ENDED: Duration = Duration::from_millis(600);
+/// A movie has ended when the game shows no more 24-bit pictures (or a
+/// new one begins); frames that stop coming for this long end it too, in
+/// case. Reading the disc can hold the frames up for a while (a slow
+/// drive): the movie goes on when they come again.
+const ENDED: Duration = Duration::from_secs(5);
+/// Frames held up for this long are logged.
+const HELD_UP: Duration = Duration::from_millis(300);
 /// Decoded pictures kept ready ahead of the one shown.
 const AHEAD: usize = 4;
 const RATE: u32 = 44_100;
@@ -59,6 +64,11 @@ struct Playing {
     next: Option<Picture>,
     sound: Arc<Mutex<Sound>>,
     stop: Arc<AtomicBool>,
+    /// The game has shown its 24-bit pictures (the movie) since it began.
+    shown_24bit: bool,
+    /// Its frame rate, once told 30 (frames held up later slow the count,
+    /// not the movie).
+    fps: f64,
 }
 
 /// A movie's sound as decoded so far, at 44.1 kHz, and what was played.
@@ -129,6 +139,15 @@ pub fn frame(number: u32, data: &[u8]) {
         return;
     }
     if let Some(p) = s.playing.as_mut() {
+        let held = now - p.at;
+        if held >= HELD_UP || number != p.number + 1 {
+            eprintln!(
+                "pe2: mods: movie {:016x}: frame {number} after frame {}, {} ms later",
+                p.hash,
+                p.number,
+                held.as_millis()
+            );
+        }
         p.number = number;
         p.at = now;
     }
@@ -158,14 +177,27 @@ fn start(hash: u64, path: PathBuf) -> Option<Playing> {
     }
     eprintln!("pe2: mods: movie {hash:016x} from {}", path.display());
     let now = Instant::now();
-    Some(Playing { hash, number: 1, at: now, began: now, pictures, shown: None, next: None, sound, stop })
+    Some(Playing {
+        hash,
+        number: 1,
+        at: now,
+        began: now,
+        pictures,
+        shown: None,
+        next: None,
+        sound,
+        stop,
+        shown_24bit: false,
+        fps: GAME_FPS,
+    })
 }
 
 /// The picture to show now, while a mod's movie plays (else None).
 pub fn picture() -> Option<Arc<Picture>> {
     let mut s = state().lock().unwrap();
     let p = s.playing.as_mut()?;
-    let frame = 1.0 / game_fps(p.number, (p.at - p.began).as_secs_f64());
+    p.fps = p.fps.max(game_fps(p.number, (p.at - p.began).as_secs_f64()));
+    let frame = 1.0 / p.fps;
     let now = f64::from(p.number - 1) * frame + p.at.elapsed().as_secs_f64().min(frame);
     loop {
         if p.next.is_none() {
@@ -179,14 +211,24 @@ pub fn picture() -> Option<Arc<Picture>> {
     p.shown.clone()
 }
 
-/// Once a vertical blank: a movie whose frames stopped coming has ended.
-pub fn tick() {
+/// Once a vertical blank, `movie` when the game shows 24-bit pictures: a
+/// movie has ended once it shows others again (or its frames stopped
+/// coming for long).
+pub fn tick(movie: bool) {
     let mut s = state().lock().unwrap();
-    if let Some(p) = s.playing.as_ref()
-        && p.at.elapsed() > ENDED
-    {
+    let Some(p) = s.playing.as_mut() else { return };
+    p.shown_24bit |= movie;
+    let stalled = p.at.elapsed() > ENDED;
+    if (p.shown_24bit && !movie) || stalled {
         p.stop.store(true, Ordering::Relaxed);
-        if crate::runtime::trace("movies") {
+        if stalled {
+            eprintln!(
+                "pe2: mods: movie {:016x}: no frame for {} s after frame {}, ended",
+                p.hash,
+                ENDED.as_secs(),
+                p.number
+            );
+        } else if crate::runtime::trace("movies") {
             eprintln!("[movies] movie {:016x} ends", p.hash);
         }
         s.playing = None;

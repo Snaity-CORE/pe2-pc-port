@@ -1329,7 +1329,7 @@ pub fn latch() {
     f.vram.clear();
     f.on_card = false;
     f.movie = None;
-    crate::mods::movies::tick();
+    crate::mods::movies::tick(d.rgb24 && d.enabled);
     let kept = g.hw.take_frame();
     if !d.rgb24 {
         let hw = &mut g.hw;
