@@ -45,6 +45,13 @@ turns all mods off (`[mods] enabled = false` in `pe2.toml`, or `PE2_MODS=0`),
 and opens the mods folder. Changes apply when the game starts; its log lists
 the mods it uses.
 
+**Install a mod (.zip)** there extracts a mod shared as a zip into the mods
+folder, once: its files at the zip's root (`mod.toml`, `backgrounds/`...)
+go into a folder named as the zip, and those in one folder of the zip into
+a folder of that name. A mod installed in that folder before is replaced,
+keeping whether it is on and its place in the list. To share a mod, zip
+its folder.
+
 ## Extracting the game's files
 
 Everything a mod replaces is extracted from your discs with a command, run

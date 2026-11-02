@@ -156,6 +156,7 @@ runs `tools/check_no_game_data.py` and blocks them.
   [ab_glyph](https://github.com/alexheretic/ab-glyph) (the fonts),
   [discord-rich-presence](https://github.com/vionya/discord-rich-presence), png, image-webp, toml, toml_edit, serde,
   pollster, windows-sys, lewton, claxon and hound (mods' music),
+  [zip](https://github.com/zip-rs/zip2) (mods installed from .zip),
   [openh264](https://github.com/ralfbiedert/openh264-rs) with Cisco's
   [OpenH264](https://github.com/cisco/openh264) (BSD-2-Clause, © Cisco Systems),
   mp4 and [Symphonia](https://github.com/pdeljanov/Symphonia) (mods' movies),

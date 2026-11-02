@@ -518,6 +518,10 @@ struct ModRow {
     was_at: usize,
 }
 
+/// An install from a .zip on its thread: the folder it went into, once
+/// done (or why it failed).
+type InstallJob = Arc<std::sync::Mutex<Option<Result<PathBuf, String>>>>;
+
 struct Launcher {
     file: PathBuf,
     doc: toml_edit::DocumentMut,
@@ -554,6 +558,10 @@ struct Launcher {
     focus: Focus,
     /// The Mods screen's list.
     mods: Vec<ModRow>,
+    /// A mod being installed from a .zip (its result once done), and what
+    /// the last install came to.
+    install_job: Option<InstallJob>,
+    install_status: Option<Result<String, String>>,
 }
 
 /// The pe2.toml name of a key egui reports ("A" -> "KeyA", "Num1" ->
@@ -604,6 +612,8 @@ impl Launcher {
             menu_focus: 0,
             focus: Focus::default(),
             mods: Vec::new(),
+            install_job: None,
+            install_status: None,
         };
         launcher.recheck();
         if launcher.checks[0].as_ref().is_none_or(|c| c.is_err()) {
@@ -1431,8 +1441,46 @@ impl Launcher {
         Ok(())
     }
 
+    /// Asks for a mod's .zip and installs it on a thread of its own.
+    fn install_mod(&mut self, ctx: &egui::Context) {
+        let lang = self.lang();
+        let Some(zip) = rfd::FileDialog::new().add_filter(lang.t("Mod (.zip)", "Mod (.zip)"), &["zip"]).pick_file()
+        else {
+            return;
+        };
+        let job = Arc::new(std::sync::Mutex::new(None));
+        let (done, ctx) = (job.clone(), ctx.clone());
+        std::thread::spawn(move || {
+            *done.lock().unwrap() = Some(crate::mods::install::install_zip(&zip));
+            ctx.request_repaint();
+        });
+        self.install_job = Some(job);
+        self.install_status = None;
+    }
+
+    /// An install finished: the list again, with what it came to.
+    fn install_finished(&mut self) {
+        let Some(job) = &self.install_job else { return };
+        let Some(result) = job.lock().unwrap().take() else { return };
+        self.install_job = None;
+        let lang = self.lang();
+        self.install_status = Some(result.map(|dir| {
+            let folder = dir.file_name().map(|n| n.to_string_lossy().into_owned()).unwrap_or_default();
+            format!("{} {folder}", lang.t("Installed:", "Instalado:"))
+        }));
+        // Unsaved changes to the list stay.
+        let before: Vec<(PathBuf, bool)> = self.mods.iter().map(|m| (m.dir.clone(), m.enabled)).collect();
+        self.load_mods();
+        for m in &mut self.mods {
+            if let Some((_, on)) = before.iter().find(|(dir, _)| *dir == m.dir) {
+                m.enabled = *on;
+            }
+        }
+    }
+
     fn mods_screen(&mut self, ui: &mut egui::Ui) {
         let lang = self.lang();
+        self.install_finished();
         ui.heading(lang.t("Mods", "Mods"));
         ui.add_space(10.0);
         card(ui, lang.t("Mods folder", "Pasta de mods"), |ui| {
@@ -1450,8 +1498,24 @@ impl Launcher {
                         ctx.request_repaint();
                     });
                 }
+                let idle = self.install_job.is_none();
+                if self.focus.button(ui, lang.t("Install a mod (.zip)...", "Instalar um mod (.zip)..."), idle) {
+                    self.install_mod(ui.ctx());
+                }
             });
             ui.label(egui::RichText::new(crate::mods::mods_dir().display().to_string()).weak());
+            if self.install_job.is_some() {
+                ui.label(lang.t("Installing...", "Instalando..."));
+            }
+            match &self.install_status {
+                Some(Ok(done)) => {
+                    ui.label(egui::RichText::new(done).color(egui::Color32::from_rgb(120, 220, 140)));
+                }
+                Some(Err(e)) => {
+                    ui.label(egui::RichText::new(e).color(egui::Color32::from_rgb(255, 120, 110)));
+                }
+                None => {}
+            }
         });
         ui.add_space(12.0);
         let mut swap = None;
@@ -1459,8 +1523,8 @@ impl Launcher {
             card(ui, lang.t("Installed", "Instalados"), |ui| {
                 if self.mods.is_empty() {
                     ui.label(lang.t(
-                        "No mods installed. A mod is a folder in the mods folder above (see docs/MODDING.md).",
-                        "Nenhum mod instalado. Um mod é uma pasta dentro da pasta de mods acima (veja docs/MODDING.md).",
+                        "No mods installed. A mod is a folder in the mods folder above, or a .zip installed with the button above (see docs/MODDING.md).",
+                        "Nenhum mod instalado. Um mod é uma pasta dentro da pasta de mods acima, ou um .zip instalado com o botão acima (veja docs/MODDING.md).",
                     ));
                 }
                 let count = self.mods.len();

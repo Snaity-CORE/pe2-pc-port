@@ -31,6 +31,7 @@ pub mod files;
 pub mod fontsheets;
 pub mod glyphmaps;
 pub mod indexed;
+pub mod install;
 pub mod menuglyphs;
 pub mod movies;
 pub mod music;
@@ -76,7 +77,9 @@ pub fn installed() -> Vec<Mod> {
     let Ok(entries) = std::fs::read_dir(mods_dir()) else { return Vec::new() };
     let mut mods: Vec<Mod> = entries
         .flatten()
-        .filter(|e| e.path().is_dir())
+        // Not the folders the mods folder keeps for itself (a .zip being
+        // installed: install.rs).
+        .filter(|e| e.path().is_dir() && !e.file_name().to_string_lossy().starts_with('.'))
         .map(|e| {
             let dir = e.path();
             let folder = e.file_name().to_string_lossy().into_owned();
