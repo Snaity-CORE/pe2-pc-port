@@ -340,7 +340,9 @@ pub type Starts = HashMap<u32, String>;
 /// and where every file starts (also wanted by PE2_TRACE=files).
 pub fn overrides(disc: &mut dyn Disc, number: usize) -> (Overrides, Starts) {
     let wanted = replacements();
-    if wanted.is_empty() && !crate::runtime::trace("files") {
+    // Where files start is also wanted for backgrounds named by place
+    // (loaded as their file is read: mods::file_read).
+    if wanted.is_empty() && !crate::runtime::trace("files") && super::background_places().is_empty() {
         return Default::default();
     }
     let files = layout(disc);

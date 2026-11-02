@@ -353,6 +353,22 @@ impl<K: std::hash::Hash + Eq + Copy + Send + Sync + 'static, T: Weight + Send + 
         None
     }
 
+    /// What is loaded for `key`, waiting up to `limit` for it to load (no
+    /// longer than that: what is still loading then keeps loading).
+    fn wait(&'static self, key: K, limit: std::time::Duration) -> Option<Arc<T>> {
+        let since = std::time::Instant::now();
+        loop {
+            if let Some(p) = self.get(key) {
+                return Some(p);
+            }
+            let failed = matches!(self.loaded.lock().unwrap().get(&key), Some(Slot::Failed) | None);
+            if failed || since.elapsed() >= limit {
+                return None;
+            }
+            std::thread::sleep(std::time::Duration::from_millis(1));
+        }
+    }
+
     /// Lets go of the files wanted longest ago while past the budget, but
     /// never `keep` (just loaded).
     fn trim(&self, loaded: &mut HashMap<K, Slot<T>>, keep: K) {
@@ -456,7 +472,7 @@ fn background_name(stem: &str) -> Option<BackgroundName> {
 }
 
 /// The mods' backgrounds named by place, lowest priority first.
-fn background_places() -> &'static [(PathBuf, String)] {
+pub(crate) fn background_places() -> &'static [(PathBuf, String)] {
     static PLACES: OnceLock<Vec<(PathBuf, String)>> = OnceLock::new();
     PLACES.get_or_init(|| {
         mod_files("backgrounds", ".png")
@@ -501,9 +517,12 @@ fn resolve_background_places(discs: &[PathBuf]) {
                 .collect()
         });
         let mut hashes: HashMap<files::Place, Vec<u64>> = HashMap::new();
+        let mut by_file: HashMap<String, Vec<u64>> = HashMap::new();
         for (place, hash) in found {
+            by_file.entry(place.0.clone()).or_default().push(hash);
             hashes.entry(place).or_default().push(hash);
         }
+        let _ = BACKGROUNDS_BY_FILE.set(by_file);
         // All of them again in priority order, those named by hash too.
         let mut files = HashMap::new();
         for (path, stem) in mod_files("backgrounds", ".png") {
@@ -530,6 +549,19 @@ fn resolve_background_places(discs: &[PathBuf]) {
     });
 }
 
+/// Disc file -> the screen images of its backgrounds that mods name by
+/// place (found when the game starts).
+static BACKGROUNDS_BY_FILE: OnceLock<HashMap<String, Vec<u64>>> = OnceLock::new();
+
+/// The drive starts reading the disc file `key`: the mods' backgrounds of
+/// its pictures start loading, to be ready when the game shows them.
+pub fn file_read(key: &str) {
+    let Some(hashes) = BACKGROUNDS_BY_FILE.get().and_then(|m| m.get(key)) else { return };
+    for &hash in hashes {
+        backgrounds().get(hash);
+    }
+}
+
 /// Whether a mod has a background for the screen image `hash` (loaded or
 /// not).
 pub fn has_background(hash: u64) -> bool {
@@ -541,6 +573,11 @@ pub fn has_background(hash: u64) -> bool {
 /// (see Library::get).
 pub fn background(hash: u64) -> Option<Arc<Picture>> {
     backgrounds().get(hash)
+}
+
+/// The same, waiting up to `limit` for it to load.
+pub fn background_wait(hash: u64, limit: std::time::Duration) -> Option<Arc<Picture>> {
+    backgrounds().wait(hash, limit)
 }
 
 /// A texture's key: the hash of its sheet (sheets.rs), and of the palette

@@ -93,6 +93,11 @@ struct Awaiting {
     waited: u32,
 }
 
+/// How long the game waits for a mod's picture still loading when its
+/// screen image comes (a large picture takes a while; past this, the
+/// game's own shows until it has loaded).
+const PICTURE_WAIT: std::time::Duration = std::time::Duration::from_millis(400);
+
 /// Blanks a screen image waits for its picture to load (a large picture
 /// takes a while).
 const AWAIT_BLANKS: u32 = 300;
@@ -940,8 +945,20 @@ pub extern "C" fn pcrt_ClearImage(rect: *const Rect, r: u8, g: u8, b: u8) -> i32
 
 #[unsafe(no_mangle)]
 pub extern "C" fn pcrt_LoadImage(rect: *const Rect, p: *const u16) -> i32 {
-    let _g = irq::guard();
     let rc = read_rect(rect);
+    // A screen image a mod's picture is still loading for (its file was
+    // read just before, mods::file_read): waited for a moment, so the
+    // game's own does not show first.
+    let (w, h) = (i32::from(rc.w), i32::from(rc.h));
+    if w >= 256 && h >= 192 && crate::mods::wants_screens() {
+        // SAFETY: the game passes w*h pixels.
+        let pixels = unsafe { std::slice::from_raw_parts(p, (w * h) as usize) };
+        let hash = crate::mods::screen_hash(w, h, pixels);
+        if crate::mods::has_background(hash) {
+            crate::mods::background_wait(hash, PICTURE_WAIT);
+        }
+    }
+    let _g = irq::guard();
     vtrace(format_args!("LoadImage ({},{}) {}x{}", rc.x, rc.y, rc.w, rc.h));
     let n = (i32::from(rc.w) * i32::from(rc.h)).max(0) as usize;
     // SAFETY: the game passes w*h pixels.
