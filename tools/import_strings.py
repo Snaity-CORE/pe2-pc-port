@@ -41,10 +41,25 @@ CAMEL = re.compile(r"(?<=[^\W\d_A-ZÀ-Þ])[A-ZÀ-Þ]")
 # A small letter after two capitals (JOg, ARk): the same, in the small
 # face, whose small letters' codes are its own syllables.
 SHOUTED = re.compile(r"(?<=[A-ZÀ-Þ]{2})[a-zß-ÿ]")
+# Marks that are letters read in the wrong face: a line ending in ; (BA;
+# for BAÚ, a title in the small face) or ' between capitals (APLIC'VEIS).
+STRAY = re.compile(r";\s*$|(?<=[A-ZÀ-Þ])'(?=[A-ZÀ-Þ])")
 # The font's codes (\B9, \Sm, \Co, \Z): not words.
 CODES = re.compile(r"\\[A-Za-z][A-Za-z0-9]?")
 
 FACES = [('medium', 0x8005EFB0, 224, 38), ('large', 0x8005FA30, 224, 128), ('small', 0x800604B0, 91, 0)]
+
+# The font's codes whose next byte is their operand (main/textdraw.c): the
+# backslash, the code and the operand are not letters to read.
+OPERAND_CODES = b'BCDSUWbcdsuw'
+
+# Texts the game draws in a face the reading cannot tell (no word known):
+# (file, first address, last address) -> face.
+FACE_AT = {
+    # The memory card menu's save places (Nursery: a syllable the
+    # translation drew reads "io" in the large face, "ci" in the medium).
+    ('exe/80010000.toml', 0x80067340, 0x80067410): 'large',
+}
 
 # Pictures of the other version's font that are not the game's letters,
 # by the hash of their cell (`report-glyphs/<face>-<hash>.png`): what they
@@ -319,7 +334,17 @@ def main():
         """`raw` read in `face`: the text, the pictures not known, and how
         many codes read as labelled pictures."""
         out, missing, labelled = [], [], 0
-        for b in raw:
+        operands = 0
+        for i, b in enumerate(raw):
+            # A code's letter and operand, as they are.
+            if operands:
+                operands -= 1
+                out.append(chr(b))
+                continue
+            if b == 0x5C and i + 1 < len(raw):
+                operands = 2 if raw[i + 1] in OPERAND_CODES else 1
+                out.append(chr(b))
+                continue
             picture = their_fonts[face].get(b)
             if b < 0x21 or b == 0x5C or chr(b) in '{|}~' or picture is None:
                 out.append(chr(b))
@@ -346,14 +371,19 @@ def main():
     stems = {w[:4] for w in vocabulary if len(w) >= 4}
     alphabet = {c for w in vocabulary for c in w}
 
-    def decode_line(raw):
-        """The reading in the face that knows all its codes, with no mark
+    def decode_line(raw, face=None):
+        """The reading in `face` when given and it knows all the codes;
+        else the one in the face that knows all its codes, with no mark
         inside a word and no letter the translation never writes, and the
         best share of words the translation knows (a word 1, only its stem
         1/4), less 1/4 for each labelled picture (a face's own letter is
         likelier than a drawing over it) and 1/2 for each capital after a
         small letter, small letter after two capitals or one-letter word
-        not a vowel; the first face on a tie."""
+        not a vowel or stray mark; the first face on a tie."""
+        if face is not None:
+            text, missing, _ = decode_in(raw, face)
+            if not missing:
+                return text
         readings = [decode_in(raw, face) for face, *_ in FACES]
         for _, missing, _ in readings:
             for name, code, picture in missing:
@@ -367,14 +397,14 @@ def main():
             # A word of one letter that is not a vowel (d, q: words of one
             # letter are a, e, o, é, à; a dialogue's q is short for que).
             lone = sum(len(w) == 1 and w not in 'aeiouáàâãéêíóôõú' for w in words)
-            odd_case = len(CAMEL.findall(text)) + len(SHOUTED.findall(text)) + lone
+            odd_case = len(CAMEL.findall(text)) + len(SHOUTED.findall(text)) + lone + len(STRAY.findall(text))
             doubt = labelled * 0.25 + odd_case * 0.5 - known / max(1, len(words))
             return len(missing), len(ODD.findall(text)), foreign, doubt
         return min(readings, key=score)[0]
 
-    def decode(raw):
+    def decode(raw, face=None):
         """Line by line: a text may change faces from one to the next."""
-        return '\n'.join(decode_line(line) for line in raw.split(b'\n'))
+        return '\n'.join(decode_line(line, face) for line in raw.split(b'\n'))
 
     report, files, texts = [], 0, 0
     originals = set()
@@ -391,7 +421,8 @@ def main():
         # seem to be).
         if raw == original.encode('latin-1'):
             return None
-        text = decode(raw)
+        face = next((f for (r, lo, hi), f in FACE_AT.items() if r == rel.replace(os.sep, '/') and lo <= at <= hi), None)
+        text = decode(raw, face)
         if text == original or not text.strip():
             return None
         # Pointers there that lead elsewhere: no words, or another text.

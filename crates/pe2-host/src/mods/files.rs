@@ -259,8 +259,8 @@ fn replacements() -> HashMap<String, Replacement> {
     if !super::enabled() {
         return out;
     }
-    for (key, chunk, bytes) in super::strings::file_texts() {
-        out.entry(key).or_default().chunks.insert(chunk, ChunkSource::Made(bytes));
+    for t in super::strings::file_texts() {
+        out.entry(t.key).or_default().chunks.insert(t.chunk, ChunkSource::Made(t.bytes));
     }
     for m in super::installed().into_iter().filter(|m| m.enabled).rev() {
         let root = m.dir.join("files");
@@ -289,6 +289,47 @@ fn replacements() -> HashMap<String, Replacement> {
     out
 }
 
+/// `wanted` with the translated text files' twins: other files of the
+/// same folder, among the translated ones' numbers (the items' details,
+/// file20300 on), whose chunk holds the same text. The extract lists a
+/// text once (the unidentified items' files share theirs), and a
+/// translation applies wherever the game uses that exact text.
+fn with_twins(
+    disc: &mut dyn Disc,
+    files: &[DiscFile],
+    mut wanted: HashMap<String, Replacement>,
+) -> HashMap<String, Replacement> {
+    let texts = super::strings::file_texts();
+    let number = |key: &str| -> Option<(String, u32)> {
+        let (folder, name) = key.rsplit_once('/')?;
+        Some((folder.to_string(), name.strip_prefix("file")?.parse().ok()?))
+    };
+    // Each folder's span of translated files.
+    let mut spans: HashMap<String, (u32, u32)> = HashMap::new();
+    for t in &texts {
+        if let Some((folder, n)) = number(&t.key) {
+            let span = spans.entry(folder).or_insert((n, n));
+            *span = (span.0.min(n), span.1.max(n));
+        }
+    }
+    for f in files {
+        let Some((folder, n)) = number(&f.key) else { continue };
+        if !spans.get(&folder).is_some_and(|&(lo, hi)| (lo..=hi).contains(&n)) || wanted.contains_key(&f.key) {
+            continue;
+        }
+        let chunks = read_chunks(disc, f.lba);
+        for t in &texts {
+            let Some(chunk) = chunks.get(t.chunk) else { continue };
+            let text: Vec<u8> = chunk.payload.iter().copied().take_while(|&b| b != 0).filter(|&b| b != b'\r').collect();
+            if text == t.original {
+                wanted.entry(f.key.clone()).or_default().chunks.insert(t.chunk, ChunkSource::Made(t.bytes.clone()));
+                break;
+            }
+        }
+    }
+    wanted
+}
+
 /// A disc's replaced files: first sector -> the file's on-disc bytes.
 pub type Overrides = HashMap<u32, Arc<Vec<u8>>>;
 
@@ -304,6 +345,7 @@ pub fn overrides(disc: &mut dyn Disc, number: usize) -> (Overrides, Starts) {
     }
     let files = layout(disc);
     let starts = files.iter().map(|f| (f.lba, f.key.clone())).collect();
+    let wanted = with_twins(disc, &files, wanted);
     let mut out = Overrides::new();
     let mut found = HashSet::new();
     for f in &files {

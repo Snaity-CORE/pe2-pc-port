@@ -41,6 +41,8 @@ const COURIER_PRIME: &[u8] = include_bytes!("../../res/fonts/CourierPrime-Regula
 /// Finer texels per sheet texel, and the supersampling of each glyph's
 /// coverage within one.
 const K: usize = 8;
+/// How deep a cedilla goes below the baseline, in sheet texels.
+const CEDILLA_DEPTH: usize = 2;
 const SS: usize = 4;
 /// Size the fonts' letters are first drawn at, in pixels.
 const INK_PX: f32 = 400.0;
@@ -517,7 +519,8 @@ fn boxed(font: &Font, text: &str, w: usize, h: usize, stretch: f32) -> Option<Ma
 /// wider), standing on cell row boundary `base`, centred between fx0 and
 /// fx1; squeezed about
 /// the baseline only as much as leaves a texel above and below for the
-/// ring, a mark too low for its cell lifted whole. None when it cannot fit.
+/// ring, a mark too low for its cell lifted whole. With `depth`, what is
+/// below the baseline is squashed alone to that many texels (ç's cedilla).
 #[allow(clippy::too_many_arguments)]
 fn on_baseline(
     font: &Font,
@@ -528,6 +531,7 @@ fn on_baseline(
     fx0: usize,
     fx1: usize,
     descends: bool,
+    depth: Option<usize>,
     widen: f32,
 ) -> Option<(usize, usize, Mask)> {
     let s = (K * SS) as f32;
@@ -537,6 +541,25 @@ fn on_baseline(
     let (mut above, mut below) = (b0 * scale, (a.h as f32 - b0) * scale);
     if below > s / 3.0 && !descends {
         (above, below) = (above + below, 0.0);
+    }
+    // The descender squashed alone to the game's depth, the letter above
+    // the baseline as it is.
+    if let Some(depth) = depth.filter(|&d| descends && d > 0 && below > d as f32 * s) {
+        let deepest = depth as f32 * s;
+        let split = (b0.round().max(1.0) as usize).min(a.h - 1);
+        let rows =
+            |r: std::ops::Range<usize>| Grey { w: a.w, h: r.len(), px: a.px[r.start * a.w..r.end * a.w].to_vec() };
+        let (up, down) = (rows(0..split), rows(split..a.h));
+        let up_h = ((above.min(base as f32 * s - s)).round_ties_even() as usize).max(1);
+        let down_h = (deepest.round_ties_even() as usize).max(1);
+        let (up, down) = (resize(&up, gw, up_h), resize(&down, gw, down_h));
+        let joined = Grey { w: gw, h: up_h + down_h, px: [up.px, down.px].concat() };
+        let top = base as f32 * s - up_h as f32;
+        if top < 0.0 || top as usize + joined.h > h * K * SS {
+            return None;
+        }
+        let left = fx0 * K * SS + ((fx1 - fx0) * K * SS - gw) / 2;
+        return Some((top as usize, left, Mask::from_grey(&joined)));
     }
     let base_at = base as f32 * s;
     let (room_up, room_down) = (base_at - s, (h as f32 - 1.0) * s - base_at);
@@ -781,8 +804,14 @@ fn redraw(catalog: &Catalog, map: &Map, faces: &[Face], scheme: &Scheme) -> Opti
             if let (Some(&cap), Some(base), None) = (caps.get(&g.face), base, stretch) {
                 let rows = fill_rows(iu, iv, cw, ch);
                 let descends = rows.last().is_some_and(|&r| r + 1 > base);
+                // A cedilla shorter than the game's own (three texels): the
+                // menus' rows are close, and under a letter standing over a
+                // capital it reads as that capital's accent.
+                let depth = "çÇ"
+                    .contains(g.text.as_str())
+                    .then(|| rows.last().map_or(0, |&r| (r + 1).saturating_sub(base)).min(CEDILLA_DEPTH));
                 let widen = wider.get(&(g.face, digit(g))).or(wider.get(&(g.face, false))).copied().unwrap_or(1.0);
-                placed = on_baseline(font, &g.text, cap, base, ch, fx0, fx1, descends, widen);
+                placed = on_baseline(font, &g.text, cap, base, ch, fx0, fx1, descends, depth, widen);
             }
             // The menus' I has slab serifs, as wide as the other capitals'
             // strokes are long; the font's is a bare stem.

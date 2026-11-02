@@ -216,15 +216,25 @@ fn read() -> Table {
     table
 }
 
+/// A disc's text file translated: its file key and chunk, the original
+/// text (without CRs and the closing zero), and the chunk's new contents
+/// (lines ended by CR LF as the disc's are, then a zero).
+pub struct FileText {
+    pub key: String,
+    pub chunk: usize,
+    pub original: Vec<u8>,
+    pub bytes: Vec<u8>,
+}
+
 /// The disc's text files the mods translate (files.rs serves them in place
-/// of the disc's): file key, chunk, and the chunk's new contents (lines
-/// ended by CR LF as the disc's are, then a zero). The game reads a whole
-/// file, so a translation may have any number of lines.
-pub fn file_texts() -> Vec<(String, usize, Vec<u8>)> {
-    let mut out: Vec<(String, usize, Vec<u8>)> = Vec::new();
+/// of the disc's, and of other files with the same text). The game reads a
+/// whole file, so a translation may have any number of lines.
+pub fn file_texts() -> Vec<FileText> {
+    let mut out: Vec<FileText> = Vec::new();
     for (rel, file) in mod_files() {
         let Some((key, chunk)) = text_file(&rel) else { continue };
         let Some(entry) = file.string.iter().find(|e| !e.text.is_empty()) else { continue };
+        let original = encode(&entry.original).into_iter().filter(|&b| b != b'\r').collect();
         let text = fit_lines(&encode(&entry.text), &format!("strings/{rel}"));
         let mut bytes = Vec::with_capacity(text.len() + text.len() / 16 + 1);
         for &b in &text {
@@ -234,8 +244,8 @@ pub fn file_texts() -> Vec<(String, usize, Vec<u8>)> {
             bytes.push(b);
         }
         bytes.push(0);
-        out.retain(|(k, c, _)| (k.as_str(), *c) != (key, chunk));
-        out.push((key.to_string(), chunk, bytes));
+        out.retain(|t| (t.key.as_str(), t.chunk) != (key, chunk));
+        out.push(FileText { key: key.to_string(), chunk, original, bytes });
     }
     out
 }
