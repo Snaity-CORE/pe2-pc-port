@@ -394,8 +394,9 @@ pub fn overrides(disc: &mut dyn Disc, number: usize) -> (Overrides, Starts) {
 }
 
 unsafe extern "C" {
-    fn pcrt_DecDCTvlcSize2(size: i32) -> i32;
-    fn pcrt_DecDCTvlc2(bs: *mut u32, buf: *mut u32, table: *mut u16) -> i32;
+    /// libpress.c: a whole frame, with a decoder state of its own (any
+    /// thread, the game's decoding left alone).
+    fn pc_vlc_decode_frame(bs: *const u32, buf: *mut u32);
 }
 
 /// A room background (a `.bs` chunk) as the game shows it: decoded as the
@@ -461,10 +462,7 @@ fn mdec(bs: &[u8], rgb24: bool) -> Option<Vec<u32>> {
     let mut rle = vec![0u32; words + 1];
     // SAFETY: `rle` holds the header word and the `words` words the frame
     // decodes to; `input` is padded past the bitstream.
-    unsafe {
-        pcrt_DecDCTvlcSize2(0);
-        pcrt_DecDCTvlc2(input.as_mut_ptr(), rle.as_mut_ptr(), std::ptr::null_mut());
-    }
+    unsafe { pc_vlc_decode_frame(input.as_ptr(), rle.as_mut_ptr()) };
     let mut mdec = crate::runtime::mdec::Mdec::default();
     let quant = crate::runtime::libpress::default_quant();
     mdec.write_word(0x4000_0001);
