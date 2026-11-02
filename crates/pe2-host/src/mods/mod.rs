@@ -530,6 +530,13 @@ fn resolve_background_places(discs: &[PathBuf]) {
     });
 }
 
+/// Whether a mod has a background for the screen image `hash` (loaded or
+/// not).
+pub fn has_background(hash: u64) -> bool {
+    let library = backgrounds();
+    library.resolved.get().unwrap_or(&library.files).contains_key(&hash)
+}
+
 /// The background a mod supplies for the screen image `hash`, once loaded
 /// (see Library::get).
 pub fn background(hash: u64) -> Option<Arc<Picture>> {
