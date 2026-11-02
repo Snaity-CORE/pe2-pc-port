@@ -233,6 +233,7 @@ fn main() -> ExitCode {
     if images.len() == 1 && images[0].as_os_str() == "--play" {
         images.clear();
     }
+    eprintln!("pe2: PE2PC {} ({})", env!("CARGO_PKG_VERSION"), env!("PE2_COMMIT"));
     eprintln!("pe2: data folder: {}", paths::user_dir().display());
     if images.is_empty() {
         let discs = &config::get().discs;

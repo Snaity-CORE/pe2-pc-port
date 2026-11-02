@@ -4,12 +4,28 @@
  * a PSX address the runtime does not back yet.
  */
 #include <stdio.h>
+#include <string.h>
 #include <windows.h>
 
 #include "pc/runtime.h"
 
 /* logfile.rs: waits until the log has what was written. */
 void pc_log_drain(void);
+
+/* Prints " (<module>+0x<offset>)" for an address in a loaded module (a
+ * driver's DLL, an overlay's): pe2.exe's own addresses map through its
+ * .map file, the others only this way. Nothing for one in no module. */
+static void print_module(DWORD address)
+{
+    HMODULE module;
+    char path[MAX_PATH];
+    if (!GetModuleHandleExA(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
+                            (LPCSTR)(ULONG_PTR)address, &module) ||
+        !GetModuleFileNameA(module, path, sizeof path))
+        return;
+    const char* name = strrchr(path, '\\');
+    fprintf(stderr, " (%s+0x%lX)", name ? name + 1 : path, (unsigned long)(address - (DWORD)(ULONG_PTR)module));
+}
 
 static LONG CALLBACK on_exception(EXCEPTION_POINTERS* info)
 {
@@ -26,6 +42,7 @@ static LONG CALLBACK on_exception(EXCEPTION_POINTERS* info)
     }
     const CONTEXT* ctx = info->ContextRecord;
     fprintf(stderr, "[crash] exception 0x%08lX at eip=0x%08lX", rec->ExceptionCode, ctx->Eip);
+    print_module(ctx->Eip);
     if (rec->ExceptionCode == EXCEPTION_ACCESS_VIOLATION && rec->NumberParameters >= 2) {
         static const char* const kinds[] = {"read", "write", "?", "?", "?", "?", "?", "?", "execute"};
         ULONG_PTR kind = rec->ExceptionInformation[0];
@@ -52,6 +69,18 @@ static LONG CALLBACK on_exception(EXCEPTION_POINTERS* info)
     for (int i = 0; i < 16 && !IsBadReadPtr(sp + i, sizeof(DWORD)); i++)
         fprintf(stderr, " %08lX", sp[i]);
     fprintf(stderr, "\n");
+    /* Those that are code of another module than pe2.exe: whose they are. */
+    for (int i = 0; i < 16 && !IsBadReadPtr(sp + i, sizeof(DWORD)); i++) {
+        HMODULE module;
+        if (sp[i] >= 0x10000u && GetModuleHandleExA(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS |
+                                                        GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
+                                                    (LPCSTR)(ULONG_PTR)sp[i], &module) &&
+            module != GetModuleHandleA(NULL)) {
+            fprintf(stderr, "[crash] stack %08lX", (unsigned long)sp[i]);
+            print_module(sp[i]);
+            fprintf(stderr, "\n");
+        }
+    }
     fflush(stderr);
     /* The log's time stamps go through a pipe (logfile.rs): get it all out
      * before the process ends. */
