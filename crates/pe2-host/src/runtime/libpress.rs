@@ -104,6 +104,7 @@ pub extern "C" fn pcrt_DecDCTReset(mode: i32) {
 /// written back; the data follows it.
 #[unsafe(no_mangle)]
 pub extern "C" fn pcrt_DecDCTin(buf: *mut u32, mode: i32) {
+    super::hw::wait_mdec_output(std::time::Duration::from_millis(200));
     let _g = irq::guard();
     // SAFETY: the game passes its run-length buffer in PSX RAM.
     let mut command = unsafe { buf.read() };

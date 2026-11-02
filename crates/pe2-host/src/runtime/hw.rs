@@ -247,6 +247,10 @@ const MDEC_MACROBLOCK: Duration = Duration::from_nanos(2688 * 1_000_000_000 / 33
 static MDEC_DONE_AT: Mutex<Option<Instant>> = Mutex::new(None);
 /// MDEC resets so far: a completion due from before the latest one is dropped.
 static MDEC_RESETS: AtomicU32 = AtomicU32::new(0);
+/// The MDEC's output completions due and not delivered yet. A movie's
+/// frame comes out a column at a time, each column's callback asking for
+/// the next, so this stays above zero until the frame is out.
+static OUTPUT_DUE: AtomicU32 = AtomicU32::new(0);
 
 /// Raises `channel`'s completion interrupt; for the MDEC's output, once its
 /// `macroblocks` are decoded, after what it was decoding before.
@@ -263,15 +267,47 @@ fn dma_complete(channel: usize, macroblocks: u32) {
         return;
     }
     let resets = MDEC_RESETS.load(Ordering::SeqCst);
+    if channel == 1 {
+        OUTPUT_DUE.fetch_add(1, Ordering::SeqCst);
+    }
     irq::schedule(
         at,
         Box::new(move || {
-            if channel <= 1 && MDEC_RESETS.load(Ordering::SeqCst) != resets {
-                return;
+            if channel > 1 || MDEC_RESETS.load(Ordering::SeqCst) == resets {
+                call_psx(cb, &[]);
             }
-            call_psx(cb, &[]);
+            // After the callback, which may ask for the next column.
+            if channel == 1 {
+                OUTPUT_DUE.fetch_sub(1, Ordering::SeqCst);
+            }
         }),
     );
+}
+
+/// Before a new decode: waits (up to `limit`) for the output the game
+/// asked of the previous one to come out. On the console the next frame's
+/// decode only starts once the last one's columns were read (the MDEC is
+/// busy until then); here the completions come on a timer, and a decode
+/// started early took the place of the columns still to come (the frame
+/// shown a column off, its last column the frame before's). Not in an
+/// interrupt handler, which the completions wait on.
+pub fn wait_mdec_output(limit: Duration) {
+    if irq::in_handler() || OUTPUT_DUE.load(Ordering::SeqCst) == 0 {
+        return;
+    }
+    let since = Instant::now();
+    while OUTPUT_DUE.load(Ordering::SeqCst) > 0 {
+        if since.elapsed() >= limit {
+            if trace("mdec") {
+                eprintln!("[mdec] a new decode waited {} ms for the last output; starts anyway", limit.as_millis());
+            }
+            return;
+        }
+        std::thread::sleep(Duration::from_micros(250));
+    }
+    if trace("mdec") {
+        eprintln!("[mdec] a new decode waited {:.1} ms for the last output", since.elapsed().as_secs_f64() * 1000.0);
+    }
 }
 
 /// DMACallback(channel, func): `func` runs when a transfer on `channel`
