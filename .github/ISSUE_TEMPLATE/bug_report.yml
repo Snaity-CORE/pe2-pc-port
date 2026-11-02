@@ -1,0 +1,95 @@
+name: Bug report
+description: The game crashes, won't start, or something looks, sounds or plays wrong.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report this! The log tells us most of what we need, so please attach it.
+
+        **Where is the log?** `pe2.log` in PE2PC's data folder: `%APPDATA%\PE2PC\pe2.log` (paste that into the Explorer address bar), or the folder the launcher opens from **Settings > General > Data folder > Open**. It is rewritten each time the game starts, so grab it right after the problem happens.
+
+        Please don't attach or link the game's discs or files from them.
+
+  - type: input
+    id: version
+    attributes:
+      label: PE2PC version
+      description: The first line of pe2.log (for example `PE2PC 0.3.0 (58b033ecb)`), or the release you downloaded.
+      placeholder: PE2PC 0.3.0
+    validations:
+      required: true
+
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What you saw, and what you expected instead. Screenshots or a short video help a lot.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: How to make it happen
+      description: Where in the game (area, room, after which event) and what you did. Say if it happens every time.
+      placeholder: |
+        1. Load the save at the Shelter's Nursery
+        2. Open the item box
+        3. ...
+
+  - type: textarea
+    id: log
+    attributes:
+      label: pe2.log
+      description: Drag the file here (or paste its contents).
+    validations:
+      required: true
+
+  - type: input
+    id: gpu
+    attributes:
+      label: Graphics card and driver version
+      description: For example `NVIDIA GeForce RTX 4070, driver 566.36`. pe2.log names the card when it gets that far.
+    validations:
+      required: true
+
+  - type: input
+    id: windows
+    attributes:
+      label: Windows version
+      placeholder: Windows 11 24H2
+    validations:
+      required: true
+
+  - type: dropdown
+    id: api
+    attributes:
+      label: Graphics API
+      description: Launcher, Settings > Graphics > Graphics API (`graphics_api` in pe2.toml). If the game crashes on start, please also try the other one and tell us what happened.
+      options:
+        - Automatic
+        - Vulkan
+        - OpenGL
+        - I don't know
+    validations:
+      required: true
+
+  - type: textarea
+    id: mods
+    attributes:
+      label: Mods and overlays
+      description: Mods turned on in the launcher, and programs that draw over games (Steam, Discord, OBS, MSI Afterburner / RivaTuner, GeForce Experience, Epic...). Overlays can crash the game while it opens the graphics card.
+      placeholder: |
+        Mods: HD Backgrounds, PT-BR translation
+        Overlays: Steam, Discord
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before sending
+      options:
+        - label: I play with my own Parasite Eve II (USA) discs (as .chd or .cue images).
+          required: true
+        - label: I looked at the open issues and this one isn't there yet.
+          required: true
