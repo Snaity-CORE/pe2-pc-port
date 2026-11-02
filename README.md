@@ -10,6 +10,14 @@ sound, CD, controllers, memory cards). No emulator and no code from Sony.
 > own discs (`SLUS-01042` and `SLUS-01055`, as `.chd` or `.cue` images). The
 > port reads the game's data from them at run time.
 
+> [!IMPORTANT]
+> **Only unmodified dumps of the original USA release work.** The port is
+> built from the decompilation of that exact release, so it expects its
+> discs byte for byte: other regions (European, Japanese), fan translations,
+> patched, hacked or otherwise modified images are not supported and will
+> not run correctly. Translations and other changes go in as mods instead
+> (see [docs/MODDING.md](docs/MODDING.md)).
+
 ## Status
 
 Playable on Windows: both discs, movies, music and sound, saves, controllers.
