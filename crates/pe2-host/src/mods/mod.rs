@@ -299,6 +299,7 @@ impl<K: std::hash::Hash + Eq + Copy + Send + Sync + 'static, T: Weight + Send + 
         }
         Library { files, loaded: Mutex::new(HashMap::new()), load, budget, clock: Default::default() }
     }
+
     /// What is loaded for `key`, once loaded: the first call starts loading
     /// it on a thread of its own and answers None (the game's own shows
     /// until it is ready).
@@ -806,6 +807,20 @@ mod tests {
         let mut kept: Vec<u64> = loaded.keys().copied().collect();
         kept.sort();
         assert_eq!(kept, [1, 3, 4]);
+    }
+
+    /// Mods' files are found in the folders inside too (the extract's
+    /// rooms/<area>/<room>...).
+    #[test]
+    fn files_are_found_in_folders() {
+        let dir = std::env::temp_dir().join(format!("pe2-files-under-{}", std::process::id()));
+        let nested = dir.join("rooms").join("dryfield").join("gas_station");
+        std::fs::create_dir_all(&nested).unwrap();
+        std::fs::write(dir.join("a.png"), b"").unwrap();
+        std::fs::write(nested.join("b.png"), b"").unwrap();
+        let found = files_under(&dir);
+        std::fs::remove_dir_all(&dir).unwrap();
+        assert_eq!(found, [dir.join("a.png"), nested.join("b.png")]);
     }
 
     /// The hash names files, so it must never change.
