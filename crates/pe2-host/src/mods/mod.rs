@@ -648,9 +648,10 @@ pub fn save_png(path: &Path, w: u32, h: u32, pixels: &[u16]) -> Result<(), Strin
     writer.write_image_data(&rgb).map_err(|e| e.to_string())
 }
 
-/// Whether anything here wants screen images: mods with backgrounds.
+/// Whether anything here wants screen images: mods with backgrounds (named
+/// by hash or by place).
 pub fn wants_screens() -> bool {
-    !backgrounds().files.is_empty()
+    !backgrounds().files.is_empty() || !background_places().is_empty()
 }
 
 /// `picture` resized to `w` x `h` (area average when shrinking, bilinear
