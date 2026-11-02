@@ -128,17 +128,20 @@ fn indexed_tool(args: &[PathBuf]) -> Option<ExitCode> {
 /// is read against that ramp; one named as a colour preview of
 /// `dumps/textures/` (`<sheet>.png`, `<sheet>-<palette>.png`) against that
 /// preview, at its depth (its width: 256 4-bit, 128 8-bit). The sheet's
-/// indices come from `dumps/textures-indexed/`. One replacement per sheet
-/// and depth: the first picture of it wins. Answers how many were written
-/// and how many failed.
+/// indices come from `dumps/textures-indexed/`. Pictures in folders inside
+/// `source` (the extract's: characters/aya...) are made in the same folders
+/// inside `out`. One replacement per sheet and depth: the first picture of
+/// it wins. Answers how many were written and how many failed.
 fn from_upscale(source: &std::path::Path, out: &std::path::Path) -> (usize, usize) {
     use mods::indexed;
     let dumps = paths::user_dir().join("dumps");
-    let mut pictures: Vec<PathBuf> = if source.is_dir() {
-        std::fs::read_dir(source).map(|d| d.flatten().map(|e| e.path()).collect()).unwrap_or_default()
-    } else {
-        vec![source.to_path_buf()]
-    };
+    let mut pictures: Vec<PathBuf> =
+        if source.is_dir() { mods::files_under(source) } else { vec![source.to_path_buf()] };
+    // The colour previews, in whatever folder the extract filed them.
+    let previews: std::collections::HashMap<String, PathBuf> = mods::files_under(&dumps.join("textures"))
+        .into_iter()
+        .filter_map(|p| Some((p.file_stem()?.to_str()?.to_string(), p)))
+        .collect();
     pictures.retain(|p| {
         p.extension().is_some_and(|x| x.eq_ignore_ascii_case("png"))
             && !p.to_string_lossy().to_ascii_lowercase().ends_with(".idx.png")
@@ -164,8 +167,10 @@ fn from_upscale(source: &std::path::Path, out: &std::path::Path) -> (usize, usiz
                     let sheet = u64::from_str_radix(name.split('-').next().unwrap_or(""), 16).map_err(|_| {
                         "not named as a sheet (<sheet>-<4|8>bit.png, <sheet>.png or <sheet>-<palette>.png)".to_string()
                     })?;
-                    let preview = mods::read_png(&dumps.join("textures").join(format!("{name}.png")), true)
-                        .map_err(|e| format!("its preview dumps/textures/{name}.png: {e} (extract first)"))?;
+                    let preview = previews
+                        .get(name)
+                        .ok_or("no preview of it in dumps/textures (extract first)".to_string())
+                        .and_then(|p| mods::read_png(p, true).map_err(|e| format!("{}: {e}", p.display())))?;
                     let depth = match preview.width {
                         256 => 0,
                         128 => 1,
@@ -185,7 +190,8 @@ fn from_upscale(source: &std::path::Path, out: &std::path::Path) -> (usize, usiz
                 &indexed::Rgba { width: upscaled.width, height: upscaled.height, pixels: &upscaled.rgba },
             )?;
             sheets.insert(key);
-            indexed::write(out, &made, Some(&format!("from the enlarged {name}.png"))).map(Some)
+            let folder = picture.parent().and_then(|p| p.strip_prefix(source).ok()).unwrap_or(std::path::Path::new(""));
+            indexed::write(&out.join(folder), &made, Some(&format!("from the enlarged {name}.png"))).map(Some)
         })();
         match result {
             Ok(Some(path)) => {

@@ -597,6 +597,9 @@ pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path, parts: Parts) -> std::
     let mut seen: HashMap<String, u64> = HashMap::new();
     let mut backgrounds = HashSet::new();
     let mut dialogue = super::dialogue::Sources::default();
+    // File key -> its pictures' chunks, in the order the sheets' origins
+    // count them (sheets.rs): where each sheet is filed.
+    let mut picture_chunks: HashMap<String, Vec<usize>> = HashMap::new();
     let (mut files, mut chunks, mut bytes) = (0usize, 0usize, 0usize);
     for (n, disc) in discs.iter_mut().enumerate() {
         let layout = layout(disc.as_mut());
@@ -627,9 +630,10 @@ pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path, parts: Parts) -> std::
                     && let Some(pixels) = background_pixels(&c.payload)
                 {
                     let hash = super::screen_hash(320, 240, &pixels);
-                    let path = pictures.join(format!("{hash:016x}.png"));
+                    let dir = pictures.join(super::names::folder(&f.key, k));
+                    let path = dir.join(format!("{hash:016x}.png"));
                     if backgrounds.insert(hash) && !path.exists() {
-                        std::fs::create_dir_all(&pictures)?;
+                        std::fs::create_dir_all(&dir)?;
                         super::save_png(&path, 320, 240, &pixels).map_err(std::io::Error::other)?;
                     }
                 }
@@ -637,7 +641,10 @@ pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path, parts: Parts) -> std::
                     0 => {
                         dialogue.packages.entry(f.key.clone()).or_default().push((c.load_address(), c.payload.clone()))
                     }
-                    1 => dialogue.pictures.entry(f.key.clone()).or_default().push(c.payload.clone()),
+                    1 => {
+                        dialogue.pictures.entry(f.key.clone()).or_default().push(c.payload.clone());
+                        picture_chunks.entry(f.key.clone()).or_default().push(k);
+                    }
                     2 => dialogue.palettes.entry(f.key.clone()).or_default().push(c.payload.clone()),
                     5 => dialogue.backgrounds.entry(f.key.clone()).or_default().push(c.payload.clone()),
                     4 => dialogue.bundles.push((f.key.clone(), k, c.payload.clone())),
@@ -674,7 +681,16 @@ pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path, parts: Parts) -> std::
         for (sheet, credit) in super::credits::paint(&dialogue, &catalog) {
             painted.entry(sheet).or_insert(credit);
         }
-        let coloured = super::sheets::extract(&catalog, &painted, &textures)?;
+        // A sheet's folder: its picture's (origin `<file>/<picture>#<column>`).
+        let folder = |origin: &str| -> PathBuf {
+            let (key, rest) = origin.rsplit_once('/').unwrap_or((origin, ""));
+            let picture = rest.split('#').next().and_then(|n| n.parse::<usize>().ok());
+            match picture.and_then(|n| picture_chunks.get(key)?.get(n)) {
+                Some(&chunk) => super::names::folder(key, chunk),
+                None => PathBuf::from("other"),
+            }
+        };
+        let coloured = super::sheets::extract(&catalog, &painted, &textures, &folder)?;
         eprintln!(
             "pe2: extract: {} texture sheets ({coloured} in colour) in {}",
             catalog.sheets.len(),
@@ -682,7 +698,7 @@ pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path, parts: Parts) -> std::
         );
         let indexed = dumps.join("textures-indexed");
         let ramps = dumps.join("textures-ramp");
-        let (written, guessed) = super::sheets::extract_indexed(&catalog, &painted, &indexed, &ramps)?;
+        let (written, guessed) = super::sheets::extract_indexed(&catalog, &painted, &indexed, &ramps, &folder)?;
         eprintln!("pe2: extract: {written} indexed sheets ({guessed} of a guessed depth) in {}", indexed.display());
         let glyphs = dumps.join("textures-glyphs");
         let mut maps = super::glyphmaps::dialogue(&dialogue);

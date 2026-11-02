@@ -76,9 +76,12 @@ setups, and the picture is scaled to the internal resolution.
 1. Get the pictures: the extract (`pe2 --extract`, see above) decodes all of
    them from the discs, about 1,760 (rooms, title and menu screens, close-ups
    shown when examining things), as the game does, into
-   `dumps/backgrounds/<hash>.png` in the data folder.
+   `dumps/backgrounds/<folder>/<hash>.png` in the data folder, filed by
+   what they are: `rooms/<area>/<room>/` (rooms/dryfield/gas_station),
+   `load_screens/`, `title/`...
 2. Make your version of a picture (paint over it, upscale it, ...) and save it
-   as `mods/<your mod>/backgrounds/<same hash>.png`.
+   as `mods/<your mod>/backgrounds/<same hash>.png`, in any folder inside
+   `backgrounds/` (the extract's, if you like: the name is what counts).
 
 The file name is what ties a replacement to the picture it replaces: a 64-bit
 FNV-1a hash of the picture's size and pixels exactly as the game sends them to
@@ -134,7 +137,9 @@ An indexed replacement wins where both exist for a sheet.
 
 1. Extract (`pe2 --extract` or `pe2 --extract textures`, see above): every
    4- and 8-bit sheet, about 2,090, is saved in `dumps/textures-indexed/`
-   at its own size, as indices, at both depths:
+   (all in that one folder, where tools find them by name; the pictures
+   to look at, below, are in folders by what they are) at its own size,
+   as indices, at both depths:
    `<sheet>-4bit.idx.png` and `<sheet>-8bit.idx.png`, each with its header
    (`.idx.toml`). The game may draw one sheet at either depth (the title's
    8-bit picture is also the menus' 4-bit frames); the header's
@@ -146,17 +151,18 @@ An indexed replacement wins where both exist for a sheet.
      entry, not a colour between them), so it enlarges a picture of the
      sheet, and PE2PC turns the result back into indices. Two pictures of
      each sheet are saved for that:
-     - `dumps/textures-ramp/<sheet>-<4|8>bit.png`, the sheet as a ramp:
+     - `dumps/textures-ramp/<folder>/<sheet>-<4|8>bit.png`, the sheet as a ramp:
        each index its own grey (17 apart at 4 bits). Best for fonts, the
        interface and anything drawn with several palettes, whose colours
        may look alike in each palette (the UI font's fill and outline do).
-     - `dumps/textures/<sheet>.png` (or `-<palette>.png`), the sheet in
+     - `dumps/textures/<folder>/<sheet>.png` (or `-<palette>.png`), the sheet in
        colours. Best for pictures (rooms' pieces, characters) whose
        palette tells its indices apart, where an upscaler does better on
        natural colours.
 
      Enlarge the ones you want by a whole factor (4x: a 256 x 256 sheet to
-     1024 x 1024), keep their names, and put them in one folder. Then:
+     1024 x 1024), keep their names, and put them in a folder (folders
+     inside it are fine, and are kept in the output). Then:
 
      ```text
      pe2 --indexed-from-upscale my-upscaled-folder mods/my-mod/textures
@@ -275,10 +281,15 @@ company's logo is its trademark, so keep such mods to yourself.
 ### Replacements in colours
 
 1. Extract the game's files (`pe2 --extract`, see above): every sheet, about
-   2,100, is saved whole in colours in `dumps/textures/`, with `index.txt`
-   listing each one, where it comes from and where its colours do. These
-   pictures are also the way to look at the sheets: the indexed ones are
-   numbers.
+   2,100, is saved whole in colours in `dumps/textures/`, filed by what
+   it is, with the decompilation's names: `characters/aya/10200/`,
+   `enemies/`, `weapons/`, `items/`, `key_items/`, `armor/`, `pe/` (the
+   Parasite Energies), `ui/`, `maps/`, `rooms/<area>/<room>/` (each room's
+   own pieces), `other/` for the few it does not name. `index.txt` lists
+   each one (with its folder), where it comes from and where its colours
+   do. These pictures are also the way to look at the sheets: the indexed
+   ones are numbers. A mod's `textures/` may hold its replacements in any
+   folders inside: the names are what count.
 
    A sheet's texels are numbers into a palette, and which palette colours
    them is chosen as the game draws. The extract finds it on the disc:
@@ -410,7 +421,7 @@ replace any of them.
 1. Extract the files: `pe2 --extract` (see above). They go to `dumps/files/`
    in the data folder (about 130 MB; both discs share them), every room
    background as a picture to `dumps/backgrounds/`, every texture sheet to
-   `dumps/textures/`, every song to `dumps/music/`, every movie to
+   `dumps/textures/` (both in folders by what they are), every song to `dumps/music/`, every movie to
    `dumps/movies/` (see above), and the dialogue as text to `dumps/text/` (see
    below).
 2. Find the one you want. With `PE2_TRACE=files` the game's log names each

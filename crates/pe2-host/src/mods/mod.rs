@@ -32,6 +32,7 @@ pub mod indexed;
 pub mod menuglyphs;
 pub mod movies;
 pub mod music;
+pub mod names;
 pub mod rooms;
 pub mod sheets;
 pub mod strings;
@@ -278,9 +279,9 @@ impl<K: std::hash::Hash + Eq + Copy + Send + Sync + 'static, T: Weight + Send + 
         if enabled() {
             // Lowest priority first, so the highest overwrites it.
             for m in installed().iter().filter(|m| m.enabled).rev() {
-                let Ok(entries) = std::fs::read_dir(m.dir.join(dir)) else { continue };
-                for e in entries.flatten() {
-                    let path = e.path();
+                // In any folder inside (the extract files them by what they
+                // are: characters/aya, rooms/akropolis/square...).
+                for path in files_under(&m.dir.join(dir)) {
                     let found = path
                         .file_name()
                         .and_then(|s| s.to_str())
@@ -298,7 +299,6 @@ impl<K: std::hash::Hash + Eq + Copy + Send + Sync + 'static, T: Weight + Send + 
         }
         Library { files, loaded: Mutex::new(HashMap::new()), load, budget, clock: Default::default() }
     }
-
     /// What is loaded for `key`, once loaded: the first call starts loading
     /// it on a thread of its own and answers None (the game's own shows
     /// until it is ready).
@@ -346,6 +346,22 @@ impl<K: std::hash::Hash + Eq + Copy + Send + Sync + 'static, T: Weight + Send + 
             total -= loaded.remove(&k).as_ref().map_or(0, weight);
         }
     }
+}
+
+/// The files in `dir` and the folders inside it, sorted (a name found twice
+/// is the later's).
+pub fn files_under(dir: &Path) -> Vec<PathBuf> {
+    let mut out = Vec::new();
+    let mut stack = vec![dir.to_path_buf()];
+    while let Some(d) = stack.pop() {
+        let Ok(entries) = std::fs::read_dir(&d) else { continue };
+        for e in entries.flatten() {
+            let path = e.path();
+            if path.is_dir() { stack.push(path) } else { out.push(path) }
+        }
+    }
+    out.sort();
+    out
 }
 
 /// Bytes of loaded mod files kept: backgrounds (a few rooms' worth at 8x),

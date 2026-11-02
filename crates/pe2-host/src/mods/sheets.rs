@@ -376,15 +376,20 @@ impl Catalog {
 pub fn extract(
     catalog: &Catalog,
     painted: &HashMap<u32, super::rooms::Painted>,
-    dir: &std::path::Path,
+    root: &std::path::Path,
+    folder: &dyn Fn(&str) -> std::path::PathBuf,
 ) -> std::io::Result<usize> {
-    std::fs::create_dir_all(dir)?;
+    std::fs::create_dir_all(root)?;
     let mut coloured = 0;
     let mut index = String::from(
-        "# sheet, where it is on the disc (file/chunk#column), where it loads in VRAM, depth, colours
+        "# sheet (in its folder), where it is on the disc (file/picture#column), where it loads in VRAM, depth, colours
 ",
     );
     for (i, sheet) in catalog.sheets.iter().enumerate() {
+        let sub = folder(&sheet.origin);
+        let dir = &root.join(&sub);
+        std::fs::create_dir_all(dir)?;
+        let shown = |name: &str| sub.join(name).to_string_lossy().replace('\\', "/");
         // The fill and two outline passes use different CLUTs. Export
         // palette-specific replacements so one pass cannot erase another.
         if sheet.origin == "stage0/file1/0#0" && !catalog.ui_palettes.is_empty() {
@@ -398,8 +403,11 @@ pub fn extract(
                 enc.set_depth(png::BitDepth::Eight);
                 enc.write_header().and_then(|mut w| w.write_image_data(&rgba)).map_err(std::io::Error::other)?;
                 index.push_str(&format!(
-                    "{name} {} {},{} 4-bit resident UI font palette\n",
-                    sheet.origin, sheet.place.0, sheet.place.1
+                    "{} {} {},{} 4-bit resident UI font palette\n",
+                    shown(&name),
+                    sheet.origin,
+                    sheet.place.0,
+                    sheet.place.1
                 ));
             }
             coloured += 1;
@@ -420,8 +428,9 @@ pub fn extract(
             coloured += 1;
         }
         index.push_str(&format!(
-            "{name} {} {},{} {}-bit {source}
+            "{} {} {},{} {}-bit {source}
 ",
+            shown(&name),
             sheet.origin,
             sheet.place.0,
             sheet.place.1,
@@ -433,7 +442,7 @@ pub fn extract(
         enc.set_depth(png::BitDepth::Eight);
         enc.write_header().and_then(|mut w| w.write_image_data(&rgba)).map_err(std::io::Error::other)?;
     }
-    std::fs::write(dir.join("index.txt"), index)?;
+    std::fs::write(root.join("index.txt"), index)?;
     Ok(coloured)
 }
 
@@ -451,6 +460,7 @@ pub fn extract_indexed(
     painted: &HashMap<u32, super::rooms::Painted>,
     dir: &std::path::Path,
     ramps: &std::path::Path,
+    folder: &dyn Fn(&str) -> std::path::PathBuf,
 ) -> std::io::Result<(usize, usize)> {
     std::fs::create_dir_all(dir)?;
     let (mut written, mut guessed) = (0, 0);
@@ -483,7 +493,8 @@ pub fn extract_indexed(
             super::indexed::write(dir, &replacement, Some(&note)).map_err(std::io::Error::other)?;
             // The ramp picture to enlarge, at the depth it is drawn.
             if is_drawn {
-                super::indexed::write_ramp(ramps, &replacement).map_err(std::io::Error::other)?;
+                super::indexed::write_ramp(&ramps.join(folder(&sheet.origin)), &replacement)
+                    .map_err(std::io::Error::other)?;
             }
         }
         written += 1;
