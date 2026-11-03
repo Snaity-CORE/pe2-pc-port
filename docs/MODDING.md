@@ -283,7 +283,10 @@ when not known); the UI font's also give each glyph's `face` and
 
 PE2PC already redraws the menus' font (`ui-font`), the loading captions
 and the disc change's lines from its built-in fonts by default (`[video] hd_fonts`, at scales above 1); a mod's indexed
-replacement of the same sheet wins. To use other fonts,
+replacement of the same sheet wins. A mod that replaces the captions' font
+(a translation's, in `files/`) gives its map in `glyphs/<sheet>-4bit.toml`,
+as the extract writes them (`kind = "loading"`), and PE2PC redraws it the
+same way. To use other fonts,
 `tools/hd_fonts.py` redraws the first three from fonts of your choice
 (needs Python with numpy, pillow and scipy):
 
@@ -721,8 +724,10 @@ gets its own, for there only (`here_only`).
 The loading screens' captions (date and place) are no text but glyphs of
 a font of their own; a translation redraws that font, so they come as
 they are: its glyph table and the captions as `patches.toml`, its
-pictures (one in each loading screen's file) in `files/`. They are drawn
-in the translation's font, not redrawn finer.
+pictures (one in each loading screen's file) in `files/`, and the map of
+its glyphs in `glyphs/` (letters read as the game's of the same picture,
+or by the tool's `CAPTION_LABELS`), so PE2PC redraws them finer as it
+does the game's. The map needs both versions' textures extracted.
 Their bytes are read through the translated version's own
 font: such translations draw the letters they need, and whole syllables,
 over codes the menus did not use, a different set in each of the font's

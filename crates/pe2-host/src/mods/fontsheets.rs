@@ -138,8 +138,16 @@ pub fn build(catalog: &Catalog, exe: &[u8]) {
     };
     let mut jobs: Vec<(Map, &[Face], &Scheme)> = Vec::new();
     jobs.extend(super::glyphmaps::ui_font(catalog, exe).map(|m| (m, &ui_faces[..], &ui_scheme)));
+    // A mod's map of a sheet (its files' own font, in the game's place)
+    // instead of the game's.
+    let from_mods = super::glyphmaps::from_mods(catalog);
+    let modded: Vec<Vec<u64>> = from_mods.iter().map(|m| m.sheets.clone()).collect();
     jobs.extend(
-        super::glyphmaps::loading(catalog, exe).into_iter().map(|m| (m, &typewriter_faces[..], &loading_scheme)),
+        super::glyphmaps::loading(catalog, exe)
+            .into_iter()
+            .filter(|m| !modded.contains(&m.sheets))
+            .chain(from_mods)
+            .map(|m| (m, &typewriter_faces[..], &loading_scheme)),
     );
     jobs.extend(super::glyphmaps::disc_prompt(catalog).map(|m| (m, &typewriter_faces[..], &prompt_scheme)));
     let sheets: Vec<Indexed> = std::thread::scope(|scope| {

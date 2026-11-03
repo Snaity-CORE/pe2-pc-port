@@ -18,7 +18,7 @@
 
 use std::collections::{BTreeMap, HashMap, HashSet};
 use std::path::{Path, PathBuf};
-use std::sync::Arc;
+use std::sync::{Arc, OnceLock};
 
 use crate::disc::{Disc, iso9660};
 
@@ -530,12 +530,36 @@ pub fn dialogue_sources_of(image: &Path, threads: usize) -> Result<super::dialog
     Ok(out)
 }
 
-/// The chunks of file `f` of `disc` added to `out`, by type.
+/// The pictures (`.pe2img` chunks) the mods in use replace, by file key and
+/// chunk: the game loads those, so the sheets known are theirs (a
+/// translation's font, which a mod's glyph map redraws).
+fn mod_pictures() -> &'static HashMap<(String, usize), PathBuf> {
+    static PICTURES: OnceLock<HashMap<(String, usize), PathBuf>> = OnceLock::new();
+    PICTURES.get_or_init(|| {
+        let mut out = HashMap::new();
+        for (key, r) in replacements() {
+            for (chunk, source) in r.chunks {
+                if let ChunkSource::File(path) = source
+                    && path.extension().is_some_and(|e| e.eq_ignore_ascii_case("pe2img"))
+                {
+                    out.insert((key.clone(), chunk), path);
+                }
+            }
+        }
+        out
+    })
+}
+
+/// The chunks of file `f` of `disc` added to `out`, by type (the mods'
+/// pictures for those they replace).
 fn add_source(out: &mut super::dialogue::Sources, disc: &mut dyn Disc, f: &DiscFile) {
     for (k, c) in read_chunks(disc, f.lba).into_iter().enumerate() {
         match c.header[0] {
             0 => out.packages.entry(f.key.clone()).or_default().push((c.load_address(), c.payload)),
-            1 => out.pictures.entry(f.key.clone()).or_default().push(c.payload),
+            1 => {
+                let modded = mod_pictures().get(&(f.key.clone(), k)).and_then(|p| std::fs::read(p).ok());
+                out.pictures.entry(f.key.clone()).or_default().push(modded.unwrap_or(c.payload));
+            }
             2 => out.palettes.entry(f.key.clone()).or_default().push(c.payload),
             5 => out.backgrounds.entry(f.key.clone()).or_default().push(c.payload),
             4 => out.bundles.push((f.key.clone(), k, c.payload)),

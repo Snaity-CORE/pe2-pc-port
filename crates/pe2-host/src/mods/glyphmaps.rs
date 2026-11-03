@@ -193,6 +193,51 @@ pub fn title(catalog: &Catalog) -> Option<Map> {
     })
 }
 
+/// A map as `write` saves it, which a mod may give.
+#[derive(serde::Deserialize)]
+struct MapFile {
+    kind: String,
+    sheets: Vec<String>,
+    depth: u32,
+    #[serde(default)]
+    glyph: Vec<GlyphFile>,
+}
+
+#[derive(serde::Deserialize)]
+struct GlyphFile {
+    cell: [u16; 4],
+    text: String,
+}
+
+/// The maps mods give, as `glyphs/<sheet>-<4|8>bit.toml` (in the extract's
+/// form), of pictures of text their files replace (a translation's own
+/// font), so those are redrawn as the game's are: of the sheets `catalog`
+/// holds, `loading` ones (the captions' font). A higher mod's map of a
+/// sheet wins.
+pub fn from_mods(catalog: &Catalog) -> Vec<Map> {
+    let mut maps: std::collections::HashMap<u64, Map> = std::collections::HashMap::new();
+    for (path, _) in super::mod_files("glyphs", ".toml") {
+        let parsed = std::fs::read_to_string(&path)
+            .map_err(|e| e.to_string())
+            .and_then(|t| toml::from_str::<MapFile>(&t).map_err(|e| e.to_string()));
+        let file = match parsed {
+            Ok(f) => f,
+            Err(e) => {
+                eprintln!("pe2: mods: {}: {e}", path.display());
+                continue;
+            }
+        };
+        let sheets: Vec<u64> = file.sheets.iter().filter_map(|s| u64::from_str_radix(s, 16).ok()).collect();
+        let [sheet] = sheets[..] else { continue };
+        if file.kind != "loading" || !catalog.sheets.iter().any(|s| s.hash == sheet) {
+            continue;
+        }
+        let glyphs = file.glyph.into_iter().map(|g| Glyph::new(g.cell, g.text)).collect();
+        maps.insert(sheet, Map { kind: "loading", sheets, depth: file.depth, palette: None, glyphs });
+    }
+    maps.into_values().collect()
+}
+
 /// Saves `maps` in `dir`, each as its first sheet's `<sheet>-<4|8>bit.toml`.
 /// Answers how many.
 pub fn write(maps: &[Map], dir: &Path) -> std::io::Result<usize> {

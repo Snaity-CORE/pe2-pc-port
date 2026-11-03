@@ -13,7 +13,7 @@ picture labelled in LABELS (translations draw new letters and whole
 syllables into the font). Writes `strings/**/*.toml`, `mod.toml` and
 `report.txt` (texts left out, codes not known, with their pictures in
 `report-glyphs/`) into the mod folder, and the loading screens' captions,
-when translated, as `patches.toml` and `files/` (import_captions).
+when translated, as `patches.toml`, `files/` and `glyphs/` (import_captions).
 
     python tools/import_strings.py <game's dumps> <other's dumps> <mod folder>
         [--name NAME] [--description TEXT]
@@ -321,6 +321,8 @@ def literal(text):
 # else of that part of the executable) as memory patches, and every copy of
 # the pictures as files.
 CAPTIONS = (0x800627E0, 0x800630B0)
+# Where the scripts start: the glyph table is all before.
+CAPTIONS_FIRST_SCRIPT = 0x800628F8
 CAPTION_FONTS = ['stage0/file10/0.pe2img', 'stage1/1801/file0/5.pe2img']
 
 
@@ -357,7 +359,103 @@ def import_captions(game, other, args, report):
         os.makedirs(os.path.dirname(dest), exist_ok=True)
         with open(dest, 'wb') as out:
             out.write(data)
+    caption_maps(game, other, args, report)
     return len(words)
+
+
+# The captions' letters the game's font does not have, or draws otherwise,
+# in a translation's redrawn font: the picture's key (caption_key) -> what
+# it shows. The Brazilian Portuguese fan translation's.
+CAPTION_LABELS = {
+    '3c809d57583a': 'de',  # " de " in one cell
+    '0e98ec424e36': 't',
+    '6650141535d1': 'm',
+    '1a2fa64229aa': 'b',
+    '84c15659a681': 'P',
+    'cd6e0ec87459': '5',
+    '227befe63f69': 'ó',
+    'ef3d70498bb5': ',',
+    'e607a9c3e510': 'ã',
+    'dddb87fccc93': '7',
+    '88073596104f': 'c',
+    '46995c4ff34f': 'y',
+    '3ba128e06fc6': 'í',
+    '2d5b0be9f8f1': 'x',
+}
+
+# The captions' font's copies (where the extract finds them) and how far
+# down its sheet each draws the cells.
+CAPTION_SHEETS = [('stage0/file10/0#0', 0), ('stage1/1801/file0/1#0', 48)]
+CAPTION_TEXT = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890:;',.?!"
+
+
+def caption_key(picture):
+    return hashlib.sha1(repr(picture).encode()).hexdigest()[:12]
+
+
+def caption_maps(game, other, args, report):
+    """Glyph maps of the other version's captions' font (`glyphs/`), which
+    PE2PC redraws finer as it does the game's: each cell its translation's
+    captions use, read as the game's letter of the same picture, or by
+    CAPTION_LABELS. Needs both versions' textures extracted."""
+    def sheet_of(dumps, origin):
+        index = os.path.join(dumps, 'textures', 'index.txt')
+        if not os.path.exists(index):
+            return None
+        for line in open(index, encoding='utf-8'):
+            parts = line.split()
+            if len(parts) > 1 and parts[1] == origin:
+                return parts[0].split('-')[0]
+        return None
+
+    def crop(rows, cell, down):
+        u, v, w, h = cell
+        return tuple(tuple(rows[v + down + y][u:u + w]) for y in range(h) if v + down + y < len(rows))
+
+    lo = CAPTIONS[0] - game.exe_base
+    cells = lambda exe, n: [tuple(exe[lo + 4 * i:lo + 4 * i + 4]) for i in range(n)]
+    count = (CAPTIONS_FIRST_SCRIPT - CAPTIONS[0]) // 4
+    for origin, down in CAPTION_SHEETS:
+        ours, theirs = sheet_of(args.game, origin), sheet_of(args.other, origin)
+        paths = [os.path.join(d, 'textures-indexed', f'{s}-4bit.idx.png')
+                 for d, s in ((args.game, ours), (args.other, theirs)) if s]
+        if len(paths) < 2 or not all(os.path.exists(p) for p in paths):
+            report.append(f'{origin}: the captions\' font not extracted in both versions (textures): '
+                          'its translation drawn as it is, not redrawn finer')
+            continue
+        if ours == theirs:
+            continue
+        mine, translated = png_indices(paths[0]), png_indices(paths[1])
+        known = {}
+        for cell, text in zip(cells(game.exe, len(CAPTION_TEXT)), CAPTION_TEXT):
+            known.setdefault(crop(mine, cell, down), text)
+        lines = ['# Glyphs of a picture of text (see docs/MODDING.md): the captions\' font',
+                 f'# of {args.name}, redrawn finer by PE2PC.',
+                 'kind = "loading"', f'sheets = ["{theirs}"]', 'depth = 4']
+        glyphs, missing = 0, []
+        for cell in cells(other.exe, count):
+            u, v, w, h = cell
+            picture = crop(translated, cell, down)
+            if w == 0 or not any(any(row) for row in picture):
+                continue
+            text = known.get(picture) or CAPTION_LABELS.get(caption_key(picture))
+            if text is None:
+                missing.append(f'{origin}: caption glyph at ({u}, {v + down}) {w}x{h} not known '
+                               f'(CAPTION_LABELS key {caption_key(picture)}): kept as it is')
+                continue
+            lines += ['', '[[glyph]]', f'cell = [{u}, {v + down}, {w}, {h}]', f'text = "{text}"']
+            glyphs += 1
+        # A copy the translation did not redraw there (the M.I.S.T.
+        # briefing's): not its font, left as it is.
+        if glyphs < len(missing):
+            report.append(f'{origin}: the captions\' font not found there in the other version: '
+                          'drawn as it is, not redrawn finer')
+            continue
+        report.extend(missing)
+        dest = os.path.join(args.out, 'glyphs')
+        os.makedirs(dest, exist_ok=True)
+        with open(os.path.join(dest, f'{theirs}-4bit.toml'), 'w', encoding='utf-8', newline='\n') as f:
+            f.write('\n'.join(lines) + '\n')
 
 
 def main():
