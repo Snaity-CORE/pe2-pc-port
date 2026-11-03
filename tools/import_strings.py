@@ -13,7 +13,8 @@ picture labelled in LABELS (translations draw new letters and whole
 syllables into the font). Writes `strings/**/*.toml`, `mod.toml` and
 `report.txt` (texts left out, codes not known, with their pictures in
 `report-glyphs/`) into the mod folder, and the loading screens' captions,
-when translated, as `patches.toml`, `files/` and `glyphs/` (import_captions).
+when translated, as `patches.toml` and `glyphs/` (import_captions), and the
+pictures it changed (maps, signs, that font) in `files/` (import_pictures).
 
     python tools/import_strings.py <game's dumps> <other's dumps> <mod folder>
         [--name NAME] [--description TEXT]
@@ -318,17 +319,50 @@ def literal(text):
 # stage0/file3 to file40; the M.I.S.T. briefing has a copy, stage1/1801's
 # second). A translation redraws that font, with its own cells and scripts,
 # so those are taken as they are: the table and the scripts (and nothing
-# else of that part of the executable) as memory patches, and every copy of
-# the pictures as files.
+# else of that part of the executable) as memory patches; the pictures come
+# with the others (import_pictures).
 CAPTIONS = (0x800627E0, 0x800630B0)
 # Where the scripts start: the glyph table is all before.
 CAPTIONS_FIRST_SCRIPT = 0x800628F8
-CAPTION_FONTS = ['stage0/file10/0.pe2img', 'stage1/1801/file0/5.pe2img']
+
+# Pictures a translation changes that stay the game's: PE2PC redraws them
+# finer from the game's own (the menus' font, with the letters translations
+# add: menuglyphs.rs), or mods replace the game's (the title page, which a
+# translation's mod redraws in its own words; the HUD's sheet, an HD UI's).
+PICTURES_KEPT = {
+    'stage0/file1/1.pe2img': "the menus' font",
+    'stage0/file20162/0.pe2img': "the menus' font",
+    'stage0/file1/3.pe2img': "the HUD's sheet",
+    'stage0/file20162/2.pe2img': "the HUD's sheet",
+    'stage0/file2/2.pe2img': 'the title page',
+}
+
+
+def import_pictures(args, report):
+    """Copies into the mod's `files/` every picture (`.pe2img` chunk) the
+    other version changed (its words: maps, signs, the captions' font), but
+    PICTURES_KEPT. Answers how many."""
+    ours, theirs = (os.path.join(d, 'files') for d in (args.game, args.other))
+    copied = 0
+    for path in glob.glob(os.path.join(ours, '**', '*.pe2img'), recursive=True):
+        rel = os.path.relpath(path, ours).replace(os.sep, '/')
+        other = os.path.join(theirs, *rel.split('/'))
+        if rel in PICTURES_KEPT or not os.path.exists(other):
+            continue
+        data = open(other, 'rb').read()
+        if data == open(path, 'rb').read():
+            continue
+        dest = os.path.join(args.out, 'files', *rel.split('/'))
+        os.makedirs(os.path.dirname(dest), exist_ok=True)
+        with open(dest, 'wb') as out:
+            out.write(data)
+        copied += 1
+    return copied
 
 
 def import_captions(game, other, args, report):
     """Writes the other version's loading captions into the mod
-    (`patches.toml`, `files/`), when they are not the game's. Answers how
+    (`patches.toml`, `glyphs/`), when they are not the game's. Answers how
     many words are patched."""
     lo, hi = (a - game.exe_base for a in CAPTIONS)
     if other.exe_base != game.exe_base or game.exe[lo:hi] == other.exe[lo:hi]:
@@ -340,25 +374,6 @@ def import_captions(game, other, args, report):
         lines += ['[[patch]]', f'address = 0x{at + game.exe_base:08X}', f'value = 0x{value:08X}', '']
     with open(os.path.join(args.out, 'patches.toml'), 'w', encoding='utf-8', newline='\n') as f:
         f.write('\n'.join(lines))
-    files = os.path.join(args.game, 'files')
-    fonts = {open(os.path.join(files, *rel.split('/')), 'rb').read() for rel in CAPTION_FONTS
-             if os.path.exists(os.path.join(files, *rel.split('/')))}
-    sizes = {len(font) for font in fonts}
-    for path in glob.glob(os.path.join(files, '**', '*.pe2img'), recursive=True):
-        if os.path.getsize(path) not in sizes or open(path, 'rb').read() not in fonts:
-            continue
-        rel = os.path.relpath(path, files)
-        theirs = os.path.join(args.other, 'files', rel)
-        if not os.path.exists(theirs):
-            report.append(f'files/{rel}: not found in the other version (the captions\' font)')
-            continue
-        data = open(theirs, 'rb').read()
-        if data == open(path, 'rb').read():
-            continue
-        dest = os.path.join(args.out, 'files', rel)
-        os.makedirs(os.path.dirname(dest), exist_ok=True)
-        with open(dest, 'wb') as out:
-            out.write(data)
     caption_maps(game, other, args, report)
     return len(words)
 
@@ -757,12 +772,14 @@ def main():
             write_png(os.path.join(pictures, f'{name}.png'), picture)
             report.append(f'code 0x{code:02X}: picture {name} not known (report-glyphs/{name}.png)')
     captions = import_captions(game, other, args, report)
+    pictures = import_pictures(args, report)
     with open(os.path.join(args.out, 'mod.toml'), 'w', encoding='utf-8', newline='\n') as f:
         f.write(f'name = "{args.name}"\ndescription = "{args.description}"\nenabled = true\n')
     with open(os.path.join(args.out, 'report.txt'), 'w', encoding='utf-8', newline='\n') as f:
         f.write('\n'.join(report) + '\n')
     print(f'{files} files, {texts} texts; {len(unknown)} pictures not known; {len(report)} notes in report.txt'
-          + (f'; loading captions: {captions} words patched' if captions else ''))
+          + (f'; loading captions: {captions} words patched' if captions else '')
+          + (f'; {pictures} pictures in files/' if pictures else ''))
 
 
 if __name__ == '__main__':
