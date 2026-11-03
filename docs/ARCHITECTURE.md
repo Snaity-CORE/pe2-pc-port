@@ -175,7 +175,38 @@ vertex's identity, which lets `gpu/interp.rs` draw frames in between at
 The MDEC decodes macroblocks from the run-length data libpress sends it
 (`runtime/mdec.rs`). STR movies are streamed with a native CdRead2 and St*
 ring (`runtime/stream.rs`) that assembles each frame's sectors contiguously
-in the game's ring buffer.
+in the game's ring buffer. A movie frame comes out a 16-pixel column at a
+time, each column's DMA completion asking for the next; completions come
+on a timer at the console's MDEC speed, each timed from when the last was
+due (`runtime/hw.rs`), and a new decode, or the output callback taken off,
+waits for the frame being put out, as the busy MDEC makes the console do.
+
+## Mods
+
+Mods change what the game shows, never its data or logic
+(docs/MODDING.md); `mods/` holds each kind, hooked where the game's own
+data passes through the runtime:
+
+- **Files**: the CD drive serves a mod's version of a file as the game
+  reads it from its first sector (`runtime/cdrom.rs`, `mods/files.rs`).
+- **Pictures**: screen images the game sends to VRAM are known by a hash
+  and a mod's background drawn in their place (`runtime/gpu/mod.rs`,
+  `mods/backgrounds.rs`); texture sheets are known from a catalog of every
+  sheet on the discs (the mods' pictures in place of those they replace,
+  `mods/sheets.rs`), and the renderer draws a replacement instead
+  (`runtime/gpu/textures.rs`, `hw.rs`).
+- **Texts**: everything the game draws with the menus' font passes
+  through `pc_text_translate` (the fork's text code, `mods/strings.rs`);
+  dialogue files are given translated copies as they load
+  (`mods/translate.rs`).
+- **Sound and movies**: songs and movies known by hash, played or shown in
+  place of the game's own (`mods/music.rs`, `mods/movies.rs`).
+- **Memory**: patches and GameShark codes at each vertical blank
+  (`mods/patches.rs`).
+
+What mods need from the discs (the catalog, the dialogue's glyph pages,
+where backgrounds named by place are) is read on threads when the game
+starts, and each kind of picture loads when first wanted, within a budget.
 
 ## Disc and CD-ROM
 

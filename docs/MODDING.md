@@ -38,6 +38,27 @@ priority = 0      # higher wins where two mods replace the same thing
 enabled = true    # false keeps the mod installed but unused
 ```
 
+What a mod can hold, each part optional, and where each is explained:
+
+| In the mod | What it changes | See |
+|---|---|---|
+| `backgrounds/` | rooms' backgrounds and full-screen pictures | Backgrounds and full-screen pictures |
+| `textures/` | models, the interface, rooms' pieces | Textures |
+| `glyphs/` | the map of a font a mod's files bring, to redraw it finer | Text redrawn from fonts |
+| `music/` | songs | Music |
+| `movies/` | movies | Movies |
+| `files/` | any of the game's files, or chunks of them | Game files |
+| `text/` | the dialogue | Dialogue |
+| `fonts/` | the dialogue's font | Dialogue in your own font |
+| `strings/` | the menus' texts, items' details | Texts of the menus |
+| `patches.toml` | the game's memory (cheats) | Cheats and memory patches |
+
+In `backgrounds/`, `textures/`, `glyphs/` and `text/`, folders of your own
+are fine: what ties a file to what it replaces is its name (or, in
+`text/`, what it says inside). In `files/` (and for `strings/`' item
+details), the path names the game's file; `music/` and `movies/` are read
+without folders.
+
 The launcher's **Mods** screen lists the installed mods, turns each on or
 off and sets their order (higher in the list wins), writing `enabled` and
 `priority` into each `mod.toml` and keeping the rest of the file. It also
@@ -701,11 +722,13 @@ from: a mod redrawing that sheet should draw them there.
 
 ### From another version's discs
 
-`tools/import_strings.py` makes a translation mod of the menus' texts of
-translated discs: extract the game's discs and the translated ones, each
-with its own data folder (`pe2 --extract files,texts` is enough: the
-importer reads the code from `dumps/files` and the words of the dialogue
-from `dumps/text`), and
+`tools/import_strings.py` makes a translation mod from translated discs:
+the menus' texts, and the loading screens' captions and the pictures the
+translation changed. Extract the game's discs and the translated ones,
+each with its own data folder (`pe2 --extract files,texts,textures`: the
+importer reads the code from `dumps/files`, the words of the dialogue
+from `dumps/text`, and the captions' font from the textures; without
+textures, the captions keep the translation's own font), and
 
 ```text
 python tools/import_strings.py <game's dumps> <translated dumps> mods/my-menus --name "My menus"
@@ -721,13 +744,7 @@ extract lists a text only where first found, but the shop of each room
 that has one holds its own copy): a text's translation
 is the one most of its places have, and a place translated otherwise
 gets its own, for there only (`here_only`).
-The loading screens' captions (date and place) are no text but glyphs of
-a font of their own; a translation redraws that font, so they come as
-they are: its glyph table and the captions as `patches.toml`, its
-pictures (one in each loading screen's file) in `files/`, and the map of
-its glyphs in `glyphs/` (letters read as the game's of the same picture,
-or by the tool's `CAPTION_LABELS`), so PE2PC redraws them finer as it
-does the game's. The map needs both versions' textures extracted.
+
 Their bytes are read through the translated version's own
 font: such translations draw the letters they need, and whole syllables,
 over codes the menus did not use, a different set in each of the font's
@@ -737,6 +754,21 @@ Portuguese fan translation's are there); each text is read in the face
 where the most codes are known and the most words are the translation's
 own (from its dialogue, `dumps/text`). `report.txt` lists what was left
 out, and pictures not known are saved in `report-glyphs/` to be labelled.
+
+The loading screens' captions (date and place) are no text but glyphs of
+a font of their own; a translation redraws that font, so they come as
+they are: its glyph table and the captions as `patches.toml`, and the map
+of its glyphs in `glyphs/` (letters read as the game's of the same
+picture, or by the tool's `CAPTION_LABELS`), so PE2PC redraws them finer
+as it does the game's.
+
+Every picture the translation changed (the captions' font, one in each
+loading screen's file; maps, signs, the game over and ending screens)
+goes in `files/`, so the game shows the translated one; a texture made
+for such a picture (its sheet's hash is the translation's) applies only
+with it. A few stay the game's, which PE2PC or other mods replace (the
+menus' font, the HUD's sheet, the title page: the tool's
+`PICTURES_KEPT`).
 
 ## Cheats and memory patches
 

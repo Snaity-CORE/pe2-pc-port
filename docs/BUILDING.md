@@ -142,8 +142,24 @@ Debug output:
   past the end instead, and `PE2_REPLAY_EXIT=<seconds>` closes it that long
   after the end.
 - `PE2_SCREENSHOT=<dir>` saves the displayed picture as a PNG every two
-  seconds. Screenshots show your game's content; keep them out of the
+  seconds (`PE2_SCREENSHOT_EVERY=<ms>` another interval,
+  `PE2_SCREENSHOT_AFTER=<seconds>` a later first one: bursts, for
+  flicker). Screenshots show your game's content; keep them out of the
   repository.
+- Video settings for one run, over pe2.toml: `PE2_SUBPIXEL=0/1`,
+  `PE2_PERSPECTIVE=0/1`, `PE2_TEXTURE_FILTER=nearest/bilinear`,
+  `PE2_BACKGROUND_FILTER=nearest/bicubic`, `PE2_INTERPOLATION=0/1` (and
+  `PE2_INTERP_T=0..1`, where between two frames the one in between is),
+  `PE2_CRT=0/1`, `PE2_INTEGER_SCALING=0/1`.
+- `PE2_SYNC_IRQ=1` delivers interrupts only where the game waits for one
+  (VSync, CdSync...), never between two instructions: to tell a timing
+  bug from a logic one.
+- The launcher: `PE2_LAUNCHER_SHOT=<file.png>` saves its picture once it
+  settles and quits (`PE2_LAUNCHER_SCREEN=settings/controls/setup/mods`
+  and `PE2_LAUNCHER_TAB=<n>` pick the screen and the tab), to check its
+  looks.
+- `PE2_VLCDUMP=<dir>` saves the movie and background frames decoded (the
+  latest 200), input for `PE2_LIBTEST=vlcfile`.
 - `PE2_INPUT=start@20,cross@31.5` presses buttons at given times (seconds
   after start) for unattended runs; `pause@t` toggles pause,
   `screenshot@t` saves one and `menu@t` asks for the pause menu, as P, F9
@@ -163,7 +179,8 @@ Debug output:
 - A native game function that misbehaves can be found against the original
   MIPS code: built with `python tools/build_game.py --route-calls`,
   `PE2_INTERPRET=<addr>,<A-B>...` runs those functions in the interpreter
-  instead, `PE2_SHADOW=...` runs both and reports where they differ, and
+  instead, `PE2_SHADOW=...` runs both and reports where they differ
+  (`PE2_SHADOW_SHOW=addr,...` also prints those words each time), and
   `python tools/bisect_native.py` bisects the game's functions for one that
   breaks 3D geometry.
 
@@ -180,7 +197,9 @@ folder, F10 swaps discs by hand; for debugging, F11 writes a timed mark in
 the log and F12 dumps the GPU's current command list.
 
 The data folder holds pe2.toml, the default memory cards (`memcards/`),
-screenshots, input recordings (`recordings/`) and pe2.log: `%APPDATA%\PE2PC` on Windows,
+screenshots, input recordings (`recordings/`), mods (`mods/`), what the
+extract saves (`dumps/`), where mods' backgrounds named by place are on
+the discs (`background-places.tsv`, safe to delete) and pe2.log: `%APPDATA%\PE2PC` on Windows,
 `~/Library/Application Support/PE2PC` on macOS, `$XDG_DATA_HOME/pe2pc`
 (`~/.local/share/pe2pc`) elsewhere. For a portable setup, put an empty
 `portable.txt` next to pe2.exe: everything then stays in pe2.exe's folder

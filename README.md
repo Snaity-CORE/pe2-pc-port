@@ -46,8 +46,10 @@ It plays as the console does and adds what a PC can, all optional:
   its texts with translations (the dialogue, the menus, the items'
   details); cheats and memory patches; the game's pictures, textures,
   music, movies, files and texts extracted from your discs with
-  `pe2 --extract` to make them, and translations imported from translated
-  discs (see [docs/MODDING.md](docs/MODDING.md)).
+  `pe2 --extract`, filed in folders by what they are, to make them;
+  translations imported from translated discs, their translated pictures
+  and loading captions included; mods installed from a .zip in the
+  launcher (see [docs/MODDING.md](docs/MODDING.md)).
 - **Cheats** (in `pe2.toml`, `[cheats]`): infinite HP or MP, one-hit kills,
   every hit critical, and EXP and BP multipliers.
 - **Comfort**: a launcher worked by mouse, keyboard or controller (English or
