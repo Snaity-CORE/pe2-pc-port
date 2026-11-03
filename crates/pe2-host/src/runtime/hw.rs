@@ -243,6 +243,10 @@ impl Hw {
 /// macroblock (as DuckStation times it).
 const MDEC_MACROBLOCK: Duration = Duration::from_nanos(2688 * 1_000_000_000 / 33_868_800);
 
+/// How late after the MDEC's last output a request for more still counts
+/// as following it (see dma_complete).
+const MDEC_LATE: Duration = Duration::from_millis(5);
+
 /// When the MDEC is done with what it was given so far.
 static MDEC_DONE_AT: Mutex<Option<Instant>> = Mutex::new(None);
 /// MDEC resets so far: a completion due from before the latest one is dropped.
@@ -258,7 +262,16 @@ fn dma_complete(channel: usize, macroblocks: u32) {
     let mut at = Instant::now() + Duration::from_micros(100);
     if channel == 1 && macroblocks > 0 {
         let mut done = MDEC_DONE_AT.lock().unwrap();
-        let start = done.map_or(Instant::now(), |d| d.max(Instant::now()));
+        // Asked for as the last output came (a movie's next column): from
+        // when that was due, not when its callback ran. The timer is late
+        // by a millisecond or more, which over a frame's 20 columns made
+        // its output take half as long again as the console's, and the
+        // next frame's decode come before it was out.
+        let now = Instant::now();
+        let start = match *done {
+            Some(d) if now.saturating_duration_since(d) < MDEC_LATE => d,
+            _ => now,
+        };
         at = start + MDEC_MACROBLOCK * macroblocks;
         *done = Some(at);
     }
@@ -289,8 +302,9 @@ fn dma_complete(channel: usize, macroblocks: u32) {
 /// decode only starts once the last one's columns were read (the MDEC is
 /// busy until then); here the completions come on a timer, and a decode
 /// started early took the place of the columns still to come (the frame
-/// shown a column off, its last column the frame before's). Not in an
-/// interrupt handler, which the completions wait on.
+/// shown a column off, its last column the frame before's). Also before
+/// the output callback is taken off (libpress.rs DecDCToutCallback). Not in
+/// an interrupt handler, which the completions wait on.
 pub fn wait_mdec_output(limit: Duration) {
     if irq::in_handler() || OUTPUT_DUE.load(Ordering::SeqCst) == 0 {
         return;
