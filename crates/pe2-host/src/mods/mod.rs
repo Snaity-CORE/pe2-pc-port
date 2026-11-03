@@ -8,13 +8,12 @@
 //! game's own files. What they replace is never touched in the console's
 //! VRAM: the game sees its own data, and only the picture changes.
 //!
-//! Music: music.rs; movies: movies.rs; game files: files.rs; dialogue:
-//! dialogue.rs and translate.rs; the menus' texts: strings.rs; textures:
-//! runtime/gpu/textures.rs.
-//! Backgrounds and full-screen pictures, as `backgrounds/<hash>.png`, where
-//! the hash is `screen_hash` of the 320x240 (or so) image the game sends to
-//! the GPU; the extract saves each one the discs hold as
-//! `dumps/backgrounds/<hash>.png`.
+//! Backgrounds and full-screen pictures: backgrounds.rs; music: music.rs;
+//! movies: movies.rs; game files: files.rs; dialogue: dialogue.rs and
+//! translate.rs; the menus' texts: strings.rs; textures: here (the
+//! libraries) and runtime/gpu/textures.rs; cheats and memory patches:
+//! patches.rs. Here: what is installed, the libraries of pictures they
+//! supply (loaded as wanted, within a budget), and the start.
 
 use std::collections::HashMap;
 use std::path::{Path, PathBuf};
@@ -22,6 +21,7 @@ use std::sync::{Arc, Mutex, OnceLock};
 
 use serde::Deserialize;
 
+pub mod backgrounds;
 pub mod capfont;
 pub mod credits;
 pub mod dialogue;
@@ -29,13 +29,19 @@ pub mod files;
 pub mod fontsheets;
 pub mod glyphmaps;
 pub mod indexed;
+pub mod install;
 pub mod menuglyphs;
 pub mod movies;
 pub mod music;
+pub mod names;
+pub mod patches;
 pub mod rooms;
 pub mod sheets;
 pub mod strings;
 pub mod translate;
+
+pub use backgrounds::{background, background_wait, file_read, has_background, place_name, wants_screens};
+pub use patches::apply_patches;
 
 /// A mod's `mod.toml` (every field optional).
 #[derive(Debug, Default, Deserialize)]
@@ -73,7 +79,9 @@ pub fn installed() -> Vec<Mod> {
     let Ok(entries) = std::fs::read_dir(mods_dir()) else { return Vec::new() };
     let mut mods: Vec<Mod> = entries
         .flatten()
-        .filter(|e| e.path().is_dir())
+        // Not the folders the mods folder keeps for itself (a .zip being
+        // installed: install.rs).
+        .filter(|e| e.path().is_dir() && !e.file_name().to_string_lossy().starts_with('.'))
         .map(|e| {
             let dir = e.path();
             let folder = e.file_name().to_string_lossy().into_owned();
@@ -106,6 +114,7 @@ pub fn installed() -> Vec<Mod> {
 /// (disc 1), and what character each dialogue glyph is.
 pub fn start(discs: &[PathBuf]) {
     strings::load();
+    backgrounds::resolve_background_places(discs);
     if let Some(first) = discs.first() {
         fontsheets::start(first.clone());
     }
@@ -141,7 +150,7 @@ pub fn start(discs: &[PathBuf]) {
                             }
                         };
                         step("files read", number);
-                        let catalog = textures.then(|| sheets::Catalog::new(&sources));
+                        let catalog = textures.then(|| sheets::Catalog::new(&files::catalog_sources(&sources)));
                         let glyphs = (font && number == 0).then(|| dialogue::font(&sources));
                         let known = texts.then(|| dialogue::cap_texts(&sources));
                         step("done", number);
@@ -228,61 +237,104 @@ pub struct Picture {
     pub rgba: Vec<u8>,
 }
 
+/// What a loaded file weighs in memory, for the libraries' budgets.
+trait Weight {
+    fn bytes(&self) -> usize;
+}
+
+impl Weight for Picture {
+    fn bytes(&self) -> usize {
+        self.rgba.len()
+    }
+}
+
+impl Weight for indexed::Indexed {
+    fn bytes(&self) -> usize {
+        self.indices.len()
+    }
+}
+
 enum Slot<T> {
     Loading,
-    Ready(Arc<T>),
+    /// Loaded, and when last wanted (Library::clock).
+    Ready(Arc<T>, u64),
     Failed,
 }
 
 /// The files mods supply of one kind (`<mod>/<dir>/<name><suffix>`), by
-/// the key their name gives, loaded (by `load`) when first wanted.
+/// the key their name gives, loaded (by `load`) when first wanted. What is
+/// loaded stays up to `budget` bytes: past it the files wanted longest ago
+/// are let go (to be loaded again if wanted again). The 32-bit game has
+/// 4 GB in all, and a mod's backgrounds at 8x weigh 20 MB each.
 struct Library<K, T = Picture> {
     /// Key -> the file of the mod that wins for it.
     files: HashMap<K, PathBuf>,
+    /// The same, once complete, when some of the files name their keys only
+    /// by what must be found first (backgrounds named by place).
+    resolved: OnceLock<HashMap<K, PathBuf>>,
     loaded: Mutex<HashMap<K, Slot<T>>>,
     load: fn(&Path) -> Result<T, String>,
+    budget: usize,
+    clock: std::sync::atomic::AtomicU64,
 }
 
-impl<K: std::hash::Hash + Eq + Copy + Send + Sync + 'static, T: Send + Sync + 'static> Library<K, T> {
+/// The files mods supply in `<mod>/<dir>/` and the folders inside it (the
+/// extract files them by what they are: characters/aya, rooms/akropolis/
+/// square...) whose names end in `suffix`, with the rest of their names:
+/// lowest priority first, so the highest overwrites it.
+fn mod_files(dir: &str, suffix: &str) -> Vec<(PathBuf, String)> {
+    let mut out = Vec::new();
+    if enabled() {
+        for m in installed().iter().filter(|m| m.enabled).rev() {
+            for path in files_under(&m.dir.join(dir)) {
+                let stem = path
+                    .file_name()
+                    .and_then(|s| s.to_str())
+                    .filter(|n| n.len() > suffix.len() && n.is_char_boundary(n.len() - suffix.len()))
+                    .and_then(|n| {
+                        let (stem, end) = n.split_at(n.len() - suffix.len());
+                        end.eq_ignore_ascii_case(suffix).then(|| stem.to_string())
+                    });
+                if let Some(stem) = stem {
+                    out.push((path, stem));
+                }
+            }
+        }
+    }
+    out
+}
+
+impl<K: std::hash::Hash + Eq + Copy + Send + Sync + 'static, T: Weight + Send + Sync + 'static> Library<K, T> {
     fn scan(
         dir: &str,
         suffix: &str,
         key: impl Fn(&str) -> Option<K>,
         load: fn(&Path) -> Result<T, String>,
+        budget: usize,
     ) -> Library<K, T> {
-        let mut files = HashMap::new();
-        if enabled() {
-            // Lowest priority first, so the highest overwrites it.
-            for m in installed().iter().filter(|m| m.enabled).rev() {
-                let Ok(entries) = std::fs::read_dir(m.dir.join(dir)) else { continue };
-                for e in entries.flatten() {
-                    let path = e.path();
-                    let found = path
-                        .file_name()
-                        .and_then(|s| s.to_str())
-                        .filter(|n| n.len() > suffix.len() && n.is_char_boundary(n.len() - suffix.len()))
-                        .and_then(|n| {
-                            let (stem, end) = n.split_at(n.len() - suffix.len());
-                            end.eq_ignore_ascii_case(suffix).then_some(stem)
-                        })
-                        .and_then(&key);
-                    if let Some(k) = found {
-                        files.insert(k, path);
-                    }
-                }
-            }
+        let files = mod_files(dir, suffix).into_iter().filter_map(|(path, stem)| Some((key(&stem)?, path))).collect();
+        Library {
+            files,
+            resolved: OnceLock::new(),
+            loaded: Mutex::new(HashMap::new()),
+            load,
+            budget,
+            clock: Default::default(),
         }
-        Library { files, loaded: Mutex::new(HashMap::new()), load }
     }
 
     /// What is loaded for `key`, once loaded: the first call starts loading
     /// it on a thread of its own and answers None (the game's own shows
     /// until it is ready).
     fn get(&'static self, key: K) -> Option<Arc<T>> {
-        let path = self.files.get(&key)?;
+        let path = self.resolved.get().unwrap_or(&self.files).get(&key)?;
+        let now = self.clock.fetch_add(1, std::sync::atomic::Ordering::Relaxed) + 1;
         let mut loaded = self.loaded.lock().unwrap();
-        match loaded.get(&key) {
-            Some(Slot::Ready(p)) => return Some(p.clone()),
+        match loaded.get_mut(&key) {
+            Some(Slot::Ready(p, when)) => {
+                *when = now;
+                return Some(p.clone());
+            }
             Some(Slot::Loading | Slot::Failed) => return None,
             None => {}
         }
@@ -290,49 +342,70 @@ impl<K: std::hash::Hash + Eq + Copy + Send + Sync + 'static, T: Send + Sync + 's
         let path = path.clone();
         std::thread::spawn(move || {
             let slot = match (self.load)(&path) {
-                Ok(p) => Slot::Ready(Arc::new(p)),
+                Ok(p) => Slot::Ready(Arc::new(p), self.clock.load(std::sync::atomic::Ordering::Relaxed)),
                 Err(err) => {
                     eprintln!("pe2: mods: {}: {err}", path.display());
                     Slot::Failed
                 }
             };
-            self.loaded.lock().unwrap().insert(key, slot);
+            let mut loaded = self.loaded.lock().unwrap();
+            loaded.insert(key, slot);
+            self.trim(&mut loaded, key);
         });
         None
     }
-}
 
-fn backgrounds() -> &'static Library<u64> {
-    static INDEX: OnceLock<Library<u64>> = OnceLock::new();
-    INDEX.get_or_init(|| {
-        let library = Library::scan("backgrounds", ".png", |s| u64::from_str_radix(s, 16).ok(), |p| read_png(p, false));
-        if enabled() {
-            let mods: Vec<Mod> = installed().into_iter().filter(|m| m.enabled).collect();
-            for m in &mods {
-                let version = m.version.as_deref().map(|v| format!(" {v}")).unwrap_or_default();
-                let author = m.author.as_deref().map(|a| format!(" by {a}")).unwrap_or_default();
-                let about = m.description.as_deref().map(|d| format!(": {d}")).unwrap_or_default();
-                eprintln!("pe2: mod: {}{version}{author}{about}", m.name);
+    /// What is loaded for `key`, waiting up to `limit` for it to load (no
+    /// longer than that: what is still loading then keeps loading).
+    fn wait(&'static self, key: K, limit: std::time::Duration) -> Option<Arc<T>> {
+        let since = std::time::Instant::now();
+        loop {
+            if let Some(p) = self.get(key) {
+                return Some(p);
             }
-            if !mods.is_empty() {
-                eprintln!(
-                    "pe2: mods: {} on, {} backgrounds, {} textures, {} indexed textures",
-                    mods.len(),
-                    library.files.len(),
-                    textures().files.len(),
-                    indexed_textures().files.len()
-                );
+            let failed = matches!(self.loaded.lock().unwrap().get(&key), Some(Slot::Failed) | None);
+            if failed || since.elapsed() >= limit {
+                return None;
             }
+            std::thread::sleep(std::time::Duration::from_millis(1));
         }
-        library
-    })
+    }
+
+    /// Lets go of the files wanted longest ago while past the budget, but
+    /// never `keep` (just loaded).
+    fn trim(&self, loaded: &mut HashMap<K, Slot<T>>, keep: K) {
+        let weight = |s: &Slot<T>| if let Slot::Ready(p, _) = s { p.bytes() } else { 0 };
+        let mut total: usize = loaded.values().map(weight).sum();
+        while total > self.budget {
+            let oldest = loaded
+                .iter()
+                .filter(|(k, _)| **k != keep)
+                .filter_map(|(k, s)| if let Slot::Ready(_, when) = s { Some((*k, *when)) } else { None })
+                .min_by_key(|(_, when)| *when);
+            let Some((k, _)) = oldest else { break };
+            total -= loaded.remove(&k).as_ref().map_or(0, weight);
+        }
+    }
 }
 
-/// The background a mod supplies for the screen image `hash`, once loaded
-/// (see Library::get).
-pub fn background(hash: u64) -> Option<Arc<Picture>> {
-    backgrounds().get(hash)
+/// The files in `dir` and the folders inside it, sorted (a name found twice
+/// is the later's).
+pub fn files_under(dir: &Path) -> Vec<PathBuf> {
+    let mut out = Vec::new();
+    let mut stack = vec![dir.to_path_buf()];
+    while let Some(d) = stack.pop() {
+        let Ok(entries) = std::fs::read_dir(&d) else { continue };
+        for e in entries.flatten() {
+            let path = e.path();
+            if path.is_dir() { stack.push(path) } else { out.push(path) }
+        }
+    }
+    out.sort();
+    out
 }
+
+/// Bytes of loaded textures kept, of each kind.
+const TEXTURES_BUDGET: usize = 256 << 20;
 
 /// A texture's key: the hash of its sheet (sheets.rs), and of the palette
 /// it is drawn with (0: any, or none for 15-bit textures).
@@ -369,7 +442,7 @@ fn textures() -> &'static Library<TextureKey> {
             let (t, p) = s.split_once('-').unwrap_or((s, "0"));
             Some((u64::from_str_radix(t, 16).ok()?, u64::from_str_radix(p, 16).ok()?))
         };
-        Library::scan("textures", ".png", key, |p| read_png(p, true))
+        Library::scan("textures", ".png", key, |p| read_png(p, true), TEXTURES_BUDGET)
     })
 }
 
@@ -382,7 +455,7 @@ pub fn texture(key: TextureKey) -> Option<Arc<Picture>> {
 /// and its header), by sheet and depth (0: 4 bits, 1: 8).
 fn indexed_textures() -> &'static Library<(u64, u32), indexed::Indexed> {
     static INDEX: OnceLock<Library<(u64, u32), indexed::Indexed>> = OnceLock::new();
-    INDEX.get_or_init(|| Library::scan("textures", ".idx.png", indexed::parse_stem, indexed::read))
+    INDEX.get_or_init(|| Library::scan("textures", ".idx.png", indexed::parse_stem, indexed::read, TEXTURES_BUDGET))
 }
 
 /// The indexed replacement for `sheet` drawn at `depth` (0: 4 bits, 1: 8):
@@ -446,11 +519,6 @@ pub fn save_png(path: &Path, w: u32, h: u32, pixels: &[u16]) -> Result<(), Strin
     writer.write_image_data(&rgb).map_err(|e| e.to_string())
 }
 
-/// Whether anything here wants screen images: mods with backgrounds.
-pub fn wants_screens() -> bool {
-    !backgrounds().files.is_empty()
-}
-
 /// `picture` resized to `w` x `h` (area average when shrinking, bilinear
 /// when growing), as RGBA.
 pub fn resize(picture: &Picture, w: u32, h: u32) -> Vec<u8> {
@@ -499,218 +567,47 @@ pub fn resize(picture: &Picture, w: u32, h: u32) -> Vec<u8> {
     out
 }
 
-// ---- memory patches ---------------------------------------------------------
-
-/// A mod's `patches.toml`: GameShark codes, and plain writes.
-#[derive(Debug, Default, Deserialize)]
-#[serde(default, deny_unknown_fields)]
-struct PatchFile {
-    cheat: Vec<CheatEntry>,
-    patch: Vec<PatchEntry>,
-}
-
-/// `[[cheat]]`: GameShark (Action Replay) codes, "AAAAAAAA VVVV" each.
-#[derive(Debug, Default, Deserialize)]
-#[serde(default, deny_unknown_fields)]
-struct CheatEntry {
-    name: Option<String>,
-    enabled: Option<bool>,
-    codes: Vec<String>,
-}
-
-/// `[[patch]]`: a value written to an address each frame.
-#[derive(Debug, Default, Deserialize)]
-#[serde(deny_unknown_fields)]
-struct PatchEntry {
-    name: Option<String>,
-    enabled: Option<bool>,
-    address: u32,
-    /// 1, 2 or 4 bytes (default 4).
-    size: Option<u32>,
-    value: u32,
-}
-
-/// A comparison of a GameShark condition code.
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
-enum Test {
-    Equal,
-    Different,
-    Less,
-    Greater,
-}
-
-/// One code, as it runs each frame.
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
-enum Code {
-    /// Write `size` bytes.
-    Write { address: u32, size: u32, value: u32 },
-    /// Add (or, negative, subtract) to `size` bytes.
-    Add { address: u32, size: u32, delta: i32 },
-    /// Run the next code only if `size` bytes at `address` pass `test`.
-    If { address: u32, size: u32, test: Test, value: u32 },
-    /// The next code (a write) `count` times, its address advanced by
-    /// `step` bytes and its value by `increment` each time.
-    Repeat { count: u32, step: u32, increment: u32 },
-}
-
-/// Parses one GameShark line ("80012345 0063"), or says why it cannot.
-fn parse_code(line: &str) -> Result<Code, String> {
-    let shape = || format!("{line:?}: not \"AAAAAAAA VVVV\"");
-    let mut parts = line.split_whitespace();
-    let (Some(a), Some(v), None) = (parts.next(), parts.next(), parts.next()) else { return Err(shape()) };
-    if a.len() != 8 || v.len() != 4 {
-        return Err(shape());
-    }
-    let word = u32::from_str_radix(a, 16).map_err(|_| shape())?;
-    let value = u32::from_str_radix(v, 16).map_err(|_| shape())?;
-    let address = 0x8000_0000 | (word & 0x00FF_FFFF);
-    let condition = |size, test| Code::If { address, size, test, value: if size == 1 { value & 0xFF } else { value } };
-    Ok(match word >> 24 {
-        0x80 => Code::Write { address, size: 2, value },
-        0x30 => Code::Write { address, size: 1, value: value & 0xFF },
-        0x10 => Code::Add { address, size: 2, delta: value as i32 },
-        0x11 => Code::Add { address, size: 2, delta: -(value as i32) },
-        0x20 => Code::Add { address, size: 1, delta: (value & 0xFF) as i32 },
-        0x21 => Code::Add { address, size: 1, delta: -((value & 0xFF) as i32) },
-        0xD0 => condition(2, Test::Equal),
-        0xD1 => condition(2, Test::Different),
-        0xD2 => condition(2, Test::Less),
-        0xD3 => condition(2, Test::Greater),
-        0xE0 => condition(1, Test::Equal),
-        0xE1 => condition(1, Test::Different),
-        0xE2 => condition(1, Test::Less),
-        0xE3 => condition(1, Test::Greater),
-        0x50 => Code::Repeat { count: (word >> 8) & 0xFF, step: word & 0xFF, increment: value },
-        kind => return Err(format!("{line:?}: code type {kind:02X} is not supported")),
-    })
-}
-
-/// A cheat or patch ready to run: its codes in order.
-struct Patch {
-    codes: Vec<Code>,
-}
-
-/// The patches of the mods in use, lowest priority first (so the highest
-/// writes last and wins).
-fn patches() -> &'static [Patch] {
-    static PATCHES: OnceLock<Vec<Patch>> = OnceLock::new();
-    PATCHES.get_or_init(|| {
-        let mut out = Vec::new();
-        if !enabled() {
-            return out;
-        }
-        for m in installed().into_iter().filter(|m| m.enabled).rev() {
-            let path = m.dir.join("patches.toml");
-            let Ok(text) = std::fs::read_to_string(&path) else { continue };
-            let file: PatchFile = match toml::from_str(&text) {
-                Ok(f) => f,
-                Err(err) => {
-                    eprintln!("pe2: mods: {}: {err}", path.display());
-                    continue;
-                }
-            };
-            for c in file.cheat.iter().filter(|c| c.enabled.unwrap_or(true)) {
-                let name = c.name.as_deref().unwrap_or("cheat");
-                let codes: Result<Vec<Code>, String> = c.codes.iter().map(|l| parse_code(l)).collect();
-                match codes {
-                    Ok(codes) => out.push(Patch { codes }),
-                    Err(err) => eprintln!("pe2: mods: {}: {name}: {err}; skipped", path.display()),
-                }
-            }
-            for p in file.patch.iter().filter(|p| p.enabled.unwrap_or(true)) {
-                let size = p.size.unwrap_or(4);
-                if ![1, 2, 4].contains(&size) {
-                    let name = p.name.as_deref().unwrap_or("patch");
-                    eprintln!("pe2: mods: {}: {name}: size must be 1, 2 or 4; skipped", path.display());
-                    continue;
-                }
-                out.push(Patch { codes: vec![Code::Write { address: p.address, size, value: p.value }] });
-            }
-        }
-        if !out.is_empty() {
-            eprintln!("pe2: mods: {} cheats and patches", out.len());
-        }
-        out
-    })
-}
-
-/// Where PlayStation address `address` (KUSEG, KSEG0 or KSEG1) is in the
-/// RAM mapping, if it is in RAM.
-fn ram(address: u32) -> Option<*mut u8> {
-    let physical = address & 0x1FFF_FFFF;
-    (physical < 0x0020_0000).then_some((0x8000_0000u32 | physical) as usize as *mut u8)
-}
-
-fn read(address: u32, size: u32) -> Option<u32> {
-    let p = ram(address)?;
-    // SAFETY: inside the PlayStation RAM mapping (see `ram`).
-    Some(unsafe {
-        match size {
-            1 => u32::from(p.read_volatile()),
-            2 => u32::from(p.cast::<u16>().read_unaligned()),
-            _ => p.cast::<u32>().read_unaligned(),
-        }
-    })
-}
-
-fn write(address: u32, size: u32, value: u32) {
-    let Some(p) = ram(address) else { return };
-    // SAFETY: inside the PlayStation RAM mapping (see `ram`).
-    unsafe {
-        match size {
-            1 => p.write_volatile(value as u8),
-            2 => p.cast::<u16>().write_unaligned(value as u16),
-            _ => p.cast::<u32>().write_unaligned(value),
-        }
-    }
-}
-
-/// Runs `codes` once, against `read` and `write`.
-fn run_codes(codes: &[Code], read: impl Fn(u32, u32) -> Option<u32>, mut write: impl FnMut(u32, u32, u32)) {
-    let mut i = 0;
-    while i < codes.len() {
-        match codes[i] {
-            Code::Write { address, size, value } => write(address, size, value),
-            Code::Add { address, size, delta } => {
-                if let Some(v) = read(address, size) {
-                    write(address, size, v.wrapping_add(delta as u32));
-                }
-            }
-            Code::If { address, size, test, value } => {
-                let pass = read(address, size).is_some_and(|v| match test {
-                    Test::Equal => v == value,
-                    Test::Different => v != value,
-                    Test::Less => v < value,
-                    Test::Greater => v > value,
-                });
-                if !pass {
-                    i += 1;
-                }
-            }
-            Code::Repeat { count, step, increment } => {
-                if let Some(Code::Write { address, size, value }) = codes.get(i + 1).copied() {
-                    for k in 0..count {
-                        write(address + k * step, size, value.wrapping_add(k * increment));
-                    }
-                    i += 1;
-                }
-            }
-        }
-        i += 1;
-    }
-}
-
-/// Applies the mods' cheats and patches: each vertical blank, before the
-/// game's own handler, with the game stopped, as a cheat cartridge does.
-pub fn apply_patches() {
-    for p in patches() {
-        run_codes(&p.codes, read, write);
-    }
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    /// Past its budget a library lets go of what was wanted longest ago,
+    /// never what was just loaded.
+    #[test]
+    fn libraries_keep_to_their_budget() {
+        let picture = |n: usize| Picture { width: 1, height: 1, rgba: vec![0; n] };
+        let library: Library<u64> = Library {
+            files: HashMap::new(),
+            resolved: OnceLock::new(),
+            loaded: Mutex::new(HashMap::new()),
+            load: |_| Err(String::new()),
+            budget: 25,
+            clock: Default::default(),
+        };
+        let mut loaded = library.loaded.lock().unwrap();
+        loaded.insert(1, Slot::Ready(Arc::new(picture(10)), 3));
+        loaded.insert(2, Slot::Ready(Arc::new(picture(10)), 1));
+        loaded.insert(3, Slot::Loading);
+        loaded.insert(4, Slot::Ready(Arc::new(picture(10)), 0));
+        library.trim(&mut loaded, 4);
+        let mut kept: Vec<u64> = loaded.keys().copied().collect();
+        kept.sort();
+        assert_eq!(kept, [1, 3, 4]);
+    }
+
+    /// Mods' files are found in the folders inside too (the extract's
+    /// rooms/<area>/<room>...).
+    #[test]
+    fn files_are_found_in_folders() {
+        let dir = std::env::temp_dir().join(format!("pe2-files-under-{}", std::process::id()));
+        let nested = dir.join("rooms").join("dryfield").join("gas_station");
+        std::fs::create_dir_all(&nested).unwrap();
+        std::fs::write(dir.join("a.png"), b"").unwrap();
+        std::fs::write(nested.join("b.png"), b"").unwrap();
+        let found = files_under(&dir);
+        std::fs::remove_dir_all(&dir).unwrap();
+        assert_eq!(found, [dir.join("a.png"), nested.join("b.png")]);
+    }
 
     /// The hash names files, so it must never change.
     #[test]
@@ -718,38 +615,6 @@ mod tests {
         assert_eq!(fnv1a([]), 0xCBF2_9CE4_8422_2325);
         assert_eq!(fnv1a(*b"a"), 0xAF63_DC4C_8601_EC8C);
         assert_ne!(screen_hash(2, 1, &[1, 2]), screen_hash(1, 2, &[1, 2]));
-    }
-
-    /// GameShark lines parse to the codes they stand for.
-    #[test]
-    fn gameshark_codes() {
-        assert_eq!(parse_code("80073BA0 0032"), Ok(Code::Write { address: 0x80073BA0, size: 2, value: 0x32 }));
-        assert_eq!(parse_code("30012345 00FF"), Ok(Code::Write { address: 0x80012345, size: 1, value: 0xFF }));
-        assert_eq!(parse_code("11012344 0002"), Ok(Code::Add { address: 0x80012344, size: 2, delta: -2 }));
-        assert_eq!(
-            parse_code("D0012344 1234"),
-            Ok(Code::If { address: 0x80012344, size: 2, test: Test::Equal, value: 0x1234 })
-        );
-        assert_eq!(parse_code("50000402 0001"), Ok(Code::Repeat { count: 4, step: 2, increment: 1 }));
-        assert!(parse_code("C0012344 0001").is_err());
-        assert!(parse_code("80012344").is_err());
-    }
-
-    /// Conditions guard the next code; repeaters repeat it.
-    #[test]
-    fn codes_run() {
-        let read = |a: u32, _| Some(if a == 0x10 { 5 } else { 0 });
-        let codes = [
-            Code::If { address: 0x10, size: 2, test: Test::Equal, value: 5 },
-            Code::Write { address: 0x20, size: 2, value: 1 },
-            Code::If { address: 0x10, size: 2, test: Test::Equal, value: 6 },
-            Code::Write { address: 0x30, size: 2, value: 1 },
-            Code::Repeat { count: 3, step: 2, increment: 10 },
-            Code::Write { address: 0x40, size: 2, value: 1 },
-        ];
-        let mut writes = Vec::new();
-        run_codes(&codes, read, |a, _, v| writes.push((a, v)));
-        assert_eq!(writes, [(0x20, 1), (0x40, 1), (0x42, 11), (0x44, 21)]);
     }
 
     /// Resizing keeps flat colours and fills the target.

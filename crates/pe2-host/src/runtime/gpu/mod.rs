@@ -65,6 +65,9 @@ pub struct Gpu {
     /// The screen images a mod's pictures last replaced, by where they
     /// went (`Shown`).
     shown: Vec<Shown>,
+    /// Screen images a mod has a picture for that was not loaded yet when
+    /// they came: replaced once it is (`apply_awaiting`).
+    awaiting: Vec<Awaiting>,
     /// The last screen images read back (their hash and pixels, most
     /// recent last), and screen images loaded that are the grey negative of
     /// one of them (by hash: that one's hash).
@@ -81,6 +84,23 @@ struct Shown {
     hash: u64,
     pixels: Vec<u16>,
 }
+
+/// A screen image waiting for a mod's picture: where it went, its hash,
+/// and the blanks waited so far.
+struct Awaiting {
+    rect: (i32, i32, i32, i32),
+    hash: u64,
+    waited: u32,
+}
+
+/// How long the game waits for a mod's picture still loading when its
+/// screen image comes (a large picture takes a while; past this, the
+/// game's own shows until it has loaded).
+const PICTURE_WAIT: std::time::Duration = std::time::Duration::from_millis(400);
+
+/// Blanks a screen image waits for its picture to load (a large picture
+/// takes a while).
+const AWAIT_BLANKS: u32 = 300;
 
 impl Shown {
     /// The tiles (x, y, w, h within the image) where `pixels` differ from
@@ -216,6 +236,7 @@ pub fn start() {
         cmd_addr: 0,
         cmd_word0: 0,
         shown: Vec::new(),
+        awaiting: Vec::new(),
         read_back: Vec::new(),
         negatives: Vec::new(),
     });
@@ -924,8 +945,20 @@ pub extern "C" fn pcrt_ClearImage(rect: *const Rect, r: u8, g: u8, b: u8) -> i32
 
 #[unsafe(no_mangle)]
 pub extern "C" fn pcrt_LoadImage(rect: *const Rect, p: *const u16) -> i32 {
-    let _g = irq::guard();
     let rc = read_rect(rect);
+    // A screen image a mod's picture is still loading for (its file was
+    // read just before, mods::file_read): waited for a moment, so the
+    // game's own does not show first.
+    let (w, h) = (i32::from(rc.w), i32::from(rc.h));
+    if w >= 256 && h >= 192 && crate::mods::wants_screens() {
+        // SAFETY: the game passes w*h pixels.
+        let pixels = unsafe { std::slice::from_raw_parts(p, (w * h) as usize) };
+        let hash = crate::mods::screen_hash(w, h, pixels);
+        if crate::mods::has_background(hash) {
+            crate::mods::background_wait(hash, PICTURE_WAIT);
+        }
+    }
+    let _g = irq::guard();
     vtrace(format_args!("LoadImage ({},{}) {}x{}", rc.x, rc.y, rc.w, rc.h));
     let n = (i32::from(rc.w) * i32::from(rc.h)).max(0) as usize;
     // SAFETY: the game passes w*h pixels.
@@ -952,6 +985,15 @@ pub extern "C" fn pcrt_LoadImage(rect: *const Rect, p: *const u16) -> i32 {
         if let Some(hash) = hash {
             let has = if picture.is_some() { "a mod's picture" } else { "no picture (yet)" };
             vtrace(format_args!("screen image {hash:016x} at ({x0},{y0}) {w}x{h}: {has}"));
+        }
+        // Shown once (a loading screen) before its picture loaded: replaced
+        // when it has.
+        g.awaiting.retain(|a| a.rect != rect);
+        if let Some(hash) = hash
+            && picture.is_none()
+            && crate::mods::has_background(hash)
+        {
+            g.awaiting.push(Awaiting { rect, hash, waited: 0 });
         }
         if let Some((hash, _)) = picture {
             g.shown.retain(|s| s.rect != rect);
@@ -1304,6 +1346,10 @@ pub fn latch() {
     if let Some(interp) = g.interp.as_mut() {
         interp.blank();
     }
+    if apply_awaiting(g) {
+        // Shown again, with the picture.
+        g.generation += 1;
+    }
     if g.generation == g.latched {
         // No new frame: the frame in between, if one is ready.
         let pending = g.interp.as_mut().and_then(interp::Interp::take_pending);
@@ -1329,7 +1375,7 @@ pub fn latch() {
     f.vram.clear();
     f.on_card = false;
     f.movie = None;
-    crate::mods::movies::tick();
+    crate::mods::movies::tick(d.rgb24 && d.enabled);
     let kept = g.hw.take_frame();
     if !d.rgb24 {
         let hw = &mut g.hw;
@@ -1396,6 +1442,36 @@ pub fn latch() {
             f.vram.extend((0..row_words).map(|i| row[(x0 + i) % VRAM_WIDTH]));
         }
     }
+}
+
+/// The screen images waiting for a mod's picture whose picture has loaded
+/// since: replaced, if still there as they came (else let go). True when
+/// one was.
+fn apply_awaiting(g: &mut Gpu) -> bool {
+    let mut applied = false;
+    for mut a in std::mem::take(&mut g.awaiting) {
+        let (x, y, w, h) = a.rect;
+        let Some(p) = crate::mods::background(a.hash) else {
+            a.waited += 1;
+            if a.waited < AWAIT_BLANKS {
+                g.awaiting.push(a);
+            }
+            continue;
+        };
+        let mut pixels = vec![0u16; (w * h) as usize];
+        g.vram.read_rect(x, y, w, h, &mut pixels);
+        // Drawn over since: the game's frames go on without it.
+        if crate::mods::screen_hash(w, h, &pixels) != a.hash {
+            continue;
+        }
+        vtrace(format_args!("screen image {:016x} at ({x},{y}) {w}x{h}: a mod's picture, loaded since", a.hash));
+        g.shown.retain(|s| s.rect != a.rect);
+        g.shown.truncate(3);
+        g.shown.insert(0, Shown { rect: a.rect, hash: a.hash, pixels });
+        g.hw.upload_picture(&g.vram, x, y, w, h, a.hash, &p);
+        applied = true;
+    }
+    applied
 }
 
 /// Copies the displayed region of the hardware layer (or of `source`, a

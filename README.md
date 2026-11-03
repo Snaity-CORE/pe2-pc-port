@@ -10,6 +10,14 @@ sound, CD, controllers, memory cards). No emulator and no code from Sony.
 > own discs (`SLUS-01042` and `SLUS-01055`, as `.chd` or `.cue` images). The
 > port reads the game's data from them at run time.
 
+> [!IMPORTANT]
+> **Only unmodified dumps of the original USA release work.** The port is
+> built from the decompilation of that exact release, so it expects its
+> discs byte for byte: other regions (European, Japanese), fan translations,
+> patched, hacked or otherwise modified images are not supported and will
+> not run correctly. Translations and other changes go in as mods instead
+> (see [docs/MODDING.md](docs/MODDING.md)).
+
 ## Status
 
 Playable on Windows: both discs, movies, music and sound, saves, controllers.
@@ -38,8 +46,10 @@ It plays as the console does and adds what a PC can, all optional:
   its texts with translations (the dialogue, the menus, the items'
   details); cheats and memory patches; the game's pictures, textures,
   music, movies, files and texts extracted from your discs with
-  `pe2 --extract` to make them, and translations imported from translated
-  discs (see [docs/MODDING.md](docs/MODDING.md)).
+  `pe2 --extract`, filed in folders by what they are, to make them;
+  translations imported from translated discs, their translated pictures
+  and loading captions included; mods installed from a .zip in the
+  launcher (see [docs/MODDING.md](docs/MODDING.md)).
 - **Cheats** (in `pe2.toml`, `[cheats]`): infinite HP or MP, one-hit kills,
   every hit critical, and EXP and BP multipliers.
 - **Comfort**: a launcher worked by mouse, keyboard or controller (English or
@@ -148,6 +158,7 @@ runs `tools/check_no_game_data.py` and blocks them.
   [ab_glyph](https://github.com/alexheretic/ab-glyph) (the fonts),
   [discord-rich-presence](https://github.com/vionya/discord-rich-presence), png, image-webp, toml, toml_edit, serde,
   pollster, windows-sys, lewton, claxon and hound (mods' music),
+  [zip](https://github.com/zip-rs/zip2) (mods installed from .zip),
   [openh264](https://github.com/ralfbiedert/openh264-rs) with Cisco's
   [OpenH264](https://github.com/cisco/openh264) (BSD-2-Clause, © Cisco Systems),
   mp4 and [Symphonia](https://github.com/pdeljanov/Symphonia) (mods' movies),

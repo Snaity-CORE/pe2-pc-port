@@ -430,11 +430,12 @@ impl Drive {
             }
         }
         self.redirect = files.get(&lba).map(|data| (lba, data.clone()));
-        if crate::runtime::trace("files")
-            && let Some(name) = starts.get(&lba)
-        {
-            let from = if self.redirect.is_some() { "a mod" } else { "the disc" };
-            eprintln!("[files] {name} (sector {lba}) from {from}");
+        if let Some(name) = starts.get(&lba) {
+            crate::mods::file_read(name);
+            if crate::runtime::trace("files") {
+                let from = if self.redirect.is_some() { "a mod" } else { "the disc" };
+                eprintln!("[files] {name} (sector {lba}) from {from}");
+            }
         }
     }
 

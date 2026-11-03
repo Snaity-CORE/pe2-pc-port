@@ -1,0 +1,17 @@
+name: Feature request
+description: An idea to make PE2PC better.
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would you like?
+      description: What it should do, and where (in the game, the pause menu's Options, the launcher, mods...).
+    validations:
+      required: true
+
+  - type: textarea
+    id: why
+    attributes:
+      label: Why
+      description: What it makes easier or better while playing or modding.

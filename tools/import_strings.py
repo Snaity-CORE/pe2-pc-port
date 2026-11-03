@@ -12,7 +12,9 @@ character whose picture the game's font has in the same shape, or a
 picture labelled in LABELS (translations draw new letters and whole
 syllables into the font). Writes `strings/**/*.toml`, `mod.toml` and
 `report.txt` (texts left out, codes not known, with their pictures in
-`report-glyphs/`) into the mod folder.
+`report-glyphs/`) into the mod folder, and the loading screens' captions,
+when translated, as `patches.toml` and `glyphs/` (import_captions), and the
+pictures it changed (maps, signs, that font) in `files/` (import_pictures).
 
     python tools/import_strings.py <game's dumps> <other's dumps> <mod folder>
         [--name NAME] [--description TEXT]
@@ -41,10 +43,25 @@ CAMEL = re.compile(r"(?<=[^\W\d_A-ZÀ-Þ])[A-ZÀ-Þ]")
 # A small letter after two capitals (JOg, ARk): the same, in the small
 # face, whose small letters' codes are its own syllables.
 SHOUTED = re.compile(r"(?<=[A-ZÀ-Þ]{2})[a-zß-ÿ]")
+# Marks that are letters read in the wrong face: a line ending in ; (BA;
+# for BAÚ, a title in the small face) or ' between capitals (APLIC'VEIS).
+STRAY = re.compile(r";\s*$|(?<=[A-ZÀ-Þ])'(?=[A-ZÀ-Þ])")
 # The font's codes (\B9, \Sm, \Co, \Z): not words.
 CODES = re.compile(r"\\[A-Za-z][A-Za-z0-9]?")
 
 FACES = [('medium', 0x8005EFB0, 224, 38), ('large', 0x8005FA30, 224, 128), ('small', 0x800604B0, 91, 0)]
+
+# The font's codes whose next byte is their operand (main/textdraw.c): the
+# backslash, the code and the operand are not letters to read.
+OPERAND_CODES = b'BCDSUWbcdsuw'
+
+# Texts the game draws in a face the reading cannot tell (no word known):
+# (file, first address, last address) -> face.
+FACE_AT = {
+    # The memory card menu's save places (Nursery: a syllable the
+    # translation drew reads "io" in the large face, "ci" in the medium).
+    ('exe/80010000.toml', 0x80067340, 0x80067410): 'large',
+}
 
 # Pictures of the other version's font that are not the game's letters,
 # by the hash of their cell (`report-glyphs/<face>-<hash>.png`): what they
@@ -192,7 +209,8 @@ class Version:
 
     def __init__(self, dumps):
         self.dumps = dumps
-        exes = [p for p in glob.glob(os.path.join(dumps, 'files', '*')) if os.path.isfile(p)]
+        exes = [p for p in glob.glob(os.path.join(dumps, 'files', '*'))
+                if os.path.isfile(p) and open(p, 'rb').read(8) == b'PS-X EXE']
         if not exes:
             sys.exit(f'{dumps}: no executable in files/ (extract again with this PE2PC)')
         exe = open(exes[0], 'rb').read()
@@ -295,6 +313,166 @@ def literal(text):
     return "'''\n" + text + "'''" if "'''" not in text else repr(text)
 
 
+# The loading screens' captions (main/caption_draw.c): not text but scripts
+# of indices into `gTextCaptionGlyphCells`, the cells of a font of their own
+# (a picture each loading screen's file loads with its background,
+# stage0/file3 to file40; the M.I.S.T. briefing has a copy, stage1/1801's
+# second). A translation redraws that font, with its own cells and scripts,
+# so those are taken as they are: the table and the scripts (and nothing
+# else of that part of the executable) as memory patches; the pictures come
+# with the others (import_pictures).
+CAPTIONS = (0x800627E0, 0x800630B0)
+# Where the scripts start: the glyph table is all before.
+CAPTIONS_FIRST_SCRIPT = 0x800628F8
+
+# Pictures a translation changes that stay the game's: PE2PC redraws them
+# finer from the game's own (the menus' font, with the letters translations
+# add: menuglyphs.rs), or mods replace the game's (the title page, which a
+# translation's mod redraws in its own words; the HUD's sheet, an HD UI's).
+PICTURES_KEPT = {
+    'stage0/file1/1.pe2img': "the menus' font",
+    'stage0/file20162/0.pe2img': "the menus' font",
+    'stage0/file1/3.pe2img': "the HUD's sheet",
+    'stage0/file20162/2.pe2img': "the HUD's sheet",
+    'stage0/file2/2.pe2img': 'the title page',
+}
+
+
+def import_pictures(args, report):
+    """Copies into the mod's `files/` every picture (`.pe2img` chunk) the
+    other version changed (its words: maps, signs, the captions' font), but
+    PICTURES_KEPT. Answers how many."""
+    ours, theirs = (os.path.join(d, 'files') for d in (args.game, args.other))
+    copied = 0
+    for path in glob.glob(os.path.join(ours, '**', '*.pe2img'), recursive=True):
+        rel = os.path.relpath(path, ours).replace(os.sep, '/')
+        other = os.path.join(theirs, *rel.split('/'))
+        if rel in PICTURES_KEPT or not os.path.exists(other):
+            continue
+        data = open(other, 'rb').read()
+        if data == open(path, 'rb').read():
+            continue
+        dest = os.path.join(args.out, 'files', *rel.split('/'))
+        os.makedirs(os.path.dirname(dest), exist_ok=True)
+        with open(dest, 'wb') as out:
+            out.write(data)
+        copied += 1
+    return copied
+
+
+def import_captions(game, other, args, report):
+    """Writes the other version's loading captions into the mod
+    (`patches.toml`, `glyphs/`), when they are not the game's. Answers how
+    many words are patched."""
+    lo, hi = (a - game.exe_base for a in CAPTIONS)
+    if other.exe_base != game.exe_base or game.exe[lo:hi] == other.exe[lo:hi]:
+        return 0
+    words = [(at, struct.unpack_from('<I', other.exe, at)[0]) for at in range(lo, hi, 4)
+             if game.exe[at:at + 4] != other.exe[at:at + 4]]
+    lines = [f'# {args.name}: the loading captions (their font\'s cells and their scripts)', '']
+    for at, value in words:
+        lines += ['[[patch]]', f'address = 0x{at + game.exe_base:08X}', f'value = 0x{value:08X}', '']
+    with open(os.path.join(args.out, 'patches.toml'), 'w', encoding='utf-8', newline='\n') as f:
+        f.write('\n'.join(lines))
+    caption_maps(game, other, args, report)
+    return len(words)
+
+
+# The captions' letters the game's font does not have, or draws otherwise,
+# in a translation's redrawn font: the picture's key (caption_key) -> what
+# it shows. The Brazilian Portuguese fan translation's.
+CAPTION_LABELS = {
+    '3c809d57583a': 'de',  # " de " in one cell
+    '0e98ec424e36': 't',
+    '6650141535d1': 'm',
+    '1a2fa64229aa': 'b',
+    '84c15659a681': 'P',
+    'cd6e0ec87459': '5',
+    '227befe63f69': 'ó',
+    'ef3d70498bb5': ',',
+    'e607a9c3e510': 'ã',
+    'dddb87fccc93': '7',
+    '88073596104f': 'c',
+    '46995c4ff34f': 'y',
+    '3ba128e06fc6': 'í',
+    '2d5b0be9f8f1': 'x',
+}
+
+# The captions' font's copies (where the extract finds them) and how far
+# down its sheet each draws the cells.
+CAPTION_SHEETS = [('stage0/file10/0#0', 0), ('stage1/1801/file0/1#0', 48)]
+CAPTION_TEXT = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890:;',.?!"
+
+
+def caption_key(picture):
+    return hashlib.sha1(repr(picture).encode()).hexdigest()[:12]
+
+
+def caption_maps(game, other, args, report):
+    """Glyph maps of the other version's captions' font (`glyphs/`), which
+    PE2PC redraws finer as it does the game's: each cell its translation's
+    captions use, read as the game's letter of the same picture, or by
+    CAPTION_LABELS. Needs both versions' textures extracted."""
+    def sheet_of(dumps, origin):
+        index = os.path.join(dumps, 'textures', 'index.txt')
+        if not os.path.exists(index):
+            return None
+        for line in open(index, encoding='utf-8'):
+            parts = line.split()
+            if len(parts) > 1 and parts[1] == origin:
+                return parts[0].split('-')[0]
+        return None
+
+    def crop(rows, cell, down):
+        u, v, w, h = cell
+        return tuple(tuple(rows[v + down + y][u:u + w]) for y in range(h) if v + down + y < len(rows))
+
+    lo = CAPTIONS[0] - game.exe_base
+    cells = lambda exe, n: [tuple(exe[lo + 4 * i:lo + 4 * i + 4]) for i in range(n)]
+    count = (CAPTIONS_FIRST_SCRIPT - CAPTIONS[0]) // 4
+    for origin, down in CAPTION_SHEETS:
+        ours, theirs = sheet_of(args.game, origin), sheet_of(args.other, origin)
+        paths = [os.path.join(d, 'textures-indexed', f'{s}-4bit.idx.png')
+                 for d, s in ((args.game, ours), (args.other, theirs)) if s]
+        if len(paths) < 2 or not all(os.path.exists(p) for p in paths):
+            report.append(f'{origin}: the captions\' font not extracted in both versions (textures): '
+                          'its translation drawn as it is, not redrawn finer')
+            continue
+        if ours == theirs:
+            continue
+        mine, translated = png_indices(paths[0]), png_indices(paths[1])
+        known = {}
+        for cell, text in zip(cells(game.exe, len(CAPTION_TEXT)), CAPTION_TEXT):
+            known.setdefault(crop(mine, cell, down), text)
+        lines = ['# Glyphs of a picture of text (see docs/MODDING.md): the captions\' font',
+                 f'# of {args.name}, redrawn finer by PE2PC.',
+                 'kind = "loading"', f'sheets = ["{theirs}"]', 'depth = 4']
+        glyphs, missing = 0, []
+        for cell in cells(other.exe, count):
+            u, v, w, h = cell
+            picture = crop(translated, cell, down)
+            if w == 0 or not any(any(row) for row in picture):
+                continue
+            text = known.get(picture) or CAPTION_LABELS.get(caption_key(picture))
+            if text is None:
+                missing.append(f'{origin}: caption glyph at ({u}, {v + down}) {w}x{h} not known '
+                               f'(CAPTION_LABELS key {caption_key(picture)}): kept as it is')
+                continue
+            lines += ['', '[[glyph]]', f'cell = [{u}, {v + down}, {w}, {h}]', f'text = "{text}"']
+            glyphs += 1
+        # A copy the translation did not redraw there (the M.I.S.T.
+        # briefing's): not its font, left as it is.
+        if glyphs < len(missing):
+            report.append(f'{origin}: the captions\' font not found there in the other version: '
+                          'drawn as it is, not redrawn finer')
+            continue
+        report.extend(missing)
+        dest = os.path.join(args.out, 'glyphs')
+        os.makedirs(dest, exist_ok=True)
+        with open(os.path.join(dest, f'{theirs}-4bit.toml'), 'w', encoding='utf-8', newline='\n') as f:
+            f.write('\n'.join(lines) + '\n')
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__.split('\n\n')[0])
     p.add_argument('game')
@@ -319,7 +497,17 @@ def main():
         """`raw` read in `face`: the text, the pictures not known, and how
         many codes read as labelled pictures."""
         out, missing, labelled = [], [], 0
-        for b in raw:
+        operands = 0
+        for i, b in enumerate(raw):
+            # A code's letter and operand, as they are.
+            if operands:
+                operands -= 1
+                out.append(chr(b))
+                continue
+            if b == 0x5C and i + 1 < len(raw):
+                operands = 2 if raw[i + 1] in OPERAND_CODES else 1
+                out.append(chr(b))
+                continue
             picture = their_fonts[face].get(b)
             if b < 0x21 or b == 0x5C or chr(b) in '{|}~' or picture is None:
                 out.append(chr(b))
@@ -346,14 +534,19 @@ def main():
     stems = {w[:4] for w in vocabulary if len(w) >= 4}
     alphabet = {c for w in vocabulary for c in w}
 
-    def decode_line(raw):
-        """The reading in the face that knows all its codes, with no mark
+    def decode_line(raw, face=None):
+        """The reading in `face` when given and it knows all the codes;
+        else the one in the face that knows all its codes, with no mark
         inside a word and no letter the translation never writes, and the
         best share of words the translation knows (a word 1, only its stem
         1/4), less 1/4 for each labelled picture (a face's own letter is
         likelier than a drawing over it) and 1/2 for each capital after a
         small letter, small letter after two capitals or one-letter word
-        not a vowel; the first face on a tie."""
+        not a vowel or stray mark; the first face on a tie."""
+        if face is not None:
+            text, missing, _ = decode_in(raw, face)
+            if not missing:
+                return text
         readings = [decode_in(raw, face) for face, *_ in FACES]
         for _, missing, _ in readings:
             for name, code, picture in missing:
@@ -367,14 +560,14 @@ def main():
             # A word of one letter that is not a vowel (d, q: words of one
             # letter are a, e, o, é, à; a dialogue's q is short for que).
             lone = sum(len(w) == 1 and w not in 'aeiouáàâãéêíóôõú' for w in words)
-            odd_case = len(CAMEL.findall(text)) + len(SHOUTED.findall(text)) + lone
+            odd_case = len(CAMEL.findall(text)) + len(SHOUTED.findall(text)) + lone + len(STRAY.findall(text))
             doubt = labelled * 0.25 + odd_case * 0.5 - known / max(1, len(words))
             return len(missing), len(ODD.findall(text)), foreign, doubt
         return min(readings, key=score)[0]
 
-    def decode(raw):
+    def decode(raw, face=None):
         """Line by line: a text may change faces from one to the next."""
-        return '\n'.join(decode_line(line) for line in raw.split(b'\n'))
+        return '\n'.join(decode_line(line, face) for line in raw.split(b'\n'))
 
     report, files, texts = [], 0, 0
     originals = set()
@@ -391,7 +584,8 @@ def main():
         # seem to be).
         if raw == original.encode('latin-1'):
             return None
-        text = decode(raw)
+        face = next((f for (r, lo, hi), f in FACE_AT.items() if r == rel.replace(os.sep, '/') and lo <= at <= hi), None)
+        text = decode(raw, face)
         if text == original or not text.strip():
             return None
         # Pointers there that lead elsewhere: no words, or another text.
@@ -495,6 +689,26 @@ def main():
             if text is not None:
                 seen.append((s['original'], rel, s['at'], raw, text))
 
+    # The packages the extract listed no text of (each was listed where
+    # first found): a room's copy of the shop's, say, translated otherwise
+    # than the menus' same text. Where each loads is in load-addresses.txt.
+    loads = os.path.join(args.game, 'files', 'load-addresses.txt')
+    if os.path.exists(loads):
+        known = {rel for rel, *_ in places}
+        for line in open(loads, encoding='utf-8').read().splitlines():
+            path, base = line.rsplit(' ', 1)
+            base = int(base, 16)
+            rel = os.path.join(*os.path.dirname(path).split('/'), f'{base:08X}.toml')
+            there = os.path.join(args.other, 'files', *path.split('/'))
+            if rel in known or not os.path.exists(there):
+                continue
+            known.add(rel)
+            data = lzss(open(os.path.join(args.game, 'files', *path.split('/')), 'rb').read())
+            places.append((rel, base, data, lzss(open(there, 'rb').read()), references(data), set()))
+    else:
+        report.append('files/load-addresses.txt: not found (extract again with this PE2PC): '
+                      'only the listed packages were looked in')
+
     # The same texts elsewhere (the extract lists each once), found as the
     # other version's code and data point at them.
     by_bytes = {o.encode('latin-1'): o for o in originals if '%' not in o and len(o) >= 2}
@@ -557,11 +771,15 @@ def main():
         for name, (code, picture) in sorted(unknown.items()):
             write_png(os.path.join(pictures, f'{name}.png'), picture)
             report.append(f'code 0x{code:02X}: picture {name} not known (report-glyphs/{name}.png)')
+    captions = import_captions(game, other, args, report)
+    pictures = import_pictures(args, report)
     with open(os.path.join(args.out, 'mod.toml'), 'w', encoding='utf-8', newline='\n') as f:
         f.write(f'name = "{args.name}"\ndescription = "{args.description}"\nenabled = true\n')
     with open(os.path.join(args.out, 'report.txt'), 'w', encoding='utf-8', newline='\n') as f:
         f.write('\n'.join(report) + '\n')
-    print(f'{files} files, {texts} texts; {len(unknown)} pictures not known; {len(report)} notes in report.txt')
+    print(f'{files} files, {texts} texts; {len(unknown)} pictures not known; {len(report)} notes in report.txt'
+          + (f'; loading captions: {captions} words patched' if captions else '')
+          + (f'; {pictures} pictures in files/' if pictures else ''))
 
 
 if __name__ == '__main__':

@@ -18,7 +18,7 @@
 
 use std::collections::{BTreeMap, HashMap, HashSet};
 use std::path::{Path, PathBuf};
-use std::sync::Arc;
+use std::sync::{Arc, OnceLock};
 
 use crate::disc::{Disc, iso9660};
 
@@ -259,8 +259,8 @@ fn replacements() -> HashMap<String, Replacement> {
     if !super::enabled() {
         return out;
     }
-    for (key, chunk, bytes) in super::strings::file_texts() {
-        out.entry(key).or_default().chunks.insert(chunk, ChunkSource::Made(bytes));
+    for t in super::strings::file_texts() {
+        out.entry(t.key).or_default().chunks.insert(t.chunk, ChunkSource::Made(t.bytes));
     }
     for m in super::installed().into_iter().filter(|m| m.enabled).rev() {
         let root = m.dir.join("files");
@@ -289,6 +289,47 @@ fn replacements() -> HashMap<String, Replacement> {
     out
 }
 
+/// `wanted` with the translated text files' twins: other files of the
+/// same folder, among the translated ones' numbers (the items' details,
+/// file20300 on), whose chunk holds the same text. The extract lists a
+/// text once (the unidentified items' files share theirs), and a
+/// translation applies wherever the game uses that exact text.
+fn with_twins(
+    disc: &mut dyn Disc,
+    files: &[DiscFile],
+    mut wanted: HashMap<String, Replacement>,
+) -> HashMap<String, Replacement> {
+    let texts = super::strings::file_texts();
+    let number = |key: &str| -> Option<(String, u32)> {
+        let (folder, name) = key.rsplit_once('/')?;
+        Some((folder.to_string(), name.strip_prefix("file")?.parse().ok()?))
+    };
+    // Each folder's span of translated files.
+    let mut spans: HashMap<String, (u32, u32)> = HashMap::new();
+    for t in &texts {
+        if let Some((folder, n)) = number(&t.key) {
+            let span = spans.entry(folder).or_insert((n, n));
+            *span = (span.0.min(n), span.1.max(n));
+        }
+    }
+    for f in files {
+        let Some((folder, n)) = number(&f.key) else { continue };
+        if !spans.get(&folder).is_some_and(|&(lo, hi)| (lo..=hi).contains(&n)) || wanted.contains_key(&f.key) {
+            continue;
+        }
+        let chunks = read_chunks(disc, f.lba);
+        for t in &texts {
+            let Some(chunk) = chunks.get(t.chunk) else { continue };
+            let text: Vec<u8> = chunk.payload.iter().copied().take_while(|&b| b != 0).filter(|&b| b != b'\r').collect();
+            if text == t.original {
+                wanted.entry(f.key.clone()).or_default().chunks.insert(t.chunk, ChunkSource::Made(t.bytes.clone()));
+                break;
+            }
+        }
+    }
+    wanted
+}
+
 /// A disc's replaced files: first sector -> the file's on-disc bytes.
 pub type Overrides = HashMap<u32, Arc<Vec<u8>>>;
 
@@ -299,11 +340,14 @@ pub type Starts = HashMap<u32, String>;
 /// and where every file starts (also wanted by PE2_TRACE=files).
 pub fn overrides(disc: &mut dyn Disc, number: usize) -> (Overrides, Starts) {
     let wanted = replacements();
-    if wanted.is_empty() && !crate::runtime::trace("files") {
+    // Where files start is also wanted for backgrounds named by place
+    // (loaded as their file is read: mods::file_read).
+    if wanted.is_empty() && !crate::runtime::trace("files") && super::backgrounds::background_places().is_empty() {
         return Default::default();
     }
     let files = layout(disc);
     let starts = files.iter().map(|f| (f.lba, f.key.clone())).collect();
+    let wanted = with_twins(disc, &files, wanted);
     let mut out = Overrides::new();
     let mut found = HashSet::new();
     for f in &files {
@@ -352,8 +396,9 @@ pub fn overrides(disc: &mut dyn Disc, number: usize) -> (Overrides, Starts) {
 }
 
 unsafe extern "C" {
-    fn pcrt_DecDCTvlcSize2(size: i32) -> i32;
-    fn pcrt_DecDCTvlc2(bs: *mut u32, buf: *mut u32, table: *mut u16) -> i32;
+    /// libpress.c: a whole frame, with a decoder state of its own (any
+    /// thread, the game's decoding left alone).
+    fn pc_vlc_decode_frame(bs: *const u32, buf: *mut u32);
 }
 
 /// A room background (a `.bs` chunk) as the game shows it: decoded as the
@@ -419,10 +464,7 @@ fn mdec(bs: &[u8], rgb24: bool) -> Option<Vec<u32>> {
     let mut rle = vec![0u32; words + 1];
     // SAFETY: `rle` holds the header word and the `words` words the frame
     // decodes to; `input` is padded past the bitstream.
-    unsafe {
-        pcrt_DecDCTvlcSize2(0);
-        pcrt_DecDCTvlc2(input.as_mut_ptr(), rle.as_mut_ptr(), std::ptr::null_mut());
-    }
+    unsafe { pc_vlc_decode_frame(input.as_ptr(), rle.as_mut_ptr()) };
     let mut mdec = crate::runtime::mdec::Mdec::default();
     let quant = crate::runtime::libpress::default_quant();
     mdec.write_word(0x4000_0001);
@@ -480,6 +522,7 @@ pub fn dialogue_sources_of(image: &Path, threads: usize) -> Result<super::dialog
     for part in parts {
         let part = part?;
         out.pictures.extend(part.pictures);
+        out.picture_chunks.extend(part.picture_chunks);
         out.palettes.extend(part.palettes);
         out.packages.extend(part.packages);
         out.backgrounds.extend(part.backgrounds);
@@ -488,18 +531,81 @@ pub fn dialogue_sources_of(image: &Path, threads: usize) -> Result<super::dialog
     Ok(out)
 }
 
+/// The pictures (`.pe2img` chunks) the mods in use replace, by file key and
+/// chunk: the game loads those, so the sheets known are theirs (a
+/// translation's font, which a mod's glyph map redraws).
+fn mod_pictures() -> &'static HashMap<(String, usize), PathBuf> {
+    static PICTURES: OnceLock<HashMap<(String, usize), PathBuf>> = OnceLock::new();
+    PICTURES.get_or_init(|| {
+        let mut out = HashMap::new();
+        for (key, r) in replacements() {
+            for (chunk, source) in r.chunks {
+                if let ChunkSource::File(path) = source
+                    && path.extension().is_some_and(|e| e.eq_ignore_ascii_case("pe2img"))
+                {
+                    out.insert((key.clone(), chunk), path);
+                }
+            }
+        }
+        out
+    })
+}
+
+/// `sources`' pictures and palettes, with the pictures the mods replace in
+/// their place (what the game loads): for the sheets known (the catalog).
+/// The rest of what is read from the discs stays the discs' (the dialogue's
+/// glyph pages are found among their own pictures).
+pub fn catalog_sources(sources: &super::dialogue::Sources) -> super::dialogue::Sources {
+    let mut pictures = sources.pictures.clone();
+    for ((key, chunk), path) in mod_pictures() {
+        let Some(at) = sources.picture_chunks.get(key).and_then(|c| c.iter().position(|k| k == chunk)) else {
+            continue;
+        };
+        if let (Some(slot), Ok(data)) = (pictures.get_mut(key).and_then(|p| p.get_mut(at)), std::fs::read(path)) {
+            *slot = data;
+        }
+    }
+    super::dialogue::Sources { pictures, palettes: sources.palettes.clone(), ..Default::default() }
+}
+
 /// The chunks of file `f` of `disc` added to `out`, by type.
 fn add_source(out: &mut super::dialogue::Sources, disc: &mut dyn Disc, f: &DiscFile) {
     for (k, c) in read_chunks(disc, f.lba).into_iter().enumerate() {
         match c.header[0] {
             0 => out.packages.entry(f.key.clone()).or_default().push((c.load_address(), c.payload)),
-            1 => out.pictures.entry(f.key.clone()).or_default().push(c.payload),
+            1 => {
+                out.pictures.entry(f.key.clone()).or_default().push(c.payload);
+                out.picture_chunks.entry(f.key.clone()).or_default().push(k);
+            }
             2 => out.palettes.entry(f.key.clone()).or_default().push(c.payload),
             5 => out.backgrounds.entry(f.key.clone()).or_default().push(c.payload),
             4 => out.bundles.push((f.key.clone(), k, c.payload)),
             _ => {}
         }
     }
+}
+
+/// A chunk of a disc file: the file's key and the chunk's index.
+pub type Place = (String, usize);
+
+/// The hashes of the pictures the game shows (mods::screen_hash) for the
+/// backgrounds at `places` of the disc image `image`.
+pub fn background_hashes(image: &Path, places: &HashSet<Place>) -> Result<Vec<(Place, u64)>, String> {
+    let mut disc = crate::disc::open(image).map_err(|e| e.to_string())?;
+    let keys: HashSet<&str> = places.iter().map(|(key, _)| key.as_str()).collect();
+    let mut out = Vec::new();
+    for f in layout(disc.as_mut()).into_iter().filter(|f| keys.contains(f.key.as_str())) {
+        for (k, c) in read_chunks(disc.as_mut(), f.lba).into_iter().enumerate() {
+            let place = (f.key.clone(), k);
+            if c.header[0] == 5
+                && places.contains(&place)
+                && let Some(pixels) = background_pixels(&c.payload)
+            {
+                out.push((place, super::screen_hash(320, 240, &pixels)));
+            }
+        }
+    }
+    Ok(out)
 }
 
 /// What `pe2 --extract` saves: any of its parts, by name (all of them by
@@ -544,7 +650,7 @@ impl Parts {
 /// file of their file systems, chunk by chunk, under `dumps/files`
 /// (`<file>/<index>.<ext>`; a file differing on a later disc goes under
 /// `disc<n>/`; and the executable); each room background as the picture
-/// the game shows, as `dumps/backgrounds/<hash>.png` (see
+/// the game shows, as `dumps/backgrounds/<folder>/<place>.png` (see
 /// mods::background); the texture sheets under `dumps/textures` (see
 /// sheets.rs); the songs and the movies (music.rs, movies.rs); and the
 /// texts: the dialogue under `dumps/text` (see dialogue.rs) and the texts
@@ -555,6 +661,11 @@ pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path, parts: Parts) -> std::
     let mut seen: HashMap<String, u64> = HashMap::new();
     let mut backgrounds = HashSet::new();
     let mut dialogue = super::dialogue::Sources::default();
+    // File key -> its pictures' chunks, in the order the sheets' origins
+    // count them (sheets.rs): where each sheet is filed.
+    let mut picture_chunks: HashMap<String, Vec<usize>> = HashMap::new();
+    // Each code package dumped and where it loads (load-addresses.txt).
+    let mut loads = String::new();
     let (mut files, mut chunks, mut bytes) = (0usize, 0usize, 0usize);
     for (n, disc) in discs.iter_mut().enumerate() {
         let layout = layout(disc.as_mut());
@@ -579,15 +690,22 @@ pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path, parts: Parts) -> std::
                         _ => &c.payload[..],
                     };
                     std::fs::write(dir.join(format!("{k}.{}", c.extension())), data)?;
+                    if c.header[0] == 0 {
+                        let rel = dir.strip_prefix(&out).unwrap_or(&dir).to_string_lossy().replace('\\', "/");
+                        loads.push_str(&format!("{rel}/{k}.pe2pkg {:08X}\n", c.load_address()));
+                    }
                 }
                 if parts.backgrounds
                     && c.header[0] == 5
                     && let Some(pixels) = background_pixels(&c.payload)
                 {
+                    // Named by where it is (a picture in several places: by
+                    // the first), which any version's discs share.
                     let hash = super::screen_hash(320, 240, &pixels);
-                    let path = pictures.join(format!("{hash:016x}.png"));
+                    let dir = pictures.join(super::names::folder(&f.key, k));
+                    let path = dir.join(format!("{}.png", super::place_name(&f.key, k)));
                     if backgrounds.insert(hash) && !path.exists() {
-                        std::fs::create_dir_all(&pictures)?;
+                        std::fs::create_dir_all(&dir)?;
                         super::save_png(&path, 320, 240, &pixels).map_err(std::io::Error::other)?;
                     }
                 }
@@ -595,7 +713,10 @@ pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path, parts: Parts) -> std::
                     0 => {
                         dialogue.packages.entry(f.key.clone()).or_default().push((c.load_address(), c.payload.clone()))
                     }
-                    1 => dialogue.pictures.entry(f.key.clone()).or_default().push(c.payload.clone()),
+                    1 => {
+                        dialogue.pictures.entry(f.key.clone()).or_default().push(c.payload.clone());
+                        picture_chunks.entry(f.key.clone()).or_default().push(k);
+                    }
                     2 => dialogue.palettes.entry(f.key.clone()).or_default().push(c.payload.clone()),
                     5 => dialogue.backgrounds.entry(f.key.clone()).or_default().push(c.payload.clone()),
                     4 => dialogue.bundles.push((f.key.clone(), k, c.payload.clone())),
@@ -616,6 +737,9 @@ pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path, parts: Parts) -> std::
         if !executable.is_empty() {
             std::fs::write(out.join(&name), &executable)?;
         }
+        // Where each package loads, which its dump does not hold (the same
+        // tool looks for texts in them).
+        std::fs::write(out.join("load-addresses.txt"), &loads)?;
         eprintln!("pe2: extract: {files} files, {chunks} chunks, {} MB in {}", bytes >> 20, out.display());
     }
     if parts.backgrounds {
@@ -632,7 +756,16 @@ pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path, parts: Parts) -> std::
         for (sheet, credit) in super::credits::paint(&dialogue, &catalog) {
             painted.entry(sheet).or_insert(credit);
         }
-        let coloured = super::sheets::extract(&catalog, &painted, &textures)?;
+        // A sheet's folder: its picture's (origin `<file>/<picture>#<column>`).
+        let folder = |origin: &str| -> PathBuf {
+            let (key, rest) = origin.rsplit_once('/').unwrap_or((origin, ""));
+            let picture = rest.split('#').next().and_then(|n| n.parse::<usize>().ok());
+            match picture.and_then(|n| picture_chunks.get(key)?.get(n)) {
+                Some(&chunk) => super::names::folder(key, chunk),
+                None => PathBuf::from("other"),
+            }
+        };
+        let coloured = super::sheets::extract(&catalog, &painted, &textures, &folder)?;
         eprintln!(
             "pe2: extract: {} texture sheets ({coloured} in colour) in {}",
             catalog.sheets.len(),
@@ -640,7 +773,7 @@ pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path, parts: Parts) -> std::
         );
         let indexed = dumps.join("textures-indexed");
         let ramps = dumps.join("textures-ramp");
-        let (written, guessed) = super::sheets::extract_indexed(&catalog, &painted, &indexed, &ramps)?;
+        let (written, guessed) = super::sheets::extract_indexed(&catalog, &painted, &indexed, &ramps, &folder)?;
         eprintln!("pe2: extract: {written} indexed sheets ({guessed} of a guessed depth) in {}", indexed.display());
         let glyphs = dumps.join("textures-glyphs");
         let mut maps = super::glyphmaps::dialogue(&dialogue);

@@ -23,7 +23,7 @@ mods/
   better-backgrounds/
     mod.toml
     backgrounds/
-      20ddfa255291fdb6.png
+      rooms/dryfield/gas_station/stage2_101_file10_0.png
       ...
 ```
 
@@ -38,12 +38,40 @@ priority = 0      # higher wins where two mods replace the same thing
 enabled = true    # false keeps the mod installed but unused
 ```
 
+What a mod can hold, each part optional, and where each is explained:
+
+| In the mod | What it changes | See |
+|---|---|---|
+| `backgrounds/` | rooms' backgrounds and full-screen pictures | Backgrounds and full-screen pictures |
+| `textures/` | models, the interface, rooms' pieces | Textures |
+| `glyphs/` | the map of a font a mod's files bring, to redraw it finer | Text redrawn from fonts |
+| `music/` | songs | Music |
+| `movies/` | movies | Movies |
+| `files/` | any of the game's files, or chunks of them | Game files |
+| `text/` | the dialogue | Dialogue |
+| `fonts/` | the dialogue's font | Dialogue in your own font |
+| `strings/` | the menus' texts, items' details | Texts of the menus |
+| `patches.toml` | the game's memory (cheats) | Cheats and memory patches |
+
+In `backgrounds/`, `textures/`, `glyphs/` and `text/`, folders of your own
+are fine: what ties a file to what it replaces is its name (or, in
+`text/`, what it says inside). In `files/` (and for `strings/`' item
+details), the path names the game's file; `music/` and `movies/` are read
+without folders.
+
 The launcher's **Mods** screen lists the installed mods, turns each on or
 off and sets their order (higher in the list wins), writing `enabled` and
 `priority` into each `mod.toml` and keeping the rest of the file. It also
 turns all mods off (`[mods] enabled = false` in `pe2.toml`, or `PE2_MODS=0`),
 and opens the mods folder. Changes apply when the game starts; its log lists
 the mods it uses.
+
+**Install a mod (.zip)** there extracts a mod shared as a zip into the mods
+folder, once: its files at the zip's root (`mod.toml`, `backgrounds/`...)
+go into a folder named as the zip, and those in one folder of the zip into
+a folder of that name. A mod installed in that folder before is replaced,
+keeping whether it is on and its place in the list. To share a mod, zip
+its folder.
 
 ## Extracting the game's files
 
@@ -76,13 +104,36 @@ setups, and the picture is scaled to the internal resolution.
 1. Get the pictures: the extract (`pe2 --extract`, see above) decodes all of
    them from the discs, about 1,760 (rooms, title and menu screens, close-ups
    shown when examining things), as the game does, into
-   `dumps/backgrounds/<hash>.png` in the data folder.
+   `dumps/backgrounds/<folder>/<place>.png` in the data folder, filed by
+   what they are: `rooms/<area>/<room>/` (rooms/dryfield/gas_station),
+   `load_screens/`, `title/`...
 2. Make your version of a picture (paint over it, upscale it, ...) and save it
-   as `mods/<your mod>/backgrounds/<same hash>.png`.
+   as `mods/<your mod>/backgrounds/<same name>.png`, in any folder inside
+   `backgrounds/` (the extract's, if you like: the name is what counts).
 
-The file name is what ties a replacement to the picture it replaces: a 64-bit
-FNV-1a hash of the picture's size and pixels exactly as the game sends them to
-the graphics chip. Keep the name; the content can be anything.
+The file name is what ties a replacement to the picture it replaces. The
+extract names each picture by where it is on the discs: the disc file and
+its chunk, `stage1_1001_file2_3` for chunk 3 of file 2 of stage 1's folder
+1001 (`stage0_file30_2` in stage 0); a picture found in several places, by
+the first. Keep the name; the content can be anything. When the game
+starts, PE2PC reads those places on your discs to know which picture each
+replaces: the first time, a few seconds on a thread of its own (until then
+the game's own pictures show); after that it remembers them, in
+`background-places.tsv` in the data folder, and reads only places it has
+not looked up yet (deleting the file is safe).
+
+Places are the same on every version's discs, so another version's
+pictures (a translation's loading screens, with their captions translated)
+work as they are: extract that version's discs with a data folder of its
+own (`pe2 --extract backgrounds` is enough) and copy its
+`dumps/backgrounds` into your mod. Those the same as the game's change
+nothing.
+
+A picture may also be named by the hash of what the game shows: a 64-bit
+FNV-1a hash of the picture's size and pixels exactly as the game sends them
+to the graphics chip, as 16 hexadecimal digits (`9d80a9a2bc7a103c.png`). It
+needs no reading of the discs, but only matches the game's own discs'
+picture. Older extracts named them so, and such mods keep working.
 
 What to know:
 
@@ -134,7 +185,9 @@ An indexed replacement wins where both exist for a sheet.
 
 1. Extract (`pe2 --extract` or `pe2 --extract textures`, see above): every
    4- and 8-bit sheet, about 2,090, is saved in `dumps/textures-indexed/`
-   at its own size, as indices, at both depths:
+   (all in that one folder, where tools find them by name; the pictures
+   to look at, below, are in folders by what they are) at its own size,
+   as indices, at both depths:
    `<sheet>-4bit.idx.png` and `<sheet>-8bit.idx.png`, each with its header
    (`.idx.toml`). The game may draw one sheet at either depth (the title's
    8-bit picture is also the menus' 4-bit frames); the header's
@@ -146,17 +199,18 @@ An indexed replacement wins where both exist for a sheet.
      entry, not a colour between them), so it enlarges a picture of the
      sheet, and PE2PC turns the result back into indices. Two pictures of
      each sheet are saved for that:
-     - `dumps/textures-ramp/<sheet>-<4|8>bit.png`, the sheet as a ramp:
+     - `dumps/textures-ramp/<folder>/<sheet>-<4|8>bit.png`, the sheet as a ramp:
        each index its own grey (17 apart at 4 bits). Best for fonts, the
        interface and anything drawn with several palettes, whose colours
        may look alike in each palette (the UI font's fill and outline do).
-     - `dumps/textures/<sheet>.png` (or `-<palette>.png`), the sheet in
+     - `dumps/textures/<folder>/<sheet>.png` (or `-<palette>.png`), the sheet in
        colours. Best for pictures (rooms' pieces, characters) whose
        palette tells its indices apart, where an upscaler does better on
        natural colours.
 
      Enlarge the ones you want by a whole factor (4x: a 256 x 256 sheet to
-     1024 x 1024), keep their names, and put them in one folder. Then:
+     1024 x 1024), keep their names, and put them in a folder (folders
+     inside it are fine, and are kept in the output). Then:
 
      ```text
      pe2 --indexed-from-upscale my-upscaled-folder mods/my-mod/textures
@@ -250,7 +304,10 @@ when not known); the UI font's also give each glyph's `face` and
 
 PE2PC already redraws the menus' font (`ui-font`), the loading captions
 and the disc change's lines from its built-in fonts by default (`[video] hd_fonts`, at scales above 1); a mod's indexed
-replacement of the same sheet wins. To use other fonts,
+replacement of the same sheet wins. A mod that replaces the captions' font
+(a translation's, in `files/`) gives its map in `glyphs/<sheet>-4bit.toml`,
+as the extract writes them (`kind = "loading"`), and PE2PC redraws it the
+same way. To use other fonts,
 `tools/hd_fonts.py` redraws the first three from fonts of your choice
 (needs Python with numpy, pillow and scipy):
 
@@ -275,10 +332,15 @@ company's logo is its trademark, so keep such mods to yourself.
 ### Replacements in colours
 
 1. Extract the game's files (`pe2 --extract`, see above): every sheet, about
-   2,100, is saved whole in colours in `dumps/textures/`, with `index.txt`
-   listing each one, where it comes from and where its colours do. These
-   pictures are also the way to look at the sheets: the indexed ones are
-   numbers.
+   2,100, is saved whole in colours in `dumps/textures/`, filed by what
+   it is, with the decompilation's names: `characters/aya/10200/`,
+   `enemies/`, `weapons/`, `items/`, `key_items/`, `armor/`, `pe/` (the
+   Parasite Energies), `ui/`, `maps/`, `rooms/<area>/<room>/` (each room's
+   own pieces), `other/` for the few it does not name. `index.txt` lists
+   each one (with its folder), where it comes from and where its colours
+   do. These pictures are also the way to look at the sheets: the indexed
+   ones are numbers. A mod's `textures/` may hold its replacements in any
+   folders inside: the names are what count.
 
    A sheet's texels are numbers into a palette, and which palette colours
    them is chosen as the game draws. The extract finds it on the disc:
@@ -410,7 +472,7 @@ replace any of them.
 1. Extract the files: `pe2 --extract` (see above). They go to `dumps/files/`
    in the data folder (about 130 MB; both discs share them), every room
    background as a picture to `dumps/backgrounds/`, every texture sheet to
-   `dumps/textures/`, every song to `dumps/music/`, every movie to
+   `dumps/textures/` (both in folders by what they are), every song to `dumps/music/`, every movie to
    `dumps/movies/` (see above), and the dialogue as text to `dumps/text/` (see
    below).
 2. Find the one you want. With `PE2_TRACE=files` the game's log names each
@@ -660,11 +722,13 @@ from: a mod redrawing that sheet should draw them there.
 
 ### From another version's discs
 
-`tools/import_strings.py` makes a translation mod of the menus' texts of
-translated discs: extract the game's discs and the translated ones, each
-with its own data folder (`pe2 --extract files,texts` is enough: the
-importer reads the code from `dumps/files` and the words of the dialogue
-from `dumps/text`), and
+`tools/import_strings.py` makes a translation mod from translated discs:
+the menus' texts, and the loading screens' captions and the pictures the
+translation changed. Extract the game's discs and the translated ones,
+each with its own data folder (`pe2 --extract files,texts,textures`: the
+importer reads the code from `dumps/files`, the words of the dialogue
+from `dumps/text`, and the captions' font from the textures; without
+textures, the captions keep the translation's own font), and
 
 ```text
 python tools/import_strings.py <game's dumps> <translated dumps> mods/my-menus --name "My menus"
@@ -674,9 +738,13 @@ Translations of discs rewrite the texts in place and repoint what uses
 them, so each text is found where the translated version's data and code
 point instead of the original (texts nothing points at, between their
 neighbours, or where they were: tables of names in records of a fixed
-size). The same English elsewhere is looked up too: a text's translation
+size). The same English elsewhere is looked up too, in every code
+package (`dumps/files/load-addresses.txt` tells where each loads; the
+extract lists a text only where first found, but the shop of each room
+that has one holds its own copy): a text's translation
 is the one most of its places have, and a place translated otherwise
 gets its own, for there only (`here_only`).
+
 Their bytes are read through the translated version's own
 font: such translations draw the letters they need, and whole syllables,
 over codes the menus did not use, a different set in each of the font's
@@ -686,6 +754,21 @@ Portuguese fan translation's are there); each text is read in the face
 where the most codes are known and the most words are the translation's
 own (from its dialogue, `dumps/text`). `report.txt` lists what was left
 out, and pictures not known are saved in `report-glyphs/` to be labelled.
+
+The loading screens' captions (date and place) are no text but glyphs of
+a font of their own; a translation redraws that font, so they come as
+they are: its glyph table and the captions as `patches.toml`, and the map
+of its glyphs in `glyphs/` (letters read as the game's of the same
+picture, or by the tool's `CAPTION_LABELS`), so PE2PC redraws them finer
+as it does the game's.
+
+Every picture the translation changed (the captions' font, one in each
+loading screen's file; maps, signs, the game over and ending screens)
+goes in `files/`, so the game shows the translated one; a texture made
+for such a picture (its sheet's hash is the translation's) applies only
+with it. A few stay the game's, which PE2PC or other mods replace (the
+menus' font, the HUD's sheet, the title page: the tool's
+`PICTURES_KEPT`).
 
 ## Cheats and memory patches
 

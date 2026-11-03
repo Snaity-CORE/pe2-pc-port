@@ -23,9 +23,36 @@ fn main() {
     // keeps out of those ranges. The absolute-symbol object has no SafeSEH
     // table.
     icon(&root);
+    commit(&root);
 
     for arg in ["/LARGEADDRESSAWARE", "/FIXED", "/DYNAMICBASE:NO", "/BASE:0x00400000", "/SAFESEH:NO", "/MAP"] {
         println!("cargo:rustc-link-arg-bins={arg}");
+    }
+}
+
+/// PE2_COMMIT: the commit pe2.exe is built from (short hash), for the log's
+/// first line; "unknown" without git.
+fn commit(root: &Path) {
+    let git = |args: &[&str]| {
+        std::process::Command::new("git")
+            .args(args)
+            .current_dir(root)
+            .output()
+            .ok()
+            .filter(|o| o.status.success())
+            .map(|o| String::from_utf8_lossy(&o.stdout).trim().to_string())
+    };
+    let commit = git(&["rev-parse", "--short=9", "HEAD"]).unwrap_or_else(|| "unknown".to_string());
+    println!("cargo:rustc-env=PE2_COMMIT={commit}");
+    // Again on a new commit: HEAD, or the branch it names, moves (a packed
+    // branch has no file of its own: then the packed list).
+    // (Only files there: cargo runs this again each build for a missing one.)
+    if let Some(dir) = git(&["rev-parse", "--absolute-git-dir"]).map(PathBuf::from) {
+        let branch = git(&["symbolic-ref", "-q", "HEAD"]);
+        let watched = [Some(dir.join("HEAD")), Some(dir.join("packed-refs")), branch.map(|b| dir.join(b))];
+        for path in watched.into_iter().flatten().filter(|p| p.exists()) {
+            println!("cargo:rerun-if-changed={}", path.display());
+        }
     }
 }
 

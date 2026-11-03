@@ -104,6 +104,7 @@ pub extern "C" fn pcrt_DecDCTReset(mode: i32) {
 /// written back; the data follows it.
 #[unsafe(no_mangle)]
 pub extern "C" fn pcrt_DecDCTin(buf: *mut u32, mode: i32) {
+    super::hw::wait_mdec_output(std::time::Duration::from_millis(200));
     let _g = irq::guard();
     // SAFETY: the game passes its run-length buffer in PSX RAM.
     let mut command = unsafe { buf.read() };
@@ -155,5 +156,13 @@ pub extern "C" fn pc_mdec_tables(out: *mut u8) {
 /// returns the previous one.
 #[unsafe(no_mangle)]
 pub extern "C" fn pcrt_DecDCToutCallback(func: u32) -> u32 {
+    // Taken off (a movie stopped or skipped, then the MDEC reset): the
+    // frame being put out goes on to its last column first. On the console
+    // it has by then, the drive taking longer to pause; cut off, the game's
+    // column count stayed mid-frame, and the next movie's first frame came
+    // out a few columns long, the next one's columns in its place.
+    if func == 0 {
+        super::hw::wait_mdec_output(std::time::Duration::from_millis(200));
+    }
     super::hw::pcrt_DMACallback(1, func)
 }

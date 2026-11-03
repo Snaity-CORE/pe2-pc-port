@@ -29,6 +29,12 @@
  * much a call decodes, so a frame can be spread over several calls; the
  * original splits frames at other points (its count is not in words), the
  * decoded data being the same.
+ *
+ * The game's decoding keeps one state between calls, as the original does
+ * (the game thread and its interrupt handlers, which never run at once,
+ * share it). The host decodes backgrounds on threads of its own (mods'
+ * backgrounds found on the discs, the extract) with pc_vlc_decode_frame,
+ * each frame with a state of its own.
  */
 #include <stdint.h>
 #include <stdio.h>
@@ -117,9 +123,13 @@ static void add_code(int len, uint32_t code, uint32_t run, uint32_t level)
     }
 }
 
+/* Set once the tables are complete. Threads starting at once may each fill
+ * them, with the same values. */
+static int lut_ready;
+
 static void init_lut(void)
 {
-    if (lut[0x8000] != 0) {
+    if (__atomic_load_n(&lut_ready, __ATOMIC_ACQUIRE)) {
         return;
     }
     for (size_t i = 0; i < sizeof ac_codes / sizeof ac_codes[0]; i++) {
@@ -128,10 +138,11 @@ static void init_lut(void)
     add_code(2, 0x2, CODE_EOB, 0);    /* 10: end of block */
     add_code(6, 0x1, CODE_ESCAPE, 0); /* 000001: escape */
     init_dc_sizes();
+    __atomic_store_n(&lut_ready, 1, __ATOMIC_RELEASE);
 }
 
 /* Decoder state between calls. */
-static struct {
+struct vlc {
     const uint16_t* in;  /* next input halfword */
     uint32_t bits;       /* bit buffer, most significant first */
     int count;           /* bits in the buffer */
@@ -144,88 +155,90 @@ static struct {
     int version3;        /* DC coded as differences */
     int block;           /* version 3: 1, 2 (Cr, Cb), 3..6 (Y) */
     int32_t pred[3];     /* version 3 DC predictors: Cr, Cb, Y */
-} dec;
+};
 
+/* The game's. */
+static struct vlc dec;
 static int words_per_call;
 
-static uint32_t peek(int n)
+static uint32_t peek(struct vlc* d, int n)
 {
-    while (dec.count < n) {
-        dec.bits |= (uint32_t)*dec.in++ << (16 - dec.count);
-        dec.count += 16;
+    while (d->count < n) {
+        d->bits |= (uint32_t)*d->in++ << (16 - d->count);
+        d->count += 16;
     }
-    return dec.bits >> (32 - n);
+    return d->bits >> (32 - n);
 }
 
-static void skip(int n)
+static void skip(struct vlc* d, int n)
 {
-    dec.bits <<= n;
-    dec.count -= n;
+    d->bits <<= n;
+    d->count -= n;
 }
 
-static uint32_t take(int n)
+static uint32_t take(struct vlc* d, int n)
 {
-    uint32_t v = peek(n);
-    skip(n);
+    uint32_t v = peek(d, n);
+    skip(d, n);
     return v;
 }
 
 /* Decodes one code into the output; returns 0 once the data is complete. */
-static int decode_code(void)
+static int decode_code(struct vlc* d)
 {
-    if (!dec.in_block) {
+    if (!d->in_block) {
         uint32_t dc;
         int end;
-        if (dec.version3) {
-            end = peek(10) == 0x3FF;
+        if (d->version3) {
+            end = peek(d, 10) == 0x3FF;
             if (!end) {
-                const uint8_t* size = dc_sizes[dec.block < 3][peek(8)];
+                const uint8_t* size = dc_sizes[d->block < 3][peek(d, 8)];
                 int len = size[0], bits = size[1];
                 int32_t diff = 0;
-                skip(len);
+                skip(d, len);
                 if (bits) {
-                    uint32_t v = take(bits);
+                    uint32_t v = take(d, bits);
                     diff = (v >> (bits - 1)) ? (int32_t)v : (int32_t)v - (int32_t)((1u << bits) - 1);
                 }
-                int32_t* p = &dec.pred[dec.block < 3 ? dec.block - 1 : 2];
+                int32_t* p = &d->pred[d->block < 3 ? d->block - 1 : 2];
                 *p += diff;
                 dc = ((uint32_t)*p << 2) & 0x3FF;
-                dec.block = dec.block == 6 ? 1 : dec.block + 1;
+                d->block = d->block == 6 ? 1 : d->block + 1;
             }
         } else {
-            dc = take(10);
+            dc = take(d, 10);
             end = dc == END_OF_FRAME;
         }
         if (end) {
-            while (dec.out < dec.end) {
-                *dec.out++ = 0xFE00;
+            while (d->out < d->end) {
+                *d->out++ = 0xFE00;
             }
             return 0;
         }
-        *dec.out++ = (uint16_t)(dec.scale | dc);
-        dec.in_block = 1;
+        *d->out++ = (uint16_t)(d->scale | dc);
+        d->in_block = 1;
         return 1;
     }
-    uint32_t e = lut[peek(16)];
+    uint32_t e = lut[peek(d, 16)];
     int len = (int)(e & 0xFF);
     uint32_t run = (e >> 8) & 0xFF, level = e >> 16;
     if (len == 0) {
         /* Not a valid code: end the block, as on the stream's end. */
-        skip(16);
-        *dec.out++ = 0xFE00;
-        dec.in_block = 0;
+        skip(d, 16);
+        *d->out++ = 0xFE00;
+        d->in_block = 0;
         return 1;
     }
-    skip(len);
+    skip(d, len);
     if (run == CODE_EOB) {
-        *dec.out++ = 0xFE00;
-        dec.in_block = 0;
+        *d->out++ = 0xFE00;
+        d->in_block = 0;
     } else if (run == CODE_ESCAPE) {
-        uint32_t v = take(16);
-        *dec.out++ = (uint16_t)(((v >> 10) << 10) | (v & 0x3FF));
+        uint32_t v = take(d, 16);
+        *d->out++ = (uint16_t)(((v >> 10) << 10) | (v & 0x3FF));
     } else {
-        int32_t l = take(1) ? -(int32_t)level : (int32_t)level;
-        *dec.out++ = (uint16_t)((run << 10) | ((uint32_t)l & 0x3FF));
+        int32_t l = take(d, 1) ? -(int32_t)level : (int32_t)level;
+        *d->out++ = (uint16_t)((run << 10) | ((uint32_t)l & 0x3FF));
     }
     return 1;
 }
@@ -293,23 +306,29 @@ static void dump_frame(const uint32_t* bs)
     }
 }
 
+/* Starts decoding the BS frame at bs into buf. */
+static void start_frame(struct vlc* d, const uint32_t* bs, uint32_t* buf)
+{
+    const uint16_t* h = (const uint16_t*)bs;
+    buf[0] = bs[0];
+    memset(d, 0, sizeof *d);
+    d->in = h + 4;
+    d->out = (uint16_t*)(buf + 1);
+    d->end = d->out + 2u * h[0];
+    d->size = h[0];
+    d->scale = (uint16_t)(h[2] << 10);
+    d->version3 = h[3] >= 3;
+    d->block = 1;
+    d->active = 1;
+}
+
 int pcrt_DecDCTvlc2(uint32_t* bs, uint32_t* buf, uint16_t* table)
 {
     (void)table;
     init_lut();
     if (bs) {
         dump_frame(bs);
-        const uint16_t* h = (const uint16_t*)bs;
-        buf[0] = bs[0];
-        memset(&dec, 0, sizeof dec);
-        dec.in = h + 4;
-        dec.out = (uint16_t*)(buf + 1);
-        dec.end = dec.out + 2u * h[0];
-        dec.size = h[0];
-        dec.scale = (uint16_t)(h[2] << 10);
-        dec.version3 = h[3] >= 3;
-        dec.block = 1;
-        dec.active = 1;
+        start_frame(&dec, bs, buf);
     }
     if (!dec.active) {
         return 0;
@@ -320,7 +339,7 @@ int pcrt_DecDCTvlc2(uint32_t* bs, uint32_t* buf, uint16_t* table)
     }
     uint16_t* from = dec.out;
     while (dec.out < limit) {
-        decode_code();
+        decode_code(&dec);
     }
     /* This call's share of the frame's cost. */
     if (dec.size > 0) {
@@ -332,4 +351,17 @@ int pcrt_DecDCTvlc2(uint32_t* bs, uint32_t* buf, uint16_t* table)
     }
     dec.active = 0;
     return 0;
+}
+
+/* The host's: decodes the whole BS frame at bs into buf (DecDCTvlc2's
+ * output, 1 + its header's first halfword words), on any thread, leaving
+ * the game's decoding alone. */
+void pc_vlc_decode_frame(const uint32_t* bs, uint32_t* buf)
+{
+    struct vlc d;
+    init_lut();
+    start_frame(&d, bs, buf);
+    while (d.out < d.end) {
+        decode_code(&d);
+    }
 }
