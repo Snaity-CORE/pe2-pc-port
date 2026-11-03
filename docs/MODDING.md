@@ -95,9 +95,11 @@ extract names each picture by where it is on the discs: the disc file and
 its chunk, `stage1_1001_file2_3` for chunk 3 of file 2 of stage 1's folder
 1001 (`stage0_file30_2` in stage 0); a picture found in several places, by
 the first. Keep the name; the content can be anything. When the game
-starts, PE2PC reads those places on your discs (a few seconds, on a thread
-of its own; until then the game's own pictures show) to know which
-picture each replaces.
+starts, PE2PC reads those places on your discs to know which picture each
+replaces: the first time, a few seconds on a thread of its own (until then
+the game's own pictures show); after that it remembers them, in
+`background-places.tsv` in the data folder, and reads only places it has
+not looked up yet (deleting the file is safe).
 
 Places are the same on every version's discs, so another version's
 pictures (a translation's loading screens, with their captions translated)

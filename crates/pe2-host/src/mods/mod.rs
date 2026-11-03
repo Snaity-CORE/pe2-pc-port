@@ -483,26 +483,39 @@ pub(crate) fn background_places() -> &'static [(PathBuf, String)] {
 }
 
 /// Finds on the discs the pictures of the backgrounds mods name by place,
-/// then lets them be used: until then (a few seconds at most, while the
-/// title shows), only those named by hash are.
+/// then lets them be used. What was found before is kept in
+/// `background-places.tsv` in the data folder, so with the same discs only
+/// places not looked up yet are read (on a thread: a few seconds for a
+/// whole translation's, while the title shows, when only those named by
+/// hash are used).
 fn resolve_background_places(discs: &[PathBuf]) {
     if background_places().is_empty() || discs.is_empty() {
         return;
     }
+    let since = std::time::Instant::now();
+    let wanted: std::collections::HashSet<files::Place> = background_places()
+        .iter()
+        .filter_map(|(_, stem)| match background_name(stem)? {
+            BackgroundName::Place(key, chunk) => Some((key, chunk)),
+            BackgroundName::Hash(_) => None,
+        })
+        .collect();
+    let cache = crate::paths::user_file("background-places.tsv");
+    let signature = discs_signature(discs);
+    let mut known = read_places(&cache, &signature);
+    known.retain(|place, _| wanted.contains(place));
+    let missing: std::collections::HashSet<files::Place> =
+        wanted.iter().filter(|p| !known.contains_key(*p)).cloned().collect();
+    if missing.is_empty() {
+        use_background_places(&wanted, &known, since);
+        return;
+    }
     let discs = discs.to_vec();
     std::thread::spawn(move || {
-        let since = std::time::Instant::now();
-        let wanted: std::collections::HashSet<files::Place> = background_places()
-            .iter()
-            .filter_map(|(_, stem)| match background_name(stem)? {
-                BackgroundName::Place(key, chunk) => Some((key, chunk)),
-                BackgroundName::Hash(_) => None,
-            })
-            .collect();
         // Each disc on a thread of its own.
         let found: Vec<_> = std::thread::scope(|scope| {
             let jobs: Vec<_> =
-                discs.iter().map(|image| scope.spawn(|| files::background_hashes(image, &wanted))).collect();
+                discs.iter().map(|image| scope.spawn(|| files::background_hashes(image, &missing))).collect();
             jobs.into_iter()
                 .zip(&discs)
                 .filter_map(|(job, image)| match job.join() {
@@ -516,37 +529,111 @@ fn resolve_background_places(discs: &[PathBuf]) {
                 .flatten()
                 .collect()
         });
-        let mut hashes: HashMap<files::Place, Vec<u64>> = HashMap::new();
-        let mut by_file: HashMap<String, Vec<u64>> = HashMap::new();
-        for (place, hash) in found {
-            by_file.entry(place.0.clone()).or_default().push(hash);
-            hashes.entry(place).or_default().push(hash);
+        // Looked up: those not found too (no background there).
+        for place in &missing {
+            known.entry(place.clone()).or_default();
         }
-        let _ = BACKGROUNDS_BY_FILE.set(by_file);
-        // All of them again in priority order, those named by hash too.
-        let mut files = HashMap::new();
-        for (path, stem) in mod_files("backgrounds", ".png") {
-            match background_name(&stem) {
-                Some(BackgroundName::Hash(hash)) => {
-                    files.insert(hash, path);
-                }
-                Some(BackgroundName::Place(key, chunk)) => {
-                    for &hash in hashes.get(&(key, chunk)).into_iter().flatten() {
-                        files.insert(hash, path.clone());
-                    }
-                }
-                None => {}
+        // A place on both discs is there twice, most often the same picture.
+        for (place, hash) in found {
+            let hashes = known.entry(place).or_default();
+            if !hashes.contains(&hash) {
+                hashes.push(hash);
             }
         }
-        let missing = wanted.iter().filter(|p| !hashes.contains_key(*p)).count();
-        let not = if missing > 0 { format!(", {missing} not (no background there)") } else { String::new() };
-        eprintln!(
-            "pe2: mods: {} backgrounds by place found on the discs in {:.1} s{not}",
-            wanted.len() - missing,
-            since.elapsed().as_secs_f32()
-        );
-        let _ = backgrounds().resolved.set(files);
+        use_background_places(&wanted, &known, since);
+        if let Err(e) = write_places(&cache, &signature, &known) {
+            eprintln!("pe2: mods: {}: {e}", cache.display());
+        }
     });
+}
+
+/// Where each place's pictures are now known: the backgrounds named by place
+/// are used from here on, with those named by hash.
+fn use_background_places(
+    wanted: &std::collections::HashSet<files::Place>,
+    hashes: &HashMap<files::Place, Vec<u64>>,
+    since: std::time::Instant,
+) {
+    let mut by_file: HashMap<String, Vec<u64>> = HashMap::new();
+    for (place, found) in hashes {
+        by_file.entry(place.0.clone()).or_default().extend(found);
+    }
+    let _ = BACKGROUNDS_BY_FILE.set(by_file);
+    // All of them again in priority order, those named by hash too.
+    let mut files = HashMap::new();
+    for (path, stem) in mod_files("backgrounds", ".png") {
+        match background_name(&stem) {
+            Some(BackgroundName::Hash(hash)) => {
+                files.insert(hash, path);
+            }
+            Some(BackgroundName::Place(key, chunk)) => {
+                for &hash in hashes.get(&(key, chunk)).into_iter().flatten() {
+                    files.insert(hash, path.clone());
+                }
+            }
+            None => {}
+        }
+    }
+    let missing = wanted.iter().filter(|p| hashes.get(*p).is_none_or(Vec::is_empty)).count();
+    let not = if missing > 0 { format!(", {missing} not (no background there)") } else { String::new() };
+    eprintln!(
+        "pe2: mods: {} backgrounds by place found on the discs in {:.1} s{not}",
+        wanted.len() - missing,
+        since.elapsed().as_secs_f32()
+    );
+    let _ = backgrounds().resolved.set(files);
+}
+
+/// The disc images as the places' cache was made from: their paths, sizes
+/// and times of change.
+fn discs_signature(discs: &[PathBuf]) -> String {
+    discs
+        .iter()
+        .map(|d| {
+            let meta = std::fs::metadata(d).ok();
+            let size = meta.as_ref().map_or(0, std::fs::Metadata::len);
+            let time = meta
+                .and_then(|m| m.modified().ok())
+                .and_then(|t| t.duration_since(std::time::UNIX_EPOCH).ok())
+                .map_or(0, |t| t.as_secs());
+            format!("{} {size} {time}", d.display())
+        })
+        .collect::<Vec<_>>()
+        .join(" | ")
+}
+
+/// The places' cache: `# discs <signature>`, then a line for each place
+/// looked up, `<file key> <chunk> <hashes>` (none when there was no
+/// background there). Empty when made from other discs.
+fn read_places(cache: &Path, signature: &str) -> HashMap<files::Place, Vec<u64>> {
+    let Ok(text) = std::fs::read_to_string(cache) else { return HashMap::new() };
+    let mut lines = text.lines();
+    if lines.next() != Some(&format!("# discs {signature}")) {
+        return HashMap::new();
+    }
+    lines
+        .filter_map(|line| {
+            let mut parts = line.split(' ');
+            let key = parts.next()?.to_string();
+            let chunk = parts.next()?.parse().ok()?;
+            let hashes = parts.map(|h| u64::from_str_radix(h, 16)).collect::<Result<_, _>>().ok()?;
+            Some(((key, chunk), hashes))
+        })
+        .collect()
+}
+
+fn write_places(cache: &Path, signature: &str, places: &HashMap<files::Place, Vec<u64>>) -> std::io::Result<()> {
+    let mut lines: Vec<String> = places
+        .iter()
+        .map(|((key, chunk), hashes)| {
+            std::iter::once(format!("{key} {chunk}"))
+                .chain(hashes.iter().map(|h| format!("{h:016x}")))
+                .collect::<Vec<_>>()
+                .join(" ")
+        })
+        .collect();
+    lines.sort();
+    std::fs::write(cache, format!("# discs {signature}\n{}\n", lines.join("\n")))
 }
 
 /// Disc file -> the screen images of its backgrounds that mods name by
