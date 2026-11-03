@@ -623,6 +623,8 @@ pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path, parts: Parts) -> std::
     // File key -> its pictures' chunks, in the order the sheets' origins
     // count them (sheets.rs): where each sheet is filed.
     let mut picture_chunks: HashMap<String, Vec<usize>> = HashMap::new();
+    // Each code package dumped and where it loads (load-addresses.txt).
+    let mut loads = String::new();
     let (mut files, mut chunks, mut bytes) = (0usize, 0usize, 0usize);
     for (n, disc) in discs.iter_mut().enumerate() {
         let layout = layout(disc.as_mut());
@@ -647,6 +649,10 @@ pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path, parts: Parts) -> std::
                         _ => &c.payload[..],
                     };
                     std::fs::write(dir.join(format!("{k}.{}", c.extension())), data)?;
+                    if c.header[0] == 0 {
+                        let rel = dir.strip_prefix(&out).unwrap_or(&dir).to_string_lossy().replace('\\', "/");
+                        loads.push_str(&format!("{rel}/{k}.pe2pkg {:08X}\n", c.load_address()));
+                    }
                 }
                 if parts.backgrounds
                     && c.header[0] == 5
@@ -690,6 +696,9 @@ pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path, parts: Parts) -> std::
         if !executable.is_empty() {
             std::fs::write(out.join(&name), &executable)?;
         }
+        // Where each package loads, which its dump does not hold (the same
+        // tool looks for texts in them).
+        std::fs::write(out.join("load-addresses.txt"), &loads)?;
         eprintln!("pe2: extract: {files} files, {chunks} chunks, {} MB in {}", bytes >> 20, out.display());
     }
     if parts.backgrounds {

@@ -207,7 +207,8 @@ class Version:
 
     def __init__(self, dumps):
         self.dumps = dumps
-        exes = [p for p in glob.glob(os.path.join(dumps, 'files', '*')) if os.path.isfile(p)]
+        exes = [p for p in glob.glob(os.path.join(dumps, 'files', '*'))
+                if os.path.isfile(p) and open(p, 'rb').read(8) == b'PS-X EXE']
         if not exes:
             sys.exit(f'{dumps}: no executable in files/ (extract again with this PE2PC)')
         exe = open(exes[0], 'rb').read()
@@ -525,6 +526,26 @@ def main():
             text = translation(rel, s['original'], s['at'], raw)
             if text is not None:
                 seen.append((s['original'], rel, s['at'], raw, text))
+
+    # The packages the extract listed no text of (each was listed where
+    # first found): a room's copy of the shop's, say, translated otherwise
+    # than the menus' same text. Where each loads is in load-addresses.txt.
+    loads = os.path.join(args.game, 'files', 'load-addresses.txt')
+    if os.path.exists(loads):
+        known = {rel for rel, *_ in places}
+        for line in open(loads, encoding='utf-8').read().splitlines():
+            path, base = line.rsplit(' ', 1)
+            base = int(base, 16)
+            rel = os.path.join(*os.path.dirname(path).split('/'), f'{base:08X}.toml')
+            there = os.path.join(args.other, 'files', *path.split('/'))
+            if rel in known or not os.path.exists(there):
+                continue
+            known.add(rel)
+            data = lzss(open(os.path.join(args.game, 'files', *path.split('/')), 'rb').read())
+            places.append((rel, base, data, lzss(open(there, 'rb').read()), references(data), set()))
+    else:
+        report.append('files/load-addresses.txt: not found (extract again with this PE2PC): '
+                      'only the listed packages were looked in')
 
     # The same texts elsewhere (the extract lists each once), found as the
     # other version's code and data point at them.

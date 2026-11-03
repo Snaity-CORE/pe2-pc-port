@@ -710,7 +710,10 @@ Translations of discs rewrite the texts in place and repoint what uses
 them, so each text is found where the translated version's data and code
 point instead of the original (texts nothing points at, between their
 neighbours, or where they were: tables of names in records of a fixed
-size). The same English elsewhere is looked up too: a text's translation
+size). The same English elsewhere is looked up too, in every code
+package (`dumps/files/load-addresses.txt` tells where each loads; the
+extract lists a text only where first found, but the shop of each room
+that has one holds its own copy): a text's translation
 is the one most of its places have, and a place translated otherwise
 gets its own, for there only (`here_only`).
 Their bytes are read through the translated version's own
