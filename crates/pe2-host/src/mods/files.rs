@@ -522,6 +522,7 @@ pub fn dialogue_sources_of(image: &Path, threads: usize) -> Result<super::dialog
     for part in parts {
         let part = part?;
         out.pictures.extend(part.pictures);
+        out.picture_chunks.extend(part.picture_chunks);
         out.palettes.extend(part.palettes);
         out.packages.extend(part.packages);
         out.backgrounds.extend(part.backgrounds);
@@ -550,15 +551,31 @@ fn mod_pictures() -> &'static HashMap<(String, usize), PathBuf> {
     })
 }
 
-/// The chunks of file `f` of `disc` added to `out`, by type (the mods'
-/// pictures for those they replace).
+/// `sources`' pictures and palettes, with the pictures the mods replace in
+/// their place (what the game loads): for the sheets known (the catalog).
+/// The rest of what is read from the discs stays the discs' (the dialogue's
+/// glyph pages are found among their own pictures).
+pub fn catalog_sources(sources: &super::dialogue::Sources) -> super::dialogue::Sources {
+    let mut pictures = sources.pictures.clone();
+    for ((key, chunk), path) in mod_pictures() {
+        let Some(at) = sources.picture_chunks.get(key).and_then(|c| c.iter().position(|k| k == chunk)) else {
+            continue;
+        };
+        if let (Some(slot), Ok(data)) = (pictures.get_mut(key).and_then(|p| p.get_mut(at)), std::fs::read(path)) {
+            *slot = data;
+        }
+    }
+    super::dialogue::Sources { pictures, palettes: sources.palettes.clone(), ..Default::default() }
+}
+
+/// The chunks of file `f` of `disc` added to `out`, by type.
 fn add_source(out: &mut super::dialogue::Sources, disc: &mut dyn Disc, f: &DiscFile) {
     for (k, c) in read_chunks(disc, f.lba).into_iter().enumerate() {
         match c.header[0] {
             0 => out.packages.entry(f.key.clone()).or_default().push((c.load_address(), c.payload)),
             1 => {
-                let modded = mod_pictures().get(&(f.key.clone(), k)).and_then(|p| std::fs::read(p).ok());
-                out.pictures.entry(f.key.clone()).or_default().push(modded.unwrap_or(c.payload));
+                out.pictures.entry(f.key.clone()).or_default().push(c.payload);
+                out.picture_chunks.entry(f.key.clone()).or_default().push(k);
             }
             2 => out.palettes.entry(f.key.clone()).or_default().push(c.payload),
             5 => out.backgrounds.entry(f.key.clone()).or_default().push(c.payload),

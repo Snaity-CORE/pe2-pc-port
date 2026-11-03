@@ -82,7 +82,7 @@ pub fn start(disc1: std::path::PathBuf) {
         };
         let exe = crate::disc::iso9660::boot_executable(disc.as_mut()).map(|e| e.1).unwrap_or_default();
         let sources = super::files::sources_of(disc.as_mut(), |key| FILES.contains(&key));
-        let catalog = Catalog::new(&sources);
+        let catalog = Catalog::new(&super::files::catalog_sources(&sources));
         build(&catalog, &exe);
         // The renderer finds the sheets it draws in the catalog: these
         // at once, until the one of all the discs' sheets comes.

@@ -148,7 +148,7 @@ pub fn start(discs: &[PathBuf]) {
                             }
                         };
                         step("files read", number);
-                        let catalog = textures.then(|| sheets::Catalog::new(&sources));
+                        let catalog = textures.then(|| sheets::Catalog::new(&files::catalog_sources(&sources)));
                         let glyphs = (font && number == 0).then(|| dialogue::font(&sources));
                         let known = texts.then(|| dialogue::cap_texts(&sources));
                         step("done", number);

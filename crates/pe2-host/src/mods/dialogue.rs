@@ -729,6 +729,8 @@ pub struct Sources {
     /// File key -> its `.pe2img` chunks' contents, and its `.pe2clut`
     /// ones' (palettes).
     pub pictures: HashMap<String, Vec<Vec<u8>>>,
+    /// File key -> the chunk each of its pictures is.
+    pub picture_chunks: HashMap<String, Vec<usize>>,
     pub palettes: HashMap<String, Vec<Vec<u8>>>,
     /// File key -> its code and data packages (`.pe2pkg`): where they load
     /// in RAM, and their contents (still compressed); and its room
