@@ -12,7 +12,8 @@ character whose picture the game's font has in the same shape, or a
 picture labelled in LABELS (translations draw new letters and whole
 syllables into the font). Writes `strings/**/*.toml`, `mod.toml` and
 `report.txt` (texts left out, codes not known, with their pictures in
-`report-glyphs/`) into the mod folder.
+`report-glyphs/`) into the mod folder, and the loading screens' captions,
+when translated, as `patches.toml` and `files/` (import_captions).
 
     python tools/import_strings.py <game's dumps> <other's dumps> <mod folder>
         [--name NAME] [--description TEXT]
@@ -309,6 +310,54 @@ def read_text(data, offset):
 
 def literal(text):
     return "'''\n" + text + "'''" if "'''" not in text else repr(text)
+
+
+# The loading screens' captions (main/caption_draw.c): not text but scripts
+# of indices into `gTextCaptionGlyphCells`, the cells of a font of their own
+# (a picture each loading screen's file loads with its background,
+# stage0/file3 to file40; the M.I.S.T. briefing has a copy, stage1/1801's
+# second). A translation redraws that font, with its own cells and scripts,
+# so those are taken as they are: the table and the scripts (and nothing
+# else of that part of the executable) as memory patches, and every copy of
+# the pictures as files.
+CAPTIONS = (0x800627E0, 0x800630B0)
+CAPTION_FONTS = ['stage0/file10/0.pe2img', 'stage1/1801/file0/5.pe2img']
+
+
+def import_captions(game, other, args, report):
+    """Writes the other version's loading captions into the mod
+    (`patches.toml`, `files/`), when they are not the game's. Answers how
+    many words are patched."""
+    lo, hi = (a - game.exe_base for a in CAPTIONS)
+    if other.exe_base != game.exe_base or game.exe[lo:hi] == other.exe[lo:hi]:
+        return 0
+    words = [(at, struct.unpack_from('<I', other.exe, at)[0]) for at in range(lo, hi, 4)
+             if game.exe[at:at + 4] != other.exe[at:at + 4]]
+    lines = [f'# {args.name}: the loading captions (their font\'s cells and their scripts)', '']
+    for at, value in words:
+        lines += ['[[patch]]', f'address = 0x{at + game.exe_base:08X}', f'value = 0x{value:08X}', '']
+    with open(os.path.join(args.out, 'patches.toml'), 'w', encoding='utf-8', newline='\n') as f:
+        f.write('\n'.join(lines))
+    files = os.path.join(args.game, 'files')
+    fonts = {open(os.path.join(files, *rel.split('/')), 'rb').read() for rel in CAPTION_FONTS
+             if os.path.exists(os.path.join(files, *rel.split('/')))}
+    sizes = {len(font) for font in fonts}
+    for path in glob.glob(os.path.join(files, '**', '*.pe2img'), recursive=True):
+        if os.path.getsize(path) not in sizes or open(path, 'rb').read() not in fonts:
+            continue
+        rel = os.path.relpath(path, files)
+        theirs = os.path.join(args.other, 'files', rel)
+        if not os.path.exists(theirs):
+            report.append(f'files/{rel}: not found in the other version (the captions\' font)')
+            continue
+        data = open(theirs, 'rb').read()
+        if data == open(path, 'rb').read():
+            continue
+        dest = os.path.join(args.out, 'files', rel)
+        os.makedirs(os.path.dirname(dest), exist_ok=True)
+        with open(dest, 'wb') as out:
+            out.write(data)
+    return len(words)
 
 
 def main():
@@ -609,11 +658,13 @@ def main():
         for name, (code, picture) in sorted(unknown.items()):
             write_png(os.path.join(pictures, f'{name}.png'), picture)
             report.append(f'code 0x{code:02X}: picture {name} not known (report-glyphs/{name}.png)')
+    captions = import_captions(game, other, args, report)
     with open(os.path.join(args.out, 'mod.toml'), 'w', encoding='utf-8', newline='\n') as f:
         f.write(f'name = "{args.name}"\ndescription = "{args.description}"\nenabled = true\n')
     with open(os.path.join(args.out, 'report.txt'), 'w', encoding='utf-8', newline='\n') as f:
         f.write('\n'.join(report) + '\n')
-    print(f'{files} files, {texts} texts; {len(unknown)} pictures not known; {len(report)} notes in report.txt')
+    print(f'{files} files, {texts} texts; {len(unknown)} pictures not known; {len(report)} notes in report.txt'
+          + (f'; loading captions: {captions} words patched' if captions else ''))
 
 
 if __name__ == '__main__':

@@ -718,6 +718,11 @@ extract lists a text only where first found, but the shop of each room
 that has one holds its own copy): a text's translation
 is the one most of its places have, and a place translated otherwise
 gets its own, for there only (`here_only`).
+The loading screens' captions (date and place) are no text but glyphs of
+a font of their own; a translation redraws that font, so they come as
+they are: its glyph table and the captions as `patches.toml`, its
+pictures (one in each loading screen's file) in `files/`. They are drawn
+in the translation's font, not redrawn finer.
 Their bytes are read through the translated version's own
 font: such translations draw the letters they need, and whole syllables,
 over codes the menus did not use, a different set in each of the font's
