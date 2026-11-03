@@ -8,15 +8,12 @@
 //! game's own files. What they replace is never touched in the console's
 //! VRAM: the game sees its own data, and only the picture changes.
 //!
-//! Music: music.rs; movies: movies.rs; game files: files.rs; dialogue:
-//! dialogue.rs and translate.rs; the menus' texts: strings.rs; textures:
-//! runtime/gpu/textures.rs.
-//! Backgrounds and full-screen pictures, as `backgrounds/<hash>.png`, where
-//! the hash is `screen_hash` of the 320x240 (or so) image the game sends to
-//! the GPU, or as `backgrounds/<place>.png` (`place_name`: the disc file and
-//! chunk it comes from, the same on any version's discs), found on the
-//! discs when the game starts; the extract saves each one the discs hold as
-//! `dumps/backgrounds/<folder>/<place>.png`.
+//! Backgrounds and full-screen pictures: backgrounds.rs; music: music.rs;
+//! movies: movies.rs; game files: files.rs; dialogue: dialogue.rs and
+//! translate.rs; the menus' texts: strings.rs; textures: here (the
+//! libraries) and runtime/gpu/textures.rs; cheats and memory patches:
+//! patches.rs. Here: what is installed, the libraries of pictures they
+//! supply (loaded as wanted, within a budget), and the start.
 
 use std::collections::HashMap;
 use std::path::{Path, PathBuf};
@@ -24,6 +21,7 @@ use std::sync::{Arc, Mutex, OnceLock};
 
 use serde::Deserialize;
 
+pub mod backgrounds;
 pub mod capfont;
 pub mod credits;
 pub mod dialogue;
@@ -36,10 +34,14 @@ pub mod menuglyphs;
 pub mod movies;
 pub mod music;
 pub mod names;
+pub mod patches;
 pub mod rooms;
 pub mod sheets;
 pub mod strings;
 pub mod translate;
+
+pub use backgrounds::{background, background_wait, file_read, has_background, place_name, wants_screens};
+pub use patches::apply_patches;
 
 /// A mod's `mod.toml` (every field optional).
 #[derive(Debug, Default, Deserialize)]
@@ -112,7 +114,7 @@ pub fn installed() -> Vec<Mod> {
 /// (disc 1), and what character each dialogue glyph is.
 pub fn start(discs: &[PathBuf]) {
     strings::load();
-    resolve_background_places(discs);
+    backgrounds::resolve_background_places(discs);
     if let Some(first) = discs.first() {
         fontsheets::start(first.clone());
     }
@@ -402,270 +404,8 @@ pub fn files_under(dir: &Path) -> Vec<PathBuf> {
     out
 }
 
-/// Bytes of loaded mod files kept: backgrounds (a few rooms' worth at 8x),
-/// and each kind of texture.
-const BACKGROUNDS_BUDGET: usize = 320 << 20;
+/// Bytes of loaded textures kept, of each kind.
 const TEXTURES_BUDGET: usize = 256 << 20;
-
-fn backgrounds() -> &'static Library<u64> {
-    static INDEX: OnceLock<Library<u64>> = OnceLock::new();
-    INDEX.get_or_init(|| {
-        let library = Library::scan(
-            "backgrounds",
-            ".png",
-            |s| match background_name(s)? {
-                BackgroundName::Hash(hash) => Some(hash),
-                BackgroundName::Place(..) => None,
-            },
-            |p| read_png(p, false),
-            BACKGROUNDS_BUDGET,
-        );
-        if enabled() {
-            let mods: Vec<Mod> = installed().into_iter().filter(|m| m.enabled).collect();
-            for m in &mods {
-                let version = m.version.as_deref().map(|v| format!(" {v}")).unwrap_or_default();
-                let author = m.author.as_deref().map(|a| format!(" by {a}")).unwrap_or_default();
-                let about = m.description.as_deref().map(|d| format!(": {d}")).unwrap_or_default();
-                eprintln!("pe2: mod: {}{version}{author}{about}", m.name);
-            }
-            if !mods.is_empty() {
-                eprintln!(
-                    "pe2: mods: {} on, {} backgrounds ({} by place), {} textures, {} indexed textures",
-                    mods.len(),
-                    library.files.len() + background_places().len(),
-                    background_places().len(),
-                    textures().files.len(),
-                    indexed_textures().files.len()
-                );
-            }
-        }
-        library
-    })
-}
-
-/// What a background's file name says: the hash of the picture the game
-/// shows, or where the picture is on the discs (`place_name`).
-#[derive(Debug, PartialEq)]
-enum BackgroundName {
-    Hash(u64),
-    Place(String, usize),
-}
-
-/// The name of the background at chunk `chunk` of the disc file `key`:
-/// `stage1/1001/file2` chunk 3 is `stage1_1001_file2_3`.
-pub fn place_name(key: &str, chunk: usize) -> String {
-    format!("{}_{chunk}", key.replace('/', "_"))
-}
-
-fn background_name(stem: &str) -> Option<BackgroundName> {
-    if stem.len() == 16
-        && let Ok(hash) = u64::from_str_radix(stem, 16)
-    {
-        return Some(BackgroundName::Hash(hash));
-    }
-    let (key, chunk) = stem.rsplit_once('_')?;
-    let key = key.replace('_', "/");
-    if !(key.starts_with("stage") && key.contains("/file")) {
-        return None;
-    }
-    Some(BackgroundName::Place(key, chunk.parse().ok()?))
-}
-
-/// The mods' backgrounds named by place, lowest priority first.
-pub(crate) fn background_places() -> &'static [(PathBuf, String)] {
-    static PLACES: OnceLock<Vec<(PathBuf, String)>> = OnceLock::new();
-    PLACES.get_or_init(|| {
-        mod_files("backgrounds", ".png")
-            .into_iter()
-            .filter(|(_, stem)| matches!(background_name(stem), Some(BackgroundName::Place(..))))
-            .collect()
-    })
-}
-
-/// Finds on the discs the pictures of the backgrounds mods name by place,
-/// then lets them be used. What was found before is kept in
-/// `background-places.tsv` in the data folder, so with the same discs only
-/// places not looked up yet are read (on a thread: a few seconds for a
-/// whole translation's, while the title shows, when only those named by
-/// hash are used).
-fn resolve_background_places(discs: &[PathBuf]) {
-    if background_places().is_empty() || discs.is_empty() {
-        return;
-    }
-    let since = std::time::Instant::now();
-    let wanted: std::collections::HashSet<files::Place> = background_places()
-        .iter()
-        .filter_map(|(_, stem)| match background_name(stem)? {
-            BackgroundName::Place(key, chunk) => Some((key, chunk)),
-            BackgroundName::Hash(_) => None,
-        })
-        .collect();
-    let cache = crate::paths::user_file("background-places.tsv");
-    let signature = discs_signature(discs);
-    let mut known = read_places(&cache, &signature);
-    known.retain(|place, _| wanted.contains(place));
-    let missing: std::collections::HashSet<files::Place> =
-        wanted.iter().filter(|p| !known.contains_key(*p)).cloned().collect();
-    if missing.is_empty() {
-        use_background_places(&wanted, &known, since);
-        return;
-    }
-    let discs = discs.to_vec();
-    std::thread::spawn(move || {
-        // Each disc on a thread of its own.
-        let found: Vec<_> = std::thread::scope(|scope| {
-            let jobs: Vec<_> =
-                discs.iter().map(|image| scope.spawn(|| files::background_hashes(image, &missing))).collect();
-            jobs.into_iter()
-                .zip(&discs)
-                .filter_map(|(job, image)| match job.join() {
-                    Ok(Ok(found)) => Some(found),
-                    Ok(Err(e)) => {
-                        eprintln!("pe2: mods: {}: {e}", image.display());
-                        None
-                    }
-                    Err(_) => None,
-                })
-                .flatten()
-                .collect()
-        });
-        // Looked up: those not found too (no background there).
-        for place in &missing {
-            known.entry(place.clone()).or_default();
-        }
-        // A place on both discs is there twice, most often the same picture.
-        for (place, hash) in found {
-            let hashes = known.entry(place).or_default();
-            if !hashes.contains(&hash) {
-                hashes.push(hash);
-            }
-        }
-        use_background_places(&wanted, &known, since);
-        if let Err(e) = write_places(&cache, &signature, &known) {
-            eprintln!("pe2: mods: {}: {e}", cache.display());
-        }
-    });
-}
-
-/// Where each place's pictures are now known: the backgrounds named by place
-/// are used from here on, with those named by hash.
-fn use_background_places(
-    wanted: &std::collections::HashSet<files::Place>,
-    hashes: &HashMap<files::Place, Vec<u64>>,
-    since: std::time::Instant,
-) {
-    let mut by_file: HashMap<String, Vec<u64>> = HashMap::new();
-    for (place, found) in hashes {
-        by_file.entry(place.0.clone()).or_default().extend(found);
-    }
-    let _ = BACKGROUNDS_BY_FILE.set(by_file);
-    // All of them again in priority order, those named by hash too.
-    let mut files = HashMap::new();
-    for (path, stem) in mod_files("backgrounds", ".png") {
-        match background_name(&stem) {
-            Some(BackgroundName::Hash(hash)) => {
-                files.insert(hash, path);
-            }
-            Some(BackgroundName::Place(key, chunk)) => {
-                for &hash in hashes.get(&(key, chunk)).into_iter().flatten() {
-                    files.insert(hash, path.clone());
-                }
-            }
-            None => {}
-        }
-    }
-    let missing = wanted.iter().filter(|p| hashes.get(*p).is_none_or(Vec::is_empty)).count();
-    let not = if missing > 0 { format!(", {missing} not (no background there)") } else { String::new() };
-    eprintln!(
-        "pe2: mods: {} backgrounds by place found on the discs in {:.1} s{not}",
-        wanted.len() - missing,
-        since.elapsed().as_secs_f32()
-    );
-    let _ = backgrounds().resolved.set(files);
-}
-
-/// The disc images as the places' cache was made from: their paths, sizes
-/// and times of change.
-fn discs_signature(discs: &[PathBuf]) -> String {
-    discs
-        .iter()
-        .map(|d| {
-            let meta = std::fs::metadata(d).ok();
-            let size = meta.as_ref().map_or(0, std::fs::Metadata::len);
-            let time = meta
-                .and_then(|m| m.modified().ok())
-                .and_then(|t| t.duration_since(std::time::UNIX_EPOCH).ok())
-                .map_or(0, |t| t.as_secs());
-            format!("{} {size} {time}", d.display())
-        })
-        .collect::<Vec<_>>()
-        .join(" | ")
-}
-
-/// The places' cache: `# discs <signature>`, then a line for each place
-/// looked up, `<file key> <chunk> <hashes>` (none when there was no
-/// background there). Empty when made from other discs.
-fn read_places(cache: &Path, signature: &str) -> HashMap<files::Place, Vec<u64>> {
-    let Ok(text) = std::fs::read_to_string(cache) else { return HashMap::new() };
-    let mut lines = text.lines();
-    if lines.next() != Some(&format!("# discs {signature}")) {
-        return HashMap::new();
-    }
-    lines
-        .filter_map(|line| {
-            let mut parts = line.split(' ');
-            let key = parts.next()?.to_string();
-            let chunk = parts.next()?.parse().ok()?;
-            let hashes = parts.map(|h| u64::from_str_radix(h, 16)).collect::<Result<_, _>>().ok()?;
-            Some(((key, chunk), hashes))
-        })
-        .collect()
-}
-
-fn write_places(cache: &Path, signature: &str, places: &HashMap<files::Place, Vec<u64>>) -> std::io::Result<()> {
-    let mut lines: Vec<String> = places
-        .iter()
-        .map(|((key, chunk), hashes)| {
-            std::iter::once(format!("{key} {chunk}"))
-                .chain(hashes.iter().map(|h| format!("{h:016x}")))
-                .collect::<Vec<_>>()
-                .join(" ")
-        })
-        .collect();
-    lines.sort();
-    std::fs::write(cache, format!("# discs {signature}\n{}\n", lines.join("\n")))
-}
-
-/// Disc file -> the screen images of its backgrounds that mods name by
-/// place (found when the game starts).
-static BACKGROUNDS_BY_FILE: OnceLock<HashMap<String, Vec<u64>>> = OnceLock::new();
-
-/// The drive starts reading the disc file `key`: the mods' backgrounds of
-/// its pictures start loading, to be ready when the game shows them.
-pub fn file_read(key: &str) {
-    let Some(hashes) = BACKGROUNDS_BY_FILE.get().and_then(|m| m.get(key)) else { return };
-    for &hash in hashes {
-        backgrounds().get(hash);
-    }
-}
-
-/// Whether a mod has a background for the screen image `hash` (loaded or
-/// not).
-pub fn has_background(hash: u64) -> bool {
-    let library = backgrounds();
-    library.resolved.get().unwrap_or(&library.files).contains_key(&hash)
-}
-
-/// The background a mod supplies for the screen image `hash`, once loaded
-/// (see Library::get).
-pub fn background(hash: u64) -> Option<Arc<Picture>> {
-    backgrounds().get(hash)
-}
-
-/// The same, waiting up to `limit` for it to load.
-pub fn background_wait(hash: u64, limit: std::time::Duration) -> Option<Arc<Picture>> {
-    backgrounds().wait(hash, limit)
-}
 
 /// A texture's key: the hash of its sheet (sheets.rs), and of the palette
 /// it is drawn with (0: any, or none for 15-bit textures).
@@ -779,12 +519,6 @@ pub fn save_png(path: &Path, w: u32, h: u32, pixels: &[u16]) -> Result<(), Strin
     writer.write_image_data(&rgb).map_err(|e| e.to_string())
 }
 
-/// Whether anything here wants screen images: mods with backgrounds (named
-/// by hash or by place).
-pub fn wants_screens() -> bool {
-    !backgrounds().files.is_empty() || !background_places().is_empty()
-}
-
 /// `picture` resized to `w` x `h` (area average when shrinking, bilinear
 /// when growing), as RGBA.
 pub fn resize(picture: &Picture, w: u32, h: u32) -> Vec<u8> {
@@ -833,215 +567,6 @@ pub fn resize(picture: &Picture, w: u32, h: u32) -> Vec<u8> {
     out
 }
 
-// ---- memory patches ---------------------------------------------------------
-
-/// A mod's `patches.toml`: GameShark codes, and plain writes.
-#[derive(Debug, Default, Deserialize)]
-#[serde(default, deny_unknown_fields)]
-struct PatchFile {
-    cheat: Vec<CheatEntry>,
-    patch: Vec<PatchEntry>,
-}
-
-/// `[[cheat]]`: GameShark (Action Replay) codes, "AAAAAAAA VVVV" each.
-#[derive(Debug, Default, Deserialize)]
-#[serde(default, deny_unknown_fields)]
-struct CheatEntry {
-    name: Option<String>,
-    enabled: Option<bool>,
-    codes: Vec<String>,
-}
-
-/// `[[patch]]`: a value written to an address each frame.
-#[derive(Debug, Default, Deserialize)]
-#[serde(deny_unknown_fields)]
-struct PatchEntry {
-    name: Option<String>,
-    enabled: Option<bool>,
-    address: u32,
-    /// 1, 2 or 4 bytes (default 4).
-    size: Option<u32>,
-    value: u32,
-}
-
-/// A comparison of a GameShark condition code.
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
-enum Test {
-    Equal,
-    Different,
-    Less,
-    Greater,
-}
-
-/// One code, as it runs each frame.
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
-enum Code {
-    /// Write `size` bytes.
-    Write { address: u32, size: u32, value: u32 },
-    /// Add (or, negative, subtract) to `size` bytes.
-    Add { address: u32, size: u32, delta: i32 },
-    /// Run the next code only if `size` bytes at `address` pass `test`.
-    If { address: u32, size: u32, test: Test, value: u32 },
-    /// The next code (a write) `count` times, its address advanced by
-    /// `step` bytes and its value by `increment` each time.
-    Repeat { count: u32, step: u32, increment: u32 },
-}
-
-/// Parses one GameShark line ("80012345 0063"), or says why it cannot.
-fn parse_code(line: &str) -> Result<Code, String> {
-    let shape = || format!("{line:?}: not \"AAAAAAAA VVVV\"");
-    let mut parts = line.split_whitespace();
-    let (Some(a), Some(v), None) = (parts.next(), parts.next(), parts.next()) else { return Err(shape()) };
-    if a.len() != 8 || v.len() != 4 {
-        return Err(shape());
-    }
-    let word = u32::from_str_radix(a, 16).map_err(|_| shape())?;
-    let value = u32::from_str_radix(v, 16).map_err(|_| shape())?;
-    let address = 0x8000_0000 | (word & 0x00FF_FFFF);
-    let condition = |size, test| Code::If { address, size, test, value: if size == 1 { value & 0xFF } else { value } };
-    Ok(match word >> 24 {
-        0x80 => Code::Write { address, size: 2, value },
-        0x30 => Code::Write { address, size: 1, value: value & 0xFF },
-        0x10 => Code::Add { address, size: 2, delta: value as i32 },
-        0x11 => Code::Add { address, size: 2, delta: -(value as i32) },
-        0x20 => Code::Add { address, size: 1, delta: (value & 0xFF) as i32 },
-        0x21 => Code::Add { address, size: 1, delta: -((value & 0xFF) as i32) },
-        0xD0 => condition(2, Test::Equal),
-        0xD1 => condition(2, Test::Different),
-        0xD2 => condition(2, Test::Less),
-        0xD3 => condition(2, Test::Greater),
-        0xE0 => condition(1, Test::Equal),
-        0xE1 => condition(1, Test::Different),
-        0xE2 => condition(1, Test::Less),
-        0xE3 => condition(1, Test::Greater),
-        0x50 => Code::Repeat { count: (word >> 8) & 0xFF, step: word & 0xFF, increment: value },
-        kind => return Err(format!("{line:?}: code type {kind:02X} is not supported")),
-    })
-}
-
-/// A cheat or patch ready to run: its codes in order.
-struct Patch {
-    codes: Vec<Code>,
-}
-
-/// The patches of the mods in use, lowest priority first (so the highest
-/// writes last and wins).
-fn patches() -> &'static [Patch] {
-    static PATCHES: OnceLock<Vec<Patch>> = OnceLock::new();
-    PATCHES.get_or_init(|| {
-        let mut out = Vec::new();
-        if !enabled() {
-            return out;
-        }
-        for m in installed().into_iter().filter(|m| m.enabled).rev() {
-            let path = m.dir.join("patches.toml");
-            let Ok(text) = std::fs::read_to_string(&path) else { continue };
-            let file: PatchFile = match toml::from_str(&text) {
-                Ok(f) => f,
-                Err(err) => {
-                    eprintln!("pe2: mods: {}: {err}", path.display());
-                    continue;
-                }
-            };
-            for c in file.cheat.iter().filter(|c| c.enabled.unwrap_or(true)) {
-                let name = c.name.as_deref().unwrap_or("cheat");
-                let codes: Result<Vec<Code>, String> = c.codes.iter().map(|l| parse_code(l)).collect();
-                match codes {
-                    Ok(codes) => out.push(Patch { codes }),
-                    Err(err) => eprintln!("pe2: mods: {}: {name}: {err}; skipped", path.display()),
-                }
-            }
-            for p in file.patch.iter().filter(|p| p.enabled.unwrap_or(true)) {
-                let size = p.size.unwrap_or(4);
-                if ![1, 2, 4].contains(&size) {
-                    let name = p.name.as_deref().unwrap_or("patch");
-                    eprintln!("pe2: mods: {}: {name}: size must be 1, 2 or 4; skipped", path.display());
-                    continue;
-                }
-                out.push(Patch { codes: vec![Code::Write { address: p.address, size, value: p.value }] });
-            }
-        }
-        if !out.is_empty() {
-            eprintln!("pe2: mods: {} cheats and patches", out.len());
-        }
-        out
-    })
-}
-
-/// Where PlayStation address `address` (KUSEG, KSEG0 or KSEG1) is in the
-/// RAM mapping, if it is in RAM.
-fn ram(address: u32) -> Option<*mut u8> {
-    let physical = address & 0x1FFF_FFFF;
-    (physical < 0x0020_0000).then_some((0x8000_0000u32 | physical) as usize as *mut u8)
-}
-
-fn read(address: u32, size: u32) -> Option<u32> {
-    let p = ram(address)?;
-    // SAFETY: inside the PlayStation RAM mapping (see `ram`).
-    Some(unsafe {
-        match size {
-            1 => u32::from(p.read_volatile()),
-            2 => u32::from(p.cast::<u16>().read_unaligned()),
-            _ => p.cast::<u32>().read_unaligned(),
-        }
-    })
-}
-
-fn write(address: u32, size: u32, value: u32) {
-    let Some(p) = ram(address) else { return };
-    // SAFETY: inside the PlayStation RAM mapping (see `ram`).
-    unsafe {
-        match size {
-            1 => p.write_volatile(value as u8),
-            2 => p.cast::<u16>().write_unaligned(value as u16),
-            _ => p.cast::<u32>().write_unaligned(value),
-        }
-    }
-}
-
-/// Runs `codes` once, against `read` and `write`.
-fn run_codes(codes: &[Code], read: impl Fn(u32, u32) -> Option<u32>, mut write: impl FnMut(u32, u32, u32)) {
-    let mut i = 0;
-    while i < codes.len() {
-        match codes[i] {
-            Code::Write { address, size, value } => write(address, size, value),
-            Code::Add { address, size, delta } => {
-                if let Some(v) = read(address, size) {
-                    write(address, size, v.wrapping_add(delta as u32));
-                }
-            }
-            Code::If { address, size, test, value } => {
-                let pass = read(address, size).is_some_and(|v| match test {
-                    Test::Equal => v == value,
-                    Test::Different => v != value,
-                    Test::Less => v < value,
-                    Test::Greater => v > value,
-                });
-                if !pass {
-                    i += 1;
-                }
-            }
-            Code::Repeat { count, step, increment } => {
-                if let Some(Code::Write { address, size, value }) = codes.get(i + 1).copied() {
-                    for k in 0..count {
-                        write(address + k * step, size, value.wrapping_add(k * increment));
-                    }
-                    i += 1;
-                }
-            }
-        }
-        i += 1;
-    }
-}
-
-/// Applies the mods' cheats and patches: each vertical blank, before the
-/// game's own handler, with the game stopped, as a cheat cartridge does.
-pub fn apply_patches() {
-    for p in patches() {
-        run_codes(&p.codes, read, write);
-    }
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -1084,55 +609,12 @@ mod tests {
         assert_eq!(found, [dir.join("a.png"), nested.join("b.png")]);
     }
 
-    /// Backgrounds are named by hash or by place.
-    #[test]
-    fn background_names() {
-        assert_eq!(place_name("stage1/1001/file2", 3), "stage1_1001_file2_3");
-        assert_eq!(background_name("stage1_1001_file2_3"), Some(BackgroundName::Place("stage1/1001/file2".into(), 3)));
-        assert_eq!(background_name("stage0_file120_0"), Some(BackgroundName::Place("stage0/file120".into(), 0)));
-        assert_eq!(background_name("00000000deadbeef"), Some(BackgroundName::Hash(0xDEAD_BEEF)));
-        assert_eq!(background_name("my_picture_1"), None);
-        assert_eq!(background_name("stage1_1001_file2"), None);
-    }
-
     /// The hash names files, so it must never change.
     #[test]
     fn screen_hash_is_stable() {
         assert_eq!(fnv1a([]), 0xCBF2_9CE4_8422_2325);
         assert_eq!(fnv1a(*b"a"), 0xAF63_DC4C_8601_EC8C);
         assert_ne!(screen_hash(2, 1, &[1, 2]), screen_hash(1, 2, &[1, 2]));
-    }
-
-    /// GameShark lines parse to the codes they stand for.
-    #[test]
-    fn gameshark_codes() {
-        assert_eq!(parse_code("80073BA0 0032"), Ok(Code::Write { address: 0x80073BA0, size: 2, value: 0x32 }));
-        assert_eq!(parse_code("30012345 00FF"), Ok(Code::Write { address: 0x80012345, size: 1, value: 0xFF }));
-        assert_eq!(parse_code("11012344 0002"), Ok(Code::Add { address: 0x80012344, size: 2, delta: -2 }));
-        assert_eq!(
-            parse_code("D0012344 1234"),
-            Ok(Code::If { address: 0x80012344, size: 2, test: Test::Equal, value: 0x1234 })
-        );
-        assert_eq!(parse_code("50000402 0001"), Ok(Code::Repeat { count: 4, step: 2, increment: 1 }));
-        assert!(parse_code("C0012344 0001").is_err());
-        assert!(parse_code("80012344").is_err());
-    }
-
-    /// Conditions guard the next code; repeaters repeat it.
-    #[test]
-    fn codes_run() {
-        let read = |a: u32, _| Some(if a == 0x10 { 5 } else { 0 });
-        let codes = [
-            Code::If { address: 0x10, size: 2, test: Test::Equal, value: 5 },
-            Code::Write { address: 0x20, size: 2, value: 1 },
-            Code::If { address: 0x10, size: 2, test: Test::Equal, value: 6 },
-            Code::Write { address: 0x30, size: 2, value: 1 },
-            Code::Repeat { count: 3, step: 2, increment: 10 },
-            Code::Write { address: 0x40, size: 2, value: 1 },
-        ];
-        let mut writes = Vec::new();
-        run_codes(&codes, read, |a, _, v| writes.push((a, v)));
-        assert_eq!(writes, [(0x20, 1), (0x40, 1), (0x42, 11), (0x44, 21)]);
     }
 
     /// Resizing keeps flat colours and fills the target.
