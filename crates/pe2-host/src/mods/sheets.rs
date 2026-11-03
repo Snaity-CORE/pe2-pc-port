@@ -275,19 +275,35 @@ impl Catalog {
         keys.sort_unstable();
         for key in keys {
             let (wide, narrow) = palettes(sources.palettes.get(key).map_or(&[][..], Vec::as_slice));
-            let columns = sources.pictures[key]
+            let columns: Vec<(usize, usize, Column)> = sources.pictures[key]
                 .iter()
                 .enumerate()
-                .flat_map(|(n, p)| picture(p).into_iter().enumerate().map(move |(c, col)| (n, c, col)));
-            for (i, (n, column, Column { x, y, rows })) in columns.enumerate() {
+                .flat_map(|(n, p)| picture(p).into_iter().enumerate().map(move |(c, col)| (n, c, col)))
+                .collect();
+            // Its file's palettes go to its columns in order; where there
+            // are as many 8-bit ones as columns of its tallest, to those
+            // first: a short picture before them (Gary's, stage0/file120300,
+            // a 64-row one first) took the first palette, and each sheet
+            // after it the next one's.
+            let tallest = columns.iter().map(|c| c.2.rows.len()).max().unwrap_or(0);
+            let tall = columns.iter().filter(|c| c.2.rows.len() == tallest).count();
+            let mut order: Vec<usize> = (0..columns.len()).collect();
+            if wide.len() == tall {
+                order.sort_by_key(|&i| (1..tallest).contains(&columns[i].2.rows.len()));
+            }
+            let mut rank = vec![0; columns.len()];
+            for (r, &i) in order.iter().enumerate() {
+                rank[i] = r;
+            }
+            for (i, (n, column, Column { x, y, rows })) in columns.into_iter().enumerate() {
                 if rows.is_empty() {
                     continue;
                 }
-                // Its file's palettes, in column order: 8-bit ones if any.
+                // Its file's palettes: 8-bit ones if any.
                 let mut given = [wide.as_slice(), narrow.as_slice()]
                     .into_iter()
                     .find(|p| !p.is_empty())
-                    .map(|p| p[i.min(p.len() - 1)].clone());
+                    .map(|p| p[rank[i].min(p.len() - 1)].clone());
                 let mut source = "its file's palette";
                 if given.is_none()
                     && let Some(&(_, depth, file, (px, py))) = FIXED.iter().find(|f| f.0 == (x, y))
