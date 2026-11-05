@@ -294,6 +294,66 @@ impl Icon {
             Icon::Exit => '\u{F3B1}',
         }
     }
+
+    /// The icon drawn in lines, about as big as the glyph, where Windows'
+    /// icon font is missing (under Wine and Proton).
+    fn draw(self, painter: &egui::Painter, c: egui::Pos2, colour: egui::Color32) {
+        use egui::{Rect, Stroke, StrokeKind, pos2, vec2};
+        let line = Stroke::new(1.8, colour);
+        let p = |x: f32, y: f32| pos2(c.x + x, c.y + y);
+        match self {
+            Icon::Play => {}
+            // A gear: a ring, its eight teeth and its hole.
+            Icon::Settings => {
+                painter.circle_stroke(c, 7.0, line);
+                painter.circle_stroke(c, 2.5, line);
+                for k in 0..8 {
+                    let a = k as f32 * std::f32::consts::FRAC_PI_4;
+                    let d = vec2(a.cos(), a.sin());
+                    painter.line_segment([c + d * 7.0, c + d * 10.5], Stroke::new(3.0, colour));
+                }
+            }
+            // A controller: its body, a d-pad and two buttons.
+            Icon::Controls => {
+                painter.rect_stroke(Rect::from_center_size(c, vec2(24.0, 14.0)), 7.0, line, StrokeKind::Middle);
+                painter.line_segment([p(-9.5, 0.0), p(-3.5, 0.0)], line);
+                painter.line_segment([p(-6.5, -3.0), p(-6.5, 3.0)], line);
+                painter.circle_filled(p(4.5, 1.5), 1.6, colour);
+                painter.circle_filled(p(7.5, -1.5), 1.6, colour);
+            }
+            // A puzzle piece: a square with knobs on two sides.
+            Icon::Mods => {
+                painter.rect_stroke(
+                    Rect::from_center_size(p(-1.5, 1.5), vec2(14.0, 14.0)),
+                    1.5,
+                    line,
+                    StrokeKind::Middle,
+                );
+                painter.circle_filled(p(-1.5, -7.5), 3.3, colour);
+                painter.circle_filled(p(7.5, 1.5), 3.3, colour);
+            }
+            // A monitor on its stand.
+            Icon::Setup => {
+                painter.rect_stroke(
+                    Rect::from_center_size(p(0.0, -2.5), vec2(22.0, 14.0)),
+                    1.5,
+                    line,
+                    StrokeKind::Middle,
+                );
+                painter.line_segment([p(0.0, 4.5), p(0.0, 8.0)], line);
+                painter.line_segment([p(-5.0, 8.5), p(5.0, 8.5)], line);
+            }
+            // A door, and an arrow going out of it.
+            Icon::Exit => {
+                painter.line(
+                    vec![p(1.0, -5.0), p(1.0, -9.0), p(-9.0, -9.0), p(-9.0, 9.0), p(1.0, 9.0), p(1.0, 5.0)],
+                    line,
+                );
+                painter.line_segment([p(-3.0, 0.0), p(10.0, 0.0)], line);
+                painter.line(vec![p(6.0, -4.0), p(10.0, 0.0), p(6.0, 4.0)], line);
+            }
+        }
+    }
 }
 
 #[derive(Clone, Copy, PartialEq, Eq)]
@@ -820,7 +880,7 @@ impl Launcher {
                     text,
                 );
             }
-            _ => {}
+            _ => icon.draw(painter, center, text),
         }
         painter.text(
             pos2(rect.left() + 84.0, rect.center().y),
