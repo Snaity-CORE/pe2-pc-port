@@ -328,6 +328,8 @@ impl Lang {
 struct Settings {
     language: Lang,
     confirm_exit: bool,
+    /// [general] deck_mode: "auto", "on" or "off".
+    deck_mode: String,
     /// [general] experimental: mods.
     experimental: bool,
     /// [general] discord: the Discord presence.
@@ -376,6 +378,10 @@ impl Settings {
         Settings {
             language: Lang::from_code(get("general", "language").and_then(|v| v.as_str())),
             confirm_exit: flag("general", "confirm_exit", true),
+            deck_mode: match get("general", "deck_mode").and_then(|v| v.as_str()) {
+                Some(m @ ("on" | "off")) => m.to_string(),
+                _ => "auto".to_string(),
+            },
             experimental: flag("general", "experimental", false),
             discord: flag("general", "discord", true),
             discs: [text("discs", "disc1"), text("discs", "disc2")],
@@ -436,6 +442,7 @@ impl Settings {
         use toml_edit::value;
         doc["general"]["language"] = value(self.language.code());
         doc["general"]["confirm_exit"] = value(self.confirm_exit);
+        doc["general"]["deck_mode"] = value(self.deck_mode.as_str());
         doc["general"]["experimental"] = value(self.experimental);
         doc["general"]["discord"] = value(self.discord);
         let mut path = |table: &str, key: &str, text: &str| {
@@ -545,6 +552,9 @@ struct Launcher {
     art: Option<Art>,
     /// Windows' icon font was found.
     icons: bool,
+    /// The window was put in full screen (deck mode; set on the first
+    /// frame, as Wine ignores it when the window opens).
+    full_screen: bool,
     /// PE2_LAUNCHER_SHOT: frames drawn, to take the picture once settled.
     frames: u32,
     /// The game was started and has no window yet; why it could not start.
@@ -606,6 +616,7 @@ impl Launcher {
             xinput: None,
             art,
             icons,
+            full_screen: false,
             frames: 0,
             starting: Arc::new(AtomicBool::new(false)),
             launch_error: Arc::new(std::sync::Mutex::new(None)),
@@ -1178,6 +1189,18 @@ impl Launcher {
             0 => {
                 card(ui, lang.t("Launcher", "Launcher"), |ui| {
                     self.language(ui, lang.t("Language", "Idioma"));
+                    let modes = [
+                        ("auto".to_string(), lang.t("Automatic", "Automático").to_string()),
+                        ("on".to_string(), lang.t("On", "Ligado").to_string()),
+                        ("off".to_string(), lang.t("Off", "Desligado").to_string()),
+                    ];
+                    self.focus.choice(
+                        ui,
+                        lang.t("Deck mode (full screen)", "Modo Deck (tela cheia)"),
+                        &mut self.edit.deck_mode,
+                        &modes,
+                        true,
+                    );
                     self.focus.checkbox(
                         ui,
                         &mut self.edit.confirm_exit,
@@ -1695,6 +1718,24 @@ impl eframe::App for Launcher {
 
     fn ui(&mut self, ui: &mut egui::Ui, frame: &mut eframe::Frame) {
         let window = window_handle(frame);
+        // Deck mode, as saved.
+        let deck = crate::config::deck_mode(&self.saved.deck_mode);
+        if deck != self.full_screen {
+            ui.ctx().send_viewport_cmd(egui::ViewportCommand::Fullscreen(deck));
+            self.full_screen = deck;
+        }
+        // In full screen, the window's layout scaled up to fill the screen.
+        let ctx = ui.ctx().clone();
+        let zoom = if deck {
+            let native = ctx.native_pixels_per_point().unwrap_or(1.0);
+            let pixels = ctx.content_rect().size() * ctx.pixels_per_point() / native;
+            (pixels.x / WINDOW[0]).min(pixels.y / WINDOW[1]).max(1.0)
+        } else {
+            1.0
+        };
+        if (zoom - ctx.zoom_factor()).abs() > 0.01 {
+            ctx.set_zoom_factor(zoom);
+        }
         let full = ui.max_rect();
         // Keep reading the controllers, and the game's start.
         ui.ctx().request_repaint_after(std::time::Duration::from_millis(50));
@@ -1845,9 +1886,10 @@ fn show_window(window: Option<isize>, show: bool) {
     }
 }
 
-/// Windows' fonts, where present: Segoe UI for text; Segoe UI Symbol as a
-/// fallback for the PlayStation face-button symbols (the controller
-/// labels' ✕ ○ □ △), which egui's fonts lack; and the icon font (Segoe
+/// Windows' fonts, where present: Segoe UI for text; Segoe UI Symbol (else
+/// the built-in DejaVu Sans) as a fallback for the PlayStation face-button
+/// symbols (the controller labels' ✕ ○ □ △) and the choices' ◀ ▶, which
+/// egui's fonts lack; and the icon font (Segoe
 /// Fluent Icons, or Segoe MDL2 Assets before Windows 11) for the main
 /// screen's buttons. Returns whether an icon font was found.
 fn add_fonts(ctx: &egui::Context) -> bool {
@@ -1860,11 +1902,11 @@ fn add_fonts(ctx: &egui::Context) -> bool {
         add(&mut fonts, "segoe", bytes);
         fonts.families.entry(egui::FontFamily::Proportional).or_default().insert(0, "segoe".into());
     }
-    if let Some(bytes) = read("seguisym.ttf") {
-        add(&mut fonts, "symbols", bytes);
-        for family in [egui::FontFamily::Proportional, egui::FontFamily::Monospace] {
-            fonts.families.entry(family).or_default().push("symbols".into());
-        }
+    // Without it (under Wine and Proton), the built-in DejaVu Sans has them.
+    let symbols = read("seguisym.ttf").unwrap_or_else(|| crate::mods::capfont::BUILT_IN.to_vec());
+    add(&mut fonts, "symbols", symbols);
+    for family in [egui::FontFamily::Proportional, egui::FontFamily::Monospace] {
+        fonts.families.entry(family).or_default().push("symbols".into());
     }
     let icons = read("SegoeIcons.ttf").or_else(|| read("segmdl2.ttf"));
     let found = icons.is_some();
@@ -1959,6 +2001,7 @@ mod tests {
         s.confirm_exit = false;
         s.experimental = true;
         s.discord = false;
+        s.deck_mode = "on".into();
         s.hd_fonts = false;
         s.discs = [r"D:\Games\PE2 (Disc 1).chd".into(), String::new()];
         s.scale = 6;
@@ -1980,6 +2023,7 @@ mod tests {
         let config: crate::config::Config = toml::from_str(&text).expect("the game reads it");
         assert_eq!(config.general.language.as_deref(), Some("pt"));
         assert_eq!(config.general.confirm_exit, Some(false));
+        assert_eq!(config.general.deck_mode.as_deref(), Some("on"));
         assert_eq!(config.general.experimental, Some(true));
         assert_eq!(config.general.discord, Some(false));
         assert_eq!(config.video.hd_fonts, Some(false));

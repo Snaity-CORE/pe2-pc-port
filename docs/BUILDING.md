@@ -97,6 +97,13 @@ images, memory cards, quality; Play; Settings; Exit, in English or Portuguese)
 that writes `pe2.toml` (Controls remaps the keyboard and controller and picks
 player 1's controller) and runs the game as `pe2 --play`, coming back when it
 quits. Runs driven by `PE2_INPUT`, `PE2_LIBTEST` or `PE2_SELFTEST` skip it.
+Deck mode (`[general] deck_mode`, on by itself in Steam's Gaming Mode)
+opens it in full screen, scaled to the screen.
+
+Under Proton or Wine on Linux (the Steam Deck included), the release
+`pe2.exe` runs as it is: controllers are read through XInput there, as
+Wine lacks what gilrs needs, and the launcher's symbols come from the
+built-in DejaVu Sans where Windows' fonts are missing.
 
 Settings: the launcher writes `pe2.toml` in the data folder (below); to edit
 it by hand, copy `pe2.example.toml` there, which documents every setting.

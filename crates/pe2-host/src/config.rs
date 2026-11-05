@@ -139,6 +139,21 @@ pub struct General {
     /// Discord shows where the player is, with their EXP and BP (default
     /// on; nothing happens without Discord running).
     pub discord: Option<bool>,
+    /// Deck mode, the launcher in full screen: "auto" (the default: on in
+    /// Steam's Gaming Mode), "on" or "off" (see deck_mode).
+    pub deck_mode: Option<String>,
+}
+
+/// Whether deck mode is on for a [general] deck_mode setting. "auto" (or
+/// anything else) follows Steam's Gaming Mode (the Steam Deck's, or a
+/// Bazzite machine's), which sets SteamDeck=1 or SteamGamepadUI for the
+/// game, through Proton too.
+pub fn deck_mode(setting: &str) -> bool {
+    match setting {
+        "on" => true,
+        "off" => false,
+        _ => std::env::var_os("SteamDeck").is_some_and(|v| v == "1") || std::env::var_os("SteamGamepadUI").is_some(),
+    }
 }
 
 #[derive(Debug, Default, Deserialize)]

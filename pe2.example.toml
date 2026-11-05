@@ -21,6 +21,9 @@
 # Discord shows the game while it runs: where the player is, their EXP and
 # BP, and for how long (nothing happens without Discord running).
 # discord = true
+# Deck mode, the launcher in full screen: "auto" turns it on in Steam's
+# Gaming Mode (the Steam Deck's, or Bazzite's), "on" or "off" always.
+# deck_mode = "auto"
 
 [discs]
 # Your own dumps of Parasite Eve II (USA), .cue or .chd. With these set,
