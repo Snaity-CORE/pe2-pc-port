@@ -167,6 +167,19 @@ fn palette_at(chunks: &[Vec<u8>], x: usize, y: usize, n: usize) -> Option<Vec<u1
     })
 }
 
+/// Whether a sheet at `place` of the file `key` (its palettes' chunks
+/// `palettes`; `paged`: the file has a column at (896, 0)) is a column of a
+/// map's page: stage 0's files with a page of two columns from (896, 0)
+/// and six 256-colour palettes from (0, 255) (the decompilation names most
+/// of them `maps`, not all). Rooms with that layout are stages 1 to 5's;
+/// the game over and disc change pictures, one column at (960, 0).
+fn is_map_page(key: &str, palettes: &[Vec<u8>], place: (u16, u16), paged: bool) -> bool {
+    key.starts_with("stage0/")
+        && paged
+        && matches!(place, (896, 0) | (960, 0))
+        && palettes.iter().any(|c| c.get(..8) == Some(&[0, 0, 255, 0, 6, 0, 0, 1][..]))
+}
+
 /// A 15-bit colour as RGBA, 0 transparent.
 fn rgba(t: u16) -> [u8; 4] {
     let c = |s: u16| ((t >> s & 31) << 3) as u8;
@@ -286,6 +299,7 @@ impl Catalog {
             // a 64-row one first) took the first palette, and each sheet
             // after it the next one's.
             let tallest = columns.iter().map(|c| c.2.rows.len()).max().unwrap_or(0);
+            let paged = columns.iter().any(|c| (c.2.x, c.2.y) == (896, 0) && !c.2.rows.is_empty());
             let tall = columns.iter().filter(|c| c.2.rows.len() == tallest).count();
             let mut order: Vec<usize> = (0..columns.len()).collect();
             if wide.len() == tall {
@@ -311,6 +325,17 @@ impl Catalog {
                     let chunks = sources.palettes.get(file).map_or(&[][..], Vec::as_slice);
                     given = palette_at(chunks, px, py, [16, 256][depth as usize]);
                     source = "the palette the game's code sets";
+                }
+                // The maps' pages: both columns drawn 8-bit with the
+                // palette their file loads at (0, 256), the second of its
+                // six (the column order gave the first column the first;
+                // the markers over them are 4-bit, from the row below).
+                let own = sources.palettes.get(key).map_or(&[][..], Vec::as_slice);
+                if is_map_page(key, own, (x, y), paged)
+                    && let Some(p) = palette_at(own, 0, 256, 256)
+                {
+                    given = Some(p);
+                    source = "the palette the game's maps are drawn with";
                 }
                 let hash = sheet_hash(&rows);
                 if let Some(&known) = c.by_hash.get(&hash) {
