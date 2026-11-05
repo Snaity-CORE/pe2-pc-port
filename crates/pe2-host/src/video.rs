@@ -10,6 +10,7 @@ use winit::application::ApplicationHandler;
 use winit::event::{ElementState, WindowEvent};
 use winit::event_loop::{ActiveEventLoop, ControlFlow, EventLoop};
 use winit::keyboard::{KeyCode, PhysicalKey};
+use winit::platform::pump_events::{EventLoopExtPumpEvents, PumpStatus};
 use winit::platform::windows::EventLoopBuilderExtWindows;
 use winit::window::{Window, WindowId};
 
@@ -500,7 +501,7 @@ pub fn start() {
     std::thread::Builder::new()
         .name("window".into())
         .spawn(|| {
-            let event_loop = EventLoop::builder().with_any_thread(true).build().expect("event loop");
+            let mut event_loop = EventLoop::builder().with_any_thread(true).build().expect("event loop");
             let _ = PROXY.set(std::sync::Mutex::new(event_loop.create_proxy()));
             let mut app = App {
                 window: None,
@@ -510,9 +511,28 @@ pub fn start() {
                 title_frames: 0,
                 next_redraw: Instant::now(),
             };
-            let _ = event_loop.run_app(&mut app);
+            // winit handles the messages waiting, and the wait is done here.
+            while let PumpStatus::Continue = event_loop.pump_app_events(Some(Duration::ZERO), &mut app) {
+                wait_for_messages(app.next_redraw);
+            }
         })
         .expect("spawn window thread");
+}
+
+/// Waits for a new message (a vertical blank's wake, input...) or until
+/// `until`. winit waits with MWMO_INPUTAVAILABLE, which also returns for
+/// messages already there and not taken: under Wine a paint request that
+/// is never handed out stays there, and its wait came back at once,
+/// a thousand times a second (half a core). This one returns only for new
+/// messages, as winit has taken every one there was.
+fn wait_for_messages(until: Instant) {
+    use windows_sys::Win32::UI::WindowsAndMessaging::{MsgWaitForMultipleObjectsEx, QS_ALLINPUT};
+    let ms = until.saturating_duration_since(Instant::now()).as_micros().div_ceil(1000);
+    if ms == 0 {
+        return;
+    }
+    // SAFETY: no handles; waits on the thread's message queue only.
+    unsafe { MsgWaitForMultipleObjectsEx(0, std::ptr::null(), ms.min(u32::MAX as u128 - 1) as u32, QS_ALLINPUT, 0) };
 }
 
 #[cfg(test)]
