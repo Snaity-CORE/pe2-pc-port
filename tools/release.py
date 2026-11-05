@@ -53,6 +53,7 @@ PACKAGE = [
     (ROOT / "pe2.example.toml", "pe2.example.toml"),
     (ROOT / "README.md", "README.md"),
     (ROOT / "docs" / "MODDING.md", "MODDING.md"),
+    (ROOT / "docs" / "STEAM_DECK.md", "STEAM_DECK.md"),
     (ROOT / "LICENSE", "LICENSE.txt"),
     # The third-party code pe2.exe is built from (made by package()).
     (DIST / "THIRD-PARTY-NOTICES.txt", "THIRD-PARTY-NOTICES.txt"),

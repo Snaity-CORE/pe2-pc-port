@@ -75,6 +75,8 @@ guesswork, and fixes went in only after they held up in play.
 ## Playing
 
 You need Windows 10 or 11 and a graphics card with Vulkan or OpenGL 3.3.
+On the Steam Deck and other Linux machines, the same release runs through
+Proton: see [docs/STEAM_DECK.md](docs/STEAM_DECK.md).
 
 Take the [latest release](https://github.com/Snaity-CORE/pe2-pc-port/releases/latest),
 or the [last build of `main`](https://github.com/Snaity-CORE/pe2-pc-port/releases/download/nightly/pe2-pc-port-nightly-windows-x86.zip)
@@ -118,7 +120,7 @@ setting.
 | `crates/pe2-host/` | Rust host: launcher, window, graphics, sound, CD and the rest of the runtime |
 | `tools/` | Build, debugging, verification and release tools |
 | `snapshot/` | What the build takes from the decomp's PSX build, without the game's data, to build without the discs |
-| `docs/` | [Architecture](docs/ARCHITECTURE.md), [building](docs/BUILDING.md), [modding](docs/MODDING.md) and [releasing](docs/RELEASING.md) |
+| `docs/` | [Architecture](docs/ARCHITECTURE.md), [building](docs/BUILDING.md), [modding](docs/MODDING.md), [Steam Deck and Linux](docs/STEAM_DECK.md) and [releasing](docs/RELEASING.md) |
 
 ## Golden rule
 
