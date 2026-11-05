@@ -65,7 +65,8 @@ pub fn vblank() {
 
 /// True when PE2_INPUT scripts the controller (unattended runs).
 fn scripted() -> bool {
-    std::env::var_os("PE2_INPUT").is_some()
+    static SCRIPTED: std::sync::OnceLock<bool> = std::sync::OnceLock::new();
+    *SCRIPTED.get_or_init(|| std::env::var_os("PE2_INPUT").is_some())
 }
 
 struct App {

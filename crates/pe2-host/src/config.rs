@@ -155,7 +155,13 @@ pub fn deck_mode(setting: &str) -> bool {
     match setting {
         "on" => true,
         "off" => false,
-        _ => std::env::var_os("SteamDeck").is_some_and(|v| v == "1") || std::env::var_os("SteamGamepadUI").is_some(),
+        _ => {
+            // Read once: the launcher asks every frame.
+            static GAMING_MODE: OnceLock<bool> = OnceLock::new();
+            *GAMING_MODE.get_or_init(|| {
+                std::env::var_os("SteamDeck").is_some_and(|v| v == "1") || std::env::var_os("SteamGamepadUI").is_some()
+            })
+        }
     }
 }
 

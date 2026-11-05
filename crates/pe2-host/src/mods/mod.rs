@@ -197,13 +197,16 @@ pub fn start(discs: &[PathBuf]) {
 }
 
 /// Mods are on with [general] experimental and [mods] enabled (PE2_MODS=1
-/// or 0 says instead).
+/// or 0 says instead). Read once (asked each vertical blank and file read).
 fn enabled() -> bool {
-    let config = crate::config::get();
-    std::env::var("PE2_MODS")
-        .ok()
-        .map(|v| v.trim() != "0")
-        .unwrap_or(config.general.experimental.unwrap_or(false) && config.mods.enabled.unwrap_or(true))
+    static ON: OnceLock<bool> = OnceLock::new();
+    *ON.get_or_init(|| {
+        let config = crate::config::get();
+        std::env::var("PE2_MODS")
+            .ok()
+            .map(|v| v.trim() != "0")
+            .unwrap_or(config.general.experimental.unwrap_or(false) && config.mods.enabled.unwrap_or(true))
+    })
 }
 
 /// `len` bytes at RAM address `address` of a PS-X EXE (its header, then
