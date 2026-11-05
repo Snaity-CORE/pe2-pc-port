@@ -7,6 +7,14 @@ No separate Linux build is needed: use the normal Windows release.
 It was tested with Proton 10.0 on a Bazzite PC (Steam's Gaming Mode and
 the KDE desktop). The steps are the same on SteamOS.
 
+> **Not yet tested on a real Steam Deck.** On the test PC, a low-power
+> one (a 6 W, two-core AMD Athlon Silver 3050e), the 3D scenes ran slower
+> than normal speed; the Deck's processor is much stronger, but how it
+> runs there is not known yet. If you play it on a Deck, or hit any
+> problem, please
+> [open an issue](https://github.com/Snaity-CORE/pe2-pc-port/issues)
+> with your device, your Proton version and the game's `pe2.log`.
+
 ## What you need
 
 - The latest release zip,
