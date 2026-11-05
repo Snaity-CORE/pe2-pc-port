@@ -189,14 +189,18 @@ fn perspective() -> bool {
 }
 
 /// The internal resolution, a multiple of the console's (1-8): PE2_SCALE,
-/// else pe2.toml's [video] scale, else 1.
+/// else pe2.toml's [video] scale, else 1. Read once: it is asked for every
+/// polygon, and under Wine each read of the environment searches it.
 pub fn scale() -> i32 {
-    std::env::var("PE2_SCALE")
-        .ok()
-        .and_then(|v| v.trim().parse().ok())
-        .or(crate::config::get().video.scale)
-        .unwrap_or(1)
-        .clamp(1, 8)
+    static SCALE: std::sync::OnceLock<i32> = std::sync::OnceLock::new();
+    *SCALE.get_or_init(|| {
+        std::env::var("PE2_SCALE")
+            .ok()
+            .and_then(|v| v.trim().parse().ok())
+            .or(crate::config::get().video.scale)
+            .unwrap_or(1)
+            .clamp(1, 8)
+    })
 }
 
 pub static GPU: Mutex<Option<Gpu>> = Mutex::new(None);
