@@ -421,6 +421,8 @@ struct Settings {
     /// Player 1's controller by name; empty: the one last used.
     controller: String,
     vibration: bool,
+    /// [input] menu_button: "start_select", "l3_r3" or "off".
+    menu_button: String,
     /// Camera-relative movement ([input] movement = "modern"), and the
     /// tank movement's quick turn.
     modern: bool,
@@ -474,6 +476,10 @@ impl Settings {
                 .unwrap_or("")
                 .to_string(),
             vibration: flag("input", "vibration", true),
+            menu_button: match get("input", "menu_button").and_then(|v| v.as_str()) {
+                Some(m @ ("l3_r3" | "off")) => m.to_string(),
+                _ => "start_select".to_string(),
+            },
             modern: get("input", "movement").and_then(|v| v.as_str()) == Some("modern"),
             quick_turn: flag("input", "quick_turn", true),
             keys: std::array::from_fn(|i| {
@@ -537,6 +543,7 @@ impl Settings {
         doc["video"]["hide_cursor"] = value(self.hide_cursor);
         doc["input"]["controller"] = value(if self.controller.is_empty() { "auto" } else { self.controller.as_str() });
         doc["input"]["vibration"] = value(self.vibration);
+        doc["input"]["menu_button"] = value(self.menu_button.as_str());
         doc["input"]["movement"] = value(if self.modern { "modern" } else { "tank" });
         doc["input"]["quick_turn"] = value(self.quick_turn);
         for (i, b) in BUTTONS.iter().enumerate() {
@@ -1439,6 +1446,18 @@ impl Launcher {
                             ui.label(lang.t("No controller connected.", "Nenhum controle conectado."));
                         }
                         self.focus.checkbox(ui, &mut self.edit.vibration, lang.t("Vibration", "Vibração"), true);
+                        let menus = [
+                            ("start_select".to_string(), "Start + Select".to_string()),
+                            ("l3_r3".to_string(), "L3 + R3".to_string()),
+                            ("off".to_string(), lang.t("Off", "Desligado").to_string()),
+                        ];
+                        self.focus.choice(
+                            ui,
+                            lang.t("Pause menu", "Menu de pausa"),
+                            &mut self.edit.menu_button,
+                            &menus,
+                            true,
+                        );
                     });
                 } else {
                     card(&mut cols[1], lang.t("Keyboard", "Teclado"), |ui| {
@@ -2074,6 +2093,7 @@ mod tests {
         s.card = "cards/one.mcd".into();
         s.controller = "Xbox 360 Controller".into();
         s.vibration = false;
+        s.menu_button = "l3_r3".into();
         s.volume = 40;
         s.keys[4] = "KeyJ".into(); // cross
         s.pads[8] = "Mode".into(); // start
@@ -2098,6 +2118,7 @@ mod tests {
         assert_eq!(config.memcard.slot1.as_deref(), Some(Path::new("cards/one.mcd")));
         assert_eq!(config.input.controller.as_deref(), Some("Xbox 360 Controller"));
         assert_eq!(config.input.vibration, Some(false));
+        assert_eq!(config.input.menu_button.as_deref(), Some("l3_r3"));
         assert_eq!(config.audio.volume, Some(40));
         assert_eq!(config.input.keyboard.get("cross").map(String::as_str), Some("KeyJ"));
         assert_eq!(config.input.keyboard.get("up").map(String::as_str), Some("ArrowUp"));

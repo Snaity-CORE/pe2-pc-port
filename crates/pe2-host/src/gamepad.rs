@@ -54,6 +54,7 @@ fn run() {
     };
     let map = crate::controls::gamepad();
     let wanted = wanted();
+    let mut menu = Menu::new();
     let mut active: Option<GamepadId> = None;
     let mut rumble: (u32, Option<Effect>) = (0, None);
     loop {
@@ -64,11 +65,6 @@ fn run() {
                     active.get_or_insert(ev.id);
                 }
                 EventType::Disconnected if active == Some(ev.id) => active = None,
-                // Guide (the Xbox or PS button): the pause menu, which the
-                // game's buttons leave free.
-                EventType::ButtonPressed(gilrs::Button::Mode, _) if active.is_none_or(|a| a == ev.id) => {
-                    crate::pause_menu::ask();
-                }
                 // The controller last used takes over port 1, unless one
                 // is chosen.
                 EventType::ButtonPressed(..) if wanted.is_none() => active = Some(ev.id),
@@ -86,7 +82,7 @@ fn run() {
         }
 
         let pad = active.and_then(|id| gilrs.connected_gamepad(id));
-        publish(&map, pad.map(|p| (move |b| p.is_pressed(b), move |a| p.value(a))));
+        publish(&map, &mut menu, pad.map(|p| (move |b| p.is_pressed(b), move |a| p.value(a))));
 
         let want = rumble_wanted();
         if want != rumble.0 {
@@ -108,11 +104,39 @@ fn rumble_wanted() -> u32 {
     if vibration { RUMBLE.load(Ordering::SeqCst) } else { 0 }
 }
 
+/// The buttons held together for the pause menu ([input] menu_button:
+/// "start_select", the default, "l3_r3" or "off"). Not Guide: Steam keeps
+/// it to itself on the Steam Deck, and Windows for its Game Bar.
+struct Menu {
+    combo: Option<[Button; 2]>,
+    /// The buttons are held (and kept from the game).
+    held: bool,
+}
+
+impl Menu {
+    fn new() -> Menu {
+        let combo = match crate::config::get().input.menu_button.as_deref() {
+            Some("off") => None,
+            Some("l3_r3") => Some([Button::LeftThumb, Button::RightThumb]),
+            _ => Some([Button::Start, Button::Select]),
+        };
+        Menu { combo, held: false }
+    }
+}
+
 /// Port 1's controller, by its buttons and sticks, or none.
-fn publish(map: &[(Button, u16)], pad: Option<(impl Fn(Button) -> bool, impl Fn(Axis) -> f32)>) {
+fn publish(map: &[(Button, u16)], menu: &mut Menu, pad: Option<(impl Fn(Button) -> bool, impl Fn(Axis) -> f32)>) {
+    let combo = menu.combo.filter(|c| pad.as_ref().is_some_and(|(pressed, _)| c.iter().all(|&b| pressed(b))));
+    if combo.is_some() && !menu.held {
+        crate::pause_menu::ask();
+    }
+    menu.held = combo.is_some();
     match pad {
         Some((pressed, value)) => {
-            let held = map.iter().filter(|(b, _)| pressed(*b)).fold(0, |a, (_, bit)| a | bit);
+            let held = map
+                .iter()
+                .filter(|(b, _)| pressed(*b) && !combo.is_some_and(|c| c.contains(b)))
+                .fold(0, |a, (_, bit)| a | bit);
             let sticks = u32::from_le_bytes([
                 axis_byte(value(Axis::RightStickX), false),
                 axis_byte(value(Axis::RightStickY), true),
@@ -137,6 +161,7 @@ fn publish(map: &[(Button, u16)], pad: Option<(impl Fn(Button) -> bool, impl Fn(
 fn run_xinput(x: &XInput) {
     let map = crate::controls::gamepad();
     let wanted = wanted();
+    let mut menu = Menu::new();
     let mut last: [Option<Pad>; 4] = [None; 4];
     let mut active: Option<usize> = None;
     let mut rumble = (0u32, None::<usize>);
@@ -148,11 +173,7 @@ fn run_xinput(x: &XInput) {
                 eprintln!("pe2: input: controller connected: {}", crate::xinput::name(slot));
                 active.get_or_insert(slot);
             }
-            let pressed: Vec<Button> = pad.pressed_since(last[slot]).collect();
-            if pressed.contains(&Button::Mode) && active.is_none_or(|a| a == slot) {
-                crate::pause_menu::ask();
-            }
-            if wanted.is_none() && !pressed.is_empty() {
+            if wanted.is_none() && pad.pressed_since(last[slot]).next().is_some() {
                 active = Some(slot);
             }
         }
@@ -167,7 +188,7 @@ fn run_xinput(x: &XInput) {
         }
 
         let pad = active.and_then(|s| last[s]);
-        publish(&map, pad.map(|p| (move |b| p.is_pressed(b), move |a| p.value(a))));
+        publish(&map, &mut menu, pad.map(|p| (move |b| p.is_pressed(b), move |a| p.value(a))));
 
         let want = rumble_wanted();
         if (want, active) != rumble {

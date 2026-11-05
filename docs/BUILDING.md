@@ -194,8 +194,9 @@ Debug output:
 Keyboard: arrows = d-pad, Z/X/A/S = Cross/Circle/Square/Triangle,
 Enter = Start, Backspace = Select, Q/W/E/R = L1/R1/L2/R2, Alt+Enter toggles
 borderless full screen (`fullscreen = true` in pe2.toml starts in it; the mouse
-cursor is hidden there unless `hide_cursor = false`), Esc (or a controller's
-Guide button) opens the pause menu (the fork's src/main/pc/menu.c, its
+cursor is hidden there unless `hide_cursor = false`), Esc (or Start + Select
+held together on a controller; L3 + R3 or none with `[input] menu_button`)
+opens the pause menu (the fork's src/main/pc/menu.c, its
 Options from crates/pe2-host/src/settings.rs; where the game cannot open it,
 as in movies, Esc asks to quit;
 `[general] confirm_exit = false` quits at once), P pauses and resumes, F9

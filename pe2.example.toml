@@ -84,6 +84,9 @@ scale = 4
 # launcher's Controls screen lists it.
 # controller = "auto"
 # vibration = true
+# The buttons held together for the pause menu: "start_select", "l3_r3"
+# or "off" (Esc only).
+# menu_button = "start_select"
 # Movement: "tank" (the original: up walks forward, left and right turn)
 # or "modern" (the stick or d-pad points where to go, relative to the
 # camera; a full push of the stick runs).

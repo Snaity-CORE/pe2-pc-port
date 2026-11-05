@@ -64,6 +64,9 @@ pub struct Input {
     pub controller: Option<String>,
     /// Controller vibration (default on).
     pub vibration: Option<bool>,
+    /// The buttons held together for the pause menu: "start_select" (the
+    /// default), "l3_r3" or "off".
+    pub menu_button: Option<String>,
     /// PlayStation button name -> key name (see controls.rs).
     pub keyboard: std::collections::BTreeMap<String, String>,
     /// PlayStation button name -> controller button name.

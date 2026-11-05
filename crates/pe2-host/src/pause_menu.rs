@@ -1,5 +1,5 @@
-//! The pause menu's host side: Esc and a controller's Guide button ask for
-//! it, and the game's main loop opens it when it can (the fork's
+//! The pause menu's host side: Esc and a controller's Start + Select (or
+//! [input] menu_button's buttons, gamepad.rs) ask for it, and the game's main loop opens it when it can (the fork's
 //! src/main/pc/menu.c, drawn with the game's own dialogs); its Quit game
 //! ends the process here.
 //!

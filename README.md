@@ -99,7 +99,7 @@ Default keys (Controls remaps them):
 | P | Pause and resume |
 | F9 | Screenshot (in the data folder's `screenshots/`) |
 | F10 | Swap discs by hand (the game normally asks and it happens by itself) |
-| Esc (or a controller's Guide button) | Pause menu, in the game's own windows: resume, options (video, audio, controls and cheats, saved to pe2.toml), quit to the title screen, quit the game (asks first, unless turned off in Settings) |
+| Esc (or Start + Select on a controller) | Pause menu, in the game's own windows: resume, options (video, audio, controls and cheats, saved to pe2.toml), quit to the title screen, quit the game (asks first, unless turned off in Settings) |
 
 ### Where your files go
 
