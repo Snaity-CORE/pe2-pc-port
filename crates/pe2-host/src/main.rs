@@ -18,6 +18,7 @@ mod present;
 mod runtime;
 mod settings;
 mod video;
+mod xinput;
 
 use std::path::PathBuf;
 use std::process::ExitCode;

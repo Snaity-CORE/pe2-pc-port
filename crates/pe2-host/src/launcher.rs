@@ -538,8 +538,10 @@ struct Launcher {
     capture: Option<(bool, usize)>,
     /// Settings: the tab shown (general, graphics, discs and cards).
     settings_tab: usize,
-    /// Controllers, for their names and to catch their buttons.
+    /// Controllers, for their names and to catch their buttons: gilrs, or
+    /// XInput where it cannot start (with the slots' last readings).
     gilrs: Option<gilrs::Gilrs>,
+    xinput: Option<(crate::xinput::XInput, [Option<crate::xinput::Pad>; 4])>,
     art: Option<Art>,
     /// Windows' icon font was found.
     icons: bool,
@@ -600,7 +602,8 @@ impl Launcher {
             pad_tab: false,
             settings_tab: 0,
             capture: None,
-            gilrs: gilrs::Gilrs::new().ok(),
+            gilrs: None,
+            xinput: None,
             art,
             icons,
             frames: 0,
@@ -615,11 +618,54 @@ impl Launcher {
             install_job: None,
             install_status: None,
         };
+        launcher.gilrs = gilrs::Gilrs::new().ok();
+        if launcher.gilrs.is_none() {
+            launcher.xinput = crate::xinput::XInput::open().map(|x| (x, [None; 4]));
+        }
         launcher.recheck();
         if launcher.checks[0].as_ref().is_none_or(|c| c.is_err()) {
             launcher.screen = Screen::Setup(0);
         }
         launcher
+    }
+
+    /// A controller button pressed: the Controls screen's catch, and a
+    /// move for the buttons that navigate.
+    fn pad_nav(&mut self, b: gilrs::Button) {
+        self.pad_pressed = Some(format!("{b:?}"));
+        let nav = match b {
+            gilrs::Button::DPadUp => Some(Nav::Up),
+            gilrs::Button::DPadDown => Some(Nav::Down),
+            gilrs::Button::DPadLeft => Some(Nav::Left),
+            gilrs::Button::DPadRight => Some(Nav::Right),
+            gilrs::Button::South => Some(Nav::Accept),
+            gilrs::Button::East => Some(Nav::Back),
+            _ => None,
+        };
+        self.nav.extend(nav);
+    }
+
+    /// The left stick (k: 0 = x, 1 = y): a move each time it is pushed past
+    /// half way.
+    fn stick_nav(&mut self, k: usize, v: f32) {
+        let dir = if v > 0.6 {
+            1
+        } else if v < -0.6 {
+            -1
+        } else if v.abs() < 0.3 {
+            0
+        } else {
+            self.stick[k]
+        };
+        if dir != self.stick[k] && dir != 0 {
+            self.nav.push(match (k, dir) {
+                (0, 1) => Nav::Right,
+                (0, _) => Nav::Left,
+                (_, 1) => Nav::Up,
+                _ => Nav::Down,
+            });
+        }
+        self.stick[k] = dir;
     }
 
     fn lang(&self) -> Lang {
@@ -1293,11 +1339,13 @@ impl Launcher {
                 });
                 if self.pad_tab {
                     card(&mut cols[1], lang.t("Controller", "Controle"), |ui| {
-                        let names: Vec<String> = self
-                            .gilrs
-                            .as_ref()
-                            .map(|g| g.gamepads().map(|(_, p)| p.name().to_string()).collect())
-                            .unwrap_or_default();
+                        let names: Vec<String> = match (&self.gilrs, &self.xinput) {
+                            (Some(g), _) => g.gamepads().map(|(_, p)| p.name().to_string()).collect(),
+                            (None, Some((_, last))) => {
+                                (0..4).filter(|&s| last[s].is_some()).map(crate::xinput::name).collect()
+                            }
+                            (None, None) => Vec::new(),
+                        };
                         let mut options = vec![(String::new(), lang.t("Last one used", "O último usado").to_string())];
                         options.extend(names.iter().map(|n| (n.clone(), n.clone())));
                         if !self.edit.controller.is_empty() && !names.contains(&self.edit.controller) {
@@ -1611,47 +1659,38 @@ impl eframe::App for Launcher {
                 false
             });
         }
-        let Some(g) = self.gilrs.as_mut() else { return };
+        if let Some((x, last)) = &mut self.xinput {
+            let now = x.read_all();
+            let pressed: Vec<gilrs::Button> = now
+                .iter()
+                .zip(last.iter())
+                .filter_map(|(p, before)| Some(p.as_ref()?.pressed_since(*before)))
+                .flatten()
+                .collect();
+            // The first controller's stick.
+            let stick = now
+                .iter()
+                .flatten()
+                .next()
+                .map(|p| [p.value(gilrs::Axis::LeftStickX), p.value(gilrs::Axis::LeftStickY)]);
+            *last = now;
+            pressed.into_iter().for_each(|b| self.pad_nav(b));
+            if let Some(v) = stick {
+                (0..2).for_each(|k| self.stick_nav(k, v[k]));
+            }
+            return;
+        }
+        let Some(mut g) = self.gilrs.take() else { return };
         while let Some(ev) = g.next_event() {
             match ev.event {
-                gilrs::EventType::ButtonPressed(b, _) => {
-                    self.pad_pressed = Some(format!("{b:?}"));
-                    let nav = match b {
-                        gilrs::Button::DPadUp => Some(Nav::Up),
-                        gilrs::Button::DPadDown => Some(Nav::Down),
-                        gilrs::Button::DPadLeft => Some(Nav::Left),
-                        gilrs::Button::DPadRight => Some(Nav::Right),
-                        gilrs::Button::South => Some(Nav::Accept),
-                        gilrs::Button::East => Some(Nav::Back),
-                        _ => None,
-                    };
-                    self.nav.extend(nav);
-                }
-                // The stick: a move each time it is pushed past half way.
+                gilrs::EventType::ButtonPressed(b, _) => self.pad_nav(b),
                 gilrs::EventType::AxisChanged(axis @ (gilrs::Axis::LeftStickX | gilrs::Axis::LeftStickY), v, _) => {
-                    let k = usize::from(axis == gilrs::Axis::LeftStickY);
-                    let dir = if v > 0.6 {
-                        1
-                    } else if v < -0.6 {
-                        -1
-                    } else if v.abs() < 0.3 {
-                        0
-                    } else {
-                        self.stick[k]
-                    };
-                    if dir != self.stick[k] && dir != 0 {
-                        self.nav.push(match (k, dir) {
-                            (0, 1) => Nav::Right,
-                            (0, _) => Nav::Left,
-                            (_, 1) => Nav::Up,
-                            _ => Nav::Down,
-                        });
-                    }
-                    self.stick[k] = dir;
+                    self.stick_nav(usize::from(axis == gilrs::Axis::LeftStickY), v);
                 }
                 _ => {}
             }
         }
+        self.gilrs = Some(g);
     }
 
     fn ui(&mut self, ui: &mut egui::Ui, frame: &mut eframe::Frame) {
