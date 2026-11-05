@@ -97,6 +97,13 @@ images, memory cards, quality; Play; Settings; Exit, in English or Portuguese)
 that writes `pe2.toml` (Controls remaps the keyboard and controller and picks
 player 1's controller) and runs the game as `pe2 --play`, coming back when it
 quits. Runs driven by `PE2_INPUT`, `PE2_LIBTEST` or `PE2_SELFTEST` skip it.
+Deck mode (`[general] deck_mode`, on by itself in Steam's Gaming Mode)
+opens it in full screen, scaled to the screen.
+
+Under Proton or Wine on Linux (the Steam Deck included), the release
+`pe2.exe` runs as it is: controllers are read through XInput there, as
+Wine lacks what gilrs needs, and the launcher's symbols come from the
+built-in DejaVu Sans where Windows' fonts are missing.
 
 Settings: the launcher writes `pe2.toml` in the data folder (below); to edit
 it by hand, copy `pe2.example.toml` there, which documents every setting.
@@ -187,8 +194,9 @@ Debug output:
 Keyboard: arrows = d-pad, Z/X/A/S = Cross/Circle/Square/Triangle,
 Enter = Start, Backspace = Select, Q/W/E/R = L1/R1/L2/R2, Alt+Enter toggles
 borderless full screen (`fullscreen = true` in pe2.toml starts in it; the mouse
-cursor is hidden there unless `hide_cursor = false`), Esc (or a controller's
-Guide button) opens the pause menu (the fork's src/main/pc/menu.c, its
+cursor is hidden there unless `hide_cursor = false`), Esc (or Start + Select
+held together on a controller; L3 + R3 or none with `[input] menu_button`)
+opens the pause menu (the fork's src/main/pc/menu.c, its
 Options from crates/pe2-host/src/settings.rs; where the game cannot open it,
 as in movies, Esc asks to quit;
 `[general] confirm_exit = false` quits at once), P pauses and resumes, F9

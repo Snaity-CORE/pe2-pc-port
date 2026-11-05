@@ -294,6 +294,66 @@ impl Icon {
             Icon::Exit => '\u{F3B1}',
         }
     }
+
+    /// The icon drawn in lines, about as big as the glyph, where Windows'
+    /// icon font is missing (under Wine and Proton).
+    fn draw(self, painter: &egui::Painter, c: egui::Pos2, colour: egui::Color32) {
+        use egui::{Rect, Stroke, StrokeKind, pos2, vec2};
+        let line = Stroke::new(1.8, colour);
+        let p = |x: f32, y: f32| pos2(c.x + x, c.y + y);
+        match self {
+            Icon::Play => {}
+            // A gear: a ring, its eight teeth and its hole.
+            Icon::Settings => {
+                painter.circle_stroke(c, 7.0, line);
+                painter.circle_stroke(c, 2.5, line);
+                for k in 0..8 {
+                    let a = k as f32 * std::f32::consts::FRAC_PI_4;
+                    let d = vec2(a.cos(), a.sin());
+                    painter.line_segment([c + d * 7.0, c + d * 10.5], Stroke::new(3.0, colour));
+                }
+            }
+            // A controller: its body, a d-pad and two buttons.
+            Icon::Controls => {
+                painter.rect_stroke(Rect::from_center_size(c, vec2(24.0, 14.0)), 7.0, line, StrokeKind::Middle);
+                painter.line_segment([p(-9.5, 0.0), p(-3.5, 0.0)], line);
+                painter.line_segment([p(-6.5, -3.0), p(-6.5, 3.0)], line);
+                painter.circle_filled(p(4.5, 1.5), 1.6, colour);
+                painter.circle_filled(p(7.5, -1.5), 1.6, colour);
+            }
+            // A puzzle piece: a square with knobs on two sides.
+            Icon::Mods => {
+                painter.rect_stroke(
+                    Rect::from_center_size(p(-1.5, 1.5), vec2(14.0, 14.0)),
+                    1.5,
+                    line,
+                    StrokeKind::Middle,
+                );
+                painter.circle_filled(p(-1.5, -7.5), 3.3, colour);
+                painter.circle_filled(p(7.5, 1.5), 3.3, colour);
+            }
+            // A monitor on its stand.
+            Icon::Setup => {
+                painter.rect_stroke(
+                    Rect::from_center_size(p(0.0, -2.5), vec2(22.0, 14.0)),
+                    1.5,
+                    line,
+                    StrokeKind::Middle,
+                );
+                painter.line_segment([p(0.0, 4.5), p(0.0, 8.0)], line);
+                painter.line_segment([p(-5.0, 8.5), p(5.0, 8.5)], line);
+            }
+            // A door, and an arrow going out of it.
+            Icon::Exit => {
+                painter.line(
+                    vec![p(1.0, -5.0), p(1.0, -9.0), p(-9.0, -9.0), p(-9.0, 9.0), p(1.0, 9.0), p(1.0, 5.0)],
+                    line,
+                );
+                painter.line_segment([p(-3.0, 0.0), p(10.0, 0.0)], line);
+                painter.line(vec![p(6.0, -4.0), p(10.0, 0.0), p(6.0, 4.0)], line);
+            }
+        }
+    }
 }
 
 #[derive(Clone, Copy, PartialEq, Eq)]
@@ -328,6 +388,8 @@ impl Lang {
 struct Settings {
     language: Lang,
     confirm_exit: bool,
+    /// [general] deck_mode: "auto", "on" or "off".
+    deck_mode: String,
     /// [general] experimental: mods.
     experimental: bool,
     /// [general] discord: the Discord presence.
@@ -359,6 +421,8 @@ struct Settings {
     /// Player 1's controller by name; empty: the one last used.
     controller: String,
     vibration: bool,
+    /// [input] menu_button: "start_select", "l3_r3" or "off".
+    menu_button: String,
     /// Camera-relative movement ([input] movement = "modern"), and the
     /// tank movement's quick turn.
     modern: bool,
@@ -376,6 +440,10 @@ impl Settings {
         Settings {
             language: Lang::from_code(get("general", "language").and_then(|v| v.as_str())),
             confirm_exit: flag("general", "confirm_exit", true),
+            deck_mode: match get("general", "deck_mode").and_then(|v| v.as_str()) {
+                Some(m @ ("on" | "off")) => m.to_string(),
+                _ => "auto".to_string(),
+            },
             experimental: flag("general", "experimental", false),
             discord: flag("general", "discord", true),
             discs: [text("discs", "disc1"), text("discs", "disc2")],
@@ -408,6 +476,10 @@ impl Settings {
                 .unwrap_or("")
                 .to_string(),
             vibration: flag("input", "vibration", true),
+            menu_button: match get("input", "menu_button").and_then(|v| v.as_str()) {
+                Some(m @ ("l3_r3" | "off")) => m.to_string(),
+                _ => "start_select".to_string(),
+            },
             modern: get("input", "movement").and_then(|v| v.as_str()) == Some("modern"),
             quick_turn: flag("input", "quick_turn", true),
             keys: std::array::from_fn(|i| {
@@ -436,6 +508,7 @@ impl Settings {
         use toml_edit::value;
         doc["general"]["language"] = value(self.language.code());
         doc["general"]["confirm_exit"] = value(self.confirm_exit);
+        doc["general"]["deck_mode"] = value(self.deck_mode.as_str());
         doc["general"]["experimental"] = value(self.experimental);
         doc["general"]["discord"] = value(self.discord);
         let mut path = |table: &str, key: &str, text: &str| {
@@ -470,6 +543,7 @@ impl Settings {
         doc["video"]["hide_cursor"] = value(self.hide_cursor);
         doc["input"]["controller"] = value(if self.controller.is_empty() { "auto" } else { self.controller.as_str() });
         doc["input"]["vibration"] = value(self.vibration);
+        doc["input"]["menu_button"] = value(self.menu_button.as_str());
         doc["input"]["movement"] = value(if self.modern { "modern" } else { "tank" });
         doc["input"]["quick_turn"] = value(self.quick_turn);
         for (i, b) in BUTTONS.iter().enumerate() {
@@ -538,11 +612,16 @@ struct Launcher {
     capture: Option<(bool, usize)>,
     /// Settings: the tab shown (general, graphics, discs and cards).
     settings_tab: usize,
-    /// Controllers, for their names and to catch their buttons.
+    /// Controllers, for their names and to catch their buttons: gilrs, or
+    /// XInput where it cannot start (with the slots' last readings).
     gilrs: Option<gilrs::Gilrs>,
+    xinput: Option<(crate::xinput::XInput, [Option<crate::xinput::Pad>; 4])>,
     art: Option<Art>,
     /// Windows' icon font was found.
     icons: bool,
+    /// The window was put in full screen (deck mode; set on the first
+    /// frame, as Wine ignores it when the window opens).
+    full_screen: bool,
     /// PE2_LAUNCHER_SHOT: frames drawn, to take the picture once settled.
     frames: u32,
     /// The game was started and has no window yet; why it could not start.
@@ -600,9 +679,11 @@ impl Launcher {
             pad_tab: false,
             settings_tab: 0,
             capture: None,
-            gilrs: gilrs::Gilrs::new().ok(),
+            gilrs: None,
+            xinput: None,
             art,
             icons,
+            full_screen: false,
             frames: 0,
             starting: Arc::new(AtomicBool::new(false)),
             launch_error: Arc::new(std::sync::Mutex::new(None)),
@@ -615,11 +696,54 @@ impl Launcher {
             install_job: None,
             install_status: None,
         };
+        launcher.gilrs = gilrs::Gilrs::new().ok();
+        if launcher.gilrs.is_none() {
+            launcher.xinput = crate::xinput::XInput::open().map(|x| (x, [None; 4]));
+        }
         launcher.recheck();
         if launcher.checks[0].as_ref().is_none_or(|c| c.is_err()) {
             launcher.screen = Screen::Setup(0);
         }
         launcher
+    }
+
+    /// A controller button pressed: the Controls screen's catch, and a
+    /// move for the buttons that navigate.
+    fn pad_nav(&mut self, b: gilrs::Button) {
+        self.pad_pressed = Some(format!("{b:?}"));
+        let nav = match b {
+            gilrs::Button::DPadUp => Some(Nav::Up),
+            gilrs::Button::DPadDown => Some(Nav::Down),
+            gilrs::Button::DPadLeft => Some(Nav::Left),
+            gilrs::Button::DPadRight => Some(Nav::Right),
+            gilrs::Button::South => Some(Nav::Accept),
+            gilrs::Button::East => Some(Nav::Back),
+            _ => None,
+        };
+        self.nav.extend(nav);
+    }
+
+    /// The left stick (k: 0 = x, 1 = y): a move each time it is pushed past
+    /// half way.
+    fn stick_nav(&mut self, k: usize, v: f32) {
+        let dir = if v > 0.6 {
+            1
+        } else if v < -0.6 {
+            -1
+        } else if v.abs() < 0.3 {
+            0
+        } else {
+            self.stick[k]
+        };
+        if dir != self.stick[k] && dir != 0 {
+            self.nav.push(match (k, dir) {
+                (0, 1) => Nav::Right,
+                (0, _) => Nav::Left,
+                (_, 1) => Nav::Up,
+                _ => Nav::Down,
+            });
+        }
+        self.stick[k] = dir;
     }
 
     fn lang(&self) -> Lang {
@@ -763,7 +887,7 @@ impl Launcher {
                     text,
                 );
             }
-            _ => {}
+            _ => icon.draw(painter, center, text),
         }
         painter.text(
             pos2(rect.left() + 84.0, rect.center().y),
@@ -1132,6 +1256,18 @@ impl Launcher {
             0 => {
                 card(ui, lang.t("Launcher", "Launcher"), |ui| {
                     self.language(ui, lang.t("Language", "Idioma"));
+                    let modes = [
+                        ("auto".to_string(), lang.t("Automatic", "Automático").to_string()),
+                        ("on".to_string(), lang.t("On", "Ligado").to_string()),
+                        ("off".to_string(), lang.t("Off", "Desligado").to_string()),
+                    ];
+                    self.focus.choice(
+                        ui,
+                        lang.t("Deck mode (full screen)", "Modo Deck (tela cheia)"),
+                        &mut self.edit.deck_mode,
+                        &modes,
+                        true,
+                    );
                     self.focus.checkbox(
                         ui,
                         &mut self.edit.confirm_exit,
@@ -1293,11 +1429,13 @@ impl Launcher {
                 });
                 if self.pad_tab {
                     card(&mut cols[1], lang.t("Controller", "Controle"), |ui| {
-                        let names: Vec<String> = self
-                            .gilrs
-                            .as_ref()
-                            .map(|g| g.gamepads().map(|(_, p)| p.name().to_string()).collect())
-                            .unwrap_or_default();
+                        let names: Vec<String> = match (&self.gilrs, &self.xinput) {
+                            (Some(g), _) => g.gamepads().map(|(_, p)| p.name().to_string()).collect(),
+                            (None, Some((_, last))) => {
+                                (0..4).filter(|&s| last[s].is_some()).map(crate::xinput::name).collect()
+                            }
+                            (None, None) => Vec::new(),
+                        };
                         let mut options = vec![(String::new(), lang.t("Last one used", "O último usado").to_string())];
                         options.extend(names.iter().map(|n| (n.clone(), n.clone())));
                         if !self.edit.controller.is_empty() && !names.contains(&self.edit.controller) {
@@ -1308,6 +1446,18 @@ impl Launcher {
                             ui.label(lang.t("No controller connected.", "Nenhum controle conectado."));
                         }
                         self.focus.checkbox(ui, &mut self.edit.vibration, lang.t("Vibration", "Vibração"), true);
+                        let menus = [
+                            ("start_select".to_string(), "Start + Select".to_string()),
+                            ("l3_r3".to_string(), "L3 + R3".to_string()),
+                            ("off".to_string(), lang.t("Off", "Desligado").to_string()),
+                        ];
+                        self.focus.choice(
+                            ui,
+                            lang.t("Pause menu", "Menu de pausa"),
+                            &mut self.edit.menu_button,
+                            &menus,
+                            true,
+                        );
                     });
                 } else {
                     card(&mut cols[1], lang.t("Keyboard", "Teclado"), |ui| {
@@ -1611,51 +1761,60 @@ impl eframe::App for Launcher {
                 false
             });
         }
-        let Some(g) = self.gilrs.as_mut() else { return };
+        if let Some((x, last)) = &mut self.xinput {
+            let now = x.read_all();
+            let pressed: Vec<gilrs::Button> = now
+                .iter()
+                .zip(last.iter())
+                .filter_map(|(p, before)| Some(p.as_ref()?.pressed_since(*before)))
+                .flatten()
+                .collect();
+            // The first controller's stick.
+            let stick = now
+                .iter()
+                .flatten()
+                .next()
+                .map(|p| [p.value(gilrs::Axis::LeftStickX), p.value(gilrs::Axis::LeftStickY)]);
+            *last = now;
+            pressed.into_iter().for_each(|b| self.pad_nav(b));
+            if let Some(v) = stick {
+                (0..2).for_each(|k| self.stick_nav(k, v[k]));
+            }
+            return;
+        }
+        let Some(mut g) = self.gilrs.take() else { return };
         while let Some(ev) = g.next_event() {
             match ev.event {
-                gilrs::EventType::ButtonPressed(b, _) => {
-                    self.pad_pressed = Some(format!("{b:?}"));
-                    let nav = match b {
-                        gilrs::Button::DPadUp => Some(Nav::Up),
-                        gilrs::Button::DPadDown => Some(Nav::Down),
-                        gilrs::Button::DPadLeft => Some(Nav::Left),
-                        gilrs::Button::DPadRight => Some(Nav::Right),
-                        gilrs::Button::South => Some(Nav::Accept),
-                        gilrs::Button::East => Some(Nav::Back),
-                        _ => None,
-                    };
-                    self.nav.extend(nav);
-                }
-                // The stick: a move each time it is pushed past half way.
+                gilrs::EventType::ButtonPressed(b, _) => self.pad_nav(b),
                 gilrs::EventType::AxisChanged(axis @ (gilrs::Axis::LeftStickX | gilrs::Axis::LeftStickY), v, _) => {
-                    let k = usize::from(axis == gilrs::Axis::LeftStickY);
-                    let dir = if v > 0.6 {
-                        1
-                    } else if v < -0.6 {
-                        -1
-                    } else if v.abs() < 0.3 {
-                        0
-                    } else {
-                        self.stick[k]
-                    };
-                    if dir != self.stick[k] && dir != 0 {
-                        self.nav.push(match (k, dir) {
-                            (0, 1) => Nav::Right,
-                            (0, _) => Nav::Left,
-                            (_, 1) => Nav::Up,
-                            _ => Nav::Down,
-                        });
-                    }
-                    self.stick[k] = dir;
+                    self.stick_nav(usize::from(axis == gilrs::Axis::LeftStickY), v);
                 }
                 _ => {}
             }
         }
+        self.gilrs = Some(g);
     }
 
     fn ui(&mut self, ui: &mut egui::Ui, frame: &mut eframe::Frame) {
         let window = window_handle(frame);
+        // Deck mode, as saved.
+        let deck = crate::config::deck_mode(&self.saved.deck_mode);
+        if deck != self.full_screen {
+            ui.ctx().send_viewport_cmd(egui::ViewportCommand::Fullscreen(deck));
+            self.full_screen = deck;
+        }
+        // In full screen, the window's layout scaled up to fill the screen.
+        let ctx = ui.ctx().clone();
+        let zoom = if deck {
+            let native = ctx.native_pixels_per_point().unwrap_or(1.0);
+            let pixels = ctx.content_rect().size() * ctx.pixels_per_point() / native;
+            (pixels.x / WINDOW[0]).min(pixels.y / WINDOW[1]).max(1.0)
+        } else {
+            1.0
+        };
+        if (zoom - ctx.zoom_factor()).abs() > 0.01 {
+            ctx.set_zoom_factor(zoom);
+        }
         let full = ui.max_rect();
         // Keep reading the controllers, and the game's start.
         ui.ctx().request_repaint_after(std::time::Duration::from_millis(50));
@@ -1806,9 +1965,10 @@ fn show_window(window: Option<isize>, show: bool) {
     }
 }
 
-/// Windows' fonts, where present: Segoe UI for text; Segoe UI Symbol as a
-/// fallback for the PlayStation face-button symbols (the controller
-/// labels' ✕ ○ □ △), which egui's fonts lack; and the icon font (Segoe
+/// Windows' fonts, where present: Segoe UI for text; Segoe UI Symbol (else
+/// the built-in DejaVu Sans) as a fallback for the PlayStation face-button
+/// symbols (the controller labels' ✕ ○ □ △) and the choices' ◀ ▶, which
+/// egui's fonts lack; and the icon font (Segoe
 /// Fluent Icons, or Segoe MDL2 Assets before Windows 11) for the main
 /// screen's buttons. Returns whether an icon font was found.
 fn add_fonts(ctx: &egui::Context) -> bool {
@@ -1821,11 +1981,11 @@ fn add_fonts(ctx: &egui::Context) -> bool {
         add(&mut fonts, "segoe", bytes);
         fonts.families.entry(egui::FontFamily::Proportional).or_default().insert(0, "segoe".into());
     }
-    if let Some(bytes) = read("seguisym.ttf") {
-        add(&mut fonts, "symbols", bytes);
-        for family in [egui::FontFamily::Proportional, egui::FontFamily::Monospace] {
-            fonts.families.entry(family).or_default().push("symbols".into());
-        }
+    // Without it (under Wine and Proton), the built-in DejaVu Sans has them.
+    let symbols = read("seguisym.ttf").unwrap_or_else(|| crate::mods::capfont::BUILT_IN.to_vec());
+    add(&mut fonts, "symbols", symbols);
+    for family in [egui::FontFamily::Proportional, egui::FontFamily::Monospace] {
+        fonts.families.entry(family).or_default().push("symbols".into());
     }
     let icons = read("SegoeIcons.ttf").or_else(|| read("segmdl2.ttf"));
     let found = icons.is_some();
@@ -1920,6 +2080,7 @@ mod tests {
         s.confirm_exit = false;
         s.experimental = true;
         s.discord = false;
+        s.deck_mode = "on".into();
         s.hd_fonts = false;
         s.discs = [r"D:\Games\PE2 (Disc 1).chd".into(), String::new()];
         s.scale = 6;
@@ -1932,6 +2093,7 @@ mod tests {
         s.card = "cards/one.mcd".into();
         s.controller = "Xbox 360 Controller".into();
         s.vibration = false;
+        s.menu_button = "l3_r3".into();
         s.volume = 40;
         s.keys[4] = "KeyJ".into(); // cross
         s.pads[8] = "Mode".into(); // start
@@ -1941,6 +2103,7 @@ mod tests {
         let config: crate::config::Config = toml::from_str(&text).expect("the game reads it");
         assert_eq!(config.general.language.as_deref(), Some("pt"));
         assert_eq!(config.general.confirm_exit, Some(false));
+        assert_eq!(config.general.deck_mode.as_deref(), Some("on"));
         assert_eq!(config.general.experimental, Some(true));
         assert_eq!(config.general.discord, Some(false));
         assert_eq!(config.video.hd_fonts, Some(false));
@@ -1955,6 +2118,7 @@ mod tests {
         assert_eq!(config.memcard.slot1.as_deref(), Some(Path::new("cards/one.mcd")));
         assert_eq!(config.input.controller.as_deref(), Some("Xbox 360 Controller"));
         assert_eq!(config.input.vibration, Some(false));
+        assert_eq!(config.input.menu_button.as_deref(), Some("l3_r3"));
         assert_eq!(config.audio.volume, Some(40));
         assert_eq!(config.input.keyboard.get("cross").map(String::as_str), Some("KeyJ"));
         assert_eq!(config.input.keyboard.get("up").map(String::as_str), Some("ArrowUp"));
