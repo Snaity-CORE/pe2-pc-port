@@ -154,34 +154,98 @@ What to know:
 
 ## Textures
 
-Models (Aya, enemies, weapons), the interface (fonts, the HUD, menus) and the
-pieces of rooms drawn over backgrounds are drawn from textures, and a mod can
-replace them at a higher resolution. Replaced textures (and a mod's dialogue
-font) are drawn at internal resolutions above 1 only: at the console's own,
-they would be shrunk to its texels, worse than the game's.
+Models (Aya, enemies, weapons), the interface (fonts, the HUD, menus), the
+maps and the pieces of rooms drawn over backgrounds are drawn from
+textures, and a mod can replace them at a higher resolution. Replaced
+textures are drawn at internal resolutions above 1 only (at the
+console's own, they would be shrunk to its texels).
 
-The game's textures are stored in its `.pe2img` pictures as sheets: columns
-of texels (256 wide at 4 bits per texel, 128 at 8 bits, up to 256 tall),
-each one asset. A sheet is known by a hash of its contents, the same in
-every room and whatever else is loaded with it.
+### How textures work, in short
 
-Most sheets are 4- or 8-bit: their texels are not colours but indices into
-a palette (a CLUT), and the game picks the palette each time it draws, so
-one sheet is often drawn in several: the UI font's fill and its outlines,
-the dialogue text and the speakers' labels, an enemy's colour variants. A
-mod can replace a sheet in two ways:
+The game's textures are **sheets**: columns of texels (256 wide at 4 bits
+per texel, 128 at 8 bits, up to 256 tall), each one asset, known by a
+hash of its contents: the same hash in every room, whatever else is loaded
+with it. That hash is the file name of everything about the sheet.
 
-- **Indexed** (`<sheet>-<4|8>bit.idx.png`, below): the replacement keeps
-  indices too, and the game's palettes colour them as they colour the
-  original, whichever palette each primitive is drawn with. This is the
-  way for 4- and 8-bit sheets.
-- **In colours** (`<sheet>.png`, `<sheet>-<palette>.png`, further below): a
-  picture with its colours fixed, for one palette or any. The way for
-  15-bit (direct colour) sheets, and what earlier mods use.
+Almost every sheet is 4- or 8-bit: its texels are **not colours but
+numbers** (indices into a palette, a CLUT), and the game picks the palette
+each time it draws. One sheet is often drawn with several palettes: the
+UI font's fill and its outline, an enemy's colour variants, a map's page
+and the icons over it. So there are two ways to replace a sheet:
 
-An indexed replacement wins where both exist for a sheet.
+| | Indexed (`<sheet>-<4\|8>bit.idx.png`) | In colours (`<sheet>.png`) |
+|---|---|---|
+| Holds | the numbers, enlarged | a picture, colours fixed |
+| Coloured by | the game's palette, each time, as the original | itself |
+| Several palettes | each draws in its own colours | one picture for all (or one file per palette) |
+| Use it for | **every 4- and 8-bit sheet: the right way** | the few 15-bit (direct colour) sheets; quick tests |
+
+A picture in colours looks right only where the game draws the sheet with
+the palette it was made from. The colour pictures the extract saves are
+previews: each sheet coloured with one palette the extract finds for it
+on the discs (the one its file carries, or the one the game's code is
+found to draw it with), and for a few sheets only a guess. Made larger and used as they are, a wrong or partial preview
+shows in the game (a character in the wrong colours, icons as noise). Made
+larger and **converted to indexed**, the same picture only tells where the
+numbers go, and the game colours them right.
+
+An indexed replacement wins where both exist for a sheet; between mods,
+the one higher in the launcher's list wins.
+
+### Upscaling textures, step by step
+
+1. **Extract**: `pe2 --extract textures`. What it saves in `dumps/`:
+
+   | Folder | What | Use |
+   |---|---|---|
+   | `textures/<folder>/<sheet>.png` | each sheet in colours (a preview), filed by what it is: `characters/aya/10200/`, `enemies/`, `weapons/`, `items/`, `maps/`, `ui/`, `rooms/<area>/<room>/`, `other/` | to look at, and to upscale |
+   | `textures-ramp/<folder>/<sheet>-<4\|8>bit.png` | each sheet as greys, each number its own grey | to upscale fonts, the interface, anything drawn with several palettes |
+   | `textures-indexed/<sheet>-<4\|8>bit.idx.png` | each sheet's numbers, at both depths, in one folder | for the tools, and to draw by hand |
+   | `textures-glyphs/<sheet>-<4\|8>bit.toml` | which letter each cell of the game's pictures of text is | for `tools/hd_fonts.py` |
+   | `textures/index.txt` | every sheet: its folder, where it is on the discs, where it loads in video memory, its depth and where its preview's colours come from | to find a sheet |
+
+2. **Find the sheets you want.** Browse `dumps/textures/` by folder. To
+   know what a place draws, run the game with `PE2_TRACE=textures`:
+   `pe2.log` names each sheet as it is first drawn
+   (`<sheet>-<palette>: 8-bit sheet from <disc file>, ...`).
+3. **Pick the picture to upscale**, per sheet:
+   - the preview in colours (`dumps/textures/...`) for pictures:
+     characters, enemies, items, rooms' pieces, maps (an upscaler does
+     better on natural colours);
+   - the ramp (`dumps/textures-ramp/...`) for fonts and the interface,
+     whose colours look alike in each of their palettes (the UI font's
+     fill and outline do).
+4. **Upscale** by a whole factor (4x: a 256 x 256 sheet to 1024 x 1024),
+   keeping each file's name; any folders are fine.
+5. **Convert** to indexed replacements, straight into your mod:
+
+   ```text
+   pe2 --indexed-from-upscale my-upscaled-folder mods/my-mod/textures
+   ```
+
+   It prints each file it writes. Sheets with no numbers (15-bit, a
+   handful) say `not a 4- or 8-bit sheet`: copy those pictures into
+   `mods/my-mod/textures/` as they are, in colours. A sheet given twice (a
+   ramp and a preview, or one preview per palette) is made once, from the
+   first.
+6. **Play**, at an internal resolution above 1, with mods on. The log's
+   first lines count the mod's textures; one the game cannot use is
+   logged (`ignored indexed texture ...`) and the original shows.
+
+### When something looks wrong
+
+| You see | Why | What to do |
+|---|---|---|
+| The original texture, not yours | internal resolution 1; mods off; the file's name is not the sheet's; or it was refused (see `pe2.log`) | check those; `pe2 --indexed-check <file>` checks an indexed one |
+| Your texture in the wrong colours (a blue face) | a picture in colours, where the game draws with another palette than its preview's | convert it to indexed (step 5); if the preview itself looks wrong, please report the sheet |
+| A strip of noise in a preview (the top of a map's sheets) | part of the sheet is drawn at the other depth (4-bit icons on an 8-bit page): no single preview shows both | harmless: an 8-bit replacement serves the page, and the icons, drawn 4-bit, stay the game's (or make a 4-bit one from the sheet's `-4bit` ramp) |
+| Blocky, not smoothed | indexed textures are drawn without filtering (numbers cannot be blended) | the detail is what the upscale draws: a larger factor (up to the internal resolution's) gives finer edges |
+| A mod's texture for a translated picture never shows | its sheet's hash is the translated picture's, which the game loads only from the translation's files | the translation mod must bring that picture in `files/` (`tools/import_strings.py` does) |
 
 ### Indexed replacements
+
+The full workings, for drawing them by hand or writing tools; the steps
+above are the quick way.
 
 1. Extract (`pe2 --extract` or `pe2 --extract textures`, see above): every
    4- and 8-bit sheet, about 2,090, is saved in `dumps/textures-indexed/`
@@ -331,6 +395,9 @@ company's logo is its trademark, so keep such mods to yourself.
 
 ### Replacements in colours
 
+For 15-bit sheets, and quick tests; for 4- and 8-bit sheets, an indexed
+replacement is the right way (see "How textures work, in short").
+
 1. Extract the game's files (`pe2 --extract`, see above): every sheet, about
    2,100, is saved whole in colours in `dumps/textures/`, filed by what
    it is, with the decompilation's names: `characters/aya/10200/`,
@@ -351,8 +418,12 @@ company's logo is its trademark, so keep such mods to yourself.
      they draw is coloured as the game draws it, and each camera's sprites
      are checked against its background (the extract's log says how many
      differ). What no sprite draws is never shown, and is left transparent.
-   - **Characters, enemies, weapons, items, maps**: their files carry their
-     palettes, one per column of their pictures.
+   - **Characters, enemies, weapons, items**: their files carry their
+     palettes, one per column of their pictures (the tallest columns
+     first, where a short picture comes before them).
+   - **Maps**: both columns of a map's page with the one palette the game
+     draws it with, the second of its file's six; the icons over it are
+     4-bit, from another, and show as noise in the preview.
    - **Dialogue fonts**: every page of glyphs a room's dialogue uses,
      wherever it loads, with the palettes the game's code draws it with
      (the speakers' name labels with theirs).
