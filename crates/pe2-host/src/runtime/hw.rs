@@ -247,6 +247,14 @@ const MDEC_MACROBLOCK: Duration = Duration::from_nanos(2688 * 1_000_000_000 / 33
 /// as following it (see dma_complete).
 const MDEC_LATE: Duration = Duration::from_millis(5);
 
+/// How long after a vertical blank an MDEC output due then is delivered
+/// just before it instead (vsync::before_blank). A background animated with
+/// the camera (the arrival at the Akropolis Tower) is decoded in about a
+/// frame and its columns taken at the start of the next: the last one due
+/// right at that start, it came a frame early or late in turn and the
+/// background jerked.
+const MDEC_BEFORE_BLANK: Duration = Duration::from_millis(3);
+
 /// When the MDEC is done with what it was given so far.
 static MDEC_DONE_AT: Mutex<Option<Instant>> = Mutex::new(None);
 /// MDEC resets so far: a completion due from before the latest one is dropped.
@@ -283,8 +291,10 @@ fn dma_complete(channel: usize, macroblocks: u32) {
     if channel == 1 {
         OUTPUT_DUE.fetch_add(1, Ordering::SeqCst);
     }
+    // The next output still counts from `at` (MDEC_DONE_AT).
+    let deliver_at = if channel == 1 { super::vsync::before_blank(at, MDEC_BEFORE_BLANK) } else { at };
     irq::schedule(
-        at,
+        deliver_at,
         Box::new(move || {
             if channel > 1 || MDEC_RESETS.load(Ordering::SeqCst) == resets {
                 call_psx(cb, &[]);

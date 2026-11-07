@@ -350,6 +350,10 @@ impl Presenter {
         }
         gfx.queue.submit([encoder.finish()]);
         gfx.queue.present(target);
+        static SHOWN: std::sync::atomic::AtomicBool = std::sync::atomic::AtomicBool::new(false);
+        if !SHOWN.swap(true, std::sync::atomic::Ordering::Relaxed) {
+            crate::gfx::started();
+        }
     }
 }
 

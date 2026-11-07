@@ -71,8 +71,16 @@ impl Interp {
     /// A new frame, `frame` (as hw.rs kept it), drawn into `region` of the
     /// layer (None: not to be shown from it) while `shown` is on screen:
     /// draws it again into `hw.between`, halfway from the last frame, for
-    /// the next blank. Returns whether it did.
-    pub fn new_frame(&mut self, hw: &mut Hw, frame: &[hw::Chunk], region: Option<Region>, shown: Region) -> bool {
+    /// the next blank, unless `backdrop_moved` (gpu.rs note_backdrop).
+    /// Returns whether it did.
+    pub fn new_frame(
+        &mut self,
+        hw: &mut Hw,
+        frame: &[hw::Chunk],
+        region: Option<Region>,
+        shown: Region,
+        backdrop_moved: bool,
+    ) -> bool {
         self.pending = None;
         let origin = region.map_or([0.0; 2], |r| [r.0 as f32, r.1 as f32]);
         let now: HashMap<u32, [f32; 2]> =
@@ -92,7 +100,7 @@ impl Interp {
             self.traced += 1;
             if self.traced.is_multiple_of(30) {
                 eprintln!(
-                    "[interp] blank {}: {} keyed vertices, {matched} matched (moved: mean {:.2}, max {:.2} px), steady {steady}, shown {}",
+                    "[interp] blank {}: {} keyed vertices, {matched} matched (moved: mean {:.2}, max {:.2} px), steady {steady}, shown {}, backdrop moved {backdrop_moved}",
                     self.blank,
                     self.before.len(),
                     moves.iter().sum::<f32>() / matched.max(1) as f32,
@@ -102,7 +110,7 @@ impl Interp {
             }
         }
         let Some(region) = region else { return false };
-        let drawn = steady && matched > 0;
+        let drawn = steady && matched > 0 && !backdrop_moved;
         if drawn {
             // Further than this in one frame (1/30 s) is a cut, not movement.
             let limit = 32.0 * hw.scale as f32;

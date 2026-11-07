@@ -12,19 +12,50 @@
 /* logfile.rs: waits until the log has what was written. */
 void pc_log_drain(void);
 
+/* gfx.rs: while the graphics card is being opened with Vulkan, the file a
+ * crash then leaves, naming the module it happened in (the next start uses
+ * OpenGL instead). Empty otherwise. */
+wchar_t pc_gfx_crash_marker[MAX_PATH];
+
+/* The file name of the module `address` is in, and its base; NULL for an
+ * address in no module. */
+static const char* module_of(DWORD address, char* path, DWORD size, DWORD* base)
+{
+    HMODULE module;
+    if (!GetModuleHandleExA(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
+                            (LPCSTR)(ULONG_PTR)address, &module) ||
+        !GetModuleFileNameA(module, path, size))
+        return NULL;
+    *base = (DWORD)(ULONG_PTR)module;
+    const char* name = strrchr(path, '\\');
+    return name ? name + 1 : path;
+}
+
 /* Prints " (<module>+0x<offset>)" for an address in a loaded module (a
  * driver's DLL, an overlay's): pe2.exe's own addresses map through its
  * .map file, the others only this way. Nothing for one in no module. */
 static void print_module(DWORD address)
 {
-    HMODULE module;
     char path[MAX_PATH];
-    if (!GetModuleHandleExA(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
-                            (LPCSTR)(ULONG_PTR)address, &module) ||
-        !GetModuleFileNameA(module, path, sizeof path))
+    DWORD base;
+    const char* name = module_of(address, path, sizeof path, &base);
+    if (name)
+        fprintf(stderr, " (%s+0x%lX)", name, (unsigned long)(address - base));
+}
+
+/* A crash while the graphics card opens: leaves pc_gfx_crash_marker. */
+static void mark_gfx_crash(DWORD address)
+{
+    if (!pc_gfx_crash_marker[0])
         return;
-    const char* name = strrchr(path, '\\');
-    fprintf(stderr, " (%s+0x%lX)", name ? name + 1 : path, (unsigned long)(address - (DWORD)(ULONG_PTR)module));
+    FILE* f = _wfopen(pc_gfx_crash_marker, L"w");
+    if (!f)
+        return;
+    char path[MAX_PATH];
+    DWORD base;
+    const char* name = module_of(address, path, sizeof path, &base);
+    fprintf(f, "%s\n", name ? name : "an unknown module");
+    fclose(f);
 }
 
 static LONG CALLBACK on_exception(EXCEPTION_POINTERS* info)
@@ -81,6 +112,7 @@ static LONG CALLBACK on_exception(EXCEPTION_POINTERS* info)
             fprintf(stderr, "\n");
         }
     }
+    mark_gfx_crash(ctx->Eip);
     fflush(stderr);
     /* The log's time stamps go through a pipe (logfile.rs): get it all out
      * before the process ends. */

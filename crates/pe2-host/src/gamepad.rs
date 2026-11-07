@@ -34,6 +34,28 @@ fn axis_byte(v: f32, invert: bool) -> u8 {
     (v.clamp(-1.0, 1.0) * 127.5 + 127.5).round() as u8
 }
 
+/// A stick's position (x, y) from a round range onto the square one the
+/// game expects, keeping its direction: pushed fully in any direction, the
+/// larger axis reaches the edge. Modern sticks stop on a circle, so a full
+/// diagonal gave each axis only 0.71; the game takes a dead zone off each
+/// axis and runs above 29/32 of a full push, and diagonals fell just short
+/// of it (Aya walked).
+fn square(x: f32, y: f32) -> (f32, f32) {
+    let larger = x.abs().max(y.abs());
+    if larger < f32::EPSILON {
+        return (x, y);
+    }
+    let scale = x.hypot(y).min(1.0) / larger;
+    ((x * scale).clamp(-1.0, 1.0), (y * scale).clamp(-1.0, 1.0))
+}
+
+/// Both sticks in DualShock wire order (see STICKS).
+fn stick_bytes(value: impl Fn(Axis) -> f32) -> u32 {
+    let (rx, ry) = square(value(Axis::RightStickX), value(Axis::RightStickY));
+    let (lx, ly) = square(value(Axis::LeftStickX), value(Axis::LeftStickY));
+    u32::from_le_bytes([axis_byte(rx, false), axis_byte(ry, true), axis_byte(lx, false), axis_byte(ly, true)])
+}
+
 pub fn start() {
     std::thread::Builder::new().name("gamepad".into()).spawn(run).expect("spawn gamepad thread");
 }
@@ -137,12 +159,7 @@ fn publish(map: &[(Button, u16)], menu: &mut Menu, pad: Option<(impl Fn(Button) 
                 .iter()
                 .filter(|(b, _)| pressed(*b) && !combo.is_some_and(|c| c.contains(b)))
                 .fold(0, |a, (_, bit)| a | bit);
-            let sticks = u32::from_le_bytes([
-                axis_byte(value(Axis::RightStickX), false),
-                axis_byte(value(Axis::RightStickY), true),
-                axis_byte(value(Axis::LeftStickX), false),
-                axis_byte(value(Axis::LeftStickY), true),
-            ]);
+            let sticks = stick_bytes(value);
             BUTTONS.store(held, Ordering::SeqCst);
             STICKS.store(sticks, Ordering::SeqCst);
             CONNECTED.store(true, Ordering::SeqCst);
@@ -233,4 +250,39 @@ fn start_rumble(gilrs: &mut Gilrs, id: GamepadId, want: u32) -> Option<Effect> {
     let effect = builder.gamepads(&[id]).finish(gilrs).ok()?;
     effect.play().ok()?;
     Some(effect)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    /// The game's reading of a stick byte (gameflow.c: centre 0x80, dead
+    /// zone 24 raw, then 12 fraction bits).
+    fn game_axis(byte: u8) -> i32 {
+        let delta = i32::from(byte) - 0x80;
+        match delta {
+            d if d.abs() <= 24 => 0,
+            d if d < 0 => ((d + 24) << 12) / (0x80 - 24),
+            d => ((d - 24) << 12) / ((0xFE - 24) - 0x80),
+        }
+    }
+
+    /// A full push runs in every direction, diagonals included (the game
+    /// runs above 29/32 of full scale), and a slight one stays a walk.
+    #[test]
+    fn full_diagonals_run() {
+        let run = 4096 * 29 / 32;
+        for deg in (0..360).step_by(15) {
+            let a = (deg as f32).to_radians();
+            let push = |r: f32| {
+                let (x, y) = square(r * a.cos(), r * a.sin());
+                let (gx, gy) = (game_axis(axis_byte(x, false)), game_axis(axis_byte(y, true)));
+                ((gx * gx + gy * gy) as f64).sqrt() as i32
+            };
+            assert!(push(1.0) > run, "{deg} degrees: {}", push(1.0));
+            assert!(push(0.6) < run, "{deg} degrees at 0.6: {}", push(0.6));
+        }
+        assert_eq!(square(0.0, 0.0), (0.0, 0.0));
+        assert_eq!(square(0.5, 0.0), (0.5, 0.0));
+    }
 }

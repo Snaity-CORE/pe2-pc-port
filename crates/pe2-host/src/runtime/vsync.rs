@@ -2,7 +2,7 @@
 //! interrupt masking (libapi EnterCriticalSection / ExitCriticalSection).
 
 use std::collections::VecDeque;
-use std::sync::atomic::{AtomicU32, AtomicU64, Ordering};
+use std::sync::atomic::{AtomicI32, AtomicU32, AtomicU64, Ordering};
 use std::sync::{Mutex, OnceLock};
 use std::time::{Duration, Instant};
 
@@ -31,6 +31,18 @@ static EPOCH: OnceLock<Instant> = OnceLock::new();
 /// EPOCH. An atomic rather than part of TIMING: VSync(1) reads it without a
 /// lock, so it needs no guard and interrupts get in while the game polls it.
 static LAST_CALL_NS: AtomicU64 = AtomicU64::new(0);
+/// VBLANKS when the previous waiting VSync call returned, and the lines the
+/// callback of that blank took (the call returned after it).
+static LAST_CALL_BLANK: AtomicU32 = AtomicU32::new(0);
+static LAST_CALL_CALLBACK_LINES: AtomicI32 = AtomicI32::new(0);
+/// Lines the latest vertical blank callback took.
+static CALLBACK_LINES: AtomicI32 = AtomicI32::new(0);
+/// When the latest vertical blank was due, in nanoseconds since EPOCH (the
+/// blanks keep that timeline; see before_blank).
+static BLANK_AT_NS: AtomicU64 = AtomicU64::new(0);
+/// While the game's vertical blank callback runs: when it started, in
+/// nanoseconds since EPOCH (0 outside it). See field_lines.
+static CALLBACK_AT_NS: AtomicU64 = AtomicU64::new(0);
 /// Waiting VSync calls so far (PE2_TRACE=scene reports them per scene gap).
 static WAITS: AtomicU32 = AtomicU32::new(0);
 /// The latest waiting VSync calls, for the scene gap report: when each
@@ -66,6 +78,8 @@ fn schedule_vblank(at: Instant) {
         at,
         Box::new(move || {
             VBLANKS.fetch_add(1, Ordering::SeqCst);
+            let due = at.duration_since(*EPOCH.get().expect("vsync not started"));
+            BLANK_AT_NS.store(due.as_nanos() as u64, Ordering::SeqCst);
             super::replay::vblank();
             super::stubs::refresh_pads();
             super::scan_images();
@@ -85,7 +99,12 @@ fn schedule_vblank(at: Instant) {
             crate::mods::music::poll();
             let cb = CALLBACK.load(Ordering::SeqCst);
             if cb != 0 {
+                let started = Instant::now();
+                let since = started.duration_since(*EPOCH.get().expect("vsync not started"));
+                CALLBACK_AT_NS.store((since.as_nanos() as u64).max(1), Ordering::SeqCst);
                 call_psx(cb, &[]);
+                CALLBACK_LINES.store(hsyncs_since(started), Ordering::SeqCst);
+                CALLBACK_AT_NS.store(0, Ordering::SeqCst);
             }
             if let Some(t) = TIMING.lock().unwrap().as_mut() {
                 t.resumed_at = Instant::now();
@@ -97,8 +116,48 @@ fn schedule_vblank(at: Instant) {
     );
 }
 
+/// `at`, or just before the vertical blank when `at` falls within `window`
+/// after one. For events the game looks for at the start of its frames,
+/// right after a blank: there, a fraction of a millisecond decides whether
+/// an event lands in this frame or the next. On the console the game looks
+/// at the same cycle every frame, so events drifting past that point change
+/// frames once; here it varies a little, and they flipped between the two
+/// frames for seconds on end.
+pub fn before_blank(at: Instant, window: Duration) -> Instant {
+    let Some(epoch) = EPOCH.get() else { return at };
+    let blank = *epoch + Duration::from_nanos(BLANK_AT_NS.load(Ordering::SeqCst));
+    let Some(since) = at.checked_duration_since(blank) else { return at };
+    let phase = Duration::from_nanos((since.as_nanos() % FIELD.as_nanos()) as u64);
+    if phase < window { at - phase - Duration::from_micros(1) } else { at }
+}
+
 fn hsyncs_since(at: Instant) -> i32 {
     (at.elapsed().as_secs_f64() * HSYNC_HZ) as i32
+}
+
+/// Lines a field holds, counted whole by field_lines.
+const FIELD_LINES: i32 = 262;
+
+/// VSync(1) inside the game's vertical blank callback, counted as the
+/// console counts it: whole fields of 262 lines since the blank the previous
+/// waiting VSync returned at, less the lines that blank's callback took (the
+/// call returned after it), plus the lines this callback has run.
+///
+/// The callback flips a finished frame only once the frame has run past half
+/// its budget, 262 of 525 lines, from where the frame started (it adds the
+/// previous callback's lines back). One field after the start is just that,
+/// so frames flip every second blank. Measured by the clock instead, a field
+/// fell on either side of 262 as the blank's delivery varied by a fraction of
+/// a millisecond, and frames were held one blank or three in turn: uneven
+/// motion, plain to see when the camera moves. None outside the callback.
+fn field_lines() -> Option<i32> {
+    let at = CALLBACK_AT_NS.load(Ordering::SeqCst);
+    if at == 0 {
+        return None;
+    }
+    let fields = VBLANKS.load(Ordering::SeqCst).wrapping_sub(LAST_CALL_BLANK.load(Ordering::SeqCst)) as i32;
+    let started = *EPOCH.get().expect("vsync not started") + Duration::from_nanos(at);
+    Some(fields * FIELD_LINES - LAST_CALL_CALLBACK_LINES.load(Ordering::SeqCst) + hsyncs_since(started))
 }
 
 /// VSync(mode): mode 0 waits for the next vertical blank; n > 1 waits until
@@ -116,7 +175,7 @@ fn hsyncs_since(at: Instant) -> i32 {
 pub extern "C" fn pcrt_VSync(mode: i32) -> i32 {
     match mode {
         m if m < 0 => return VBLANKS.load(Ordering::SeqCst) as i32,
-        1 => return hsyncs_since(last_call_at()) & 0xFFFF,
+        1 => return field_lines().unwrap_or_else(|| hsyncs_since(last_call_at())) & 0xFFFF,
         _ => {}
     }
     let _g = irq::guard();
@@ -162,6 +221,8 @@ pub extern "C" fn pcrt_VSync(mode: i32) -> i32 {
         let mut timing = TIMING.lock().unwrap();
         let t = timing.as_mut().unwrap();
         t.last_call = VBLANKS.load(Ordering::SeqCst);
+        LAST_CALL_BLANK.store(t.last_call, Ordering::SeqCst);
+        LAST_CALL_CALLBACK_LINES.store(CALLBACK_LINES.load(Ordering::SeqCst), Ordering::SeqCst);
         t.resumed_at
     };
     mark_call(blank_at);

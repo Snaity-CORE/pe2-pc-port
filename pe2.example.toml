@@ -65,6 +65,9 @@ scale = 4
 # resolutions small enough to fit at 2x or more.
 # integer_scaling = false
 # The graphics API: "auto" (Vulkan, else OpenGL), "vulkan" or "opengl".
+# If Vulkan crashed while starting (a driver or an overlay hooking into
+# it), "auto" uses OpenGL from then on (vulkan-crashed.txt in the data
+# folder says where it crashed; "vulkan" tries it again).
 # graphics_api = "auto"
 # The window's size in pixels, "<width>x<height>", or "auto" (960x720
 # scaled with the desktop's DPI).

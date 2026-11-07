@@ -73,6 +73,12 @@ pub struct Gpu {
     /// one of them (by hash: that one's hash).
     read_back: Vec<(u64, Vec<u16>)>,
     negatives: Vec<(u64, u64)>,
+    /// The backdrop of the frame being drawn and of the last one: the hash
+    /// of the latest image of half the screen or more the game copied in
+    /// (a background); and the frames left that count as the backdrop
+    /// still moving. With frame interpolation (see note_backdrop).
+    backdrop: (Option<u64>, Option<u64>),
+    backdrop_moving: u32,
 }
 
 /// A screen image a mod's picture replaced: where it went, its hash and
@@ -243,7 +249,43 @@ pub fn start() {
         awaiting: Vec::new(),
         read_back: Vec::new(),
         negatives: Vec::new(),
+        backdrop: (None, None),
+        backdrop_moving: 0,
     });
+}
+
+/// Images of at least this many pixels (half the screen) are backdrops.
+const BACKDROP_PIXELS: i32 = 320 * 120;
+/// New frames a backdrop's change keeps frames in between off: a moving
+/// background may change only every second frame (15 times a second).
+const BACKDROP_MOVING_FRAMES: u32 = 4;
+
+impl Gpu {
+    /// An image copied in, `w` x `h`: with frame interpolation, a large one
+    /// is the frame's backdrop. While it moves (a pre-rendered background
+    /// animated with the camera, 15 times a second, as when the player
+    /// arrives at the Akropolis Tower), no frame is drawn in between: the
+    /// 3D drawn halfway over a backdrop that moves in steps of its own shook
+    /// against it. Such scenes then run as on the console, 30 frames a
+    /// second.
+    fn note_backdrop(&mut self, w: i32, h: i32, pixels: impl FnOnce() -> Vec<u16>) {
+        if self.interp.is_some() && w * h >= BACKDROP_PIXELS {
+            self.backdrop.0 = Some(crate::mods::screen_hash(w, h, &pixels()));
+        }
+    }
+
+    /// At a new frame: whether the backdrop is moving (changed within the
+    /// last few frames).
+    fn backdrop_moving(&mut self) -> bool {
+        let (now, last) = self.backdrop;
+        self.backdrop = (None, now.or(last));
+        if now.is_some() && last.is_some() && now != last {
+            self.backdrop_moving = BACKDROP_MOVING_FRAMES;
+        } else if now.is_some() {
+            self.backdrop_moving = self.backdrop_moving.saturating_sub(1);
+        }
+        self.backdrop_moving > 0
+    }
 }
 
 fn with_gpu<R>(f: impl FnOnce(&mut Gpu) -> R) -> R {
@@ -973,6 +1015,7 @@ pub extern "C" fn pcrt_LoadImage(rect: *const Rect, p: *const u16) -> i32 {
         // Image transfers ignore the mask settings.
         g.vram.write_rect(x0, y0, w, h, pixels);
         g.post(x0, y0, w, h);
+        g.note_backdrop(w, h, || pixels.to_vec());
         // A screen image (a background, a full-screen picture: about the
         // size of the screen, where the game draws or shows) is known to
         // mods by its hash.
@@ -1164,7 +1207,16 @@ pub extern "C" fn pcrt_MoveImage(rect: *const Rect, x: i32, y: i32) -> i32 {
     vtrace(format_args!("MoveImage ({},{}) {}x{}", rc.x, rc.y, rc.w, rc.h));
     with_gpu(|g| {
         let st = DrawState::default();
-        g.copy(i32::from(rc.x), i32::from(rc.y), x, y, i32::from(rc.w), i32::from(rc.h), &st);
+        let (w, h) = (i32::from(rc.w), i32::from(rc.h));
+        g.copy(i32::from(rc.x), i32::from(rc.y), x, y, w, h, &st);
+        let vram = &g.vram;
+        let source = || {
+            let mut pixels = vec![0; (w.max(0) * h.max(0)) as usize];
+            vram.read_rect(x, y, w, h, &mut pixels);
+            pixels
+        };
+        let pixels = (g.interp.is_some() && w * h >= BACKDROP_PIXELS).then(source);
+        g.note_backdrop(w, h, || pixels.unwrap_or_default());
     });
     0
 }
@@ -1342,11 +1394,36 @@ static FRONT: Mutex<Front> = Mutex::new(Front {
 /// picture (the next blank takes it). With frame interpolation, the blank
 /// after a new frame shows that frame drawn halfway from the one on screen
 /// (interp.rs).
+/// PE2_TRACE=pace: how many vertical blanks each frame of the game stayed
+/// on screen, a digit per frame, sixty frames a line (2222... is a steady
+/// 30 fps; 1s and 3s mixed in are uneven pacing). A frame is a flip: the
+/// displayed area moving to the other buffer. Called at every blank.
+fn pace(display: (i32, i32)) {
+    static PACE: Mutex<(u32, (i32, i32), String)> = Mutex::new((0, (0, 0), String::new()));
+    if !trace("pace") {
+        return;
+    }
+    let mut p = PACE.lock().unwrap();
+    p.0 += 1;
+    if display == p.1 {
+        return;
+    }
+    p.1 = display;
+    let blanks = p.0.min(9);
+    p.0 = 0;
+    p.2.push(char::from_digit(blanks, 10).unwrap_or('9'));
+    if p.2.len() == 60 {
+        eprintln!("[pace {:8.3}] {}", crate::runtime::spu::stamp(), p.2);
+        p.2.clear();
+    }
+}
+
 pub fn latch() {
     // SAFETY: a counter in pgxp.c, also called on the interrupt thread only.
     unsafe { pc_pgxp_tick() };
     let mut guard = GPU.lock().unwrap();
     let Some(g) = guard.as_mut() else { return };
+    pace((g.display.x, g.display.y));
     if let Some(interp) = g.interp.as_mut() {
         interp.blank();
     }
@@ -1396,7 +1473,9 @@ pub fn latch() {
         let st = g.state;
         let drawn = (st.area_x1.max(0) as u32 * s, st.area_y1.max(0) as u32 * s, w, h);
         let region = (d.enabled && drawn != shown).then_some(drawn);
-        let between = g.interp.as_mut().is_some_and(|i| i.new_frame(hw, &kept, region, shown));
+        let moved = g.backdrop_moving();
+        let hw = &mut g.hw;
+        let between = g.interp.as_mut().is_some_and(|i| i.new_frame(hw, &kept, region, shown, moved));
         if g.interp.is_some() {
             hw.keep_vram();
         }
