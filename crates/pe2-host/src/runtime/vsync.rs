@@ -37,6 +37,9 @@ static LAST_CALL_BLANK: AtomicU32 = AtomicU32::new(0);
 static LAST_CALL_CALLBACK_LINES: AtomicI32 = AtomicI32::new(0);
 /// Lines the latest vertical blank callback took.
 static CALLBACK_LINES: AtomicI32 = AtomicI32::new(0);
+/// When the latest vertical blank was due, in nanoseconds since EPOCH (the
+/// blanks keep that timeline; see before_blank).
+static BLANK_AT_NS: AtomicU64 = AtomicU64::new(0);
 /// While the game's vertical blank callback runs: when it started, in
 /// nanoseconds since EPOCH (0 outside it). See field_lines.
 static CALLBACK_AT_NS: AtomicU64 = AtomicU64::new(0);
@@ -75,6 +78,8 @@ fn schedule_vblank(at: Instant) {
         at,
         Box::new(move || {
             VBLANKS.fetch_add(1, Ordering::SeqCst);
+            let due = at.duration_since(*EPOCH.get().expect("vsync not started"));
+            BLANK_AT_NS.store(due.as_nanos() as u64, Ordering::SeqCst);
             super::replay::vblank();
             super::stubs::refresh_pads();
             super::scan_images();
@@ -109,6 +114,21 @@ fn schedule_vblank(at: Instant) {
             crate::video::vblank();
         }),
     );
+}
+
+/// `at`, or just before the vertical blank when `at` falls within `window`
+/// after one. For events the game looks for at the start of its frames,
+/// right after a blank: there, a fraction of a millisecond decides whether
+/// an event lands in this frame or the next. On the console the game looks
+/// at the same cycle every frame, so events drifting past that point change
+/// frames once; here it varies a little, and they flipped between the two
+/// frames for seconds on end.
+pub fn before_blank(at: Instant, window: Duration) -> Instant {
+    let Some(epoch) = EPOCH.get() else { return at };
+    let blank = *epoch + Duration::from_nanos(BLANK_AT_NS.load(Ordering::SeqCst));
+    let Some(since) = at.checked_duration_since(blank) else { return at };
+    let phase = Duration::from_nanos((since.as_nanos() % FIELD.as_nanos()) as u64);
+    if phase < window { at - phase - Duration::from_micros(1) } else { at }
 }
 
 fn hsyncs_since(at: Instant) -> i32 {
