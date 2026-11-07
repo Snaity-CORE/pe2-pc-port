@@ -1342,11 +1342,36 @@ static FRONT: Mutex<Front> = Mutex::new(Front {
 /// picture (the next blank takes it). With frame interpolation, the blank
 /// after a new frame shows that frame drawn halfway from the one on screen
 /// (interp.rs).
+/// PE2_TRACE=pace: how many vertical blanks each frame of the game stayed
+/// on screen, a digit per frame, sixty frames a line (2222... is a steady
+/// 30 fps; 1s and 3s mixed in are uneven pacing). A frame is a flip: the
+/// displayed area moving to the other buffer. Called at every blank.
+fn pace(display: (i32, i32)) {
+    static PACE: Mutex<(u32, (i32, i32), String)> = Mutex::new((0, (0, 0), String::new()));
+    if !trace("pace") {
+        return;
+    }
+    let mut p = PACE.lock().unwrap();
+    p.0 += 1;
+    if display == p.1 {
+        return;
+    }
+    p.1 = display;
+    let blanks = p.0.min(9);
+    p.0 = 0;
+    p.2.push(char::from_digit(blanks, 10).unwrap_or('9'));
+    if p.2.len() == 60 {
+        eprintln!("[pace {:8.3}] {}", crate::runtime::spu::stamp(), p.2);
+        p.2.clear();
+    }
+}
+
 pub fn latch() {
     // SAFETY: a counter in pgxp.c, also called on the interrupt thread only.
     unsafe { pc_pgxp_tick() };
     let mut guard = GPU.lock().unwrap();
     let Some(g) = guard.as_mut() else { return };
+    pace((g.display.x, g.display.y));
     if let Some(interp) = g.interp.as_mut() {
         interp.blank();
     }
