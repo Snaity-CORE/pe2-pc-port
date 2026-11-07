@@ -73,6 +73,12 @@ pub struct Gpu {
     /// one of them (by hash: that one's hash).
     read_back: Vec<(u64, Vec<u16>)>,
     negatives: Vec<(u64, u64)>,
+    /// The backdrop of the frame being drawn and of the last one: the hash
+    /// of the latest image of half the screen or more the game copied in
+    /// (a background); and the frames left that count as the backdrop
+    /// still moving. With frame interpolation (see note_backdrop).
+    backdrop: (Option<u64>, Option<u64>),
+    backdrop_moving: u32,
 }
 
 /// A screen image a mod's picture replaced: where it went, its hash and
@@ -243,7 +249,43 @@ pub fn start() {
         awaiting: Vec::new(),
         read_back: Vec::new(),
         negatives: Vec::new(),
+        backdrop: (None, None),
+        backdrop_moving: 0,
     });
+}
+
+/// Images of at least this many pixels (half the screen) are backdrops.
+const BACKDROP_PIXELS: i32 = 320 * 120;
+/// New frames a backdrop's change keeps frames in between off: a moving
+/// background may change only every second frame (15 times a second).
+const BACKDROP_MOVING_FRAMES: u32 = 4;
+
+impl Gpu {
+    /// An image copied in, `w` x `h`: with frame interpolation, a large one
+    /// is the frame's backdrop. While it moves (a pre-rendered background
+    /// animated with the camera, 15 times a second, as when the player
+    /// arrives at the Akropolis Tower), no frame is drawn in between: the
+    /// 3D drawn halfway over a backdrop that moves in steps of its own shook
+    /// against it. Such scenes then run as on the console, 30 frames a
+    /// second.
+    fn note_backdrop(&mut self, w: i32, h: i32, pixels: impl FnOnce() -> Vec<u16>) {
+        if self.interp.is_some() && w * h >= BACKDROP_PIXELS {
+            self.backdrop.0 = Some(crate::mods::screen_hash(w, h, &pixels()));
+        }
+    }
+
+    /// At a new frame: whether the backdrop is moving (changed within the
+    /// last few frames).
+    fn backdrop_moving(&mut self) -> bool {
+        let (now, last) = self.backdrop;
+        self.backdrop = (None, now.or(last));
+        if now.is_some() && last.is_some() && now != last {
+            self.backdrop_moving = BACKDROP_MOVING_FRAMES;
+        } else if now.is_some() {
+            self.backdrop_moving = self.backdrop_moving.saturating_sub(1);
+        }
+        self.backdrop_moving > 0
+    }
 }
 
 fn with_gpu<R>(f: impl FnOnce(&mut Gpu) -> R) -> R {
@@ -973,6 +1015,7 @@ pub extern "C" fn pcrt_LoadImage(rect: *const Rect, p: *const u16) -> i32 {
         // Image transfers ignore the mask settings.
         g.vram.write_rect(x0, y0, w, h, pixels);
         g.post(x0, y0, w, h);
+        g.note_backdrop(w, h, || pixels.to_vec());
         // A screen image (a background, a full-screen picture: about the
         // size of the screen, where the game draws or shows) is known to
         // mods by its hash.
@@ -1164,7 +1207,16 @@ pub extern "C" fn pcrt_MoveImage(rect: *const Rect, x: i32, y: i32) -> i32 {
     vtrace(format_args!("MoveImage ({},{}) {}x{}", rc.x, rc.y, rc.w, rc.h));
     with_gpu(|g| {
         let st = DrawState::default();
-        g.copy(i32::from(rc.x), i32::from(rc.y), x, y, i32::from(rc.w), i32::from(rc.h), &st);
+        let (w, h) = (i32::from(rc.w), i32::from(rc.h));
+        g.copy(i32::from(rc.x), i32::from(rc.y), x, y, w, h, &st);
+        let vram = &g.vram;
+        let source = || {
+            let mut pixels = vec![0; (w.max(0) * h.max(0)) as usize];
+            vram.read_rect(x, y, w, h, &mut pixels);
+            pixels
+        };
+        let pixels = (g.interp.is_some() && w * h >= BACKDROP_PIXELS).then(source);
+        g.note_backdrop(w, h, || pixels.unwrap_or_default());
     });
     0
 }
@@ -1421,7 +1473,9 @@ pub fn latch() {
         let st = g.state;
         let drawn = (st.area_x1.max(0) as u32 * s, st.area_y1.max(0) as u32 * s, w, h);
         let region = (d.enabled && drawn != shown).then_some(drawn);
-        let between = g.interp.as_mut().is_some_and(|i| i.new_frame(hw, &kept, region, shown));
+        let moved = g.backdrop_moving();
+        let hw = &mut g.hw;
+        let between = g.interp.as_mut().is_some_and(|i| i.new_frame(hw, &kept, region, shown, moved));
         if g.interp.is_some() {
             hw.keep_vram();
         }
