@@ -133,6 +133,10 @@ impl Atlas {
     }
 
     fn make_texture(gfx: &Gfx, size: u32, layers: u32, format: wgpu::TextureFormat) -> wgpu::Texture {
+        // OpenGL: a texture of one layer is made a plain 2D one, which the
+        // shaders' array views cannot read (they read zeros: the HD fonts
+        // and mods' textures did not show). A second layer makes it an array.
+        let layers = if gfx.adapter.get_info().backend == wgpu::Backend::Gl { layers.max(2) } else { layers };
         gfx.device.create_texture(&wgpu::TextureDescriptor {
             label: Some("hw textures"),
             size: wgpu::Extent3d { width: size, height: size, depth_or_array_layers: layers },
