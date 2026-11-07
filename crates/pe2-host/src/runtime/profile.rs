@@ -270,6 +270,11 @@ fn cpu_monitor() {
                 DRAWS.swap(0, Relaxed) as f64 / wall,
                 VERTICES.swap(0, Relaxed) as f64 / wall
             );
+            // The window title's frame rate: new pictures and, with frame
+            // interpolation, the ones in between.
+            static SHOWN: std::sync::atomic::AtomicU64 = std::sync::atomic::AtomicU64::new(0);
+            let frames = super::gpu::FRAMES.load(Relaxed);
+            eprintln!("[cpu]   pictures: {:.1}/s", (frames - SHOWN.swap(frames, Relaxed)) as f64 / wall);
         }
     }
 }
