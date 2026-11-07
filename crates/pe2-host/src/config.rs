@@ -19,8 +19,18 @@ pub struct Config {
     pub input: Input,
     pub memcard: Memcard,
     pub mods: Mods,
+    pub gameplay: Gameplay,
     pub cheats: Cheats,
     pub debug: Debug,
+}
+
+/// Quality-of-life changes to how the game plays (all off by default).
+#[derive(Debug, Default, Deserialize)]
+#[serde(default, deny_unknown_fields)]
+pub struct Gameplay {
+    /// Camera changes load their pictures as fast as the PC can, instead of
+    /// at the console's disc and decoder speed.
+    pub fast_camera_changes: Option<bool>,
 }
 
 #[derive(Debug, Default, Deserialize)]

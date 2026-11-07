@@ -42,6 +42,7 @@ pub enum Id {
     InfiniteMp,
     ExpMultiplier,
     BpMultiplier,
+    FastCameraChanges,
 }
 
 struct Def {
@@ -66,7 +67,7 @@ const MULTIPLIERS: &[(&str, Value)] = &[
     ("x10", Value::Int(10)),
 ];
 
-const CATEGORIES: [&str; 4] = ["Video", "Audio", "Controls", "Cheats"];
+const CATEGORIES: [&str; 5] = ["Video", "Audio", "Controls", "Gameplay", "Cheats"];
 
 const DEFS: &[Def] = &[
     Def {
@@ -211,8 +212,18 @@ const DEFS: &[Def] = &[
         live: true,
     },
     Def {
-        id: Id::AlwaysCritical,
+        id: Id::FastCameraChanges,
         category: 3,
+        label: "Fast camera changes",
+        section: "gameplay",
+        key: "fast_camera_changes",
+        choices: ON_OFF,
+        default: 0,
+        live: true,
+    },
+    Def {
+        id: Id::AlwaysCritical,
+        category: 4,
         label: "Always critical",
         section: "cheats",
         key: "always_critical",
@@ -222,7 +233,7 @@ const DEFS: &[Def] = &[
     },
     Def {
         id: Id::InfiniteHp,
-        category: 3,
+        category: 4,
         label: "Infinite HP",
         section: "cheats",
         key: "infinite_hp",
@@ -232,7 +243,7 @@ const DEFS: &[Def] = &[
     },
     Def {
         id: Id::OneHitKill,
-        category: 3,
+        category: 4,
         label: "One-hit kills",
         section: "cheats",
         key: "one_hit_kill",
@@ -242,7 +253,7 @@ const DEFS: &[Def] = &[
     },
     Def {
         id: Id::InfiniteMp,
-        category: 3,
+        category: 4,
         label: "Infinite MP",
         section: "cheats",
         key: "infinite_mp",
@@ -252,7 +263,7 @@ const DEFS: &[Def] = &[
     },
     Def {
         id: Id::ExpMultiplier,
-        category: 3,
+        category: 4,
         label: "EXP",
         section: "cheats",
         key: "exp_multiplier",
@@ -262,7 +273,7 @@ const DEFS: &[Def] = &[
     },
     Def {
         id: Id::BpMultiplier,
-        category: 3,
+        category: 4,
         label: "BP",
         section: "cheats",
         key: "bp_multiplier",
@@ -308,6 +319,7 @@ fn from_config(def: &Def) -> usize {
         Id::InfiniteMp => c.cheats.infinite_mp.map(Value::Bool),
         Id::ExpMultiplier => c.cheats.exp_multiplier.map(|v| Value::Int(v.into())),
         Id::BpMultiplier => c.cheats.bp_multiplier.map(|v| Value::Int(v.into())),
+        Id::FastCameraChanges => c.gameplay.fast_camera_changes.map(Value::Bool),
     };
     let Some(found) = found else { return def.default };
     let distance = |v: &Value| -> i64 {

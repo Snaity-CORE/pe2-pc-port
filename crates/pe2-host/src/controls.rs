@@ -113,14 +113,30 @@ pub fn modern_movement() -> bool {
     settings::word(Id::Movement) == "modern"
 }
 
-/// The game's movement options (pad_input.c in the fork): bit 0 modern
-/// movement, bit 1 quick turn; a replay's own, else the settings'.
+/// The options a replay must play with as recorded (runtime/replay.rs), as
+/// bits: 0 modern movement and 1 quick turn (pad_input.c in the fork), 2
+/// fast camera changes (they change how many updates a camera change
+/// takes); a replay's own, else the settings'.
 #[unsafe(no_mangle)]
 pub extern "C" fn pc_input_options() -> u32 {
     static REPLAY: std::sync::OnceLock<Option<u32>> = std::sync::OnceLock::new();
-    REPLAY
-        .get_or_init(crate::runtime::replay::input_options)
-        .unwrap_or_else(|| u32::from(modern_movement()) | (u32::from(settings::flag(Id::QuickTurn)) << 1))
+    REPLAY.get_or_init(crate::runtime::replay::input_options).unwrap_or_else(|| {
+        u32::from(modern_movement())
+            | (u32::from(settings::flag(Id::QuickTurn)) << 1)
+            | (u32::from(settings::flag(Id::FastCameraChanges)) << 2)
+    })
+}
+
+/// Fast camera changes ([gameplay] fast_camera_changes): on, and the game
+/// holds the picture while it loads one, outside paced scenes (otutil.c in
+/// the fork). Then the disc reads data faster, the MDEC decodes at once and
+/// the decoder's console time is not waited, all out of sight.
+pub fn fast_camera_change() -> bool {
+    unsafe extern "C" {
+        fn pc_camera_change_held() -> i32;
+    }
+    // SAFETY: reads game globals.
+    pc_input_options() & 4 != 0 && unsafe { pc_camera_change_held() } != 0
 }
 
 /// Cheats ([cheats] always_critical): every weapon hit is a critical hit

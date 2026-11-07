@@ -116,6 +116,13 @@ scale = 4
 # data folder.
 # slot1 = "memcards/pe2_card1.mcd"
 
+[gameplay]
+# Quality-of-life changes to how the game plays, all off by default (also
+# in the pause menu's Options > Gameplay).
+# Camera changes load their pictures as fast as the PC can, instead of at
+# the console's disc and decoder speed (about 0.17 s instead of 0.5 s).
+# fast_camera_changes = false
+
 [cheats]
 # Every weapon hit is a critical hit.
 # always_critical = false
