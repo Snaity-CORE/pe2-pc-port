@@ -84,27 +84,44 @@ fn draw(name: &str, h: usize) -> Option<Drawn> {
     let k = SCALE as f32;
     // The size whose capitals are CAP texels high (finer texels).
     let probe = font.outline_glyph(font.glyph_id('H').with_scale(100.0))?.px_bounds();
-    let px = 100.0 * CAP * k / (probe.max.y - probe.min.y);
-    let scaled = font.as_scaled(PxScale::from(px));
-    // The letters' pen positions, and how wide they are with the lean.
-    let mut pens = Vec::new();
-    let mut x = 0.0f32;
-    let mut last = None;
-    for c in name.chars() {
-        let id = font.glyph_id(c);
-        if let Some(prev) = last {
-            x += scaled.kern(prev, id);
+    let cap_px = 100.0 * CAP * k / (probe.max.y - probe.min.y);
+    // The letters' pen positions at size `px`, how far they advance, and
+    // their ink's top and bottom (from the baseline).
+    let layout = |px: f32| {
+        let scaled = font.as_scaled(PxScale::from(px));
+        let (mut pens, mut x, mut last) = (Vec::new(), 0.0f32, None);
+        let (mut top, mut bottom) = (0.0f32, 0.0f32);
+        for c in name.chars() {
+            let id = font.glyph_id(c);
+            if let Some(prev) = last {
+                x += scaled.kern(prev, id);
+            }
+            if let Some(o) = font.outline_glyph(id.with_scale(px)) {
+                let b = o.px_bounds();
+                (top, bottom) = (top.min(b.min.y), bottom.max(b.max.y));
+            }
+            pens.push((id, x));
+            x += scaled.h_advance(id);
+            last = Some(id);
         }
-        pens.push((id, x));
-        x += scaled.h_advance(id);
-        last = Some(id);
+        (pens, x, top, bottom)
+    };
+    // The capitals centred in the box; a name whose marks (Â, Í) would
+    // leave it lower, and smaller if it must, to keep half a texel clear
+    // above and below (as the translated discs' own labels do).
+    let (mut px, mut base) = (cap_px, (h as f32 + CAP) / 2.0 * k);
+    let (mut pens, mut x, top, bottom) = layout(px);
+    let room = (h as f32 - 1.0) * k;
+    if base + top < 0.5 * k || base + bottom > (h as f32 - 0.5) * k {
+        let shrink = (room / (bottom - top)).min(1.0);
+        px *= shrink;
+        (pens, x, _, _) = layout(px);
+        base = 0.5 * k - top * shrink;
     }
     let lean = SLANT * CAP * k;
     let text_w = x + lean;
     let w = (text_w / k).ceil() as usize + 2 * MARGIN;
     let (fw, fh) = (w * SCALE, h * SCALE);
-    // The baseline, the capitals centred in the box.
-    let base = (h as f32 + CAP) / 2.0 * k;
     let left = MARGIN as f32 * k;
     let mut cover = vec![0f32; fw * fh];
     for (id, pen) in pens {
@@ -153,12 +170,17 @@ mod tests {
         let baldwin = draw("BALDWIN", 10).unwrap();
         assert!(baldwin.w > aya.w);
         assert_eq!((aya.h, aya.texels.len(), aya.fine.len()), (10, aya.w * 10, aya.w * 10 * SCALE * SCALE));
-        for d in [&aya, &baldwin] {
+        // A capital's mark (Â) fits inside too.
+        let accented = draw("MECÂNICO", 10).unwrap();
+        for d in [&aya, &baldwin, &accented] {
             assert!(d.texels.iter().all(|&t| (BOX..=LETTERS).contains(&t) && t != NOT_A_SHADE));
             assert!(d.fine.contains(&LETTERS));
-            // The margins and the top and bottom rows are the box.
+            // The margins are the box, and half a texel at the top and the
+            // bottom (finer texels).
             assert!((0..d.h).all(|y| d.texels[y * d.w] == BOX && d.texels[y * d.w + d.w - 1] == BOX));
-            assert!((0..d.w).all(|x| d.texels[x] == BOX && d.texels[(d.h - 1) * d.w + x] == BOX));
+            let (fw, half) = (d.w * SCALE, SCALE / 2);
+            let rows = (0..half).chain(d.h * SCALE - half..d.h * SCALE);
+            assert!(rows.flat_map(|y| (0..fw).map(move |x| y * fw + x)).all(|i| d.fine[i] == BOX));
         }
     }
 
