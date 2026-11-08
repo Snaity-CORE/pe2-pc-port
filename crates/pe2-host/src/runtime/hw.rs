@@ -280,7 +280,8 @@ fn dma_complete(channel: usize, macroblocks: u32) {
             Some(d) if now.saturating_duration_since(d) < MDEC_LATE => d,
             _ => now,
         };
-        at = start + MDEC_MACROBLOCK * macroblocks;
+        // Fast loading (fast camera changes or doors): at once, while the game holds the picture.
+        at = if crate::controls::fast_loading() { start } else { start + MDEC_MACROBLOCK * macroblocks };
         *done = Some(at);
     }
     let cb = DMA_CALLBACKS[channel].load(Ordering::SeqCst);

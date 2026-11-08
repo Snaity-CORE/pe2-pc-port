@@ -31,8 +31,8 @@ const DISC_SERIALS: [&str; 2] = ["SLUS_010.42", "SLUS_010.55"];
 const EXAMPLE: &str = include_str!("../../../pe2.example.toml");
 
 /// The launcher's art, made for the project (nothing from the game).
-const BACKGROUND: &[u8] = include_bytes!("../res/launcher_bg.webp");
-const LOGO: &[u8] = include_bytes!("../res/launcher_logo.webp");
+pub const BACKGROUND: &[u8] = include_bytes!("../res/launcher_bg.webp");
+pub const LOGO: &[u8] = include_bytes!("../res/launcher_logo.webp");
 
 /// The window's size, the background's.
 const WINDOW: [f32; 2] = [960.0, 640.0];
@@ -383,6 +383,24 @@ impl Lang {
     }
 }
 
+/// The [gameplay] options (quality of life), all off by default: each key,
+/// and its label in English and Portuguese, in GAMEPLAY_CARDS' groups.
+const GAMEPLAY: [(&str, &str, &str); 9] = [
+    ("fast_camera_changes", "Fast camera changes", "Troca de câmera rápida"),
+    ("fast_doors", "Fast doors", "Portas rápidas"),
+    ("instant_text", "Instant text", "Texto instantâneo"),
+    ("skip_intro", "Skip the intro", "Pular a introdução"),
+    ("unified_boxes", "Unified item boxes", "Baús unificados"),
+    ("bigger_inventory", "Bigger inventory (30)", "Inventário maior (30)"),
+    ("full_to_box", "Full inventory to the box", "Inventário cheio vai pro baú"),
+    ("stack_items", "Stack identical items", "Empilhar itens iguais"),
+    ("save_anywhere", "Save anywhere (pause menu)", "Salvar em qualquer lugar (pausa)"),
+];
+
+/// GAMEPLAY's groups: a title (English, Portuguese) and how many options.
+const GAMEPLAY_CARDS: [(&str, &str, usize); 3] =
+    [("Faster play", "Jogo mais rápido", 4), ("Items and boxes", "Itens e baús", 4), ("Saving", "Salvar", 1)];
+
 /// pe2.toml's options, as the launcher edits them.
 #[derive(Clone)]
 struct Settings {
@@ -430,6 +448,8 @@ struct Settings {
     /// Key and controller button names, in controls::BUTTONS order.
     keys: [String; 16],
     pads: [String; 16],
+    /// [gameplay], in GAMEPLAY order.
+    gameplay: [bool; GAMEPLAY.len()],
 }
 
 impl Settings {
@@ -500,6 +520,7 @@ impl Settings {
                     .unwrap_or(b.pad)
                     .to_string()
             }),
+            gameplay: std::array::from_fn(|i| flag("gameplay", GAMEPLAY[i].0, false)),
         }
     }
 
@@ -549,6 +570,12 @@ impl Settings {
         for (i, b) in BUTTONS.iter().enumerate() {
             doc["input"]["keyboard"][b.name] = value(self.keys[i].as_str());
             doc["input"]["gamepad"][b.name] = value(self.pads[i].as_str());
+        }
+        if !doc.contains_table("gameplay") {
+            doc["gameplay"] = toml_edit::table();
+        }
+        for (i, (key, _, _)) in GAMEPLAY.iter().enumerate() {
+            doc["gameplay"][key] = value(self.gameplay[i]);
         }
     }
 }
@@ -1242,11 +1269,55 @@ impl Launcher {
         check_disc(&self.saved.discs[0], 0, self.lang()).is_ok()
     }
 
+    /// The QoL tab: [gameplay]'s options, in their groups.
+    fn gameplay(&mut self, ui: &mut egui::Ui) {
+        let lang = self.lang();
+        ui.label(lang.t(
+            "Changes to how the game plays, all off by default (also in the pause menu's Options > Gameplay).",
+            "Mudanças no jeito de jogar, todas desligadas por padrão (também no menu de pausa, Opções > Gameplay).",
+        ));
+        ui.add_space(8.0);
+        // The first two side by side, the rest below.
+        ui.columns(2, |cols| {
+            self.gameplay_card(&mut cols[0], 0);
+            self.gameplay_card(&mut cols[1], 1);
+        });
+        for n in 2..GAMEPLAY_CARDS.len() {
+            ui.add_space(12.0);
+            self.gameplay_card(ui, n);
+        }
+        ui.add_space(6.0);
+        ui.label(
+            egui::RichText::new(lang.t(
+                "Full inventory to the box needs unified item boxes.",
+                "Inventário cheio vai pro baú precisa dos baús unificados.",
+            ))
+            .weak(),
+        );
+    }
+
+    /// GAMEPLAY_CARDS' group `n`, its options' checkboxes in a card.
+    fn gameplay_card(&mut self, ui: &mut egui::Ui, n: usize) {
+        let lang = self.lang();
+        let first: usize = GAMEPLAY_CARDS[..n].iter().map(|c| c.2).sum();
+        let (en, pt, count) = GAMEPLAY_CARDS[n];
+        card(ui, lang.t(en, pt), |ui| {
+            for (i, &(_, en, pt)) in GAMEPLAY.iter().enumerate().skip(first).take(count) {
+                self.focus.checkbox(ui, &mut self.edit.gameplay[i], lang.t(en, pt), true);
+            }
+        });
+    }
+
     fn settings_screen(&mut self, ui: &mut egui::Ui) {
         let lang = self.lang();
         ui.heading(lang.t("Settings", "Configurações"));
         ui.add_space(6.0);
-        let tabs = [lang.t("General", "Geral"), lang.t("Graphics", "Gráficos"), lang.t("Discs", "Discos")];
+        let tabs = [
+            lang.t("General", "Geral"),
+            lang.t("Graphics", "Gráficos"),
+            lang.t("QoL", "QoL"),
+            lang.t("Discs", "Discos"),
+        ];
         let mut tab = self.settings_tab;
         self.focus.tabs(ui, &mut tab, &tabs);
         self.settings_tab = tab;
@@ -1319,6 +1390,7 @@ impl Launcher {
                     card(&mut cols[1], lang.t("Enhancements", "Melhorias"), |ui| self.enhancements(ui));
                 });
             }
+            2 => self.gameplay(ui),
             _ => {
                 card(ui, lang.t("Discs", "Discos"), |ui| self.files(ui, false));
                 ui.add_space(12.0);
@@ -1882,7 +1954,7 @@ impl Launcher {
         self.frames += 1;
         if self.frames == 1 {
             let tab = std::env::var("PE2_LAUNCHER_TAB").ok().and_then(|t| t.parse::<usize>().ok()).unwrap_or(0);
-            self.settings_tab = tab.min(2);
+            self.settings_tab = tab.min(3);
             self.pad_tab = tab == 1;
             self.screen = match std::env::var("PE2_LAUNCHER_SCREEN").as_deref() {
                 Ok("settings") => Screen::Settings,
@@ -2095,6 +2167,7 @@ mod tests {
         s.vibration = false;
         s.menu_button = "l3_r3".into();
         s.volume = 40;
+        s.gameplay[1] = true; // fast_doors
         s.keys[4] = "KeyJ".into(); // cross
         s.pads[8] = "Mode".into(); // start
         s.store(&mut doc);
@@ -2120,6 +2193,8 @@ mod tests {
         assert_eq!(config.input.vibration, Some(false));
         assert_eq!(config.input.menu_button.as_deref(), Some("l3_r3"));
         assert_eq!(config.audio.volume, Some(40));
+        assert_eq!(config.gameplay.fast_doors, Some(true));
+        assert_eq!(config.gameplay.save_anywhere, Some(false));
         assert_eq!(config.input.keyboard.get("cross").map(String::as_str), Some("KeyJ"));
         assert_eq!(config.input.keyboard.get("up").map(String::as_str), Some("ArrowUp"));
         assert_eq!(config.input.gamepad.get("start").map(String::as_str), Some("Mode"));

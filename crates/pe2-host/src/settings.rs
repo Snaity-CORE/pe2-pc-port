@@ -42,6 +42,15 @@ pub enum Id {
     InfiniteMp,
     ExpMultiplier,
     BpMultiplier,
+    FastCameraChanges,
+    SkipIntro,
+    InstantText,
+    FastDoors,
+    UnifiedBoxes,
+    BiggerInventory,
+    FullToBox,
+    StackItems,
+    SaveAnywhere,
 }
 
 struct Def {
@@ -66,7 +75,7 @@ const MULTIPLIERS: &[(&str, Value)] = &[
     ("x10", Value::Int(10)),
 ];
 
-const CATEGORIES: [&str; 4] = ["Video", "Audio", "Controls", "Cheats"];
+const CATEGORIES: [&str; 5] = ["Video", "Audio", "Controls", "Gameplay", "Cheats"];
 
 const DEFS: &[Def] = &[
     Def {
@@ -211,8 +220,98 @@ const DEFS: &[Def] = &[
         live: true,
     },
     Def {
-        id: Id::AlwaysCritical,
+        id: Id::FastCameraChanges,
         category: 3,
+        label: "Fast camera changes",
+        section: "gameplay",
+        key: "fast_camera_changes",
+        choices: ON_OFF,
+        default: 0,
+        live: true,
+    },
+    Def {
+        id: Id::SkipIntro,
+        category: 3,
+        label: "Skip intro",
+        section: "gameplay",
+        key: "skip_intro",
+        choices: ON_OFF,
+        default: 0,
+        live: true,
+    },
+    Def {
+        id: Id::InstantText,
+        category: 3,
+        label: "Instant text",
+        section: "gameplay",
+        key: "instant_text",
+        choices: ON_OFF,
+        default: 0,
+        live: true,
+    },
+    Def {
+        id: Id::FastDoors,
+        category: 3,
+        label: "Fast doors",
+        section: "gameplay",
+        key: "fast_doors",
+        choices: ON_OFF,
+        default: 0,
+        live: true,
+    },
+    Def {
+        id: Id::UnifiedBoxes,
+        category: 3,
+        label: "Unified item boxes",
+        section: "gameplay",
+        key: "unified_boxes",
+        choices: ON_OFF,
+        default: 0,
+        live: true,
+    },
+    Def {
+        id: Id::BiggerInventory,
+        category: 3,
+        label: "Bigger inventory",
+        section: "gameplay",
+        key: "bigger_inventory",
+        choices: ON_OFF,
+        default: 0,
+        live: true,
+    },
+    Def {
+        id: Id::FullToBox,
+        category: 3,
+        label: "Full inventory to box",
+        section: "gameplay",
+        key: "full_to_box",
+        choices: ON_OFF,
+        default: 0,
+        live: true,
+    },
+    Def {
+        id: Id::StackItems,
+        category: 3,
+        label: "Stack items",
+        section: "gameplay",
+        key: "stack_items",
+        choices: ON_OFF,
+        default: 0,
+        live: true,
+    },
+    Def {
+        id: Id::SaveAnywhere,
+        category: 3,
+        label: "Save anywhere",
+        section: "gameplay",
+        key: "save_anywhere",
+        choices: ON_OFF,
+        default: 0,
+        live: true,
+    },
+    Def {
+        id: Id::AlwaysCritical,
+        category: 4,
         label: "Always critical",
         section: "cheats",
         key: "always_critical",
@@ -222,7 +321,7 @@ const DEFS: &[Def] = &[
     },
     Def {
         id: Id::InfiniteHp,
-        category: 3,
+        category: 4,
         label: "Infinite HP",
         section: "cheats",
         key: "infinite_hp",
@@ -232,7 +331,7 @@ const DEFS: &[Def] = &[
     },
     Def {
         id: Id::OneHitKill,
-        category: 3,
+        category: 4,
         label: "One-hit kills",
         section: "cheats",
         key: "one_hit_kill",
@@ -242,7 +341,7 @@ const DEFS: &[Def] = &[
     },
     Def {
         id: Id::InfiniteMp,
-        category: 3,
+        category: 4,
         label: "Infinite MP",
         section: "cheats",
         key: "infinite_mp",
@@ -252,7 +351,7 @@ const DEFS: &[Def] = &[
     },
     Def {
         id: Id::ExpMultiplier,
-        category: 3,
+        category: 4,
         label: "EXP",
         section: "cheats",
         key: "exp_multiplier",
@@ -262,7 +361,7 @@ const DEFS: &[Def] = &[
     },
     Def {
         id: Id::BpMultiplier,
-        category: 3,
+        category: 4,
         label: "BP",
         section: "cheats",
         key: "bp_multiplier",
@@ -308,6 +407,15 @@ fn from_config(def: &Def) -> usize {
         Id::InfiniteMp => c.cheats.infinite_mp.map(Value::Bool),
         Id::ExpMultiplier => c.cheats.exp_multiplier.map(|v| Value::Int(v.into())),
         Id::BpMultiplier => c.cheats.bp_multiplier.map(|v| Value::Int(v.into())),
+        Id::FastCameraChanges => c.gameplay.fast_camera_changes.map(Value::Bool),
+        Id::SkipIntro => c.gameplay.skip_intro.map(Value::Bool),
+        Id::InstantText => c.gameplay.instant_text.map(Value::Bool),
+        Id::FastDoors => c.gameplay.fast_doors.map(Value::Bool),
+        Id::UnifiedBoxes => c.gameplay.unified_boxes.map(Value::Bool),
+        Id::BiggerInventory => c.gameplay.bigger_inventory.map(Value::Bool),
+        Id::FullToBox => c.gameplay.full_to_box.map(Value::Bool),
+        Id::StackItems => c.gameplay.stack_items.map(Value::Bool),
+        Id::SaveAnywhere => c.gameplay.save_anywhere.map(Value::Bool),
     };
     let Some(found) = found else { return def.default };
     let distance = |v: &Value| -> i64 {

@@ -113,14 +113,43 @@ pub fn modern_movement() -> bool {
     settings::word(Id::Movement) == "modern"
 }
 
-/// The game's movement options (pad_input.c in the fork): bit 0 modern
-/// movement, bit 1 quick turn; a replay's own, else the settings'.
+/// The options a replay must play with as recorded (runtime/replay.rs), as
+/// bits: 0 modern movement and 1 quick turn (pad_input.c in the fork), 2
+/// fast camera changes, 3 skip the intro, 4 instant text, 5 fast doors, 6
+/// unified boxes, 7 bigger inventory, 8 full inventory to the box, 9
+/// stacked items and 10 save anywhere (they change how many updates a
+/// camera change, the start, a line of dialogue, a door take, what a box or
+/// the inventory holds, or what the pause menu offers); a replay's own,
+/// else the settings'.
 #[unsafe(no_mangle)]
 pub extern "C" fn pc_input_options() -> u32 {
     static REPLAY: std::sync::OnceLock<Option<u32>> = std::sync::OnceLock::new();
-    REPLAY
-        .get_or_init(crate::runtime::replay::input_options)
-        .unwrap_or_else(|| u32::from(modern_movement()) | (u32::from(settings::flag(Id::QuickTurn)) << 1))
+    REPLAY.get_or_init(crate::runtime::replay::input_options).unwrap_or_else(|| {
+        u32::from(modern_movement())
+            | (u32::from(settings::flag(Id::QuickTurn)) << 1)
+            | (u32::from(settings::flag(Id::FastCameraChanges)) << 2)
+            | (u32::from(settings::flag(Id::SkipIntro)) << 3)
+            | (u32::from(settings::flag(Id::InstantText)) << 4)
+            | (u32::from(settings::flag(Id::FastDoors)) << 5)
+            | (u32::from(settings::flag(Id::UnifiedBoxes)) << 6)
+            | (u32::from(settings::flag(Id::BiggerInventory)) << 7)
+            | (u32::from(settings::flag(Id::FullToBox)) << 8)
+            | (u32::from(settings::flag(Id::StackItems)) << 9)
+            | (u32::from(settings::flag(Id::SaveAnywhere)) << 10)
+    })
+}
+
+/// Fast loading: fast camera changes or fast doors ([gameplay]) on, and the
+/// game holds the picture while it loads a camera or a room, outside paced
+/// scenes (otutil.c in the fork). Then the disc reads data faster, the MDEC
+/// decodes at once and the decoder's console time is not waited, all out
+/// of sight.
+pub fn fast_loading() -> bool {
+    unsafe extern "C" {
+        fn pc_camera_change_held() -> i32;
+    }
+    // SAFETY: reads game globals.
+    pc_input_options() & (4 | 32) != 0 && unsafe { pc_camera_change_held() } != 0
 }
 
 /// Cheats ([cheats] always_critical): every weapon hit is a critical hit

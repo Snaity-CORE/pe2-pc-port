@@ -17,6 +17,7 @@ mod pause_menu;
 mod present;
 mod runtime;
 mod settings;
+mod splash;
 mod video;
 mod xinput;
 
@@ -323,6 +324,8 @@ fn main() -> ExitCode {
     video::start();
     gamepad::start();
     discord::start();
+    // The PE2PC screen first (splash.rs).
+    splash::wait();
 
     // SAFETY: memory and thunks are set up by pc_boot_load.
     let ret = unsafe { ffi::pc_boot_run() };

@@ -116,6 +116,40 @@ scale = 4
 # data folder.
 # slot1 = "memcards/pe2_card1.mcd"
 
+[gameplay]
+# Quality-of-life changes to how the game plays, all off by default (also
+# in the pause menu's Options > Gameplay).
+# Camera changes load their pictures as fast as the PC can, instead of at
+# the console's disc and decoder speed (about 0.17 s instead of 0.5 s).
+# fast_camera_changes = false
+# The game starts at the title, without the intro: the PE2PC screen, the
+# publisher's picture, Squaresoft's logo and the opening movie.
+# skip_intro = false
+# Dialogue that waits for a button shows its lines whole at once, as a
+# press shows them (the scenes' timed captions keep their pace).
+# instant_text = false
+# Doors change rooms while their sound plays on, instead of after it,
+# and the room loads as fast as the PC can (as with fast camera changes).
+# fast_doors = false
+# Every item box shows the same contents: what all the boxes hold, up to
+# 120 items. Turned off again, each item stays in the box whose space it
+# took.
+# unified_boxes = false
+# The player carries 30 items instead of 20. Turned off again, the extra
+# spaces stay until they are empty.
+# bigger_inventory = false
+# With unified boxes on, an item picked up, or won in a battle, that a full
+# inventory has no room for goes to the item box.
+# full_to_box = false
+# Identical medicines (Recovery, Cola, MP Boost and the like) stack, up to
+# 10 in one space; each use takes one, a move takes the whole stack.
+# Turned off again, stacks stay until used up.
+# stack_items = false
+# The pause menu has Save, as a telephone saves, while the player is free
+# to save: exploring, not in a battle, a scene or a menu. A load starts
+# where the save was made.
+# save_anywhere = false
+
 [cheats]
 # Every weapon hit is a critical hit.
 # always_critical = false

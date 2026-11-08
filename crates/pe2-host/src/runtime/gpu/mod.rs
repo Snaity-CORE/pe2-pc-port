@@ -1396,8 +1396,9 @@ static FRONT: Mutex<Front> = Mutex::new(Front {
 /// (interp.rs).
 /// PE2_TRACE=pace: how many vertical blanks each frame of the game stayed
 /// on screen, a digit per frame, sixty frames a line (2222... is a steady
-/// 30 fps; 1s and 3s mixed in are uneven pacing). A frame is a flip: the
-/// displayed area moving to the other buffer. Called at every blank.
+/// 30 fps; 1s and 3s mixed in are uneven pacing; holds of 10 blanks or more
+/// get a line of their own). A frame is a flip: the displayed area moving
+/// to the other buffer. Called at every blank.
 fn pace(display: (i32, i32)) {
     static PACE: Mutex<(u32, (i32, i32), String)> = Mutex::new((0, (0, 0), String::new()));
     if !trace("pace") {
@@ -1409,6 +1410,10 @@ fn pace(display: (i32, i32)) {
         return;
     }
     p.1 = display;
+    if p.0 >= 10 {
+        // A long hold (a camera cut, a load): how long exactly.
+        eprintln!("[pace {:8.3}] held {} blanks", crate::runtime::spu::stamp(), p.0);
+    }
     let blanks = p.0.min(9);
     p.0 = 0;
     p.2.push(char::from_digit(blanks, 10).unwrap_or('9'));

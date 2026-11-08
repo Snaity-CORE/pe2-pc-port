@@ -54,6 +54,8 @@ const CDL_CDROM_FORMAT: i32 = 2;
 
 /// Time from a read command to its first sector.
 const SEEK_TIME: Duration = Duration::from_millis(20);
+/// A data sector with fast camera changes (13 times the double speed).
+const FAST_SECTOR: Duration = Duration::from_micros(500);
 /// Completion time of Pause / Stop / Seek / Init.
 const SLOW_COMMAND_TIME: Duration = Duration::from_millis(5);
 
@@ -187,6 +189,15 @@ fn call_cb(cb: u32, intr: u8, result: [u8; 8]) {
 
 impl Drive {
     fn sector_period(&self) -> Duration {
+        // Fast loading (fast camera changes or doors): data sectors while the game holds the
+        // picture. Not sound, nor a stream (CdRead2: the moving background
+        // at the Akropolis Tower's entrance), whose ring the game empties at
+        // its own pace: overrun, it restarted the stream for ever. The seek
+        // keeps its time: the game asks for a read before it sets the
+        // callback the sectors go to.
+        if self.mode & MODE_RT == 0 && self.stream_gen != Some(self.read_gen) && crate::controls::fast_loading() {
+            return FAST_SECTOR;
+        }
         if self.mode & MODE_SPEED != 0 { Duration::from_micros(6_667) } else { Duration::from_micros(13_333) }
     }
 

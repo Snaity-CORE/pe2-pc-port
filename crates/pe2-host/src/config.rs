@@ -19,8 +19,39 @@ pub struct Config {
     pub input: Input,
     pub memcard: Memcard,
     pub mods: Mods,
+    pub gameplay: Gameplay,
     pub cheats: Cheats,
     pub debug: Debug,
+}
+
+/// Quality-of-life changes to how the game plays (all off by default).
+#[derive(Debug, Default, Deserialize)]
+#[serde(default, deny_unknown_fields)]
+pub struct Gameplay {
+    /// Camera changes load their pictures as fast as the PC can, instead of
+    /// at the console's disc and decoder speed.
+    pub fast_camera_changes: Option<bool>,
+    /// The game starts at the title, without the intro: the PE2PC screen
+    /// (splash.rs), the publisher's picture, Squaresoft's logo and the
+    /// opening movie.
+    pub skip_intro: Option<bool>,
+    /// Dialogue that waits for a button shows its lines whole at once, as a
+    /// press shows them (the scenes' timed captions keep their pace).
+    pub instant_text: Option<bool>,
+    /// Doors change rooms while their sound plays on, instead of after it,
+    /// and the room loads as fast as the PC can (controls::fast_loading).
+    pub fast_doors: Option<bool>,
+    /// Every item box shows the same contents: all the boxes' rows.
+    pub unified_boxes: Option<bool>,
+    /// The player carries 30 items instead of 20.
+    pub bigger_inventory: Option<bool>,
+    /// With unified boxes, an item picked up with a full inventory goes to
+    /// the item box.
+    pub full_to_box: Option<bool>,
+    /// Identical medicines stack, up to 10 in a row.
+    pub stack_items: Option<bool>,
+    /// The pause menu has Save while the player is free to save.
+    pub save_anywhere: Option<bool>,
 }
 
 #[derive(Debug, Default, Deserialize)]

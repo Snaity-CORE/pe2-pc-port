@@ -237,11 +237,23 @@ impl Presenter {
         self.surface.configure(&self.gfx.device, &self.config);
     }
 
-    /// Draws the latched picture, letterboxed.
-    pub fn present(&mut self) {
+    /// Draws the latched picture, letterboxed; false while there is none.
+    pub fn present(&mut self) -> bool {
+        // The PE2PC screen before the game starts (splash.rs).
+        if let Some(level) = crate::splash::level()
+            && let Some((picture, w, h)) = crate::splash::picture()
+        {
+            let scale = |c: u32| ((c as f32 * level) as u32).min(255);
+            self.pixels.clear();
+            self.pixels.extend(
+                picture.iter().map(|&p| (scale(p >> 16 & 0xFF) << 16) | (scale(p >> 8 & 0xFF) << 8) | scale(p & 0xFF)),
+            );
+            self.show_pixels(*w, *h);
+            return true;
+        }
         if crate::runtime::gpu::front_on_card() {
             let front = crate::runtime::gpu::HW_FRONT.lock().unwrap();
-            let Some(f) = front.as_ref() else { return };
+            let Some(f) = front.as_ref() else { return false };
             let size = (f.width, f.height);
             if self.card.as_ref().is_none_or(|c| c.0 != size) {
                 let view = f.texture.create_view(&Default::default());
@@ -251,10 +263,15 @@ impl Presenter {
             drop(front);
             let bind = self.card.as_ref().unwrap().1.clone();
             self.draw(&bind, true, size);
-            return;
+            return true;
         }
-        let Some((fw, fh)) = crate::runtime::gpu::snapshot(&mut self.pixels) else { return };
-        let (fw, fh) = (fw as u32, fh as u32);
+        let Some((fw, fh)) = crate::runtime::gpu::snapshot(&mut self.pixels) else { return false };
+        self.show_pixels(fw as u32, fh as u32);
+        true
+    }
+
+    /// Draws `self.pixels` (`fw` x `fh` 0x00RRGGBB words), letterboxed.
+    fn show_pixels(&mut self, fw: u32, fh: u32) {
         let gfx = self.gfx;
         if self.frame.as_ref().is_none_or(|f| f.1 != (fw, fh)) {
             let texture = gfx.device.create_texture(&wgpu::TextureDescriptor {

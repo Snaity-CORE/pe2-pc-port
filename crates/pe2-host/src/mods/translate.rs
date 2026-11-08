@@ -15,6 +15,9 @@
 //! When a mod's font draws the dialogue (capfont.rs), every CAP file gets
 //! such a copy, all its lines (translated or not) in glyphs drawn from that
 //! font, which the renderer also gets finer.
+//!
+//! In every copy the speakers' name labels point to new glyphs drawn from
+//! PE2PC's font (labels.rs), in a mod's translation of the name if any.
 
 use std::collections::HashMap;
 use std::sync::{Arc, Mutex, OnceLock};
@@ -59,7 +62,9 @@ fn translations() -> &'static Translations {
                         stack.push(path);
                         continue;
                     }
-                    if !path.extension().is_some_and(|x| x.eq_ignore_ascii_case("toml")) {
+                    // The speakers' names are labels.rs's.
+                    let names = path.file_name().is_some_and(|n| n.eq_ignore_ascii_case(super::labels::FILE));
+                    if names || !path.extension().is_some_and(|x| x.eq_ignore_ascii_case("toml")) {
                         continue;
                     }
                     let file = std::fs::read_to_string(&path)
@@ -359,8 +364,14 @@ fn pack(sizes: &[(usize, usize)], top: usize) -> Option<(Vec<(usize, usize)>, us
 }
 
 /// The file `cap` with `lines` (by record) in place of its lines' text,
-/// their glyphs from `source`.
-fn build(cap: &Cap, lines: &HashMap<usize, String>, source: &Source) -> Option<Translated> {
+/// their glyphs from `source`, and its speakers' name labels redrawn
+/// (labels.rs) where `names` tells whose they are.
+fn build(
+    cap: &Cap,
+    lines: &HashMap<usize, String>,
+    source: &Source,
+    names: Option<&dyn Fn(usize) -> Option<&'static str>>,
+) -> Option<Translated> {
     let originals = cap.lines();
     // The original glyph table: as long as its lines and speakers need.
     let used = originals.iter().flat_map(|l| {
@@ -399,6 +410,18 @@ fn build(cap: &Cap, lines: &HashMap<usize, String>, source: &Source) -> Option<T
         }
         codes.push(0xFFFF);
         texts.push((line.record, codes));
+    }
+    // The speakers' name labels, by their glyph index: their new glyphs.
+    let mut labels: HashMap<usize, usize> = HashMap::new();
+    for title in originals.iter().filter(|l| l.title != 0).map(|l| usize::from(l.title - 1)) {
+        if labels.contains_key(&title) {
+            continue;
+        }
+        let Some(name) = names.and_then(|n| n(title)) else { continue };
+        let Some(drawn) = super::labels::label(name, usize::from(cap.cell(title)[3])) else { continue };
+        glyphs.push(Glyph { w: drawn.w, h: drawn.h, texels: drawn.texels.clone() });
+        fines.push(Some(drawn));
+        labels.insert(title, glyphs.len() - 1);
     }
     if cells + glyphs.len() > 0x400 {
         return None;
@@ -444,7 +467,13 @@ fn build(cap: &Cap, lines: &HashMap<usize, String>, source: &Source) -> Option<T
     bytes.resize(bytes.len().next_multiple_of(4), 0);
     let table = bytes.len();
     for i in 0..cells {
-        bytes.extend_from_slice(&cap.cell(i));
+        match labels.get(&i) {
+            Some(&g) => {
+                let (gu, gv) = placed[g];
+                bytes.extend_from_slice(&[gu as u8, gv as u8, glyphs[g].w as u8, glyphs[g].h as u8]);
+            }
+            None => bytes.extend_from_slice(&cap.cell(i)),
+        }
     }
     for (g, &(gu, gv)) in glyphs.iter().zip(&placed) {
         bytes.extend_from_slice(&[gu as u8, gv as u8, g.w as u8, g.h as u8]);
@@ -550,9 +579,12 @@ pub extern "C" fn pc_cap_translate(file: *mut u8) -> *mut u8 {
         Source::Mod => super::capfont::texts(hash),
         Source::Game(_) => None,
     };
-    // In a mod's font before its glyphs' characters are known: its
-    // translated lines only, not kept (a later load gets them all).
-    let complete = texts.is_some() || matches!(source, Source::Game(_));
+    // Whose the speakers' name labels are (collected with the characters).
+    let names = super::capfont::names(hash);
+    // Before the glyphs' characters are known (in a mod's font) or the
+    // labels' names: its translated lines only, not kept (a later load gets
+    // them all).
+    let complete = texts.is_some() || (matches!(source, Source::Game(_)) && names.is_some());
     if translation.is_none() && !complete {
         trace("its glyphs' characters are not known yet");
         return file;
@@ -560,7 +592,8 @@ pub extern "C" fn pc_cap_translate(file: *mut u8) -> *mut u8 {
     if translation.is_none() && matches!(source, Source::Game(_)) {
         return file;
     }
-    let make = || build(&cap, &new_lines(&cap, translation, texts), &source).map(Arc::new);
+    let names = names.as_ref().map(|n| n as &dyn Fn(usize) -> Option<&'static str>);
+    let make = || build(&cap, &new_lines(&cap, translation, texts), &source, names).map(Arc::new);
     let translated = if complete {
         built().lock().unwrap().entry(hash).or_insert_with(make).clone()
     } else {

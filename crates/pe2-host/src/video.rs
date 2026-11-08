@@ -133,7 +133,10 @@ impl ApplicationHandler for App {
             .with_inner_size(window_size())
             // Scripted (unattended) runs must not steal focus from whatever
             // the user is typing in.
-            .with_active(!scripted());
+            .with_active(!scripted())
+            // Shown with its first picture: until the graphics card is open
+            // it would be a white window (the launcher stays meanwhile).
+            .with_visible(false);
         let window = Arc::new(event_loop.create_window(attrs).expect("create window"));
         set_fullscreen(&window, crate::settings::flag(crate::settings::Id::Fullscreen) && !scripted());
         self.hardware = crate::gfx::get().and_then(|gfx| crate::present::Presenter::new(gfx, window.clone()));
@@ -219,6 +222,16 @@ impl ApplicationHandler for App {
     }
 
     fn user_event(&mut self, _event_loop: &ActiveEventLoop, _event: ()) {
+        // Hidden until its first picture: Windows does not paint a hidden
+        // window, so it is drawn here, then shown.
+        if let Some(w) = &self.window
+            && w.is_visible() == Some(false)
+        {
+            if self.hardware.as_mut().is_some_and(|hw| hw.present()) {
+                w.set_visible(true);
+            }
+            return;
+        }
         if let Some(w) = &self.window {
             w.request_redraw();
         }

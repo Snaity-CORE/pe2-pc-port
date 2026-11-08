@@ -116,6 +116,7 @@ const GLYPHS: &[(u64, &str)] = &[
     (0xE56BB28F2116DDFA, "[POLICE SGT.]"),
     (0x33655C34958B66D4, "[PRIVATE]"),
     (0xB9C9CC374FCBEF46, "[TELEGRAPHIST]"),
+    (0x935D13793592225E, "[ENGINEER]"),
     (0x23013C6A91DFA7EC, "[POLICE OFFICER]"),
     (0x098C3463114A7B6B, ";"),
     (0x2246AA992F961DA9, ">"),
@@ -462,6 +463,7 @@ const SHAPES: &[(u64, &str)] = &[
     (0xB478677EE281F59A, "4"),
     (0xB760230A87EAAF1B, "u"),
     (0xB9C9CC374FCBEF46, "[TELEGRAPHIST]"),
+    (0x935D13793592225E, "[ENGINEER]"),
     (0xB9EAB239F7043AA9, "A"),
     (0xBA012C087562963A, ","),
     (0xBA9C35A8A1B44D19, "."),
@@ -663,6 +665,12 @@ fn share(cap: &Cap, column: &Column, uses: &[usize]) -> f64 {
     hits as f64 / (uses.len() - blank).max(1) as f64
 }
 
+/// The speaker's name a name label's text (`[BALDWIN]`) gives.
+pub fn label_name(text: &str) -> Option<&str> {
+    let name = text.trim().strip_prefix('[')?.strip_suffix(']')?.trim();
+    (!name.is_empty()).then_some(name)
+}
+
 /// A line's text: glyphs as their characters, line breaks, `{_}` for the
 /// narrow space, `{color N}` where the colour changes, `{XXXX}` for the
 /// other controls and `{gN}` for a glyph not known.
@@ -854,7 +862,8 @@ pub fn glyph_maps(sources: &Sources) -> HashMap<u64, Vec<([u8; 4], String)>> {
 
 /// Each CAP file's glyphs' texts (by its hash; by glyph index, None where
 /// not known or not drawn by its lines): what a mod's font draws instead
-/// (mods/capfont.rs).
+/// (mods/capfont.rs), and `[NAME]` for its speakers' name labels
+/// (labels.rs).
 pub fn cap_texts(sources: &Sources) -> HashMap<u64, Vec<Option<String>>> {
     // The bundles shared out among the cores, each part with pages of its
     // own; the first file of each hash, in disc order, kept.
@@ -876,6 +885,17 @@ pub fn cap_texts(sources: &Sources) -> HashMap<u64, Vec<Option<String>>> {
                             let mut texts = vec![None; used.iter().max().map_or(0, |m| m + 1)];
                             for index in used {
                                 texts[index] = recognize(&glyph(page, cap.cell(index))).map(|t| t.into_owned());
+                            }
+                            // And the speakers' name labels (labels.rs), as
+                            // `[NAME]` (one is labelled without: No.9).
+                            for line in cap.lines().into_iter().filter(|l| l.title != 0) {
+                                let index = usize::from(line.title - 1);
+                                if index >= texts.len() {
+                                    texts.resize(index + 1, None);
+                                }
+                                let name = recognize(&glyph(page, cap.cell(index)));
+                                texts[index] =
+                                    name.map(|n| if n.starts_with('[') { n.into_owned() } else { format!("[{n}]") });
                             }
                             found.push((cap.hash(), texts));
                         }
@@ -924,6 +944,7 @@ pub fn font(sources: &Sources) -> HashMap<&'static str, Vec<u8>> {
 pub fn extract(sources: &Sources, out: &Path) -> std::io::Result<(usize, usize)> {
     let mut pages = Pages::new(sources);
     let (mut files, mut lines) = (0, 0);
+    let mut speakers = std::collections::BTreeSet::new();
     for (key, chunk, payload) in &sources.bundles {
         for (n, bytes) in caps(payload).into_iter().enumerate() {
             let Some(cap) = Cap::new(bytes) else { continue };
@@ -947,6 +968,10 @@ pub fn extract(sources: &Sources, out: &Path) -> std::io::Result<(usize, usize)>
                 toml.push_str(&format!("\n[[line]]\nrecord = 0x{:04X}\n", line.record));
                 if line.title != 0 {
                     let speaker = text(&cap, page, &[u16::from(line.title - 1)]);
+                    let name = label_name(&speaker).unwrap_or(speaker.trim());
+                    if !name.is_empty() && !name.starts_with("{g") {
+                        speakers.insert(name.to_string());
+                    }
                     let speaker = speaker.trim_start_matches('[').trim_end_matches(']');
                     toml.push_str(&format!("speaker = \"{}\"\n", speaker.replace('"', "\\\"")));
                 }
@@ -965,6 +990,17 @@ pub fn extract(sources: &Sources, out: &Path) -> std::io::Result<(usize, usize)>
             lines += count;
         }
     }
+    // The speakers' names, for a translation's (labels.rs).
+    let mut toml = String::from(
+        "# The speakers' names on the dialogue's labels. A mod translates them in\n\
+         # its text/speakers.toml: \"NAME\" = \"translation\" (only those it changes).\n",
+    );
+    for name in speakers {
+        let quoted = name.replace('\\', "\\\\").replace('"', "\\\"");
+        toml.push_str(&format!("# \"{quoted}\" = \"{quoted}\"\n"));
+    }
+    std::fs::create_dir_all(out)?;
+    std::fs::write(out.join(super::labels::FILE), toml)?;
     Ok((files, lines))
 }
 

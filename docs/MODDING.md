@@ -48,7 +48,7 @@ What a mod can hold, each part optional, and where each is explained:
 | `music/` | songs | Music |
 | `movies/` | movies | Movies |
 | `files/` | any of the game's files, or chunks of them | Game files |
-| `text/` | the dialogue | Dialogue |
+| `text/` | the dialogue, and the speakers' names (`text/speakers.toml`) | Dialogue |
 | `fonts/` | the dialogue's font | Dialogue in your own font |
 | `strings/` | the menus' texts, items' details | Texts of the menus |
 | `patches.toml` | the game's memory (cheats) | Cheats and memory patches |
@@ -371,7 +371,9 @@ and the disc change's lines from its built-in fonts by default (`[video] hd_font
 replacement of the same sheet wins. A mod that replaces the captions' font
 (a translation's, in `files/`) gives its map in `glyphs/<sheet>-4bit.toml`,
 as the extract writes them (`kind = "loading"`), and PE2PC redraws it the
-same way. To use other fonts,
+same way. A glyph whose picture lies off its cell (a translation's copy
+drawn a row lower than the game reads it) also gives `like = [u, v, width,
+height]`, where the picture is: its letter is drawn whole in its cell. To use other fonts,
 `tools/hd_fonts.py` redraws the first three from fonts of your choice
 (needs Python with numpy, pillow and scipy):
 
@@ -640,6 +642,15 @@ Precisam de você no centro agora!'''
 Lines left empty keep the original, and `original` and `speaker` are only
 for you: the game reads `cap`, `record` and `text`.
 
+The speakers' names (the labels over the lines) are translated once for
+all the dialogue, in `mods/<your mod>/text/speakers.toml`. The extract lists
+them all in `dumps/text/speakers.toml`; give only those you change:
+
+```toml
+"POLICE OFFICER" = "POLICIAL"
+"MALE VOICE" = "VOZ MASCULINA"
+```
+
 When the game loads a dialogue file with translated lines, it gets a copy
 with those lines' text, and the glyphs they need are added to its glyph
 picture, below the original ones. They come from the game's own dialogue
@@ -647,9 +658,11 @@ font (collected from the disc in the few seconds after the game starts; a
 dialogue loaded before that shows the original until loaded again), and
 accented letters (á à â ã ä é è ê ë í ì î ï ó ò ô õ ö ú ù û ü ç ñ, and
 capitals) are made from it with marks drawn by PE2PC. A character the font
-does not have shows as `?`. Speakers' names stay as the game shows them:
-they are pictures of whole names. `PE2_TRACE=text` logs each translated file
-as it loads.
+does not have shows as `?`. Speakers' names are drawn by PE2PC from its
+built-in font (DejaVu Sans Bold, slanted like the game's labels), white on
+the game's green box, in their translation if `speakers.toml` gives one:
+the game's labels are pictures of whole names. `PE2_TRACE=text` logs each
+translated file as it loads.
 
 ### A translation from another version's discs
 
@@ -707,8 +720,9 @@ scale.
 
 Which character each of the game's glyphs is comes from the discs,
 collected in the seconds after the game starts (a dialogue loaded before
-that shows the original until loaded again). Glyphs not recognized and
-speakers' names stay the game's pictures. Lines take the font's widths, so
+that shows the original until loaded again). Glyphs not recognized stay
+the game's pictures; speakers' names are redrawn as for translations
+(above), in PE2PC's own font. Lines take the font's widths, so
 a wide font may need `tracking` or a smaller `cap_height` to keep long
 lines inside the screen.
 
@@ -894,7 +908,7 @@ changing the game's own data in memory unless the kind is meant to.
 5. **Game files** (done): extracted, and replaced chunk by chunk or whole,
    at any size, as above.
 6. **Dialogue** (done): extracted as text and translated, as above, and
-   the texts of the menus. Still to come: speakers' names.
+   the texts of the menus, and the speakers' names.
 7. **Textures** (done): extracted from the disc and dumped in colour, and
    replaced at any resolution, by sheet, as above.
 8. **Movies** (done): FMVs replaced by MP4 files, as above.

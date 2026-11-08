@@ -420,7 +420,7 @@ def caption_maps(game, other, args, report):
         for line in open(index, encoding='utf-8'):
             parts = line.split()
             if len(parts) > 1 and parts[1] == origin:
-                return parts[0].split('-')[0]
+                return parts[0].split('/')[-1].split('-')[0]
         return None
 
     def crop(rows, cell, down):
@@ -453,12 +453,26 @@ def caption_maps(game, other, args, report):
             picture = crop(translated, cell, down)
             if w == 0 or not any(any(row) for row in picture):
                 continue
-            text = known.get(picture) or CAPTION_LABELS.get(caption_key(picture))
-            if text is None:
+            # A copy may hold the letters a translation adds a row off from
+            # where the game draws the cells (the Brazilian Portuguese one's
+            # M.I.S.T. briefing: a row lower, so they show cut on the
+            # console too): the letter is read where it is, and its map
+            # says so (`like`), so PE2PC draws it whole in its cell.
+            found = None
+            for off in (down, down + 1, down - 1):
+                pic = crop(translated, cell, off)
+                text = known.get(pic) or CAPTION_LABELS.get(caption_key(pic))
+                if text is not None:
+                    found = (text, off)
+                    break
+            if found is None:
                 missing.append(f'{origin}: caption glyph at ({u}, {v + down}) {w}x{h} not known '
                                f'(CAPTION_LABELS key {caption_key(picture)}): kept as it is')
                 continue
+            text, off = found
             lines += ['', '[[glyph]]', f'cell = [{u}, {v + down}, {w}, {h}]', f'text = "{text}"']
+            if off != down:
+                lines.append(f'like = [{u}, {v + off}, {w}, {h}]')
             glyphs += 1
         # A copy the translation did not redraw there (the M.I.S.T.
         # briefing's): not its font, left as it is.

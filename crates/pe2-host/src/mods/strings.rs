@@ -506,12 +506,12 @@ pub fn extract(
         files += 1;
         count += 1;
     }
-    // PE2PC's own texts (its pause menu's), in the game's code but not on
-    // the disc: translated as the game's are.
+    // PE2PC's own texts (its pause menu's, and a few in item boxes), in the
+    // game's code but not on the disc: translated as the game's are.
     let own = port_texts();
     if !own.is_empty() {
         let mut toml = String::from(
-            "# Texts of PE2PC's own screens (its pause menu: the fork's src/main/pc/menu.c).\n\
+            "# Texts of PE2PC's own screens (its pause menu, and some in item boxes: the fork's src/main/pc/menu.c).\n\
              # Write each one's translation in `text`; an empty one keeps the original.\n\
              # Titles are drawn in the menus' small face, which has no accents.\n",
         );

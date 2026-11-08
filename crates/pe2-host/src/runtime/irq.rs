@@ -212,7 +212,11 @@ static GAME_THREAD_ID: AtomicU32 = AtomicU32::new(0);
 #[unsafe(no_mangle)]
 pub extern "C" fn pc_console_cpu_time(cycles: u32) {
     // SAFETY: plain query.
-    if cycles == 0 || unsafe { GetCurrentThreadId() } != GAME_THREAD_ID.load(Ordering::SeqCst) || in_handler() {
+    if cycles == 0
+        || crate::controls::fast_loading()
+        || unsafe { GetCurrentThreadId() } != GAME_THREAD_ID.load(Ordering::SeqCst)
+        || in_handler()
+    {
         return;
     }
     let until = Instant::now() + Duration::from_nanos(u64::from(cycles) * 1_000_000_000 / 33_868_800);
