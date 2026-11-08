@@ -189,13 +189,13 @@ fn call_cb(cb: u32, intr: u8, result: [u8; 8]) {
 
 impl Drive {
     fn sector_period(&self) -> Duration {
-        // Fast camera changes: data sectors while the game holds the
+        // Fast loading (fast camera changes or doors): data sectors while the game holds the
         // picture. Not sound, nor a stream (CdRead2: the moving background
         // at the Akropolis Tower's entrance), whose ring the game empties at
         // its own pace: overrun, it restarted the stream for ever. The seek
         // keeps its time: the game asks for a read before it sets the
         // callback the sectors go to.
-        if self.mode & MODE_RT == 0 && self.stream_gen != Some(self.read_gen) && crate::controls::fast_camera_change() {
+        if self.mode & MODE_RT == 0 && self.stream_gen != Some(self.read_gen) && crate::controls::fast_loading() {
             return FAST_SECTOR;
         }
         if self.mode & MODE_SPEED != 0 { Duration::from_micros(6_667) } else { Duration::from_micros(13_333) }

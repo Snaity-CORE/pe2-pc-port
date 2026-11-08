@@ -128,6 +128,9 @@ scale = 4
 # Dialogue that waits for a button shows its lines whole at once, as a
 # press shows them (the scenes' timed captions keep their pace).
 # instant_text = false
+# Doors change rooms while their sound plays on, instead of after it,
+# and the room loads as fast as the PC can (as with fast camera changes).
+# fast_doors = false
 
 [cheats]
 # Every weapon hit is a critical hit.

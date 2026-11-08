@@ -45,6 +45,7 @@ pub enum Id {
     FastCameraChanges,
     SkipIntro,
     InstantText,
+    FastDoors,
 }
 
 struct Def {
@@ -244,6 +245,16 @@ const DEFS: &[Def] = &[
         live: true,
     },
     Def {
+        id: Id::FastDoors,
+        category: 3,
+        label: "Fast doors",
+        section: "gameplay",
+        key: "fast_doors",
+        choices: ON_OFF,
+        default: 0,
+        live: true,
+    },
+    Def {
         id: Id::AlwaysCritical,
         category: 4,
         label: "Always critical",
@@ -344,6 +355,7 @@ fn from_config(def: &Def) -> usize {
         Id::FastCameraChanges => c.gameplay.fast_camera_changes.map(Value::Bool),
         Id::SkipIntro => c.gameplay.skip_intro.map(Value::Bool),
         Id::InstantText => c.gameplay.instant_text.map(Value::Bool),
+        Id::FastDoors => c.gameplay.fast_doors.map(Value::Bool),
     };
     let Some(found) = found else { return def.default };
     let distance = |v: &Value| -> i64 {

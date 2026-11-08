@@ -115,9 +115,9 @@ pub fn modern_movement() -> bool {
 
 /// The options a replay must play with as recorded (runtime/replay.rs), as
 /// bits: 0 modern movement and 1 quick turn (pad_input.c in the fork), 2
-/// fast camera changes, 3 skip the intro and 4 instant text (they change
-/// how many updates a camera change, the start, a line of dialogue take);
-/// a replay's own, else the settings'.
+/// fast camera changes, 3 skip the intro, 4 instant text and 5 fast doors
+/// (they change how many updates a camera change, the start, a line of
+/// dialogue, a door take); a replay's own, else the settings'.
 #[unsafe(no_mangle)]
 pub extern "C" fn pc_input_options() -> u32 {
     static REPLAY: std::sync::OnceLock<Option<u32>> = std::sync::OnceLock::new();
@@ -127,19 +127,21 @@ pub extern "C" fn pc_input_options() -> u32 {
             | (u32::from(settings::flag(Id::FastCameraChanges)) << 2)
             | (u32::from(settings::flag(Id::SkipIntro)) << 3)
             | (u32::from(settings::flag(Id::InstantText)) << 4)
+            | (u32::from(settings::flag(Id::FastDoors)) << 5)
     })
 }
 
-/// Fast camera changes ([gameplay] fast_camera_changes): on, and the game
-/// holds the picture while it loads one, outside paced scenes (otutil.c in
-/// the fork). Then the disc reads data faster, the MDEC decodes at once and
-/// the decoder's console time is not waited, all out of sight.
-pub fn fast_camera_change() -> bool {
+/// Fast loading: fast camera changes or fast doors ([gameplay]) on, and the
+/// game holds the picture while it loads a camera or a room, outside paced
+/// scenes (otutil.c in the fork). Then the disc reads data faster, the MDEC
+/// decodes at once and the decoder's console time is not waited, all out
+/// of sight.
+pub fn fast_loading() -> bool {
     unsafe extern "C" {
         fn pc_camera_change_held() -> i32;
     }
     // SAFETY: reads game globals.
-    pc_input_options() & 4 != 0 && unsafe { pc_camera_change_held() } != 0
+    pc_input_options() & (4 | 32) != 0 && unsafe { pc_camera_change_held() } != 0
 }
 
 /// Cheats ([cheats] always_critical): every weapon hit is a critical hit

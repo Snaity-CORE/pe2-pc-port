@@ -213,7 +213,7 @@ static GAME_THREAD_ID: AtomicU32 = AtomicU32::new(0);
 pub extern "C" fn pc_console_cpu_time(cycles: u32) {
     // SAFETY: plain query.
     if cycles == 0
-        || crate::controls::fast_camera_change()
+        || crate::controls::fast_loading()
         || unsafe { GetCurrentThreadId() } != GAME_THREAD_ID.load(Ordering::SeqCst)
         || in_handler()
     {
