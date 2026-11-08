@@ -207,6 +207,10 @@ struct MapFile {
 struct GlyphFile {
     cell: [u16; 4],
     text: String,
+    /// Where the letter's picture is when not in its cell (a translation's
+    /// copy of a font drawn a row off): its ink tells where the letter goes.
+    #[serde(default)]
+    like: Option<[u16; 4]>,
 }
 
 /// The maps mods give, as `glyphs/<sheet>-<4|8>bit.toml` (in the extract's
@@ -232,7 +236,7 @@ pub fn from_mods(catalog: &Catalog) -> Vec<Map> {
         if file.kind != "loading" || !catalog.sheets.iter().any(|s| s.hash == sheet) {
             continue;
         }
-        let glyphs = file.glyph.into_iter().map(|g| Glyph::new(g.cell, g.text)).collect();
+        let glyphs = file.glyph.into_iter().map(|g| Glyph { like: g.like, ..Glyph::new(g.cell, g.text) }).collect();
         maps.insert(sheet, Map { kind: "loading", sheets, depth: file.depth, palette: None, glyphs });
     }
     maps.into_values().collect()

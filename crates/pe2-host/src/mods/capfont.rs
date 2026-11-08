@@ -15,7 +15,8 @@
 //!
 //! What character each of a file's glyphs is comes from its glyph page on
 //! the disc (dialogue::cap_texts), collected when the game starts; glyphs
-//! not known (and the speakers' name labels) stay the game's.
+//! not known stay the game's; the speakers' name labels are redrawn too
+//! (labels.rs).
 
 use std::collections::HashMap;
 use std::sync::{Arc, Mutex, OnceLock};
@@ -135,6 +136,17 @@ pub fn set_texts(texts: Texts) {
 pub fn texts(cap: u64) -> Option<impl Fn(usize) -> Option<&'static str>> {
     let texts = TEXTS.get()?.get(&cap)?;
     Some(move |index: usize| texts.get(index).and_then(|t| t.as_deref()).filter(|t| !t.starts_with('[')))
+}
+
+/// The speaker's name glyph `index` of the CAP file of hash `cap` is the
+/// label of (BALDWIN), if a name label; None for the whole file while not
+/// collected.
+pub fn names(cap: u64) -> Option<impl Fn(usize) -> Option<&'static str>> {
+    let texts = TEXTS.get()?.get(&cap)?;
+    Some(move |index: usize| {
+        let t = texts.get(index)?.as_deref()?;
+        super::dialogue::label_name(t)
+    })
 }
 
 /// A glyph drawn from the font: its cell size, its texels (4-bit palette

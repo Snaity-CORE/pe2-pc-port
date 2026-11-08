@@ -30,6 +30,7 @@ pub mod fontsheets;
 pub mod glyphmaps;
 pub mod indexed;
 pub mod install;
+pub mod labels;
 pub mod menuglyphs;
 pub mod movies;
 pub mod music;
@@ -118,8 +119,10 @@ pub fn start(discs: &[PathBuf]) {
     if let Some(first) = discs.first() {
         fontsheets::start(first.clone());
     }
-    let texts = capfont::active();
-    let (font, textures) = (translate::wanted() && !texts, wants_textures());
+    // What each dialogue glyph is: for a mod's font, and for the speakers'
+    // name labels, which translated copies redraw (labels.rs).
+    let texts = capfont::active() || translate::wanted();
+    let (font, textures) = (translate::wanted() && !capfont::active(), wants_textures());
     if discs.is_empty() || !(font || textures || texts) {
         return;
     }
