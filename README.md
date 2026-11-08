@@ -38,7 +38,16 @@ It plays as the console does and adds what a PC can, all optional:
 - **Sharp text**: the dialogue, the menus, the loading captions and the
   disc change's lines drawn from high-definition fonts (the built-in DejaVu
   Sans Bold, Hind Bold and Courier Prime) instead of the game's small
-  pictures of text, at internal resolutions above the console's.
+  pictures of text, at internal resolutions above the console's; the
+  speakers' names over the dialogue too, in any language a translation
+  gives them.
+- **Quality of life**, each optional and off by default (the launcher's QoL
+  tab, or the pause menu's Options > Gameplay): faster camera changes and
+  doors, skipping the intro, dialogue shown whole at once, item boxes that
+  share their contents, 30 inventory spaces, a full inventory's pickups and
+  battle winnings sent to the box, identical medicines stacked, and saving
+  from the pause menu wherever the game lets you move freely. Item boxes
+  also sort their contents.
 - **Mods** (experimental, turned on in Settings): replace the pre-rendered
   backgrounds and full-screen pictures and the textures with your own at
   any resolution, the music with
