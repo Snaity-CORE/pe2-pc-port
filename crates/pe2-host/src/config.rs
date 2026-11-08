@@ -41,6 +41,8 @@ pub struct Gameplay {
     /// Doors change rooms while their sound plays on, instead of after it,
     /// and the room loads as fast as the PC can (controls::fast_loading).
     pub fast_doors: Option<bool>,
+    /// Every item box shows the same contents: all the boxes' rows.
+    pub unified_boxes: Option<bool>,
 }
 
 #[derive(Debug, Default, Deserialize)]

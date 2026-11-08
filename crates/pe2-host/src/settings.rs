@@ -46,6 +46,7 @@ pub enum Id {
     SkipIntro,
     InstantText,
     FastDoors,
+    UnifiedBoxes,
 }
 
 struct Def {
@@ -255,6 +256,16 @@ const DEFS: &[Def] = &[
         live: true,
     },
     Def {
+        id: Id::UnifiedBoxes,
+        category: 3,
+        label: "Unified item boxes",
+        section: "gameplay",
+        key: "unified_boxes",
+        choices: ON_OFF,
+        default: 0,
+        live: true,
+    },
+    Def {
         id: Id::AlwaysCritical,
         category: 4,
         label: "Always critical",
@@ -356,6 +367,7 @@ fn from_config(def: &Def) -> usize {
         Id::SkipIntro => c.gameplay.skip_intro.map(Value::Bool),
         Id::InstantText => c.gameplay.instant_text.map(Value::Bool),
         Id::FastDoors => c.gameplay.fast_doors.map(Value::Bool),
+        Id::UnifiedBoxes => c.gameplay.unified_boxes.map(Value::Bool),
     };
     let Some(found) = found else { return def.default };
     let distance = |v: &Value| -> i64 {

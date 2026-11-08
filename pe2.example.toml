@@ -131,6 +131,10 @@ scale = 4
 # Doors change rooms while their sound plays on, instead of after it,
 # and the room loads as fast as the PC can (as with fast camera changes).
 # fast_doors = false
+# Every item box shows the same contents: what all the boxes hold, up to
+# 120 items. Turned off again, each item stays in the box whose space it
+# took.
+# unified_boxes = false
 
 [cheats]
 # Every weapon hit is a critical hit.
