@@ -48,6 +48,8 @@ pub struct Gameplay {
     /// With unified boxes, an item picked up with a full inventory goes to
     /// the item box.
     pub full_to_box: Option<bool>,
+    /// Identical medicines stack, up to 10 in a row.
+    pub stack_items: Option<bool>,
 }
 
 #[derive(Debug, Default, Deserialize)]

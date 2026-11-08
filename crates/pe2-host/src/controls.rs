@@ -116,10 +116,10 @@ pub fn modern_movement() -> bool {
 /// The options a replay must play with as recorded (runtime/replay.rs), as
 /// bits: 0 modern movement and 1 quick turn (pad_input.c in the fork), 2
 /// fast camera changes, 3 skip the intro, 4 instant text, 5 fast doors, 6
-/// unified boxes, 7 bigger inventory and 8 full inventory to the box (they
-/// change how many updates a camera change, the start, a line of dialogue,
-/// a door take, or what a box or the inventory holds); a replay's own,
-/// else the settings'.
+/// unified boxes, 7 bigger inventory, 8 full inventory to the box and 9
+/// stacked items (they change how many updates a camera change, the start,
+/// a line of dialogue, a door take, or what a box or the inventory holds);
+/// a replay's own, else the settings'.
 #[unsafe(no_mangle)]
 pub extern "C" fn pc_input_options() -> u32 {
     static REPLAY: std::sync::OnceLock<Option<u32>> = std::sync::OnceLock::new();
@@ -133,6 +133,7 @@ pub extern "C" fn pc_input_options() -> u32 {
             | (u32::from(settings::flag(Id::UnifiedBoxes)) << 6)
             | (u32::from(settings::flag(Id::BiggerInventory)) << 7)
             | (u32::from(settings::flag(Id::FullToBox)) << 8)
+            | (u32::from(settings::flag(Id::StackItems)) << 9)
     })
 }
 
