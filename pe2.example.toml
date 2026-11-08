@@ -125,6 +125,9 @@ scale = 4
 # The game starts at the title, without the intro: the PE2PC screen, the
 # publisher's picture, Squaresoft's logo and the opening movie.
 # skip_intro = false
+# Dialogue that waits for a button shows its lines whole at once, as a
+# press shows them (the scenes' timed captions keep their pace).
+# instant_text = false
 
 [cheats]
 # Every weapon hit is a critical hit.

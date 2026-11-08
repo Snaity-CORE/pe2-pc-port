@@ -35,6 +35,9 @@ pub struct Gameplay {
     /// (splash.rs), the publisher's picture, Squaresoft's logo and the
     /// opening movie.
     pub skip_intro: Option<bool>,
+    /// Dialogue that waits for a button shows its lines whole at once, as a
+    /// press shows them (the scenes' timed captions keep their pace).
+    pub instant_text: Option<bool>,
 }
 
 #[derive(Debug, Default, Deserialize)]

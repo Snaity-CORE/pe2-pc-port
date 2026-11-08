@@ -44,6 +44,7 @@ pub enum Id {
     BpMultiplier,
     FastCameraChanges,
     SkipIntro,
+    InstantText,
 }
 
 struct Def {
@@ -233,6 +234,16 @@ const DEFS: &[Def] = &[
         live: true,
     },
     Def {
+        id: Id::InstantText,
+        category: 3,
+        label: "Instant text",
+        section: "gameplay",
+        key: "instant_text",
+        choices: ON_OFF,
+        default: 0,
+        live: true,
+    },
+    Def {
         id: Id::AlwaysCritical,
         category: 4,
         label: "Always critical",
@@ -332,6 +343,7 @@ fn from_config(def: &Def) -> usize {
         Id::BpMultiplier => c.cheats.bp_multiplier.map(|v| Value::Int(v.into())),
         Id::FastCameraChanges => c.gameplay.fast_camera_changes.map(Value::Bool),
         Id::SkipIntro => c.gameplay.skip_intro.map(Value::Bool),
+        Id::InstantText => c.gameplay.instant_text.map(Value::Bool),
     };
     let Some(found) = found else { return def.default };
     let distance = |v: &Value| -> i64 {
