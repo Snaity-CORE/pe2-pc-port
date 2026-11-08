@@ -115,8 +115,8 @@ pub fn modern_movement() -> bool {
 
 /// The options a replay must play with as recorded (runtime/replay.rs), as
 /// bits: 0 modern movement and 1 quick turn (pad_input.c in the fork), 2
-/// fast camera changes (they change how many updates a camera change
-/// takes); a replay's own, else the settings'.
+/// fast camera changes and 3 skip the intro (they change how many updates
+/// a camera change, the start take); a replay's own, else the settings'.
 #[unsafe(no_mangle)]
 pub extern "C" fn pc_input_options() -> u32 {
     static REPLAY: std::sync::OnceLock<Option<u32>> = std::sync::OnceLock::new();
@@ -124,6 +124,7 @@ pub extern "C" fn pc_input_options() -> u32 {
         u32::from(modern_movement())
             | (u32::from(settings::flag(Id::QuickTurn)) << 1)
             | (u32::from(settings::flag(Id::FastCameraChanges)) << 2)
+            | (u32::from(settings::flag(Id::SkipIntro)) << 3)
     })
 }
 

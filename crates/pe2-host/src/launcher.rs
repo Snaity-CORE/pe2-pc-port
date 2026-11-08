@@ -31,8 +31,8 @@ const DISC_SERIALS: [&str; 2] = ["SLUS_010.42", "SLUS_010.55"];
 const EXAMPLE: &str = include_str!("../../../pe2.example.toml");
 
 /// The launcher's art, made for the project (nothing from the game).
-const BACKGROUND: &[u8] = include_bytes!("../res/launcher_bg.webp");
-const LOGO: &[u8] = include_bytes!("../res/launcher_logo.webp");
+pub const BACKGROUND: &[u8] = include_bytes!("../res/launcher_bg.webp");
+pub const LOGO: &[u8] = include_bytes!("../res/launcher_logo.webp");
 
 /// The window's size, the background's.
 const WINDOW: [f32; 2] = [960.0, 640.0];

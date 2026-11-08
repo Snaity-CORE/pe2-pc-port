@@ -31,6 +31,10 @@ pub struct Gameplay {
     /// Camera changes load their pictures as fast as the PC can, instead of
     /// at the console's disc and decoder speed.
     pub fast_camera_changes: Option<bool>,
+    /// The game starts at the title, without the intro: the PE2PC screen
+    /// (splash.rs), the publisher's picture, Squaresoft's logo and the
+    /// opening movie.
+    pub skip_intro: Option<bool>,
 }
 
 #[derive(Debug, Default, Deserialize)]

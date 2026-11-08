@@ -122,6 +122,9 @@ scale = 4
 # Camera changes load their pictures as fast as the PC can, instead of at
 # the console's disc and decoder speed (about 0.17 s instead of 0.5 s).
 # fast_camera_changes = false
+# The game starts at the title, without the intro: the PE2PC screen, the
+# publisher's picture, Squaresoft's logo and the opening movie.
+# skip_intro = false
 
 [cheats]
 # Every weapon hit is a critical hit.

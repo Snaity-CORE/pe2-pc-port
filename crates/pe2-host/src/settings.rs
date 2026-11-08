@@ -43,6 +43,7 @@ pub enum Id {
     ExpMultiplier,
     BpMultiplier,
     FastCameraChanges,
+    SkipIntro,
 }
 
 struct Def {
@@ -222,6 +223,16 @@ const DEFS: &[Def] = &[
         live: true,
     },
     Def {
+        id: Id::SkipIntro,
+        category: 3,
+        label: "Skip intro",
+        section: "gameplay",
+        key: "skip_intro",
+        choices: ON_OFF,
+        default: 0,
+        live: true,
+    },
+    Def {
         id: Id::AlwaysCritical,
         category: 4,
         label: "Always critical",
@@ -320,6 +331,7 @@ fn from_config(def: &Def) -> usize {
         Id::ExpMultiplier => c.cheats.exp_multiplier.map(|v| Value::Int(v.into())),
         Id::BpMultiplier => c.cheats.bp_multiplier.map(|v| Value::Int(v.into())),
         Id::FastCameraChanges => c.gameplay.fast_camera_changes.map(Value::Bool),
+        Id::SkipIntro => c.gameplay.skip_intro.map(Value::Bool),
     };
     let Some(found) = found else { return def.default };
     let distance = |v: &Value| -> i64 {
