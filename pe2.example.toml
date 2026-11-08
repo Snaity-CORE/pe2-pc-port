@@ -135,6 +135,12 @@ scale = 4
 # 120 items. Turned off again, each item stays in the box whose space it
 # took.
 # unified_boxes = false
+# The player carries 30 items instead of 20. Turned off again, the extra
+# spaces stay until they are empty.
+# bigger_inventory = false
+# With unified boxes on, an item picked up with a full inventory goes to
+# the item box.
+# full_to_box = false
 
 [cheats]
 # Every weapon hit is a critical hit.

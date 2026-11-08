@@ -47,6 +47,8 @@ pub enum Id {
     InstantText,
     FastDoors,
     UnifiedBoxes,
+    BiggerInventory,
+    FullToBox,
 }
 
 struct Def {
@@ -266,6 +268,26 @@ const DEFS: &[Def] = &[
         live: true,
     },
     Def {
+        id: Id::BiggerInventory,
+        category: 3,
+        label: "Bigger inventory",
+        section: "gameplay",
+        key: "bigger_inventory",
+        choices: ON_OFF,
+        default: 0,
+        live: true,
+    },
+    Def {
+        id: Id::FullToBox,
+        category: 3,
+        label: "Full inventory to box",
+        section: "gameplay",
+        key: "full_to_box",
+        choices: ON_OFF,
+        default: 0,
+        live: true,
+    },
+    Def {
         id: Id::AlwaysCritical,
         category: 4,
         label: "Always critical",
@@ -368,6 +390,8 @@ fn from_config(def: &Def) -> usize {
         Id::InstantText => c.gameplay.instant_text.map(Value::Bool),
         Id::FastDoors => c.gameplay.fast_doors.map(Value::Bool),
         Id::UnifiedBoxes => c.gameplay.unified_boxes.map(Value::Bool),
+        Id::BiggerInventory => c.gameplay.bigger_inventory.map(Value::Bool),
+        Id::FullToBox => c.gameplay.full_to_box.map(Value::Bool),
     };
     let Some(found) = found else { return def.default };
     let distance = |v: &Value| -> i64 {

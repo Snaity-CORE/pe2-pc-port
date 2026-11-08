@@ -43,6 +43,11 @@ pub struct Gameplay {
     pub fast_doors: Option<bool>,
     /// Every item box shows the same contents: all the boxes' rows.
     pub unified_boxes: Option<bool>,
+    /// The player carries 30 items instead of 20.
+    pub bigger_inventory: Option<bool>,
+    /// With unified boxes, an item picked up with a full inventory goes to
+    /// the item box.
+    pub full_to_box: Option<bool>,
 }
 
 #[derive(Debug, Default, Deserialize)]
