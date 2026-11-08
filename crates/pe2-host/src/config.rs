@@ -50,6 +50,8 @@ pub struct Gameplay {
     pub full_to_box: Option<bool>,
     /// Identical medicines stack, up to 10 in a row.
     pub stack_items: Option<bool>,
+    /// The pause menu has Save while the player is free to save.
+    pub save_anywhere: Option<bool>,
 }
 
 #[derive(Debug, Default, Deserialize)]

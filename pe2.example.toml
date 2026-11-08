@@ -145,6 +145,10 @@ scale = 4
 # 10 in one space; each use takes one, a move takes the whole stack.
 # Turned off again, stacks stay until used up.
 # stack_items = false
+# The pause menu has Save, as a telephone saves, while the player is free
+# to save: exploring, not in a battle, a scene or a menu. A load starts
+# where the save was made.
+# save_anywhere = false
 
 [cheats]
 # Every weapon hit is a critical hit.

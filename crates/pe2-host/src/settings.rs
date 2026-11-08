@@ -50,6 +50,7 @@ pub enum Id {
     BiggerInventory,
     FullToBox,
     StackItems,
+    SaveAnywhere,
 }
 
 struct Def {
@@ -299,6 +300,16 @@ const DEFS: &[Def] = &[
         live: true,
     },
     Def {
+        id: Id::SaveAnywhere,
+        category: 3,
+        label: "Save anywhere",
+        section: "gameplay",
+        key: "save_anywhere",
+        choices: ON_OFF,
+        default: 0,
+        live: true,
+    },
+    Def {
         id: Id::AlwaysCritical,
         category: 4,
         label: "Always critical",
@@ -404,6 +415,7 @@ fn from_config(def: &Def) -> usize {
         Id::BiggerInventory => c.gameplay.bigger_inventory.map(Value::Bool),
         Id::FullToBox => c.gameplay.full_to_box.map(Value::Bool),
         Id::StackItems => c.gameplay.stack_items.map(Value::Bool),
+        Id::SaveAnywhere => c.gameplay.save_anywhere.map(Value::Bool),
     };
     let Some(found) = found else { return def.default };
     let distance = |v: &Value| -> i64 {
