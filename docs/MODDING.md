@@ -106,7 +106,9 @@ setups, and the picture is scaled to the internal resolution.
    shown when examining things), as the game does, into
    `dumps/backgrounds/<folder>/<place>.png` in the data folder, filed by
    what they are: `rooms/<area>/<room>/` (rooms/dryfield/gas_station),
-   `load_screens/`, `title/`...
+   `load_screens/`, `title/`... The first picture the game shows
+   ("Published by", `INIT.BS` at the disc's root, outside the stages'
+   files) is in `startup/`, named by its hash (see below).
 2. Make your version of a picture (paint over it, upscale it, ...) and save it
    as `mods/<your mod>/backgrounds/<same name>.png`, in any folder inside
    `backgrounds/` (the extract's, if you like: the name is what counts).

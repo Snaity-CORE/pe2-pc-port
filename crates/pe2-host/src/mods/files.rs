@@ -728,6 +728,22 @@ pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path, parts: Parts) -> std::
             }
             files += 1;
         }
+        // The picture the game shows first ("Published by"): INIT.BS at the
+        // disc's root, outside the stages' files (fs.c fsScanIsoDirectory).
+        // Named by its hash, which mods use.
+        if parts.backgrounds
+            && let Ok(init) = iso9660::find_file(disc.as_mut(), "INIT.BS")
+            && let Ok(bs) = iso9660::read_file(disc.as_mut(), init)
+            && let Some(pixels) = background_pixels(&bs)
+        {
+            let hash = super::screen_hash(320, 240, &pixels);
+            let dir = pictures.join("startup");
+            if backgrounds.insert(hash) {
+                std::fs::create_dir_all(&dir)?;
+                super::save_png(&dir.join(format!("{hash:016x}.png")), 320, 240, &pixels)
+                    .map_err(std::io::Error::other)?;
+            }
+        }
     }
     let (name, executable) =
         discs.first_mut().and_then(|disc| iso9660::boot_executable(disc.as_mut()).ok()).unwrap_or_default();
