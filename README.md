@@ -1,5 +1,7 @@
 # PE2PC: Parasite Eve II, native on PC
 
+<a href="https://recomplauncher.com/game/pe2-pc-port"><picture><source media="(prefers-color-scheme: dark)" srcset="https://recomplauncher.com/assets/press/launcher/badge-light.svg"><img alt="Get it on RecompLauncher" src="https://recomplauncher.com/assets/press/launcher/badge-dark.svg" height="48"></picture></a>
+
 A native PC port of *Parasite Eve II* (PlayStation, USA release) built on the
 [decompilation by GabeRealB](https://github.com/GabeRealB/parasite-eve-2-decomp).
 The game's own code, decompiled to C, is compiled for the PC and runs natively;
