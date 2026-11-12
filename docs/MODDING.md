@@ -9,6 +9,10 @@ features on (the launcher's Settings, General, Experimental; or
 `[general] experimental = true` in `pe2.toml`), and the launcher shows its
 Mods screen only then. `PE2_MODS=1` turns mods on for one run regardless.
 
+Ready-made mods are shared on
+[GameBanana](https://gamebanana.com/games/26329), and that is a good place to
+publish yours.
+
 > Mods contain only their authors' work. The game's own files never go into a
 > mod (assets are found by a hash of what they replace, so a mod does not need
 > them), and nothing taken from the discs ever goes into this repository.
@@ -106,7 +110,9 @@ setups, and the picture is scaled to the internal resolution.
    shown when examining things), as the game does, into
    `dumps/backgrounds/<folder>/<place>.png` in the data folder, filed by
    what they are: `rooms/<area>/<room>/` (rooms/dryfield/gas_station),
-   `load_screens/`, `title/`...
+   `load_screens/`, `title/`... The first picture the game shows
+   ("Published by", `INIT.BS` at the disc's root, outside the stages'
+   files) is in `startup/`, named by its hash (see below).
 2. Make your version of a picture (paint over it, upscale it, ...) and save it
    as `mods/<your mod>/backgrounds/<same name>.png`, in any folder inside
    `backgrounds/` (the extract's, if you like: the name is what counts).
