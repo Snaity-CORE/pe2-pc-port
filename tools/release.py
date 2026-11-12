@@ -51,6 +51,8 @@ DISCS = ("Needs your own Parasite Eve II (USA) discs: the game reads them at run
 PACKAGE = [
     (EXE, "pe2.exe"),
     (ROOT / "pe2.example.toml", "pe2.example.toml"),
+    # RecompLauncher reads this at the top of the zip to set the game up.
+    (ROOT / "recomplauncher.json", "recomplauncher.json"),
     (ROOT / "README.md", "README.md"),
     (ROOT / "docs" / "MODDING.md", "MODDING.md"),
     (ROOT / "docs" / "STEAM_DECK.md", "STEAM_DECK.md"),

@@ -61,7 +61,7 @@ release notes count from the last real release, not from it.
 
 ## The zip
 
-`pe2.exe`, `pe2.example.toml`, `README.md`, `MODDING.md`, `STEAM_DECK.md`, the project's
+`pe2.exe`, `pe2.example.toml`, `recomplauncher.json` (how [RecompLauncher](https://recomplauncher.com) sets the port up), `README.md`, `MODDING.md`, `STEAM_DECK.md`, the project's
 `LICENSE.txt` (CC0 1.0), `THIRD-PARTY-NOTICES.txt` and the licenses of the
 fonts `pe2.exe` embeds (`LICENSE-DejaVu.txt`, `LICENSE-CourierPrime.txt`, `LICENSE-Hind.txt`).
 Players bring their own discs; the game reads them at runtime.

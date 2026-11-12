@@ -1,0 +1,171 @@
+{
+  "$schema": "https://recomplauncher.com/schema/recomplauncher.json",
+  "format": 1,
+  "repo": "Snaity-CORE/pe2-pc-port",
+  "name": "PE2PC",
+  "inputs": [
+    {
+      "id": "disc1",
+      "label": "Your dump of Parasite Eve II (USA), disc 1 (SLUS-01042), as .chd or .cue.",
+      "role": "disc",
+      "formats": [{ "type": "file", "extensions": ["chd", "cue"] }]
+    },
+    {
+      "id": "disc2",
+      "label": "Your dump of Parasite Eve II (USA), disc 2 (SLUS-01055), as .chd or .cue.",
+      "role": "disc",
+      "formats": [{ "type": "file", "extensions": ["chd", "cue"] }]
+    }
+  ],
+  "start": {
+    "program": ["pe2.exe"],
+    "args": ["{input:disc1}", "{input:disc2}"]
+  },
+  "config": [
+    {
+      "id": "main",
+      "format": "toml",
+      "file": [
+        { "path": "{install}/pe2.toml", "if": "{install}/portable.txt" },
+        { "path": "{install}/pe2.toml", "if": "{install}/pe2.toml" },
+        { "path": "{config}/PE2PC/pe2.toml" }
+      ]
+    }
+  ],
+  "saves": [
+    "{install}/memcards",
+    "{config}/PE2PC/memcards"
+  ],
+  "folders": {
+    "saves": [
+      { "path": "{install}/memcards", "if": "{install}/portable.txt" },
+      { "path": "{config}/PE2PC/memcards" }
+    ],
+    "logs": [
+      { "path": "{install}", "if": "{install}/portable.txt" },
+      { "path": "{install}", "if": "{install}/pe2.toml" },
+      { "path": "{config}/PE2PC" }
+    ]
+  },
+  "settings": [
+    {
+      "id": "resolution", "label": "Resolution", "group": "Video",
+      "help": "What the game draws at, as a multiple of the console's 320x240. 4x is sharp on a 1080p screen; 8x needs a fast graphics card.",
+      "choices": [
+        { "label": "1x", "set": { "video/scale": "1" } },
+        { "label": "2x", "set": { "video/scale": "2" } },
+        { "label": "3x", "set": { "video/scale": "3" } },
+        { "label": "4x", "set": { "video/scale": "4" } },
+        { "label": "5x", "set": { "video/scale": "5" } },
+        { "label": "6x", "set": { "video/scale": "6" } },
+        { "label": "7x", "set": { "video/scale": "7" } },
+        { "label": "8x", "set": { "video/scale": "8" } }
+      ],
+      "defaults": { "video/scale": "4" }
+    },
+    {
+      "id": "interpolation", "label": "60 fps motion", "group": "Video",
+      "help": "The game still runs at its own 30; the frames in between are drawn with the 3D models halfway.",
+      "choices": [
+        { "label": "On", "set": { "video/frame_interpolation": "true" } },
+        { "label": "Off", "set": { "video/frame_interpolation": "false" } }
+      ],
+      "defaults": { "video/frame_interpolation": "true" }
+    },
+    {
+      "id": "textures", "label": "3D textures", "group": "Video",
+      "help": "Sharp is the console's look. Smooth blurs the texels together.",
+      "choices": [
+        { "label": "Sharp", "set": { "video/texture_filter": "\"nearest\"" } },
+        { "label": "Smooth", "set": { "video/texture_filter": "\"bilinear\"" } }
+      ],
+      "defaults": { "video/texture_filter": "\"nearest\"" }
+    },
+    {
+      "id": "backgrounds", "label": "Backgrounds", "group": "Video",
+      "help": "How the pre-rendered backgrounds are enlarged above 1x. Smooth keeps text and the interface sharp.",
+      "choices": [
+        { "label": "Sharp", "set": { "video/background_filter": "\"nearest\"" } },
+        { "label": "Smooth", "set": { "video/background_filter": "\"bicubic\"" } }
+      ],
+      "defaults": { "video/background_filter": "\"nearest\"" }
+    },
+    {
+      "id": "hd_fonts", "label": "HD fonts", "group": "Video",
+      "help": "Dialogue, menus and captions drawn from high-definition fonts instead of the game's small pictures of text.",
+      "choices": [
+        { "label": "On", "set": { "video/hd_fonts": "true" } },
+        { "label": "Off", "set": { "video/hd_fonts": "false" } }
+      ],
+      "defaults": { "video/hd_fonts": "true" }
+    },
+    {
+      "id": "crt", "label": "CRT look", "group": "Video",
+      "help": "Scanlines and an aperture grille, like a television of the time.",
+      "choices": [
+        { "label": "Off", "set": { "video/crt": "false" } },
+        { "label": "On", "set": { "video/crt": "true" } }
+      ],
+      "defaults": { "video/crt": "false" }
+    },
+    {
+      "id": "integer_scaling", "label": "Integer scaling", "group": "Video",
+      "help": "Shows the picture at whole multiples of its height: sharp pixels, with black borders around.",
+      "choices": [
+        { "label": "Off", "set": { "video/integer_scaling": "false" } },
+        { "label": "On", "set": { "video/integer_scaling": "true" } }
+      ],
+      "defaults": { "video/integer_scaling": "false" }
+    },
+    {
+      "id": "fullscreen", "label": "Full screen", "group": "Video",
+      "help": "Borderless full screen. Alt+Enter switches it in the game.",
+      "choices": [
+        { "label": "Off", "set": { "video/fullscreen": "false" } },
+        { "label": "On", "set": { "video/fullscreen": "true" } }
+      ],
+      "defaults": { "video/fullscreen": "false" }
+    },
+    {
+      "id": "movement", "label": "Movement", "group": "Controls",
+      "help": "Tank is the original: up walks forward, left and right turn. Modern points where to go, relative to the camera.",
+      "choices": [
+        { "label": "Tank", "set": { "input/movement": "\"tank\"" } },
+        { "label": "Modern", "set": { "input/movement": "\"modern\"" } }
+      ],
+      "defaults": { "input/movement": "\"tank\"" }
+    },
+    {
+      "id": "quick_turn", "label": "Quick turn", "group": "Controls",
+      "help": "With tank movement, back + run turns around at once.",
+      "choices": [
+        { "label": "On", "set": { "input/quick_turn": "true" } },
+        { "label": "Off", "set": { "input/quick_turn": "false" } }
+      ],
+      "defaults": { "input/quick_turn": "true" },
+      "when": { "input/movement": "\"tank\"" }
+    },
+    {
+      "id": "skip_intro", "label": "Skip intro", "group": "Gameplay",
+      "help": "Starts at the title, without the logos and the opening movie.",
+      "choices": [
+        { "label": "Off", "set": { "gameplay/skip_intro": "false" } },
+        { "label": "On", "set": { "gameplay/skip_intro": "true" } }
+      ],
+      "defaults": { "gameplay/skip_intro": "false" }
+    },
+    {
+      "id": "save_anywhere", "label": "Save anywhere", "group": "Gameplay",
+      "help": "Adds Save to the pause menu wherever the game lets you move freely.",
+      "choices": [
+        { "label": "Off", "set": { "gameplay/save_anywhere": "false" } },
+        { "label": "On", "set": { "gameplay/save_anywhere": "true" } }
+      ],
+      "defaults": { "gameplay/save_anywhere": "false" }
+    }
+  ],
+  "groups": [{ "id": "Video" }, { "id": "Controls" }, { "id": "Gameplay" }],
+  "actions": [
+    { "id": "saves", "label": "Memory cards", "help": "Where your saves are.", "open": "saves" }
+  ]
+}
