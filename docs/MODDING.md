@@ -9,6 +9,10 @@ features on (the launcher's Settings, General, Experimental; or
 `[general] experimental = true` in `pe2.toml`), and the launcher shows its
 Mods screen only then. `PE2_MODS=1` turns mods on for one run regardless.
 
+Ready-made mods are shared on
+[GameBanana](https://gamebanana.com/games/26329), and that is a good place to
+publish yours.
+
 > Mods contain only their authors' work. The game's own files never go into a
 > mod (assets are found by a hash of what they replace, so a mod does not need
 > them), and nothing taken from the discs ever goes into this repository.
