@@ -670,6 +670,24 @@ the game's green box, in their translation if `speakers.toml` gives one:
 the game's labels are pictures of whole names. `PE2_TRACE=text` logs each
 translated file as it loads.
 
+### Playing a translation's discs as they are
+
+The Brazilian Portuguese fan translation's discs play without a mod: give
+them in Setup instead of the USA ones. The translation keeps the game's
+code and rewrites its texts and pictures, so PE2PC recognizes each of its
+code packages by the code alone (the texts in them are the translation's),
+and reads the translation's letters, syllables and speakers' names in the
+dialogue, the menus and the loading captions by their pictures, to draw
+them in the high-definition fonts as the game's (`glyphs/`, see "From
+another version's discs" below). A translation mod made from those same
+discs is not wanted with them: leave it off.
+
+Another translation that keeps the game's code plays too; its own letters
+stay the pictures it draws until its labels are added to
+`tools/glyph_labels/` and the tables made again. What a translation changes
+in the code itself is not followed (the Brazilian Portuguese one blanks
+the memory card's "OK", which shows).
+
 ### A translation from another version's discs
 
 The extract reads the dialogue of translated discs too (the Brazilian

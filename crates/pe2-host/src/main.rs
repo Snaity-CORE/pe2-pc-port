@@ -33,7 +33,8 @@ mod ffi {
 }
 
 const USAGE: &str = "usage: pe2 [disc 1 image] [disc 2 image]\n\
-                     Images are your own Parasite Eve II (USA) dumps, as .cue or .chd.\n\
+                     Images are your own Parasite Eve II (USA) dumps, as .cue or .chd (or the\n\
+                     Brazilian Portuguese fan translation's).\n\
                      Without arguments, the launcher opens; with --play, pe2.toml's [discs]\n\
                      disc1 and disc2 are played. --extract [parts] [images] saves the discs'\n\
                      contents to dumps/ in the data folder, for making mods: all of them, or\n\

@@ -1205,8 +1205,8 @@ impl Launcher {
             0 => card(ui, lang.t("Welcome", "Boas-vindas"), |ui| {
                 self.language(ui, lang.t("Language", "Idioma"));
                 ui.label(lang.t(
-                    "You need your own dumps of Parasite Eve II (USA), discs 1 and 2, as .chd or .cue images.",
-                    "Você precisa das suas próprias cópias do Parasite Eve II (USA), discos 1 e 2, em imagens .chd ou .cue.",
+                    "You need your own dumps of Parasite Eve II (USA), discs 1 and 2, as .chd or .cue images. The Brazilian Portuguese fan translation's discs work too.",
+                    "Você precisa das suas próprias cópias do Parasite Eve II (USA), discos 1 e 2, em imagens .chd ou .cue. Os discos da tradução brasileira também funcionam.",
                 ));
             }),
             1 => card(ui, lang.t("Discs", "Discos"), |ui| self.files(ui, false)),
