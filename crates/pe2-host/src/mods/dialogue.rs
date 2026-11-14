@@ -125,6 +125,26 @@ const GLYPHS: &[(u64, &str)] = &[
     (0x748DF6D4FBCB5BDD, "*"),
     (0xD2AC0C49E0960A87, "="),
     (0xF94940C21EDF6D73, "%"),
+    // The speakers' name labels the Brazilian Portuguese fan translation's
+    // discs draw (its names, matched to the game's labels in the same lines).
+    (0x6BDCD77918DDD00B, "[PRESIDENTE]"),
+    (0x85A31EFF5443F1E0, "[ASSESSOR]"),
+    (0x3E0841E766B112B1, "[AVISO]"),
+    (0xAF3DBA1C0ECC116C, "[SOLDADO]"),
+    (0x3B71A83F03F4BC29, "[2º TENENTE]"),
+    (0x6242A688A4165270, "[Nº 9]"),
+    (0x139F6F97680456BE, "[VOZ MASCULINA]"),
+    (0x06C780A905C93C3C, "[MECÂNICO]"),
+    (0x71B77087B73B5DBA, "[SARGENTO]"),
+    (0x0A0220ECF4968FAE, "[SARGENTO DA POLÍCIA]"),
+    (0x50959B3CC8109581, "[OFICIAL DA SWAT]"),
+    (0x8A1ECEEE06465C5E, "[TELEGRAFISTA]"),
+    (0x11B7BC4AB0E9AD68, "[OFICIAL DA POLÍCIA]"),
+    (0xABD4A0E2F6E516FE, "[AVISO]"),
+    (0xE88E05199E08E3AB, "[OFICIAL DA SWAT]"),
+    (0x529D97F70A0E8634, "[OFICIAL DA SWAT]"),
+    (0xE5F5C0BEC3167C52, "[CRIATURA]"),
+    (0x6FD749B2CED1C0E0, "[2º TENENTE]"),
 ];
 
 const END: u16 = 0xFFFF;
