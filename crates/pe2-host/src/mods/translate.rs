@@ -279,6 +279,8 @@ struct Translated {
     words: Vec<u32>,
     top: u16,
     rows: u16,
+    /// The glyphs lie over rows of the page's own (build).
+    over_page: bool,
     block: Vec<u16>,
     fine: Option<Arc<super::indexed::Indexed>>,
 }
@@ -427,7 +429,32 @@ fn build(
         return None;
     }
     let sizes: Vec<(usize, usize)> = glyphs.iter().map(|g| (g.w, g.h)).collect();
-    let Some((placed, rows)) = pack(&sizes, top) else {
+    // Below the original glyphs; where they leave too little room (a
+    // translated disc's page, full of its own glyphs), over the page's last
+    // rows, above which lie all the original glyphs the copy still draws.
+    // pc_cap_glyphs then gives the page those rows back for other files.
+    let below = top;
+    let still_drawn = {
+        let kept_lines = originals.iter().filter(|l| !lines.contains_key(&l.record)).flat_map(|l| l.codes.iter());
+        let new_codes = texts.iter().flat_map(|(_, codes)| codes.iter());
+        let glyph_cells =
+            kept_lines.chain(new_codes).filter(|&&c| dialogue::is_glyph(c)).map(|&c| usize::from(c & 0x3FF));
+        let kept_labels = originals.iter().filter(|l| l.title != 0).map(|l| usize::from(l.title - 1));
+        glyph_cells.filter(|&i| i < cells).chain(kept_labels.filter(|i| !labels.contains_key(i))).collect::<Vec<_>>()
+    };
+    let kept_bottom = still_drawn
+        .iter()
+        .map(|&i| cap.cell(i))
+        .filter(|c| c[2] != 0 && c[3] != 0)
+        .map(|c| usize::from(c[1]) + usize::from(c[3]))
+        .max()
+        .unwrap_or(0);
+    let over = || {
+        let (_, rows) = pack(&sizes, 0)?;
+        let start = CELL_END.checked_sub(rows)?;
+        (start >= kept_bottom).then(|| pack(&sizes, start).map(|p| (p, start)))?
+    };
+    let Some(((placed, rows), top)) = pack(&sizes, top).map(|p| (p, top)).or_else(over) else {
         eprintln!("pe2: mods: a dialogue file needs more glyphs than its page holds");
         return None;
     };
@@ -486,7 +513,14 @@ fn build(
     }
     bytes.resize(bytes.len().next_multiple_of(4), 0);
     let words = bytes.as_chunks::<4>().0.iter().map(|w| u32::from_le_bytes(*w)).collect();
-    Some(Translated { words, top: top as u16, rows: rows as u16, block, fine: fine.filter(|_| rows > 0) })
+    Some(Translated {
+        words,
+        top: top as u16,
+        rows: rows as u16,
+        over_page: top < below,
+        block,
+        fine: fine.filter(|_| rows > 0),
+    })
 }
 
 /// The translations given to the game: by the address of the CAP file it
@@ -617,14 +651,30 @@ pub extern "C" fn pc_cap_glyphs(file: *const u8, x: i32, y: i32) {
         return;
     }
     let live = live().lock().unwrap();
-    let Some(t) = live.values().find(|l| l.copy.as_ptr().cast::<u8>() == file).map(|l| l.translated.clone()) else {
-        return;
-    };
+    let t = live.values().find(|l| l.copy.as_ptr().cast::<u8>() == file).map(|l| l.translated.clone());
     drop(live);
+    use crate::runtime::gpu::{Rect, pcrt_LoadImage, pcrt_StoreImage};
+    // Rows of a page a copy's glyphs were put over (build): what they held,
+    // given back when another file draws, if the glyphs are still there.
+    struct Covered {
+        file: usize,
+        rect: Rect,
+        glyphs: Vec<u16>,
+        page: Vec<u16>,
+    }
+    static COVERED: Mutex<Option<Covered>> = Mutex::new(None);
+    let mut covered = COVERED.lock().unwrap();
+    if let Some(c) = covered.take_if(|c| c.file != file as usize) {
+        let mut now = vec![0u16; c.glyphs.len()];
+        pcrt_StoreImage(&c.rect, now.as_mut_ptr());
+        if now == c.glyphs {
+            pcrt_LoadImage(&c.rect, c.page.as_ptr());
+        }
+    }
+    let Some(t) = t else { return };
     if t.rows == 0 {
         return;
     }
-    use crate::runtime::gpu::{Rect, pcrt_LoadImage, pcrt_StoreImage};
     let rect = Rect::new(x as i16, (y + i32::from(t.top)) as i16, 64, t.rows as i16);
     if let Some(fine) = &t.fine {
         crate::runtime::gpu::host_texture(x, y + i32::from(t.top), 64, i32::from(t.rows), &t.block, fine.clone());
@@ -632,6 +682,9 @@ pub extern "C" fn pc_cap_glyphs(file: *const u8, x: i32, y: i32) {
     let mut now = vec![0u16; t.block.len()];
     pcrt_StoreImage(&rect, now.as_mut_ptr());
     if now != t.block {
+        if t.over_page && covered.is_none() {
+            *covered = Some(Covered { file: file as usize, rect, glyphs: t.block.clone(), page: now });
+        }
         pcrt_LoadImage(&rect, t.block.as_ptr());
     }
 }
