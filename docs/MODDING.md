@@ -685,8 +685,9 @@ discs is not wanted with them: leave it off.
 Another translation that keeps the game's code plays too; its own letters
 stay the pictures it draws until its labels are added to
 `tools/glyph_labels/` and the tables made again. What a translation changes
-in the code itself is not followed (the Brazilian Portuguese one blanks
-the memory card's "OK", which shows).
+in the code itself is not followed by the native code, unless
+`crates/pe2-host/src/codefix.rs` knows the change and does it in the data
+instead (the Brazilian Portuguese one blanks the memory card menu's "OK").
 
 ### A translation from another version's discs
 

@@ -2,6 +2,7 @@
 //! PSX runtime, and drives the decompiled game code (linked as a C static
 //! library, see build.rs).
 
+mod codefix;
 mod config;
 mod controls;
 mod disc;
@@ -294,6 +295,8 @@ fn main() -> ExitCode {
         eprintln!("pe2: boot failed ({status}): {reason}");
         return ExitCode::FAILURE;
     }
+    // A translation's changes to the code, in the data (codefix.rs).
+    codefix::apply(&exe);
     // The extract runs the game's sound code for its songs (music.rs).
     if extract {
         let out = paths::user_file("dumps");
