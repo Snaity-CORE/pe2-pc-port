@@ -780,7 +780,9 @@ PE2PC's own screens (the pause menu, Esc) have texts of their own, on no
 disc: the extract lists them in `dumps/strings/pc/menu.toml`, and the
 Options' (categories, settings, their choices) in
 `dumps/strings/pc/options.toml`, translated the same way (their titles are
-drawn in the small face, without accents).
+drawn in the small face, without accents). PE2PC brings them in the
+launcher's language (Portuguese: `crates/pe2-host/res/lang/pt.toml`); a
+mod's translation of a text wins over it.
 
 Items' details (Triangle on an item: specifications and the long
 description) are text files on the disc, one for each item; the extract
