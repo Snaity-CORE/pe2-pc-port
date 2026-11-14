@@ -40,6 +40,7 @@ pub mod rooms;
 pub mod sheets;
 pub mod strings;
 pub mod translate;
+mod uiglyphs;
 
 pub use backgrounds::{background, background_wait, file_read, has_background, place_name, wants_screens};
 pub use patches::apply_patches;

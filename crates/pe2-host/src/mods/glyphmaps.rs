@@ -69,54 +69,41 @@ fn sheet_at(catalog: &Catalog, origin: &str, place: (u16, u16)) -> Option<u64> {
 const UI_FACES: [(&str, u32, usize, u8); 3] =
     [("medium", 0x8005_EFB0, 224, 38), ("large", 0x8005_FA30, 224, 128), ("small", 0x8006_04B0, 91, 0)];
 
-/// What the UI font's glyph for `code` shows in `face` (its record's V
-/// given): Latin-1 and the pad's buttons; the small face's records past
-/// row 34 point into the medium face's cells.
-fn ui_text(face: &str, code: u8, v: u8) -> Option<String> {
-    let icon = |name: &str| Some(format!("{{{name}}}"));
-    if face == "small" {
-        if v >= 35 {
-            return None;
+/// The hash `uiglyphs::UI_GLYPHS` knows a glyph picture of face `face`
+/// (its index in UI_FACES) by: the face, the cell's width and height, and
+/// each texel's index (4-bit sheet), rows first.
+fn ui_picture(rows: &[[u16; 64]], face: u8, [u, v, w, h]: [u16; 4]) -> Option<u64> {
+    let mut texels = vec![face, w as u8, h as u8];
+    for y in v..v + h {
+        let row = rows.get(usize::from(y))?;
+        for x in u..u + w {
+            texels.push((row.get(usize::from(x / 4))? >> ((x % 4) * 4) & 15) as u8);
         }
-        return match code {
-            0x24 => icon("circle"),
-            0x25 => icon("square"),
-            0x26 => icon("triangle"),
-            0x2A => icon("cross"),
-            c if c.is_ascii_uppercase() || c.is_ascii_digit() || b".,()!?".contains(&c) => {
-                Some(char::from(c).to_string())
-            }
-            _ => None,
-        };
     }
-    match code {
-        0x7B => icon("circle"),
-        0x7C => icon("triangle"),
-        0x7D => icon("cross"),
-        0x7E => icon("square"),
-        0x8C => Some("Œ".into()),
-        0x9C => Some("œ".into()),
-        0x97 => Some("—".into()),
-        0xA1 | 0xAB | 0xB0 | 0xBB | 0xBF | 0xC0..=0xFF => Some(char::from(code).to_string()),
-        c if c.is_ascii_alphanumeric() || b"!\"%&'()+,-./:?#".contains(&c) => Some(char::from(c).to_string()),
-        _ => None,
-    }
+    Some(super::fnv1a(texels))
 }
 
 /// The UI font's sheet (stage0/file1, at (960, 256)) and its three faces'
-/// glyphs, each cell once (the first face to use it).
+/// glyphs, each cell once (the first face to use it), each read by its
+/// picture (uiglyphs.rs): a translation's discs draw syllables and letters
+/// over codes, which the code alone would read wrong. Pictures not known
+/// are not redrawn.
 pub fn ui_font(catalog: &Catalog, exe: &[u8]) -> Option<Map> {
-    let sheet = sheet_at(catalog, "stage0/file1/0#0", (960, 256))?;
+    let sheet = catalog.sheets.iter().find(|s| s.origin == "stage0/file1/0#0" && s.place == (960, 256))?;
+    let known: std::collections::HashMap<u64, &str> = super::uiglyphs::UI_GLYPHS.iter().copied().collect();
     let mut glyphs: Vec<Glyph> = Vec::new();
-    for (face, address, count, bias) in UI_FACES {
-        for (i, r) in super::exe_at(exe, address, count * 12)?.as_chunks::<12>().0.iter().enumerate() {
+    for (n, (face, address, count, bias)) in UI_FACES.into_iter().enumerate() {
+        for r in super::exe_at(exe, address, count * 12)?.as_chunks::<12>().0 {
             let (u, v, w, h, y_offset) =
                 (r[0], r[1].wrapping_add(bias), u16::from(r[2]) + 1, u16::from(r[3]) + 1, r[5] as i8);
             let cell = [u16::from(u), u16::from(v), w, h];
-            let Some(text) = ui_text(face, 0x20 + i as u8, v) else { continue };
             if w <= 1 || glyphs.iter().any(|g| g.cell == cell) {
                 continue;
             }
+            let Some(text) = ui_picture(&sheet.rows, n as u8, cell).and_then(|p| known.get(&p)).map(|t| t.to_string())
+            else {
+                continue;
+            };
             // The last row is drawn y_offset below the pen's baseline.
             let baseline = (h as i16 - i16::from(y_offset)).clamp(0, h as i16) as u16;
             glyphs.push(Glyph { cell, text, face: Some(face), baseline: Some(baseline), like: None });
@@ -128,34 +115,157 @@ pub fn ui_font(catalog: &Catalog, exe: &[u8]) -> Option<Map> {
         let face = Some(UI_FACES[a.face].0);
         glyphs.push(Glyph { cell: a.cell, text, face, baseline: Some(a.baseline), like: Some(a.like) });
     }
-    Some(Map { kind: "ui-font", sheets: vec![sheet], depth: 4, palette: None, glyphs })
+    Some(Map { kind: "ui-font", sheets: vec![sheet.hash], depth: 4, palette: None, glyphs })
+}
+
+/// The loading captions' glyph pictures (their width, height and texels'
+/// indices, `caption_picture`) -> the text each shows: the game's font,
+/// and the letters and syllables the Brazilian Portuguese fan
+/// translation's discs draw into it (tools/import_strings.py
+/// CAPTION_LABELS). Made from the discs; it holds no pictures.
+const CAPTION_GLYPHS: &[(u64, &str)] = &[
+    (0x23C7CB7FF5E2E536, "A"),
+    (0x531A62394E49CC6C, "B"),
+    (0x1E02D4A4E86297DA, "C"),
+    (0x0BBFC6960DCDDEF6, "D"),
+    (0x040B28242F7FD7CA, "E"),
+    (0x585DA3DF2222843B, "F"),
+    (0xDBD59FA5C60D32E0, "G"),
+    (0x2C1D0B8AD615BE7F, "H"),
+    (0x064173DB432C0BCD, "I"),
+    (0x156DEE5571E1DAB5, "J"),
+    (0x48B887FE98E8004D, "K"),
+    (0x264A635F55E6ABA8, "L"),
+    (0x809D2D6F61C53807, "M"),
+    (0x89722784A7871D1C, "N"),
+    (0x221C87ACAACF6FDC, "O"),
+    (0x7FDFEBD4F78B53A2, "P"),
+    (0x90B2F22E0ECEA49E, "Q"),
+    (0xE82624D230297136, "R"),
+    (0x7218F8FB4913E580, "S"),
+    (0xDF97936DDFF70A52, "T"),
+    (0x0E0A674CEE6787EA, "U"),
+    (0x27259B3C112AE3C7, "V"),
+    (0x8B27214A5E477A0F, "W"),
+    (0x9CAEB6F95F02F9EA, "X"),
+    (0x4E4FA6F6871FBC24, "Y"),
+    (0x49C9A551D29B26E9, "Z"),
+    (0x613A6C111D4443AB, "a"),
+    (0x7D23BFA969968FDA, "b"),
+    (0x9490F600306F009F, "c"),
+    (0xEB1F06F65B5A6B13, "d"),
+    (0x2E5E6EAC36654959, "e"),
+    (0xA6A70A26710633AF, "f"),
+    (0x7924A46D10543C4B, "g"),
+    (0xCC373D9D1B4634B3, "h"),
+    (0xA896B1C368A7FCA7, "i"),
+    (0x5C5976E5F91BC934, "j"),
+    (0x72081D161E574816, "k"),
+    (0x2994A9CFAB7DF516, "l"),
+    (0xCFE4795F1222E86B, "m"),
+    (0xBAC0AC512CBA8542, "n"),
+    (0xA9938B0DC067E1AE, "o"),
+    (0xB5A6852A904783E7, "p"),
+    (0xF7F45A9B696F3155, "q"),
+    (0x9BACFB76F205619A, "r"),
+    (0xA6162CA6100C65B4, "s"),
+    (0x51CDC20CBE71E6B9, "t"),
+    (0xE72A8F1BED5D0915, "u"),
+    (0x2BBE6186111B6548, "v"),
+    (0x7169DDCFE57E2630, "w"),
+    (0xBFC4C6A95003468E, "x"),
+    (0x23E6745B31A40CEB, "y"),
+    (0x123670DE27702884, "z"),
+    (0x8F4CDCE7999E8F34, "1"),
+    (0xF63023D6CBFD7E82, "2"),
+    (0x1776664EA624197A, "3"),
+    (0x3E02A2CC82F5A9A2, "4"),
+    (0x1B7B6A493FD39AE8, "5"),
+    (0x4907AA69FC39CD0F, "6"),
+    (0x3DFD875F8E5EC42D, "7"),
+    (0xE8225D266F4A6699, "8"),
+    (0x397019019A08B4CE, "9"),
+    (0xC6018FDDCDA01152, "0"),
+    (0x006422D5E27FB203, ":"),
+    (0x51631B3AC11F4D0E, ";"),
+    (0xA1CFD73BE7F54531, "'"),
+    (0xC4098911AB5857D6, ","),
+    (0xD70B1045D22FC55D, "."),
+    (0xD5C7F02A02F67EFD, "?"),
+    (0xD6469CE808948453, "!"),
+    // The Brazilian Portuguese translation's.
+    (0xFCFC45EB27B9187B, "de"),
+    (0x10608AAAB97E96DB, "t"),
+    (0x4037C9EB8BB1D032, "m"),
+    (0xA318B782B4FF25A5, "b"),
+    (0xBEDD3ABD3392BC3D, "P"),
+    (0xC809562019897891, "5"),
+    (0x6785E6A92D44083C, "ó"),
+    (0x17C5C764581DB9E3, ","),
+    (0x67A3C45BA6B80E4E, "ã"),
+    (0xAC660F8BE88D1552, "7"),
+    (0xAE50844985CCE340, "c"),
+    (0x1C7FCF631A41963A, "y"),
+    (0xDF035048A39DE927, "í"),
+    (0x92DD3121434CEBA3, "x"),
+];
+
+/// The hash `CAPTION_GLYPHS` knows a glyph picture by: its width, height
+/// and each texel's index (4-bit sheet), rows first.
+fn caption_picture(rows: &[[u16; 64]], [u, v, w, h]: [u16; 4]) -> Option<u64> {
+    let texel = |x: u16, y: u16| {
+        let word = rows.get(usize::from(y))?.get(usize::from(x / 4))?;
+        Some((word >> ((x % 4) * 4) & 15) as u8)
+    };
+    let mut texels = vec![w as u8, h as u8];
+    for y in v..v + h {
+        for x in u..u + w {
+            texels.push(texel(x, y)?);
+        }
+    }
+    Some(super::fnv1a(texels))
 }
 
 /// The loading screen's captions: their sheet (stage0/file10, at (960, 0))
-/// and `gTextCaptionGlyphCells` (main/caption_draw.c): capitals, small
-/// letters, the digits 1 to 9 then 0, and : ; ' , . ? ! The M.I.S.T.
+/// and `gTextCaptionGlyphCells` (main/caption_draw.c), each cell read by
+/// its picture (`CAPTION_GLYPHS`): on the game's discs capitals, small
+/// letters, the digits 1 to 9 then 0, and : ; ' , . ? !; a translation's
+/// discs point some at letters and syllables of their own. The M.I.S.T.
 /// briefing (mist_r18.c) has its own copy of the font, 48 rows down its
-/// sheet (stage1/1801/file0, at (704, 0)), drawn through the same cells.
+/// sheet (stage1/1801/file0, at (704, 0)), drawn through the same cells
+/// (the translation's copy is a row off: its letters are found there, and
+/// are `like` the cell's). Cells not known are not redrawn.
 pub fn loading(catalog: &Catalog, exe: &[u8]) -> Vec<Map> {
-    const TEXT: &str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890:;',.?!";
+    const CELLS: usize = 69;
     const COPIES: [(&str, (u16, u16), u16); 2] =
         [("stage0/file10/0#0", (960, 0), 0), ("stage1/1801/file0/1#0", (704, 0), 48)];
-    let Some(cells) = super::exe_at(exe, 0x8006_27E0, TEXT.len() * 4) else { return Vec::new() };
+    let Some(cells) = super::exe_at(exe, 0x8006_27E0, CELLS * 4) else { return Vec::new() };
+    let known: std::collections::HashMap<u64, &str> = CAPTION_GLYPHS.iter().copied().collect();
     COPIES
         .iter()
         .filter_map(|&(origin, place, down)| {
-            let sheet = sheet_at(catalog, origin, place)?;
-            let glyphs = cells
-                .as_chunks::<4>()
-                .0
-                .iter()
-                .zip(TEXT.chars())
-                .map(|(c, t)| {
-                    let [u, v, w, h] = c.map(u16::from);
-                    Glyph::new([u, v + down, w, h], t)
-                })
-                .collect();
-            Some(Map { kind: "loading", sheets: vec![sheet], depth: 4, palette: None, glyphs })
+            let sheet = catalog.sheets.iter().find(|s| s.origin == origin && s.place == place)?;
+            let mut glyphs: Vec<Glyph> = Vec::new();
+            for c in cells.as_chunks::<4>().0 {
+                let [u, v, w, h] = c.map(u16::from);
+                let cell = [u, v + down, w, h];
+                if w == 0 || h == 0 || glyphs.iter().any(|g| g.cell == cell) {
+                    continue;
+                }
+                let found = [0i16, 1, -1].into_iter().find_map(|off| {
+                    let at = [u, v.checked_add_signed(off)? + down, w, h];
+                    Some((at, *known.get(&caption_picture(&sheet.rows, at)?)?))
+                });
+                let Some((at, text)) = found else { continue };
+                glyphs.push(Glyph { like: (at != cell).then_some(at), ..Glyph::new(cell, text) });
+            }
+            (!glyphs.is_empty()).then(|| Map {
+                kind: "loading",
+                sheets: vec![sheet.hash],
+                depth: 4,
+                palette: None,
+                glyphs,
+            })
         })
         .collect()
 }
@@ -283,16 +393,25 @@ pub fn write(maps: &[Map], dir: &Path) -> std::io::Result<usize> {
 mod tests {
     use super::*;
 
-    /// The UI font's codes: Latin-1, the buttons, and the small face's
-    /// few characters where its own cells are.
+    /// Each picture is known as one text.
     #[test]
-    fn ui_codes_show_their_characters() {
-        assert_eq!(ui_text("medium", b'A', 40).as_deref(), Some("A"));
-        assert_eq!(ui_text("large", 0xE7, 200).as_deref(), Some("ç"));
-        assert_eq!(ui_text("medium", 0x7C, 76).as_deref(), Some("{triangle}"));
-        assert_eq!(ui_text("small", 0x26, 23).as_deref(), Some("{triangle}"));
-        assert_eq!(ui_text("small", b'+', 40), None);
-        assert_eq!(ui_text("medium", b'$', 134), None);
+    fn picture_tables_name_each_picture_once() {
+        for table in [super::super::uiglyphs::UI_GLYPHS, CAPTION_GLYPHS] {
+            let keys: std::collections::HashSet<u64> = table.iter().map(|g| g.0).collect();
+            assert_eq!(keys.len(), table.len());
+        }
+    }
+
+    /// A picture's texels are read low nibble first, rows first, after
+    /// the face (menus) or straight after the size (captions).
+    #[test]
+    fn pictures_hash_their_texels() {
+        let mut rows = vec![[0u16; 64]; 2];
+        rows[0][0] = 0x4321;
+        rows[1][0] = 0x8765;
+        assert_eq!(ui_picture(&rows, 1, [1, 0, 2, 2]), Some(super::super::fnv1a([1, 2, 2, 2, 3, 6, 7])));
+        assert_eq!(caption_picture(&rows, [0, 1, 4, 1]), Some(super::super::fnv1a([4, 1, 5, 6, 7, 8])));
+        assert_eq!(caption_picture(&rows, [0, 1, 4, 2]), None);
     }
 
     /// A map as TOML: its kind, sheets, and each glyph's cell and text.
