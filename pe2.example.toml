@@ -11,7 +11,8 @@
 # in "double quotes" a backslash starts an escape sequence.
 
 [general]
-# The launcher's language: "en" or "pt".
+# The language of the launcher and of PE2PC's own screens in the game (the
+# pause menu and its Options): "en" or "pt". A mod's translation of them wins.
 # language = "en"
 # The pause menu's Quit game (Esc) asks first (No is the default); false
 # quits at once.

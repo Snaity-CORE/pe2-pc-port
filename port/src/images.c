@@ -59,6 +59,32 @@ static int fully_matches(const PcImageThunks* img)
     return masked_fnv(img, 0, img->code_size) == img->full_hash;
 }
 
+/* The code is the image's though its texts are not: another version's
+ * disc (a translation) with the same code. Logged once per image. */
+static int code_matches(const PcImageThunks* img)
+{
+    if (img->text_start == 0 || img->text_start >= img->code_size)
+        return 0;
+    if (masked_fnv(img, img->text_start, img->code_size) != img->text_hash)
+        return 0;
+    static const PcImageThunks* logged[MAX_SLOTS * 4];
+    static unsigned logged_count;
+    unsigned k = 0;
+    while (k < logged_count && logged[k] != img)
+        k++;
+    if (k == logged_count && logged_count < sizeof logged / sizeof logged[0]) {
+        logged[logged_count++] = img;
+        fprintf(stderr, "pe2: images: %s recognized by its code (its texts differ from the USA disc's)\n",
+                img->image);
+    }
+    return 1;
+}
+
+static int matches(const PcImageThunks* img)
+{
+    return fully_matches(img) || code_matches(img);
+}
+
 /* Whether every thunk of `img` is still written: reloading an image over
  * itself restores its original code and erases them. */
 static int thunks_intact(const PcImageThunks* img)
@@ -105,7 +131,7 @@ int pc_scan_images(void)
                 if (thunks_intact(cur))
                     continue;
                 /* Reloaded over itself: rewrite the thunks once complete. */
-                if (fully_matches(cur)) {
+                if (matches(cur)) {
                     pc_install_thunks(cur->image);
                     installed++;
                     if (pc_trace_images)
@@ -119,7 +145,7 @@ int pc_scan_images(void)
             const PcImageThunks* img = &pc_image_thunks[i];
             if (img->load != slot->load || (int)i == slot->installed || !fits_in_ram(img))
                 continue;
-            if (!prefix_matches(img) || !fully_matches(img))
+            if (!prefix_matches(img) || !matches(img))
                 continue;
             found = 1;
             pc_clear_thunks(img->load, img->size);

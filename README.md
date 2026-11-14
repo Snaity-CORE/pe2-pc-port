@@ -13,9 +13,12 @@ sound, CD, controllers, memory cards). No emulator and no code from Sony.
 > port reads the game's data from them at run time.
 
 > [!IMPORTANT]
-> **Only unmodified dumps of the original USA release work.** The port is
-> built from the decompilation of that exact release, so it expects its
-> discs byte for byte: other regions (European, Japanese), fan translations,
+> **Dumps of the original USA release work, and the Brazilian Portuguese
+> fan translation's discs.** The port is built from the decompilation of
+> that exact release, so it expects its code byte for byte. The Brazilian
+> Portuguese translation keeps that code and changes only texts and
+> pictures, so its discs play as they are, with the high-definition text
+> too. Other regions (European, Japanese), other fan translations, and
 > patched, hacked or otherwise modified images are not supported and will
 > not run correctly. Translations and other changes go in as mods instead
 > (see [docs/MODDING.md](docs/MODDING.md)).

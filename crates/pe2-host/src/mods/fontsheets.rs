@@ -523,6 +523,59 @@ fn boxed(font: &Font, text: &str, w: usize, h: usize, stretch: f32) -> Option<Ma
     Some(full)
 }
 
+/// Whether `text` is one accented capital (a translation's Â, Ó).
+fn accented_capital(text: &str) -> bool {
+    let mut chars = text.chars();
+    matches!((chars.next(), chars.next()), (Some(c), None) if c.is_uppercase() && !c.is_ascii())
+}
+
+/// The ink of `text` split where a capital's top is: its accent's rows,
+/// and the letter's; None when nothing stands above the capitals.
+fn split_accent(font: &Font, text: &str) -> Option<(Grey, Grey, f32)> {
+    let (a, b0) = font.ink(text)?;
+    // A mark, not a round letter's overshoot (Ç's top).
+    let mark_rows = (b0 - font.cap).floor();
+    if mark_rows < font.cap * 0.15 {
+        return None;
+    }
+    let split = (mark_rows as usize).min(a.h - 1);
+    let rows = |r: std::ops::Range<usize>| Grey { w: a.w, h: r.len(), px: a.px[r.start * a.w..r.end * a.w].to_vec() };
+    Some((rows(0..split), rows(split..a.h), b0 - split as f32))
+}
+
+/// The ink of `text` split at its baseline: the letter's rows, and what
+/// hangs below (Ç's cedilla); None when nothing does.
+fn split_tail(font: &Font, text: &str) -> Option<(Grey, Grey)> {
+    let (a, b0) = font.ink(text)?;
+    let split = b0.round() as usize;
+    if (a.h as f32 - b0) < font.cap * 0.15 || split == 0 || split >= a.h {
+        return None;
+    }
+    let rows = |r: std::ops::Range<usize>| Grey { w: a.w, h: r.len(), px: a.px[r.start * a.w..r.end * a.w].to_vec() };
+    Some((rows(0..split), rows(split..a.h)))
+}
+
+/// A marked capital fitted to `w` x `h` as `boxed` does, its letter as tall
+/// as the face's capitals (`letter_h`) and its accent squashed into the
+/// rows above (Â, Ó), or its cedilla into the rows below (Ç), as the
+/// game's own are drawn.
+fn boxed_marked(font: &Font, text: &str, w: usize, h: usize, letter_h: usize, stretch: f32) -> Option<Mask> {
+    let mark_h = h.checked_sub(letter_h).filter(|&m| m > 0)?;
+    let (letter, mark, below) = match split_accent(font, text) {
+        Some((mark, letter, _)) => (letter, mark, false),
+        None => {
+            let (letter, tail) = split_tail(font, text)?;
+            (letter, tail, true)
+        }
+    };
+    let gw = ((letter.w as f32 * letter_h as f32 / letter.h as f32 * stretch).round_ties_even() as usize).max(1).min(w);
+    let (letter, mark) = (resize(&letter, gw, letter_h).px, resize(&mark, gw, mark_h).px);
+    let px = if below { [letter, mark].concat() } else { [mark, letter].concat() };
+    let mut full = Mask::new(w, h);
+    full.paste(&Mask::from_grey(&Grey { w: gw, h, px }), (w - gw) / 2, 0);
+    Some(full)
+}
+
 /// `text` at the scale whose capitals' fill is `cap` texels (`widen` times
 /// wider), standing on cell row boundary `base`, centred between fx0 and
 /// fx1; squeezed about
@@ -571,6 +624,30 @@ fn on_baseline(
     }
     let base_at = base as f32 * s;
     let (room_up, room_down) = (base_at - s, (h as f32 - 1.0) * s - base_at);
+    // A capital's accent that leaves the cell too little room at the
+    // letter's scale: the letter as tall as the other capitals, the accent
+    // squashed alone into the rows above it, as the game draws its own
+    // accented capitals (a translation's Â, Ó), not the whole letter shrunk.
+    let accent =
+        (accented_capital(text) && above > room_up && below <= s / 3.0).then(|| split_accent(font, text)).flatten();
+    if let Some((mark, letter, letter_b0)) = accent {
+        let letter_up = letter_b0 * scale;
+        let mark_room = room_up - letter_up.round_ties_even();
+        if mark_room >= 2.0 * s {
+            let up_h = ((mark.h as f32 * scale).min(mark_room).round_ties_even() as usize).max(1);
+            let down_h = ((letter.h as f32 * scale).round_ties_even() as usize).max(1);
+            let joined = Grey {
+                w: gw,
+                h: up_h + down_h,
+                px: [resize(&mark, gw, up_h).px, resize(&letter, gw, down_h).px].concat(),
+            };
+            let top = base_at - letter_up.round_ties_even() - up_h as f32;
+            if top >= 0.0 && top as usize + joined.h <= h * K * SS {
+                let left = fx0 * K * SS + ((fx1 - fx0) * K * SS - gw) / 2;
+                return Some((top as usize, left, Mask::from_grey(&joined)));
+            }
+        }
+    }
     let mut squeeze = 1.0f32.min(if above > 0.0 { room_up / above } else { 1.0 }).min(if below > s / 3.0 {
         room_down / below
     } else {
@@ -732,6 +809,19 @@ fn redraw(catalog: &Catalog, map: &Map, faces: &[Face], scheme: &Scheme) -> Opti
         let (fx0, fy0, fx1, fy1) = (x0 + i, y0 + i, x1.saturating_sub(i), y1.saturating_sub(i));
         (fx1 > fx0 && fy1 > fy0).then_some((fx0, fy0, fx1, fy1))
     };
+    // Each face's capitals' ink boxes' height (the median), for accented
+    // capitals drawn in boxes (boxed_marked).
+    let mut cap_boxes: HashMap<Option<&str>, Vec<f32>> = HashMap::new();
+    for g in &map.glyphs {
+        if g.like.is_none() && g.text.chars().count() == 1 && "ABDEFHKLNPRTUVXZ".contains(g.text.as_str()) {
+            let Some((u, v, cw, ch)) = cell_of(g) else { continue };
+            if let Some((_, fy0, _, fy1)) = fill_box(u, v, cw, ch) {
+                cap_boxes.entry(g.face).or_default().push((fy1 - fy0) as f32);
+            }
+        }
+    }
+    let cap_boxes: HashMap<Option<&str>, usize> =
+        cap_boxes.into_iter().filter_map(|(f, mut c)| Some((f, median(&mut c)? as usize))).collect();
     // A stretched face's stretch: how much wider than the font's its
     // capitals' boxes are, on the median (at most the face's own limit), so
     // all its letters' strokes come out alike; a narrow letter (I, 1) stays
@@ -833,7 +923,14 @@ fn redraw(catalog: &Catalog, map: &Map, faces: &[Face], scheme: &Scheme) -> Opti
             match placed {
                 Some((top, left, shape)) => big.paste(&shape, left, top),
                 None => {
-                    let shape = boxed(font, &g.text, (fx1 - fx0) * s, (fy1 - fy0) * s, stretch.unwrap_or(1.25))?;
+                    let (bw_, bh_, stretch) = ((fx1 - fx0) * s, (fy1 - fy0) * s, stretch.unwrap_or(1.25));
+                    // A marked capital (Â, Ç) taller than the face's: its letter
+                    // as tall as theirs.
+                    let letter =
+                        cap_boxes.get(&g.face).map(|&c| c * s).filter(|&c| accented_capital(&g.text) && c < bh_);
+                    let shape = letter
+                        .and_then(|c| boxed_marked(font, &g.text, bw_, bh_, c, stretch))
+                        .or_else(|| boxed(font, &g.text, bw_, bh_, stretch))?;
                     big.paste(&shape, fx0 * s, fy0 * s);
                 }
             }

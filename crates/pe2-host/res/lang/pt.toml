@@ -1,0 +1,237 @@
+# PE2PC's own screens in Portuguese: its pause menu (Esc), its Options and
+# the few texts it adds to the item boxes. Used when the launcher's
+# language is Portuguese ([general] language = "pt"); a mod's translation
+# of the same text (strings/pc/*.toml, docs/MODDING.md) wins. Titles are
+# drawn in the menus' small face, which has no accents.
+
+# The pause menu (the fork's src/main/pc/menu.c).
+
+[[string]]
+original = 'PAUSE'
+text = 'PAUSA'
+
+[[string]]
+original = 'Resume'
+text = 'Continuar'
+
+[[string]]
+original = 'Save'
+text = 'Salvar'
+
+[[string]]
+original = 'Options'
+text = 'Opções'
+
+[[string]]
+original = 'Moved to the item box.'
+text = 'Movido para o baú.'
+
+[[string]]
+original = 'Quantity'
+text = 'QUANTIDADE'
+
+[[string]]
+original = '''
+Set the number with the directional
+buttons. } button to confirm.'''
+text = '''
+Defina a quantia com os botões
+direcionais. } para confirmar.'''
+
+[[string]]
+original = 'Quit to title'
+text = 'Voltar ao título'
+
+[[string]]
+original = 'Quit game'
+text = 'Sair do jogo'
+
+[[string]]
+original = 'QUIT TO TITLE'
+text = 'VOLTAR AO TITULO'
+
+[[string]]
+original = 'QUIT GAME'
+text = 'SAIR DO JOGO'
+
+[[string]]
+original = 'No'
+text = 'Não'
+
+[[string]]
+original = 'Yes'
+text = 'Sim'
+
+# The Options (settings.rs): categories, settings and their choices.
+
+[[string]]
+original = 'OPTIONS'
+text = 'OPCOES'
+
+[[string]]
+original = '(restart)'
+text = '(reiniciar)'
+
+[[string]]
+original = 'Video'
+text = 'Vídeo'
+
+[[string]]
+original = 'Audio'
+text = 'Áudio'
+
+[[string]]
+original = 'Controls'
+text = 'Controles'
+
+[[string]]
+original = 'Gameplay'
+text = 'Jogabilidade'
+
+[[string]]
+original = 'Cheats'
+text = 'Trapaças'
+
+[[string]]
+original = 'VIDEO'
+text = 'VIDEO'
+
+[[string]]
+original = 'AUDIO'
+text = 'AUDIO'
+
+[[string]]
+original = 'CONTROLS'
+text = 'CONTROLES'
+
+[[string]]
+original = 'GAMEPLAY'
+text = 'JOGABILIDADE'
+
+[[string]]
+original = 'CHEATS'
+text = 'TRAPACAS'
+
+[[string]]
+original = 'Resolution'
+text = 'Resolução'
+
+[[string]]
+original = '60 fps motion'
+text = 'Fluidez 60 fps'
+
+[[string]]
+original = 'Off'
+text = 'Não'
+
+[[string]]
+original = 'On'
+text = 'Sim'
+
+[[string]]
+original = '3D textures'
+text = 'Texturas 3D'
+
+[[string]]
+original = 'Sharp'
+text = 'Nítido'
+
+[[string]]
+original = 'Smooth'
+text = 'Suave'
+
+[[string]]
+original = 'Backgrounds'
+text = 'Cenários'
+
+[[string]]
+original = 'CRT look'
+text = 'Visual CRT'
+
+[[string]]
+original = 'Integer scaling'
+text = 'Escala inteira'
+
+[[string]]
+original = 'Full screen'
+text = 'Tela cheia'
+
+[[string]]
+original = 'HD fonts'
+text = 'Fontes HD'
+
+[[string]]
+original = 'Volume'
+text = 'Volume'
+
+[[string]]
+original = 'Movement'
+text = 'Movimento'
+
+[[string]]
+original = 'Tank'
+text = 'Tanque'
+
+[[string]]
+original = 'Modern'
+text = 'Moderno'
+
+[[string]]
+original = 'Quick turn'
+text = 'Giro rápido'
+
+[[string]]
+original = 'Vibration'
+text = 'Vibração'
+
+[[string]]
+original = 'Fast camera changes'
+text = 'Troca de câmera rápida'
+
+[[string]]
+original = 'Skip intro'
+text = 'Pular introdução'
+
+[[string]]
+original = 'Instant text'
+text = 'Texto instantâneo'
+
+[[string]]
+original = 'Fast doors'
+text = 'Portas rápidas'
+
+[[string]]
+original = 'Unified item boxes'
+text = 'Baús unificados'
+
+[[string]]
+original = 'Bigger inventory'
+text = 'Inventário maior'
+
+[[string]]
+original = 'Full inventory to box'
+text = 'Inventário cheio p/ baú'
+
+[[string]]
+original = 'Stack items'
+text = 'Empilhar itens'
+
+[[string]]
+original = 'Save anywhere'
+text = 'Salvar em qualquer lugar'
+
+[[string]]
+original = 'Always critical'
+text = 'Sempre crítico'
+
+[[string]]
+original = 'Infinite HP'
+text = 'HP infinito'
+
+[[string]]
+original = 'One-hit kills'
+text = 'Mata com um golpe'
+
+[[string]]
+original = 'Infinite MP'
+text = 'MP infinito'

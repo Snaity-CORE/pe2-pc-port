@@ -197,12 +197,16 @@ def linker_functions_file() -> Path:
 FINGERPRINTS = "images.tsv"
 
 
-def snapshot_fingerprints() -> dict[str, tuple[int, int, int, int, int, str]]:
-    """snapshot/images.tsv: each image's fingerprint and its thunks' digest."""
+def snapshot_fingerprints() -> dict[str, tuple[int, int, int, int, int, str, int, int]]:
+    """snapshot/images.tsv: each image's fingerprint, its thunks' digest,
+    and where its code starts with a hash of its code alone (0 and 0 in a
+    snapshot made before they were kept)."""
     out = {}
     for line in (SNAPSHOT / FINGERPRINTS).read_text(encoding="utf-8").splitlines():
-        image, load, size, code, prefix, full, digest = line.split("\t")
-        out[image] = (int(load, 16), int(size, 16), int(code, 16), int(prefix, 16), int(full, 16), digest)
+        image, load, size, code, prefix, full, digest, *text = line.split("\t")
+        text_start, text_hash = (int(text[0], 16), int(text[1], 16)) if len(text) == 2 else (0, 0)
+        out[image] = (int(load, 16), int(size, 16), int(code, 16), int(prefix, 16), int(full, 16), digest,
+                      text_start, text_hash)
     return out
 
 
@@ -670,6 +674,33 @@ def image_fingerprint(linker: "Linker", image: str, thunk_addrs: list[int]) -> t
     return load, size, code_size, masked_fnv(raw, 0, min(PREFIX_BYTES, size), masked), full
 
 
+def image_text_fingerprint(linker: "Linker", image: str, thunk_addrs: list[int]) -> tuple[int, int]:
+    """Where `image`'s code starts and a hash of its code alone, for images
+    whose rodata a translation rewrote (their texts) while the code stayed
+    the same; from the snapshot, as make_snapshot.py saved it. (0, 0) when
+    not known: the runtime then recognizes the image only as it is."""
+    if image == MAIN:
+        return 0, 0
+    if from_snapshot():
+        row = snapshot_fingerprints().get(image)
+        if row is None or row[5] != thunks_digest(thunk_addrs):
+            raise SystemExit(f"snapshot/ does not fit image {image} (its functions changed): "
+                             "run tools/make_snapshot.py where the discs are")
+        return row[6], row[7]
+    elf = linker.elf[image]
+    load = elf.address(f"{image}_VRAM")
+    rodata = elf.address(f"{image}_RODATA_SIZE")
+    text = elf.address(f"{image}_TEXT_SIZE")
+    if load is None or rodata is None or not text:
+        return 0, 0
+    raw = (ELF_DIR / image).read_bytes()
+    end = min(len(raw), rodata + text)
+    if rodata >= end:
+        return 0, 0
+    masked = sorted((a - load, a - load + 5) for a in thunk_addrs if 0 <= a - load < len(raw))
+    return rodata, masked_fnv(raw, rodata, end, masked)
+
+
 def write_outputs(results: list[Result], linker: "Linker") -> None:
     absolutes = sorted({a for r in results for a in r.absolutes})
     with open(LINK_DIR / "psx_abs.s", "w", newline="\n") as f:
@@ -701,10 +732,12 @@ def write_outputs(results: list[Result], linker: "Linker") -> None:
         for image, thunks in sorted(by_image.items()):
             addrs = sorted({a for a, _ in thunks})
             load, size, code_size, prefix_hash, full_hash = image_fingerprint(linker, image, addrs)
+            text_start, text_hash = image_text_fingerprint(linker, image, addrs)
             f.write(f'    {{"{image}", thunks_{image}, {len(set(thunks))}, 0x{load:08X}u, 0x{size:X}u, '
-                    f'0x{code_size:X}u, 0x{prefix_hash:016X}ull, 0x{full_hash:016X}ull}},\n')
+                    f'0x{code_size:X}u, 0x{prefix_hash:016X}ull, 0x{full_hash:016X}ull, '
+                    f'0x{text_start:X}u, 0x{text_hash:016X}ull}},\n')
             fingerprints.append(f"{image}\t{load:08X}\t{size:X}\t{code_size:X}\t{prefix_hash:016X}\t"
-                                f"{full_hash:016X}\t{thunks_digest(addrs)}\n")
+                                f"{full_hash:016X}\t{thunks_digest(addrs)}\t{text_start:X}\t{text_hash:016X}\n")
         f.write("};\n")
         f.write(f"const unsigned pc_image_thunk_count = {len(by_image)};\n")
 

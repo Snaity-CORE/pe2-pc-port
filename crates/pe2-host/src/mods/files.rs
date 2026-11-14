@@ -486,7 +486,7 @@ fn mdec(bs: &[u8], rgb24: bool) -> Option<Vec<u32>> {
 }
 
 /// The dialogue bundles, the pictures that may hold their glyphs and the
-/// rest dialogue.rs reads, of the files of `disc` whose keys `wanted` takes.
+/// rest dialogue/ reads, of the files of `disc` whose keys `wanted` takes.
 pub fn sources_of(disc: &mut dyn Disc, wanted: impl Fn(&str) -> bool) -> super::dialogue::Sources {
     let mut out = super::dialogue::Sources::default();
     for f in layout(disc).into_iter().filter(|f| wanted(&f.key)) {
@@ -653,7 +653,7 @@ impl Parts {
 /// the game shows, as `dumps/backgrounds/<folder>/<place>.png` (see
 /// mods::background); the texture sheets under `dumps/textures` (see
 /// sheets.rs); the songs and the movies (music.rs, movies.rs); and the
-/// texts: the dialogue under `dumps/text` (see dialogue.rs) and the texts
+/// texts: the dialogue under `dumps/text` (see dialogue/) and the texts
 /// of the menus under `dumps/strings` (see strings.rs).
 pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path, parts: Parts) -> std::io::Result<()> {
     let out = dumps.join("files");

@@ -63,69 +63,27 @@ FACE_AT = {
     ('exe/80010000.toml', 0x80067340, 0x80067410): 'large',
 }
 
-# Pictures of the other version's font that are not the game's letters,
-# by the hash of their cell (`report-glyphs/<face>-<hash>.png`): what they
-# read.
-LABELS = {
-    # The Brazilian Portuguese fan translation's discs: syllables and the
-    # letters the font lacked, drawn over codes the menus did not use.
-    'large-0158da9273d7': 'io',
-    'large-1b050a518fbe': '—',
-    'large-1baa457baa82': 'de',
-    'large-406ec412273b': 'do',
-    'large-4177e2eca2e8': 'ar',
-    'large-5021140827b2': 'õ',
-    'large-58cf6d2b598b': 'rer',
-    'large-84f85202d0c3': 'Cor',
-    'large-577ad7cf6e43': 'sa',
-    'large-5b272cfcf7fe': 'se',
-    'large-7de77b179639': 'co',
-    'large-c9ca3031fa01': 'ã',
-    'large-fcf46ec0b7f4': 'Ã',
-    'medium-06090fce5b7d': 'ce',
-    'medium-073462714d8d': 'as',
-    'medium-0a45cc0f6186': 'õ',
-    'medium-2e5267f6cb82': 'das',
-    'medium-3360c1ba4dcb': 'tar',
-    'medium-80c2b2ca3cc4': 'Ven',
-    'medium-8595b6bd9b04': 'antia Máxima de',
-    'medium-af41d3c4e548': 'ipal',
-    'medium-294854820591': 'ta',
-    'medium-523c043291e2': 'CIL',
-    'medium-84207a359a11': 'Ã',
-    'medium-b3fa43608c1a': 'Corre',
-    'medium-bf30c4e5b981': 'ar',
-    'medium-d01d717681d1': 'ci',
-    'medium-f8d409fd8805': 'ã',
-    'small-0d1d0d164209': 'MO',
-    'small-13c3cd60c0a2': 'Õ',
-    'small-2e38efd26773': 'CI',
-    'small-321effbaf0d0': 'É',
-    'small-395a8c4a9124': 'Ã',
-    'small-40c6eaab8e5a': 'PE',
-    'small-448f3375663e': 'Ç',
-    'small-47c21d4f0948': 'Á',
-    'small-4aa637aa4009': 'Ô',
-    'small-5443738535a4': 'DE',
-    'small-56531a57d369': 'DO',
-    'small-678f16d138a9': 'BÔNUS',
-    'small-73f347cc0fde': 'IRIDO',
-    'small-7afb9f4aa994': 'LE',
-    'small-81381c2a2407': 'GO',
-    'small-9ab632be65c8': 'TA',
-    'small-c213aa7d1a24': 'Ú',
-    'small-a8cb4caec790': 'Ó',
-    'small-b55af57150c5': 'EL',
-    'small-cef2f54878a4': 'SO',
-    'small-d9de80068f53': 'Í',
-    'small-df79fc8c269a': 'MA',
-    'small-ea98c3156252': 'SA',
-    'small-f476a92e612c': 'TE',
-}
+# What pictures of text translations draw show, where the game's own letters
+# do not tell: tools/glyph_labels/*.toml (each translation's), merged.
+GLYPH_LABELS = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'glyph_labels')
+
+
+def glyph_labels(part):
+    """The `part` table of every file in GLYPH_LABELS: picture key -> text."""
+    out = {}
+    for path in sorted(glob.glob(os.path.join(GLYPH_LABELS, '*.toml'))):
+        out.update(tomllib.load(open(path, 'rb')).get(part, {}))
+    return out
+
+
+# Pictures of the other version's menus' font that are not the game's
+# letters, by the hash of their cell (`report-glyphs/<face>-<hash>.png`):
+# what they read.
+LABELS = glyph_labels('menus')
 
 
 def lzss(stream):
-    """One LZSS stream (dialogue.rs `lzss`)."""
+    """One LZSS stream (dialogue/picture.rs `lzss`)."""
     ring, nxt, out = bytearray(256), 0, bytearray()
     pos, byte, mask = 0, 0, 0
 
@@ -380,23 +338,8 @@ def import_captions(game, other, args, report):
 
 # The captions' letters the game's font does not have, or draws otherwise,
 # in a translation's redrawn font: the picture's key (caption_key) -> what
-# it shows. The Brazilian Portuguese fan translation's.
-CAPTION_LABELS = {
-    '3c809d57583a': 'de',  # " de " in one cell
-    '0e98ec424e36': 't',
-    '6650141535d1': 'm',
-    '1a2fa64229aa': 'b',
-    '84c15659a681': 'P',
-    'cd6e0ec87459': '5',
-    '227befe63f69': 'ó',
-    'ef3d70498bb5': ',',
-    'e607a9c3e510': 'ã',
-    'dddb87fccc93': '7',
-    '88073596104f': 'c',
-    '46995c4ff34f': 'y',
-    '3ba128e06fc6': 'í',
-    '2d5b0be9f8f1': 'x',
-}
+# it shows.
+CAPTION_LABELS = glyph_labels('captions')
 
 # The captions' font's copies (where the extract finds them) and how far
 # down its sheet each draws the cells.

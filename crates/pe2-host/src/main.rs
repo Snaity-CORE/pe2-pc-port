@@ -2,6 +2,7 @@
 //! PSX runtime, and drives the decompiled game code (linked as a C static
 //! library, see build.rs).
 
+mod codefix;
 mod config;
 mod controls;
 mod disc;
@@ -33,7 +34,8 @@ mod ffi {
 }
 
 const USAGE: &str = "usage: pe2 [disc 1 image] [disc 2 image]\n\
-                     Images are your own Parasite Eve II (USA) dumps, as .cue or .chd.\n\
+                     Images are your own Parasite Eve II (USA) dumps, as .cue or .chd (or the\n\
+                     Brazilian Portuguese fan translation's).\n\
                      Without arguments, the launcher opens; with --play, pe2.toml's [discs]\n\
                      disc1 and disc2 are played. --extract [parts] [images] saves the discs'\n\
                      contents to dumps/ in the data folder, for making mods: all of them, or\n\
@@ -293,6 +295,8 @@ fn main() -> ExitCode {
         eprintln!("pe2: boot failed ({status}): {reason}");
         return ExitCode::FAILURE;
     }
+    // A translation's changes to the code, in the data (codefix.rs).
+    codefix::apply(&exe);
     // The extract runs the game's sound code for its songs (music.rs).
     if extract {
         let out = paths::user_file("dumps");

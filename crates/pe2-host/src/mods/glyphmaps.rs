@@ -5,7 +5,7 @@
 //! those sheets from them (tools/hd_fonts.py); nothing of the pictures is in
 //! a map.
 //!
-//! Five kinds: `dialogue` (each CAP file's glyph page, dialogue.rs),
+//! Five kinds: `dialogue` (each CAP file's glyph page, dialogue/),
 //! `ui-font` (the menus' font, its three faces' metrics in the executable),
 //! `loading` (the loading screen's captions, and the M.I.S.T. briefing's
 //! copy of their font), `title` (the title screen's 8-bit page: its rows of
@@ -45,7 +45,7 @@ impl Glyph {
     }
 }
 
-/// The dialogue's glyph pages (dialogue.rs `glyph_maps`).
+/// The dialogue's glyph pages (dialogue/ `glyph_maps`).
 pub fn dialogue(sources: &super::dialogue::Sources) -> Vec<Map> {
     super::dialogue::glyph_maps(sources)
         .into_iter()
@@ -69,93 +69,81 @@ fn sheet_at(catalog: &Catalog, origin: &str, place: (u16, u16)) -> Option<u64> {
 const UI_FACES: [(&str, u32, usize, u8); 3] =
     [("medium", 0x8005_EFB0, 224, 38), ("large", 0x8005_FA30, 224, 128), ("small", 0x8006_04B0, 91, 0)];
 
-/// What the UI font's glyph for `code` shows in `face` (its record's V
-/// given): Latin-1 and the pad's buttons; the small face's records past
-/// row 34 point into the medium face's cells.
-fn ui_text(face: &str, code: u8, v: u8) -> Option<String> {
-    let icon = |name: &str| Some(format!("{{{name}}}"));
-    if face == "small" {
-        if v >= 35 {
-            return None;
-        }
-        return match code {
-            0x24 => icon("circle"),
-            0x25 => icon("square"),
-            0x26 => icon("triangle"),
-            0x2A => icon("cross"),
-            c if c.is_ascii_uppercase() || c.is_ascii_digit() || b".,()!?".contains(&c) => {
-                Some(char::from(c).to_string())
-            }
-            _ => None,
-        };
-    }
-    match code {
-        0x7B => icon("circle"),
-        0x7C => icon("triangle"),
-        0x7D => icon("cross"),
-        0x7E => icon("square"),
-        0x8C => Some("Œ".into()),
-        0x9C => Some("œ".into()),
-        0x97 => Some("—".into()),
-        0xA1 | 0xAB | 0xB0 | 0xBB | 0xBF | 0xC0..=0xFF => Some(char::from(code).to_string()),
-        c if c.is_ascii_alphanumeric() || b"!\"%&'()+,-./:?#".contains(&c) => Some(char::from(c).to_string()),
-        _ => None,
-    }
-}
-
 /// The UI font's sheet (stage0/file1, at (960, 256)) and its three faces'
-/// glyphs, each cell once (the first face to use it).
+/// glyphs, each cell once (the first face to use it), each read by its
+/// picture (glyphs/): a translation's discs draw syllables and letters
+/// over codes, which the code alone would read wrong. Pictures not known
+/// are not redrawn.
 pub fn ui_font(catalog: &Catalog, exe: &[u8]) -> Option<Map> {
-    let sheet = sheet_at(catalog, "stage0/file1/0#0", (960, 256))?;
+    let sheet = catalog.sheets.iter().find(|s| s.origin == "stage0/file1/0#0" && s.place == (960, 256))?;
     let mut glyphs: Vec<Glyph> = Vec::new();
-    for (face, address, count, bias) in UI_FACES {
-        for (i, r) in super::exe_at(exe, address, count * 12)?.as_chunks::<12>().0.iter().enumerate() {
+    for (n, (face, address, count, bias)) in UI_FACES.into_iter().enumerate() {
+        for r in super::exe_at(exe, address, count * 12)?.as_chunks::<12>().0 {
             let (u, v, w, h, y_offset) =
                 (r[0], r[1].wrapping_add(bias), u16::from(r[2]) + 1, u16::from(r[3]) + 1, r[5] as i8);
             let cell = [u16::from(u), u16::from(v), w, h];
-            let Some(text) = ui_text(face, 0x20 + i as u8, v) else { continue };
             if w <= 1 || glyphs.iter().any(|g| g.cell == cell) {
                 continue;
             }
+            let Some(text) = super::glyphs::menu_picture(&sheet.rows, n as u8, cell)
+                .and_then(super::glyphs::menu)
+                .map(str::to_string)
+            else {
+                continue;
+            };
             // The last row is drawn y_offset below the pen's baseline.
             let baseline = (h as i16 - i16::from(y_offset)).clamp(0, h as i16) as u16;
             glyphs.push(Glyph { cell, text, face: Some(face), baseline: Some(baseline), like: None });
         }
     }
     // The letters translations add (menuglyphs.rs), where they go.
-    for a in super::menuglyphs::cells(exe) {
+    for a in super::menuglyphs::cells(exe, &sheet.rows) {
         let text = char::from(a.code).to_string();
         let face = Some(UI_FACES[a.face].0);
         glyphs.push(Glyph { cell: a.cell, text, face, baseline: Some(a.baseline), like: Some(a.like) });
     }
-    Some(Map { kind: "ui-font", sheets: vec![sheet], depth: 4, palette: None, glyphs })
+    Some(Map { kind: "ui-font", sheets: vec![sheet.hash], depth: 4, palette: None, glyphs })
 }
 
 /// The loading screen's captions: their sheet (stage0/file10, at (960, 0))
-/// and `gTextCaptionGlyphCells` (main/caption_draw.c): capitals, small
-/// letters, the digits 1 to 9 then 0, and : ; ' , . ? ! The M.I.S.T.
+/// and `gTextCaptionGlyphCells` (main/caption_draw.c), each cell read by
+/// its picture (glyphs/): on the game's discs capitals, small
+/// letters, the digits 1 to 9 then 0, and : ; ' , . ? !; a translation's
+/// discs point some at letters and syllables of their own. The M.I.S.T.
 /// briefing (mist_r18.c) has its own copy of the font, 48 rows down its
-/// sheet (stage1/1801/file0, at (704, 0)), drawn through the same cells.
+/// sheet (stage1/1801/file0, at (704, 0)), drawn through the same cells
+/// (the translation's copy is a row off: its letters are found there, and
+/// are `like` the cell's). Cells not known are not redrawn.
 pub fn loading(catalog: &Catalog, exe: &[u8]) -> Vec<Map> {
-    const TEXT: &str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890:;',.?!";
+    const CELLS: usize = 69;
     const COPIES: [(&str, (u16, u16), u16); 2] =
         [("stage0/file10/0#0", (960, 0), 0), ("stage1/1801/file0/1#0", (704, 0), 48)];
-    let Some(cells) = super::exe_at(exe, 0x8006_27E0, TEXT.len() * 4) else { return Vec::new() };
+    let Some(cells) = super::exe_at(exe, 0x8006_27E0, CELLS * 4) else { return Vec::new() };
     COPIES
         .iter()
         .filter_map(|&(origin, place, down)| {
-            let sheet = sheet_at(catalog, origin, place)?;
-            let glyphs = cells
-                .as_chunks::<4>()
-                .0
-                .iter()
-                .zip(TEXT.chars())
-                .map(|(c, t)| {
-                    let [u, v, w, h] = c.map(u16::from);
-                    Glyph::new([u, v + down, w, h], t)
-                })
-                .collect();
-            Some(Map { kind: "loading", sheets: vec![sheet], depth: 4, palette: None, glyphs })
+            let sheet = catalog.sheets.iter().find(|s| s.origin == origin && s.place == place)?;
+            let mut glyphs: Vec<Glyph> = Vec::new();
+            for c in cells.as_chunks::<4>().0 {
+                let [u, v, w, h] = c.map(u16::from);
+                let cell = [u, v + down, w, h];
+                if w == 0 || h == 0 || glyphs.iter().any(|g| g.cell == cell) {
+                    continue;
+                }
+                let found = [0i16, 1, -1].into_iter().find_map(|off| {
+                    let at = [u, v.checked_add_signed(off)? + down, w, h];
+                    Some((at, super::glyphs::caption(super::glyphs::caption_picture(&sheet.rows, at)?)?))
+                });
+                let Some((at, text)) = found else { continue };
+                glyphs.push(Glyph { like: (at != cell).then_some(at), ..Glyph::new(cell, text) });
+            }
+            (!glyphs.is_empty()).then(|| Map {
+                kind: "loading",
+                sheets: vec![sheet.hash],
+                depth: 4,
+                palette: None,
+                glyphs,
+            })
         })
         .collect()
 }
@@ -282,18 +270,6 @@ pub fn write(maps: &[Map], dir: &Path) -> std::io::Result<usize> {
 #[cfg(test)]
 mod tests {
     use super::*;
-
-    /// The UI font's codes: Latin-1, the buttons, and the small face's
-    /// few characters where its own cells are.
-    #[test]
-    fn ui_codes_show_their_characters() {
-        assert_eq!(ui_text("medium", b'A', 40).as_deref(), Some("A"));
-        assert_eq!(ui_text("large", 0xE7, 200).as_deref(), Some("ç"));
-        assert_eq!(ui_text("medium", 0x7C, 76).as_deref(), Some("{triangle}"));
-        assert_eq!(ui_text("small", 0x26, 23).as_deref(), Some("{triangle}"));
-        assert_eq!(ui_text("small", b'+', 40), None);
-        assert_eq!(ui_text("medium", b'$', 134), None);
-    }
 
     /// A map as TOML: its kind, sheets, and each glyph's cell and text.
     #[test]

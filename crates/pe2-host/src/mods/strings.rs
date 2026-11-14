@@ -196,9 +196,22 @@ fn text_file(rel: &str) -> Option<(&str, usize)> {
 }
 
 /// Reads the enabled mods' translations of the game's code's texts.
+/// PE2PC's own screens in the launcher's language, when not English
+/// (res/lang/<language>.toml).
+fn own_language() -> Option<StringsFile> {
+    let text = match crate::config::get().general.language.as_deref() {
+        Some("pt") => include_str!("../../res/lang/pt.toml"),
+        _ => return None,
+    };
+    toml::from_str(text).map_err(|e| eprintln!("pe2: menus: res/lang: {e}")).ok()
+}
+
 fn read() -> Table {
     let mut table = Table::default();
-    for (rel, file) in mod_files() {
+    // PE2PC's own screens in the launcher's language first: the mods' come
+    // after, and win where they translate the same text.
+    let own = own_language().map(|f| ("res/lang".to_string(), f));
+    for (rel, file) in own.into_iter().chain(mod_files()) {
         if text_file(&rel).is_some() {
             continue;
         }
@@ -255,7 +268,7 @@ pub fn load() {
     let table = TABLE.get_or_init(read);
     if !table.is_empty() {
         eprintln!(
-            "pe2: mods: {} texts of the menus translated, {} of them in one place only",
+            "pe2: menus: {} texts translated, {} of them in one place only",
             table.by_text.len() + table.by_place.len(),
             table.by_place.len()
         );
@@ -588,6 +601,26 @@ mod tests {
         assert_eq!(get(b"PA3\nPump-action\nshotgun.\n\n").unwrap(), b"PA3\nEspingarda\nde repeti\xE7\xE3o.\n\n\0");
         assert_eq!(get(b"shotgun.\n\n").unwrap(), b"de repeti\xE7\xE3o.\n\n\0");
         assert!(get(b"").is_none());
+    }
+
+    /// PE2PC's screens in Portuguese: each text there is one of PE2PC's,
+    /// and each of PE2PC's with words is there.
+    #[test]
+    fn own_screens_in_portuguese() {
+        let file: StringsFile = toml::from_str(include_str!("../../res/lang/pt.toml")).unwrap();
+        let ours: Vec<String> = port_texts()
+            .iter()
+            .map(|t| decode(t))
+            .chain(crate::settings::texts().into_iter().map(str::to_string))
+            .collect();
+        let given: Vec<&str> = file.string.iter().map(|e| e.original.trim_start_matches('\n')).collect();
+        for g in &given {
+            assert!(ours.iter().any(|o| o == g), "res/lang/pt.toml: {g:?} is no text of PE2PC's");
+        }
+        let words = |t: &str| t.chars().filter(|c| c.is_alphabetic()).count() > 1 && !matches!(t, "EXP" | "BP");
+        for o in ours.iter().filter(|o| words(o)) {
+            assert!(given.contains(&o.as_str()), "res/lang/pt.toml: {o:?} not translated");
+        }
     }
 
     /// The small face gets plain letters.
