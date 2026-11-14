@@ -31,7 +31,7 @@ typedef struct PcImageThunks {
     uint64_t full_hash;
     /* Its code alone, [text_start, code_size): recognizes the image where
      * a translation rewrote its rodata (texts) and left the code as it was.
-     * text_start 0: not known (built from the snapshot). */
+     * text_start 0: not known (a snapshot made before it was kept). */
     uint32_t text_start;
     uint64_t text_hash;
 } PcImageThunks;

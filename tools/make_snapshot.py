@@ -11,7 +11,8 @@ the decomp changes. It saves:
 - symbols/<image>.tsv: each image's symbols (name, address, kind, file):
   the decomp's names and where they are, no bytes;
 - images.tsv: each image's fingerprint (hashes the runtime recognizes it
-  by in PSX RAM) and a digest of its thunks;
+  by in PSX RAM: of its first bytes, of its rodata and code, and of its
+  code alone, for a translation's discs) and a digest of its thunks;
 - undefined_funcs_auto.main.txt: the linker's list of the main image's
   functions known by address;
 - include/assets/: the asset includes the compile reads, with every value
