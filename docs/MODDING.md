@@ -840,8 +840,9 @@ Their bytes are read through the translated version's own
 font: such translations draw the letters they need, and whole syllables,
 over codes the menus did not use, a different set in each of the font's
 three faces. A code reads as the game's letter of the same picture in the
-same face, or as a picture labelled in the tool's `LABELS` (the Brazilian
-Portuguese fan translation's are there); each text is read in the face
+same face, or as a picture labelled in `tools/glyph_labels/<name>.toml`
+(`[menus]`; the Brazilian Portuguese fan translation's are `ptbr.toml`);
+each text is read in the face
 where the most codes are known and the most words are the translation's
 own (from its dialogue, `dumps/text`). `report.txt` lists what was left
 out, and pictures not known are saved in `report-glyphs/` to be labelled.
@@ -850,8 +851,20 @@ The loading screens' captions (date and place) are no text but glyphs of
 a font of their own; a translation redraws that font, so they come as
 they are: its glyph table and the captions as `patches.toml`, and the map
 of its glyphs in `glyphs/` (letters read as the game's of the same
-picture, or by the tool's `CAPTION_LABELS`), so PE2PC redraws them finer
+picture, or by the labels' `[captions]`), so PE2PC redraws them finer
 as it does the game's.
+
+PE2PC reads those pictures by itself too, from tables of their hashes
+(`crates/pe2-host/src/mods/glyphs/`): the captions' and the menus' fonts,
+and the speakers' name labels a translation draws. A translation whose
+labels are in `tools/glyph_labels/` is added to them from both versions'
+dumps (`pe2 --extract files,textures,texts`, which also lists each name
+label's picture in `dumps/text/labels.tsv`; the labels' `[speakers]` name
+them as the translation does):
+
+```text
+python tools/gen_glyph_tables.py <game's dumps> ptbr=<translated dumps>
+```
 
 Every picture the translation changed (the captions' font, one in each
 loading screen's file; maps, signs, the game over and ending screens)

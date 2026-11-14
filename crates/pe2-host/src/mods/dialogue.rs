@@ -125,26 +125,6 @@ const GLYPHS: &[(u64, &str)] = &[
     (0x748DF6D4FBCB5BDD, "*"),
     (0xD2AC0C49E0960A87, "="),
     (0xF94940C21EDF6D73, "%"),
-    // The speakers' name labels the Brazilian Portuguese fan translation's
-    // discs draw (its names, matched to the game's labels in the same lines).
-    (0x6BDCD77918DDD00B, "[PRESIDENTE]"),
-    (0x85A31EFF5443F1E0, "[ASSESSOR]"),
-    (0x3E0841E766B112B1, "[AVISO]"),
-    (0xAF3DBA1C0ECC116C, "[SOLDADO]"),
-    (0x3B71A83F03F4BC29, "[2º TENENTE]"),
-    (0x6242A688A4165270, "[Nº 9]"),
-    (0x139F6F97680456BE, "[VOZ MASCULINA]"),
-    (0x06C780A905C93C3C, "[MECÂNICO]"),
-    (0x71B77087B73B5DBA, "[SARGENTO]"),
-    (0x0A0220ECF4968FAE, "[SARGENTO DA POLÍCIA]"),
-    (0x50959B3CC8109581, "[OFICIAL DA SWAT]"),
-    (0x8A1ECEEE06465C5E, "[TELEGRAFISTA]"),
-    (0x11B7BC4AB0E9AD68, "[OFICIAL DA POLÍCIA]"),
-    (0xABD4A0E2F6E516FE, "[AVISO]"),
-    (0xE88E05199E08E3AB, "[OFICIAL DA SWAT]"),
-    (0x529D97F70A0E8634, "[OFICIAL DA SWAT]"),
-    (0xE5F5C0BEC3167C52, "[CRIATURA]"),
-    (0x6FD749B2CED1C0E0, "[2º TENENTE]"),
 ];
 
 const END: u16 = 0xFFFF;
@@ -407,7 +387,8 @@ pub fn caps(payload: &[u8]) -> Vec<&[u8]> {
 /// Glyph picture hashes -> text.
 fn known() -> &'static HashMap<u64, &'static str> {
     static MAP: std::sync::OnceLock<HashMap<u64, &'static str>> = std::sync::OnceLock::new();
-    MAP.get_or_init(|| GLYPHS.iter().copied().collect())
+    // The game's, then the translations' labels (glyphs/).
+    MAP.get_or_init(|| GLYPHS.iter().chain(super::glyphs::speakers()).copied().collect())
 }
 
 /// Glyph shape hash (`shape_hash`) -> the text it shows: glyphs drawn as
@@ -965,6 +946,12 @@ pub fn extract(sources: &Sources, out: &Path) -> std::io::Result<(usize, usize)>
     let mut pages = Pages::new(sources);
     let (mut files, mut lines) = (0, 0);
     let mut speakers = std::collections::BTreeSet::new();
+    // Each name label's picture where it is drawn, for matching another
+    // version's labels to these (tools/gen_glyph_tables.py).
+    let mut labels = String::from(
+        "# Each line's speaker's name label: file, chunk, dialogue file, line, the\n\
+         # hash of its picture (dialogue.rs GLYPHS) and the name read from it.\n",
+    );
     for (key, chunk, payload) in &sources.bundles {
         for (n, bytes) in caps(payload).into_iter().enumerate() {
             let Some(cap) = Cap::new(bytes) else { continue };
@@ -979,7 +966,13 @@ pub fn extract(sources: &Sources, out: &Path) -> std::io::Result<(usize, usize)>
             }
             toml.push_str(&format!("cap = \"{:016x}\"\n", cap.hash()));
             let mut count = 0;
-            for line in cap.lines() {
+            for (ln, line) in cap.lines().into_iter().enumerate() {
+                if let Some(page) = page.filter(|_| line.title != 0) {
+                    let picture = glyph(page, cap.cell(usize::from(line.title - 1)));
+                    let name = recognize(&picture).unwrap_or_default();
+                    let hash = super::fnv1a(picture.iter().copied());
+                    labels.push_str(&format!("{key}\t{chunk}\t{n}\t{ln}\t{hash:016X}\t{}\n", name.trim()));
+                }
                 if !line.codes.iter().any(|&c| is_glyph(c)) {
                     continue;
                 }
@@ -1021,6 +1014,7 @@ pub fn extract(sources: &Sources, out: &Path) -> std::io::Result<(usize, usize)>
     }
     std::fs::create_dir_all(out)?;
     std::fs::write(out.join(super::labels::FILE), toml)?;
+    std::fs::write(out.join("labels.tsv"), labels)?;
     Ok((files, lines))
 }
 

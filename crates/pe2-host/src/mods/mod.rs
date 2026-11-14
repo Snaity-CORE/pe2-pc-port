@@ -28,6 +28,7 @@ pub mod dialogue;
 pub mod files;
 pub mod fontsheets;
 pub mod glyphmaps;
+pub mod glyphs;
 pub mod indexed;
 pub mod install;
 pub mod labels;
@@ -40,7 +41,6 @@ pub mod rooms;
 pub mod sheets;
 pub mod strings;
 pub mod translate;
-mod uiglyphs;
 
 pub use backgrounds::{background, background_wait, file_read, has_background, place_name, wants_screens};
 pub use patches::apply_patches;
