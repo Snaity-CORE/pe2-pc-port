@@ -670,6 +670,27 @@ def image_fingerprint(linker: "Linker", image: str, thunk_addrs: list[int]) -> t
     return load, size, code_size, masked_fnv(raw, 0, min(PREFIX_BYTES, size), masked), full
 
 
+def image_text_fingerprint(linker: "Linker", image: str, thunk_addrs: list[int]) -> tuple[int, int]:
+    """Where `image`'s code starts and a hash of its code alone, for images
+    whose rodata a translation rewrote (their texts) while the code stayed
+    the same. (0, 0) from the snapshot, which does not keep it yet: the
+    runtime then recognizes the image only as it is."""
+    if from_snapshot() or image == MAIN:
+        return 0, 0
+    elf = linker.elf[image]
+    load = elf.address(f"{image}_VRAM")
+    rodata = elf.address(f"{image}_RODATA_SIZE")
+    text = elf.address(f"{image}_TEXT_SIZE")
+    if load is None or rodata is None or not text:
+        return 0, 0
+    raw = (ELF_DIR / image).read_bytes()
+    end = min(len(raw), rodata + text)
+    if rodata >= end:
+        return 0, 0
+    masked = sorted((a - load, a - load + 5) for a in thunk_addrs if 0 <= a - load < len(raw))
+    return rodata, masked_fnv(raw, rodata, end, masked)
+
+
 def write_outputs(results: list[Result], linker: "Linker") -> None:
     absolutes = sorted({a for r in results for a in r.absolutes})
     with open(LINK_DIR / "psx_abs.s", "w", newline="\n") as f:
@@ -701,8 +722,10 @@ def write_outputs(results: list[Result], linker: "Linker") -> None:
         for image, thunks in sorted(by_image.items()):
             addrs = sorted({a for a, _ in thunks})
             load, size, code_size, prefix_hash, full_hash = image_fingerprint(linker, image, addrs)
+            text_start, text_hash = image_text_fingerprint(linker, image, addrs)
             f.write(f'    {{"{image}", thunks_{image}, {len(set(thunks))}, 0x{load:08X}u, 0x{size:X}u, '
-                    f'0x{code_size:X}u, 0x{prefix_hash:016X}ull, 0x{full_hash:016X}ull}},\n')
+                    f'0x{code_size:X}u, 0x{prefix_hash:016X}ull, 0x{full_hash:016X}ull, '
+                    f'0x{text_start:X}u, 0x{text_hash:016X}ull}},\n')
             fingerprints.append(f"{image}\t{load:08X}\t{size:X}\t{code_size:X}\t{prefix_hash:016X}\t"
                                 f"{full_hash:016X}\t{thunks_digest(addrs)}\n")
         f.write("};\n")
