@@ -44,7 +44,8 @@ const FILL: u8 = 15;
 
 /// An added letter in one face: its record, its cell in the sheet (u, v,
 /// width, height), the row of the cell its letters stand on, and the cell
-/// of the letter it is made from.
+/// of the letter it is made from; or, `reused`, a translation's own picture
+/// of that letter at another code, whose record it takes as it is.
 #[derive(Clone, Debug, PartialEq)]
 pub struct Added {
     pub code: u8,
@@ -53,6 +54,13 @@ pub struct Added {
     pub cell: [u16; 4],
     pub baseline: u16,
     pub like: [u16; 4],
+    pub reused: bool,
+}
+
+/// What the picture in `cell` of the font's sheet (`rows`) shows in face
+/// `face` (glyphs/), if known.
+pub fn known_in(rows: &[[u16; 64]]) -> impl Fn(usize, [u16; 4]) -> Option<&'static str> + '_ {
+    move |face, cell| super::glyphs::menu(super::glyphs::menu_picture(rows, face as u8, cell)?)
 }
 
 fn record(table: &[u8], code: u8) -> Option<&[u8; 12]> {
@@ -67,10 +75,17 @@ fn cell(r: &[u8; 12], bias: u8) -> Option<[u16; 4]> {
 
 /// Where the added letters go, from the faces' tables as the executable
 /// has them (medium, large, small): for each face and letter whose record
-/// is empty, the first place (top to bottom, left to right) where a cell
-/// of its source's size fits with a texel clear around it, among the cells
-/// of every face.
-pub fn layout(medium: &[u8], large: &[u8], small: &[u8]) -> Vec<Added> {
+/// is empty, another code's record of that face whose picture `known`
+/// reads as the letter (a translation's discs draw ã and õ over codes of
+/// their own); else the first place (top to bottom, left to right) where a
+/// cell of its source's size fits with a texel clear around it, among the
+/// cells of every face.
+pub fn layout(
+    medium: &[u8],
+    large: &[u8],
+    small: &[u8],
+    known: impl Fn(usize, [u16; 4]) -> Option<&'static str>,
+) -> Vec<Added> {
     let mut used = vec![false; 256 * 256];
     let mark = |used: &mut Vec<bool>, [u, v, w, h]: [u16; 4]| {
         for y in v.saturating_sub(1)..(v + h + 1).min(256) {
@@ -95,6 +110,16 @@ pub fn layout(medium: &[u8], large: &[u8], small: &[u8]) -> Vec<Added> {
             if cell(own, bias).is_some() {
                 continue;
             }
+            let letter = char::from(code).to_string();
+            let theirs = table.as_chunks::<12>().0.iter().find_map(|r| {
+                let c = cell(r, bias)?;
+                (known(face, c)? == letter).then_some((*r, c))
+            });
+            if let Some((record, c)) = theirs {
+                let baseline = (c[3] as i16 - i16::from(record[5] as i8)).clamp(0, c[3] as i16) as u16;
+                out.push(Added { code, face, record, cell: c, baseline, like: c, reused: true });
+                continue;
+            }
             let free = |u: usize, v: usize| {
                 (v..v + usize::from(h)).all(|y| (u..u + usize::from(w)).all(|x| !used[y * 256 + x]))
             };
@@ -110,7 +135,7 @@ pub fn layout(medium: &[u8], large: &[u8], small: &[u8]) -> Vec<Added> {
             record[0] = u as u8;
             record[1] = (v as u8).wrapping_sub(bias);
             let baseline = (h as i16 - i16::from(src[5] as i8)).clamp(0, h as i16) as u16;
-            out.push(Added { code, face, record, cell: place, baseline, like });
+            out.push(Added { code, face, record, cell: place, baseline, like, reused: false });
         }
     }
     out
@@ -202,17 +227,20 @@ fn texel(page: &[u16], u: u16, v: u16) -> u8 {
 fn build() -> Option<Native> {
     let medium = ram(FACES[0].0, RECORDS * 12);
     let large = ram(FACES[1].0, RECORDS * 12);
-    let added = layout(medium, large, ram(SMALL, SMALL_RECORDS * 12));
+    let mut page = sheet_from_vram();
+    let rows: Vec<[u16; 64]> = page.as_chunks::<64>().0.to_vec();
+    let added = layout(medium, large, ram(SMALL, SMALL_RECORDS * 12), known_in(&rows));
     let tables = [medium.to_vec(), large.to_vec()];
     for a in &added {
         let at = FACES[a.face].0 + u32::from(a.code - 0x20) * 12;
         // SAFETY: the record of `a.code` in its face's table (in RAM).
         unsafe { std::ptr::copy_nonoverlapping(a.record.as_ptr(), at as usize as *mut u8, 12) };
     }
+    // The letters a translation already draws need no picture.
+    let added: Vec<Added> = added.into_iter().filter(|a| !a.reused).collect();
     if added.is_empty() || super::fontsheets::enabled() {
         return None;
     }
-    let mut page = sheet_from_vram();
     let original = page.clone();
     for a in &added {
         let picture = draw(a, &tables[a.face], |u, v| texel(&original, u, v))?;
@@ -251,11 +279,12 @@ pub fn ensure() {
 }
 
 /// The added letters' cells for the font's glyph map (glyphmaps.rs), from
-/// the executable's tables: (cell, letter, face index, baseline).
-pub fn cells(exe: &[u8]) -> Vec<Added> {
+/// the executable's tables and the font's sheet (`rows`): those made anew,
+/// a translation's own being in the map already.
+pub fn cells(exe: &[u8], rows: &[[u16; 64]]) -> Vec<Added> {
     let table = |address: u32, n: usize| super::exe_at(exe, address, n * 12);
     match (table(FACES[0].0, RECORDS), table(FACES[1].0, RECORDS), table(SMALL, SMALL_RECORDS)) {
-        (Some(m), Some(l), Some(s)) => layout(m, l, s),
+        (Some(m), Some(l), Some(s)) => layout(m, l, s, known_in(rows)).into_iter().filter(|a| !a.reused).collect(),
         _ => Vec::new(),
     }
 }
@@ -278,13 +307,28 @@ mod tests {
     fn layout_avoids_cells() {
         let medium = table(&[(0xE2, [0, 0, 7, 11, 0xFE, 2]), (b'a', [8, 0, 7, 9, 0xFE, 2])]);
         let large = table(&[]);
-        let added = layout(&medium, &large, &[]);
+        let added = layout(&medium, &large, &[], |_, _| None);
         assert_eq!(added.len(), 1);
         let a = &added[0];
         assert_eq!((a.code, a.face, a.cell), (0xE3, 0, [0, 0, 7, 11]));
         // V before the medium face's bias of 38.
         assert_eq!(a.record[..2], [0, 218]);
         assert_eq!((a.baseline, a.like), (9, [0, 38, 7, 11]));
+    }
+
+    /// A translation's own picture of the letter, at another code, is taken
+    /// as it is: its record, no new cell.
+    #[test]
+    fn layout_takes_a_translations_letter() {
+        let medium = table(&[(0xE2, [0, 0, 7, 11, 0xFE, 2]), (0x86, [20, 0, 7, 11, 0xFE, 2])]);
+        let large = table(&[]);
+        let known = |face: usize, cell: [u16; 4]| (face == 0 && cell[0] == 20).then_some("ã");
+        let added = layout(&medium, &large, &[], known);
+        assert_eq!(added.len(), 1);
+        let a = &added[0];
+        assert!(a.reused);
+        assert_eq!((a.code, a.cell, a.like), (0xE3, [20, 38, 7, 11], [20, 38, 7, 11]));
+        assert_eq!(a.record[..4], [20, 0, 6, 10]);
     }
 
     /// The tilde replaces the circumflex; the letter below stays.
@@ -300,8 +344,15 @@ mod tests {
         .iter()
         .map(|r| r.to_vec())
         .collect();
-        let added =
-            Added { code: 0xE3, face: 0, record: [0; 12], cell: [0, 0, 7, 4], baseline: 4, like: [0, 38, 7, 4] };
+        let added = Added {
+            code: 0xE3,
+            face: 0,
+            record: [0; 12],
+            cell: [0, 0, 7, 4],
+            baseline: 4,
+            like: [0, 38, 7, 4],
+            reused: false,
+        };
         let texel = |u: u16, v: u16| sheet.get(usize::from(v).wrapping_sub(38)).map_or(5, |r| r[usize::from(u)]);
         let p = draw(&added, &medium, texel).unwrap();
         let rows: Vec<&[u8]> = p.chunks(7).collect();

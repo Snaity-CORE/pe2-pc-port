@@ -97,7 +97,7 @@ pub fn ui_font(catalog: &Catalog, exe: &[u8]) -> Option<Map> {
         }
     }
     // The letters translations add (menuglyphs.rs), where they go.
-    for a in super::menuglyphs::cells(exe) {
+    for a in super::menuglyphs::cells(exe, &sheet.rows) {
         let text = char::from(a.code).to_string();
         let face = Some(UI_FACES[a.face].0);
         glyphs.push(Glyph { cell: a.cell, text, face, baseline: Some(a.baseline), like: Some(a.like) });
