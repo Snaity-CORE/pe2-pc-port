@@ -322,7 +322,7 @@ def draw_cells(idx, glyphs, k, fonts, scheme, weight, fill=False):
 
 
 def lzss(s, at):
-    """One LZSS stream (dialogue.rs `lzss`)."""
+    """One LZSS stream (dialogue/picture.rs `lzss`)."""
     d, nxt, out = bytearray(256), 0, bytearray()
     state = [0, 0, at]  # byte, mask, position
 

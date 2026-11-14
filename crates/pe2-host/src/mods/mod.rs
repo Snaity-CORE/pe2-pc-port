@@ -9,7 +9,7 @@
 //! VRAM: the game sees its own data, and only the picture changes.
 //!
 //! Backgrounds and full-screen pictures: backgrounds.rs; music: music.rs;
-//! movies: movies.rs; game files: files.rs; dialogue: dialogue.rs and
+//! movies: movies.rs; game files: files.rs; dialogue: dialogue/ and
 //! translate.rs; the menus' texts: strings.rs; textures: here (the
 //! libraries) and runtime/gpu/textures.rs; cheats and memory patches:
 //! patches.rs. Here: what is installed, the libraries of pictures they

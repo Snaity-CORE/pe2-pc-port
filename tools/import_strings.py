@@ -83,7 +83,7 @@ LABELS = glyph_labels('menus')
 
 
 def lzss(stream):
-    """One LZSS stream (dialogue.rs `lzss`)."""
+    """One LZSS stream (dialogue/picture.rs `lzss`)."""
     ring, nxt, out = bytearray(256), 0, bytearray()
     pos, byte, mask = 0, 0, 0
 

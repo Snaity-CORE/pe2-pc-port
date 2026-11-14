@@ -1,15 +1,16 @@
 //! What the game's pictures of text show, known by hashes of the pictures:
-//! the loading captions' font, the menus' font and the speakers' name
-//! labels translations draw. The tables are written by
-//! tools/gen_glyph_tables.py from the discs' dumps (the game's, and each
-//! translation's with its labels in tools/glyph_labels/); they hold no
-//! pictures. A picture not in them is not known: what draws it leaves it
-//! as the game has it.
+//! the dialogue's glyphs (dialogue.rs), the loading captions' font, the
+//! menus' font and the speakers' name labels translations draw. The last
+//! three tables are written by tools/gen_glyph_tables.py from the discs'
+//! dumps (the game's, and each translation's with its labels in
+//! tools/glyph_labels/); none holds pictures. A picture not known is left
+//! as the game has it by what draws it.
 
 use std::collections::HashMap;
 use std::sync::OnceLock;
 
 mod captions;
+pub mod dialogue;
 mod menus;
 mod speakers;
 
@@ -31,12 +32,6 @@ pub fn caption(hash: u64) -> Option<&'static str> {
 pub fn menu(hash: u64) -> Option<&'static str> {
     static INDEX: OnceLock<HashMap<u64, &'static str>> = OnceLock::new();
     index(menus::TABLE, &INDEX).get(&hash).copied()
-}
-
-/// The translations' speakers' name labels (`[NAME]`), by the hash
-/// dialogue.rs knows a glyph picture by.
-pub fn speakers() -> &'static [(u64, &'static str)] {
-    speakers::TABLE
 }
 
 /// The texel at (x, y) of a 4-bit sheet's rows.

@@ -367,7 +367,7 @@ impl Catalog {
         self.pieces.get(&hash).map_or(&[], Vec::as_slice)
     }
 
-    /// The glyph pages of `sources`' CAP files (dialogue.rs glyph_pages)
+    /// The glyph pages of `sources`' CAP files (dialogue/ glyph_pages)
     /// coloured as captions.c draws them: 4-bit, the text through its
     /// palette and the speakers' name labels through theirs. By catalog
     /// index.

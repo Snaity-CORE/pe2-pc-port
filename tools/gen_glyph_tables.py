@@ -215,7 +215,7 @@ def main():
     write('menus', "The menus' font's pictures, per face: the game's letters, and the\n"
           f"translations' syllables and letters ({names}).", menus(game, translations))
     write('speakers', "The speakers' name labels the translations draw, named as they show\n"
-          f"them ({names}); the game's own are dialogue.rs GLYPHS.", speakers(game, translations))
+          f"them ({names}); the game's own are glyphs/dialogue.rs GLYPHS.", speakers(game, translations))
 
 
 if __name__ == '__main__':

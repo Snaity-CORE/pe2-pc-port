@@ -5,7 +5,7 @@
 //! those sheets from them (tools/hd_fonts.py); nothing of the pictures is in
 //! a map.
 //!
-//! Five kinds: `dialogue` (each CAP file's glyph page, dialogue.rs),
+//! Five kinds: `dialogue` (each CAP file's glyph page, dialogue/),
 //! `ui-font` (the menus' font, its three faces' metrics in the executable),
 //! `loading` (the loading screen's captions, and the M.I.S.T. briefing's
 //! copy of their font), `title` (the title screen's 8-bit page: its rows of
@@ -45,7 +45,7 @@ impl Glyph {
     }
 }
 
-/// The dialogue's glyph pages (dialogue.rs `glyph_maps`).
+/// The dialogue's glyph pages (dialogue/ `glyph_maps`).
 pub fn dialogue(sources: &super::dialogue::Sources) -> Vec<Map> {
     super::dialogue::glyph_maps(sources)
         .into_iter()

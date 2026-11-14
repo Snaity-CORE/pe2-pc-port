@@ -1,7 +1,7 @@
 //! Translations of the dialogue (docs/MODDING.md).
 //!
 //! A mod's `text/**/*.toml` files (as the extract writes them, see
-//! dialogue.rs) give lines of CAP files, known by their hash, new text.
+//! dialogue/) give lines of CAP files, known by their hash, new text.
 //! When the game loads a CAP file that has translated lines, it gets a copy
 //! built here instead (pc_cap_translate, from the fork's captions.c): the
 //! original with the translated lines' text added and pointed to, and a
