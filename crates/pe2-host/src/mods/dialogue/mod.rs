@@ -269,9 +269,16 @@ pub fn cap_texts(sources: &Sources) -> HashMap<u64, Vec<Option<String>>> {
                                 texts[index] = recognize(&glyph(page, cap.cell(index))).map(|t| t.into_owned());
                             }
                             // And the speakers' name labels (labels.rs), as
-                            // `[NAME]` (one is labelled without: No.9).
+                            // `[NAME]` (one is labelled without: No.9). A
+                            // title pointing at a letter the lines draw is
+                            // no label (a line showing none: its h).
+                            let letters: std::collections::HashSet<usize> =
+                                uses(&cap, usize::MAX).into_iter().collect();
                             for line in cap.lines().into_iter().filter(|l| l.title != 0) {
                                 let index = usize::from(line.title - 1);
+                                if letters.contains(&index) {
+                                    continue;
+                                }
                                 if index >= texts.len() {
                                     texts.resize(index + 1, None);
                                 }

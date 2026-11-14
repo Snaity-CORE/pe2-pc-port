@@ -414,9 +414,17 @@ fn build(
         texts.push((line.record, codes));
     }
     // The speakers' name labels, by their glyph index: their new glyphs.
+    // Not a cell the lines draw as a letter: a title pointing there is no
+    // label, and redrawing it would put the label in the text.
+    let letters: std::collections::HashSet<usize> = originals
+        .iter()
+        .flat_map(|l| l.codes.iter())
+        .filter(|&&c| dialogue::is_glyph(c))
+        .map(|&c| usize::from(c & 0x3FF))
+        .collect();
     let mut labels: HashMap<usize, usize> = HashMap::new();
     for title in originals.iter().filter(|l| l.title != 0).map(|l| usize::from(l.title - 1)) {
-        if labels.contains_key(&title) {
+        if labels.contains_key(&title) || letters.contains(&title) {
             continue;
         }
         let Some(name) = names.and_then(|n| n(title)) else { continue };
