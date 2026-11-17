@@ -797,7 +797,7 @@ pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path, parts: Parts) -> std::
         maps.extend(super::glyphmaps::loading(&catalog, &executable));
         maps.extend(super::glyphmaps::title(&catalog));
         maps.extend(super::glyphmaps::disc_prompt(&catalog));
-        let count = super::glyphmaps::write(&maps, &glyphs)?;
+        let count = super::glyphmaps::write(&maps, &glyphs, |h| super::sheet_file_name(&catalog, h))?;
         eprintln!("pe2: extract: {count} maps of pictures of text in {}", glyphs.display());
         eprintln!(
             "pe2: extract: {} sheets coloured from rooms' sprites, {} from rooms' code, {} glyph pages; {checked} sprite tables checked against their backgrounds, {mismatched} differ",

@@ -14,8 +14,9 @@ Ready-made mods are shared on
 publish yours.
 
 > Mods contain only their authors' work. The game's own files never go into a
-> mod (assets are found by a hash of what they replace, so a mod does not need
-> them), and nothing taken from the discs ever goes into this repository.
+> mod (assets are found by where they are on the discs or by a hash of what
+> they replace, so a mod does not need them), and nothing taken from the
+> discs ever goes into this repository.
 
 ## Where mods go
 
@@ -169,9 +170,21 @@ console's own, they would be shrunk to its texels).
 ### How textures work, in short
 
 The game's textures are **sheets**: columns of texels (256 wide at 4 bits
-per texel, 128 at 8 bits, up to 256 tall), each one asset, known by a
-hash of its contents: the same hash in every room, whatever else is loaded
-with it. That hash is the file name of everything about the sheet.
+per texel, 128 at 8 bits, up to 256 tall), each one asset. A sheet's name
+(`<sheet>` below) is where it is on the discs: the disc file, the picture
+in it and the column, `stage1_1801_file0_1_0` for column 0 of picture 1 of
+file 0 of stage 1's folder 1801 (`stage0_file1_0_0` in stage 0); a sheet
+found in several places, by the first. The extract names everything about
+a sheet so; keep the name, the content can be anything. When the game
+starts, PE2PC finds which sheet each name is on your discs. Places are
+the same on every version's discs, so a mod applies to a translation's
+too, to its translated pictures as well.
+
+A sheet may also be named by a hash of its contents, 16 hexadecimal digits
+(`7f1ed755e0e1401a`): it matches only that exact picture, and wins over a
+name by place for the same sheet. Older extracts named sheets so, and such
+mods keep working. With `PE2_TRACE=textures`, the log tells which sheet
+each name by place is.
 
 Almost every sheet is 4- or 8-bit: its texels are **not colours but
 numbers** (indices into a palette, a CLUT), and the game picks the palette
@@ -246,7 +259,7 @@ the one higher in the launcher's list wins.
 | Your texture in the wrong colours (a blue face) | a picture in colours, where the game draws with another palette than its preview's | convert it to indexed (step 5); if the preview itself looks wrong, please report the sheet |
 | A strip of noise in a preview (the top of a map's sheets) | part of the sheet is drawn at the other depth (4-bit icons on an 8-bit page): no single preview shows both | harmless: an 8-bit replacement serves the page, and the icons, drawn 4-bit, stay the game's (or make a 4-bit one from the sheet's `-4bit` ramp) |
 | Blocky, not smoothed | indexed textures are drawn without filtering (numbers cannot be blended) | the detail is what the upscale draws: a larger factor (up to the internal resolution's) gives finer edges |
-| A mod's texture for a translated picture never shows | its sheet's hash is the translated picture's, which the game loads only from the translation's files | the translation mod must bring that picture in `files/` (`tools/import_strings.py` does) |
+| A mod's texture for a translated picture never shows | with the USA discs, the translated picture comes from a translation mod's `files/`, which places do not see (they are read on the discs) | the translation mod must bring that picture in `files/` (`tools/import_strings.py` does), and the texture be named by the translated sheet's hash; with the translation's discs, a name by place is enough |
 
 ### Indexed replacements
 
@@ -290,7 +303,12 @@ above are the quick way.
      eight around it in the original, the one whose colour (or grey) is
      nearest its own; a tie keeps its own texel's. The upscaler decides
      where edges go; the indices stay the sheet's, even where a palette
-     repeats a colour, and no index appears that was not near.
+     repeats a colour, and no index appears that was not near. Where the
+     upscaler drew a smooth gradient between two of the palette's
+     colours, pixels side by side would flip between their indices (a
+     grain): a pixel with at most one of its eight neighbours of its own
+     index takes the one most of them have, so the specks go and the
+     upscaler's edges and thin lines stay.
    - **By hand.** Enlarge by a whole factor, each texel repeated, so its
      values stay the same indices, and draw your detail into it with the
      indices the sheet uses (a pencil on a grey or indexed PNG, no
@@ -323,7 +341,7 @@ header, `<sheet>-<4|8>bit.idx.toml`:
 |---|---|
 | `format` | `"pe2pc-indexed-texture"` |
 | `version` | `1` |
-| `sheet` | the sheet's hash, 16 hexadecimal digits, as in the file name |
+| `sheet` | the sheet's name, as in the file name (its place, or its hash); named by place, the hash of the sheet there on the discs it was made from is fine too |
 | `depth` | `4` or `8`, as in the file name |
 | `native_width`, `native_height` | the sheet in texels: 256 (4-bit) or 128 (8-bit) wide, 1 to 512 high |
 | `width`, `height` | the PNG's size: the native size times one whole factor (the same on both sides), at most 2048 |
@@ -890,8 +908,9 @@ python tools/gen_glyph_tables.py <game's dumps> ptbr=<translated dumps>
 Every picture the translation changed (the captions' font, one in each
 loading screen's file; maps, signs, the game over and ending screens)
 goes in `files/`, so the game shows the translated one; a texture made
-for such a picture (its sheet's hash is the translation's) applies only
-with it. A few stay the game's, which PE2PC or other mods replace (the
+for such a picture applies only with it, and only named by the translated
+sheet's hash (a name by place stands for what the discs hold there, the
+game's own picture). A few stay the game's, which PE2PC or other mods replace (the
 menus' font, the HUD's sheet, the title page: the tool's
 `PICTURES_KEPT`).
 

@@ -219,7 +219,10 @@ pub fn from_mods(catalog: &Catalog) -> Vec<Map> {
                 continue;
             }
         };
-        let sheets: Vec<u64> = file.sheets.iter().filter_map(|s| u64::from_str_radix(s, 16).ok()).collect();
+        // By hash, or by place (the extract's names: the same on every
+        // version's discs).
+        let sheets: Vec<u64> =
+            file.sheets.iter().filter_map(|s| super::resolve_sheet(&super::parse_sheet_name(s)?, catalog)).collect();
         let [sheet] = sheets[..] else { continue };
         if file.kind != "loading" || !catalog.sheets.iter().any(|s| s.hash == sheet) {
             continue;
@@ -232,11 +235,11 @@ pub fn from_mods(catalog: &Catalog) -> Vec<Map> {
 
 /// Saves `maps` in `dir`, each as its first sheet's `<sheet>-<4|8>bit.toml`.
 /// Answers how many.
-pub fn write(maps: &[Map], dir: &Path) -> std::io::Result<usize> {
+pub fn write(maps: &[Map], dir: &Path, name: impl Fn(u64) -> String) -> std::io::Result<usize> {
     std::fs::create_dir_all(dir)?;
     let quoted = |s: &str| format!("\"{}\"", s.replace('\\', "\\\\").replace('"', "\\\""));
     for m in maps {
-        let sheets: Vec<String> = m.sheets.iter().map(|s| format!("\"{s:016x}\"")).collect();
+        let sheets: Vec<String> = m.sheets.iter().map(|&s| quoted(&name(s))).collect();
         let mut toml = format!(
             "# Glyphs of a picture of text (see docs/MODDING.md): cell = [u, v, width,\n\
              # height] in texels of its sheets side by side; empty text: not known;\n\
@@ -262,7 +265,7 @@ pub fn write(maps: &[Map], dir: &Path) -> std::io::Result<usize> {
                 toml.push_str(&format!("like = [{u}, {v}, {w}, {h}]\n"));
             }
         }
-        std::fs::write(dir.join(format!("{:016x}-{}bit.toml", m.sheets[0], m.depth)), toml)?;
+        std::fs::write(dir.join(format!("{}-{}bit.toml", name(m.sheets[0]), m.depth)), toml)?;
     }
     Ok(maps.len())
 }
@@ -279,7 +282,7 @@ mod tests {
         g.face = Some("small");
         g.baseline = Some(3);
         let map = Map { kind: "ui-font", sheets: vec![0xAB], depth: 4, palette: None, glyphs: vec![g] };
-        assert_eq!(write(&[map], &dir).unwrap(), 1);
+        assert_eq!(write(&[map], &dir, |h| format!("{h:016x}")).unwrap(), 1);
         let text = std::fs::read_to_string(dir.join("00000000000000ab-4bit.toml")).unwrap();
         let parsed: toml::Value = toml::from_str(&text).unwrap();
         assert_eq!(parsed["kind"].as_str(), Some("ui-font"));

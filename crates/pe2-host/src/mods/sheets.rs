@@ -41,6 +41,12 @@ pub struct Sheet {
 }
 
 impl Sheet {
+    /// The name the extract gives its files: its place on the discs
+    /// (mods::sheet_place_name), else its hash.
+    pub fn file_name(&self) -> String {
+        if self.origin.is_empty() { format!("{:016x}", self.hash) } else { super::sheet_place_name(&self.origin) }
+    }
+
     fn new(hash: u64, rows: Vec<[u16; 64]>) -> Sheet {
         let pieces =
             rows.chunks(PIECE_ROWS).map(|c| piece_hash(c.iter().flatten().copied(), PIECE_ROWS - c.len())).collect();
@@ -234,6 +240,17 @@ pub struct Catalog {
 }
 
 impl Catalog {
+    /// Where on the discs the sheet `hash` was first found (`origin`).
+    pub fn origin_of(&self, hash: u64) -> Option<&str> {
+        let &index = self.by_hash.get(&hash)?;
+        Some(self.sheets[index as usize].origin.as_str()).filter(|o| !o.is_empty())
+    }
+
+    /// The sheet first found at `origin` (`<file>/<chunk>#<column>`).
+    pub fn at(&self, origin: &str) -> Option<u64> {
+        self.sheets.iter().find(|s| s.origin == origin).map(|s| s.hash)
+    }
+
     /// The UI font uses resident 16-colour CLUTs, not its file's 256-colour
     /// title-image palette: textUploadPalettes (main/textutil.c) loads the
     /// fill palettes (Text_FillClutPixels, 0x80060910 in the USA main
@@ -436,7 +453,7 @@ pub fn extract(
         if sheet.origin == "stage0/file1/0#0" && !catalog.ui_palettes.is_empty() {
             for palette in &catalog.ui_palettes {
                 let hash = super::fnv1a(palette.iter().flat_map(|w| w.to_le_bytes()));
-                let name = super::texture_name((sheet.hash, hash));
+                let name = format!("{}-{hash:016x}", sheet.file_name());
                 let (width, rgba) = sheet.through(0, palette);
                 let file = std::io::BufWriter::new(std::fs::File::create(dir.join(format!("{name}.png")))?);
                 let mut enc = png::Encoder::new(file, width as u32, sheet.rows.len() as u32);
@@ -454,7 +471,7 @@ pub fn extract(
             coloured += 1;
             continue;
         }
-        let name = super::texture_name((sheet.hash, 0));
+        let name = sheet.file_name();
         let path = dir.join(format!("{name}.png"));
         let (width, rgba, depth, source) = match painted.get(&(i as u32)) {
             Some(p) => (p.width, p.rgba.clone(), p.depth, p.source),
@@ -531,10 +548,11 @@ pub fn extract_indexed(
                 indices,
             };
             let note = if is_drawn { format!("drawn so: {source}") } else { format!("the other depth ({source})") };
-            super::indexed::write(dir, &replacement, Some(&note)).map_err(std::io::Error::other)?;
+            super::indexed::write_named(dir, &sheet.file_name(), &replacement, Some(&note))
+                .map_err(std::io::Error::other)?;
             // The ramp picture to enlarge, at the depth it is drawn.
             if is_drawn {
-                super::indexed::write_ramp(&ramps.join(folder(&sheet.origin)), &replacement)
+                super::indexed::write_ramp(&ramps.join(folder(&sheet.origin)), &sheet.file_name(), &replacement)
                     .map_err(std::io::Error::other)?;
             }
         }
