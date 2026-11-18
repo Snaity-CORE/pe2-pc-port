@@ -4,13 +4,252 @@
 //! - `pieces_from_backgrounds`: the pieces of rooms drawn over their
 //!   backgrounds (pillars, railings, furniture edges) cut from the mod's
 //!   enlarged backgrounds, so they match them exactly.
+//! - `prepare` and `finish`: the textures to enlarge, picked from the
+//!   extract and made ready for an upscaler (`prepare`); and the enlarged
+//!   ones made a mod's textures, their transparency the game's (`finish`).
 
 use std::collections::HashMap;
 use std::path::{Path, PathBuf};
 
 use super::Picture;
+use super::indexed;
 use super::rooms::Texel;
 use super::sheets::Catalog;
+
+/// What `prepare` and `finish` did: the files written, and those left out
+/// with why.
+#[derive(Default)]
+pub struct KitReport {
+    pub written: Vec<PathBuf>,
+    pub refused: Vec<String>,
+}
+
+/// A sheet of the extract's index (`dumps/textures/index.txt`): its
+/// folder, its name (with a palette's for a file per palette), the depth
+/// it is drawn at, and where its colours come from.
+struct IndexEntry {
+    folder: String,
+    name: String,
+    depth: u32,
+    colours: String,
+}
+
+fn read_index(dumps: &Path) -> Result<Vec<IndexEntry>, String> {
+    let path = dumps.join("textures").join("index.txt");
+    let text =
+        std::fs::read_to_string(&path).map_err(|e| format!("{}: {e} (extract the textures first)", path.display()))?;
+    Ok(text
+        .lines()
+        .filter(|l| !l.starts_with('#'))
+        .filter_map(|l| {
+            let mut parts = l.splitn(5, ' ');
+            let (file, _origin, _place, depth) = (parts.next()?, parts.next()?, parts.next()?, parts.next()?);
+            let (folder, name) = file.rsplit_once('/').unwrap_or(("", file));
+            let depth = depth.strip_suffix("-bit")?.parse().ok()?;
+            Some(IndexEntry {
+                folder: folder.to_string(),
+                name: name.to_string(),
+                depth,
+                colours: parts.next().unwrap_or("").to_string(),
+            })
+        })
+        .collect())
+}
+
+/// Whether a 4- or 8-bit sheet is best enlarged as its ramp (each index a
+/// grey) rather than in colours: the interface and fonts, drawn with
+/// several palettes whose colours look alike in each, and sheets whose
+/// colours are not known.
+fn by_ramp(s: &IndexEntry) -> bool {
+    s.folder == "ui" || s.folder.starts_with("ui/") || s.colours.starts_with("none")
+}
+
+/// Puts in `work` (in the extract's folders) each texture to enlarge, from
+/// the extract in `dumps`: the 4- and 8-bit sheets as their ramps (the
+/// interface, fonts, sheets of unknown colours) or in colours, the 15-bit
+/// ones in colours. Only those under `only` (a folder of the extract,
+/// `rooms/mist`), if given. Pictures are opaque, the colours around their
+/// clear parts spread into them: an upscaler then neither drops their
+/// transparency nor rims them with black or white (`finish` gives the
+/// game's transparency back).
+pub fn prepare(dumps: &Path, work: &Path, only: Option<&str>) -> Result<KitReport, String> {
+    let mut report = KitReport::default();
+    let mut done = std::collections::HashSet::new();
+    for s in read_index(dumps)? {
+        if only.is_some_and(|o| !(s.folder == o || s.folder.starts_with(&format!("{o}/")))) {
+            continue;
+        }
+        let ramp = s.depth < 15 && by_ramp(&s);
+        let base = s.name.split('-').next().unwrap_or(&s.name);
+        let (from, name) = if ramp {
+            let name = indexed::stem_named(base, u32::from(s.depth == 8));
+            (dumps.join("textures-ramp").join(&s.folder).join(format!("{name}.png")), name)
+        } else {
+            (dumps.join("textures").join(&s.folder).join(format!("{}.png", s.name)), s.name.clone())
+        };
+        if !done.insert((s.folder.clone(), name.clone())) {
+            continue;
+        }
+        let picture = match super::read_png(&from, true) {
+            Ok(p) => p,
+            Err(e) => {
+                report.refused.push(format!("{}: {e}", from.display()));
+                continue;
+            }
+        };
+        let dir = work.join(&s.folder);
+        std::fs::create_dir_all(&dir).map_err(|e| format!("{}: {e}", dir.display()))?;
+        let path = dir.join(format!("{name}.png"));
+        save_rgba(&path, picture.width, picture.height, &bleed(&picture))?;
+        report.written.push(path);
+    }
+    Ok(report)
+}
+
+/// `p`'s pixels made opaque, each clear one (alpha under half) given the
+/// colour of the opaque ones around it, spread outwards a texel at a time.
+fn bleed(p: &Picture) -> Vec<u8> {
+    let (w, h) = (p.width as usize, p.height as usize);
+    let mut rgba = p.rgba.clone();
+    let mut known: Vec<bool> = (0..w * h).map(|i| p.rgba[i * 4 + 3] >= 128).collect();
+    for _ in 0..w.max(h) {
+        let mut next = known.clone();
+        let mut grew = false;
+        for y in 0..h {
+            for x in 0..w {
+                if known[y * w + x] {
+                    continue;
+                }
+                let mut sum = [0u32; 3];
+                let mut n = 0;
+                for (dx, dy) in [(-1i32, 0i32), (1, 0), (0, -1), (0, 1), (-1, -1), (1, -1), (-1, 1), (1, 1)] {
+                    let (nx, ny) = (x as i32 + dx, y as i32 + dy);
+                    if (0..w as i32).contains(&nx)
+                        && (0..h as i32).contains(&ny)
+                        && known[ny as usize * w + nx as usize]
+                    {
+                        let at = (ny as usize * w + nx as usize) * 4;
+                        for c in 0..3 {
+                            sum[c] += u32::from(rgba[at + c]);
+                        }
+                        n += 1;
+                    }
+                }
+                if let Some(mean) = sum.iter().map(|s| s.checked_div(n)).collect::<Option<Vec<u32>>>() {
+                    for (c, m) in mean.into_iter().enumerate() {
+                        rgba[(y * w + x) * 4 + c] = m as u8;
+                    }
+                    next[y * w + x] = true;
+                    grew = true;
+                }
+            }
+        }
+        known = next;
+        if !grew {
+            break;
+        }
+    }
+    for px in rgba.as_chunks_mut::<4>().0 {
+        px[3] = 255;
+    }
+    rgba
+}
+
+/// `upscaled` with the transparency of `original` (its alpha, enlarged
+/// smoothly to the upscaled size): what `prepare` made opaque, clear again
+/// where the game's texels are.
+fn with_alpha_of(upscaled: &Picture, original: &Picture) -> Vec<u8> {
+    let (w, h) = (upscaled.width as usize, upscaled.height as usize);
+    let (ow, oh) = (original.width as usize, original.height as usize);
+    let alpha = |x: usize, y: usize| f32::from(original.rgba[(y.min(oh - 1) * ow + x.min(ow - 1)) * 4 + 3]);
+    let mut out = upscaled.rgba.clone();
+    for y in 0..h {
+        for x in 0..w {
+            // Bilinear, between the original texels' centres.
+            let fx = ((x as f32 + 0.5) * ow as f32 / w as f32 - 0.5).max(0.0);
+            let fy = ((y as f32 + 0.5) * oh as f32 / h as f32 - 0.5).max(0.0);
+            let (x0, y0) = (fx as usize, fy as usize);
+            let (tx, ty) = (fx - x0 as f32, fy - y0 as f32);
+            let top = alpha(x0, y0) * (1.0 - tx) + alpha(x0 + 1, y0) * tx;
+            let bottom = alpha(x0, y0 + 1) * (1.0 - tx) + alpha(x0 + 1, y0 + 1) * tx;
+            out[(y * w + x) * 4 + 3] = (top * (1.0 - ty) + bottom * ty).round() as u8;
+        }
+    }
+    out
+}
+
+/// Makes the enlarged textures in `work` (as `prepare` laid them out, each
+/// enlarged by a whole factor) the textures of the mod at `mod_dir`, from
+/// the extract in `dumps`: ramps and 4- and 8-bit sheets in colours become
+/// indexed replacements (indexed.rs `from_upscale`), with the game's
+/// transparency; 15-bit sheets stay in colours, their transparency the
+/// game's again. What was made before is made again.
+pub fn finish(dumps: &Path, work: &Path, mod_dir: &Path) -> Result<KitReport, String> {
+    let mut report = KitReport::default();
+    for path in super::files_under(work) {
+        if !path.extension().is_some_and(|x| x.eq_ignore_ascii_case("png")) {
+            continue;
+        }
+        let folder = path.parent().and_then(|p| p.strip_prefix(work).ok()).unwrap_or(Path::new("")).to_path_buf();
+        let Some(stem) = path.file_stem().and_then(|s| s.to_str()) else { continue };
+        match finish_one(dumps, &path, &folder, stem, &mod_dir.join("textures").join(&folder)) {
+            Ok(written) => report.written.push(written),
+            Err(e) => report.refused.push(format!("{}: {e}", path.display())),
+        }
+    }
+    Ok(report)
+}
+
+fn finish_one(dumps: &Path, path: &Path, folder: &Path, stem: &str, out: &Path) -> Result<PathBuf, String> {
+    let upscaled = super::read_png(path, true)?;
+    let read_native = |base: &str, depth: u32| {
+        indexed::read(&dumps.join("textures-indexed").join(format!("{}.idx.png", indexed::stem_named(base, depth))))
+    };
+    // A ramp: its sheet's indices' greys.
+    if let Some((_, depth)) = indexed::parse_stem(stem) {
+        let base = stem.rsplit_once('-').map_or(stem, |n| n.0);
+        let native = read_native(base, depth)?;
+        let ramp = indexed::ramp(&native);
+        let made = indexed::from_upscale(
+            &native,
+            &indexed::Rgba { width: native.size.0, height: native.size.1, pixels: &ramp },
+            &indexed::Rgba { width: upscaled.width, height: upscaled.height, pixels: &upscaled.rgba },
+        )?;
+        return indexed::write_named(out, base, &made, Some(&format!("from the enlarged {stem}.png")));
+    }
+    // In colours: the extract's preview tells its depth (its width) and its
+    // transparency.
+    let original_path = dumps.join("textures").join(folder).join(format!("{stem}.png"));
+    let original =
+        super::read_png(&original_path, true).map_err(|e| format!("its preview {}: {e}", original_path.display()))?;
+    let scale = upscaled.width / original.width.max(1);
+    if scale == 0 || upscaled.width != original.width * scale || upscaled.height != original.height * scale {
+        return Err(format!(
+            "{}x{} is not a whole multiple of the sheet's {}x{}",
+            upscaled.width, upscaled.height, original.width, original.height
+        ));
+    }
+    let rgba = with_alpha_of(&upscaled, &original);
+    let base = stem.split('-').next().unwrap_or(stem);
+    match original.width {
+        256 | 128 => {
+            let depth = u32::from(original.width == 128);
+            let native = read_native(base, depth)?;
+            let made = indexed::from_upscale(
+                &native,
+                &indexed::Rgba { width: original.width, height: original.height, pixels: &original.rgba },
+                &indexed::Rgba { width: upscaled.width, height: upscaled.height, pixels: &rgba },
+            )?;
+            indexed::write_named(out, base, &made, Some(&format!("from the enlarged {stem}.png")))
+        }
+        _ => {
+            std::fs::create_dir_all(out).map_err(|e| format!("{}: {e}", out.display()))?;
+            let to = out.join(format!("{stem}.png"));
+            save_rgba(&to, upscaled.width, upscaled.height, &rgba)?;
+            Ok(to)
+        }
+    }
+}
 
 /// What `pieces_from_backgrounds` did.
 #[derive(Default)]
@@ -203,6 +442,31 @@ fn save_rgba(path: &Path, w: u32, h: u32, rgba: &[u8]) -> Result<(), String> {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    /// Clear pixels take the colour of the opaque ones around them, and the
+    /// picture comes out opaque; the opaque ones keep theirs.
+    #[test]
+    fn clear_pixels_take_their_neighbours_colour() {
+        // 3x1: red, clear, clear.
+        let p = Picture { width: 3, height: 1, rgba: vec![200, 0, 0, 255, 9, 9, 9, 0, 9, 9, 9, 0] };
+        let out = bleed(&p);
+        assert_eq!(out, vec![200, 0, 0, 255, 200, 0, 0, 255, 200, 0, 0, 255]);
+    }
+
+    /// The original's transparency, enlarged smoothly: clear where its
+    /// texels are clear, opaque where they are not, between at the edge.
+    #[test]
+    fn transparency_comes_back_from_the_original() {
+        let original = Picture { width: 2, height: 1, rgba: vec![1, 1, 1, 255, 1, 1, 1, 0] };
+        let upscaled = Picture { width: 8, height: 4, rgba: vec![50; 8 * 4 * 4] };
+        let out = with_alpha_of(&upscaled, &original);
+        let alpha = |x: usize, y: usize| out[(y * 8 + x) * 4 + 3];
+        assert_eq!(alpha(0, 0), 255);
+        assert_eq!(alpha(7, 3), 0);
+        assert!(alpha(3, 1) > 128 && alpha(4, 1) < 128);
+        // The colours are the upscaled picture's.
+        assert_eq!(out[0], 50);
+    }
 
     /// A plain texel takes its background block; colour 0 stays clear; a
     /// tinted one keeps what it had.

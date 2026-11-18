@@ -48,7 +48,10 @@ const USAGE: &str = "usage: pe2 [disc 1 image] [disc 2 image]\n\
                      colour previews (dumps/textures/<name>.png made larger, by an AI\n\
                      upscaler say) into indexed replacements.\n\
                      --pieces-from-backgrounds <mod folder> [images] cuts the rooms' pieces\n\
-                     drawn over backgrounds from the mod's enlarged backgrounds.";
+                     drawn over backgrounds from the mod's enlarged backgrounds;\n\
+                     --upscale-prepare <work folder> [extract folder] puts there the\n\
+                     textures to enlarge, and --upscale-finish <work folder> <mod folder>\n\
+                     makes the enlarged ones the mod's textures.";
 
 /// Started from Explorer, the process is alone on a console of its own:
 /// let it go, so no empty console window stays behind the game. Started
@@ -269,6 +272,44 @@ fn pieces_tool(args: &[PathBuf]) -> ExitCode {
     }
 }
 
+/// `--upscale-prepare <work folder> [extract folder]` and
+/// `--upscale-finish <work folder> <mod folder>` (mods/kit.rs), with the
+/// extract in the data folder's dumps/: the exit code, or None for other
+/// arguments.
+fn upscale_tool(args: &[PathBuf]) -> Option<ExitCode> {
+    let dumps = paths::user_dir().join("dumps");
+    let result = match (args.first()?.to_str()?, args.len()) {
+        ("--upscale-prepare", 2 | 3) => {
+            let only = args.get(2).and_then(|o| o.to_str()).map(|o| o.trim_matches(['/', '\\']).replace('\\', "/"));
+            mods::kit::prepare(&dumps, &args[1], only.as_deref())
+        }
+        ("--upscale-finish", 3) => mods::kit::finish(&dumps, &args[1], &args[2]),
+        ("--upscale-prepare" | "--upscale-finish", _) => {
+            eprintln!(
+                "pe2: --upscale-prepare <work folder> [extract folder] | --upscale-finish <work folder> <mod folder>"
+            );
+            return Some(ExitCode::FAILURE);
+        }
+        _ => return None,
+    };
+    Some(match result {
+        Ok(report) => {
+            for path in &report.written {
+                println!("{}", path.display());
+            }
+            for why in &report.refused {
+                println!("not made: {why}");
+            }
+            println!("{} written, {} not", report.written.len(), report.refused.len());
+            if report.refused.is_empty() { ExitCode::SUCCESS } else { ExitCode::FAILURE }
+        }
+        Err(e) => {
+            eprintln!("pe2: {e}");
+            ExitCode::FAILURE
+        }
+    })
+}
+
 fn main() -> ExitCode {
     drop_own_console();
     logfile::start();
@@ -278,6 +319,9 @@ fn main() -> ExitCode {
     }
     if images.first().is_some_and(|a| a.as_os_str() == "--pieces-from-backgrounds") {
         return pieces_tool(&images[1..]);
+    }
+    if let Some(code) = upscale_tool(&images) {
+        return code;
     }
     // `--extract [parts] [images]`: all parts unless named (files.rs Parts).
     let extract = images.first().is_some_and(|a| a.as_os_str() == "--extract");

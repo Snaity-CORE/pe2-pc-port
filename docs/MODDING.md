@@ -227,6 +227,33 @@ numbers go, and the game colours them right.
 An indexed replacement wins where both exist for a sheet; between mods,
 the one higher in the launcher's list wins.
 
+### Upscaling textures, the quick way
+
+After the extract (`pe2 --extract textures`):
+
+```text
+pe2 --upscale-prepare my-work rooms/mist
+(enlarge everything in my-work by a whole factor, keeping the names,
+ into my-work-big, with any upscaler)
+pe2 --upscale-finish my-work-big mods/my-mod
+```
+
+`--upscale-prepare` puts in the folder given each texture to enlarge, in
+the extract's folders: the 4- and 8-bit sheets as their ramps (the
+interface and fonts, and sheets whose colours are not known) or in
+colours, the 15-bit ones in colours. The folder after it (one of the
+extract's, `rooms/mist`, `characters/aya`, `ui`) takes only what is under
+it; without one, everything (about 2,100 sheets). Its pictures are opaque,
+the colours around their clear parts spread into them, so an upscaler
+neither drops their transparency nor rims them with black or white.
+
+`--upscale-finish` makes the enlarged pictures the mod's textures, named
+and filed as the extract does: the 4- and 8-bit ones indexed replacements
+(as step 5 below), the 15-bit ones pictures in colours, all with the
+game's transparency again, taken from the extract (an upscaler that drops
+or blurs it does no harm). It writes again what it made before; a picture
+not a whole multiple of its sheet is left out, and said why.
+
 ### Upscaling textures, step by step
 
 1. **Extract**: `pe2 --extract textures`. What it saves in `dumps/`:
