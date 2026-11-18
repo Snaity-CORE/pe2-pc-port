@@ -287,9 +287,26 @@ impl Tracker {
                 self.loaded[r] |= bits;
             }
         }
-        if (w, h) == (64, rows_per) && x % 64 == 0 && y % rows_per == 0 && pixels.len() >= 64 * PIECE_ROWS {
-            let hash = sheets::piece_hash(pixels[..64 * PIECE_ROWS].iter().copied(), 0);
-            self.pieces[((x / 64) * PIECES + y / rows_per) as usize] = Some(Piece { hash, sheet: None });
+        // Each aligned 64x32 piece the transfer holds whole: the game loads
+        // sheets a piece at a time, and puts back larger blocks it saved
+        // (the map's strip, closing it) in one transfer.
+        if pixels.len() < (w * h) as usize {
+            return;
+        }
+        let (bx0, by0) = ((x + 63) / 64 * 64, (y + rows_per - 1) / rows_per * rows_per);
+        for by in (by0..=y + h - rows_per).step_by(PIECE_ROWS) {
+            for bx in (bx0..=x + w - 64).step_by(64) {
+                if !(0..COLUMNS * 64).contains(&bx) || !(0..ROWS).contains(&by) {
+                    continue;
+                }
+                let (ox, oy) = ((bx - x) as usize, (by - y) as usize);
+                let block = (0..PIECE_ROWS).flat_map(|r| {
+                    let start = (oy + r) * w as usize + ox;
+                    pixels[start..start + 64].iter().copied()
+                });
+                let hash = sheets::piece_hash(block, 0);
+                self.pieces[((bx / 64) * PIECES + by / rows_per) as usize] = Some(Piece { hash, sheet: None });
+            }
         }
     }
 
