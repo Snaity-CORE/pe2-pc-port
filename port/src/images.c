@@ -22,6 +22,17 @@ int pc_trace_images;
 typedef struct Slot {
     uint32_t load;
     int installed; /* index into pc_image_thunks, or -1 */
+    /* The installed image's first bytes as they were when it was found:
+     * its own, or a translation's (`ending`). Another image loaded over its
+     * start changes them, though it may leave its code as it was (the
+     * title over gameplay's rodata). */
+    uint64_t head;
+    /* The image that last left the slot (-1: none) and its first bytes then.
+     * Its code can stay in RAM after it, the slot reused for data (the map's
+     * after the game resets to the title): it comes back by its code alone
+     * only with its first bytes as they were, reloaded. */
+    int gone;
+    uint64_t gone_head;
 } Slot;
 
 static Slot slots[MAX_SLOTS];
@@ -48,10 +59,14 @@ static uint64_t masked_fnv(const PcImageThunks* img, uint32_t start, uint32_t en
     return h;
 }
 
+static uint64_t head_hash(const PcImageThunks* img)
+{
+    return masked_fnv(img, 0, img->size < PREFIX_BYTES ? img->size : PREFIX_BYTES);
+}
+
 static int prefix_matches(const PcImageThunks* img)
 {
-    uint32_t n = img->size < PREFIX_BYTES ? img->size : PREFIX_BYTES;
-    return masked_fnv(img, 0, n) == img->prefix_hash;
+    return head_hash(img) == img->prefix_hash;
 }
 
 /* Whether the slot may hold `img`, cheaply: its first bytes, or its code's
@@ -127,6 +142,7 @@ static void init_slots(void)
         if (s == slot_count && slot_count < MAX_SLOTS) {
             slots[slot_count].load = img->load;
             slots[slot_count].installed = -1;
+            slots[slot_count].gone = -1;
             slot_count++;
         }
     }
@@ -141,7 +157,7 @@ int pc_scan_images(void)
         Slot* slot = &slots[s];
         if (slot->installed >= 0) {
             const PcImageThunks* cur = &pc_image_thunks[slot->installed];
-            if (head_matches(cur)) {
+            if (head_hash(cur) == slot->head) {
                 if (thunks_intact(cur))
                     continue;
                 /* Reloaded over itself: rewrite the thunks once complete. */
@@ -155,20 +171,37 @@ int pc_scan_images(void)
             }
         }
         int found = 0;
-        for (unsigned i = 0; i < pc_image_thunk_count; i++) {
+        /* An image whole as it is first; then one whose code alone is there
+         * (a translation's), unless another image's own first bytes are:
+         * the title loads over gameplay's rodata and leaves its code, which
+         * must not pass for gameplay, complete or not yet. */
+        int other_head = -1;
+        for (unsigned i = 0; i < pc_image_thunk_count && other_head < 0; i++) {
             const PcImageThunks* img = &pc_image_thunks[i];
-            if (img->load != slot->load || (int)i == slot->installed || !fits_in_ram(img))
-                continue;
-            if (!head_matches(img) || !matches(img))
-                continue;
-            found = 1;
-            pc_clear_thunks(img->load, img->size);
-            pc_install_thunks(img->image);
-            slot->installed = (int)i;
-            installed++;
-            if (pc_trace_images)
-                fprintf(stderr, "[images] %s loaded at 0x%08X (%u functions)\n", img->image, img->load, img->count);
-            break;
+            if (img->load == slot->load && fits_in_ram(img) && prefix_matches(img))
+                other_head = (int)i;
+        }
+        for (unsigned pass = 0; pass < 2 && !found; pass++) {
+            for (unsigned i = 0; i < pc_image_thunk_count; i++) {
+                const PcImageThunks* img = &pc_image_thunks[i];
+                if (img->load != slot->load || (int)i == slot->installed || !fits_in_ram(img))
+                    continue;
+                if (pass == 0 ? !(prefix_matches(img) && fully_matches(img))
+                              : !(head_matches(img) && (other_head < 0 || other_head == (int)i) &&
+                                  ((int)i != slot->gone || head_hash(img) == slot->gone_head) && code_matches(img)))
+                    continue;
+                found = 1;
+                pc_clear_thunks(img->load, img->size);
+                pc_install_thunks(img->image);
+                slot->installed = (int)i;
+                slot->head = head_hash(img);
+                slot->gone = -1;
+                installed++;
+                if (pc_trace_images)
+                    fprintf(stderr, "[images] %s loaded at 0x%08X (%u functions)\n", img->image, img->load,
+                            img->count);
+                break;
+            }
         }
         /* The installed image is gone and nothing known replaced it (yet):
          * its thunks no longer describe the slot's code. */
@@ -177,6 +210,8 @@ int pc_scan_images(void)
             pc_clear_thunks(cur->load, cur->size);
             if (pc_trace_images)
                 fprintf(stderr, "[images] %s left 0x%08X; slot content not recognized yet\n", cur->image, cur->load);
+            slot->gone = slot->installed;
+            slot->gone_head = slot->head;
             slot->installed = -1;
         }
     }
