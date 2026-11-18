@@ -46,7 +46,9 @@ const USAGE: &str = "usage: pe2 [disc 1 image] [disc 2 image]\n\
                      texel repeated (its values stay the same palette indices);\n\
                      --indexed-from-upscale <picture or folder> <folder> turns enlarged\n\
                      colour previews (dumps/textures/<name>.png made larger, by an AI\n\
-                     upscaler say) into indexed replacements.";
+                     upscaler say) into indexed replacements.\n\
+                     --pieces-from-backgrounds <mod folder> [images] cuts the rooms' pieces\n\
+                     drawn over backgrounds from the mod's enlarged backgrounds.";
 
 /// Started from Explorer, the process is alone on a console of its own:
 /// let it go, so no empty console window stays behind the game. Started
@@ -224,12 +226,58 @@ fn from_upscale(source: &std::path::Path, out: &std::path::Path) -> (usize, usiz
     (done, failed)
 }
 
+/// `--pieces-from-backgrounds <mod folder> [images]` (mods/kit.rs): the
+/// rooms' pieces cut from the mod's enlarged backgrounds, with the discs
+/// given, else pe2.toml's.
+fn pieces_tool(args: &[PathBuf]) -> ExitCode {
+    let Some(mod_dir) = args.first() else {
+        eprintln!("pe2: --pieces-from-backgrounds <mod folder> [disc 1 image] [disc 2 image]");
+        return ExitCode::FAILURE;
+    };
+    let mut images = args[1..].to_vec();
+    if images.is_empty() {
+        let discs = &config::get().discs;
+        images.extend(discs.disc1.iter().chain(discs.disc2.iter()).cloned());
+    }
+    if images.is_empty() {
+        eprintln!("pe2: no disc images: give them, or set them in Setup");
+        return ExitCode::FAILURE;
+    }
+    match mods::kit::pieces_from_backgrounds(&images, mod_dir) {
+        Ok(report) => {
+            for path in &report.written {
+                println!("{}", path.display());
+            }
+            for why in &report.refused {
+                println!("not used: {why}");
+            }
+            for path in &report.kept {
+                println!("kept (already there): {}", path.display());
+            }
+            println!(
+                "{} sheets of rooms' pieces written from {} backgrounds, {} kept",
+                report.written.len(),
+                report.backgrounds,
+                report.kept.len()
+            );
+            ExitCode::SUCCESS
+        }
+        Err(e) => {
+            eprintln!("pe2: {e}");
+            ExitCode::FAILURE
+        }
+    }
+}
+
 fn main() -> ExitCode {
     drop_own_console();
     logfile::start();
     let mut images: Vec<PathBuf> = std::env::args_os().skip(1).map(PathBuf::from).collect();
     if let Some(code) = indexed_tool(&images) {
         return code;
+    }
+    if images.first().is_some_and(|a| a.as_os_str() == "--pieces-from-backgrounds") {
+        return pieces_tool(&images[1..]);
     }
     // `--extract [parts] [images]`: all parts unless named (files.rs Parts).
     let extract = images.first().is_some_and(|a| a.as_os_str() == "--extract");

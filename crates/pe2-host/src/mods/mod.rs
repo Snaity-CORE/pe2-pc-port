@@ -31,6 +31,7 @@ pub mod glyphmaps;
 pub mod glyphs;
 pub mod indexed;
 pub mod install;
+pub mod kit;
 pub mod labels;
 pub mod menuglyphs;
 pub mod movies;

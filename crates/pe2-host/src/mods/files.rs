@@ -526,6 +526,7 @@ pub fn dialogue_sources_of(image: &Path, threads: usize) -> Result<super::dialog
         out.palettes.extend(part.palettes);
         out.packages.extend(part.packages);
         out.backgrounds.extend(part.backgrounds);
+        out.background_chunks.extend(part.background_chunks);
         out.bundles.extend(part.bundles);
     }
     Ok(out)
@@ -578,7 +579,10 @@ fn add_source(out: &mut super::dialogue::Sources, disc: &mut dyn Disc, f: &DiscF
                 out.picture_chunks.entry(f.key.clone()).or_default().push(k);
             }
             2 => out.palettes.entry(f.key.clone()).or_default().push(c.payload),
-            5 => out.backgrounds.entry(f.key.clone()).or_default().push(c.payload),
+            5 => {
+                out.backgrounds.entry(f.key.clone()).or_default().push(c.payload);
+                out.background_chunks.entry(f.key.clone()).or_default().push(k);
+            }
             4 => out.bundles.push((f.key.clone(), k, c.payload)),
             _ => {}
         }

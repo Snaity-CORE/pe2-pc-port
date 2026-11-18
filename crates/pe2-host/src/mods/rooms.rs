@@ -408,18 +408,28 @@ struct Camera<'a> {
     background: Option<Vec<u16>>,
 }
 
+/// A texel of a room's piece as a sprite draws it: its sheet (catalog
+/// index), depth, the sheet's width and height in texels, the texel's
+/// index in it, its colour, where on the 320x240 screen it is drawn, and
+/// whether drawn plainly (neither semi-transparent nor tinted: its colour
+/// is the background's there).
+#[derive(Clone, Copy, Debug)]
+pub struct Texel {
+    pub sheet: u32,
+    pub depth: u32,
+    pub width: usize,
+    pub height: usize,
+    pub texel: usize,
+    pub colour: u16,
+    pub screen: (i32, i32),
+    pub plain: bool,
+}
+
 /// Walks every `step`th texel of `table`'s sprites, coloured from `block`,
-/// in `camera`'s sheets: `paint` gets each (sheet, depth, width, height,
-/// texel, colour). Answers how far, in sum, the sprites' colours are from
-/// the background where they are drawn, and over how many texels (the
-/// semi-transparent ones and colour 0 left out).
-fn walk(
-    table: &[Sprite],
-    camera: &Camera,
-    block: &Block,
-    step: usize,
-    mut paint: impl FnMut(u32, u32, usize, usize, usize, u16),
-) -> (u64, u64) {
+/// in `camera`'s sheets: `paint` gets each. Answers how far, in sum, the
+/// sprites' colours are from the background where they are drawn, and over
+/// how many texels (the semi-transparent ones and colour 0 left out).
+fn walk(table: &[Sprite], camera: &Camera, block: &Block, step: usize, mut paint: impl FnMut(Texel)) -> (u64, u64) {
     let (bx, by, bw, colours) = block;
     let (mut error, mut samples) = (0u64, 0u64);
     for s in table {
@@ -445,9 +455,18 @@ fn walk(
                 let Some(&colour) = colours.get(at) else { continue };
                 let width = 64 * per as usize;
                 let texel = ly * width + lx * per as usize + (tu % per) as usize;
-                paint(*sheet, s.depth, width, column.rows.len(), texel, colour);
-                // Checked against the background the piece is cut of.
                 let (sx, sy) = (s.x0 + 160 + dx, s.y0 + 120 + dy);
+                paint(Texel {
+                    sheet: *sheet,
+                    depth: s.depth,
+                    width,
+                    height: column.rows.len(),
+                    texel,
+                    colour,
+                    screen: (sx, sy),
+                    plain: !s.semi && s.shade == [128; 3],
+                });
+                // Checked against the background the piece is cut of.
                 if let Some(bg) = &camera.background
                     && colour != 0
                     && !s.semi
@@ -488,6 +507,24 @@ pub(super) fn colour_texel(
 /// (by catalog index), and how many tables were checked against their
 /// backgrounds and how many of those did not match.
 pub fn paint(sources: &Sources, catalog: &Catalog) -> (HashMap<u32, Painted>, usize, usize) {
+    paint_with(sources, catalog, None)
+}
+
+/// The texels of rooms' pieces each camera draws over its background, by
+/// the camera's file (`<room folder>/file<n>`): what the pieces' sheets
+/// are cut of (the sprites' tables; not what rooms' code draws).
+pub fn pieces(sources: &Sources, catalog: &Catalog) -> HashMap<String, Vec<Texel>> {
+    let mut pieces = HashMap::new();
+    paint_with(sources, catalog, Some(&mut pieces));
+    pieces
+}
+
+/// `paint`, and the pieces' texels by camera into `pieces` if given.
+fn paint_with(
+    sources: &Sources,
+    catalog: &Catalog,
+    mut pieces: Option<&mut HashMap<String, Vec<Texel>>>,
+) -> (HashMap<u32, Painted>, usize, usize) {
     let mut painted: HashMap<u32, Painted> = HashMap::new();
     let (mut checked, mut mismatched) = (0, 0);
     // Folders and their cameras' files with pictures, in order.
@@ -554,7 +591,7 @@ pub fn paint(sources: &Sources, catalog: &Catalog) -> (HashMap<u32, Painted>, us
                 None => {
                     let best = kept
                         .iter()
-                        .map(|block| (walk(table, &cameras[c], block, 3, |_, _, _, _, _, _| {}), block))
+                        .map(|block| (walk(table, &cameras[c], block, 3, |_| {}), block))
                         .filter(|((_, n), _)| *n >= 20)
                         .min_by_key(|((e, n), _)| e * 100 / n);
                     match best {
@@ -566,7 +603,7 @@ pub fn paint(sources: &Sources, catalog: &Catalog) -> (HashMap<u32, Painted>, us
             // A view the map does not have at first is taken only when its
             // sprites are its camera's (they match its background).
             if !mapped {
-                let (e, n) = walk(table, &cameras[c], block, 3, |_, _, _, _, _, _| {});
+                let (e, n) = walk(table, &cameras[c], block, 3, |_| {});
                 let matches = n >= 20 && e / n <= 6;
                 if crate::runtime::trace("rooms") {
                     eprintln!("[rooms] {key}: outside the map, {} sprites, matches {matches}", table.len());
@@ -575,9 +612,16 @@ pub fn paint(sources: &Sources, catalog: &Catalog) -> (HashMap<u32, Painted>, us
                     continue;
                 }
             }
-            let (e, n) = walk(table, &cameras[c], block, 1, |sheet, depth, width, height, texel, colour| {
-                colour_texel(&mut painted, "rooms' sprites", (sheet, depth, width, height, texel, colour));
+            let mut texels = Vec::new();
+            let (e, n) = walk(table, &cameras[c], block, 1, |t| {
+                colour_texel(&mut painted, "rooms' sprites", (t.sheet, t.depth, t.width, t.height, t.texel, t.colour));
+                if pieces.is_some() {
+                    texels.push(t);
+                }
             });
+            if let Some(pieces) = pieces.as_deref_mut() {
+                pieces.entry(key.clone()).or_default().extend(texels);
+            }
             if n > 50 {
                 checked += 1;
                 // About 1 of 31 per channel is the backgrounds' compression.
@@ -615,8 +659,8 @@ pub fn paint(sources: &Sources, catalog: &Catalog) -> (HashMap<u32, Painted>, us
                     }
                 }
                 let Some(block) = block else { continue };
-                walk(&sprites, &cameras[c], &block, 1, |sheet, depth, width, height, texel, colour| {
-                    colour_texel(&mut painted, "rooms' code", (sheet, depth, width, height, texel, colour));
+                walk(&sprites, &cameras[c], &block, 1, |t| {
+                    colour_texel(&mut painted, "rooms' code", (t.sheet, t.depth, t.width, t.height, t.texel, t.colour));
                 });
             }
         }

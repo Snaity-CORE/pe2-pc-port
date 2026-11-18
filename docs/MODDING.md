@@ -147,7 +147,23 @@ What to know:
 - **Foreground pieces.** Parts of a room that pass in front of the characters
   (pillars, railings, furniture edges) are drawn separately, from texture
   memory, on top of the background: they are textures (see below), to be
-  replaced to match your background.
+  replaced to match your background. PE2PC cuts them from your backgrounds
+  for you:
+
+  ```text
+  pe2 --pieces-from-backgrounds mods/my-mod
+  ```
+
+  For each room camera whose background your mod replaces (by place or by
+  hash, at a whole multiple of 320x240), every texel of its pieces takes
+  the block of your background where the game draws it, so they match it
+  exactly; their clear texels stay clear, so characters behind them still
+  show. The sheets are written to `mods/my-mod/textures/` in the
+  extract's folders, at your backgrounds' scale; a file already there is
+  kept (delete it to make it again). Texels drawn tinted or
+  semi-transparent, and those of cameras your mod leaves alone, keep the
+  game's colours, enlarged. It reads the discs set in Setup (or those
+  given after the folder).
 - **Changed pictures.** Some rooms change their picture a little before
   showing it again (a light turning on, the room's own frame kept behind a
   menu). Such a picture keeps your replacement, with what changed (in 16x16
