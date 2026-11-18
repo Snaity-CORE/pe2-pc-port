@@ -27,6 +27,9 @@ use crate::controls::{BUTTONS, RESERVED_KEYS, key_code, key_label, pad_button, p
 /// The disc images' boot executables: Parasite Eve II (USA).
 const DISC_SERIALS: [&str; 2] = ["SLUS_010.42", "SLUS_010.55"];
 
+/// Where players share PE2PC's mods (the Mods screen's button).
+const MODS_PAGE: &str = "https://gamebanana.com/games/26329";
+
 /// The template of a new pe2.toml: the documented example.
 const EXAMPLE: &str = include_str!("../../../pe2.example.toml");
 
@@ -1726,6 +1729,24 @@ impl Launcher {
                 }
             });
             ui.label(egui::RichText::new(crate::mods::mods_dir().display().to_string()).weak());
+            ui.add_space(6.0);
+            ui.horizontal(|ui| {
+                ui.spacing_mut().interact_size.y = 30.0;
+                if self.focus.button(ui, lang.t("Find mods on GameBanana", "Encontrar mods no GameBanana"), true) {
+                    let (error, ctx) = (self.launch_error.clone(), ui.ctx().clone());
+                    crate::paths::open_url(MODS_PAGE, move |e| {
+                        *error.lock().unwrap() = Some(e);
+                        ctx.request_repaint();
+                    });
+                }
+                ui.label(
+                    egui::RichText::new(lang.t(
+                        "Download a mod's .zip there, then install it with the button above.",
+                        "Baixe lá o .zip de um mod e instale com o botão acima.",
+                    ))
+                    .weak(),
+                );
+            });
             if self.install_job.is_some() {
                 ui.label(lang.t("Installing...", "Instalando..."));
             }

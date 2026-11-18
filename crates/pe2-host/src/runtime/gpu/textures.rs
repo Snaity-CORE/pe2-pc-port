@@ -51,6 +51,88 @@ fn registry() -> &'static Mutex<(u32, VecDeque<Hosted>)> {
     &REGISTRY
 }
 
+/// How long the textures drawn are gathered for a listing (F8): a few
+/// frames, so what blinks or moves is caught too.
+const LISTING_TIME: std::time::Duration = std::time::Duration::from_millis(500);
+
+/// Asked for a listing of the textures on screen (video.rs, F8).
+static LIST_REQUEST: std::sync::atomic::AtomicBool = std::sync::atomic::AtomicBool::new(false);
+
+/// A listing being gathered: since when, and each sheet (catalog index)
+/// and palette drawn, with the depth it was drawn at.
+struct Listing {
+    since: std::time::Instant,
+    seen: std::collections::BTreeMap<(u32, u64), u32>,
+}
+
+static LISTING: Mutex<Option<Listing>> = Mutex::new(None);
+
+/// A listing is being gathered (`LISTING` holds one): primitives check
+/// this, not the lock.
+static GATHERING: std::sync::atomic::AtomicBool = std::sync::atomic::AtomicBool::new(false);
+
+/// Lists the textures drawn over the next half second (F8): in the log and
+/// in `textures-on-screen.txt` in the data folder, each sheet by the name
+/// and folder the extract gives it, so a mod's file for it is easy to find.
+pub fn request_listing() {
+    if !crate::mods::wants_textures() {
+        eprintln!(
+            "pe2: textures on screen: not known at the console's resolution, or without HD fonts or textures mods"
+        );
+        return;
+    }
+    LIST_REQUEST.store(true, std::sync::atomic::Ordering::SeqCst);
+}
+
+/// A primitive drew `parts` of sheets at `depth` with `palette`: kept for
+/// a listing being gathered, which is written once its time is up.
+fn note_listing(catalog: &sheets::Catalog, depth: u32, palette: u64, parts: &[Part]) {
+    use std::sync::atomic::Ordering::SeqCst;
+    if !GATHERING.load(SeqCst) && !LIST_REQUEST.load(SeqCst) {
+        return;
+    }
+    // The game also draws in its vertical blank's callback, which runs with
+    // the game thread stopped wherever it is: not while that holds the lock.
+    let _g = crate::runtime::irq::guard();
+    let mut listing = LISTING.lock().unwrap();
+    if LIST_REQUEST.swap(false, SeqCst) {
+        *listing = Some(Listing { since: std::time::Instant::now(), seen: Default::default() });
+        GATHERING.store(true, SeqCst);
+    }
+    let Some(l) = listing.as_mut() else { return };
+    for part in parts.iter().filter(|p| p.sheet & HOSTED == 0) {
+        l.seen.entry((part.sheet, palette)).or_insert(depth);
+    }
+    if l.since.elapsed() < LISTING_TIME {
+        return;
+    }
+    let seen = std::mem::take(&mut l.seen);
+    *listing = None;
+    GATHERING.store(false, SeqCst);
+    drop(listing);
+    let mut text = String::from(
+        "# The textures on screen (F8): the folder and name the extract gives each sheet (a mod's\n\
+         # textures/ file for it: <name>.png, <name>-<palette>.png or <name>-<4|8>bit.idx.png),\n\
+         # the depth it is drawn at, the palette's hash, and the sheet's hash.\n",
+    );
+    for (&(index, palette), &depth) in &seen {
+        let Some(sheet) = catalog.sheets.get(index as usize) else { continue };
+        text.push_str(&format!(
+            "{}/{}  {}-bit  palette {palette:016x}  sheet {:016x}\n",
+            sheet.folder().to_string_lossy().replace('\\', "/"),
+            sheet.file_name(),
+            [4, 8, 15][depth.min(2) as usize],
+            sheet.hash
+        ));
+    }
+    let path = crate::paths::user_file("textures-on-screen.txt");
+    let saved = std::fs::write(&path, &text).map(|_| format!(", saved in {}", path.display())).unwrap_or_default();
+    eprintln!("pe2: textures on screen: {} sheets and palettes{saved}", seen.len());
+    for line in text.lines().filter(|l| !l.starts_with('#')) {
+        eprintln!("  {line}");
+    }
+}
+
 fn pixels_hash(pixels: &[u16]) -> u64 {
     pixels.iter().fold(FNV_OFFSET, |h, &p| fnv(h, p))
 }
@@ -205,9 +287,26 @@ impl Tracker {
                 self.loaded[r] |= bits;
             }
         }
-        if (w, h) == (64, rows_per) && x % 64 == 0 && y % rows_per == 0 && pixels.len() >= 64 * PIECE_ROWS {
-            let hash = sheets::piece_hash(pixels[..64 * PIECE_ROWS].iter().copied(), 0);
-            self.pieces[((x / 64) * PIECES + y / rows_per) as usize] = Some(Piece { hash, sheet: None });
+        // Each aligned 64x32 piece the transfer holds whole: the game loads
+        // sheets a piece at a time, and puts back larger blocks it saved
+        // (the map's strip, closing it) in one transfer.
+        if pixels.len() < (w * h) as usize {
+            return;
+        }
+        let (bx0, by0) = ((x + 63) / 64 * 64, (y + rows_per - 1) / rows_per * rows_per);
+        for by in (by0..=y + h - rows_per).step_by(PIECE_ROWS) {
+            for bx in (bx0..=x + w - 64).step_by(64) {
+                if !(0..COLUMNS * 64).contains(&bx) || !(0..ROWS).contains(&by) {
+                    continue;
+                }
+                let (ox, oy) = ((bx - x) as usize, (by - y) as usize);
+                let block = (0..PIECE_ROWS).flat_map(|r| {
+                    let start = (oy + r) * w as usize + ox;
+                    pixels[start..start + 64].iter().copied()
+                });
+                let hash = sheets::piece_hash(block, 0);
+                self.pieces[((bx / 64) * PIECES + by / rows_per) as usize] = Some(Piece { hash, sheet: None });
+            }
         }
     }
 
@@ -296,6 +395,7 @@ impl Tracker {
         }
         let palette =
             if depth < 2 { self.palette(vram, sh.clut_x, sh.clut_y, if depth == 0 { 16 } else { 256 }) } else { 0 };
+        note_listing(&catalog, depth, palette, &parts);
         if crate::runtime::trace("textures") {
             // Each sheet and palette once: the names mods give pictures.
             static SEEN: std::sync::Mutex<Option<std::collections::HashSet<(u32, u64)>>> = std::sync::Mutex::new(None);

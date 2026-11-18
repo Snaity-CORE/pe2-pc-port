@@ -39,8 +39,33 @@ def room_folder(name):
     return f'rooms/{name}'
 
 
+# STAGE0 files the decompilation does not name yet, found in its rooms'
+# resource tables (a file is (group base + fileNumber / 100) * 10000 +
+# fileNumber % 100 * 100): where they go.
+NAMED = {
+    # The MIST's basement map (B1: Mist Parking, Shooting Gallery), as the
+    # other mappic files.
+    'file30103': 'maps',
+    # Dryfield's dilapidated house, variant 1: file 212, group 50, beside
+    # No. 9's 521100 (src/rooms/dryfield_dilapidated_house).
+    'file521200': 'enemies/anmc_woman',
+    # Shelter B3's dumping hole: the prop's texture, file 417, group 60
+    # (src/rooms/shelter_b3_dumping_hole).
+    'file641700': 'rooms/shelter/b3_dumping_hole/prop',
+    # Shelter B1's pod service gantry: the chain carrier's texture, key 59,
+    # beside Kyle's 660802 and Eve's 660801
+    # (src/rooms/shelter_b1_pod_service_gantry).
+    'file660803': 'characters/chain_carrier/gantry',
+    # An empty actor slot with a texture of its own (configs/USA/
+    # overlays.toml actor_140400); no room's table loads it.
+    'file140400': 'unused/file140400',
+}
+
+
 def unnamed_folder(file_name, chunk_names, characters):
     """Where a STAGE0 file whose chunks' names have no folders goes."""
+    if file_name in NAMED:
+        return NAMED[file_name]
     if any(n.startswith('mappic') for n in chunk_names + [file_name]):
         return 'maps'
     who, _, id_ = file_name.rpartition('_')

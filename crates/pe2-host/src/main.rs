@@ -46,7 +46,14 @@ const USAGE: &str = "usage: pe2 [disc 1 image] [disc 2 image]\n\
                      texel repeated (its values stay the same palette indices);\n\
                      --indexed-from-upscale <picture or folder> <folder> turns enlarged\n\
                      colour previews (dumps/textures/<name>.png made larger, by an AI\n\
-                     upscaler say) into indexed replacements.";
+                     upscaler say) into indexed replacements.\n\
+                     --pieces-from-backgrounds <mod folder> [images] cuts the rooms' pieces\n\
+                     drawn over backgrounds from the mod's enlarged backgrounds;\n\
+                     --upscale-prepare <work folder> [extract folder] puts there the\n\
+                     textures to enlarge, and --upscale-finish <work folder> <mod folder>\n\
+                     makes the enlarged ones the mod's textures; --mod-check <mod folder>\n\
+                     <out folder> shows the mod's textures and backgrounds next to the\n\
+                     game's, with what PE2PC would refuse.";
 
 /// Started from Explorer, the process is alone on a console of its own:
 /// let it go, so no empty console window stays behind the game. Started
@@ -76,11 +83,12 @@ fn indexed_tool(args: &[PathBuf]) -> Option<ExitCode> {
         "--indexed-check" if args.len() > 1 => {
             let mut failed = false;
             for path in &args[1..] {
+                let stem = path.file_name().and_then(|n| n.to_str()).unwrap_or("").trim_end_matches(".idx.png");
+                let sheet = stem.rsplit_once('-').map_or(stem, |n| n.0);
                 match indexed::read(path) {
                     Ok(t) => println!(
-                        "{}: ok, sheet {:016x}, {}-bit, {}x{} texels, {}x{} ({}x)",
+                        "{}: ok, sheet {sheet}, {}-bit, {}x{} texels, {}x{} ({}x)",
                         path.display(),
-                        t.sheet,
                         [4, 8][t.depth as usize],
                         t.native.0,
                         t.native.1,
@@ -102,7 +110,10 @@ fn indexed_tool(args: &[PathBuf]) -> Option<ExitCode> {
                 Some(f) => indexed::upscale(&t, f),
                 None => Err(format!("{} is no whole factor", args[2].display())),
             });
-            match result.and_then(|t| indexed::write(&args[3], &t, None)) {
+            // The input's sheet name (its hash or its place), kept.
+            let stem = args[1].file_name().and_then(|n| n.to_str()).unwrap_or("").trim_end_matches(".idx.png");
+            let name = stem.rsplit_once('-').map_or(stem, |n| n.0).to_string();
+            match result.and_then(|t| indexed::write_named(&args[3], &name, &t, None)) {
                 Ok(out) => {
                     println!("{}", out.display());
                     Some(ExitCode::SUCCESS)
@@ -156,21 +167,28 @@ fn from_upscale(source: &std::path::Path, out: &std::path::Path) -> (usize, usiz
     for picture in pictures {
         let Some(name) = picture.file_stem().and_then(|s| s.to_str()) else { continue };
         let result = (|| -> Result<Option<PathBuf>, String> {
-            let read_native = |sheet: u64, depth: u32| {
-                indexed::read(&dumps.join("textures-indexed").join(format!("{}.idx.png", indexed::stem(sheet, depth))))
+            // The sheet's name (its place, or its hash) and its extract.
+            let read_native = |sheet: &str, depth: u32| {
+                indexed::read(
+                    &dumps.join("textures-indexed").join(format!("{}.idx.png", indexed::stem_named(sheet, depth))),
+                )
             };
             // A ramp picture's colours are its sheet's indices' greys; a
             // colour preview's are read from it.
+            let sheet = match indexed::parse_stem(name) {
+                Some(_) => name.rsplit_once('-').map_or(name, |n| n.0),
+                None => name.split('-').next().unwrap_or(""),
+            };
+            if mods::parse_sheet_name(sheet).is_none() {
+                return Err("not named as a sheet (<sheet>-<4|8>bit.png, <sheet>.png or <sheet>-<palette>.png)".into());
+            }
             let (native, preview) = match indexed::parse_stem(name) {
-                Some((sheet, depth)) => {
+                Some((_, depth)) => {
                     let native = read_native(sheet, depth)?;
                     let ramp = indexed::ramp(&native);
                     (native, ramp)
                 }
                 None => {
-                    let sheet = u64::from_str_radix(name.split('-').next().unwrap_or(""), 16).map_err(|_| {
-                        "not named as a sheet (<sheet>-<4|8>bit.png, <sheet>.png or <sheet>-<palette>.png)".to_string()
-                    })?;
                     let preview = previews
                         .get(name)
                         .ok_or("no preview of it in dumps/textures (extract first)".to_string())
@@ -195,7 +213,8 @@ fn from_upscale(source: &std::path::Path, out: &std::path::Path) -> (usize, usiz
             )?;
             sheets.insert(key);
             let folder = picture.parent().and_then(|p| p.strip_prefix(source).ok()).unwrap_or(std::path::Path::new(""));
-            indexed::write(&out.join(folder), &made, Some(&format!("from the enlarged {name}.png"))).map(Some)
+            indexed::write_named(&out.join(folder), sheet, &made, Some(&format!("from the enlarged {name}.png")))
+                .map(Some)
         })();
         match result {
             Ok(Some(path)) => {
@@ -212,11 +231,99 @@ fn from_upscale(source: &std::path::Path, out: &std::path::Path) -> (usize, usiz
     (done, failed)
 }
 
+/// `--pieces-from-backgrounds <mod folder> [images]` (mods/kit.rs): the
+/// rooms' pieces cut from the mod's enlarged backgrounds, with the discs
+/// given, else pe2.toml's.
+fn pieces_tool(args: &[PathBuf]) -> ExitCode {
+    let Some(mod_dir) = args.first() else {
+        eprintln!("pe2: --pieces-from-backgrounds <mod folder> [disc 1 image] [disc 2 image]");
+        return ExitCode::FAILURE;
+    };
+    let mut images = args[1..].to_vec();
+    if images.is_empty() {
+        let discs = &config::get().discs;
+        images.extend(discs.disc1.iter().chain(discs.disc2.iter()).cloned());
+    }
+    if images.is_empty() {
+        eprintln!("pe2: no disc images: give them, or set them in Setup");
+        return ExitCode::FAILURE;
+    }
+    match mods::kit::pieces_from_backgrounds(&images, mod_dir) {
+        Ok(report) => {
+            for path in &report.written {
+                println!("{}", path.display());
+            }
+            for why in &report.refused {
+                println!("not used: {why}");
+            }
+            for path in &report.kept {
+                println!("kept (already there): {}", path.display());
+            }
+            println!(
+                "{} sheets of rooms' pieces written from {} backgrounds, {} kept",
+                report.written.len(),
+                report.backgrounds,
+                report.kept.len()
+            );
+            ExitCode::SUCCESS
+        }
+        Err(e) => {
+            eprintln!("pe2: {e}");
+            ExitCode::FAILURE
+        }
+    }
+}
+
+/// `--upscale-prepare <work folder> [extract folder]` and
+/// `--upscale-finish <work folder> <mod folder>` (mods/kit.rs), with the
+/// extract in the data folder's dumps/: the exit code, or None for other
+/// arguments.
+fn upscale_tool(args: &[PathBuf]) -> Option<ExitCode> {
+    let dumps = paths::user_dir().join("dumps");
+    let result = match (args.first()?.to_str()?, args.len()) {
+        ("--upscale-prepare", 2 | 3) => {
+            let only = args.get(2).and_then(|o| o.to_str()).map(|o| o.trim_matches(['/', '\\']).replace('\\', "/"));
+            mods::kit::prepare(&dumps, &args[1], only.as_deref())
+        }
+        ("--upscale-finish", 3) => mods::kit::finish(&dumps, &args[1], &args[2]),
+        ("--mod-check", 3) => mods::kit::check(&dumps, &args[1], &args[2]),
+        ("--upscale-prepare" | "--upscale-finish" | "--mod-check", _) => {
+            eprintln!(
+                "pe2: --upscale-prepare <work folder> [extract folder] | --upscale-finish <work folder> <mod folder> | --mod-check <mod folder> <out folder>"
+            );
+            return Some(ExitCode::FAILURE);
+        }
+        _ => return None,
+    };
+    Some(match result {
+        Ok(report) => {
+            for path in &report.written {
+                println!("{}", path.display());
+            }
+            for why in &report.refused {
+                println!("not made: {why}");
+            }
+            println!("{} written, {} not", report.written.len(), report.refused.len());
+            if report.refused.is_empty() { ExitCode::SUCCESS } else { ExitCode::FAILURE }
+        }
+        Err(e) => {
+            eprintln!("pe2: {e}");
+            ExitCode::FAILURE
+        }
+    })
+}
+
 fn main() -> ExitCode {
     drop_own_console();
     logfile::start();
     let mut images: Vec<PathBuf> = std::env::args_os().skip(1).map(PathBuf::from).collect();
     if let Some(code) = indexed_tool(&images) {
+        return code;
+    }
+    if images.first().is_some_and(|a| a.as_os_str() == "--pieces-from-backgrounds") {
+        return pieces_tool(&images[1..]);
+    }
+    if let Some(code) = upscale_tool(&images) {
         return code;
     }
     // `--extract [parts] [images]`: all parts unless named (files.rs Parts).

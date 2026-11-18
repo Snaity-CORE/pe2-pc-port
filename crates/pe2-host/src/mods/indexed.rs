@@ -30,6 +30,8 @@ use std::path::{Path, PathBuf};
 
 use serde::{Deserialize, Serialize};
 
+use super::SheetName;
+
 /// What the header's `format` says.
 pub const FORMAT: &str = "pe2pc-indexed-texture";
 /// The format's version this build reads and writes.
@@ -127,28 +129,45 @@ pub fn header_path(png: &Path) -> PathBuf {
     png.with_file_name(format!("{}.toml", name.trim_end_matches(".png")))
 }
 
-/// A replacement's file name, without `.idx.png`: `<sheet>-<4|8>bit`.
-pub fn stem(sheet: u64, depth: u32) -> String {
-    format!("{sheet:016x}-{}bit", [4, 8][depth.min(1) as usize])
+/// A replacement's file name for the sheet named `name` (its hash or its
+/// place, mods::parse_sheet_name), without `.idx.png`.
+pub fn stem_named(name: &str, depth: u32) -> String {
+    format!("{name}-{}bit", [4, 8][depth.min(1) as usize])
 }
 
 /// The sheet and depth (0: 4 bits, 1: 8) a replacement's file name (less
 /// `.idx.png`) names.
-pub fn parse_stem(stem: &str) -> Option<(u64, u32)> {
-    let (sheet, bits) = stem.split_once('-')?;
+pub fn parse_stem(stem: &str) -> Option<(SheetName, u32)> {
+    let (sheet, bits) = stem.rsplit_once('-')?;
     let depth = match bits.to_ascii_lowercase().as_str() {
         "4bit" => 0,
         "8bit" => 1,
         _ => return None,
     };
-    Some((u64::from_str_radix(sheet, 16).ok()?, depth))
+    Some((super::parse_sheet_name(sheet)?, depth))
+}
+
+/// The number a replacement is known by while drawn (`Indexed::sheet`):
+/// its sheet's hash, or for one named by place a number of that place
+/// (which sheet it replaces is told by the catalog, mods.rs).
+fn sheet_number(name: &SheetName) -> u64 {
+    match name {
+        SheetName::Hash(h) => *h,
+        SheetName::Place(origin) => super::fnv1a(b"place:".iter().chain(origin.as_bytes()).copied()),
+    }
 }
 
 /// Writes `indexed` as `<sheet>-<4|8>bit.idx.png` and `.idx.toml` in `dir`.
 pub fn write(dir: &Path, indexed: &Indexed, depth_source: Option<&str>) -> Result<PathBuf, String> {
+    write_named(dir, &format!("{:016x}", indexed.sheet), indexed, depth_source)
+}
+
+/// Writes `indexed` in `dir` for the sheet named `name` (its hash or its
+/// place): `<name>-<4|8>bit.idx.png` and `.idx.toml`.
+pub fn write_named(dir: &Path, name: &str, indexed: &Indexed, depth_source: Option<&str>) -> Result<PathBuf, String> {
     std::fs::create_dir_all(dir).map_err(|e| e.to_string())?;
-    let name = format!("{:016x}", indexed.sheet);
-    let png = dir.join(format!("{}.idx.png", stem(indexed.sheet, indexed.depth)));
+    let name = name.to_string();
+    let png = dir.join(format!("{}.idx.png", stem_named(&name, indexed.depth)));
     let file = std::fs::File::create(&png).map_err(|e| e.to_string())?;
     let mut enc = png::Encoder::new(std::io::BufWriter::new(file), indexed.size.0, indexed.size.1);
     enc.set_color(png::ColorType::Grayscale);
@@ -192,20 +211,30 @@ fn check(header: &Header, stem: &str, (w, h): (u32, u32), values: Vec<u8>) -> Re
     if header.layout != LAYOUT {
         return Err(format!("layout \"{}\", not \"{LAYOUT}\"", header.layout));
     }
-    let sheet = u64::from_str_radix(&header.sheet, 16).map_err(|_| format!("sheet \"{}\" is no hash", header.sheet))?;
+    let name = super::parse_sheet_name(&header.sheet)
+        .ok_or_else(|| format!("sheet \"{}\" is no hash nor place", header.sheet))?;
     let depth = match header.depth {
         4 => 0,
         8 => 1,
         d => return Err(format!("depth {d} (4 or 8)")),
     };
-    if parse_stem(stem) != Some((sheet, depth)) {
+    // Named by place, the header may give the place or the hash of the
+    // sheet there on the discs it was made from.
+    let named = parse_stem(stem);
+    let fits = match (&named, &name) {
+        (Some((SheetName::Place(_), d)), SheetName::Hash(_)) => *d == depth,
+        (Some(n), _) => *n == (name.clone(), depth),
+        (None, _) => false,
+    };
+    if !fits {
         return Err(format!(
             "file is named {stem}, but its header says sheet {} at {} bits ({})",
             header.sheet,
             header.depth,
-            self::stem(sheet, depth)
+            stem_named(&header.sheet, depth)
         ));
     }
+    let sheet = sheet_number(&named.map_or(name, |n| n.0));
     let native_width = [256, 128][depth as usize];
     if header.native_width != native_width || header.native_height == 0 || header.native_height > 512 {
         return Err(format!(
@@ -292,10 +321,11 @@ pub fn ramp(indexed: &Indexed) -> Vec<u8> {
         .collect()
 }
 
-/// Saves `indexed`'s ramp picture as `<sheet>-<4|8>bit.png` in `dir`.
-pub fn write_ramp(dir: &Path, indexed: &Indexed) -> Result<PathBuf, String> {
+/// Saves `indexed`'s ramp picture as `<name>-<4|8>bit.png` in `dir`, for
+/// the sheet named `name` (its hash or its place).
+pub fn write_ramp(dir: &Path, name: &str, indexed: &Indexed) -> Result<PathBuf, String> {
     std::fs::create_dir_all(dir).map_err(|e| e.to_string())?;
-    let path = dir.join(format!("{}.png", stem(indexed.sheet, indexed.depth)));
+    let path = dir.join(format!("{}.png", stem_named(name, indexed.depth)));
     let file = std::fs::File::create(&path).map_err(|e| e.to_string())?;
     let mut enc = png::Encoder::new(std::io::BufWriter::new(file), indexed.size.0, indexed.size.1);
     enc.set_color(png::ColorType::Grayscale);
@@ -364,10 +394,13 @@ pub fn from_upscale(native: &Indexed, preview: &Rgba, upscaled: &Rgba) -> Result
     let colour: Vec<Option<[i64; 4]>> =
         sums.iter().map(|s| (s[4] > 0).then(|| [0, 1, 2, 3].map(|c| (s[c] / s[4]) as i64))).collect();
     let distance = |a: [i64; 4], b: &[u8]| -> i64 {
-        // Transparent and opaque never mix: alpha weighs as much as all of
-        // the colour.
+        // Transparent and opaque never mix: a pixel at least half opaque
+        // takes an opaque index, nearest in colour, and one under half a
+        // transparent one. (Weighing alpha with the colour made an edge
+        // pixel half clear, darkened by the clear part's black, as near an
+        // opaque black as anything: black specks along the edges.)
         let rgb: i64 = (0..3).map(|c| (a[c] - i64::from(b[c])).pow(2)).sum();
-        rgb + 3 * (a[3] - i64::from(b[3])).pow(2)
+        if (a[3] >= 128) != (b[3] >= 128) { rgb + (1 << 40) } else { rgb }
     };
     let (uw, uh) = (upscaled.width, upscaled.height);
     let mut indices = Vec::with_capacity((uw * uh) as usize);
@@ -398,7 +431,66 @@ pub fn from_upscale(native: &Indexed, preview: &Rgba, upscaled: &Rgba) -> Result
             indices.push(best.1);
         }
     }
+    // Each pixel may take only its own texel's index or a neighbour's.
+    let allowed = |x: u32, y: u32, index: u8| {
+        let (u, v) = ((x / scale) as i32, (y / scale) as i32);
+        (-1..=1).any(|dv| {
+            (-1..=1).any(|du| {
+                let (nu, nv) = (u + du, v + dv);
+                (0..w as i32).contains(&nu)
+                    && (0..h as i32).contains(&nv)
+                    && native.indices[(nv as u32 * w + nu as u32) as usize] == index
+            })
+        })
+    };
+    clean_isolated(&mut indices, (uw, uh), allowed);
     Ok(Indexed { size: (uw, uh), indices, ..native.clone() })
+}
+
+/// Passes of `clean_isolated`.
+const CLEAN_PASSES: usize = 2;
+
+/// Takes away the specks a smooth upscale leaves when its colours are made
+/// indices again: where the upscaler drew a gradient between two of the
+/// palette's colours, neighbouring pixels flip between their indices, a
+/// grain the original never had. A pixel with at most one of its eight
+/// neighbours of its own index takes the index most of them have, if
+/// `allowed` there; edges and one-pixel lines, whose pixels have two such
+/// neighbours or more, stay as the upscaler drew them.
+fn clean_isolated(indices: &mut [u8], (w, h): (u32, u32), allowed: impl Fn(u32, u32, u8) -> bool) {
+    for _ in 0..CLEAN_PASSES {
+        let before = indices.to_vec();
+        let mut changed = false;
+        for y in 0..h {
+            for x in 0..w {
+                let own = before[(y * w + x) as usize];
+                let mut counts = [0u8; 256];
+                for dy in -1i32..=1 {
+                    for dx in -1i32..=1 {
+                        let (nx, ny) = (x as i32 + dx, y as i32 + dy);
+                        if (dx, dy) != (0, 0) && (0..w as i32).contains(&nx) && (0..h as i32).contains(&ny) {
+                            counts[usize::from(before[(ny as u32 * w + nx as u32) as usize])] += 1;
+                        }
+                    }
+                }
+                if counts[usize::from(own)] > 1 {
+                    continue;
+                }
+                // The most common, the lowest index on a tie.
+                let (most, n) = counts
+                    .iter()
+                    .enumerate()
+                    .fold((own, 0u8), |best, (i, &n)| if n > best.1 { (i as u8, n) } else { best });
+                if most != own && n >= 2 && allowed(x, y, most) {
+                    indices[(y * w + x) as usize] = most;
+                    changed = true;
+                }
+            }
+        }
+        if !changed {
+            break;
+        }
+    }
 }
 
 /// `indexed` made `factor` times larger, each texel repeated (nearest): the
@@ -528,6 +620,33 @@ mod tests {
         assert!(check(&good, stem, (512, 4), v).is_err());
     }
 
+    /// Named by place, the header gives the place or the hash of the sheet
+    /// it was made from; a name by hash takes no place in its header.
+    #[test]
+    fn replacements_named_by_place() {
+        let mut header = Header {
+            format: FORMAT.into(),
+            version: VERSION,
+            sheet: "0000000000000abc".into(),
+            depth: 4,
+            native_width: 256,
+            native_height: 2,
+            width: 512,
+            height: 4,
+            layout: LAYOUT.into(),
+            depth_source: None,
+        };
+        let values = || vec![0u8; 512 * 4];
+        let place = "stage1_1801_file0_1_0-4bit";
+        let by_hash = check(&header, place, (512, 4), values()).unwrap();
+        assert!(check(&header, "stage1_1801_file0_1_0-8bit", (512, 4), values()).is_err());
+        header.sheet = "stage1_1801_file0_1_0".into();
+        let by_place = check(&header, place, (512, 4), values()).unwrap();
+        assert_eq!(by_hash.sheet, by_place.sheet);
+        assert!(check(&header, "stage1_1801_file0_2_0-4bit", (512, 4), values()).is_err());
+        assert!(check(&header, "0000000000000abc-4bit", (512, 4), values()).is_err());
+    }
+
     #[test]
     fn colour_pngs_are_refused() {
         let mut bytes = Vec::new();
@@ -614,6 +733,48 @@ mod tests {
         assert_eq!(&out.indices[..6], &[0, 0, 0, 5, 5, 5]);
         assert_eq!(ramp_level(15, 0), 255);
         assert_eq!(ramp_level(200, 1), 200);
+    }
+
+    /// A gradient between two of the palette's colours, as a smooth
+    /// upscale draws one, with a little noise: no speck stays, and the edge
+    /// between the two colours is still where the gradient crosses over.
+    #[test]
+    fn a_gradient_comes_back_without_specks() {
+        let palette = [[0, 0, 0, 0], [100, 100, 100, 255], [140, 140, 140, 255]];
+        let (sheet, preview) = sheet_and_preview(&[&[1, 1, 2, 2], &[1, 1, 2, 2]], &palette);
+        let scale = 8;
+        let (uw, uh) = (4 * scale, 2 * scale);
+        let mut pixels = Vec::new();
+        for y in 0..uh {
+            for x in 0..uw {
+                // 100 to 140 across, with noise of a few levels.
+                let noise = ((x * 7 + y * 13) % 5) as i32 * 3 - 6;
+                let g = (100 + (x as i32 * 40) / (uw as i32 - 1) + noise).clamp(0, 255) as u8;
+                pixels.extend([g, g, g, 255]);
+            }
+        }
+        let prev = Rgba { width: 4, height: 2, pixels: &preview };
+        let up = Rgba { width: uw, height: uh, pixels: &pixels };
+        let out = from_upscale(&sheet, &prev, &up).unwrap();
+        let at = |x: u32, y: u32| out.indices[(y * uw + x) as usize];
+        // No pixel with fewer than two neighbours of its index.
+        for y in 0..uh {
+            for x in 0..uw {
+                let same = (-1i32..=1)
+                    .flat_map(|dy| (-1i32..=1).map(move |dx| (dx, dy)))
+                    .filter(|&(dx, dy)| (dx, dy) != (0, 0))
+                    .filter(|&(dx, dy)| {
+                        let (nx, ny) = (x as i32 + dx, y as i32 + dy);
+                        (0..uw as i32).contains(&nx)
+                            && (0..uh as i32).contains(&ny)
+                            && at(nx as u32, ny as u32) == at(x, y)
+                    })
+                    .count();
+                assert!(same >= 2, "speck at ({x}, {y})");
+            }
+        }
+        // The far sides keep their colours.
+        assert!((0..uh).all(|y| at(0, y) == 1 && at(uw - 1, y) == 2));
     }
 
     #[test]

@@ -180,6 +180,9 @@ impl ApplicationHandler for App {
                     if code == KeyCode::F9 && event.state == ElementState::Pressed && !event.repeat {
                         save_screenshot();
                     }
+                    if code == KeyCode::F8 && event.state == ElementState::Pressed && !event.repeat {
+                        crate::runtime::gpu::request_texture_listing();
+                    }
                     if code == KeyCode::KeyP && event.state == ElementState::Pressed && !event.repeat {
                         crate::runtime::irq::set_paused(!crate::runtime::irq::PAUSED.load(Ordering::SeqCst));
                         self.update_title(Instant::now());
@@ -435,14 +438,16 @@ fn start_screenshots() {
 /// triangle start select l1 r1 l2 r2.
 fn start_input_script() {
     let Ok(script) = std::env::var("PE2_INPUT") else { return };
-    /// Scripted actions: buttons pressed and released, and the P, F9 and
-    /// Esc keys (`pause@t` toggles pause, `screenshot@t` saves one, `menu@t`
-    /// asks for the pause menu).
+    /// Scripted actions: buttons pressed and released, and the P, F9, F8
+    /// and Esc keys (`pause@t` toggles pause, `screenshot@t` saves one,
+    /// `textures@t` lists the textures on screen, `menu@t` asks for the
+    /// pause menu).
     enum Action {
         Press(u16),
         Release(u16),
         Pause,
         Screenshot,
+        Textures,
         Menu,
     }
     let mut events: Vec<(f64, Action)> = Vec::new();
@@ -451,6 +456,7 @@ fn start_input_script() {
         let key = match name.to_ascii_lowercase().as_str() {
             "pause" => Some(Action::Pause),
             "screenshot" => Some(Action::Screenshot),
+            "textures" => Some(Action::Textures),
             "menu" => Some(Action::Menu),
             _ => None,
         };
@@ -501,6 +507,7 @@ fn start_input_script() {
                 Action::Release(bit) => _ = PAD1_BUTTONS.fetch_and(!bit, Ordering::SeqCst),
                 Action::Pause => crate::runtime::irq::set_paused(!crate::runtime::irq::PAUSED.load(Ordering::SeqCst)),
                 Action::Screenshot => save_screenshot(),
+                Action::Textures => crate::runtime::gpu::request_texture_listing(),
                 Action::Menu => _ = crate::pause_menu::ask(),
             }
         }

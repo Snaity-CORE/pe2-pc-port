@@ -526,6 +526,7 @@ pub fn dialogue_sources_of(image: &Path, threads: usize) -> Result<super::dialog
         out.palettes.extend(part.palettes);
         out.packages.extend(part.packages);
         out.backgrounds.extend(part.backgrounds);
+        out.background_chunks.extend(part.background_chunks);
         out.bundles.extend(part.bundles);
     }
     Ok(out)
@@ -565,7 +566,12 @@ pub fn catalog_sources(sources: &super::dialogue::Sources) -> super::dialogue::S
             *slot = data;
         }
     }
-    super::dialogue::Sources { pictures, palettes: sources.palettes.clone(), ..Default::default() }
+    super::dialogue::Sources {
+        pictures,
+        picture_chunks: sources.picture_chunks.clone(),
+        palettes: sources.palettes.clone(),
+        ..Default::default()
+    }
 }
 
 /// The chunks of file `f` of `disc` added to `out`, by type.
@@ -578,7 +584,10 @@ fn add_source(out: &mut super::dialogue::Sources, disc: &mut dyn Disc, f: &DiscF
                 out.picture_chunks.entry(f.key.clone()).or_default().push(k);
             }
             2 => out.palettes.entry(f.key.clone()).or_default().push(c.payload),
-            5 => out.backgrounds.entry(f.key.clone()).or_default().push(c.payload),
+            5 => {
+                out.backgrounds.entry(f.key.clone()).or_default().push(c.payload);
+                out.background_chunks.entry(f.key.clone()).or_default().push(k);
+            }
             4 => out.bundles.push((f.key.clone(), k, c.payload)),
             _ => {}
         }
@@ -797,7 +806,7 @@ pub fn extract(discs: &mut [Box<dyn Disc>], dumps: &Path, parts: Parts) -> std::
         maps.extend(super::glyphmaps::loading(&catalog, &executable));
         maps.extend(super::glyphmaps::title(&catalog));
         maps.extend(super::glyphmaps::disc_prompt(&catalog));
-        let count = super::glyphmaps::write(&maps, &glyphs)?;
+        let count = super::glyphmaps::write(&maps, &glyphs, |h| super::sheet_file_name(&catalog, h))?;
         eprintln!("pe2: extract: {count} maps of pictures of text in {}", glyphs.display());
         eprintln!(
             "pe2: extract: {} sheets coloured from rooms' sprites, {} from rooms' code, {} glyph pages; {checked} sprite tables checked against their backgrounds, {mismatched} differ",

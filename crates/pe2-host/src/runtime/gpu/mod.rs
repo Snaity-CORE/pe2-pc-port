@@ -16,6 +16,11 @@ mod atlas;
 pub mod hw;
 mod interp;
 mod textures;
+
+/// Lists the textures drawn over the next half second (F8, textures.rs).
+pub fn request_texture_listing() {
+    textures::request_listing();
+}
 pub mod vram;
 
 pub use textures::host as host_texture;

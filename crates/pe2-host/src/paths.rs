@@ -80,6 +80,18 @@ pub fn open_user_dir(failed: impl FnOnce(String) + Send + 'static) {
 
 /// Opens `dir` in the system's file manager, as open_user_dir does.
 pub fn open_dir(dir: PathBuf, failed: impl FnOnce(String) + Send + 'static) {
+    open_with_system(dir.into_os_string(), failed);
+}
+
+/// Opens the web page at `url` in the system's browser.
+pub fn open_url(url: &str, failed: impl FnOnce(String) + Send + 'static) {
+    open_with_system(url.into(), failed);
+}
+
+/// Hands `target` (a folder or a web address) to what the system opens it
+/// with: Explorer on Windows (also under Wine, which passes addresses on to
+/// the browser), `open` on macOS, `xdg-open` elsewhere.
+fn open_with_system(target: std::ffi::OsString, failed: impl FnOnce(String) + Send + 'static) {
     let program = if cfg!(windows) {
         "explorer"
     } else if cfg!(target_os = "macos") {
@@ -92,13 +104,13 @@ pub fn open_dir(dir: PathBuf, failed: impl FnOnce(String) + Send + 'static) {
         // Not the standard handles: a launcher without a console has none
         // that are valid to pass on, and starting the program would fail.
         let started = std::process::Command::new(program)
-            .arg(&dir)
+            .arg(&target)
             .stdin(Stdio::null())
             .stdout(Stdio::null())
             .stderr(Stdio::null())
             .spawn();
         if let Err(e) = started {
-            failed(format!("{program} {}: {e}", dir.display()));
+            failed(format!("{program} {}: {e}", target.to_string_lossy()));
         }
     });
 }

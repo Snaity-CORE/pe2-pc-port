@@ -31,6 +31,7 @@ pub mod glyphmaps;
 pub mod glyphs;
 pub mod indexed;
 pub mod install;
+pub mod kit;
 pub mod labels;
 pub mod menuglyphs;
 pub mod movies;
@@ -195,6 +196,7 @@ pub fn start(discs: &[PathBuf]) {
                 since.elapsed().as_secs_f32()
             );
             catalog.complete = true;
+            resolve_texture_places(&catalog);
             sheets::set_catalog(catalog);
         }
     });
@@ -424,6 +426,67 @@ pub fn texture_name((texture, palette): TextureKey) -> String {
     if palette == 0 { format!("{texture:016x}") } else { format!("{texture:016x}-{palette:016x}") }
 }
 
+/// How a file names a texture sheet: by its hash (sheets.rs), or by where
+/// it is on the discs (`sheet_place_name`), which is the same on every
+/// version's discs and found in the catalog when the game starts.
+#[derive(Clone, Debug, PartialEq, Eq, Hash)]
+pub enum SheetName {
+    Hash(u64),
+    /// The catalog's origin: `<file>/<chunk>#<column>`.
+    Place(String),
+}
+
+/// The name of the sheet at `origin` (the catalog's `<file>/<chunk>#<column>`):
+/// column 0 of chunk 1 of `stage1/1801/file0` is `stage1_1801_file0_1_0`.
+pub fn sheet_place_name(origin: &str) -> String {
+    origin.replace(['/', '#'], "_")
+}
+
+/// What a sheet's name in a file says (`<hash>` or `<place>`).
+pub fn parse_sheet_name(name: &str) -> Option<SheetName> {
+    if name.len() == 16
+        && let Ok(hash) = u64::from_str_radix(name, 16)
+    {
+        return Some(SheetName::Hash(hash));
+    }
+    let (rest, column) = name.rsplit_once('_')?;
+    let (key, chunk) = rest.rsplit_once('_')?;
+    let (column, chunk): (u32, u32) = (column.parse().ok()?, chunk.parse().ok()?);
+    let key = key.replace('_', "/");
+    (key.starts_with("stage") && key.contains("/file")).then(|| SheetName::Place(format!("{key}/{chunk}#{column}")))
+}
+
+/// The name files give the sheet `hash` of `catalog`: its place, else its
+/// hash (a sheet the catalog does not know).
+pub fn sheet_file_name(catalog: &sheets::Catalog, hash: u64) -> String {
+    catalog.origin_of(hash).map_or_else(|| format!("{hash:016x}"), sheet_place_name)
+}
+
+/// The sheet `name` stands for on these discs, with `catalog`'s places.
+pub fn resolve_sheet(name: &SheetName, catalog: &sheets::Catalog) -> Option<u64> {
+    match name {
+        SheetName::Hash(h) => Some(*h),
+        SheetName::Place(origin) => catalog.at(origin),
+    }
+}
+
+#[cfg(test)]
+mod sheet_name_tests {
+    use super::*;
+
+    /// Places name sheets both ways; hashes stay hashes.
+    #[test]
+    fn sheet_names() {
+        assert_eq!(sheet_place_name("stage1/1801/file0/1#0"), "stage1_1801_file0_1_0");
+        assert_eq!(sheet_place_name("stage0/file1/0#0"), "stage0_file1_0_0");
+        assert_eq!(parse_sheet_name("stage1_1801_file0_1_0"), Some(SheetName::Place("stage1/1801/file0/1#0".into())));
+        assert_eq!(parse_sheet_name("stage0_file1_0_0"), Some(SheetName::Place("stage0/file1/0#0".into())));
+        assert_eq!(parse_sheet_name("7f1ed755e0e1401a"), Some(SheetName::Hash(0x7f1e_d755_e0e1_401a)));
+        assert_eq!(parse_sheet_name("my_texture"), None);
+        assert_eq!(parse_sheet_name("stage0_file1_x_0"), None);
+    }
+}
+
 /// A replacement must keep the native sheet's aspect ratio at any scale.
 pub fn texture_dimensions_match(w: u32, h: u32, native_w: i32, native_h: i32) -> bool {
     w > 0 && h > 0 && native_w > 0 && native_h > 0 && u64::from(w) * native_h as u64 == u64::from(h) * native_w as u64
@@ -442,15 +505,77 @@ mod texture_size_tests {
     }
 }
 
+/// What a texture file's name says: its sheet's name and its palette's
+/// hash (0: any).
+fn texture_file_name(stem: &str) -> Option<(SheetName, u64)> {
+    let (t, p) = stem.split_once('-').unwrap_or((stem, "0"));
+    Some((parse_sheet_name(t)?, u64::from_str_radix(p, 16).ok()?))
+}
+
 fn textures() -> &'static Library<TextureKey> {
     static INDEX: OnceLock<Library<TextureKey>> = OnceLock::new();
     INDEX.get_or_init(|| {
-        let key = |s: &str| {
-            let (t, p) = s.split_once('-').unwrap_or((s, "0"));
-            Some((u64::from_str_radix(t, 16).ok()?, u64::from_str_radix(p, 16).ok()?))
+        let key = |s: &str| match texture_file_name(s)? {
+            (SheetName::Hash(h), p) => Some((h, p)),
+            (SheetName::Place(_), _) => None,
         };
         Library::scan("textures", ".png", key, |p| read_png(p, true), TEXTURES_BUDGET)
     })
+}
+
+/// The mods' textures and indexed replacements named by place (lowest
+/// priority first), waiting for the catalog to say which sheet each is.
+fn texture_places() -> &'static [(PathBuf, String, Option<u32>)] {
+    static PLACES: OnceLock<Vec<(PathBuf, String, Option<u32>)>> = OnceLock::new();
+    PLACES.get_or_init(|| {
+        let mut out = Vec::new();
+        for (path, stem) in mod_files("textures", ".png") {
+            if let Some(stem) = stem.strip_suffix(".idx") {
+                if let Some((SheetName::Place(origin), depth)) = indexed::parse_stem(stem) {
+                    out.push((path, origin, Some(depth)));
+                }
+            } else if let Some((SheetName::Place(origin), _)) = texture_file_name(&stem) {
+                out.push((path, origin, None));
+            }
+        }
+        out
+    })
+}
+
+/// Lets the textures named by place be used, once `catalog` (complete)
+/// says which sheet each place holds on these discs: the same name serves
+/// every version's discs. A texture named by its sheet's hash wins over
+/// one named by place.
+fn resolve_texture_places(catalog: &sheets::Catalog) {
+    if texture_places().is_empty() {
+        return;
+    }
+    let mut colours: HashMap<TextureKey, PathBuf> = HashMap::new();
+    let mut indices: HashMap<(u64, u32), PathBuf> = HashMap::new();
+    let mut missing = 0;
+    for (path, origin, depth) in texture_places() {
+        let Some(sheet) = catalog.at(origin) else {
+            missing += 1;
+            continue;
+        };
+        if crate::runtime::trace("textures") {
+            eprintln!("[textures] {} is sheet {sheet:016x} here", path.display());
+        }
+        match depth {
+            Some(d) => _ = indices.insert((sheet, *d), path.clone()),
+            None => {
+                let stem = path.file_stem().and_then(|s| s.to_str()).unwrap_or("");
+                let palette = texture_file_name(stem).map_or(0, |n| n.1);
+                colours.insert((sheet, palette), path.clone());
+            }
+        }
+    }
+    colours.extend(textures().files.iter().map(|(k, p)| (*k, p.clone())));
+    indices.extend(indexed_textures().files.iter().map(|(k, p)| (*k, p.clone())));
+    let not = if missing > 0 { format!(", {missing} not (no sheet there on these discs)") } else { String::new() };
+    eprintln!("pe2: mods: {} textures by place found{not}", texture_places().len() - missing);
+    let _ = textures().resolved.set(colours);
+    let _ = indexed_textures().resolved.set(indices);
 }
 
 /// The texture a mod supplies for `key`, once loaded (see Library::get).
@@ -462,7 +587,13 @@ pub fn texture(key: TextureKey) -> Option<Arc<Picture>> {
 /// and its header), by sheet and depth (0: 4 bits, 1: 8).
 fn indexed_textures() -> &'static Library<(u64, u32), indexed::Indexed> {
     static INDEX: OnceLock<Library<(u64, u32), indexed::Indexed>> = OnceLock::new();
-    INDEX.get_or_init(|| Library::scan("textures", ".idx.png", indexed::parse_stem, indexed::read, TEXTURES_BUDGET))
+    INDEX.get_or_init(|| {
+        let key = |s: &str| match indexed::parse_stem(s)? {
+            (SheetName::Hash(h), d) => Some((h, d)),
+            (SheetName::Place(_), _) => None,
+        };
+        Library::scan("textures", ".idx.png", key, indexed::read, TEXTURES_BUDGET)
+    })
 }
 
 /// The indexed replacement for `sheet` drawn at `depth` (0: 4 bits, 1: 8):
@@ -479,7 +610,8 @@ pub fn indexed_texture(sheet: u64, depth: u32) -> Option<(Arc<indexed::Indexed>,
 /// Whether anything here wants to know the textures drawn: mods with
 /// textures, or the menus' and captions' sheets redrawn from fonts.
 pub fn wants_textures() -> bool {
-    (above_console() && (!textures().files.is_empty() || !indexed_textures().files.is_empty())) || fontsheets::enabled()
+    let any = !textures().files.is_empty() || !indexed_textures().files.is_empty() || !texture_places().is_empty();
+    (above_console() && any) || fontsheets::enabled()
 }
 
 /// Whether the game is drawn above the console's resolution. Finer
