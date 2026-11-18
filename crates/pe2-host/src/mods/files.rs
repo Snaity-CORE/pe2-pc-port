@@ -566,7 +566,12 @@ pub fn catalog_sources(sources: &super::dialogue::Sources) -> super::dialogue::S
             *slot = data;
         }
     }
-    super::dialogue::Sources { pictures, palettes: sources.palettes.clone(), ..Default::default() }
+    super::dialogue::Sources {
+        pictures,
+        picture_chunks: sources.picture_chunks.clone(),
+        palettes: sources.palettes.clone(),
+        ..Default::default()
+    }
 }
 
 /// The chunks of file `f` of `disc` added to `out`, by type.

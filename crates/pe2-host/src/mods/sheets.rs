@@ -38,6 +38,9 @@ pub struct Sheet {
     /// VRAM that loads it (x, y).
     pub origin: String,
     pub place: (u16, u16),
+    /// The disc file's chunk its picture is (the extract's folders), when
+    /// known.
+    pub chunk: Option<usize>,
 }
 
 impl Sheet {
@@ -47,10 +50,29 @@ impl Sheet {
         if self.origin.is_empty() { format!("{:016x}", self.hash) } else { super::sheet_place_name(&self.origin) }
     }
 
+    /// The folder the extract files it in (names.rs), `other` when its
+    /// picture's chunk is not known.
+    pub fn folder(&self) -> std::path::PathBuf {
+        let key = self.origin.rsplit_once('/').map_or(self.origin.as_str(), |k| k.0);
+        match self.chunk {
+            Some(chunk) => super::names::folder(key, chunk),
+            None => std::path::PathBuf::from("other"),
+        }
+    }
+
     fn new(hash: u64, rows: Vec<[u16; 64]>) -> Sheet {
         let pieces =
             rows.chunks(PIECE_ROWS).map(|c| piece_hash(c.iter().flatten().copied(), PIECE_ROWS - c.len())).collect();
-        Sheet { hash, rows, pieces, palette: None, palette_source: "", origin: String::new(), place: (0, 0) }
+        Sheet {
+            hash,
+            rows,
+            pieces,
+            palette: None,
+            palette_source: "",
+            origin: String::new(),
+            place: (0, 0),
+            chunk: None,
+        }
     }
 
     /// Its texel depth (0: 4 bits, 1: 8 bits): its palette's, else likely.
@@ -369,6 +391,7 @@ impl Catalog {
                 sheet.palette_source = source;
                 sheet.origin = format!("{key}/{n}#{column}");
                 sheet.place = (x, y);
+                sheet.chunk = sources.picture_chunks.get(key).and_then(|c| c.get(n)).copied();
                 for (k, &piece) in sheet.pieces.iter().enumerate() {
                     c.pieces.entry(piece).or_default().push((index, k as u16));
                 }

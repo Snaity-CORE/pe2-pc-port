@@ -114,6 +114,7 @@ Default keys (Controls remaps them):
 |---|---|
 | Alt+Enter | Borderless full screen on and off |
 | P | Pause and resume |
+| F8 | Lists the textures on screen, for making mods (in the data folder's `textures-on-screen.txt`) |
 | F9 | Screenshot (in the data folder's `screenshots/`) |
 | F10 | Swap discs by hand (the game normally asks and it happens by itself) |
 | Esc (or Start + Select on a controller) | Pause menu, in the game's own windows: resume, options (video, audio, controls and cheats, saved to pe2.toml), quit to the title screen, quit the game (asks first, unless turned off in Settings) |

@@ -240,9 +240,12 @@ the one higher in the launcher's list wins.
    | `textures/index.txt` | every sheet: its folder, where it is on the discs, where it loads in video memory, its depth and where its preview's colours come from | to find a sheet |
 
 2. **Find the sheets you want.** Browse `dumps/textures/` by folder. To
-   know what a place draws, run the game with `PE2_TRACE=textures`:
-   `pe2.log` names each sheet as it is first drawn
-   (`<sheet>-<palette>: 8-bit sheet from <disc file>, ...`).
+   know what a place draws, press **F8** there in the game (at an internal
+   resolution above 1): the textures drawn over the next half second are
+   listed in `textures-on-screen.txt` in the data folder (and in
+   `pe2.log`), each by the folder and name the extract gives it, with the
+   depth it is drawn at and its palette's hash. `PE2_TRACE=textures` logs
+   each sheet as it is first drawn, all game long.
 3. **Pick the picture to upscale**, per sheet:
    - the preview in colours (`dumps/textures/...`) for pictures:
      characters, enemies, items, rooms' pieces, maps (an upscaler does
