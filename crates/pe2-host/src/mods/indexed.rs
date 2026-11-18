@@ -394,10 +394,13 @@ pub fn from_upscale(native: &Indexed, preview: &Rgba, upscaled: &Rgba) -> Result
     let colour: Vec<Option<[i64; 4]>> =
         sums.iter().map(|s| (s[4] > 0).then(|| [0, 1, 2, 3].map(|c| (s[c] / s[4]) as i64))).collect();
     let distance = |a: [i64; 4], b: &[u8]| -> i64 {
-        // Transparent and opaque never mix: alpha weighs as much as all of
-        // the colour.
+        // Transparent and opaque never mix: a pixel at least half opaque
+        // takes an opaque index, nearest in colour, and one under half a
+        // transparent one. (Weighing alpha with the colour made an edge
+        // pixel half clear, darkened by the clear part's black, as near an
+        // opaque black as anything: black specks along the edges.)
         let rgb: i64 = (0..3).map(|c| (a[c] - i64::from(b[c])).pow(2)).sum();
-        rgb + 3 * (a[3] - i64::from(b[3])).pow(2)
+        if (a[3] >= 128) != (b[3] >= 128) { rgb + (1 << 40) } else { rgb }
     };
     let (uw, uh) = (upscaled.width, upscaled.height);
     let mut indices = Vec::with_capacity((uw * uh) as usize);
