@@ -430,6 +430,179 @@ fn cut_texel(cut: &mut Cut, t: &Texel, background: &Picture) {
     }
 }
 
+/// The widest a side-by-side picture of `check` is.
+const CHECK_WIDTH: usize = 2048;
+
+/// Looks over the textures and backgrounds of the mod at `mod_dir` against
+/// the extract in `dumps`: for each, a picture of the game's next to the
+/// mod's at the same size (`out`, in the mod's folders; indexed ones in
+/// the colours of the game's preview), and `out/report.txt` with what PE2PC
+/// would refuse or draw wrong (a size not a whole multiple, another shape,
+/// an indexed file it cannot read, a name the extract has no picture for).
+/// Answers the pictures written, and the problems in `refused`.
+pub fn check(dumps: &Path, mod_dir: &Path, out: &Path) -> Result<KitReport, String> {
+    let by_stem = |dir: &Path| -> HashMap<String, PathBuf> {
+        super::files_under(dir)
+            .into_iter()
+            .filter(|p| p.extension().is_some_and(|x| x.eq_ignore_ascii_case("png")))
+            .filter_map(|p| Some((p.file_stem()?.to_str()?.to_string(), p)))
+            .collect()
+    };
+    let previews = by_stem(&dumps.join("textures"));
+    let backgrounds = by_stem(&dumps.join("backgrounds"));
+    if previews.is_empty() && backgrounds.is_empty() {
+        return Err(format!("{}: no extract (pe2 --extract textures,backgrounds first)", dumps.display()));
+    }
+    let mut report = KitReport::default();
+    let mut lines = Vec::new();
+    for kind in ["textures", "backgrounds"] {
+        let root = mod_dir.join(kind);
+        for path in super::files_under(&root) {
+            let name = path.file_name().and_then(|n| n.to_str()).unwrap_or("").to_string();
+            if !name.to_ascii_lowercase().ends_with(".png") {
+                continue;
+            }
+            let rel = path.strip_prefix(mod_dir).unwrap_or(&path).to_path_buf();
+            let shown = rel.to_string_lossy().replace('\\', "/");
+            let result = if kind == "backgrounds" {
+                check_background(&path, &backgrounds)
+            } else {
+                check_texture(dumps, &path, &previews)
+            };
+            match result {
+                Ok((original, replacement)) => {
+                    let side = side_by_side(&original, &replacement);
+                    let to = out.join(&rel);
+                    if let Some(dir) = to.parent() {
+                        std::fs::create_dir_all(dir).map_err(|e| format!("{}: {e}", dir.display()))?;
+                    }
+                    save_rgba(&to, side.width, side.height, &side.rgba)?;
+                    lines.push(format!(
+                        "ok  {shown}: {}x{}, the game's {}x{}",
+                        replacement.width, replacement.height, original.width, original.height
+                    ));
+                    report.written.push(to);
+                }
+                Err(why) => {
+                    lines.push(format!("!!  {shown}: {why}"));
+                    report.refused.push(format!("{shown}: {why}"));
+                }
+            }
+        }
+    }
+    std::fs::create_dir_all(out).map_err(|e| format!("{}: {e}", out.display()))?;
+    let text = format!(
+        "# {}: the mod's textures and backgrounds against the extract (!!: a problem).\n{}\n",
+        mod_dir.display(),
+        lines.join("\n")
+    );
+    std::fs::write(out.join("report.txt"), text).map_err(|e| e.to_string())?;
+    Ok(report)
+}
+
+/// A background against the extract's of the same name (its place): any
+/// size of the game's shape (4:3).
+fn check_background(path: &Path, backgrounds: &HashMap<String, PathBuf>) -> Result<(Picture, Picture), String> {
+    let stem = path.file_stem().and_then(|s| s.to_str()).unwrap_or("");
+    let original = backgrounds.get(stem).ok_or("the extract has no background of that name (named by hash?)")?;
+    let (original, replacement) = (super::read_png(original, false)?, super::read_png(path, false)?);
+    if u64::from(replacement.width) * 3 != u64::from(replacement.height) * 4 {
+        return Err(format!("{}x{} is not 4:3, as the game's 320x240", replacement.width, replacement.height));
+    }
+    Ok((original, replacement))
+}
+
+/// A texture (in colours, or indexed) against the extract's preview of
+/// its sheet: a whole multiple of it; an indexed one shown in the
+/// preview's colours, each index the mean of the texels it colours.
+fn check_texture(dumps: &Path, path: &Path, previews: &HashMap<String, PathBuf>) -> Result<(Picture, Picture), String> {
+    let file = path.file_name().and_then(|n| n.to_str()).unwrap_or("");
+    let indexed_stem = file.strip_suffix(".idx.png").or_else(|| file.strip_suffix(".IDX.PNG"));
+    if let Some(stem) = indexed_stem {
+        let made = indexed::read(path)?;
+        let base = stem.rsplit_once('-').map_or(stem, |n| n.0);
+        let native_path = dumps.join("textures-indexed").join(format!("{stem}.idx.png"));
+        let native =
+            indexed::read(&native_path).map_err(|_| "the extract has no sheet of that name (named by hash?)")?;
+        // The preview: the sheet's, or the first of its palettes'.
+        let preview = previews
+            .get(base)
+            .or_else(|| previews.iter().filter(|(k, _)| k.starts_with(&format!("{base}-"))).map(|(_, p)| p).min());
+        let colours = match preview.map(|p| super::read_png(p, true)) {
+            Some(Ok(p)) if p.width == native.size.0 && p.height == native.size.1 => index_colours(&native, &p.rgba),
+            _ => (0..256)
+                .map(|i| {
+                    let g = indexed::ramp_level(i as u8, native.depth);
+                    [g, g, g, 255]
+                })
+                .collect(),
+        };
+        let paint = |t: &indexed::Indexed| Picture {
+            width: t.size.0,
+            height: t.size.1,
+            rgba: t.indices.iter().flat_map(|&i| colours[usize::from(i)]).collect(),
+        };
+        return Ok((paint(&native), paint(&made)));
+    }
+    let stem = file.strip_suffix(".png").or_else(|| file.strip_suffix(".PNG")).unwrap_or(file);
+    let original = previews.get(stem).ok_or("the extract has no texture of that name (named by hash?)")?;
+    let (original, replacement) = (super::read_png(original, true)?, super::read_png(path, true)?);
+    let scale = replacement.width / original.width.max(1);
+    if scale == 0 || replacement.width != original.width * scale || replacement.height != original.height * scale {
+        return Err(format!(
+            "{}x{} is not a whole multiple of the sheet's {}x{} (a preview of the other depth?)",
+            replacement.width, replacement.height, original.width, original.height
+        ));
+    }
+    Ok((original, replacement))
+}
+
+/// Each index's colour in `preview` (RGBA of `native`'s size): the mean of
+/// the texels it colours; grey where it colours none.
+fn index_colours(native: &indexed::Indexed, preview: &[u8]) -> Vec<[u8; 4]> {
+    let mut sums = vec![[0u64; 5]; 256];
+    for (i, &index) in native.indices.iter().enumerate() {
+        let s = &mut sums[usize::from(index)];
+        for c in 0..4 {
+            s[c] += u64::from(preview[i * 4 + c]);
+        }
+        s[4] += 1;
+    }
+    sums.iter()
+        .map(|s| if s[4] == 0 { [128, 128, 128, 255] } else { [0, 1, 2, 3].map(|c| (s[c] / s[4]) as u8) })
+        .collect()
+}
+
+/// `a` and `b` side by side at `b`'s size (at most CHECK_WIDTH wide in
+/// all), over a chequer that shows their clear parts; `a` enlarged texel
+/// by texel.
+fn side_by_side(a: &Picture, b: &Picture) -> Picture {
+    let gap = 8;
+    let fit = (CHECK_WIDTH - gap) as f32 / 2.0 / b.width.max(1) as f32;
+    let shrink = fit.min(1.0);
+    let (w, h) = (((b.width as f32 * shrink) as usize).max(1), ((b.height as f32 * shrink) as usize).max(1));
+    let (width, height) = (w * 2 + gap, h);
+    let mut rgba = vec![0u8; width * height * 4];
+    for (n, p) in [a, b].into_iter().enumerate() {
+        let x0 = n * (w + gap);
+        for y in 0..h {
+            for x in 0..w {
+                let sx = (x * p.width as usize / w).min(p.width as usize - 1);
+                let sy = (y * p.height as usize / h).min(p.height as usize - 1);
+                let px = &p.rgba[(sy * p.width as usize + sx) * 4..(sy * p.width as usize + sx) * 4 + 4];
+                let chequer = if (x / 16 + y / 16) % 2 == 0 { 96u32 } else { 160 };
+                let alpha = u32::from(px[3]);
+                let to = (y * width + x0 + x) * 4;
+                for c in 0..3 {
+                    rgba[to + c] = ((u32::from(px[c]) * alpha + chequer * (255 - alpha)) / 255) as u8;
+                }
+                rgba[to + 3] = 255;
+            }
+        }
+    }
+    Picture { width: width as u32, height: height as u32, rgba }
+}
+
 /// Saves RGBA pixels as a PNG.
 fn save_rgba(path: &Path, w: u32, h: u32, rgba: &[u8]) -> Result<(), String> {
     let file = std::fs::File::create(path).map_err(|e| format!("{}: {e}", path.display()))?;
@@ -442,6 +615,25 @@ fn save_rgba(path: &Path, w: u32, h: u32, rgba: &[u8]) -> Result<(), String> {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    /// Side by side at the mod's size, the game's enlarged texel by texel,
+    /// clear parts over the chequer; an index's colour is the mean of the
+    /// preview's texels it colours.
+    #[test]
+    fn checks_show_both_at_one_size() {
+        let a = Picture { width: 1, height: 1, rgba: vec![255, 0, 0, 255] };
+        let b = Picture { width: 4, height: 2, rgba: [[0u8, 0, 255, 0]; 8].concat() };
+        let side = side_by_side(&a, &b);
+        assert_eq!((side.width, side.height), (4 * 2 + 8, 2));
+        assert_eq!(&side.rgba[..4], &[255, 0, 0, 255]);
+        // b is clear: the chequer shows.
+        let at = (12) * 4;
+        assert_eq!(&side.rgba[at..at + 4], &[96, 96, 96, 255]);
+        let native = indexed::Indexed { sheet: 1, depth: 0, native: (2, 1), size: (2, 1), indices: vec![3, 3] };
+        let colours = index_colours(&native, &[10, 20, 30, 255, 30, 40, 50, 255]);
+        assert_eq!(colours[3], [20, 30, 40, 255]);
+        assert_eq!(colours[0], [128, 128, 128, 255]);
+    }
 
     /// Clear pixels take the colour of the opaque ones around them, and the
     /// picture comes out opaque; the opaque ones keep theirs.

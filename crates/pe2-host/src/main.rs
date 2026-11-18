@@ -51,7 +51,9 @@ const USAGE: &str = "usage: pe2 [disc 1 image] [disc 2 image]\n\
                      drawn over backgrounds from the mod's enlarged backgrounds;\n\
                      --upscale-prepare <work folder> [extract folder] puts there the\n\
                      textures to enlarge, and --upscale-finish <work folder> <mod folder>\n\
-                     makes the enlarged ones the mod's textures.";
+                     makes the enlarged ones the mod's textures; --mod-check <mod folder>\n\
+                     <out folder> shows the mod's textures and backgrounds next to the\n\
+                     game's, with what PE2PC would refuse.";
 
 /// Started from Explorer, the process is alone on a console of its own:
 /// let it go, so no empty console window stays behind the game. Started
@@ -284,9 +286,10 @@ fn upscale_tool(args: &[PathBuf]) -> Option<ExitCode> {
             mods::kit::prepare(&dumps, &args[1], only.as_deref())
         }
         ("--upscale-finish", 3) => mods::kit::finish(&dumps, &args[1], &args[2]),
-        ("--upscale-prepare" | "--upscale-finish", _) => {
+        ("--mod-check", 3) => mods::kit::check(&dumps, &args[1], &args[2]),
+        ("--upscale-prepare" | "--upscale-finish" | "--mod-check", _) => {
             eprintln!(
-                "pe2: --upscale-prepare <work folder> [extract folder] | --upscale-finish <work folder> <mod folder>"
+                "pe2: --upscale-prepare <work folder> [extract folder] | --upscale-finish <work folder> <mod folder> | --mod-check <mod folder> <out folder>"
             );
             return Some(ExitCode::FAILURE);
         }

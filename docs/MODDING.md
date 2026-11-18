@@ -254,6 +254,22 @@ game's transparency again, taken from the extract (an upscaler that drops
 or blurs it does no harm). It writes again what it made before; a picture
 not a whole multiple of its sheet is left out, and said why.
 
+### Checking a mod
+
+```text
+pe2 --mod-check mods/my-mod my-check
+```
+
+puts in `my-check`, in the mod's folders, a picture of each of its
+textures and backgrounds next to the game's (from the extract, found by
+the same name), at the same size, over a chequer where they are clear;
+indexed textures in the colours of the game's preview. `my-check/report.txt`
+lists them, `!!` before what PE2PC would refuse or draw wrong: a texture
+not a whole multiple of its sheet (a preview of the other depth, say), a
+background not of the game's 4:3 shape, an indexed file it cannot read,
+a name the extract has no picture of (a typo, or a file named by hash:
+those are not compared).
+
 ### Upscaling textures, step by step
 
 1. **Extract**: `pe2 --extract textures`. What it saves in `dumps/`:
