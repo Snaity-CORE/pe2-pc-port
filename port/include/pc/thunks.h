@@ -31,9 +31,12 @@ typedef struct PcImageThunks {
     uint64_t full_hash;
     /* Its code alone, [text_start, code_size): recognizes the image where
      * a translation rewrote its rodata (texts) and left the code as it was.
-     * text_start 0: not known (a snapshot made before it was kept). */
+     * text_start 0: not known (a snapshot made before it was kept). And of
+     * the code's first bytes: where the texts begin the image, its first
+     * bytes are a translation's too (0: not known). */
     uint32_t text_start;
     uint64_t text_hash;
+    uint64_t text_prefix_hash;
 } PcImageThunks;
 
 /* Recognizes images the game has loaded into PSX RAM since the last call
