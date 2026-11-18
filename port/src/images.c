@@ -54,6 +54,20 @@ static int prefix_matches(const PcImageThunks* img)
     return masked_fnv(img, 0, n) == img->prefix_hash;
 }
 
+/* Whether the slot may hold `img`, cheaply: its first bytes, or its code's
+ * first bytes (a translation's texts can begin the image: `ending`). */
+static int head_matches(const PcImageThunks* img)
+{
+    if (prefix_matches(img))
+        return 1;
+    if (img->text_prefix_hash == 0 || img->text_start == 0 || img->text_start >= img->code_size)
+        return 0;
+    uint32_t end = img->text_start + PREFIX_BYTES;
+    if (end > img->code_size)
+        end = img->code_size;
+    return masked_fnv(img, img->text_start, end) == img->text_prefix_hash;
+}
+
 static int fully_matches(const PcImageThunks* img)
 {
     return masked_fnv(img, 0, img->code_size) == img->full_hash;
@@ -127,7 +141,7 @@ int pc_scan_images(void)
         Slot* slot = &slots[s];
         if (slot->installed >= 0) {
             const PcImageThunks* cur = &pc_image_thunks[slot->installed];
-            if (prefix_matches(cur)) {
+            if (head_matches(cur)) {
                 if (thunks_intact(cur))
                     continue;
                 /* Reloaded over itself: rewrite the thunks once complete. */
@@ -145,7 +159,7 @@ int pc_scan_images(void)
             const PcImageThunks* img = &pc_image_thunks[i];
             if (img->load != slot->load || (int)i == slot->installed || !fits_in_ram(img))
                 continue;
-            if (!prefix_matches(img) || !matches(img))
+            if (!head_matches(img) || !matches(img))
                 continue;
             found = 1;
             pc_clear_thunks(img->load, img->size);
