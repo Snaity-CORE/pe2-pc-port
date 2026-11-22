@@ -5,7 +5,9 @@
 //! hash of its first frame's data; a mod's `movies/<hash>.mp4` (H.264
 //! without B-frames, and AAC sound) plays instead: its pictures are shown
 //! in place of the game's 24-bit ones, at the time the game's frame number
-//! gives, and its sound replaces the movie's XA sound. The game plays its
+//! gives, and its sound, if it has a sound track, replaces the movie's XA
+//! sound (without one, the game's plays: a movie of other pictures on the
+//! same sound, such as another release's). The game plays its
 //! own movie as ever underneath (its timing, skipping and ending stay as
 //! they are).
 //!
@@ -63,6 +65,8 @@ struct Playing {
     shown: Option<Arc<Picture>>,
     next: Option<Picture>,
     sound: Arc<Mutex<Sound>>,
+    /// The mod's movie has a sound track, played instead of the game's.
+    own_sound: bool,
     stop: Arc<AtomicBool>,
     /// The game has shown its 24-bit pictures (the movie) since it began.
     shown_24bit: bool,
@@ -167,7 +171,8 @@ fn start(hash: u64, path: PathBuf) -> Option<Playing> {
             }
         });
     }
-    {
+    let own_sound = has_sound(&path);
+    if own_sound {
         let (path, stop, sound) = (path.clone(), stop.clone(), sound.clone());
         std::thread::spawn(move || {
             if let Err(e) = decode_sound(&path, &sound, &stop) {
@@ -186,6 +191,7 @@ fn start(hash: u64, path: PathBuf) -> Option<Playing> {
         shown: None,
         next: None,
         sound,
+        own_sound,
         stop,
         shown_24bit: false,
         fps: GAME_FPS,
@@ -237,14 +243,14 @@ pub fn tick(movie: bool) {
 
 /// Whether the movie's own sound (XA) is to be left out: a mod's plays.
 pub fn mutes_xa() -> bool {
-    state().lock().unwrap().playing.is_some()
+    state().lock().unwrap().playing.as_ref().is_some_and(|p| p.own_sound)
 }
 
 /// Adds the playing movie's sound to `out` (the SPU's next `frames`
 /// samples of mods' sound).
 pub fn mix(out: &mut VecDeque<(i16, i16)>, frames: usize) {
     let s = state().lock().unwrap();
-    let Some(p) = s.playing.as_ref() else { return };
+    let Some(p) = s.playing.as_ref().filter(|p| p.own_sound) else { return };
     let mut sound = p.sound.lock().unwrap();
     while out.len() < frames {
         out.push_back((0, 0));
@@ -417,6 +423,17 @@ fn save_movie(movie: &DiscMovieRead, m: &super::files::DiscMovie, out: &std::pat
         w.finalize().map_err(std::io::Error::other)?;
     }
     Ok(())
+}
+
+/// Whether a mod's movie has a sound track.
+fn has_sound(path: &PathBuf) -> bool {
+    let read = || {
+        let file = std::fs::File::open(path).ok()?;
+        let size = file.metadata().ok()?.len();
+        let mp4 = mp4::Mp4Reader::read_header(std::io::BufReader::new(file), size).ok()?;
+        Some(mp4.tracks().values().any(|t| t.track_type().is_ok_and(|k| k == mp4::TrackType::Audio)))
+    };
+    read().unwrap_or(false)
 }
 
 /// Decodes the video track, sending each picture with its time.

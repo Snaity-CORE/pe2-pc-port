@@ -589,8 +589,8 @@ a moment meanwhile) and kept from then on.
 ## Movies
 
 The game's movies (FMVs) stream from the disc frame by frame. A mod can
-show a video file instead: an MP4 with H.264 video and AAC sound, at any
-resolution and frame rate.
+show a video file instead: an MP4 with H.264 video and, if it brings its
+own, AAC sound, at any resolution and frame rate.
 
 1. Extract the game's files (`pe2 --extract`, see above): every movie the game
    lists, 28 in all, is read from the discs into `dumps/movies/`. A movie is
@@ -611,7 +611,9 @@ ffmpeg -i my-movie.mkv -c:v libx264 -bf 0 -pix_fmt yuv420p -c:a aac -b:a 192k <h
 The game still plays its own movie underneath: the video is shown in its
 place, at the time the game's frame gives (so it keeps pace with it, and
 stops when the game's movie ends or is skipped), and its sound replaces the
-movie's. Make it as long as the original (the `.txt` says how long).
+movie's. A video without a sound track keeps the movie's own sound (new
+pictures on the same sound: `-an` instead of the `-c:a` options). Make it
+as long as the original (the `.txt` says how long).
 
 ffmpeg reads the `.str` files, so the original movies can be converted as
 they are, to start a remaster from (ffmpeg's "I/O error" at their end is
