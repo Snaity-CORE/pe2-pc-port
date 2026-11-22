@@ -4,7 +4,7 @@
 //! checking them, the memory cards and a quality; Settings edits every
 //! option of pe2.toml (keeping the file's comments); Play runs the game as a
 //! child process (`pe2 --play`) and the launcher comes back when it quits.
-//! English or Portuguese.
+//! English, Portuguese, French, Spanish, German or Italian.
 //!
 //! The main screen is the PE2PC art (res/launcher_bg.webp, the logo in
 //! res/launcher_logo.webp) with a column of buttons; the other screens show
@@ -15,10 +15,11 @@
 //! presses or ticks, B (Circle) goes back without saving. The arrow keys,
 //! Enter and Esc do the same (outside text fields).
 
+use std::collections::HashMap;
 use std::path::{Path, PathBuf};
 use std::process::ExitCode;
-use std::sync::Arc;
 use std::sync::atomic::{AtomicBool, Ordering};
+use std::sync::{Arc, OnceLock};
 
 use eframe::egui;
 
@@ -363,18 +364,35 @@ impl Icon {
 enum Lang {
     En,
     Pt,
+    Fr,
+    Es,
+    De,
+    It,
 }
+
+/// The launcher's languages: each, its code in pe2.toml, its name, and the
+/// translations of its English texts (res/lang/launcher/<code>.toml) when
+/// not given beside the English.
+const LANGS: [(Lang, &str, &str, &str); 6] = [
+    (Lang::En, "en", "English", ""),
+    (Lang::Pt, "pt", "Português", ""),
+    (Lang::Fr, "fr", "Français", include_str!("../res/lang/launcher/fr.toml")),
+    (Lang::Es, "es", "Español", include_str!("../res/lang/launcher/es.toml")),
+    (Lang::De, "de", "Deutsch", include_str!("../res/lang/launcher/de.toml")),
+    (Lang::It, "it", "Italiano", include_str!("../res/lang/launcher/it.toml")),
+];
 
 impl Lang {
     fn from_code(code: Option<&str>) -> Lang {
-        if code == Some("pt") { Lang::Pt } else { Lang::En }
+        LANGS.iter().find(|l| Some(l.1) == code).map_or(Lang::En, |l| l.0)
+    }
+
+    fn index(self) -> usize {
+        LANGS.iter().position(|l| l.0 == self).unwrap_or(0)
     }
 
     fn code(self) -> &'static str {
-        match self {
-            Lang::En => "en",
-            Lang::Pt => "pt",
-        }
+        LANGS[self.index()].1
     }
 
     /// The text in this language.
@@ -382,8 +400,20 @@ impl Lang {
         match self {
             Lang::En => en,
             Lang::Pt => pt,
+            _ => translations()[self.index()].get(en).map_or(en, String::as_str),
         }
     }
+}
+
+/// Each of LANGS' translations of the launcher's English texts, read once.
+fn translations() -> &'static [HashMap<String, String>] {
+    static READ: OnceLock<Vec<HashMap<String, String>>> = OnceLock::new();
+    READ.get_or_init(|| {
+        LANGS
+            .iter()
+            .map(|l| toml::from_str(l.3).map_err(|e| eprintln!("pe2: launcher: {}: {e}", l.1)).unwrap_or_default())
+            .collect()
+    })
 }
 
 /// The [gameplay] options (quality of life), all off by default: each key,
@@ -1195,7 +1225,7 @@ impl Launcher {
     }
 
     fn language(&mut self, ui: &mut egui::Ui, label: &str) {
-        let options = [(Lang::En, "English".to_string()), (Lang::Pt, "Português".to_string())];
+        let options = LANGS.map(|l| (l.0, l.2.to_string()));
         self.focus.choice(ui, label, &mut self.edit.language, &options, true);
     }
 
@@ -2153,6 +2183,22 @@ pub fn run() -> ExitCode {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    /// Each language's file translates the same texts, each one the
+    /// launcher shows.
+    #[test]
+    fn translations_are_the_launchers_texts() {
+        let source = include_str!("launcher.rs");
+        let all = translations();
+        let fr = &all[Lang::Fr.index()];
+        assert!(!fr.is_empty());
+        for (lang, file) in LANGS.iter().zip(all).filter(|(l, _)| !l.3.is_empty()) {
+            for en in file.keys() {
+                assert!(source.contains(&format!("{en:?}")), "{}: {en:?} is no text of the launcher's", lang.1);
+                assert!(fr.contains_key(en) && file.len() == fr.len(), "{}: not the texts fr.toml has", lang.1);
+            }
+        }
+    }
 
     #[test]
     fn egui_keys_become_mapping_names() {

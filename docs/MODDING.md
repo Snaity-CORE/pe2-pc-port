@@ -861,7 +861,7 @@ disc: the extract lists them in `dumps/strings/pc/menu.toml`, and the
 Options' (categories, settings, their choices) in
 `dumps/strings/pc/options.toml`, translated the same way (their titles are
 drawn in the small face, without accents). PE2PC brings them in the
-launcher's language (Portuguese: `crates/pe2-host/res/lang/pt.toml`); a
+launcher's language (`crates/pe2-host/res/lang/<code>.toml`: pt, fr, es, de, it); a
 mod's translation of a text wins over it.
 
 Items' details (Triangle on an item: specifications and the long
@@ -975,6 +975,39 @@ sheet's hash (a name by place stands for what the discs hold there, the
 game's own picture). A few stay the game's, which PE2PC or other mods replace (the
 menus' font, the HUD's sheet, the title page: the tool's
 `PICTURES_KEPT`).
+
+### A European release's discs
+
+The French, German, Spanish and Italian releases (SLES-02559 to
+SLES-02562) were built again from the same sources: their code and data
+sit elsewhere and their fonts give the letters other codes, so their texts
+are found by aligning the two versions' code rather than in place. Their
+dialogue's accented letters are in PE2PC's tables of glyph pictures; the
+extract lists the pictures it does not know in
+`dumps/text/glyphs-unknown.tsv`, with words they are in, to be named
+there.
+
+Their loading screens' captions are records of the executable, elsewhere
+and laid out otherwise (the French release draws its own at the bottom
+right), so they cannot be patched in place. A mod's `captions.toml` gives
+them instead: the captions' cell table, and for each of the game's caption
+scripts the one shown in its place, where and on what plate. Before a
+caption is shown, PE2PC points its record at the mod's (the pictures of the
+cells the release adds come with the mod's `files/`, in the captions'
+font):
+
+```toml
+cells = "00000a0a1000090a..."  # the cell table (u, v, width, height bytes), hex
+
+[[caption]]
+original = "121e292d..."       # the game's script, hex, without its end byte
+text = "37452c1e..."           # the one shown instead
+x = -34                        # where (draw-environment pixels)
+y = 54
+line_height = 15
+box_width = 190                # its plate
+box_height = 32
+```
 
 ## Cheats and memory patches
 

@@ -85,16 +85,31 @@ pub fn text_by<S: AsRef<str>>(codes: &[u16], glyph_text: impl Fn(usize) -> Optio
     fix_capital_i(&out)
 }
 
-/// Capital I and small l are one glyph: an `l` alone, before an
-/// apostrophe, after a capital (not before a small letter: Ele), before
-/// one, or starting a word before a consonant as I does (In, It, Inform,
-/// Isso: words that start with l go on with a vowel, or lh: lhe) is an I.
+/// Capital I and small l are one glyph: an `l` alone, before an English
+/// contraction (I'm, I'll, I'd, I've; French l' stays: l'arme), after a
+/// capital (not before a small letter: Ele; nor ending a word of two
+/// letters: the Spanish El, Al), before one, starting a word
+/// before a consonant as I does (In, It, Inform, Isso: words that start
+/// with l go on with a vowel, or lh: lhe), or the first of the French words
+/// ll and lls (Il, Ils; Spanish ll goes on: llave) is an I.
 fn fix_capital_i(s: &str) -> String {
     let chars: Vec<char> = s.chars().collect();
     let letter = |i: usize| chars.get(i).is_some_and(|c| c.is_alphabetic());
     let upper = |i: usize| chars.get(i).is_some_and(|c| c.is_uppercase());
     let lower = |i: usize| chars.get(i).is_some_and(|c| c.is_lowercase());
     let vowel = |c: char| "aeiouyáàâãäéèêëíìîïóòôõöúùûü".contains(c);
+    // after the `l'` at i: m, ll, d, ve or re, then no letter
+    let contraction = |i: usize| {
+        ["m", "ll", "d", "ve", "re"]
+            .iter()
+            .any(|w| w.chars().enumerate().all(|(k, c)| chars.get(i + 2 + k) == Some(&c)) && !letter(i + 2 + w.len()))
+    };
+    // the word `ll` or `lls` from i, not after an apostrophe (I'll)
+    let il = |i: usize| {
+        (i == 0 || chars[i - 1] != '\'')
+            && chars.get(i + 1) == Some(&'l')
+            && (!letter(i + 2) || (chars.get(i + 2) == Some(&'s') && !letter(i + 3)))
+    };
     (0..chars.len())
         .map(|i| {
             if chars[i] != 'l' {
@@ -102,10 +117,11 @@ fn fix_capital_i(s: &str) -> String {
             }
             let starts = i == 0 || !letter(i - 1);
             let next = chars.get(i + 1).copied();
-            let is_i = (starts && !letter(i + 1))
-                || (starts && next == Some('\''))
+            let is_i = (starts && !letter(i + 1) && next != Some('\''))
+                || (starts && next == Some('\'') && contraction(i))
+                || (starts && il(i))
                 || (starts && next.is_some_and(|c| c.is_lowercase() && c != 'l' && c != 'h' && !vowel(c)))
-                || (i > 0 && upper(i - 1) && !lower(i + 1))
+                || (i > 0 && upper(i - 1) && !lower(i + 1) && !(!letter(i + 1) && (i == 1 || !letter(i - 2))))
                 || (starts && upper(i + 1));
             if is_i { 'I' } else { 'l' }
         })
@@ -348,5 +364,13 @@ mod tests {
         );
         // After a capital, before a small letter: an l (All, Ele, Please).
         assert_eq!(fix_capital_i("All. Ele. Please. MlST"), "All. Ele. Please. MIST");
+        // English contractions; French l' and the words Il and Ils.
+        assert_eq!(fix_capital_i("l'm here, l'll go, l'd say"), "I'm here, I'll go, I'd say");
+        assert_eq!(
+            fix_capital_i("ll y a l'arme. lls sont l\u{e0}. llave, l'h\u{f4}tel"),
+            "Il y a l'arme. Ils sont l\u{e0}. llave, l'h\u{f4}tel"
+        );
+        // The Spanish El and Al stay; capitals go on as before (MIST).
+        assert_eq!(fix_capital_i("El hotel. Al final. MlST"), "El hotel. Al final. MIST");
     }
 }

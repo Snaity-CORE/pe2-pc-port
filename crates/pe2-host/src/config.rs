@@ -167,7 +167,7 @@ pub struct General {
     /// Ask before the pause menu's Quit game quits (default on).
     pub confirm_exit: Option<bool>,
     /// The language of the launcher and of PE2PC's own screens in the game
-    /// (mods/strings.rs): "en" (the default) or "pt".
+    /// (mods/strings.rs): "en" (the default), "pt", "fr", "es", "de" or "it".
     pub language: Option<String>,
     /// Experimental features: mods (default off).
     pub experimental: Option<bool>,

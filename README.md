@@ -67,8 +67,8 @@ It plays as the console does and adds what a PC can, all optional:
   shared on [GameBanana](https://gamebanana.com/games/26329).
 - **Cheats** (in `pe2.toml`, `[cheats]`): infinite HP or MP, one-hit kills,
   every hit critical, and EXP and BP multipliers.
-- **Comfort**: a launcher worked by mouse, keyboard or controller (English or
-  Portuguese), remappable keys and controller buttons, pause, screenshots,
+- **Comfort**: a launcher worked by mouse, keyboard or controller (English,
+  Portuguese, French, Spanish, German or Italian), remappable keys and controller buttons, pause, screenshots,
   borderless full screen, and Discord showing where you are in the game,
   with your EXP and BP.
 

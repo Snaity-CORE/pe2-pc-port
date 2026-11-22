@@ -93,10 +93,10 @@ target/i686-pc-windows-msvc/debug/pe2.exe "Parasite Eve II (USA) (Disc 1).chd" "
 ```
 
 Started without arguments, `pe2` opens a launcher (Setup on first run: disc
-images, memory cards, quality; Play; Settings; Exit, in English or Portuguese)
-that writes `pe2.toml` (Controls remaps the keyboard and controller and picks
-player 1's controller) and runs the game as `pe2 --play`, coming back when it
-quits. Runs driven by `PE2_INPUT`, `PE2_LIBTEST` or `PE2_SELFTEST` skip it.
+images, memory cards, quality; Play; Settings; Exit, in English, Portuguese,
+French, Spanish, German or Italian) that writes `pe2.toml` (Controls remaps
+the keyboard and controller and picks player 1's controller) and runs the
+game as `pe2 --play`, coming back when it quits. Runs driven by `PE2_INPUT`, `PE2_LIBTEST` or `PE2_SELFTEST` skip it.
 Deck mode (`[general] deck_mode`, on by itself in Steam's Gaming Mode)
 opens it in full screen, scaled to the screen.
 

@@ -587,8 +587,11 @@ pub extern "C" fn pc_cap_translate(file: *mut u8) -> *mut u8 {
         unsafe { file.add(at).cast::<u32>().read_unaligned() }
     };
     let mut live = live().lock().unwrap();
-    // Loaded again where it already is, relocated: as given before.
-    if read(8) as i32 <= 0 {
+    // Loaded again where it already is, relocated: as given before. Its
+    // offsets are then addresses: on the console negative (KSEG0), here the
+    // host's, never below the file itself (cap_reloc.c does the same test).
+    let glyphs = read(8);
+    if glyphs as i32 <= 0 || glyphs as usize >= file as usize {
         return live.get(&(file as usize)).map_or(file, |l| l.copy.as_ptr() as *mut u8);
     }
     live.remove(&(file as usize));

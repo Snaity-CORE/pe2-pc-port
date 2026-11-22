@@ -119,6 +119,59 @@ const GLYPHS: &[(u64, &str)] = &[
     (0x748DF6D4FBCB5BDD, "*"),
     (0xD2AC0C49E0960A87, "="),
     (0xF94940C21EDF6D73, "%"),
+    // The European releases' discs: their accented letters and signs, named
+    // from the words they are in (dumps/text/glyphs-unknown.tsv). A picture
+    // two releases share is listed once, under the first.
+    // French (SLES-02559), with three letters of English lines drawn there in
+    // another font.
+    (0xADD2C50C2ACC86A1, "é"),
+    (0xB5D0F8C7747075E5, "à"),
+    (0x51CAA91EF2C14F81, "è"),
+    (0x0BB4E115AA1F3149, "ê"),
+    (0xF8CDC16AC6FB9FCD, "ç"),
+    (0xAA864246AB2F8669, "ô"),
+    (0xCCF3F8E633DCE975, "û"),
+    (0x98395E366C02F3E8, "â"),
+    (0x38B16F431861888F, "î"),
+    (0xDF3498F9EDC9A031, "ù"),
+    (0x154D4E8C3E7BB391, "œ"),
+    (0xEB9669C4FF2E5763, "ï"),
+    (0xD8DE98A6957E6AFB, "Â"),
+    (0xE610B91B133A98A3, "°"),
+    (0xED28C8F2520DB5A6, "³"),
+    (0x014CBF640EA59AE3, "t"),
+    (0x6BB04F749CD0FD9E, "r"),
+    (0x4CC23EED50447A42, "f"),
+    // Spanish (SLES-02561).
+    (0x38C41F51943C8E67, "á"),
+    (0x974EEEA180D7064E, "í"),
+    (0xDB80C56E7FDC17BD, "ó"),
+    (0x3B3CB4E725D4D751, "ú"),
+    (0xB891708FB67F17E7, "ñ"),
+    (0x6C2CB1ECD174C2EF, "ü"),
+    (0x01506BCA0A15A509, "Á"),
+    (0xBC6669A5E4760B2E, "Í"),
+    (0xAD8821B862C934B6, "Ú"),
+    (0x6A4018B573D89E91, "Ñ"),
+    (0x3818C22780A7C68A, "¿"),
+    (0x7F1612A6CE92446B, "¡"),
+    (0x691DAB04A0FD55E8, "\""),
+    (0x32B325A91D428FF6, "\""),
+    // German (SLES-02560).
+    (0x4DC96668C9063429, "ä"),
+    (0x63DC88566821281B, "ö"),
+    (0xBC3B1E3354FFED3E, "ß"),
+    (0x02C935FA7D370641, "Ä"),
+    (0x1580162F909B2797, "Ö"),
+    (0x6ACCA171FF7385B9, "Ü"),
+    (0x44BF84AEFF6F9B4D, "+"),
+    // Italian (SLES-02562).
+    (0x7F78A98147D0E09D, "ò"),
+    (0x04692E7B5B9F53C2, "ì"),
+    (0x255DB292F3CF25AF, "È"),
+    (0x88F53C3F9E7B7343, "°"),
+    (0x6784E992F481F2AD, "<"),
+    (0x96D72AB26A75175B, "-"),
 ];
 
 /// Glyph picture hashes -> text.
