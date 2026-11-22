@@ -595,7 +595,8 @@ own, AAC sound, at any resolution and frame rate.
 1. Extract the game's files (`pe2 --extract`, see above): every movie the game
    lists, 28 in all, is read from the discs into `dumps/movies/`. A movie is
    known by a hash of its first frame: `<hash>.str` is the movie itself, as
-   on the disc (video and sound), `<hash>.png` shows a picture of it,
+   on the disc (video and sound), `<hash>.mp4` its pictures, ready to be a
+   mod's movie (on the movie's own sound), `<hash>.png` shows a picture of it,
    `<hash>.wav` is its sound (when it has its own), and `<hash>.txt` says its
    length in frames and seconds, its frame rate, its size and where it is
    listed.
@@ -615,9 +616,9 @@ movie's. A video without a sound track keeps the movie's own sound (new
 pictures on the same sound: `-an` instead of the `-c:a` options). Make it
 as long as the original (the `.txt` says how long).
 
-ffmpeg reads the `.str` files, so the original movies can be converted as
-they are, to start a remaster from (ffmpeg's "I/O error" at their end is
-only it reaching the end):
+The extract's `.mp4` is the original movie as a mod's, to start a remaster
+from. ffmpeg also reads the `.str` files, sound included (its "I/O error"
+at their end is only it reaching the end):
 
 ```
 ffmpeg -i <hash>.str -c:v libx264 -bf 0 -pix_fmt yuv420p -c:a aac <hash>.mp4
