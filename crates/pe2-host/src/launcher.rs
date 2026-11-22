@@ -31,6 +31,10 @@ const DISC_SERIALS: [&str; 2] = ["SLUS_010.42", "SLUS_010.55"];
 /// Where players share PE2PC's mods (the Mods screen's button).
 const MODS_PAGE: &str = "https://gamebanana.com/games/26329";
 
+/// The program that makes language mods from European discs
+/// (pe2-lang-import, a project of its own), when it sits next to pe2.
+const IMPORTER: &str = if cfg!(windows) { "pe2-lang-import.exe" } else { "pe2-lang-import" };
+
 /// The template of a new pe2.toml: the documented example.
 const EXAMPLE: &str = include_str!("../../../pe2.example.toml");
 
@@ -701,6 +705,8 @@ struct Launcher {
     /// the last install came to.
     install_job: Option<InstallJob>,
     install_status: Option<Result<String, String>>,
+    /// The language importer running (set once it is closed).
+    importing: Option<Arc<std::sync::atomic::AtomicBool>>,
 }
 
 /// The pe2.toml name of a key egui reports ("A" -> "KeyA", "Num1" ->
@@ -755,6 +761,7 @@ impl Launcher {
             mods: Vec::new(),
             install_job: None,
             install_status: None,
+            importing: None,
         };
         launcher.gilrs = gilrs::Gilrs::new().ok();
         if launcher.gilrs.is_none() {
@@ -1723,7 +1730,12 @@ impl Launcher {
             let folder = dir.file_name().map(|n| n.to_string_lossy().into_owned()).unwrap_or_default();
             format!("{} {folder}", lang.t("Installed:", "Instalado:"))
         }));
-        // Unsaved changes to the list stay.
+        self.reload_mods();
+    }
+
+    /// The list again, after an install or an import; unsaved changes to it
+    /// stay.
+    fn reload_mods(&mut self) {
         let before: Vec<(PathBuf, bool)> = self.mods.iter().map(|m| (m.dir.clone(), m.enabled)).collect();
         self.load_mods();
         for m in &mut self.mods {
@@ -1733,9 +1745,50 @@ impl Launcher {
         }
     }
 
+    /// The language importer next to pe2, if it is there.
+    fn importer() -> Option<PathBuf> {
+        let me = std::env::current_exe().ok()?;
+        Some(me.parent()?.join(IMPORTER)).filter(|p| p.is_file())
+    }
+
+    /// Starts the language importer, for this PE2PC; the list is read again
+    /// once it is closed.
+    fn start_importer(&mut self, ctx: &egui::Context, importer: PathBuf) {
+        use std::process::Stdio;
+        // Not the standard handles: a launcher without a console has none
+        // that are valid to pass on, and the importer is a window anyway.
+        let mut command = std::process::Command::new(importer);
+        command.stdin(Stdio::null()).stdout(Stdio::null()).stderr(Stdio::null());
+        if let Ok(me) = std::env::current_exe() {
+            command.arg("--pe2").arg(me);
+        }
+        match command.spawn() {
+            Ok(mut child) => {
+                let done = Arc::new(std::sync::atomic::AtomicBool::new(false));
+                let (closed, ctx) = (done.clone(), ctx.clone());
+                std::thread::spawn(move || {
+                    let _ = child.wait();
+                    closed.store(true, std::sync::atomic::Ordering::Relaxed);
+                    ctx.request_repaint();
+                });
+                self.importing = Some(done);
+            }
+            Err(e) => *self.launch_error.lock().unwrap() = Some(e.to_string()),
+        }
+    }
+
+    /// The importer was closed: the mods it made in the list.
+    fn import_finished(&mut self) {
+        if self.importing.as_ref().is_some_and(|d| d.load(std::sync::atomic::Ordering::Relaxed)) {
+            self.importing = None;
+            self.reload_mods();
+        }
+    }
+
     fn mods_screen(&mut self, ui: &mut egui::Ui) {
         let lang = self.lang();
         self.install_finished();
+        self.import_finished();
         ui.heading(lang.t("Mods", "Mods"));
         ui.add_space(10.0);
         card(ui, lang.t("Mods folder", "Pasta de mods"), |ui| {
@@ -1777,6 +1830,24 @@ impl Launcher {
                     .weak(),
                 );
             });
+            if let Some(importer) = Launcher::importer() {
+                ui.add_space(6.0);
+                ui.horizontal(|ui| {
+                    ui.spacing_mut().interact_size.y = 30.0;
+                    let label =
+                        lang.t("Import a language from European discs...", "Importar um idioma de discos europeus...");
+                    if self.focus.button(ui, label, self.importing.is_none()) {
+                        self.start_importer(ui.ctx(), importer);
+                    }
+                    ui.label(
+                        egui::RichText::new(lang.t(
+                            "Your own European discs, made into a mod.",
+                            "Seus próprios discos europeus, transformados em mod.",
+                        ))
+                        .weak(),
+                    );
+                });
+            }
             if self.install_job.is_some() {
                 ui.label(lang.t("Installing...", "Instalando..."));
             }
