@@ -593,14 +593,16 @@ show a video file instead: an MP4 with H.264 video and, if it brings its
 own, AAC sound, at any resolution and frame rate.
 
 1. Extract the game's files (`pe2 --extract`, see above): every movie the game
-   lists, 28 in all, is read from the discs into `dumps/movies/`. A movie is
-   known by a hash of its first frame: `<hash>.str` is the movie itself, as
-   on the disc (video and sound), `<hash>.mp4` its pictures, ready to be a
-   mod's movie (on the movie's own sound), `<hash>.png` shows a picture of it,
-   `<hash>.wav` is its sound (when it has its own), and `<hash>.txt` says its
+   lists, 46 in all, is read from the discs into `dumps/movies/`. A movie is
+   known by a hash of its first frame, and by its length in frames too when
+   others begin with the same frame (a black one): its name is `<hash>` or
+   `<hash>-<frames>`. `<name>.str` is the movie itself, as
+   on the disc (video and sound), `<name>.mp4` its pictures, ready to be a
+   mod's movie (on the movie's own sound), `<name>.png` shows a picture of it,
+   `<name>.wav` is its sound (when it has its own), and `<name>.txt` says its
    length in frames and seconds, its frame rate, its size and where it is
    listed.
-2. Save your video as `mods/<your mod>/movies/<same hash>.mp4`.
+2. Save your video as `mods/<your mod>/movies/<same name>.mp4`.
 
 The video must not use B-frames (the decoder does not support them). With
 ffmpeg:
@@ -621,7 +623,7 @@ from. ffmpeg also reads the `.str` files, sound included (its "I/O error"
 at their end is only it reaching the end):
 
 ```
-ffmpeg -i <hash>.str -c:v libx264 -bf 0 -pix_fmt yuv420p -c:a aac <hash>.mp4
+ffmpeg -i <name>.str -c:v libx264 -bf 0 -pix_fmt yuv420p -c:a aac <name>.mp4
 ```
 
 ## Game files

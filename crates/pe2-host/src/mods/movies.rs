@@ -11,16 +11,21 @@
 //! own movie as ever underneath (its timing, skipping and ending stay as
 //! they are).
 //!
+//! Movies may begin with the same frame (a black one): such a movie is
+//! known by its hash and its frame limit (how many frames it plays, which
+//! the game tells before it streams, `pc_movie_frames`), a mod's
+//! `movies/<hash>-<frames>.mp4`, which wins over `<hash>.mp4`.
+//!
 //! The extract saves each movie of the discs (`extract`): the movie itself
 //! as `dumps/movies/<hash>.str` (its sectors as on the disc, which video
 //! tools read), its pictures as `<hash>.mp4` (a mod's movie as it is, on
 //! the game's sound), a picture of it as `<hash>.png`, its sound as
 //! `<hash>.wav` and what it is (frames, frame rate, length, size, where it is) as
-//! `<hash>.txt`.
+//! `<hash>.txt`; `<hash>-<frames>` for movies beginning with the same frame.
 
 use std::collections::{HashMap, VecDeque};
 use std::path::PathBuf;
-use std::sync::atomic::{AtomicBool, Ordering};
+use std::sync::atomic::{AtomicBool, AtomicU32, Ordering};
 use std::sync::mpsc::{Receiver, SyncSender, sync_channel};
 use std::sync::{Arc, Mutex, OnceLock};
 use std::time::{Duration, Instant};
@@ -93,9 +98,28 @@ fn state() -> &'static Mutex<State> {
     STATE.get_or_init(Default::default)
 }
 
-/// Movie hash -> the mod's file for it.
-fn index() -> &'static HashMap<u64, PathBuf> {
-    static INDEX: OnceLock<HashMap<u64, PathBuf>> = OnceLock::new();
+/// The frame limit of the movie about to stream, as the game tells it
+/// (0: not told).
+static FRAMES: AtomicU32 = AtomicU32::new(0);
+
+/// The game is about to stream a movie `frame_limit` frames long.
+#[unsafe(no_mangle)]
+pub extern "C" fn pc_movie_frames(frame_limit: u32) {
+    FRAMES.store(frame_limit, Ordering::Relaxed);
+}
+
+/// A movie's file name (without its extension): its hash, and its frame
+/// limit when movies begin with the same frame.
+fn movie_name(hash: u64, frames: Option<u32>) -> String {
+    match frames {
+        Some(frames) => format!("{hash:016x}-{frames}"),
+        None => format!("{hash:016x}"),
+    }
+}
+
+/// (Movie hash, frame limit if named) -> the mod's file for it.
+fn index() -> &'static HashMap<(u64, Option<u32>), PathBuf> {
+    static INDEX: OnceLock<HashMap<(u64, Option<u32>), PathBuf>> = OnceLock::new();
     INDEX.get_or_init(|| {
         let mut out = HashMap::new();
         if !super::enabled() {
@@ -105,13 +129,20 @@ fn index() -> &'static HashMap<u64, PathBuf> {
             let Ok(entries) = std::fs::read_dir(m.dir.join("movies")) else { continue };
             for e in entries.flatten() {
                 let path = e.path();
-                let hash = path
+                let key = path
                     .file_stem()
                     .and_then(|s| s.to_str())
                     .filter(|_| path.extension().is_some_and(|x| x.eq_ignore_ascii_case("mp4")))
-                    .and_then(|s| u64::from_str_radix(s, 16).ok());
-                if let Some(hash) = hash {
-                    out.insert(hash, path);
+                    .and_then(|s| {
+                        let (hash, frames) = s.split_once('-').map_or((s, None), |(h, f)| (h, Some(f)));
+                        let frames = match frames {
+                            Some(f) => Some(f.parse::<u32>().ok()?),
+                            None => None,
+                        };
+                        Some((u64::from_str_radix(hash, 16).ok()?, frames))
+                    });
+                if let Some(key) = key {
+                    out.insert(key, path);
                 }
             }
         }
@@ -132,13 +163,14 @@ pub fn frame(number: u32, data: &[u8]) {
     let now = Instant::now();
     if number == 1 {
         let hash = super::fnv1a(data.iter().copied());
+        let frames = FRAMES.swap(0, Ordering::Relaxed);
         if let Some(p) = s.playing.take() {
             p.stop.store(true, Ordering::Relaxed);
         }
         if crate::runtime::trace("movies") {
-            eprintln!("[movies] movie {hash:016x} begins");
+            eprintln!("[movies] movie {} begins", movie_name(hash, Some(frames)));
         }
-        if let Some(path) = index().get(&hash) {
+        if let Some(path) = index().get(&(hash, Some(frames))).or_else(|| index().get(&(hash, None))) {
             s.playing = start(hash, path.clone());
         }
         return;
@@ -275,7 +307,8 @@ const STR_PAYLOAD: usize = 2016;
 /// Answers how many movies.
 pub fn extract(discs: &mut [Box<dyn crate::disc::Disc>], out: &std::path::Path) -> std::io::Result<usize> {
     std::fs::create_dir_all(out)?;
-    let mut seen = std::collections::HashSet::new();
+    // hash -> the frame limits of the movies saved with it
+    let mut saved: HashMap<u64, Vec<u32>> = HashMap::new();
     for disc in discs.iter_mut() {
         let listed = super::files::movies(disc.as_mut());
         if crate::runtime::trace("movies") {
@@ -292,13 +325,27 @@ pub fn extract(discs: &mut [Box<dyn crate::disc::Disc>], out: &std::path::Path) 
                 }
                 continue;
             };
-            if !seen.insert(movie.hash) {
+            let limits = saved.entry(movie.hash).or_default();
+            if limits.contains(&m.frame_limit) {
                 continue;
             }
-            save_movie(&movie, &m, out)?;
+            // another movie beginning with the same frame: both are named
+            // by their frame limits
+            if let [first] = limits[..] {
+                let (from, to) = (movie_name(movie.hash, None), movie_name(movie.hash, Some(first)));
+                for ext in ["str", "txt", "mp4", "png", "wav"] {
+                    let from = out.join(format!("{from}.{ext}"));
+                    if from.is_file() {
+                        std::fs::rename(from, out.join(format!("{to}.{ext}")))?;
+                    }
+                }
+            }
+            let name = movie_name(movie.hash, (!limits.is_empty()).then_some(m.frame_limit));
+            limits.push(m.frame_limit);
+            save_movie(&movie, &m, &name, out)?;
         }
     }
-    Ok(seen.len())
+    Ok(saved.values().map(Vec::len).sum())
 }
 
 /// A movie read from the disc: its hash, frames, sectors spanned, each
@@ -391,8 +438,12 @@ fn read_movie(disc: &mut dyn crate::disc::Disc, m: &super::files::DiscMovie) -> 
     Some(DiscMovieRead { hash: hash?, frames: last, sectors, bitstreams, picture, sound, raw: sectors_raw })
 }
 
-fn save_movie(movie: &DiscMovieRead, m: &super::files::DiscMovie, out: &std::path::Path) -> std::io::Result<()> {
-    let name = format!("{:016x}", movie.hash);
+fn save_movie(
+    movie: &DiscMovieRead,
+    m: &super::files::DiscMovie,
+    name: &str,
+    out: &std::path::Path,
+) -> std::io::Result<()> {
     std::fs::write(out.join(format!("{name}.str")), &movie.raw)?;
     // The disc streams 150 sectors a second (double speed).
     let fps = f64::from(movie.frames) * 150.0 / f64::from(movie.sectors.max(1));
