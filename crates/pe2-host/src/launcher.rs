@@ -24,9 +24,6 @@ use eframe::egui;
 
 use crate::controls::{BUTTONS, RESERVED_KEYS, key_code, key_label, pad_button, pad_label};
 
-/// The disc images' boot executables: Parasite Eve II (USA).
-const DISC_SERIALS: [&str; 2] = ["SLUS_010.42", "SLUS_010.55"];
-
 /// Where players share PE2PC's mods (the Mods screen's button).
 const MODS_PAGE: &str = "https://gamebanana.com/games/26329";
 
@@ -590,12 +587,10 @@ fn check_disc(path: &str, disc: usize, lang: Lang) -> Result<(), String> {
     }
     let mut image = crate::disc::open(Path::new(path.trim())).map_err(|e| e.to_string())?;
     let (name, _) = crate::disc::iso9660::boot_executable(image.as_mut()).map_err(|e| e.to_string())?;
-    if name.starts_with(DISC_SERIALS[disc]) {
-        Ok(())
-    } else if let Some(other) = DISC_SERIALS.iter().position(|s| name.starts_with(s)) {
-        Err(format!("{} {}.", lang.t("This is disc", "Este é o disco"), other + 1))
-    } else {
-        Err(format!("{} ({name}).", lang.t("Not Parasite Eve II (USA)", "Não é o Parasite Eve II (USA)")))
+    match crate::disc::iso9660::pe2_disc(&name) {
+        Some(n) if n == disc => Ok(()),
+        Some(other) => Err(format!("{} {}.", lang.t("This is disc", "Este é o disco"), other + 1)),
+        None => Err(format!("{} ({name}).", lang.t("Not Parasite Eve II (USA)", "Não é o Parasite Eve II (USA)"))),
     }
 }
 
