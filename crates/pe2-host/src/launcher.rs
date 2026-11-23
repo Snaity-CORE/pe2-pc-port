@@ -31,7 +31,7 @@ const DISC_SERIALS: [&str; 2] = ["SLUS_010.42", "SLUS_010.55"];
 /// Where players share PE2PC's mods (the Mods screen's button).
 const MODS_PAGE: &str = "https://gamebanana.com/games/26329";
 
-/// The program that makes language mods from European discs
+/// The program that makes language mods from other releases' discs
 /// (pe2-lang-import, a project of its own), when it sits next to pe2.
 const IMPORTER: &str = if cfg!(windows) { "pe2-lang-import.exe" } else { "pe2-lang-import" };
 
@@ -1834,15 +1834,14 @@ impl Launcher {
                 ui.add_space(6.0);
                 ui.horizontal(|ui| {
                     ui.spacing_mut().interact_size.y = 30.0;
-                    let label =
-                        lang.t("Import a language from European discs...", "Importar um idioma de discos europeus...");
+                    let label = lang.t("Import a language from your discs...", "Importar um idioma dos seus discos...");
                     if self.focus.button(ui, label, self.importing.is_none()) {
                         self.start_importer(ui.ctx(), importer);
                     }
                     ui.label(
                         egui::RichText::new(lang.t(
-                            "Your own European discs, made into a mod.",
-                            "Seus próprios discos europeus, transformados em mod.",
+                            "Your own European or Japanese discs, made into a mod.",
+                            "Seus próprios discos europeus ou japoneses, transformados em mod.",
                         ))
                         .weak(),
                     );
