@@ -317,32 +317,77 @@ fn upscale_tool(args: &[PathBuf]) -> Option<ExitCode> {
 /// (USA) disc it is given as: another game's, the other disc, or one that
 /// cannot be read. In the launcher's language (English or Portuguese).
 fn wrong_disc(images: &[PathBuf], discs: &mut [Box<dyn disc::Disc>]) -> Option<String> {
-    let pt = config::get().general.language.as_deref() == Some("pt");
-    let t = |en: &'static str, pt_text: &'static str| if pt { pt_text } else { en };
+    let language = config::get().general.language.clone().unwrap_or_default();
+    let text = WRONG_DISC.iter().find(|t| t.0 == language).unwrap_or(&WRONG_DISC[0]);
     for (n, (image, d)) in images.iter().zip(discs.iter_mut()).enumerate() {
         let file = image.file_name().map_or_else(|| image.display().to_string(), |f| f.to_string_lossy().into_owned());
         let what = match disc::iso9660::boot_executable(d.as_mut()) {
             Ok((name, _)) => match disc::iso9660::pe2_disc(&name) {
                 Some(k) if k == n => continue,
-                Some(k) => format!("{} {}", t("it is disc", "é o disco"), k + 1),
-                None => format!("{} ({name})", t("it is another game's", "é de outro jogo")),
+                Some(k) => text.2.replace("{k}", &(k + 1).to_string()),
+                None => text.3.replace("{exe}", &name),
             },
-            Err(e) => format!("{}: {e}", t("it cannot be read", "não pôde ser lido")),
+            Err(e) => text.4.replace("{error}", &e.to_string()),
         };
-        return Some(format!(
-            "{} {} ({file}) {} {}: {what}. {}",
-            t("Disc", "O disco"),
-            n + 1,
-            t("is not Parasite Eve II (USA)'s disc", "não é o disco"),
-            if pt { format!("{} do Parasite Eve II (USA)", n + 1) } else { (n + 1).to_string() },
-            t(
-                "Choose your Parasite Eve II (USA) disc images in PE2PC's launcher (Settings), or in the launcher you start it from.",
-                "Escolha as imagens dos discos do Parasite Eve II (USA) no launcher do PE2PC (Configurações), ou no launcher de onde você o inicia.",
-            )
-        ));
+        let head = text.1.replace("{n}", &(n + 1).to_string()).replace("{file}", &file);
+        return Some(format!("{head}: {what}. {}", text.5));
     }
     None
 }
+
+/// `wrong_disc`'s message in each of the launcher's languages: its code;
+/// disc {n} ({file}) is not the game's; it is disc {k}; another game's
+/// ({exe}); unreadable ({error}); what to do.
+const WRONG_DISC: [(&str, &str, &str, &str, &str, &str); 6] = [
+    (
+        "en",
+        "Disc {n} ({file}) is not Parasite Eve II (USA)'s disc {n}",
+        "it is disc {k}",
+        "it is another game's ({exe})",
+        "it cannot be read ({error})",
+        "Choose your Parasite Eve II (USA) disc images in PE2PC's launcher (Settings), or in the launcher you start it from.",
+    ),
+    (
+        "pt",
+        "O disco {n} ({file}) não é o disco {n} do Parasite Eve II (USA)",
+        "é o disco {k}",
+        "é de outro jogo ({exe})",
+        "não pôde ser lido ({error})",
+        "Escolha as imagens dos discos do Parasite Eve II (USA) no launcher do PE2PC (Configurações), ou no launcher de onde você o inicia.",
+    ),
+    (
+        "fr",
+        "Le disque {n} ({file}) n'est pas le disque {n} de Parasite Eve II (USA)",
+        "c'est le disque {k}",
+        "c'est celui d'un autre jeu ({exe})",
+        "il ne peut pas être lu ({error})",
+        "Choisissez les images des disques de Parasite Eve II (USA) dans le launcher de PE2PC (Réglages), ou dans le launcher depuis lequel vous le lancez.",
+    ),
+    (
+        "es",
+        "El disco {n} ({file}) no es el disco {n} de Parasite Eve II (USA)",
+        "es el disco {k}",
+        "es de otro juego ({exe})",
+        "no se puede leer ({error})",
+        "Elige las imágenes de los discos de Parasite Eve II (USA) en el launcher de PE2PC (Ajustes), o en el launcher desde el que lo inicias.",
+    ),
+    (
+        "de",
+        "Disc {n} ({file}) ist nicht Disc {n} von Parasite Eve II (USA)",
+        "sie ist Disc {k}",
+        "sie gehört zu einem anderen Spiel ({exe})",
+        "sie kann nicht gelesen werden ({error})",
+        "Wähle die Disc-Images von Parasite Eve II (USA) im Launcher von PE2PC (Einstellungen) oder in dem Launcher, mit dem du es startest.",
+    ),
+    (
+        "it",
+        "Il disco {n} ({file}) non è il disco {n} di Parasite Eve II (USA)",
+        "è il disco {k}",
+        "è di un altro gioco ({exe})",
+        "non può essere letto ({error})",
+        "Scegli le immagini dei dischi di Parasite Eve II (USA) nel launcher di PE2PC (Impostazioni), o nel launcher da cui lo avvii.",
+    ),
+];
 
 /// Shows `text` in a message box (the game has no window yet).
 fn show_error(text: &str) {
