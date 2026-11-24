@@ -145,6 +145,9 @@ fn captions() -> &'static HashMap<Vec<u8>, Shown> {
 /// once.
 #[unsafe(no_mangle)]
 pub extern "C" fn pc_caption_translate(stream: *mut TextStream) {
+    // Not interrupted while holding the log, a lock or the heap (the first
+    // call reads the mods' files).
+    let _g = crate::runtime::irq::guard();
     if stream.is_null() || captions().is_empty() {
         return;
     }
