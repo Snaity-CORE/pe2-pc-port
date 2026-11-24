@@ -307,6 +307,21 @@ const STR_PAYLOAD: usize = 2016;
 /// Answers how many movies.
 pub fn extract(discs: &mut [Box<dyn crate::disc::Disc>], out: &std::path::Path) -> std::io::Result<usize> {
     std::fs::create_dir_all(out)?;
+    std::thread::scope(|scope| extract_in(scope, discs, out))
+}
+
+/// `extract`, each movie's `.mp4` encoded on a thread of its own (a few at
+/// once: each holds its movie's frames).
+fn extract_in<'s>(
+    scope: &'s std::thread::Scope<'s, '_>,
+    discs: &mut [Box<dyn crate::disc::Disc>],
+    out: &'s std::path::Path,
+) -> std::io::Result<usize> {
+    let most = std::thread::available_parallelism().map_or(1, |n| n.get()).min(8);
+    let mut encoding: VecDeque<std::thread::ScopedJoinHandle<'s, std::io::Result<()>>> = VecDeque::new();
+    let finish = |h: std::thread::ScopedJoinHandle<'s, std::io::Result<()>>| {
+        h.join().unwrap_or_else(|_| Err(std::io::Error::other("a movie's encoding panicked")))
+    };
     // hash -> the frame limits of the movies saved with it
     let mut saved: HashMap<u64, Vec<u32>> = HashMap::new();
     for disc in discs.iter_mut() {
@@ -332,6 +347,10 @@ pub fn extract(discs: &mut [Box<dyn crate::disc::Disc>], out: &std::path::Path) 
             // another movie beginning with the same frame: both are named
             // by their frame limits
             if let [first] = limits[..] {
+                // its .mp4 written first
+                while let Some(h) = encoding.pop_front() {
+                    finish(h)?;
+                }
                 let (from, to) = (movie_name(movie.hash, None), movie_name(movie.hash, Some(first)));
                 for ext in ["str", "txt", "mp4", "png", "wav"] {
                     let from = out.join(format!("{from}.{ext}"));
@@ -342,8 +361,18 @@ pub fn extract(discs: &mut [Box<dyn crate::disc::Disc>], out: &std::path::Path) 
             }
             let name = movie_name(movie.hash, (!limits.is_empty()).then_some(m.frame_limit));
             limits.push(m.frame_limit);
-            save_movie(&movie, &m, &name, out)?;
+            let fps = save_movie(&movie, &m, &name, out)?;
+            if encoding.len() == most
+                && let Some(h) = encoding.pop_front()
+            {
+                finish(h)?;
+            }
+            let path = out.join(format!("{name}.mp4"));
+            encoding.push_back(scope.spawn(move || write_mp4(&movie.bitstreams, fps, &path)));
         }
+    }
+    for h in encoding {
+        finish(h)?;
     }
     Ok(saved.values().map(Vec::len).sum())
 }
@@ -438,12 +467,13 @@ fn read_movie(disc: &mut dyn crate::disc::Disc, m: &super::files::DiscMovie) -> 
     Some(DiscMovieRead { hash: hash?, frames: last, sectors, bitstreams, picture, sound, raw: sectors_raw })
 }
 
+/// Saves `movie` but its `.mp4`; answers its frame rate.
 fn save_movie(
     movie: &DiscMovieRead,
     m: &super::files::DiscMovie,
     name: &str,
     out: &std::path::Path,
-) -> std::io::Result<()> {
+) -> std::io::Result<f64> {
     std::fs::write(out.join(format!("{name}.str")), &movie.raw)?;
     // The disc streams 150 sectors a second (double speed).
     let fps = f64::from(movie.frames) * 150.0 / f64::from(movie.sectors.max(1));
@@ -457,7 +487,6 @@ fn save_movie(
         m.listed
     );
     std::fs::write(out.join(format!("{name}.txt")), text)?;
-    write_mp4(&movie.bitstreams, fps, &out.join(format!("{name}.mp4")))?;
     if let Some((w, h, rgb)) = &movie.picture {
         let file = std::io::BufWriter::new(std::fs::File::create(out.join(format!("{name}.png")))?);
         let mut enc = png::Encoder::new(file, *w as u32, *h as u32);
@@ -478,7 +507,7 @@ fn save_movie(
         }
         w.finalize().map_err(std::io::Error::other)?;
     }
-    Ok(())
+    Ok(fps)
 }
 
 /// Writes a movie's frames as a mod's movie: H.264 (without B-frames), no
