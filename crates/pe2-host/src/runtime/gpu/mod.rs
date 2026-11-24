@@ -84,6 +84,11 @@ pub struct Gpu {
     /// still moving. With frame interpolation (see note_backdrop).
     backdrop: (Option<u64>, Option<u64>),
     backdrop_moving: u32,
+    /// The movie frame whose 16-texel columns the game is loading, while a
+    /// mod's movie plays as a room's backdrop (15-bit, not shown by the
+    /// 24-bit display) and its picture replaced the frame: the frame's
+    /// number, where its first column went and its width.
+    movie_columns: Option<(u32, i32, i32, i32)>,
 }
 
 /// A screen image a mod's picture replaced: where it went, its hash and
@@ -252,6 +257,7 @@ pub fn start() {
         cmd_word0: 0,
         shown: Vec::new(),
         awaiting: Vec::new(),
+        movie_columns: None,
         read_back: Vec::new(),
         negatives: Vec::new(),
         backdrop: (None, None),
@@ -994,6 +1000,43 @@ pub extern "C" fn pcrt_ClearImage(rect: *const Rect, r: u8, g: u8, b: u8) -> i32
     0
 }
 
+/// A 16-texel column of a movie frame the game decodes into VRAM: a room's
+/// backdrop (15-bit, drawn under the characters as Aya walks), which the
+/// 24-bit display never shows. While a mod's movie plays, at a frame's
+/// first column (they come left to right, over several blanks) the mod's
+/// picture of that frame, or of one next to it while that one is being
+/// decoded, goes over the whole frame (else the game's shows); the frame's
+/// other columns then go to the CPU's VRAM only, so the screen never shows
+/// the game's columns over the picture. Answers whether this column is one
+/// of those.
+fn movie_backdrop(g: &mut Gpu, x0: i32, y0: i32, w: i32, h: i32) -> bool {
+    if w != 16 || h < 16 || g.display.rgb24 {
+        return false;
+    }
+    let Some((hash, number, (pw, ph))) = crate::mods::movies::backdrop_playing() else {
+        g.movie_columns = None;
+        return false;
+    };
+    if let Some((n, x, y, width)) = g.movie_columns
+        && n == number
+        && y == y0
+        && (x..x + width).contains(&x0)
+    {
+        return x0 != x;
+    }
+    g.movie_columns = None;
+    let width = (h as usize * pw / ph.max(1)) as i32;
+    let s = g.hw.scale as u32;
+    let Some((frame, picture)) = crate::mods::movies::backdrop_picture(width as u32 * s, h as u32 * s) else {
+        vtrace(format_args!("movie {hash:016x} frame {number}: no picture ready, the game's shows"));
+        return false;
+    };
+    vtrace(format_args!("movie {hash:016x} frame {number}: its picture of frame {frame} at ({x0},{y0}) {width}x{h}"));
+    g.movie_columns = Some((number, x0, y0, width));
+    g.hw.upload_picture(&g.vram, x0, y0, width, h, hash ^ u64::from(frame).rotate_left(32), &picture);
+    false
+}
+
 #[unsafe(no_mangle)]
 pub extern "C" fn pcrt_LoadImage(rect: *const Rect, p: *const u16) -> i32 {
     let rc = read_rect(rect);
@@ -1016,6 +1059,10 @@ pub extern "C" fn pcrt_LoadImage(rect: *const Rect, p: *const u16) -> i32 {
     let pixels = unsafe { std::slice::from_raw_parts(p, n) };
     with_gpu(|g| {
         let (x0, y0, w, h) = (i32::from(rc.x), i32::from(rc.y), i32::from(rc.w), i32::from(rc.h));
+        if movie_backdrop(g, x0, y0, w, h) {
+            g.vram.write_rect(x0, y0, w, h, pixels);
+            return;
+        }
         g.pre(x0, y0, w, h);
         // Image transfers ignore the mask settings.
         g.vram.write_rect(x0, y0, w, h, pixels);
