@@ -992,10 +992,10 @@ extract lists the pictures it does not know in
 `dumps/text/glyphs-unknown.tsv`, with words they are in, to be named
 there.
 
-[pe2-lang-import](https://github.com/JasonHababou/pe2-lang-import), a
-program of its own, makes such a mod from the player's own discs (the
-dialogue, menus, items, pictures of text, loading captions and the movies
-with text). Put next to `pe2`, the launcher's Mods screen starts it.
+pe2-lang-import ([crates/pe2-lang-import](../crates/pe2-lang-import/README.md),
+next to `pe2.exe` in the release) makes such a mod from the player's own
+discs (the dialogue, menus, items, pictures of text, loading captions and
+the movies with text). The launcher's Mods screen starts it.
 
 Their loading screens' captions are records of the executable, elsewhere
 and laid out otherwise (the French release draws its own at the bottom

@@ -32,7 +32,7 @@ const DISC_SERIALS: [&str; 2] = ["SLUS_010.42", "SLUS_010.55"];
 const MODS_PAGE: &str = "https://gamebanana.com/games/26329";
 
 /// The program that makes language mods from other releases' discs
-/// (pe2-lang-import, a project of its own), when it sits next to pe2.
+/// (crates/pe2-lang-import, in the same zip), when it sits next to pe2.
 const IMPORTER: &str = if cfg!(windows) { "pe2-lang-import.exe" } else { "pe2-lang-import" };
 
 /// The template of a new pe2.toml: the documented example.

@@ -52,16 +52,18 @@ jobs:
           python tools/gen_units.py
           python tools/build_game.py
 
-      - name: Host
-        run: cargo build --release --target i686-pc-windows-msvc -p pe2-host
+      - name: Host and language importer
+        run: cargo build --release --target i686-pc-windows-msvc -p pe2-host -p pe2-lang-import
 
       - name: Tests
-        run: cargo test --release --target i686-pc-windows-msvc -p pe2-host
+        run: cargo test --release --target i686-pc-windows-msvc -p pe2-host -p pe2-lang-import
 
       - uses: actions/upload-artifact@v4
         with:
           name: pe2-windows-x86
-          path: target/i686-pc-windows-msvc/release/pe2.exe
+          path: |
+            target/i686-pc-windows-msvc/release/pe2.exe
+            target/i686-pc-windows-msvc/release/pe2-lang-import.exe
 
       - name: Draft release
         if: startsWith(github.ref, 'refs/tags/v')

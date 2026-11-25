@@ -8,10 +8,12 @@ this machine instead, from the decomp's PSX build. For version X.Y.Z:
 1. checks: both trees clean (port and decomp), their commits on GitHub,
    the tag new, crates/pe2-host/Cargo.toml at version X.Y.Z, and the GitHub
    CLI (gh) logged in;
-2. builds: units, the game library, the host (release), and its tests;
+2. builds: units, the game library, the host and the language importer
+   (release), and their tests;
 3. checks the build carries no game data: the repository
    (check_no_game_data.py) and the exe (check_exe_game_data.py);
-4. packages dist/pe2-pc-port-vX.Y.Z-windows-x86.zip: pe2.exe, the example
+4. packages dist/pe2-pc-port-vX.Y.Z-windows-x86.zip: pe2.exe,
+   pe2-lang-import.exe, the example
    settings, README, the modding guide, the license, the third-party
    notices (tools/third_party.py) and the embedded fonts' licenses;
 5. tags the commit vX.Y.Z, pushes the tag and opens a draft release with
@@ -42,6 +44,7 @@ ROOT = Path(__file__).resolve().parent.parent
 DECOMP = ROOT / "decomp"
 TARGET = "i686-pc-windows-msvc"
 EXE = ROOT / "target" / TARGET / "release" / "pe2.exe"
+IMPORTER = EXE.with_name("pe2-lang-import.exe")
 DIST = ROOT / "dist"
 BRANCH = "main"
 NIGHTLY = "nightly"
@@ -50,6 +53,9 @@ DISCS = ("Needs your own Parasite Eve II (USA) discs: the game reads them at run
 # What goes into the zip: (path in the repository, name in the zip).
 PACKAGE = [
     (EXE, "pe2.exe"),
+    # Makes language mods from the player's discs of other releases; the
+    # launcher's Mods screen starts it.
+    (IMPORTER, "pe2-lang-import.exe"),
     (ROOT / "pe2.example.toml", "pe2.example.toml"),
     # RecompLauncher reads this at the top of the zip to set the game up.
     (ROOT / "recomplauncher.json", "recomplauncher.json"),
@@ -63,6 +69,7 @@ PACKAGE = [
     (ROOT / "crates" / "pe2-host" / "res" / "fonts" / "LICENSE-DejaVu.txt", "LICENSE-DejaVu.txt"),
     (ROOT / "crates" / "pe2-host" / "res" / "fonts" / "LICENSE-CourierPrime.txt", "LICENSE-CourierPrime.txt"),
     (ROOT / "crates" / "pe2-host" / "res" / "fonts" / "LICENSE-Hind.txt", "LICENSE-Hind.txt"),
+    (ROOT / "crates" / "pe2-lang-import" / "res" / "ja" / "OFL.txt", "LICENSE-NotoSansJP.txt"),
 ]
 
 
@@ -120,8 +127,8 @@ def check_gh() -> None:
 def build() -> None:
     run([sys.executable, "tools/gen_units.py"])
     run([sys.executable, "tools/build_game.py"])
-    run(["cargo", "build", "--release", "--target", TARGET, "-p", "pe2-host"])
-    run(["cargo", "test", "--release", "--target", TARGET, "-p", "pe2-host"])
+    run(["cargo", "build", "--release", "--target", TARGET, "-p", "pe2-host", "-p", "pe2-lang-import"])
+    run(["cargo", "test", "--release", "--target", TARGET, "-p", "pe2-host", "-p", "pe2-lang-import"])
 
 
 def check_no_game_data() -> None:
