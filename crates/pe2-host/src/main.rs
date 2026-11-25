@@ -313,6 +313,93 @@ fn upscale_tool(args: &[PathBuf]) -> Option<ExitCode> {
     })
 }
 
+/// What is wrong with the disc images, if one is not the Parasite Eve II
+/// (USA) disc it is given as: another game's, the other disc, or one that
+/// cannot be read. In the launcher's language (English or Portuguese).
+fn wrong_disc(images: &[PathBuf], discs: &mut [Box<dyn disc::Disc>]) -> Option<String> {
+    let language = config::get().general.language.clone().unwrap_or_default();
+    let text = WRONG_DISC.iter().find(|t| t.0 == language).unwrap_or(&WRONG_DISC[0]);
+    for (n, (image, d)) in images.iter().zip(discs.iter_mut()).enumerate() {
+        let file = image.file_name().map_or_else(|| image.display().to_string(), |f| f.to_string_lossy().into_owned());
+        let what = match disc::iso9660::boot_executable(d.as_mut()) {
+            Ok((name, _)) => match disc::iso9660::pe2_disc(&name) {
+                Some(k) if k == n => continue,
+                Some(k) => text.2.replace("{k}", &(k + 1).to_string()),
+                None => text.3.replace("{exe}", &name),
+            },
+            Err(e) => text.4.replace("{error}", &e.to_string()),
+        };
+        let head = text.1.replace("{n}", &(n + 1).to_string()).replace("{file}", &file);
+        return Some(format!("{head}: {what}. {}", text.5));
+    }
+    None
+}
+
+/// `wrong_disc`'s message in each of the launcher's languages: its code;
+/// disc {n} ({file}) is not the game's; it is disc {k}; another game's
+/// ({exe}); unreadable ({error}); what to do.
+const WRONG_DISC: [(&str, &str, &str, &str, &str, &str); 6] = [
+    (
+        "en",
+        "Disc {n} ({file}) is not Parasite Eve II (USA)'s disc {n}",
+        "it is disc {k}",
+        "it is another game's ({exe})",
+        "it cannot be read ({error})",
+        "Choose your Parasite Eve II (USA) disc images in PE2PC's launcher (Settings), or in the launcher you start it from.",
+    ),
+    (
+        "pt",
+        "O disco {n} ({file}) não é o disco {n} do Parasite Eve II (USA)",
+        "é o disco {k}",
+        "é de outro jogo ({exe})",
+        "não pôde ser lido ({error})",
+        "Escolha as imagens dos discos do Parasite Eve II (USA) no launcher do PE2PC (Configurações), ou no launcher de onde você o inicia.",
+    ),
+    (
+        "fr",
+        "Le disque {n} ({file}) n'est pas le disque {n} de Parasite Eve II (USA)",
+        "c'est le disque {k}",
+        "c'est celui d'un autre jeu ({exe})",
+        "il ne peut pas être lu ({error})",
+        "Choisissez les images des disques de Parasite Eve II (USA) dans le launcher de PE2PC (Réglages), ou dans le launcher depuis lequel vous le lancez.",
+    ),
+    (
+        "es",
+        "El disco {n} ({file}) no es el disco {n} de Parasite Eve II (USA)",
+        "es el disco {k}",
+        "es de otro juego ({exe})",
+        "no se puede leer ({error})",
+        "Elige las imágenes de los discos de Parasite Eve II (USA) en el launcher de PE2PC (Ajustes), o en el launcher desde el que lo inicias.",
+    ),
+    (
+        "de",
+        "Disc {n} ({file}) ist nicht Disc {n} von Parasite Eve II (USA)",
+        "sie ist Disc {k}",
+        "sie gehört zu einem anderen Spiel ({exe})",
+        "sie kann nicht gelesen werden ({error})",
+        "Wähle die Disc-Images von Parasite Eve II (USA) im Launcher von PE2PC (Einstellungen) oder in dem Launcher, mit dem du es startest.",
+    ),
+    (
+        "it",
+        "Il disco {n} ({file}) non è il disco {n} di Parasite Eve II (USA)",
+        "è il disco {k}",
+        "è di un altro gioco ({exe})",
+        "non può essere letto ({error})",
+        "Scegli le immagini dei dischi di Parasite Eve II (USA) nel launcher di PE2PC (Impostazioni), o nel launcher da cui lo avvii.",
+    ),
+];
+
+/// Shows `text` in a message box (the game has no window yet).
+fn show_error(text: &str) {
+    use windows_sys::Win32::UI::WindowsAndMessaging::{MB_ICONERROR, MB_OK, MB_SETFOREGROUND, MessageBoxW};
+    let wide = |s: &str| s.encode_utf16().chain(std::iter::once(0)).collect::<Vec<u16>>();
+    let (text, caption) = (wide(text), wide("PE2PC"));
+    // SAFETY: valid NUL-terminated strings, no owner window.
+    unsafe {
+        MessageBoxW(std::ptr::null_mut(), text.as_ptr(), caption.as_ptr(), MB_OK | MB_ICONERROR | MB_SETFOREGROUND)
+    };
+}
+
 fn main() -> ExitCode {
     drop_own_console();
     logfile::start();
@@ -380,6 +467,20 @@ fn main() -> ExitCode {
             if tracks == 1 { "" } else { "s" },
             d.total_sectors()
         );
+    }
+    // Another game's disc, or the discs swapped, would run code that is not
+    // there: say so instead (the launcher checks them too, other launchers
+    // do not).
+    let tests = ["PE2_LIBTEST", "PE2_SELFTEST"].iter().any(|v| std::env::var_os(v).is_some());
+    if !extract
+        && !tests
+        && let Some(problem) = wrong_disc(&images, &mut discs)
+    {
+        eprintln!("pe2: {problem}");
+        if !unattended {
+            show_error(&problem);
+        }
+        return ExitCode::FAILURE;
     }
     let disc1 = &mut discs[0];
     let (exe_name, exe) = match disc::iso9660::boot_executable(disc1.as_mut()) {

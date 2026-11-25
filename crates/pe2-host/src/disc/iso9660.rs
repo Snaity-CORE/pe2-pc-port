@@ -85,6 +85,17 @@ pub fn read_file(disc: &mut dyn Disc, extent: FileExtent) -> Result<Vec<u8>> {
     Ok(out)
 }
 
+/// The boot executables of Parasite Eve II (USA)'s two discs, which the
+/// Brazilian Portuguese translation's discs keep.
+pub const PE2_DISCS: [&str; 2] = ["SLUS_010.42", "SLUS_010.55"];
+
+/// Which of Parasite Eve II (USA)'s discs boots `exe_name` (0: the first),
+/// if one does.
+pub fn pe2_disc(exe_name: &str) -> Option<usize> {
+    let name = exe_name.to_ascii_uppercase();
+    PE2_DISCS.iter().position(|s| name.starts_with(s))
+}
+
 /// The boot executable named by SYSTEM.CNF (`BOOT = cdrom:\SLUS_010.42;1`).
 pub fn boot_executable(disc: &mut dyn Disc) -> Result<(String, Vec<u8>)> {
     let cnf_extent = find_file(disc, "SYSTEM.CNF")?;
