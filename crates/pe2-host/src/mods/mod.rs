@@ -33,6 +33,7 @@ pub mod indexed;
 pub mod install;
 pub mod kit;
 pub mod labels;
+pub mod load_captions;
 pub mod menuglyphs;
 pub mod movies;
 pub mod music;

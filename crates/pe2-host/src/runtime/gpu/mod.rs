@@ -1374,6 +1374,12 @@ pub fn picture_lines() -> usize {
     FRONT.lock().unwrap().lines
 }
 
+/// Whether the window's picture is a mod's movie (mods::movies), shown at
+/// its own size in the place of the game's picture of `picture_lines`.
+pub fn front_is_movie() -> bool {
+    FRONT.lock().unwrap().movie.is_some()
+}
+
 /// Whether the window's picture is on the graphics card.
 pub fn front_on_card() -> bool {
     FRONT.lock().unwrap().on_card

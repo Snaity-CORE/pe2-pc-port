@@ -589,17 +589,20 @@ a moment meanwhile) and kept from then on.
 ## Movies
 
 The game's movies (FMVs) stream from the disc frame by frame. A mod can
-show a video file instead: an MP4 with H.264 video and AAC sound, at any
-resolution and frame rate.
+show a video file instead: an MP4 with H.264 video and, if it brings its
+own, AAC sound, at any resolution and frame rate.
 
 1. Extract the game's files (`pe2 --extract`, see above): every movie the game
-   lists, 28 in all, is read from the discs into `dumps/movies/`. A movie is
-   known by a hash of its first frame: `<hash>.str` is the movie itself, as
-   on the disc (video and sound), `<hash>.png` shows a picture of it,
-   `<hash>.wav` is its sound (when it has its own), and `<hash>.txt` says its
+   lists, 46 in all, is read from the discs into `dumps/movies/`. A movie is
+   known by a hash of its first frame, and by its length in frames too when
+   others begin with the same frame (a black one): its name is `<hash>` or
+   `<hash>-<frames>`. `<name>.str` is the movie itself, as
+   on the disc (video and sound), `<name>.mp4` its pictures, ready to be a
+   mod's movie (on the movie's own sound), `<name>.png` shows a picture of it,
+   `<name>.wav` is its sound (when it has its own), and `<name>.txt` says its
    length in frames and seconds, its frame rate, its size and where it is
    listed.
-2. Save your video as `mods/<your mod>/movies/<same hash>.mp4`.
+2. Save your video as `mods/<your mod>/movies/<same name>.mp4`.
 
 The video must not use B-frames (the decoder does not support them). With
 ffmpeg:
@@ -611,14 +614,16 @@ ffmpeg -i my-movie.mkv -c:v libx264 -bf 0 -pix_fmt yuv420p -c:a aac -b:a 192k <h
 The game still plays its own movie underneath: the video is shown in its
 place, at the time the game's frame gives (so it keeps pace with it, and
 stops when the game's movie ends or is skipped), and its sound replaces the
-movie's. Make it as long as the original (the `.txt` says how long).
+movie's. A video without a sound track keeps the movie's own sound (new
+pictures on the same sound: `-an` instead of the `-c:a` options). Make it
+as long as the original (the `.txt` says how long).
 
-ffmpeg reads the `.str` files, so the original movies can be converted as
-they are, to start a remaster from (ffmpeg's "I/O error" at their end is
-only it reaching the end):
+The extract's `.mp4` is the original movie as a mod's, to start a remaster
+from. ffmpeg also reads the `.str` files, sound included (its "I/O error"
+at their end is only it reaching the end):
 
 ```
-ffmpeg -i <hash>.str -c:v libx264 -bf 0 -pix_fmt yuv420p -c:a aac <hash>.mp4
+ffmpeg -i <name>.str -c:v libx264 -bf 0 -pix_fmt yuv420p -c:a aac <name>.mp4
 ```
 
 ## Game files
@@ -861,7 +866,7 @@ disc: the extract lists them in `dumps/strings/pc/menu.toml`, and the
 Options' (categories, settings, their choices) in
 `dumps/strings/pc/options.toml`, translated the same way (their titles are
 drawn in the small face, without accents). PE2PC brings them in the
-launcher's language (Portuguese: `crates/pe2-host/res/lang/pt.toml`); a
+launcher's language (`crates/pe2-host/res/lang/<code>.toml`: pt, fr, es, de, it); a
 mod's translation of a text wins over it.
 
 Items' details (Triangle on an item: specifications and the long
@@ -975,6 +980,39 @@ sheet's hash (a name by place stands for what the discs hold there, the
 game's own picture). A few stay the game's, which PE2PC or other mods replace (the
 menus' font, the HUD's sheet, the title page: the tool's
 `PICTURES_KEPT`).
+
+### A European release's discs
+
+The French, German, Spanish and Italian releases (SLES-02559 to
+SLES-02562) were built again from the same sources: their code and data
+sit elsewhere and their fonts give the letters other codes, so their texts
+are found by aligning the two versions' code rather than in place. Their
+dialogue's accented letters are in PE2PC's tables of glyph pictures; the
+extract lists the pictures it does not know in
+`dumps/text/glyphs-unknown.tsv`, with words they are in, to be named
+there.
+
+Their loading screens' captions are records of the executable, elsewhere
+and laid out otherwise (the French release draws its own at the bottom
+right), so they cannot be patched in place. A mod's `captions.toml` gives
+them instead: the captions' cell table, and for each of the game's caption
+scripts the one shown in its place, where and on what plate. Before a
+caption is shown, PE2PC points its record at the mod's (the pictures of the
+cells the release adds come with the mod's `files/`, in the captions'
+font):
+
+```toml
+cells = "00000a0a1000090a..."  # the cell table (u, v, width, height bytes), hex
+
+[[caption]]
+original = "121e292d..."       # the game's script, hex, without its end byte
+text = "37452c1e..."           # the one shown instead
+x = -34                        # where (draw-environment pixels)
+y = 54
+line_height = 15
+box_width = 190                # its plate
+box_height = 32
+```
 
 ## Cheats and memory patches
 

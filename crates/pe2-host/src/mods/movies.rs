@@ -5,19 +5,27 @@
 //! hash of its first frame's data; a mod's `movies/<hash>.mp4` (H.264
 //! without B-frames, and AAC sound) plays instead: its pictures are shown
 //! in place of the game's 24-bit ones, at the time the game's frame number
-//! gives, and its sound replaces the movie's XA sound. The game plays its
+//! gives, and its sound, if it has a sound track, replaces the movie's XA
+//! sound (without one, the game's plays: a movie of other pictures on the
+//! same sound, such as another release's). The game plays its
 //! own movie as ever underneath (its timing, skipping and ending stay as
 //! they are).
 //!
+//! Movies may begin with the same frame (a black one): such a movie is
+//! known by its hash and its frame limit (how many frames it plays, which
+//! the game tells before it streams, `pc_movie_frames`), a mod's
+//! `movies/<hash>-<frames>.mp4`, which wins over `<hash>.mp4`.
+//!
 //! The extract saves each movie of the discs (`extract`): the movie itself
 //! as `dumps/movies/<hash>.str` (its sectors as on the disc, which video
-//! tools read), a picture of it as `<hash>.png`, its sound as `<hash>.wav`
-//! and what it is (frames, frame rate, length, size, where it is) as
-//! `<hash>.txt`.
+//! tools read), its pictures as `<hash>.mp4` (a mod's movie as it is, on
+//! the game's sound), a picture of it as `<hash>.png`, its sound as
+//! `<hash>.wav` and what it is (frames, frame rate, length, size, where it is) as
+//! `<hash>.txt`; `<hash>-<frames>` for movies beginning with the same frame.
 
 use std::collections::{HashMap, VecDeque};
 use std::path::PathBuf;
-use std::sync::atomic::{AtomicBool, Ordering};
+use std::sync::atomic::{AtomicBool, AtomicU32, Ordering};
 use std::sync::mpsc::{Receiver, SyncSender, sync_channel};
 use std::sync::{Arc, Mutex, OnceLock};
 use std::time::{Duration, Instant};
@@ -63,6 +71,8 @@ struct Playing {
     shown: Option<Arc<Picture>>,
     next: Option<Picture>,
     sound: Arc<Mutex<Sound>>,
+    /// The mod's movie has a sound track, played instead of the game's.
+    own_sound: bool,
     stop: Arc<AtomicBool>,
     /// The game has shown its 24-bit pictures (the movie) since it began.
     shown_24bit: bool,
@@ -88,9 +98,28 @@ fn state() -> &'static Mutex<State> {
     STATE.get_or_init(Default::default)
 }
 
-/// Movie hash -> the mod's file for it.
-fn index() -> &'static HashMap<u64, PathBuf> {
-    static INDEX: OnceLock<HashMap<u64, PathBuf>> = OnceLock::new();
+/// The frame limit of the movie about to stream, as the game tells it
+/// (0: not told).
+static FRAMES: AtomicU32 = AtomicU32::new(0);
+
+/// The game is about to stream a movie `frame_limit` frames long.
+#[unsafe(no_mangle)]
+pub extern "C" fn pc_movie_frames(frame_limit: u32) {
+    FRAMES.store(frame_limit, Ordering::Relaxed);
+}
+
+/// A movie's file name (without its extension): its hash, and its frame
+/// limit when movies begin with the same frame.
+fn movie_name(hash: u64, frames: Option<u32>) -> String {
+    match frames {
+        Some(frames) => format!("{hash:016x}-{frames}"),
+        None => format!("{hash:016x}"),
+    }
+}
+
+/// (Movie hash, frame limit if named) -> the mod's file for it.
+fn index() -> &'static HashMap<(u64, Option<u32>), PathBuf> {
+    static INDEX: OnceLock<HashMap<(u64, Option<u32>), PathBuf>> = OnceLock::new();
     INDEX.get_or_init(|| {
         let mut out = HashMap::new();
         if !super::enabled() {
@@ -100,13 +129,20 @@ fn index() -> &'static HashMap<u64, PathBuf> {
             let Ok(entries) = std::fs::read_dir(m.dir.join("movies")) else { continue };
             for e in entries.flatten() {
                 let path = e.path();
-                let hash = path
+                let key = path
                     .file_stem()
                     .and_then(|s| s.to_str())
                     .filter(|_| path.extension().is_some_and(|x| x.eq_ignore_ascii_case("mp4")))
-                    .and_then(|s| u64::from_str_radix(s, 16).ok());
-                if let Some(hash) = hash {
-                    out.insert(hash, path);
+                    .and_then(|s| {
+                        let (hash, frames) = s.split_once('-').map_or((s, None), |(h, f)| (h, Some(f)));
+                        let frames = match frames {
+                            Some(f) => Some(f.parse::<u32>().ok()?),
+                            None => None,
+                        };
+                        Some((u64::from_str_radix(hash, 16).ok()?, frames))
+                    });
+                if let Some(key) = key {
+                    out.insert(key, path);
                 }
             }
         }
@@ -127,13 +163,14 @@ pub fn frame(number: u32, data: &[u8]) {
     let now = Instant::now();
     if number == 1 {
         let hash = super::fnv1a(data.iter().copied());
+        let frames = FRAMES.swap(0, Ordering::Relaxed);
         if let Some(p) = s.playing.take() {
             p.stop.store(true, Ordering::Relaxed);
         }
         if crate::runtime::trace("movies") {
-            eprintln!("[movies] movie {hash:016x} begins");
+            eprintln!("[movies] movie {} begins", movie_name(hash, Some(frames)));
         }
-        if let Some(path) = index().get(&hash) {
+        if let Some(path) = index().get(&(hash, Some(frames))).or_else(|| index().get(&(hash, None))) {
             s.playing = start(hash, path.clone());
         }
         return;
@@ -167,7 +204,8 @@ fn start(hash: u64, path: PathBuf) -> Option<Playing> {
             }
         });
     }
-    {
+    let own_sound = has_sound(&path);
+    if own_sound {
         let (path, stop, sound) = (path.clone(), stop.clone(), sound.clone());
         std::thread::spawn(move || {
             if let Err(e) = decode_sound(&path, &sound, &stop) {
@@ -186,6 +224,7 @@ fn start(hash: u64, path: PathBuf) -> Option<Playing> {
         shown: None,
         next: None,
         sound,
+        own_sound,
         stop,
         shown_24bit: false,
         fps: GAME_FPS,
@@ -237,14 +276,14 @@ pub fn tick(movie: bool) {
 
 /// Whether the movie's own sound (XA) is to be left out: a mod's plays.
 pub fn mutes_xa() -> bool {
-    state().lock().unwrap().playing.is_some()
+    state().lock().unwrap().playing.as_ref().is_some_and(|p| p.own_sound)
 }
 
 /// Adds the playing movie's sound to `out` (the SPU's next `frames`
 /// samples of mods' sound).
 pub fn mix(out: &mut VecDeque<(i16, i16)>, frames: usize) {
     let s = state().lock().unwrap();
-    let Some(p) = s.playing.as_ref() else { return };
+    let Some(p) = s.playing.as_ref().filter(|p| p.own_sound) else { return };
     let mut sound = p.sound.lock().unwrap();
     while out.len() < frames {
         out.push_back((0, 0));
@@ -268,7 +307,23 @@ const STR_PAYLOAD: usize = 2016;
 /// Answers how many movies.
 pub fn extract(discs: &mut [Box<dyn crate::disc::Disc>], out: &std::path::Path) -> std::io::Result<usize> {
     std::fs::create_dir_all(out)?;
-    let mut seen = std::collections::HashSet::new();
+    std::thread::scope(|scope| extract_in(scope, discs, out))
+}
+
+/// `extract`, each movie's `.mp4` encoded on a thread of its own (a few at
+/// once: each holds its movie's frames).
+fn extract_in<'s>(
+    scope: &'s std::thread::Scope<'s, '_>,
+    discs: &mut [Box<dyn crate::disc::Disc>],
+    out: &'s std::path::Path,
+) -> std::io::Result<usize> {
+    let most = std::thread::available_parallelism().map_or(1, |n| n.get()).min(8);
+    let mut encoding: VecDeque<std::thread::ScopedJoinHandle<'s, std::io::Result<()>>> = VecDeque::new();
+    let finish = |h: std::thread::ScopedJoinHandle<'s, std::io::Result<()>>| {
+        h.join().unwrap_or_else(|_| Err(std::io::Error::other("a movie's encoding panicked")))
+    };
+    // hash -> the frame limits of the movies saved with it
+    let mut saved: HashMap<u64, Vec<u32>> = HashMap::new();
     for disc in discs.iter_mut() {
         let listed = super::files::movies(disc.as_mut());
         if crate::runtime::trace("movies") {
@@ -285,21 +340,50 @@ pub fn extract(discs: &mut [Box<dyn crate::disc::Disc>], out: &std::path::Path) 
                 }
                 continue;
             };
-            if !seen.insert(movie.hash) {
+            let limits = saved.entry(movie.hash).or_default();
+            if limits.contains(&m.frame_limit) {
                 continue;
             }
-            save_movie(&movie, &m, out)?;
+            // another movie beginning with the same frame: both are named
+            // by their frame limits
+            if let [first] = limits[..] {
+                // its .mp4 written first
+                while let Some(h) = encoding.pop_front() {
+                    finish(h)?;
+                }
+                let (from, to) = (movie_name(movie.hash, None), movie_name(movie.hash, Some(first)));
+                for ext in ["str", "txt", "mp4", "png", "wav"] {
+                    let from = out.join(format!("{from}.{ext}"));
+                    if from.is_file() {
+                        std::fs::rename(from, out.join(format!("{to}.{ext}")))?;
+                    }
+                }
+            }
+            let name = movie_name(movie.hash, (!limits.is_empty()).then_some(m.frame_limit));
+            limits.push(m.frame_limit);
+            let fps = save_movie(&movie, &m, &name, out)?;
+            if encoding.len() == most
+                && let Some(h) = encoding.pop_front()
+            {
+                finish(h)?;
+            }
+            let path = out.join(format!("{name}.mp4"));
+            encoding.push_back(scope.spawn(move || write_mp4(&movie.bitstreams, fps, &path)));
         }
     }
-    Ok(seen.len())
+    for h in encoding {
+        finish(h)?;
+    }
+    Ok(saved.values().map(Vec::len).sum())
 }
 
-/// A movie read from the disc: its hash, frames, sectors spanned, a
-/// picture and its sound.
+/// A movie read from the disc: its hash, frames, sectors spanned, each
+/// frame's size and bitstream, a picture and its sound.
 struct DiscMovieRead {
     hash: u64,
     frames: u32,
     sectors: u32,
+    bitstreams: Vec<(usize, usize, Vec<u8>)>,
     picture: Option<(usize, usize, Vec<u8>)>,
     sound: Vec<(i16, i16)>,
     /// Its sectors as on the disc (2352 bytes each, video and XA sound
@@ -313,6 +397,7 @@ fn read_movie(disc: &mut dyn crate::disc::Disc, m: &super::files::DiscMovie) -> 
     let (mut hash, mut last, mut sectors) = (None, 0u32, 0u32);
     let mut frame: (u32, u16, Vec<u8>, u64) = (0, 0, Vec::new(), 0);
     let mut picture = None;
+    let mut bitstreams = Vec::new();
     let mut sound = Vec::new();
     let mut channel = None;
     let limit = if m.frame_limit > 0 { m.frame_limit } else { u32::MAX };
@@ -361,28 +446,34 @@ fn read_movie(disc: &mut dyn crate::disc::Disc, m: &super::files::DiscMovie) -> 
             if number == 1 {
                 hash = Some(super::fnv1a(frame.2.iter().copied()));
             }
+            let (w, h) = (
+                usize::from(u16::from_le_bytes([user[0x10], user[0x11]])),
+                usize::from(u16::from_le_bytes([user[0x12], user[0x13]])),
+            );
             // Its picture: the first that is not dark (or three seconds in).
-            if picture.is_none() {
-                let (w, h) = (
-                    usize::from(u16::from_le_bytes([user[0x10], user[0x11]])),
-                    usize::from(u16::from_le_bytes([user[0x12], user[0x13]])),
-                );
-                if let Some(rgb) = super::files::movie_frame(&frame.2, w, h) {
-                    let mean = rgb.iter().map(|&b| u64::from(b)).sum::<u64>() / rgb.len().max(1) as u64;
-                    if mean >= 24 || number >= 45 {
-                        picture = Some((w, h, rgb));
-                    }
+            if picture.is_none()
+                && let Some(rgb) = super::files::movie_frame(&frame.2, w, h)
+            {
+                let mean = rgb.iter().map(|&b| u64::from(b)).sum::<u64>() / rgb.len().max(1) as u64;
+                if mean >= 24 || number >= 45 {
+                    picture = Some((w, h, rgb));
                 }
             }
+            bitstreams.push((w, h, frame.2.clone()));
             frame.3 = 0;
         }
     }
     sectors_raw.truncate(kept);
-    Some(DiscMovieRead { hash: hash?, frames: last, sectors, picture, sound, raw: sectors_raw })
+    Some(DiscMovieRead { hash: hash?, frames: last, sectors, bitstreams, picture, sound, raw: sectors_raw })
 }
 
-fn save_movie(movie: &DiscMovieRead, m: &super::files::DiscMovie, out: &std::path::Path) -> std::io::Result<()> {
-    let name = format!("{:016x}", movie.hash);
+/// Saves `movie` but its `.mp4`; answers its frame rate.
+fn save_movie(
+    movie: &DiscMovieRead,
+    m: &super::files::DiscMovie,
+    name: &str,
+    out: &std::path::Path,
+) -> std::io::Result<f64> {
     std::fs::write(out.join(format!("{name}.str")), &movie.raw)?;
     // The disc streams 150 sectors a second (double speed).
     let fps = f64::from(movie.frames) * 150.0 / f64::from(movie.sectors.max(1));
@@ -416,7 +507,95 @@ fn save_movie(movie: &DiscMovieRead, m: &super::files::DiscMovie, out: &std::pat
         }
         w.finalize().map_err(std::io::Error::other)?;
     }
-    Ok(())
+    Ok(fps)
+}
+
+/// Writes a movie's frames as a mod's movie: H.264 (without B-frames), no
+/// sound, `fps` frames a second, each frame the size of the first (a frame
+/// that does not decode shows the one before).
+fn write_mp4(bitstreams: &[(usize, usize, Vec<u8>)], fps: f64, path: &std::path::Path) -> std::io::Result<()> {
+    use openh264::encoder::{Encoder, EncoderConfig, FrameRate, QpRange, RateControlMode};
+    use openh264::formats::{RgbSliceU8, YUVBuffer};
+    let error = |e: &dyn std::fmt::Display| std::io::Error::other(format!("{}: {e}", path.display()));
+    let Some(&(width, height, _)) = bitstreams.first() else { return Ok(()) };
+    let config = EncoderConfig::new()
+        .rate_control_mode(RateControlMode::Off)
+        .qp(QpRange::new(MP4_QP, MP4_QP))
+        .max_frame_rate(FrameRate::from_hz(fps as f32))
+        .skip_frames(false);
+    let api = openh264::OpenH264API::from_source();
+    let mut encoder = Encoder::with_api_config(api, config).map_err(|e| error(&e))?;
+    let (mut sps, mut pps, mut samples) = (Vec::new(), Vec::new(), Vec::new());
+    let mut rgb = vec![0u8; width * height * 3];
+    for (w, h, bs) in bitstreams {
+        if let Some(decoded) = super::files::movie_frame(bs, *w, *h).filter(|_| (*w, *h) == (width, height)) {
+            rgb = decoded;
+        }
+        let yuv = YUVBuffer::from_rgb8_source(RgbSliceU8::new(&rgb, (width, height)));
+        let encoded = encoder.encode(&yuv).map_err(|e| error(&e))?;
+        // Its units, length-prefixed; the parameter sets go in the track's
+        // configuration.
+        let (mut sample, mut sync) = (Vec::new(), false);
+        for layer in (0..encoded.num_layers()).filter_map(|i| encoded.layer(i)) {
+            for unit in (0..layer.nal_count()).filter_map(|i| layer.nal_unit(i)) {
+                let unit =
+                    unit.strip_prefix(&[0, 0, 0, 1][..]).or_else(|| unit.strip_prefix(&[0, 0, 1][..])).unwrap_or(unit);
+                match unit.first().map(|b| b & 0x1F) {
+                    Some(7) => sps = unit.to_vec(),
+                    Some(8) => pps = unit.to_vec(),
+                    Some(kind) => {
+                        sync |= kind == 5;
+                        sample.extend_from_slice(&(unit.len() as u32).to_be_bytes());
+                        sample.extend_from_slice(unit);
+                    }
+                    None => {}
+                }
+            }
+        }
+        samples.push((sample, sync));
+    }
+    let file = std::io::BufWriter::new(std::fs::File::create(path)?);
+    let config = mp4::Mp4Config {
+        major_brand: str::parse("isom").map_err(|e| error(&e))?,
+        minor_version: 512,
+        compatible_brands: ["isom", "iso2", "avc1", "mp41"].iter().filter_map(|b| str::parse(b).ok()).collect(),
+        timescale: 1000,
+    };
+    let mut mp4 = mp4::Mp4Writer::write_start(file, &config).map_err(|e| error(&e))?;
+    let avc = mp4::AvcConfig { width: width as u16, height: height as u16, seq_param_set: sps, pic_param_set: pps };
+    let track = mp4::TrackConfig {
+        track_type: mp4::TrackType::Video,
+        timescale: fps as u32,
+        language: "und".to_string(),
+        media_conf: mp4::MediaConfig::AvcConfig(avc),
+    };
+    mp4.add_track(&track).map_err(|e| error(&e))?;
+    for (k, (bytes, is_sync)) in samples.into_iter().enumerate() {
+        let sample = mp4::Mp4Sample {
+            start_time: k as u64,
+            duration: 1,
+            rendering_offset: 0,
+            is_sync,
+            bytes: mp4::Bytes::from(bytes),
+        };
+        mp4.write_sample(1, &sample).map_err(|e| error(&e))?;
+    }
+    mp4.write_end().map_err(|e| error(&e))
+}
+
+/// The quantizer of the movies written as mods' (`write_mp4`): fine enough
+/// to look as the disc's.
+const MP4_QP: u8 = 18;
+
+/// Whether a mod's movie has a sound track.
+fn has_sound(path: &PathBuf) -> bool {
+    let read = || {
+        let file = std::fs::File::open(path).ok()?;
+        let size = file.metadata().ok()?.len();
+        let mp4 = mp4::Mp4Reader::read_header(std::io::BufReader::new(file), size).ok()?;
+        Some(mp4.tracks().values().any(|t| t.track_type().is_ok_and(|k| k == mp4::TrackType::Audio)))
+    };
+    read().unwrap_or(false)
 }
 
 /// Decodes the video track, sending each picture with its time.

@@ -1,0 +1,233 @@
+# PE2PC's own screens in Spanish: its pause menu (Esc), its Options and the
+# few texts it adds to the item boxes. Used when the launcher's language is
+# Spanish ([general] language = "es"); a mod's translation of the same text
+# (strings/pc/*.toml, docs/MODDING.md) wins. Titles are drawn in the menus'
+# small face, which has no accents.
+
+[[string]]
+original = 'PAUSE'
+text = 'PAUSA'
+
+[[string]]
+original = 'Resume'
+text = 'Continuar'
+
+[[string]]
+original = 'Save'
+text = 'Guardar'
+
+[[string]]
+original = 'Options'
+text = 'Opciones'
+
+[[string]]
+original = 'Moved to the item box.'
+text = 'Guardado en el baúl.'
+
+[[string]]
+original = 'Quantity'
+text = 'CANTIDAD'
+
+[[string]]
+original = '''
+Set the number with the directional
+buttons. } button to confirm.'''
+text = '''
+Elige la cantidad con los botones
+de dirección. } para confirmar.'''
+
+[[string]]
+original = 'Quit to title'
+text = 'Volver al título'
+
+[[string]]
+original = 'Quit game'
+text = 'Salir del juego'
+
+[[string]]
+original = 'QUIT TO TITLE'
+text = 'VOLVER AL TITULO'
+
+[[string]]
+original = 'QUIT GAME'
+text = 'SALIR DEL JUEGO'
+
+[[string]]
+original = 'No'
+text = 'No'
+
+[[string]]
+original = 'Yes'
+text = 'Sí'
+
+[[string]]
+original = 'OPTIONS'
+text = 'OPCIONES'
+
+[[string]]
+original = '(restart)'
+text = '(reiniciar)'
+
+[[string]]
+original = 'Video'
+text = 'Vídeo'
+
+[[string]]
+original = 'Audio'
+text = 'Sonido'
+
+[[string]]
+original = 'Controls'
+text = 'Controles'
+
+[[string]]
+original = 'Gameplay'
+text = 'Juego'
+
+[[string]]
+original = 'Cheats'
+text = 'Trucos'
+
+[[string]]
+original = 'VIDEO'
+text = 'VIDEO'
+
+[[string]]
+original = 'AUDIO'
+text = 'SONIDO'
+
+[[string]]
+original = 'CONTROLS'
+text = 'CONTROLES'
+
+[[string]]
+original = 'GAMEPLAY'
+text = 'JUEGO'
+
+[[string]]
+original = 'CHEATS'
+text = 'TRUCOS'
+
+[[string]]
+original = 'Resolution'
+text = 'Resolución'
+
+[[string]]
+original = '60 fps motion'
+text = 'Fluidez 60 fps'
+
+[[string]]
+original = 'Off'
+text = 'No'
+
+[[string]]
+original = 'On'
+text = 'Sí'
+
+[[string]]
+original = '3D textures'
+text = 'Texturas 3D'
+
+[[string]]
+original = 'Sharp'
+text = 'Nítidas'
+
+[[string]]
+original = 'Smooth'
+text = 'Suaves'
+
+[[string]]
+original = 'Backgrounds'
+text = 'Fondos'
+
+[[string]]
+original = 'CRT look'
+text = 'Aspecto CRT'
+
+[[string]]
+original = 'Integer scaling'
+text = 'Escala entera'
+
+[[string]]
+original = 'Full screen'
+text = 'Pantalla completa'
+
+[[string]]
+original = 'HD fonts'
+text = 'Fuentes HD'
+
+[[string]]
+original = 'Volume'
+text = 'Volumen'
+
+[[string]]
+original = 'Movement'
+text = 'Movimiento'
+
+[[string]]
+original = 'Tank'
+text = 'Clásico'
+
+[[string]]
+original = 'Modern'
+text = 'Moderno'
+
+[[string]]
+original = 'Quick turn'
+text = 'Giro rápido'
+
+[[string]]
+original = 'Vibration'
+text = 'Vibración'
+
+[[string]]
+original = 'Fast camera changes'
+text = 'Cámaras rápidas'
+
+[[string]]
+original = 'Skip intro'
+text = 'Saltar la intro'
+
+[[string]]
+original = 'Instant text'
+text = 'Texto instantáneo'
+
+[[string]]
+original = 'Fast doors'
+text = 'Puertas rápidas'
+
+[[string]]
+original = 'Unified item boxes'
+text = 'Baúles compartidos'
+
+[[string]]
+original = 'Bigger inventory'
+text = 'Inventario mayor'
+
+[[string]]
+original = 'Full inventory to box'
+text = 'Excedente al baúl'
+
+[[string]]
+original = 'Stack items'
+text = 'Apilar objetos'
+
+[[string]]
+original = 'Save anywhere'
+text = 'Guardar donde sea'
+
+[[string]]
+original = 'Always critical'
+text = 'Siempre crítico'
+
+[[string]]
+original = 'Infinite HP'
+text = 'HP infinitos'
+
+[[string]]
+original = 'One-hit kills'
+text = 'Matar de un golpe'
+
+[[string]]
+original = 'Infinite MP'
+text = 'MP infinitos'

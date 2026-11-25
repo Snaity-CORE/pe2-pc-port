@@ -72,13 +72,15 @@ impl Table {
 static TABLE: OnceLock<Table> = OnceLock::new();
 
 /// Text as the game stores it: Latin-1 (the font's accents), typographic
-/// quotes and dashes made plain, anything else a `?`.
+/// quotes and dashes and the ° the font lacks made plain, anything else a
+/// `?`.
 pub fn encode(text: &str) -> Vec<u8> {
     let mut out = Vec::with_capacity(text.len());
     for c in text.chars() {
         match c {
             '\u{2018}' | '\u{2019}' => out.push(b'\''),
-            '\u{201C}' | '\u{201D}' => out.push(b'"'),
+            '\u{201C}' | '\u{201D}' | '«' | '»' => out.push(b'"'),
+            '°' => out.push(b'.'),
             '\u{2013}' | '\u{2014}' => out.push(b'-'),
             '\u{2026}' => out.extend_from_slice(b"..."),
             c if (c as u32) < 0x100 => out.push(c as u32 as u8),
@@ -199,12 +201,20 @@ fn text_file(rel: &str) -> Option<(&str, usize)> {
 /// PE2PC's own screens in the launcher's language, when not English
 /// (res/lang/<language>.toml).
 fn own_language() -> Option<StringsFile> {
-    let text = match crate::config::get().general.language.as_deref() {
-        Some("pt") => include_str!("../../res/lang/pt.toml"),
-        _ => return None,
-    };
-    toml::from_str(text).map_err(|e| eprintln!("pe2: menus: res/lang: {e}")).ok()
+    let language = crate::config::get().general.language.as_deref()?;
+    let (_, text) = OWN_LANGUAGES.iter().find(|(code, _)| *code == language)?;
+    toml::from_str(text).map_err(|e| eprintln!("pe2: menus: res/lang/{language}.toml: {e}")).ok()
 }
+
+/// PE2PC's own screens in the launcher's other languages: each code, and
+/// its file.
+const OWN_LANGUAGES: [(&str, &str); 5] = [
+    ("pt", include_str!("../../res/lang/pt.toml")),
+    ("fr", include_str!("../../res/lang/fr.toml")),
+    ("es", include_str!("../../res/lang/es.toml")),
+    ("de", include_str!("../../res/lang/de.toml")),
+    ("it", include_str!("../../res/lang/it.toml")),
+];
 
 fn read() -> Table {
     let mut table = Table::default();
@@ -366,9 +376,11 @@ pub extern "C" fn pc_text_for_face(text: *const u8, small: i32) -> *const u8 {
 }
 
 /// Bytes a string of the game's may hold besides ASCII: the accented
-/// letters and the marks the menus' font has (textdraw.c's glyph tables).
+/// letters and the marks the menus' font has (textdraw.c's glyph tables),
+/// and the « » ° of the European releases' texts (`encode` makes them
+/// plain).
 fn in_font(b: u8) -> bool {
-    matches!(b, 0x20..=0x7E | b'\n' | 0xA1 | 0xBF | 0xC0..=0xCF | 0xD1..=0xD6 | 0xD9..=0xDC | 0xDF | 0xE0..=0xEF | 0xF1..=0xF6 | 0xF9..=0xFC)
+    matches!(b, 0x20..=0x7E | b'\n' | 0xA1 | 0xAB | 0xB0 | 0xBB | 0xBF | 0xC0..=0xCF | 0xD1..=0xD6 | 0xD9..=0xDC | 0xDF | 0xE0..=0xEF | 0xF1..=0xF6 | 0xF9..=0xFC)
 }
 
 /// Whether `s`, a run of the font's bytes, reads as text rather than code
@@ -588,6 +600,9 @@ mod tests {
         let found: Vec<String> = scan(&data, 0x8000_0000).into_iter().map(|(_, s)| decode(&s)).collect();
         assert_eq!(found, ["Option", "Exit", "Customize game settings.", "On"]);
         assert_eq!(scan(&data, 0x8000_0000)[2].0, 0x8000_0018);
+        // A European release's marks are part of its texts.
+        let pike = b"\xABPike\xBB\nRoom N\xB06";
+        assert_eq!(scan(&[&pike[..], b"\0"].concat(), 0x8000_0000)[0].1, pike);
     }
 
     /// The translation of a text found by its contents, and of the rest of
@@ -603,23 +618,25 @@ mod tests {
         assert!(get(b"").is_none());
     }
 
-    /// PE2PC's screens in Portuguese: each text there is one of PE2PC's,
-    /// and each of PE2PC's with words is there.
+    /// PE2PC's screens in each other language: each text there is one of
+    /// PE2PC's, and each of PE2PC's with words is there.
     #[test]
-    fn own_screens_in_portuguese() {
-        let file: StringsFile = toml::from_str(include_str!("../../res/lang/pt.toml")).unwrap();
+    fn own_screens_in_other_languages() {
         let ours: Vec<String> = port_texts()
             .iter()
             .map(|t| decode(t))
             .chain(crate::settings::texts().into_iter().map(str::to_string))
             .collect();
-        let given: Vec<&str> = file.string.iter().map(|e| e.original.trim_start_matches('\n')).collect();
-        for g in &given {
-            assert!(ours.iter().any(|o| o == g), "res/lang/pt.toml: {g:?} is no text of PE2PC's");
-        }
         let words = |t: &str| t.chars().filter(|c| c.is_alphabetic()).count() > 1 && !matches!(t, "EXP" | "BP");
-        for o in ours.iter().filter(|o| words(o)) {
-            assert!(given.contains(&o.as_str()), "res/lang/pt.toml: {o:?} not translated");
+        for (code, text) in OWN_LANGUAGES {
+            let file: StringsFile = toml::from_str(text).unwrap();
+            let given: Vec<&str> = file.string.iter().map(|e| e.original.trim_start_matches('\n')).collect();
+            for g in &given {
+                assert!(ours.iter().any(|o| o == g), "res/lang/{code}.toml: {g:?} is no text of PE2PC's");
+            }
+            for o in ours.iter().filter(|o| words(o)) {
+                assert!(given.contains(&o.as_str()), "res/lang/{code}.toml: {o:?} not translated");
+            }
         }
     }
 
@@ -634,6 +651,7 @@ mod tests {
     #[test]
     fn encodes_for_the_font() {
         assert_eq!(encode("“Ação”… ok"), b"\"A\xE7\xE3o\"... ok");
+        assert_eq!(encode("«Pike» n°6"), b"\"Pike\" n.6");
         assert_eq!(fit_lines(&[b'a'; 70], "test").len(), LINE_BYTES);
     }
 }

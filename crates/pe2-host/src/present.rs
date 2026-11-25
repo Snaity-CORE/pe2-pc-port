@@ -321,9 +321,16 @@ impl Presenter {
     /// presents it.
     fn draw(&mut self, bind: &wgpu::BindGroup, card: bool, size: (u32, u32)) {
         let gfx = self.gfx;
-        let (x, y, pw, ph, whole) = viewport(self.config.width, self.config.height, size.0, size.1, integer_scaling());
-        let lines = crate::runtime::gpu::picture_lines().max(1) as f32;
-        let params = [lines, if whole { 1.0 } else { 0.0 }, size.0 as f32, size.1 as f32];
+        // A mod's movie takes the place of the game's picture: whole
+        // multiples of the game's lines, not of the movie's own (a 960-line
+        // movie would be shown once, smaller than the game's 240 lines five
+        // times), and it is scaled smoothly.
+        let movie = crate::runtime::gpu::front_is_movie();
+        let lines = crate::runtime::gpu::picture_lines().max(1) as u32;
+        let (tw, th) = if movie { (lines * 4 / 3, lines) } else { size };
+        let (x, y, pw, ph, whole) = viewport(self.config.width, self.config.height, tw, th, integer_scaling());
+        let whole = whole && !movie;
+        let params = [lines as f32, if whole { 1.0 } else { 0.0 }, size.0 as f32, size.1 as f32];
         if params != self.params_now {
             gfx.queue.write_buffer(&self.params, 0, &params.map(f32::to_le_bytes).concat());
             self.params_now = params;

@@ -1,0 +1,233 @@
+# PE2PC's own screens in French: its pause menu (Esc), its Options and the
+# few texts it adds to the item boxes. Used when the launcher's language is
+# French ([general] language = "fr"); a mod's translation of the same text
+# (strings/pc/*.toml, docs/MODDING.md) wins. Titles are drawn in the menus'
+# small face, which has no accents.
+
+[[string]]
+original = 'PAUSE'
+text = 'PAUSE'
+
+[[string]]
+original = 'Resume'
+text = 'Reprendre'
+
+[[string]]
+original = 'Save'
+text = 'Sauvegarder'
+
+[[string]]
+original = 'Options'
+text = 'Options'
+
+[[string]]
+original = 'Moved to the item box.'
+text = 'Placé dans le coffre.'
+
+[[string]]
+original = 'Quantity'
+text = 'QUANTITE'
+
+[[string]]
+original = '''
+Set the number with the directional
+buttons. } button to confirm.'''
+text = '''
+Choisissez la quantité avec les touches
+directionnelles. } pour confirmer.'''
+
+[[string]]
+original = 'Quit to title'
+text = 'Retour au titre'
+
+[[string]]
+original = 'Quit game'
+text = 'Quitter le jeu'
+
+[[string]]
+original = 'QUIT TO TITLE'
+text = 'RETOUR AU TITRE'
+
+[[string]]
+original = 'QUIT GAME'
+text = 'QUITTER LE JEU'
+
+[[string]]
+original = 'No'
+text = 'Non'
+
+[[string]]
+original = 'Yes'
+text = 'Oui'
+
+[[string]]
+original = 'OPTIONS'
+text = 'OPTIONS'
+
+[[string]]
+original = '(restart)'
+text = '(redémarrage)'
+
+[[string]]
+original = 'Video'
+text = 'Vidéo'
+
+[[string]]
+original = 'Audio'
+text = 'Son'
+
+[[string]]
+original = 'Controls'
+text = 'Commandes'
+
+[[string]]
+original = 'Gameplay'
+text = 'Jeu'
+
+[[string]]
+original = 'Cheats'
+text = 'Codes de triche'
+
+[[string]]
+original = 'VIDEO'
+text = 'VIDEO'
+
+[[string]]
+original = 'AUDIO'
+text = 'SON'
+
+[[string]]
+original = 'CONTROLS'
+text = 'COMMANDES'
+
+[[string]]
+original = 'GAMEPLAY'
+text = 'JEU'
+
+[[string]]
+original = 'CHEATS'
+text = 'CODES DE TRICHE'
+
+[[string]]
+original = 'Resolution'
+text = 'Résolution'
+
+[[string]]
+original = '60 fps motion'
+text = 'Fluidité 60 i/s'
+
+[[string]]
+original = 'Off'
+text = 'Non'
+
+[[string]]
+original = 'On'
+text = 'Oui'
+
+[[string]]
+original = '3D textures'
+text = 'Textures 3D'
+
+[[string]]
+original = 'Sharp'
+text = 'Nettes'
+
+[[string]]
+original = 'Smooth'
+text = 'Lissées'
+
+[[string]]
+original = 'Backgrounds'
+text = 'Décors'
+
+[[string]]
+original = 'CRT look'
+text = 'Aspect CRT'
+
+[[string]]
+original = 'Integer scaling'
+text = 'Échelle entière'
+
+[[string]]
+original = 'Full screen'
+text = 'Plein écran'
+
+[[string]]
+original = 'HD fonts'
+text = 'Polices HD'
+
+[[string]]
+original = 'Volume'
+text = 'Volume'
+
+[[string]]
+original = 'Movement'
+text = 'Déplacement'
+
+[[string]]
+original = 'Tank'
+text = 'Classique'
+
+[[string]]
+original = 'Modern'
+text = 'Moderne'
+
+[[string]]
+original = 'Quick turn'
+text = 'Demi-tour rapide'
+
+[[string]]
+original = 'Vibration'
+text = 'Vibrations'
+
+[[string]]
+original = 'Fast camera changes'
+text = 'Caméras rapides'
+
+[[string]]
+original = 'Skip intro'
+text = "Passer l'introduction"
+
+[[string]]
+original = 'Instant text'
+text = 'Texte instantané'
+
+[[string]]
+original = 'Fast doors'
+text = 'Portes rapides'
+
+[[string]]
+original = 'Unified item boxes'
+text = 'Coffres partagés'
+
+[[string]]
+original = 'Bigger inventory'
+text = 'Inventaire agrandi'
+
+[[string]]
+original = 'Full inventory to box'
+text = 'Surplus vers le coffre'
+
+[[string]]
+original = 'Stack items'
+text = 'Empiler les objets'
+
+[[string]]
+original = 'Save anywhere'
+text = 'Sauvegarde libre'
+
+[[string]]
+original = 'Always critical'
+text = 'Coups critiques'
+
+[[string]]
+original = 'Infinite HP'
+text = 'HP infinis'
+
+[[string]]
+original = 'One-hit kills'
+text = 'Tuer en un coup'
+
+[[string]]
+original = 'Infinite MP'
+text = 'MP infinis'
