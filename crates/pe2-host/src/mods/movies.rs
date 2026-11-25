@@ -16,6 +16,11 @@
 //! the game tells before it streams, `pc_movie_frames`), a mod's
 //! `movies/<hash>-<frames>.mp4`, which wins over `<hash>.mp4`.
 //!
+//! A room's backdrop movie may be taken up at any frame (where Aya is), or
+//! follow another of the room's without a first frame: a frame is then
+//! known by where it lies on the disc, in the movies the discs list
+//! (`start_discs`).
+//!
 //! The extract saves each movie of the discs (`extract`): the movie itself
 //! as `dumps/movies/<hash>.str` (its sectors as on the disc, which video
 //! tools read), its pictures as `<hash>.mp4` (a mod's movie as it is, on
@@ -50,8 +55,9 @@ const HELD_UP: Duration = Duration::from_millis(300);
 const AHEAD: usize = 4;
 const RATE: u32 = 44_100;
 /// A backdrop picture this many frames from the one the game draws still
-/// serves (it is being decoded), rather than the game's own.
-const BACKDROP_NEAR: u32 = 2;
+/// serves (it is being decoded), rather than the game's own: as Aya walks,
+/// the picture follows a few frames behind.
+const BACKDROP_NEAR: u32 = 8;
 
 /// A picture of a mod's movie: 0RGB pixels, row by row.
 pub struct Picture {
@@ -70,6 +76,8 @@ struct Playing {
     number: u32,
     at: Instant,
     began: Instant,
+    /// The frame it began at: 1, or one the game took it up at.
+    first: u32,
     pictures: Receiver<Picture>,
     shown: Option<Arc<Picture>>,
     next: Option<Picture>,
@@ -120,6 +128,10 @@ struct Sound {
 #[derive(Default)]
 struct State {
     playing: Option<Playing>,
+    /// The mod's file of the movie shown full screen that ended last, until
+    /// another begins: the frames the game still streams after a movie it
+    /// skipped do not take it up again.
+    ended: Option<PathBuf>,
 }
 
 fn state() -> &'static Mutex<State> {
@@ -130,6 +142,17 @@ fn state() -> &'static Mutex<State> {
 /// The frame limit of the movie about to stream, as the game tells it
 /// (0: not told).
 static FRAMES: AtomicU32 = AtomicU32::new(0);
+
+/// A frame was taken from the stream since the game last began loading one
+/// into VRAM (`new_backdrop_frame`).
+static TAKEN: AtomicBool = AtomicBool::new(false);
+
+/// Whether the picture the game begins loading now is a movie frame it
+/// just took from the stream: not a still picture loaded the same way
+/// while a backdrop movie, its frames stopped, still counts as playing.
+pub fn new_backdrop_frame() -> bool {
+    TAKEN.swap(false, Ordering::Relaxed)
+}
 
 /// The game is about to stream a movie `frame_limit` frames long.
 #[unsafe(no_mangle)]
@@ -182,12 +205,70 @@ fn index() -> &'static HashMap<(u64, Option<u32>), PathBuf> {
     })
 }
 
-/// The game took frame `number` of the movie streaming, `data` (its
-/// sectors' payload) to decode.
-pub fn frame(number: u32, data: &[u8]) {
+/// The mod's file for the movie of `hash` and frame limit `frames`.
+fn mod_file(hash: u64, frames: u32) -> Option<&'static PathBuf> {
+    index().get(&(hash, Some(frames))).or_else(|| index().get(&(hash, None)))
+}
+
+/// A movie a disc lists: where it begins, and its hash and frame limit.
+type Listed = (u32, (u64, u32));
+
+/// The movies each disc lists (`start_discs`), by where they begin.
+static ON_DISCS: OnceLock<Vec<Vec<Listed>>> = OnceLock::new();
+
+/// When the game starts, while mods have movies: on a thread, where on
+/// `discs` each movie they list begins and its first frame's hash.
+pub fn start_discs(discs: &[PathBuf]) {
     if index().is_empty() {
         return;
     }
+    let discs = discs.to_vec();
+    std::thread::spawn(move || {
+        let listed = discs
+            .iter()
+            .map(|image| {
+                let mut disc = match crate::disc::open(image) {
+                    Ok(d) => d,
+                    Err(e) => {
+                        eprintln!("pe2: mods: {}: {e}", image.display());
+                        return Vec::new();
+                    }
+                };
+                let mut out: Vec<Listed> = Vec::new();
+                for m in super::files::movies(disc.as_mut()) {
+                    if out.iter().any(|(lba, _)| *lba == m.lba) {
+                        continue;
+                    }
+                    // its first frame only
+                    let first = super::files::DiscMovie { frame_limit: 1, listed: String::new(), ..m };
+                    if let Some(movie) = read_movie(disc.as_mut(), &first) {
+                        out.push((m.lba, (movie.hash, m.frame_limit)));
+                    }
+                }
+                out.sort_unstable_by_key(|(lba, _)| *lba);
+                out
+            })
+            .collect();
+        let _ = ON_DISCS.set(listed);
+    });
+}
+
+/// The movie (hash, frame limit) sector `place.1` of disc `place.0` is
+/// in: the last listed to begin at or before it.
+fn movie_at(place: (usize, u32)) -> Option<&'static (u64, u32)> {
+    let movies = ON_DISCS.get()?.get(place.0)?;
+    let i = movies.partition_point(|(lba, _)| *lba <= place.1);
+    Some(&movies.get(i.checked_sub(1)?)?.1)
+}
+
+/// The game took frame `number` of the movie streaming, `data` (its
+/// sectors' payload) to decode; its first sector was sector `place.1` of
+/// disc `place.0`.
+pub fn frame(number: u32, data: &[u8], place: (usize, u32)) {
+    if index().is_empty() {
+        return;
+    }
+    TAKEN.store(true, Ordering::Relaxed);
     let mut s = state().lock().unwrap();
     let now = Instant::now();
     if number == 1 {
@@ -196,13 +277,28 @@ pub fn frame(number: u32, data: &[u8]) {
         if let Some(p) = s.playing.take() {
             p.stop.store(true, Ordering::Relaxed);
         }
+        s.ended = None;
         if crate::runtime::trace("movies") {
             eprintln!("[movies] movie {} begins", movie_name(hash, Some(frames)));
         }
-        if let Some(path) = index().get(&(hash, Some(frames))).or_else(|| index().get(&(hash, None))) {
-            s.playing = start(hash, path.clone());
+        if let Some(path) = mod_file(hash, frames) {
+            s.playing = start(hash, path.clone(), 1);
         }
         return;
+    }
+    // A movie taken up at another frame: the one there on the disc.
+    if let Some(&(hash, frames)) = movie_at(place) {
+        let path = mod_file(hash, frames);
+        if s.playing.as_ref().map(|p| &p.path) != path && s.ended.as_ref() != path {
+            if let Some(p) = s.playing.take() {
+                p.stop.store(true, Ordering::Relaxed);
+            }
+            if crate::runtime::trace("movies") {
+                eprintln!("[movies] movie {} taken up at frame {number}", movie_name(hash, Some(frames)));
+            }
+            s.playing = path.and_then(|path| start(hash, path.clone(), number));
+            return;
+        }
     }
     if let Some(p) = s.playing.as_mut() {
         let held = now - p.at;
@@ -219,9 +315,9 @@ pub fn frame(number: u32, data: &[u8]) {
     }
 }
 
-/// Starts playing a mod's movie: its pictures and sound decoded on threads
-/// of their own.
-fn start(hash: u64, path: PathBuf) -> Option<Playing> {
+/// Starts playing a mod's movie at frame `first`: its pictures and sound
+/// decoded on threads of their own.
+fn start(hash: u64, path: PathBuf, first: u32) -> Option<Playing> {
     let (send, pictures) = sync_channel(AHEAD);
     let stop = Arc::new(AtomicBool::new(false));
     let sound = Arc::new(Mutex::new(Sound::default()));
@@ -246,9 +342,10 @@ fn start(hash: u64, path: PathBuf) -> Option<Playing> {
     let now = Instant::now();
     Some(Playing {
         hash,
-        number: 1,
+        number: first,
         at: now,
         began: now,
+        first,
         pictures,
         shown: None,
         next: None,
@@ -266,7 +363,7 @@ fn start(hash: u64, path: PathBuf) -> Option<Playing> {
 pub fn picture() -> Option<Arc<Picture>> {
     let mut s = state().lock().unwrap();
     let p = s.playing.as_mut()?;
-    p.fps = p.fps.max(game_fps(p.number, (p.at - p.began).as_secs_f64()));
+    p.fps = p.fps.max(game_fps(p.number + 1 - p.first, (p.at - p.began).as_secs_f64()));
     let frame = 1.0 / p.fps;
     let now = f64::from(p.number - 1) * frame + p.at.elapsed().as_secs_f64().min(frame);
     loop {
@@ -339,7 +436,9 @@ pub fn tick(movie: bool) {
         } else if crate::runtime::trace("movies") {
             eprintln!("[movies] movie {:016x} ends", p.hash);
         }
-        s.playing = None;
+        // a movie shown full screen that ended (or was skipped); a room's
+        // backdrop held up stays one to take up when Aya moves again
+        s.ended = s.playing.take().filter(|_| !stalled).map(|p| p.path);
     }
 }
 

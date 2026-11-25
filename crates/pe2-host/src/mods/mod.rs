@@ -119,6 +119,7 @@ pub fn installed() -> Vec<Mod> {
 pub fn start(discs: &[PathBuf]) {
     strings::load();
     backgrounds::resolve_background_places(discs);
+    movies::start_discs(discs);
     if let Some(first) = discs.first() {
         fontsheets::start(first.clone());
     }
