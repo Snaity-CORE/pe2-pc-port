@@ -623,6 +623,13 @@ pub fn above_console() -> bool {
     crate::runtime::gpu::scale() > 1
 }
 
+/// above_console, for the game's code (the menus' "Lv." text, drawn there
+/// in place of the console's picture).
+#[unsafe(no_mangle)]
+pub extern "C" fn pc_above_console() -> i32 {
+    i32::from(above_console())
+}
+
 /// A PNG as RGBA (any colour type or depth png can expand to 8 bits),
 /// opaque unless `alpha`.
 pub fn read_png(path: &Path, alpha: bool) -> Result<Picture, String> {
