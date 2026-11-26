@@ -1476,13 +1476,13 @@
   ]
  },
  {
-  "object": "mapui/map_akropolis/map_akropolis",
-  "source": "src/mapui/map_akropolis/map_akropolis.c",
+  "object": "mapui/akropolis_stage/stage",
+  "source": "src/stages/akropolis/stage.c",
   "defines": {
    "VER_USA": null
   },
   "overlays": [
-   "map_akropolis"
+   "akropolis_stage"
   ]
  },
  {
@@ -1526,23 +1526,23 @@
   ]
  },
  {
-  "object": "mappic/mappic_s1_00/mappic_s1_00",
-  "source": "src/mappic/mappic_s1_00/mappic_s1_00.c",
+  "object": "mappic/akropolis_helicopter_landing_pad_map/helicopter_landing_pad",
+  "source": "src/stages/akropolis/map/helicopter_landing_pad.c",
   "defines": {
    "VER_USA": null
   },
   "overlays": [
-   "mappic_s1_00"
+   "akropolis_helicopter_landing_pad_map"
   ]
  },
  {
-  "object": "mappic/mappic_s1_02/mappic_s1_02",
-  "source": "src/mappic/mappic_s1_02/mappic_s1_02.c",
+  "object": "mappic/akropolis_map/akropolis",
+  "source": "src/stages/akropolis/map/akropolis.c",
   "defines": {
    "VER_USA": null
   },
   "overlays": [
-   "mappic_s1_02"
+   "akropolis_map"
   ]
  },
  {

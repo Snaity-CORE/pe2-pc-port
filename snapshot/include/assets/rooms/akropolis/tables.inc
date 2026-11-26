@@ -1,6 +1,4 @@
 /* rooms/akropolis/stage: written from its room instance by tools/buildsteps/gen_room_inc.py. */
-#define ROOM_CAT_(a, b) a##b
-#define ROOM_CAT(a, b) ROOM_CAT_(a, b)
 
 #include "types.h"
 #include "gameplay/direction.h"
@@ -28,7 +26,7 @@
 #include "stages/akropolis/rooms/square.h"
 #include "stages/akropolis/rooms/west_elevator_hall.h"
 
-WorldCoordRoomLighting* gMapAkropolisAreaRoomLightingTables[20] = {
+WorldCoordRoomLighting* gAkropolisStageAreaRoomLightingTables[20] = {
     (void*)&gAkropolisSquareRoomLightingTable,
     (void*)&gAkropolisEastElevatorHallRoomLightingTable,
     (void*)&gAkropolisPatioRoomLightingTable,
@@ -50,7 +48,7 @@ WorldCoordRoomLighting* gMapAkropolisAreaRoomLightingTables[20] = {
     (void*)&gMistParkingRoomLightingTable,
     (void*)&gMistShootingGalleryRoomLightingTable,
 };
-static WorldCollisionRoomResources* _gMapAkropolisWorldCollisionAreaRooms[20] = {
+static WorldCollisionRoomResources* _gAkropolisStageWorldCollisionAreaRooms[20] = {
     (void*)&gAkropolisSquareRoomCollisionResources,
     (void*)&gAkropolisEastElevatorHallRoomCollisionResources,
     (void*)&gAkropolisPatioRoomCollisionResources,
@@ -72,8 +70,8 @@ static WorldCollisionRoomResources* _gMapAkropolisWorldCollisionAreaRooms[20] = 
     (void*)&gMistParkingRoomCollisionResources,
     (void*)&gMistShootingGalleryRoomCollisionResources,
 };
-WorldCollisionStageResources gMapAkropolisWorldCollisionResources = { .areaRooms = _gMapAkropolisWorldCollisionAreaRooms };
-static SpriteView* _gMapAkropolisAreaSpriteViews[20] = {
+WorldCollisionStageResources gAkropolisStageWorldCollisionResources = { .areaRooms = _gAkropolisStageWorldCollisionAreaRooms };
+static SpriteView* _gAkropolisStageAreaSpriteViews[20] = {
     (void*)&gAkropolisSquareSpriteViews,
     (void*)&gAkropolisEastElevatorHallSpriteViews,
     (void*)&gAkropolisPatioSpriteViews,
@@ -95,8 +93,8 @@ static SpriteView* _gMapAkropolisAreaSpriteViews[20] = {
     (void*)&gMistParkingSpriteViews,
     (void*)&gMistShootingGallerySpriteViews,
 };
-SpriteAreaTable gMapAkropolisSpriteAreaTable = { .areaViews = _gMapAkropolisAreaSpriteViews };
-DirectionWarpEntry* gMapAkropolisAreaWarpEntries[20] = {
+SpriteAreaTable gAkropolisStageSpriteAreaTable = { .areaViews = _gAkropolisStageAreaSpriteViews };
+DirectionWarpEntry* gAkropolisStageAreaWarpEntries[20] = {
     (void*)&gAkropolisSquareWarpEntries,
     (void*)&gAkropolisEastElevatorHallWarpEntries,
     (void*)&gAkropolisPatioWarpEntries,
@@ -118,7 +116,7 @@ DirectionWarpEntry* gMapAkropolisAreaWarpEntries[20] = {
     (void*)&gMistParkingWarpEntries,
     (void*)&gMistShootingGalleryWarpEntries,
 };
-static ViewCount* _gMapAkropolisAreaViewCounts[20] = {
+static ViewCount* _gAkropolisStageAreaViewCounts[20] = {
     (void*)&gAkropolisSquareViewCounts,
     (void*)&gAkropolisEastElevatorHallViewCounts,
     (void*)&gAkropolisPatioViewCounts,
@@ -140,8 +138,8 @@ static ViewCount* _gMapAkropolisAreaViewCounts[20] = {
     (void*)&gMistParkingViewCounts,
     (void*)&gMistShootingGalleryViewCounts,
 };
-ViewCountTable gMapAkropolisViewCountTable = { .viewCounts = _gMapAkropolisAreaViewCounts };
-static ViewCamera* _gMapAkropolisAreaCameras[20] = {
+ViewCountTable gAkropolisStageViewCountTable = { .viewCounts = _gAkropolisStageAreaViewCounts };
+static ViewCamera* _gAkropolisStageAreaCameras[20] = {
     (void*)&gAkropolisSquareViewCameras,
     (void*)&gAkropolisEastElevatorHallViewCameras,
     (void*)&gAkropolisPatioViewCameras,
@@ -163,8 +161,8 @@ static ViewCamera* _gMapAkropolisAreaCameras[20] = {
     (void*)&gMistParkingViewCameras,
     (void*)&gMistShootingGalleryViewCameras,
 };
-ViewCameraTable gMapAkropolisViewCameraTable = { .cameras = _gMapAkropolisAreaCameras };
-static u8** _gMapAkropolisAreaViewMaps[20] = {
+ViewCameraTable gAkropolisStageViewCameraTable = { .cameras = _gAkropolisStageAreaCameras };
+static u8** _gAkropolisStageAreaViewMaps[20] = {
     (void*)&gAkropolisSquareViewMaps,
     (void*)&gAkropolisEastElevatorHallViewMaps,
     (void*)&gAkropolisPatioViewMaps,
@@ -186,8 +184,8 @@ static u8** _gMapAkropolisAreaViewMaps[20] = {
     (void*)&gMistParkingViewMaps,
     (void*)&gMistShootingGalleryViewMaps,
 };
-ViewIndexTable gMapAkropolisViewIndexTable = { .viewMaps = _gMapAkropolisAreaViewMaps };
-WorldCollisionSurfaceProperties** gMapAkropolisSurfacePropertiesByArea[20] = {
+ViewIndexTable gAkropolisStageViewIndexTable = { .viewMaps = _gAkropolisStageAreaViewMaps };
+WorldCollisionSurfaceProperties** gAkropolisStageSurfacePropertiesByArea[20] = {
     (void*)&gAkropolisSquareSurfacePropertiesByClass,
     (void*)&gAkropolisEastElevatorHallSurfacePropertiesByClass,
     (void*)&gAkropolisPatioSurfacePropertiesByClass,

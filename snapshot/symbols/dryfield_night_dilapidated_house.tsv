@@ -791,7 +791,6 @@ gRoomEffectFlashId	80115758	a
 dryfieldNightDilapidatedHouseGateBackStreetExit	8017D8DC	ft	
 gActor443500TourOpeningSkipScript	80141C1C	a	
 animationAimHeadAtPoint	800B0CF4	a	
-mapAkropolisOpenKeyItemMenu	80179FC8	a	
 areaSetObjectState	800BB8E8	a	
 gItemMenuPanelDescriptors	8010EAB4	a	
 SquareRoot0	8003B8A0	a	
@@ -825,7 +824,6 @@ D_80072176	80072176	a
 dryfield_night_dilapidated_house_DATA_START	8017E6F4	f	
 gStreamInterFile	8006AC30	a	
 playerActorPrepareAcropolisLoadout	800BC4BC	a	
-mapAkropolisWasDryfieldMapSelected	8017A038	a	
 gStageMusicTaskDesc	80062774	a	
 gMdecMovieOutputSlot	8005EAEE	a	
 gDryfieldNightDilapidatedHouseSightOccluder	80189F08	f	
@@ -847,6 +845,7 @@ cdCmdStageSceneAudioStart	8001D6B8	a
 D_80072A94	80072A94	a	
 textItoaSigned	8002F020	a	
 cdCmdIsIdle	8001D344	a	
+akropolisStageOpenKeyItemMenu	80179FC8	a	
 gRoomEventTaskDesc	8017E6F4	f	
 D_80072729	80072729	a	
 sceneQueueBattleEscapeResult	800A7A64	a	
@@ -975,6 +974,7 @@ gActor143900ObservatoryEntryScript	80133560	a
 playerActorSetDrawMode	800E3B80	a	
 dryfieldNightDilapidatedHouseIgnoreRoomAction	8017D968	ft	
 actor450800StartNurseryCompanionDialogue	80132000	a	
+akropolisStageWasDryfieldMapSelected	8017A038	a	
 itemMenuSetPreviewItem	800CDE80	a	
 equipmentRecalculateMaxMp	800B7930	a	
 effectDrawOuterGlowBand	800EAA0C	a	

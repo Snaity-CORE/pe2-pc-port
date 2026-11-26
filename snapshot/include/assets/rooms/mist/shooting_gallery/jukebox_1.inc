@@ -1,0 +1,5 @@
+/* rooms/mist/shooting_gallery/package: written from its room instance by tools/buildsteps/gen_room_inc.py. */
+
+#include "rooms/rooms_shared_8018055c.h"
+
+static DATA_CONST JukeboxTrackLists _gJukeboxTrackLists = { .lists = { _gMistShootingGalleryJukeboxTrainingReplayTracks, _gMistShootingGalleryJukeboxTrainingBountyTracks, _gMistShootingGalleryJukeboxTrainingScavengerTracks, _gMistShootingGalleryJukeboxTrainingNightmareTracks, _gMistShootingGalleryJukeboxTrainingUnclearedTracks, _gMistShootingGalleryJukeboxRegularReplayTracks, _gMistShootingGalleryJukeboxRegularBountyTracks, _gMistShootingGalleryJukeboxRegularScavengerTracks, _gMistShootingGalleryJukeboxRegularNightmareTracks, _gMistShootingGalleryJukeboxRegularUnclearedTracks } };

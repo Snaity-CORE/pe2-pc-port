@@ -1,6 +1,4 @@
 /* rooms/akropolis/cafeteria/package: written from its room instance by tools/buildsteps/gen_room_inc.py. */
-#define ROOM_CAT_(a, b) a##b
-#define ROOM_CAT(a, b) ROOM_CAT_(a, b)
 
 #include "types.h"
 #include "actors/actor_01200.h"
@@ -10,8 +8,8 @@
 #include "actors/actor_310600.h"
 #include "actors/actor_401800.h"
 #include "gameplay/area.h"
-#include "mapui/map_akropolis.h"
 #include "stages/akropolis/actors/cafeteria_boss_stranger.h"
+#include "stages/akropolis/stage.h"
 
 static AreaResource _gAkropolisCafeteriaOpeningSceneResources[4] = {
     { .entryId = 0, .fileNumber = 0, .fileGroupIndex = 0, .taskIndex = 0, .unknown_6 = { 0, 0 }, .taskTable = &gCafeteriaBossStrangerTaskDesc },
@@ -43,13 +41,13 @@ static AreaResource _gAkropolisCafeteriaRookGolemResources[2] = {
 };
 AreaVariant gAkropolisCafeteriaAreaVariants[11] = {
     { .placements = NULL, .resources = NULL },
-    { .placements = (void*)&gMapAkropolisCafeteriaVariant1Placements, .resources = _gAkropolisCafeteriaOpeningSceneResources },
-    { .placements = (void*)&gMapAkropolisCafeteriaVariant2Placements, .resources = _gAkropolisCafeteriaBattleSceneResources },
-    { .placements = (void*)&gMapAkropolisCafeteriaVariant3Placements, .resources = _gAkropolisCafeteriaSingleOddStrangerResources },
-    { .placements = (void*)&gMapAkropolisCafeteriaVariant4Placements, .resources = _gAkropolisCafeteriaPairOddStrangerResources },
-    { .placements = (void*)&gMapAkropolisCafeteriaVariant5Placements, .resources = _gAkropolisCafeteriaBoneSucklerResources },
+    { .placements = gAkropolisStageCafeteriaVariant1Placements, .resources = _gAkropolisCafeteriaOpeningSceneResources },
+    { .placements = gAkropolisStageCafeteriaVariant2Placements, .resources = _gAkropolisCafeteriaBattleSceneResources },
+    { .placements = gAkropolisStageCafeteriaVariant3Placements, .resources = _gAkropolisCafeteriaSingleOddStrangerResources },
+    { .placements = gAkropolisStageCafeteriaVariant4Placements, .resources = _gAkropolisCafeteriaPairOddStrangerResources },
+    { .placements = gAkropolisStageCafeteriaVariant5Placements, .resources = _gAkropolisCafeteriaBoneSucklerResources },
     { .placements = NULL, .resources = NULL },
-    { .placements = (void*)&gMapAkropolisCafeteriaVariant7Placements, .resources = _gAkropolisCafeteriaRookGolemResources },
+    { .placements = gAkropolisStageCafeteriaVariant7Placements, .resources = _gAkropolisCafeteriaRookGolemResources },
     { .placements = NULL, .resources = NULL },
     { .placements = NULL, .resources = NULL },
     { .placements = NULL, .resources = NULL },

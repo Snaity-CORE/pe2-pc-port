@@ -1,9 +1,9 @@
-/* Generated from assets/USA/pe2pkg/mappic_s1_00.pe2pkg; model at 0xA8. */
-    { -0, 0, 0, 0 },
+/* Generated from assets/USA/pe2pkg/mappic_s2_02.pe2pkg; model at 0xD34. */
+    { 0, 0, -0, 0 },
+    { 0, 0, -0, 0 },
+    { 0, 0, -0, 0 },
+    { 0, 0, -0, 0 },
     { 0, 0, 0, 0 },
     { 0, 0, 0, 0 },
-    { -0, 0, 0, 0 },
     { 0, 0, 0, 0 },
-    { -0, 0, 0, 0 },
-    { -0, 0, 0, 0 },
     { 0, 0, 0, 0 },

@@ -1,6 +1,4 @@
 /* rooms/akropolis/observatory/package: written from its room instance by tools/buildsteps/gen_room_inc.py. */
-#define ROOM_CAT_(a, b) a##b
-#define ROOM_CAT(a, b) ROOM_CAT_(a, b)
 
 #include "types.h"
 #include "actors/actor_01100.h"
@@ -13,7 +11,7 @@
 #include "actors/actor_401800.h"
 #include "gameplay/area.h"
 #include "gameplay/areaplace.h"
-#include "mapui/map_akropolis.h"
+#include "stages/akropolis/stage.h"
 
 static AreaResource _gAkropolisObservatoryVariant1Resources[2] = {
     { .entryId = 0, .fileNumber = 0, .fileGroupIndex = 0, .taskIndex = 0, .unknown_6 = { 0, 0 }, .taskTable = &gActor301900GrinningStrangerTaskDesc },
@@ -95,16 +93,16 @@ static AreaPlacement _gAkropolisObservatoryVariant17Placements[2] = {
 };
 AreaVariant gAkropolisObservatoryAreaVariants[19] = {
     { .placements = NULL, .resources = NULL },
-    { .placements = (void*)&gMapAkropolisObservatoryVariant1Placements, .resources = _gAkropolisObservatoryVariant1Resources },
-    { .placements = (void*)&gMapAkropolisObservatoryVariant2Placements, .resources = _gAkropolisObservatoryVariant2Resources },
-    { .placements = (void*)&gMapAkropolisObservatoryVariant3Placements, .resources = _gAkropolisObservatoryVariant3Resources },
+    { .placements = gAkropolisStageObservatoryVariant1Placements, .resources = _gAkropolisObservatoryVariant1Resources },
+    { .placements = gAkropolisStageObservatoryVariant2Placements, .resources = _gAkropolisObservatoryVariant2Resources },
+    { .placements = gAkropolisStageObservatoryVariant3Placements, .resources = _gAkropolisObservatoryVariant3Resources },
     { .placements = NULL, .resources = NULL },
     { .placements = NULL, .resources = NULL },
     { .placements = NULL, .resources = NULL },
-    { .placements = (void*)&gMapAkropolisObservatoryVariant7Placements, .resources = _gAkropolisObservatoryVariant7Resources },
+    { .placements = gAkropolisStageObservatoryVariant7Placements, .resources = _gAkropolisObservatoryVariant7Resources },
     { .placements = NULL, .resources = NULL },
     { .placements = NULL, .resources = NULL },
-    { .placements = (void*)&gMapAkropolisObservatoryVariant10Placements, .resources = _gAkropolisObservatoryVariant10Resources },
+    { .placements = gAkropolisStageObservatoryVariant10Placements, .resources = _gAkropolisObservatoryVariant10Resources },
     { .placements = _gAkropolisObservatoryVariant11Placements, .resources = _gAkropolisObservatoryVariant11Resources },
     { .placements = _gAkropolisObservatoryVariant12Placements, .resources = _gAkropolisObservatoryVariants12And13Resources },
     { .placements = _gAkropolisObservatoryVariant13Placements, .resources = _gAkropolisObservatoryVariants12And13Resources },

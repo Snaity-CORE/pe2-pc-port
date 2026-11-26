@@ -17584,11 +17584,13 @@ gKyle800102HandRight	8016D28C	a
 _spu_rev_startaddr	80068154	a	
 gKyle800102Body	8016CE38	a	
 mm1ShellTask	8011DBD8	a	
+akropolisStageSetupMovieBuffers	80179988	a	
 tmdDrawStreamPrimFt3	8009D388	a	
 main_TEXT_SIZE	00048030	a	
 padPostVibrationRequest	8002C8E4	ft	
 tmdBuildStreamGt4LayeredBase	8009F824	a	
 gFsCdOperationStatus	8006C228		
+gAkropolisStageImageSlots	8017A048	a	
 mcInit	80033BBC	ft	
 akropolisSecurityRoomPowerSupplyTask	80180294	a	
 cdVolStepFadeOut	800262A8	ft	
@@ -17670,6 +17672,7 @@ textItoaSigned	8002F020	ft
 cdCmdIsIdle	8001D344	ft	
 SpuSetReverbVoice	8004F7C0	fat	
 setRC2wait	8002B774	fat	
+gAkropolisStageMovieWorkspaceBytesByArea	8017A0F8	a	
 linInterpApply	8004D298	ft	
 tmdBuildStreamGt4OffsetLayer	8009F708	a	
 GsIDMATRIX2	80071178	a	
@@ -17807,6 +17810,7 @@ gDisplayPendingFlip	8005EC70	f
 gPadStates	80071620		
 SpuSetTransferStartAddr	8004FED0	fat	
 SetDrawArea	80018A24	fat	
+gAkropolisStageCountdownMusicEntries	8017C304	a	
 gfxResetView	80027E7C	ft	
 _ExitCard	80037554	fat	
 _96_remove	8001BA74	fat	
@@ -17906,7 +17910,6 @@ uiObjectTaskExit	800488B8	ft
 MemCardStop	80037A94	fat	
 cdSyncPollCommand	8001E6AC	ft	
 cdCmdResetState	8001D3F8	ft	
-mapAkropolisSetupMovieBuffers	80179988	a	
 ApplyMatrix	800443B8	fat	
 cdCmdEnqueue	8001D2B0	ft	
 sndScriptRampMix	80055A9C	ft	
@@ -17977,7 +17980,6 @@ _padFuncRecvAuto	8005ECCC	a
 streamSetSceneError	800B0118	a	
 main_DATA_SIZE	0000CC48	a	
 rsin	8003D038	fat	
-gMapAkropolisMovieWorkspaceBytesByArea	8017A0F8	a	
 ExitCriticalSection	8001BADC	fat	
 CD_getsector2	800175F4	fat	
 _card_open	80039DA4	fat	
@@ -18045,6 +18047,7 @@ gMm1ShellModel	8012D444	a
 sndBankBuildLayerIndex	8004D19C	ft	
 gameFlowStepLoadScreen	800225D4	ft	
 streamPrepareMovieWorkspace	80020298	ft	
+gAkropolisStageAreaMusicEntries	8017C1B4	a	
 srand	80037194	fat	
 _SpuCallback	8005BEC0	fat	
 gStageMusicLoadState	80062734	f	
@@ -18182,11 +18185,9 @@ SpuReserveReverbWorkArea	8004F6F0	fat
 midiUnmuteMusic	800518E0	ft	
 fsAbortTimedOutOperation	800257B0	ft	
 gGameDebugState	800626A8	f	
-gMapAkropolisImageSlots	8017A048	a	
 tmdDrawStreamPrimF3	8009DB00	a	
 _gGameFlowLoadCaptionPhase	8006AC9E		
 func_80714A48	80714A48	a	
-gMapAkropolisAreaMusicEntries	8017C1B4	a	
 gMemActiveAuxHeapBytes	80068F94		
 tmdRestoreAttachedBuffersTask	80041F58	ft	
 textMeasureLineWidth	8002FCBC	ft	
@@ -18477,7 +18478,6 @@ __bsslen	8005C350	f
 _LC	800740C0	a	
 gLoadUiDiskSwapState	8007A394		
 _spu_init	80026694	fat	
-gMapAkropolisCountdownMusicEntries	8017C304	a	
 tmdDrawStreamPrimFt4SemiTrans	8009DE48	a	
 taskCountdownCallback	8002D6EC	ft	
 tmdDrawStreamPrimGt4PreXformEnvLayer	80099FF4	a	
