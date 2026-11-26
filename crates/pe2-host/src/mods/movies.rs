@@ -109,8 +109,8 @@ struct Wanted {
 /// are decoded on demand, on a thread of their own (`decode_backdrop`).
 #[derive(Clone)]
 struct Backdrop {
-    /// The movie's size.
-    size: (usize, usize),
+    /// The movie's size, once its thread has read the file's header.
+    size: Arc<OnceLock<(usize, usize)>>,
     wanted: Arc<(Mutex<Option<Wanted>>, Condvar)>,
     made: Arc<Mutex<Option<Made>>>,
 }
@@ -380,14 +380,18 @@ pub fn picture() -> Option<Arc<Picture>> {
 
 /// While a mod's movie plays and the game draws it as a room's backdrop:
 /// its hash, the game's frame number and the movie's size (its pictures
-/// then decoded on demand, `backdrop_picture`).
+/// then decoded on demand, `backdrop_picture`). The first time, its thread
+/// is started, which opens the file: None until it knows the size (the
+/// game's frames show meanwhile), so the game never waits on the file.
 pub fn backdrop_playing() -> Option<(u64, u32, (usize, usize))> {
     let mut s = state().lock().unwrap();
     let p = s.playing.as_mut()?;
     if p.backdrop.is_none() {
-        let size = Track::open(&p.path).map_err(|e| eprintln!("pe2: mods: {}: {e}", p.path.display())).ok()?.size;
-        let backdrop =
-            Backdrop { size, wanted: Arc::new((Mutex::new(None), Condvar::new())), made: Arc::new(Mutex::new(None)) };
+        let backdrop = Backdrop {
+            size: Arc::new(OnceLock::new()),
+            wanted: Arc::new((Mutex::new(None), Condvar::new())),
+            made: Arc::new(Mutex::new(None)),
+        };
         let (path, stop, shared) = (p.path.clone(), p.stop.clone(), backdrop.clone());
         std::thread::spawn(move || {
             if let Err(e) = decode_backdrop(&path, &shared, &stop) {
@@ -396,7 +400,7 @@ pub fn backdrop_playing() -> Option<(u64, u32, (usize, usize))> {
         });
         p.backdrop = Some(backdrop);
     }
-    Some((p.hash, p.number, p.backdrop.as_ref()?.size))
+    Some((p.hash, p.number, *p.backdrop.as_ref()?.size.get()?))
 }
 
 /// Asks for the mod's picture of the game's frame being decoded now, at
@@ -912,6 +916,7 @@ fn decode_video(path: &PathBuf, send: &SyncSender<Picture>, stop: &AtomicBool) -
 /// when that is closer; the last asked for wins, and none is waited for.
 fn decode_backdrop(path: &PathBuf, backdrop: &Backdrop, stop: &AtomicBool) -> Result<(), String> {
     let mut track = Track::open(path)?;
+    let _ = backdrop.size.set(track.size);
     let mut decoder: Option<openh264::decoder::Decoder> = None;
     // the last sample decoded (from 1), and the last picture made
     let (mut at, mut done) = (0, None);

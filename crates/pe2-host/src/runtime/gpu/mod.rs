@@ -1040,7 +1040,9 @@ fn movie_backdrop(g: &mut Gpu, x0: i32, y0: i32, w: i32, h: i32, pixels: &[u16])
         c.next += w;
         return c.replaced;
     }
-    let movie = crate::mods::movies::backdrop_playing().filter(|_| crate::mods::movies::new_backdrop_frame());
+    // (the frame taken counted off even while the movie's size is not known)
+    let new_frame = crate::mods::movies::new_backdrop_frame();
+    let movie = crate::mods::movies::backdrop_playing().filter(|_| new_frame);
     let Some((_, _, (pw, ph))) = movie else {
         g.movie_columns = None;
         g.screen_columns = match g.screen_columns {
