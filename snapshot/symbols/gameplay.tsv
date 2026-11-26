@@ -5192,7 +5192,7 @@ LM311	800A9E44	fl	build/USA/src/gameplay/cd_loading.i
 gcc2_compiled.	800AE7AC	fl	build/USA/src/gameplay/area_transitions.i
 __gnu_compiled_c	800AE7AC	fl	build/USA/src/gameplay/area_transitions.i
 _MACRO_INC_GUARD	00000001	al	build/USA/src/gameplay/area_transitions.i
-_gAreaAcropolisNewGameMapMarks	80114098	fl	build/USA/src/gameplay/area_transitions.i
+_gAreaAkropolisNewGameMapMarks	80114098	fl	build/USA/src/gameplay/area_transitions.i
 _gAreaDryfieldNewGameMapMarks	801140C0	fl	build/USA/src/gameplay/area_transitions.i
 _gAreaMineShelterNewGameMapMarks	801140F8	fl	build/USA/src/gameplay/area_transitions.i
 _gAreaShelterNeoArkNewGameMapMarks	80114154	fl	build/USA/src/gameplay/area_transitions.i
@@ -37954,6 +37954,7 @@ sceneSetEnemyAlert	800DB530	ft
 gItemMenuNoText	8010E554	f	
 gItemMenuKeyItemUsedText	8010E478	f	
 shelterB1ElevatorHallRoomVisualEffectsTwinTrailTask	8018177C	a	
+gAkropolisStageAreas	8017A154	a	
 menuMapNavigateTask	800CFF04	ft	
 gDryfieldWaterHoleAreaVariants	801827BC	a	
 sceneEngageBattle	800DB4E0	ft	
@@ -38032,6 +38033,7 @@ uiGetTextColor	80048E10	a
 cdCmdSelectScene	8001D534	a	
 animationTickSlotPose	800B3448	ft	
 dryfieldDilapidatedHouseLightPrismTask	80183BF8	a	
+gAkropolisStageAreaShapes	8017A288	a	
 neoArkWoodlandPathWaterRippleTask	8017F4A0	a	
 akropolisBridgeEffectSpriteDebrisTask	80182AF8	a	
 gNeoArkSouthPromenadeAreaVariants	801808E4	a	
@@ -38144,7 +38146,9 @@ itemMenuDrawPeCommandRow	800CE5F0	ft
 taskSpawn	8002CFDC	a	
 MatrixNormal	8003D6C8	a	
 gItemMenuMainCommandList	8010E820	f	
+gAkropolisStageIcons	8017A38C	a	
 energyballImpactRingTask	8013107C	a	
+gAkropolisStageAreaNames	8017A3BC	a	
 gAreaRecordsByStage	8010CBCC	f	
 textDrawUiLine	8002FDCC	a	
 memInitAuxHeap	8002DB90	a	
@@ -38176,6 +38180,7 @@ effectSpriteTaskE1	80100020	ft
 gameFlowHoldSessionDisplayTask	800AC008	ft	
 gGfxViewCoord	80070F10	a	
 equipmentRestoreHpMp	800BC164	ft	
+gAkropolisStageObjectRooms	8017A7FC	a	
 directionResolveWarp	800ADF3C	ft	
 shelterB1ControlRoomDrawGlowsTask	8017F150	a	
 gMapDryfieldIcons	80179FEC	a	
@@ -38422,7 +38427,6 @@ gM950PlayerAnimationBank	8012BA78	a
 shelterB4UpperSewerRoomVisualEffectsTwinTrailTask	80183198	a	
 gItemMenuTransferScreenDescriptor	8010D6D8	f	
 gDryfieldNightGasStationAreaVariants	80190624	a	
-gMapAkropolisAreaRoomLightingTables	8017AA28	a	
 worldCollisionCollideCapsuleGrid	800DDDF8	ft	
 neoArkPavilionWaterSprayTask	8017F0CC	a	
 mineRefugeTelephoneMenuTask	8017EA78	a	
@@ -38446,6 +38450,7 @@ effectSpriteTask3F	800FEFA4	ft
 itemIsIdentified	800BC06C	ft	
 capSetTexturePage	800E6D4C	ft	
 shelterB3IncineratorControlRoomDrawViewGlowsTask	8017FD10	a	
+gAkropolisStageMarkers	8017A330	a	
 cdCmdEnqueueDisplayResource	80042364	a	
 loadingPrepareCharacterResourcesTask	800AABB0	ft	
 akropolisSecurityRoomLockLampGlowTask	801817A4	a	
@@ -38468,7 +38473,6 @@ effectDrawGroundShadow	800F68AC	ft
 D_80114DD8	80114DD8	f	
 cdCmdCompleteHeadRequest	8001DA48	a	
 loadingEnqueueStageResources	800A9C50	ft	
-gMapAkropolisViewCameraTable	8017AC14	a	
 playerActorSetTextureSequence	80105AB0	ft	
 gameFlagSetNibbleIfPresent	800E3B3C	ft	
 gItemMenuExchangeText	8010E528	f	
@@ -38485,7 +38489,6 @@ shelterB1StoreroomRoomVisualEffectsGlowDiscTask	80182D60	a
 neoArkSouthPromenadeRegisterGolemEffectsTask	8017D6D0	a	
 gDryfieldParkingLotAreaVariants	8017FA74	a	
 gRoomEffectFlyingSparkId	80115730	f	
-gMapAkropolisAreaShapes	8017A288	a	
 shelterB2SepticTankWaterDriftTask	8017F4C8	a	
 gShelterB1TransferTunnelAreaVariants	801830B8	a	
 inventoryClearCollectedBits	800BAE38	ft	
@@ -38805,7 +38808,6 @@ gfxReadMatrixZAxis	8003C768	a
 gEquipmentWeaponPrimaryLoadOptions	8010E238	f	
 shelterB1SouthMaintenanceWalkwayRoomVisualEffectsSparkBurstTask	8017FAAC	a	
 gSceneBattleResultTaskDesc	8010CABC	f	
-gMapAkropolisBattleRewards	8017C0DC	a	
 stageEnsureTaskOrderingTables	8003F964	a	
 menuMapHelpTask	800D1A20	ft	
 shelterB1ControlRoomAccessTunnelRoomVisualEffectsFlyingOrangeBurstTask	80181424	a	
@@ -39033,7 +39035,6 @@ gItemMenuArmorFeatureTexts	8010E660	f
 effectSpriteTaskE0	800FFA8C	ft	
 neoArkR31RoomTask	8017D990	a	
 itemMenuPlayerSummaryTask	800C16B4	ft	
-gMapAkropolisMarkerFlags	8017AA0C	a	
 shelterB2OperatingRoomRoomVisualEffectsFlyingOrangeBurstTask	8017FEB4	a	
 playerStateSpendMp	800A7F34	ft	
 mineTunnelEntranceDrawFlaresTask	8017D720	a	
@@ -39111,6 +39112,7 @@ evsStartScriptWithSkip	800E8634	ft
 hudDrawStatusBlock	800A57B0	ft	
 shelterB1NorthMaintenanceWalkwayDrawGlowsTask	8017DBC8	a	
 gWorldCollisionEnemyAttackListHead	8011557C	f	
+gAkropolisStageHardBattleRewards	8017C16C	a	
 dryfieldNightMotelLoftFlaresAndShardsTask	8017DB64	a	
 itemMenuApplyChildDialogResults	800CF148	ft	
 m4a1JavelinGuideBeamTask	8011D1E4	a	
@@ -39132,7 +39134,6 @@ actorRenderComposeAndDrawActiveModels	8009850C	ft
 gFsImageWorkspacePtr	8005C364	a	
 gInventoryConsumableSortKeys	80114ABC	f	
 gMenuMapHelpFileIndex	8010F13D	f	
-gMapAkropolisAreaWarpEntries	8017AB20	a	
 hudDrawRadar	800A6480	ft	
 playerStateApplyHpDamage	8010A854	ft	
 dryfieldNightSaloonGRDrawGlowsTask	8017E6C8	a	
@@ -39142,6 +39143,7 @@ dryfieldMotelBalconyRoomVisualEffectsHaloOrangeBurstTask	8017ED98	a
 dryfieldMainStreetPuffTask	8017E830	a	
 capSpawnWeaponEvent	800E40BC	ft	
 evsStartScript	800E8614	ft	
+gAkropolisStageViewCountTable	8017ABC0	a	
 loadingRequestViewGraphicsRestore	800A99B4	ft	
 neoArkBridgeAmbientEffectsTask	8017E954	a	
 gDryfieldUnderpassAreaVariants	8017F868	a	
@@ -39216,7 +39218,6 @@ gMapShelterMarkers	8017A134	a
 dryfieldNightMotelRoom4DrawFlaresTask	8017D990	a	
 gDirectionActionPhase	80114CD6	f	
 hypervelocityShockRingTask	8011F168	a	
-gMapAkropolisAreaNames	8017A3BC	a	
 gItemPickupPublishedPlaceState	80114DDE	f	
 gAkropolisPatioAreaVariants	80184A90	a	
 modelObjectUnlinkTmd	800991DC	ft	
@@ -39238,6 +39239,7 @@ m4a1JavelinAttackState	8011F5D4	a
 gCapUseDirectViewIndex	8011569C	f	
 companionSetDrawMode	800E3EB0	ft	
 gDryfieldWarehousePlacementVariants	80182100	a	
+gAkropolisStageRoomTaskDescriptors	8017A8AC	a	
 dryfieldNightWaterTowerDrawGlowsTask	8017DB80	a	
 inventoryGiveItem	800BAD08	ft	
 gItemMenuConsumableChoiceItemIds	80114DA0	f	
@@ -39291,9 +39293,11 @@ gShelter1fBulwarkAreaVariants	80180DA8	a
 companionTurnToYaw	8010C688	ft	
 _gEvsSavedView	801156F8	f	
 worldTargetClearActorTargetMarks	800DB0D8	ft	
+gAkropolisStageSurfacePropertiesByArea	8017AC6C	a	
 gItemMenuPeUpgradeMpLabel	80097220	f	
 attachmentGetActiveLevelValue	800A1558	ft	
 effectSpawn	800EA478	ft	
+gAkropolisStageBattleRewards	8017C0DC	a	
 strncmp	8001EAC4	a	
 dryfieldNightMainStreetRoomVisualEffectsMoteTask	8017FA68	a	
 m4a1AttackState	8011D1C4	a	
@@ -39306,7 +39310,6 @@ gShelterB1ControlRoomMirrorTaskDesc	80181B88	a
 gEffectShotgunShellCasingModel	8011231C	f	
 neoArkWoodlandPathPlayerWaterSplashTask	8017EA08	a	
 uiRefreshListViewport	80048AEC	a	
-gMapAkropolisSpriteAreaTable	8017AB1C	a	
 gRoomEffectWaterSprayId	80115738	f	
 dryfieldGRKitchenDrawLightBeamsTask	8017EB04	a	
 gP08PlayerAnimationBank	8012A85C	a	
@@ -39323,7 +39326,6 @@ energyballCastTask	8012EF48	a
 gMapNeoArkSpriteAreaTable	8017AE38	a	
 neoArkForestZoneRoomVisualEffectsSparkBurstTask	8017F76C	a	
 gAya10500MouthRestSequence	8011D1A8	a	
-gMapAkropolisWorldCollisionResources	8017AAC8	a	
 gLoadingViewMovieSlot	80114C40	f	
 energyshotCastTask	8012EF34	a	
 gItemMenuAttentionTitle	80097114	f	
@@ -39353,7 +39355,6 @@ streamReadSceneImageSector	800AF590	ft
 shelter1fParkingGarageRoomVisualEffectsSparkBurstTask	8017FF58	a	
 gCapTextBoxHeight	801155B6	f	
 cdCmdCancelScene	8001D588	a	
-gMapAkropolisHardBattleRewards	8017C16C	a	
 func_800AC000	800AC000	ft	
 uiSetPanelContentSize	800466E4	a	
 GsWSMATRIX	80071138	a	
@@ -39489,7 +39490,6 @@ menuMapWaitForPageTask	800D1E28	ft
 worldCollisionGetBodyComposedPosition	800E08CC	ft	
 gPadConfirmButtonMask	8005ED70	a	
 gShelterB1ArmoryAreaVariants	801854E0	a	
-gMapAkropolisViewCountTable	8017ABC0	a	
 gM249PlayerAnimationBank	8012CF58	a	
 gShelter1fHeliportAreaVariants	80182BF4	a	
 itemMenuDrawAttachmentExchangeRow	800CF940	ft	
@@ -39621,7 +39621,6 @@ neoArkBridgeWaterDriftTask	8017F3F8	a
 gItemMenuRoomRestorePending	80114D88	f	
 gShelterB1SouthMaintenanceWalkwayAreaVariants	80183598	a	
 playerActorTickChildSlots	80103AC0	ft	
-gMapAkropolisMarkers	8017A330	a	
 gItemMenuIconPaletteCluts	80096F88	f	
 gItemMenuUsePresentationPending	8010F888	f	
 gMapNeoArkBattleRewards	8017C9B0	a	
@@ -39639,11 +39638,11 @@ shelterB1SouthMaintenanceWalkwayRoomVisualEffectsFlashTask	8017E760	a
 helicopterLandingPadNo9FlameSpriteTask	8013371C	a	
 effectDrawInnerGlowBand	800EBF18	ft	
 gMapNeoArkPageFlagIds	80179F1C	a	
-gMapAkropolisPageFlagIds	8017A14C	a	
 gItemMenuConsumableStatLabels	8010E990	f	
 neoArkNorthPromenadeRoomVisualEffectsFlashTask	8017FDD4	a	
 playerActorMoveBy	801053A0	ft	
 dryfieldNightGRKitchenDrawLightShaftsTask	8017E1E4	a	
+gAkropolisStageAreaWarpEntries	8017AB20	a	
 itemMenuDrawDescriptionRow	800CF28C	ft	
 playerActorExitAim	80108874	ft	
 gAreaDryfieldGeneralStoreObjectPlaces	80114628	f	
@@ -39711,6 +39710,7 @@ itemMenuArmorPanelTask	800C46B4	ft
 gMapNeoArkObjectRooms	8017A6EC	a	
 shelterB2LaboratoryGlowTask	80180548	a	
 dryfieldSouvenirShopLightPrismsTask	8017DFD4	a	
+gAkropolisStageMarkerFlags	8017AA0C	a	
 gMapDryfieldSpriteAreaTable	8017AC98	a	
 attachmentTargetEllipsoid	800A5274	ft	
 effectControlTask07	800FC6F4	ft	
@@ -39833,7 +39833,6 @@ actorRenderDrawGroundShadow	800B4E54	ft
 textMeasureLineWidth	8002FCBC	a	
 D_8011566F	8011566F	f	
 attachmentGetPackedLevelValue	800D50D4	ft	
-gMapAkropolisIcons	8017A38C	a	
 shelterB1PodServiceGantryInitEffectsTask	8017FA7C	a	
 akropolisRoofGardenLeafFallTask	8017F10C	a	
 akropolisEastElevatorHallRedBeaconTask	8017F77C	a	
@@ -39853,6 +39852,7 @@ itemMenuDialogTask	800CC4F4	ft
 cdCmdDropQueuedTail	8001D424	a	
 gMineTunnelAreaVariants	801801CC	a	
 Gfx_ViewWorldMtx	80070F34	a	
+gAkropolisStageAreaRoomLightingTables	8017AA28	a	
 gDryfieldMotelRoom6ReflectionTaskDescs	80182D0C	a	
 gCapContinueCaretPulseLevel	8010FB88	f	
 gCompanionAnimationBanks	80113368	f	
@@ -39866,7 +39866,6 @@ _gCapHudSlideTask	801156B8	f
 tmdBuildBufferHalf	800410F0	a	
 shelterB3GarbageIncineratorDrawLightsTask	8018110C	a	
 effectDrawScreenTint	800EA858	ft	
-gMapAkropolisRoomTaskDescriptors	8017A8AC	a	
 akropolisCafeteriaModelWanderTask	8017F390	a	
 dryfieldMotelRoom6TelephoneMenuTask	8017EA58	a	
 shelterB1TransferTunnelRoomVisualEffectsSparkEmitterTask	801807F8	a	
@@ -39881,7 +39880,6 @@ gMapDryfieldPageFlagIds	80179BCC	a
 gNeoArkForestZoneAreaVariants	80182968	a	
 gItemMenuPeStrengthenText	8010F1C4	f	
 shelterB2SepticTankRoomVisualEffectsFlashTask	80180BE0	a	
-gMapAkropolisAreas	8017A154	a	
 gMapShelterHardBattleRewards	8017BD8C	a	
 DrawSync	80017C98	a	
 shelterB3DumpingHoleGluttonRainParticleTask	80186218	a	
@@ -39974,7 +39972,6 @@ dryfieldR08LampGlowTask	8017D5F8	a
 gMistShootingGalleryWeaponSelectPanelDesc	80184F70	a	
 displayBlendPreviousFrameTask	800B60C0	ft	
 shelterB4UpperSewerRoomVisualEffectsHaloTask	80180E58	a	
-gMapAkropolisViewIndexTable	8017AC68	a	
 effectSpriteTask53	800F6C2C	ft	
 gDryfieldSouvenirShopAreaVariants	8017F598	a	
 RotMatrix	80043AC8	a	
@@ -39996,6 +39993,7 @@ combatLightEffectTask	8012EF34	a
 dryfieldNightMainStreetPuffTask	8017F3B0	a	
 dryfieldNightMainStreetRoomVisualEffectsHaloTask	801807B0	a	
 dryfieldNightWaterTankNoOpEffectTask	8017DD8C	a	
+gAkropolisStageSpriteAreaTable	8017AB1C	a	
 uiStartPanelHiding	800488F8	a	
 dryfieldDilapidatedHouseFireBlastTask	80182744	a	
 m4a1HammerAttackState	8011E710	a	
@@ -40221,7 +40219,6 @@ gShelterB1StoreroomAreaVariants	80186C9C	a
 shelterB6NurseryDebrisChunkTask	80181314	a	
 textItoaPadded	8002F44C	a	
 gCapPlaybackTaskDescriptors	8010FB4C	f	
-gMapAkropolisSurfacePropertiesByArea	8017AC6C	a	
 neoArkSubmarineTunnelRoomVisualEffectsFlyingOrangeBurstTask	80180694	a	
 neoArkSubmarineGalleryWaterRippleTask	8017F288	a	
 attachmentAddTargetContact	800E1C58	ft	
@@ -40282,9 +40279,9 @@ sceneIsBattleActive	800A7508	ft
 gItemMenuNoticeTexts	8010F544	f	
 gameplay_BSS_START	80114BB0	f	
 akropolisFountainSprayTask	8017DD44	a	
+gAkropolisStagePageFlagIds	8017A14C	a	
 loadingInitRoomResourcesTask	800AC4D8	ft	
 gItemMenuUseText	8010E500	f	
-gMapAkropolisObjectRooms	8017A7FC	a	
 playerActorTurnToYaw	80104E00	ft	
 gItemMenuHotspotPushText	8010F1B4	f	
 gNeoArkIslandAreaVariants	80183F48	a	
@@ -40315,6 +40312,7 @@ gLoadUiDiskSwapState	8007A394	a
 shelterB1SterilizationRoomPuffTask	801823D8	a	
 akropolisCafeteriaPuffTask	8017EA90	a	
 gItemMenuParasiteEnergyCaptions	8010E844	f	
+gAkropolisStageViewIndexTable	8017AC68	a	
 gAreaDryfieldSouvenirShopObjectPlaces	80114678	f	
 gItemMenuKeyItemCommandText	800971DC	f	
 shelterB4UpperSewerWaterRippleTask	8017E8B8	a	
@@ -40378,6 +40376,7 @@ neoArkSouthPromenadeRoomVisualEffectsTwinTrailTask	8017E184	a
 gDirectionActionParameter1	80114CD9	f	
 dryfieldNightGasStationRoomVisualEffectsTwinTrailTask	801827E4	a	
 gCapTextViewTransitionState	801155BC	f	
+gAkropolisStageWorldCollisionResources	8017AAC8	a	
 gMapNeoArkAreaShapes	8017A110	a	
 gAya10400MouthRestSequence	8011CCD4	a	
 shelter1fParkingGarageRoomVisualEffectsTwinTrailTask	8017F670	a	
@@ -40453,6 +40452,7 @@ gItemMenuExitCommandText	80096FEC	f
 itemMenuDrawPlayerStats	800C1148	ft	
 gCapPendingViewPhase	801155BB	f	
 animationCopyCompanionBankExtension	8010C858	ft	
+gAkropolisStageViewCameraTable	8017AC14	a	
 sndEvtRequestScriptDuckAcquire	80054658	a	
 m4a1BayonetAttackState	8011DA34	a	
 gItemMenuArmorFeaturesLabel	80097094	f	

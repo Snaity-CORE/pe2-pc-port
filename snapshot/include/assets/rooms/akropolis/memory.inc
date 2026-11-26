@@ -1,11 +1,9 @@
 /* rooms/akropolis/stage: written from its room instance by tools/buildsteps/gen_room_inc.py. */
-#define ROOM_CAT_(a, b) a##b
-#define ROOM_CAT(a, b) ROOM_CAT_(a, b)
 
 #include "types.h"
 #include "main/gfx_types.h"
 
-GfxImageSlot gMapAkropolisImageSlots[22] = {
+GfxImageSlot gAkropolisStageImageSlots[22] = {
     { .regionBase = NULL, .byteExtent = 0 },
     { .regionBase = (void*)0, .byteExtent = 0 },
     { .regionBase = (void*)0, .byteExtent = 0 },
@@ -29,7 +27,7 @@ GfxImageSlot gMapAkropolisImageSlots[22] = {
     { .regionBase = (void*)0, .byteExtent = 0 },
     { .regionBase = (void*)0, .byteExtent = 0 },
 };
-s32 gMapAkropolisMovieWorkspaceBytesByArea[21] = {
+s32 gAkropolisStageMovieWorkspaceBytesByArea[21] = {
     0,
     0,
     0,

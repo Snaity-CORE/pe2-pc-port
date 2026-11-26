@@ -1,0 +1,56 @@
+/* rooms/akropolis/cafeteria/package: written from its room instance by tools/buildsteps/gen_room_inc.py. */
+
+#include "gameplay/area_flags.h"
+#include "gameplay/room.h"
+#include "gameplay/sprites.h"
+#include "gameplay/view.h"
+
+extern WorldCoordRoomLights gAkropolisCafeteriaRoomLights;
+static SpriteBatch _gAkropolisCafeteriaViews1And4SpriteBatches[2];
+static SpriteSource _gAkropolisCafeteriaView2SpriteSources[40];
+static SpriteBatch _gAkropolisCafeteriaView2SpriteBatches[10];
+static SpriteSource _gAkropolisCafeteriaView3SpriteSources[67];
+static SpriteBatch _gAkropolisCafeteriaView3SpriteBatches[19];
+static SpriteBatch _gAkropolisCafeteriaUnusedBackgroundSpriteBatches1[2];
+static SpriteBatch _gAkropolisCafeteriaView5SpriteBatches[2];
+static SpriteDrawArea _gAkropolisCafeteriaView5DrawAreas[2];
+static SpriteSource _gAkropolisCafeteriaView6SpriteSources[39];
+static SpriteBatch _gAkropolisCafeteriaView6SpriteBatches[6];
+static SpriteBatch _gAkropolisCafeteriaView7SpriteBatches[2];
+static SpriteBatch _gAkropolisCafeteriaView8SpriteBatches[2];
+static SpriteBatch _gAkropolisCafeteriaView9SpriteBatches[2];
+static SpriteBatch _gAkropolisCafeteriaView10SpriteBatches[2];
+static SpriteSource _gAkropolisCafeteriaView11SpriteSources[7];
+static SpriteBatch _gAkropolisCafeteriaView11SpriteBatches[3];
+static SpriteSource _gAkropolisCafeteriaView12SpriteSources[2];
+static SpriteBatch _gAkropolisCafeteriaView12SpriteBatches[3];
+static SpriteBatch _gAkropolisCafeteriaView13SpriteBatches[2];
+static SpriteSource _gAkropolisCafeteriaViews14And22SpriteSources[31];
+static SpriteBatch _gAkropolisCafeteriaViews14And22SpriteBatches[17];
+static SpriteSource _gAkropolisCafeteriaView15SpriteSources[12];
+static SpriteBatch _gAkropolisCafeteriaView15SpriteBatches[3];
+static SpriteBatch _gAkropolisCafeteriaView16SpriteBatches[2];
+static SpriteBatch _gAkropolisCafeteriaView17SpriteBatches[2];
+static SpriteBatch _gAkropolisCafeteriaView18SpriteBatches[2];
+static SpriteBatch _gAkropolisCafeteriaView19SpriteBatches[2];
+static SpriteBatch _gAkropolisCafeteriaView20SpriteBatches[2];
+static SpriteSource _gAkropolisCafeteriaView21SpriteSources[75];
+static SpriteBatch _gAkropolisCafeteriaView21SpriteBatches[19];
+static SpriteBatch _gAkropolisCafeteriaUnusedBackgroundSpriteBatches2[2];
+static SpriteSource _gAkropolisCafeteriaView23SpriteSources[16];
+static SpriteBatch _gAkropolisCafeteriaView23SpriteBatches[5];
+static SpriteSource _gAkropolisCafeteriaView24SpriteSources[1];
+static SpriteBatch _gAkropolisCafeteriaView24SpriteBatches[3];
+extern SpriteView gAkropolisCafeteriaSpriteViews[24];
+extern ViewCamera gAkropolisCafeteriaViewCameras[24];
+extern WorldCoordRoomAmbientEntry gAkropolisCafeteriaViewAmbientColors[25];
+extern AreaApplyRec gAkropolisCafeteriaFollowUpAreaUpdates[3];
+static WorldCollisionFootstepSounds _gAkropolisCafeteriaSurface1FootstepSounds;
+static WorldCollisionFootstepSounds _gAkropolisCafeteriaSurface2FootstepSounds;
+static WorldCollisionFootstepSounds _gAkropolisCafeteriaSurfaces3And4FootstepSounds;
+static WorldCollisionSurfaceProperties _gAkropolisCafeteriaSilentSurfaceProperties;
+static WorldCollisionSurfaceProperties _gAkropolisCafeteriaSurface1Properties;
+static WorldCollisionSurfaceProperties _gAkropolisCafeteriaSurface2Properties;
+static WorldCollisionSurfaceProperties _gAkropolisCafeteriaSurface3Properties;
+static WorldCollisionSurfaceProperties _gAkropolisCafeteriaSurface4Properties;
+extern WorldCollisionSurfaceProperties* gAkropolisCafeteriaSurfacePropertiesByClass[8];

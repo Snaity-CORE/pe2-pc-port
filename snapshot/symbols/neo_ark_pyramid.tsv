@@ -953,7 +953,6 @@ __adddf3	8004AFE8	a
 gRoomEffectFlashId	80115758	a	
 gActor443500TourOpeningSkipScript	80141C1C	a	
 animationAimHeadAtPoint	800B0CF4	a	
-mapAkropolisOpenKeyItemMenu	80179FC8	a	
 areaSetObjectState	800BB8E8	a	
 gItemMenuPanelDescriptors	8010EAB4	a	
 SquareRoot0	8003B8A0	a	
@@ -987,7 +986,6 @@ inventoryRestoreCarriedLoadout	800BA75C	a
 D_80072176	80072176	a	
 gStreamInterFile	8006AC30	a	
 playerActorPrepareAcropolisLoadout	800BC4BC	a	
-mapAkropolisWasDryfieldMapSelected	8017A038	a	
 gStageMusicTaskDesc	80062774	a	
 neo_ark_pyramid_bss_VRAM	801818A8	f	
 gMdecMovieOutputSlot	8005EAEE	a	
@@ -1012,6 +1010,7 @@ textItoaSigned	8002F020	a
 cdCmdIsIdle	8001D344	a	
 gNeoArkPyramidViewMaps	8017FC60	f	
 neoArkPyramidRoomVisualEffectsFlashTask	8017DC50	ft	
+akropolisStageOpenKeyItemMenu	80179FC8	a	
 D_80072729	80072729	a	
 sceneQueueBattleEscapeResult	800A7A64	a	
 capStartSequenceSlot	800E6C70	a	
@@ -1134,6 +1133,7 @@ SetDrawStp	80042288	a
 gActor143900ObservatoryEntryScript	80133560	a	
 playerActorSetDrawMode	800E3B80	a	
 actor450800StartNurseryCompanionDialogue	80132000	a	
+akropolisStageWasDryfieldMapSelected	8017A038	a	
 itemMenuSetPreviewItem	800CDE80	a	
 equipmentRecalculateMaxMp	800B7930	a	
 effectDrawOuterGlowBand	800EAA0C	a	

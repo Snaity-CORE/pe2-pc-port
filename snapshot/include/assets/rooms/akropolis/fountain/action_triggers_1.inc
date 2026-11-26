@@ -1,0 +1,6 @@
+/* rooms/akropolis/fountain/package: written from its room instance by tools/buildsteps/gen_room_inc.py. */
+
+#include "types.h"
+#include "gameplay/collision.h"
+
+static WorldCollisionTrigger _gAkropolisFountainClimbTrigger = { .next = NULL, .prevLink = NULL, .coord = NULL, .origin = { 0, -0, -0, 0 }, .vertices = { { -0, 0, -0, 0 }, { 0, 0, 0, 0 }, { -0, 0, -0, 0 }, { 0, 0, 0, 0 } }, .normal = { 0, 0, 0, 0 }, .facingNormal = { -0, 0, 0, 0 }, .radius = 0, .control = 0, .parameter0 = 0, .parameter1 = 0, .flags = 0, .hit = 0 };

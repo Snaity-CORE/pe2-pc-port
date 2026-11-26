@@ -1,6 +1,4 @@
 /* rooms/akropolis/forked_road/package: written from its room instance by tools/buildsteps/gen_room_inc.py. */
-#define ROOM_CAT_(a, b) a##b
-#define ROOM_CAT(a, b) ROOM_CAT_(a, b)
 
 #include "types.h"
 #include "actors/actor_00700.h"
@@ -21,7 +19,7 @@
 #include "actors/actor_401000.h"
 #include "actors/actor_401800.h"
 #include "gameplay/area.h"
-#include "mapui/map_akropolis.h"
+#include "stages/akropolis/stage.h"
 
 static AreaResource _gAkropolisForkedRoadVariant2Resources[2] = {
     { .entryId = 0, .fileNumber = 0, .fileGroupIndex = 0, .taskIndex = 0, .unknown_6 = { 0, 0 }, .taskTable = &gActor301900GrinningStrangerTaskDesc },
@@ -97,26 +95,26 @@ static AreaResource _gAkropolisForkedRoadVariant22Resources[5] = {
 AreaVariant gAkropolisForkedRoadAreaVariants[24] = {
     { .placements = NULL, .resources = NULL },
     { .placements = NULL, .resources = NULL },
-    { .placements = (void*)&gMapAkropolisForkedRoadVariant2Placements, .resources = _gAkropolisForkedRoadVariant2Resources },
-    { .placements = (void*)&gMapAkropolisForkedRoadVariant3Placements, .resources = _gAkropolisForkedRoadVariant3Resources },
-    { .placements = (void*)&gMapAkropolisForkedRoadVariant4Placements, .resources = _gAkropolisForkedRoadVariant4Resources },
+    { .placements = gAkropolisStageForkedRoadVariant2Placements, .resources = _gAkropolisForkedRoadVariant2Resources },
+    { .placements = gAkropolisStageForkedRoadVariant3Placements, .resources = _gAkropolisForkedRoadVariant3Resources },
+    { .placements = gAkropolisStageForkedRoadVariant4Placements, .resources = _gAkropolisForkedRoadVariant4Resources },
     { .placements = NULL, .resources = NULL },
     { .placements = NULL, .resources = NULL },
-    { .placements = (void*)&gMapAkropolisForkedRoadVariant7Placements, .resources = _gAkropolisForkedRoadVariant7Resources },
-    { .placements = (void*)&gMapAkropolisForkedRoadVariant8Placements, .resources = _gAkropolisForkedRoadVariant8Resources },
-    { .placements = (void*)&gMapAkropolisForkedRoadVariant9Placements, .resources = _gAkropolisForkedRoadVariant9Resources },
-    { .placements = (void*)&gMapAkropolisForkedRoadVariant10Placements, .resources = _gAkropolisForkedRoadVariant10Resources },
-    { .placements = (void*)&gMapAkropolisForkedRoadVariant11Placements, .resources = _gAkropolisForkedRoadVariant11Resources },
-    { .placements = (void*)&gMapAkropolisForkedRoadVariant12Placements, .resources = _gAkropolisForkedRoadVariant12Resources },
-    { .placements = (void*)&gMapAkropolisForkedRoadVariant13Placements, .resources = _gAkropolisForkedRoadVariant13Resources },
-    { .placements = (void*)&gMapAkropolisForkedRoadVariant14Placements, .resources = _gAkropolisForkedRoadVariant14Resources },
-    { .placements = (void*)&gMapAkropolisForkedRoadVariant15Placements, .resources = _gAkropolisForkedRoadVariant15Resources },
-    { .placements = (void*)&gMapAkropolisForkedRoadVariant16Placements, .resources = _gAkropolisForkedRoadVariant16Resources },
+    { .placements = gAkropolisStageForkedRoadVariant7Placements, .resources = _gAkropolisForkedRoadVariant7Resources },
+    { .placements = gAkropolisStageForkedRoadVariant8Placements, .resources = _gAkropolisForkedRoadVariant8Resources },
+    { .placements = gAkropolisStageForkedRoadVariant9Placements, .resources = _gAkropolisForkedRoadVariant9Resources },
+    { .placements = gAkropolisStageForkedRoadVariant10Placements, .resources = _gAkropolisForkedRoadVariant10Resources },
+    { .placements = gAkropolisStageForkedRoadVariant11Placements, .resources = _gAkropolisForkedRoadVariant11Resources },
+    { .placements = gAkropolisStageForkedRoadVariant12Placements, .resources = _gAkropolisForkedRoadVariant12Resources },
+    { .placements = gAkropolisStageForkedRoadVariant13Placements, .resources = _gAkropolisForkedRoadVariant13Resources },
+    { .placements = gAkropolisStageForkedRoadVariant14Placements, .resources = _gAkropolisForkedRoadVariant14Resources },
+    { .placements = gAkropolisStageForkedRoadVariant15Placements, .resources = _gAkropolisForkedRoadVariant15Resources },
+    { .placements = gAkropolisStageForkedRoadVariant16Placements, .resources = _gAkropolisForkedRoadVariant16Resources },
     { .placements = NULL, .resources = NULL },
     { .placements = NULL, .resources = NULL },
     { .placements = NULL, .resources = NULL },
-    { .placements = (void*)&gMapAkropolisForkedRoadVariant20Placements, .resources = _gAkropolisForkedRoadVariant20Resources },
-    { .placements = (void*)&gMapAkropolisForkedRoadVariant21Placements, .resources = _gAkropolisForkedRoadVariant21Resources },
-    { .placements = (void*)&gMapAkropolisForkedRoadVariant22Placements, .resources = _gAkropolisForkedRoadVariant22Resources },
+    { .placements = gAkropolisStageForkedRoadVariant20Placements, .resources = _gAkropolisForkedRoadVariant20Resources },
+    { .placements = gAkropolisStageForkedRoadVariant21Placements, .resources = _gAkropolisForkedRoadVariant21Resources },
+    { .placements = gAkropolisStageForkedRoadVariant22Placements, .resources = _gAkropolisForkedRoadVariant22Resources },
     { .placements = NULL, .resources = NULL },
 };

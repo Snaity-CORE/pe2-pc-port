@@ -1,10 +1,8 @@
 /* rooms/akropolis/stage: written from its room instance by tools/buildsteps/gen_room_inc.py. */
-#define ROOM_CAT_(a, b) a##b
-#define ROOM_CAT(a, b) ROOM_CAT_(a, b)
 
 #include "main/stage_types.h"
 
-StageMusicEntry gMapAkropolisAreaMusicEntries[168] = {
+StageMusicEntry gAkropolisStageAreaMusicEntries[168] = {
     { .sequenceId = 0, .startMode = 0 },
     { .sequenceId = 0, .startMode = 0 },
     { .sequenceId = 0, .startMode = 0 },
@@ -174,7 +172,7 @@ StageMusicEntry gMapAkropolisAreaMusicEntries[168] = {
     { .sequenceId = 0, .startMode = 0 },
     { .sequenceId = 0, .startMode = 0 },
 };
-StageMusicEntry gMapAkropolisCountdownMusicEntries[20] = {
+StageMusicEntry gAkropolisStageCountdownMusicEntries[20] = {
     { .sequenceId = 0, .startMode = 0 },
     { .sequenceId = 0, .startMode = 0 },
     { .sequenceId = 0, .startMode = 0 },

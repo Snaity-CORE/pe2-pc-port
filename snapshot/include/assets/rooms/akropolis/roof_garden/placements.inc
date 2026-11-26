@@ -1,14 +1,12 @@
 /* rooms/akropolis/roof_garden/package: written from its room instance by tools/buildsteps/gen_room_inc.py. */
-#define ROOM_CAT_(a, b) a##b
-#define ROOM_CAT(a, b) ROOM_CAT_(a, b)
 
 #include "types.h"
 #include "actors/actor_00700.h"
 #include "actors/actor_02600.h"
 #include "actors/actor_05500.h"
 #include "gameplay/area.h"
-#include "mapui/map_akropolis.h"
 #include "stages/akropolis/actors/roof_garden_swat_member.h"
+#include "stages/akropolis/stage.h"
 
 static AreaResource _gAkropolisRoofGardenVariant1Resources[3] = {
     { .entryId = 0, .fileNumber = 0, .fileGroupIndex = 0, .taskIndex = 0, .unknown_6 = { 0, 0 }, .taskTable = &gRoofGardenSwatMemberViewFigureTasks },
@@ -32,14 +30,14 @@ static AreaResource _gAkropolisRoofGardenVariant8Resources[3] = {
 };
 AreaVariant gAkropolisRoofGardenAreaVariants[12] = {
     { .placements = NULL, .resources = NULL },
-    { .placements = (void*)&gMapAkropolisRoofGardenVariant1Placements, .resources = _gAkropolisRoofGardenVariant1Resources },
-    { .placements = (void*)&gMapAkropolisRoofGardenVariant2Placements, .resources = _gAkropolisRoofGardenVariant2Resources },
+    { .placements = gAkropolisStageRoofGardenVariant1Placements, .resources = _gAkropolisRoofGardenVariant1Resources },
+    { .placements = gAkropolisStageRoofGardenVariant2Placements, .resources = _gAkropolisRoofGardenVariant2Resources },
     { .placements = NULL, .resources = NULL },
     { .placements = NULL, .resources = NULL },
     { .placements = NULL, .resources = NULL },
     { .placements = NULL, .resources = NULL },
-    { .placements = (void*)&gMapAkropolisRoofGardenVariant7Placements, .resources = _gAkropolisRoofGardenVariant7Resources },
-    { .placements = (void*)&gMapAkropolisRoofGardenVariant8Placements, .resources = _gAkropolisRoofGardenVariant8Resources },
+    { .placements = gAkropolisStageRoofGardenVariant7Placements, .resources = _gAkropolisRoofGardenVariant7Resources },
+    { .placements = gAkropolisStageRoofGardenVariant8Placements, .resources = _gAkropolisRoofGardenVariant8Resources },
     { .placements = NULL, .resources = NULL },
     { .placements = NULL, .resources = NULL },
     { .placements = NULL, .resources = NULL },

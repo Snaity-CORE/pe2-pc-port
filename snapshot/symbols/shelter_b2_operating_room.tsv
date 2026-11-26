@@ -1133,7 +1133,6 @@ __adddf3	8004AFE8	a
 gRoomEffectFlashId	80115758	a	
 gActor443500TourOpeningSkipScript	80141C1C	a	
 animationAimHeadAtPoint	800B0CF4	a	
-mapAkropolisOpenKeyItemMenu	80179FC8	a	
 shelter_b2_operating_room_VRAM	8017D5C0	f	
 areaSetObjectState	800BB8E8	a	
 gItemMenuPanelDescriptors	8010EAB4	a	
@@ -1167,7 +1166,6 @@ inventoryRestoreCarriedLoadout	800BA75C	a
 D_80072176	80072176	a	
 gStreamInterFile	8006AC30	a	
 playerActorPrepareAcropolisLoadout	800BC4BC	a	
-mapAkropolisWasDryfieldMapSelected	8017A038	a	
 gStageMusicTaskDesc	80062774	a	
 gMdecMovieOutputSlot	8005EAEE	a	
 gActor451100SubmarineTunnelSceneSkipScript	80135FD0	a	
@@ -1188,6 +1186,7 @@ cdCmdStageSceneAudioStart	8001D6B8	a
 D_80072A94	80072A94	a	
 textItoaSigned	8002F020	a	
 cdCmdIsIdle	8001D344	a	
+akropolisStageOpenKeyItemMenu	80179FC8	a	
 D_80072729	80072729	a	
 sceneQueueBattleEscapeResult	800A7A64	a	
 capStartSequenceSlot	800E6C70	a	
@@ -1314,6 +1313,7 @@ SetDrawStp	80042288	a
 gActor143900ObservatoryEntryScript	80133560	a	
 playerActorSetDrawMode	800E3B80	a	
 actor450800StartNurseryCompanionDialogue	80132000	a	
+akropolisStageWasDryfieldMapSelected	8017A038	a	
 gShelterB2OperatingRoomCollisionGrid	80181364	f	
 itemMenuSetPreviewItem	800CDE80	a	
 equipmentRecalculateMaxMp	800B7930	a	

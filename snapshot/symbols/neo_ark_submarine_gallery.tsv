@@ -1475,7 +1475,6 @@ gRoomEffectFlashId	80115758	a
 gActor443500TourOpeningSkipScript	80141C1C	a	
 neoArkSubmarineGalleryRejectKeyItemUse	8017EA04	ft	
 animationAimHeadAtPoint	800B0CF4	a	
-mapAkropolisOpenKeyItemMenu	80179FC8	a	
 areaSetObjectState	800BB8E8	a	
 gItemMenuPanelDescriptors	8010EAB4	a	
 SquareRoot0	8003B8A0	a	
@@ -1508,7 +1507,6 @@ inventoryRestoreCarriedLoadout	800BA75C	a
 D_80072176	80072176	a	
 gStreamInterFile	8006AC30	a	
 playerActorPrepareAcropolisLoadout	800BC4BC	a	
-mapAkropolisWasDryfieldMapSelected	8017A038	a	
 neo_ark_submarine_gallery_TEXT_START	8017D678	f	
 gStageMusicTaskDesc	80062774	a	
 gMdecMovieOutputSlot	8005EAEE	a	
@@ -1529,6 +1527,7 @@ cdCmdStageSceneAudioStart	8001D6B8	a
 D_80072A94	80072A94	a	
 textItoaSigned	8002F020	a	
 cdCmdIsIdle	8001D344	a	
+akropolisStageOpenKeyItemMenu	80179FC8	a	
 neo_ark_submarine_gallery_BSS_START	8018592C	f	
 neo_ark_submarine_gallery_ROM_END	0000836C	a	
 D_80072729	80072729	a	
@@ -1658,6 +1657,7 @@ SetDrawStp	80042288	a
 gActor143900ObservatoryEntryScript	80133560	a	
 playerActorSetDrawMode	800E3B80	a	
 actor450800StartNurseryCompanionDialogue	80132000	a	
+akropolisStageWasDryfieldMapSelected	8017A038	a	
 waterRefractionTask	8017D678	ft	
 itemMenuSetPreviewItem	800CDE80	a	
 equipmentRecalculateMaxMp	800B7930	a	

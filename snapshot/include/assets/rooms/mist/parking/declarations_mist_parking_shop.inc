@@ -1,0 +1,30 @@
+/* rooms/mist/parking/package: written from its room instance by tools/buildsteps/gen_room_inc.py. */
+
+#include "gameplay/evs.h"
+#include "gameplay/message.h"
+
+extern AnimationBankCopyRequest gMistParkingShopPlayerAnimationBankCopy;
+static AnimationPlayRequest _gMistParkingUnusedBank1Clip1Animation;
+extern AnimationPlayRequest gMistParkingPlayerShopTalkAnimation;
+static AnimationPlayRequest _gMistParkingPlayerDepartureMenuAnimation;
+static AnimationPlayRequest _gMistParkingPlayerStayAnimation;
+static AnimationPlayRequest _gMistParkingUnusedBank0Clip1ResetAnimation;
+static AnimationPlayRequest _gMistParkingUnusedBank0Clips1To5Animations[5];
+static AnimationPlayRequest _gMistParkingPierceDepartureMenuAnimation;
+static AnimationPlayRequest _gMistParkingUnusedBank0Clips7To14Animations[8];
+static AnimationPlayRequest _gMistParkingShopPierceDepartureReplyAnimation;
+static AnimationPlayRequest _gMistParkingUnusedBank0Clips16To35Animations[20];
+static ActorCommand _gMistParkingShopPierceAimHeadCommand;
+static ActorCommand _gMistParkingShopPierceReleaseHeadCommand;
+static AnimationPlayRequest _gMistParkingUnusedBank0Clip1Animation;
+extern AnimationPlayRequest gMistParkingJodieIdleAnimation;
+static AnimationPlayRequest _gMistParkingUnusedBank0Clips2To4Animations[3];
+extern AnimationPlayRequest gMistParkingJodieShopExitAnimation;
+static AnimationPlayRequest _gMistParkingUnusedBank0Clip6Animation;
+extern AnimationPlayRequest gMistParkingJodieGreetingAnimation;
+extern AnimationPlayRequest gMistParkingJodieReplyAnimation;
+extern AnimationPlayRequest gMistParkingJodieReplyEndAnimation;
+static EvsCommand _gMistParkingShopDepartureMenuScript[10];
+static EvsCommand _gMistParkingShopStayScript[12];
+static EvsCommand _gMistParkingShopDepartForAkropolisScript[18];
+static EvsCommand _gMistParkingShopDepartForShootingGalleryScript[12];
