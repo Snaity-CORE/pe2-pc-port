@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
-"""Write the notices of the third-party code pe2.exe is built from, to ship
-with it (their licenses ask for it): every crate linked into the
-executable (normal dependencies for the release target, not build scripts
-or procedural macros), with the license files it ships, anywhere in it but
-its tests (some embed others' work: egui's fonts, gilrs' controller
-database, OpenH264). A license of a crate's expression none of its files
-holds (all of them, when it ships none) gets its standard text
-(tools/licenses/, from the SPDX license list), naming the crate's authors.
+"""Write the notices of the third-party code pe2.exe and
+pe2-lang-import.exe are built from, to ship with them (their licenses ask
+for it): every crate linked into the executables (normal dependencies for
+the release target, not build scripts or procedural macros), with the
+license files it ships, anywhere in it but its tests (some embed others'
+work: egui's fonts, gilrs' controller database, OpenH264). A license of a
+crate's expression none of its files holds (all of them, when it ships
+none) gets its standard text (tools/licenses/, from the SPDX license list),
+naming the crate's authors.
 The same text is printed once, with every crate under it.
 
     python tools/third_party.py [OUT]    # default: dist/THIRD-PARTY-NOTICES.txt
@@ -22,15 +23,17 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 TARGET = "i686-pc-windows-msvc"
 LICENSES = ROOT / "tools" / "licenses"
+# The workspace's packages whose executables ship.
+SHIPPED = ("pe2-host", "pe2-lang-import")
 LICENSE_FILE = re.compile(r"(?i)^(licen[cs]e|copying|notice|ofl)|licen[cs]e[^/\\]*\.(txt|md)$")
 
 
 def shipped_crates(metadata: dict) -> list[dict]:
-    """The packages linked into pe2-host's executable, by name."""
+    """The packages linked into the executables (SHIPPED's), by name."""
     packages = {p["id"]: p for p in metadata["packages"]}
     nodes = {n["id"]: n for n in metadata["resolve"]["nodes"]}
-    root = next(p["id"] for p in metadata["packages"] if p["name"] == "pe2-host")
-    seen, stack = set(), [root]
+    roots = [p["id"] for p in metadata["packages"] if p["name"] in SHIPPED]
+    seen, stack = set(), list(roots)
     while stack:
         pid = stack.pop()
         if pid in seen:
@@ -42,7 +45,7 @@ def shipped_crates(metadata: dict) -> list[dict]:
             if any("proc-macro" in t["kind"] for t in packages[dep["pkg"]]["targets"]):
                 continue  # runs in the compiler
             stack.append(dep["pkg"])
-    seen.discard(root)
+    seen.difference_update(roots)
     return sorted((packages[p] for p in seen), key=lambda p: (p["name"], p["version"]))
 
 
@@ -126,10 +129,10 @@ def main() -> int:
         print(f"third_party: no license text for {', '.join(missing)}: add theirs to tools/licenses/")
         return 1
     parts = [
-        "Third-party notices for pe2.exe\n"
-        "================================\n\n"
-        "pe2.exe is built from the crates below (Rust libraries, some with C\n"
-        "code or fonts of their own). Each license text is followed by the\n"
+        "Third-party notices for pe2.exe and pe2-lang-import.exe\n"
+        "========================================================\n\n"
+        "pe2.exe and pe2-lang-import.exe are built from the crates below (Rust\n"
+        "libraries, some with C code or fonts of their own). Each license text is followed by the\n"
         "crates it applies to. Their sources are on crates.io, and at the\n"
         "repositories named. The project's own code is CC0-1.0 (LICENSE).\n"
     ]

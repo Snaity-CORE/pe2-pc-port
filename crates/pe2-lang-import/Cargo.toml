@@ -1,0 +1,21 @@
+[package]
+name = "pe2-lang-import"
+version = "0.2.2"
+edition.workspace = true
+license.workspace = true
+description = "Makes a PE2PC language mod from your own European Parasite Eve II discs"
+publish.workspace = true
+
+[dependencies]
+eframe = { version = "0.37.0", default-features = false, features = ["glow", "default_fonts", "accesskit"] }
+fancy-regex = "0.14"
+indexmap = "2"
+png = "0.17"
+regex = "1"
+rfd = "0.17.2"
+sha1_smol = "1"
+sys-locale = "0.3"
+toml = "1.1.8"
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.61", features = ["Win32_System_Console"] }

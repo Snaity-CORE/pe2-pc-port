@@ -1,6 +1,6 @@
 [workspace]
 resolver = "2"
-members = ["crates/pe2-host"]
+members = ["crates/pe2-host", "crates/pe2-lang-import"]
 
 [workspace.package]
 edition = "2024"

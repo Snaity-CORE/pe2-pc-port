@@ -34,6 +34,8 @@ ALLOWED_BINARIES: set[str] = {
     "crates/pe2-host/res/fonts/DejaVuSans-Bold.ttf",
     "crates/pe2-host/res/fonts/Hind-Bold.ttf",
     "crates/pe2-host/res/fonts/CourierPrime-Regular.ttf",
+    # The Japanese dialogue's, which pe2-lang-import gives its mods.
+    "crates/pe2-lang-import/res/ja/NotoSansJP-Bold.otf",
 }
 
 # Byte signatures that only appear in disc-derived data.
