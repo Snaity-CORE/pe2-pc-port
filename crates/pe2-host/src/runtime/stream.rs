@@ -26,6 +26,8 @@ struct Frame {
     complete: bool,
     handed_out: bool,
     dropped: bool,
+    /// Where its first sector came from: the disc (from 0) and sector.
+    place: (usize, u32),
 }
 
 #[derive(Default)]
@@ -81,7 +83,7 @@ impl Ring {
         }
     }
 
-    fn push_sector(&mut self, user: &[u8], loc: [u8; 3]) {
+    fn push_sector(&mut self, user: &[u8], loc: [u8; 3], place: (usize, u32)) {
         let rd16 = |o: usize| u16::from_le_bytes([user[o], user[o + 1]]);
         let rd32 = |o: usize| u32::from_le_bytes([user[o], user[o + 1], user[o + 2], user[o + 3]]);
         if rd16(0) != STR_ID {
@@ -117,6 +119,7 @@ impl Ring {
                 complete: false,
                 handed_out: false,
                 dropped,
+                place,
             });
         }
         let base = self.base;
@@ -157,9 +160,10 @@ pub fn set_active(on: bool) {
     with_ring(|r| r.active = on);
 }
 
-/// A data sector read while streaming (2048 user bytes).
-pub fn push_sector(user: &[u8], loc: [u8; 3]) {
-    with_ring(|r| r.push_sector(user, loc));
+/// A data sector read while streaming (2048 user bytes), from sector
+/// `place.1` of disc `place.0`.
+pub fn push_sector(user: &[u8], loc: [u8; 3], place: (usize, u32)) {
+    with_ring(|r| r.push_sector(user, loc, place));
 }
 
 #[unsafe(no_mangle)]
@@ -209,12 +213,12 @@ pub extern "C" fn pcrt_StGetNext(addr: *mut u32, header: *mut u32) -> u32 {
             *addr = base + f.data_off;
             *header = header_base + f.header_slot * HEADER;
         }
-        Some((f.number, base + f.data_off, f.len))
+        Some((f.number, base + f.data_off, f.len, f.place))
     });
-    let Some((number, data, len)) = taken else { return 1 };
+    let Some((number, data, len, place)) = taken else { return 1 };
     // SAFETY: the frame's data, in the ring in PSX RAM.
     let data = unsafe { std::slice::from_raw_parts(data as *const u8, len as usize) };
-    crate::mods::movies::frame(number, data);
+    crate::mods::movies::frame(number, data, place);
     0
 }
 

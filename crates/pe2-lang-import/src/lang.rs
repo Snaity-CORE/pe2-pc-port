@@ -1,7 +1,8 @@
 //! The releases this makes mods of, and what each mod has that is not on
 //! the discs: for the European ones, the speakers' names (pictures there,
-//! read by eye) and the loading captions' places the release leaves in
-//! English (translated for this program); for the Japanese one, what each
+//! read by eye), the loading captions' places the release leaves in
+//! English (translated for this program) and PE2PC's texts it has no word
+//! for (its "Lv."); for the Japanese one, what each
 //! dialogue glyph is (japanese.rs).
 
 /// The movies whose pictures have text in the European releases (the title
@@ -13,9 +14,10 @@ const PAL_MOVIES: &[(&str, &str)] =
 
 pub enum Kind {
     /// A European release: everything (dialogue, menus, items, loading
-    /// captions, pictures), with its speakers' names and the places of its
-    /// loading captions.
-    Pal { speakers: &'static str, places: &'static str },
+    /// captions, pictures), with its speakers' names, the places of its
+    /// loading captions and PE2PC's own texts in its language (its
+    /// strings/pc/, None when English serves).
+    Pal { speakers: &'static str, places: &'static str, own: Option<&'static str> },
     /// The Japanese release: its dialogue (japanese.rs).
     Japanese,
 }
@@ -41,6 +43,7 @@ pub const RELEASES: [Release; 5] = [
         kind: Kind::Pal {
             speakers: include_str!("../res/fr/speakers.toml"),
             places: include_str!("../res/fr/places.toml"),
+            own: Some(include_str!("../res/fr/pc.toml")),
         },
         movies: PAL_MOVIES,
     },
@@ -52,6 +55,7 @@ pub const RELEASES: [Release; 5] = [
         kind: Kind::Pal {
             speakers: include_str!("../res/de/speakers.toml"),
             places: include_str!("../res/de/places.toml"),
+            own: Some(include_str!("../res/de/pc.toml")),
         },
         movies: PAL_MOVIES,
     },
@@ -63,6 +67,7 @@ pub const RELEASES: [Release; 5] = [
         kind: Kind::Pal {
             speakers: include_str!("../res/es/speakers.toml"),
             places: include_str!("../res/es/places.toml"),
+            own: Some(include_str!("../res/es/pc.toml")),
         },
         movies: PAL_MOVIES,
     },
@@ -74,6 +79,8 @@ pub const RELEASES: [Release; 5] = [
         kind: Kind::Pal {
             speakers: include_str!("../res/it/speakers.toml"),
             places: include_str!("../res/it/places.toml"),
+            // "Lv.", as the Italian release's menus have it
+            own: None,
         },
         movies: PAL_MOVIES,
     },
@@ -104,10 +111,13 @@ mod tests {
     #[test]
     fn data_reads() {
         for r in &RELEASES {
-            if let Kind::Pal { speakers, places } = r.kind {
+            if let Kind::Pal { speakers, places, own } = r.kind {
                 let speakers: toml::Table = speakers.parse().expect("speakers");
                 let places: toml::Table = places.parse().expect("places");
                 assert!(!speakers.is_empty() && !places.is_empty(), "{}", r.folder);
+                if let Some(own) = own {
+                    own.parse::<toml::Table>().expect("own");
+                }
             }
         }
     }

@@ -16,6 +16,11 @@
 //! the game tells before it streams, `pc_movie_frames`), a mod's
 //! `movies/<hash>-<frames>.mp4`, which wins over `<hash>.mp4`.
 //!
+//! A room's backdrop movie may be taken up at any frame (where Aya is), or
+//! follow another of the room's without a first frame: a frame is then
+//! known by where it lies on the disc, in the movies the discs list
+//! (`start_discs`).
+//!
 //! The extract saves each movie of the discs (`extract`): the movie itself
 //! as `dumps/movies/<hash>.str` (its sectors as on the disc, which video
 //! tools read), its pictures as `<hash>.mp4` (a mod's movie as it is, on
@@ -27,7 +32,7 @@ use std::collections::{HashMap, VecDeque};
 use std::path::PathBuf;
 use std::sync::atomic::{AtomicBool, AtomicU32, Ordering};
 use std::sync::mpsc::{Receiver, SyncSender, sync_channel};
-use std::sync::{Arc, Mutex, OnceLock};
+use std::sync::{Arc, Condvar, Mutex, OnceLock};
 use std::time::{Duration, Instant};
 
 /// The game's movies play at 15 frames a second, a few at 30: which, is
@@ -49,6 +54,10 @@ const HELD_UP: Duration = Duration::from_millis(300);
 /// Decoded pictures kept ready ahead of the one shown.
 const AHEAD: usize = 4;
 const RATE: u32 = 44_100;
+/// A backdrop picture this many frames from the one the game draws still
+/// serves (it is being decoded), rather than the game's own: as Aya walks,
+/// the picture follows a few frames behind.
+const BACKDROP_NEAR: u32 = 8;
 
 /// A picture of a mod's movie: 0RGB pixels, row by row.
 pub struct Picture {
@@ -67,6 +76,8 @@ struct Playing {
     number: u32,
     at: Instant,
     began: Instant,
+    /// The frame it began at: 1, or one the game took it up at.
+    first: u32,
     pictures: Receiver<Picture>,
     shown: Option<Arc<Picture>>,
     next: Option<Picture>,
@@ -79,7 +90,33 @@ struct Playing {
     /// Its frame rate, once told 30 (frames held up later slow the count,
     /// not the movie).
     fps: f64,
+    path: PathBuf,
+    /// When the game draws it as a room's backdrop (`backdrop_playing`).
+    backdrop: Option<Backdrop>,
 }
+
+/// What the game asks of a room's backdrop movie: a frame (from 0), at the
+/// size the card shows it.
+#[derive(Clone, Copy, PartialEq)]
+struct Wanted {
+    frame: u32,
+    width: u32,
+    height: u32,
+}
+
+/// A mod's movie the game draws as a room's backdrop (15-bit, under the
+/// characters), which it streams as Aya walks, back and forth: its pictures
+/// are decoded on demand, on a thread of their own (`decode_backdrop`).
+#[derive(Clone)]
+struct Backdrop {
+    /// The movie's size, once its thread has read the file's header.
+    size: Arc<OnceLock<(usize, usize)>>,
+    wanted: Arc<(Mutex<Option<Wanted>>, Condvar)>,
+    made: Arc<Mutex<Option<Made>>>,
+}
+
+/// A backdrop picture made: its frame, and it.
+type Made = (u32, Arc<super::Picture>);
 
 /// A movie's sound as decoded so far, at 44.1 kHz, and what was played.
 #[derive(Default)]
@@ -91,6 +128,10 @@ struct Sound {
 #[derive(Default)]
 struct State {
     playing: Option<Playing>,
+    /// The mod's file of the movie shown full screen that ended last, until
+    /// another begins: the frames the game still streams after a movie it
+    /// skipped do not take it up again.
+    ended: Option<PathBuf>,
 }
 
 fn state() -> &'static Mutex<State> {
@@ -101,6 +142,17 @@ fn state() -> &'static Mutex<State> {
 /// The frame limit of the movie about to stream, as the game tells it
 /// (0: not told).
 static FRAMES: AtomicU32 = AtomicU32::new(0);
+
+/// A frame was taken from the stream since the game last began loading one
+/// into VRAM (`new_backdrop_frame`).
+static TAKEN: AtomicBool = AtomicBool::new(false);
+
+/// Whether the picture the game begins loading now is a movie frame it
+/// just took from the stream: not a still picture loaded the same way
+/// while a backdrop movie, its frames stopped, still counts as playing.
+pub fn new_backdrop_frame() -> bool {
+    TAKEN.swap(false, Ordering::Relaxed)
+}
 
 /// The game is about to stream a movie `frame_limit` frames long.
 #[unsafe(no_mangle)]
@@ -153,12 +205,70 @@ fn index() -> &'static HashMap<(u64, Option<u32>), PathBuf> {
     })
 }
 
-/// The game took frame `number` of the movie streaming, `data` (its
-/// sectors' payload) to decode.
-pub fn frame(number: u32, data: &[u8]) {
+/// The mod's file for the movie of `hash` and frame limit `frames`.
+fn mod_file(hash: u64, frames: u32) -> Option<&'static PathBuf> {
+    index().get(&(hash, Some(frames))).or_else(|| index().get(&(hash, None)))
+}
+
+/// A movie a disc lists: where it begins, and its hash and frame limit.
+type Listed = (u32, (u64, u32));
+
+/// The movies each disc lists (`start_discs`), by where they begin.
+static ON_DISCS: OnceLock<Vec<Vec<Listed>>> = OnceLock::new();
+
+/// When the game starts, while mods have movies: on a thread, where on
+/// `discs` each movie they list begins and its first frame's hash.
+pub fn start_discs(discs: &[PathBuf]) {
     if index().is_empty() {
         return;
     }
+    let discs = discs.to_vec();
+    std::thread::spawn(move || {
+        let listed = discs
+            .iter()
+            .map(|image| {
+                let mut disc = match crate::disc::open(image) {
+                    Ok(d) => d,
+                    Err(e) => {
+                        eprintln!("pe2: mods: {}: {e}", image.display());
+                        return Vec::new();
+                    }
+                };
+                let mut out: Vec<Listed> = Vec::new();
+                for m in super::files::movies(disc.as_mut()) {
+                    if out.iter().any(|(lba, _)| *lba == m.lba) {
+                        continue;
+                    }
+                    // its first frame only
+                    let first = super::files::DiscMovie { frame_limit: 1, listed: String::new(), ..m };
+                    if let Some(movie) = read_movie(disc.as_mut(), &first) {
+                        out.push((m.lba, (movie.hash, m.frame_limit)));
+                    }
+                }
+                out.sort_unstable_by_key(|(lba, _)| *lba);
+                out
+            })
+            .collect();
+        let _ = ON_DISCS.set(listed);
+    });
+}
+
+/// The movie (hash, frame limit) sector `place.1` of disc `place.0` is
+/// in: the last listed to begin at or before it.
+fn movie_at(place: (usize, u32)) -> Option<&'static (u64, u32)> {
+    let movies = ON_DISCS.get()?.get(place.0)?;
+    let i = movies.partition_point(|(lba, _)| *lba <= place.1);
+    Some(&movies.get(i.checked_sub(1)?)?.1)
+}
+
+/// The game took frame `number` of the movie streaming, `data` (its
+/// sectors' payload) to decode; its first sector was sector `place.1` of
+/// disc `place.0`.
+pub fn frame(number: u32, data: &[u8], place: (usize, u32)) {
+    if index().is_empty() {
+        return;
+    }
+    TAKEN.store(true, Ordering::Relaxed);
     let mut s = state().lock().unwrap();
     let now = Instant::now();
     if number == 1 {
@@ -167,13 +277,28 @@ pub fn frame(number: u32, data: &[u8]) {
         if let Some(p) = s.playing.take() {
             p.stop.store(true, Ordering::Relaxed);
         }
+        s.ended = None;
         if crate::runtime::trace("movies") {
             eprintln!("[movies] movie {} begins", movie_name(hash, Some(frames)));
         }
-        if let Some(path) = index().get(&(hash, Some(frames))).or_else(|| index().get(&(hash, None))) {
-            s.playing = start(hash, path.clone());
+        if let Some(path) = mod_file(hash, frames) {
+            s.playing = start(hash, path.clone(), 1);
         }
         return;
+    }
+    // A movie taken up at another frame: the one there on the disc.
+    if let Some(&(hash, frames)) = movie_at(place) {
+        let path = mod_file(hash, frames);
+        if s.playing.as_ref().map(|p| &p.path) != path && s.ended.as_ref() != path {
+            if let Some(p) = s.playing.take() {
+                p.stop.store(true, Ordering::Relaxed);
+            }
+            if crate::runtime::trace("movies") {
+                eprintln!("[movies] movie {} taken up at frame {number}", movie_name(hash, Some(frames)));
+            }
+            s.playing = path.and_then(|path| start(hash, path.clone(), number));
+            return;
+        }
     }
     if let Some(p) = s.playing.as_mut() {
         let held = now - p.at;
@@ -190,9 +315,9 @@ pub fn frame(number: u32, data: &[u8]) {
     }
 }
 
-/// Starts playing a mod's movie: its pictures and sound decoded on threads
-/// of their own.
-fn start(hash: u64, path: PathBuf) -> Option<Playing> {
+/// Starts playing a mod's movie at frame `first`: its pictures and sound
+/// decoded on threads of their own.
+fn start(hash: u64, path: PathBuf, first: u32) -> Option<Playing> {
     let (send, pictures) = sync_channel(AHEAD);
     let stop = Arc::new(AtomicBool::new(false));
     let sound = Arc::new(Mutex::new(Sound::default()));
@@ -217,9 +342,10 @@ fn start(hash: u64, path: PathBuf) -> Option<Playing> {
     let now = Instant::now();
     Some(Playing {
         hash,
-        number: 1,
+        number: first,
         at: now,
         began: now,
+        first,
         pictures,
         shown: None,
         next: None,
@@ -228,6 +354,8 @@ fn start(hash: u64, path: PathBuf) -> Option<Playing> {
         stop,
         shown_24bit: false,
         fps: GAME_FPS,
+        path,
+        backdrop: None,
     })
 }
 
@@ -235,7 +363,7 @@ fn start(hash: u64, path: PathBuf) -> Option<Playing> {
 pub fn picture() -> Option<Arc<Picture>> {
     let mut s = state().lock().unwrap();
     let p = s.playing.as_mut()?;
-    p.fps = p.fps.max(game_fps(p.number, (p.at - p.began).as_secs_f64()));
+    p.fps = p.fps.max(game_fps(p.number + 1 - p.first, (p.at - p.began).as_secs_f64()));
     let frame = 1.0 / p.fps;
     let now = f64::from(p.number - 1) * frame + p.at.elapsed().as_secs_f64().min(frame);
     loop {
@@ -248,6 +376,48 @@ pub fn picture() -> Option<Arc<Picture>> {
         }
     }
     p.shown.clone()
+}
+
+/// While a mod's movie plays and the game draws it as a room's backdrop:
+/// its hash, the game's frame number and the movie's size (its pictures
+/// then decoded on demand, `backdrop_picture`). The first time, its thread
+/// is started, which opens the file: None until it knows the size (the
+/// game's frames show meanwhile), so the game never waits on the file.
+pub fn backdrop_playing() -> Option<(u64, u32, (usize, usize))> {
+    let mut s = state().lock().unwrap();
+    let p = s.playing.as_mut()?;
+    if p.backdrop.is_none() {
+        let backdrop = Backdrop {
+            size: Arc::new(OnceLock::new()),
+            wanted: Arc::new((Mutex::new(None), Condvar::new())),
+            made: Arc::new(Mutex::new(None)),
+        };
+        let (path, stop, shared) = (p.path.clone(), p.stop.clone(), backdrop.clone());
+        std::thread::spawn(move || {
+            if let Err(e) = decode_backdrop(&path, &shared, &stop) {
+                eprintln!("pe2: mods: {}: {e}", path.display());
+            }
+        });
+        p.backdrop = Some(backdrop);
+    }
+    Some((p.hash, p.number, *p.backdrop.as_ref()?.size.get()?))
+}
+
+/// Asks for the mod's picture of the game's frame being decoded now, at
+/// `width` x `height` (the size the card shows it), and answers the last
+/// one made if its frame is near enough: its frame and it. Never waits.
+pub fn backdrop_picture(width: u32, height: u32) -> Option<(u32, Arc<super::Picture>)> {
+    let s = state().lock().unwrap();
+    let p = s.playing.as_ref()?;
+    let b = p.backdrop.as_ref()?;
+    let frame = p.number - 1;
+    let (asked, ring) = &*b.wanted;
+    *asked.lock().unwrap() = Some(Wanted { frame, width, height });
+    ring.notify_one();
+    let made = b.made.lock().unwrap();
+    made.as_ref()
+        .filter(|(f, picture)| f.abs_diff(frame) <= BACKDROP_NEAR && (picture.width, picture.height) == (width, height))
+        .map(|(f, picture)| (*f, picture.clone()))
 }
 
 /// Once a vertical blank, `movie` when the game shows 24-bit pictures: a
@@ -270,7 +440,9 @@ pub fn tick(movie: bool) {
         } else if crate::runtime::trace("movies") {
             eprintln!("[movies] movie {:016x} ends", p.hash);
         }
-        s.playing = None;
+        // a movie shown full screen that ended (or was skipped); a room's
+        // backdrop held up stays one to take up when Aya moves again
+        s.ended = s.playing.take().filter(|_| !stalled).map(|p| p.path);
     }
 }
 
@@ -598,32 +770,43 @@ fn has_sound(path: &PathBuf) -> bool {
     read().unwrap_or(false)
 }
 
-/// Decodes the video track, sending each picture with its time.
-fn decode_video(path: &PathBuf, send: &SyncSender<Picture>, stop: &AtomicBool) -> Result<(), String> {
-    use openh264::formats::YUVSource;
-    let file = std::fs::File::open(path).map_err(|e| e.to_string())?;
-    let size = file.metadata().map_err(|e| e.to_string())?.len();
-    let mut mp4 = mp4::Mp4Reader::read_header(std::io::BufReader::new(file), size).map_err(|e| e.to_string())?;
-    let track = mp4
-        .tracks()
-        .values()
-        .find(|t| t.track_type().is_ok_and(|k| k == mp4::TrackType::Video))
-        .ok_or("no video track")?;
-    let (id, scale) = (track.track_id(), f64::from(track.timescale().max(1)));
-    let sps = track.sequence_parameter_set().map_err(|e| e.to_string())?.to_vec();
-    let pps = track.picture_parameter_set().map_err(|e| e.to_string())?.to_vec();
-    let count = mp4.sample_count(id).map_err(|e| e.to_string())?;
-    let mut decoder = openh264::decoder::Decoder::new().map_err(|e| e.to_string())?;
-    let mut nal = Vec::new();
-    for p in [&sps, &pps] {
-        nal.extend_from_slice(&[0, 0, 0, 1]);
-        nal.extend_from_slice(p);
-    }
-    for i in 1..=count {
-        if stop.load(Ordering::Relaxed) {
-            break;
+/// A mod's movie's video track (H.264 in MP4, without B-frames).
+struct Track {
+    mp4: mp4::Mp4Reader<std::io::BufReader<std::fs::File>>,
+    id: u32,
+    scale: f64,
+    count: u32,
+    size: (usize, usize),
+    /// Its parameter sets, as start-coded units: before the first sample a
+    /// decoder takes.
+    head: Vec<u8>,
+}
+
+impl Track {
+    fn open(path: &PathBuf) -> Result<Track, String> {
+        let file = std::fs::File::open(path).map_err(|e| e.to_string())?;
+        let len = file.metadata().map_err(|e| e.to_string())?.len();
+        let mp4 = mp4::Mp4Reader::read_header(std::io::BufReader::new(file), len).map_err(|e| e.to_string())?;
+        let track = mp4
+            .tracks()
+            .values()
+            .find(|t| t.track_type().is_ok_and(|k| k == mp4::TrackType::Video))
+            .ok_or("no video track")?;
+        let (id, scale) = (track.track_id(), f64::from(track.timescale().max(1)));
+        let size = (usize::from(track.width()), usize::from(track.height()));
+        let mut head = Vec::new();
+        for unit in [track.sequence_parameter_set(), track.picture_parameter_set()] {
+            head.extend_from_slice(&[0, 0, 0, 1]);
+            head.extend_from_slice(unit.map_err(|e| e.to_string())?);
         }
-        let Some(sample) = mp4.read_sample(id, i).map_err(|e| e.to_string())? else { continue };
+        let count = mp4.sample_count(id).map_err(|e| e.to_string())?;
+        Ok(Track { mp4, id, scale, count, size, head })
+    }
+
+    /// Sample `i` (from 1): its units, start-coded, added to `nal`; its
+    /// time in seconds and whether it is a key frame.
+    fn sample(&mut self, i: u32, nal: &mut Vec<u8>) -> Result<Option<(f64, bool)>, String> {
+        let Some(sample) = self.mp4.read_sample(self.id, i).map_err(|e| e.to_string())? else { return Ok(None) };
         // Length-prefixed units to start codes.
         let b = &sample.bytes[..];
         let mut at = 0;
@@ -634,26 +817,149 @@ fn decode_video(path: &PathBuf, send: &SyncSender<Picture>, stop: &AtomicBool) -
             nal.extend_from_slice(unit);
             at += 4 + n;
         }
+        let time = (sample.start_time as f64 + f64::from(sample.rendering_offset)) / self.scale;
+        Ok(Some((time, sample.is_sync)))
+    }
+}
+
+/// A decoded picture as RGB bytes, and its size.
+fn rgb_of(yuv: &openh264::decoder::DecodedYUV) -> (usize, usize, Vec<u8>) {
+    use openh264::formats::YUVSource;
+    let (width, height) = yuv.dimensions();
+    let mut rgb = vec![0u8; width * height * 3];
+    yuv.write_rgb8(&mut rgb);
+    (width, height, rgb)
+}
+
+/// `rgb` (`from` pixels) made `to` pixels, as RGBA: bilinear, in fixed
+/// point, its rows shared between threads (a backdrop picture each frame).
+fn scale_rgb(rgb: &[u8], from: (usize, usize), to: (usize, usize)) -> Vec<u8> {
+    let ((sw, sh), (dw, dh)) = (from, to);
+    let mut out = vec![255u8; dw * dh * 4];
+    if sw == 0 || sh == 0 || dw == 0 || dh == 0 {
+        return out;
+    }
+    // each output column or row: the source one before it and its weight
+    // (of 256) on the one after
+    let taps = |src: usize, dst: usize| -> Vec<(usize, u32)> {
+        (0..dst)
+            .map(|d| {
+                let at = ((d as f64 + 0.5) * src as f64 / dst as f64 - 0.5).clamp(0.0, (src - 1) as f64);
+                (at as usize, ((at - at.floor()) * 256.0) as u32)
+            })
+            .collect()
+    };
+    let (xs, ys) = (taps(sw, dw), taps(sh, dh));
+    let threads = std::thread::available_parallelism().map_or(1, |n| n.get()).min(8);
+    let rows = dh.div_ceil(threads);
+    std::thread::scope(|scope| {
+        for (band, chunk) in out.chunks_mut(rows * dw * 4).enumerate() {
+            let (xs, ys) = (&xs, &ys);
+            scope.spawn(move || {
+                for (r, line) in chunk.chunks_mut(dw * 4).enumerate() {
+                    let (y0, fy) = ys[band * rows + r];
+                    let y1 = (y0 + 1).min(sh - 1);
+                    let (a, b) = (&rgb[y0 * sw * 3..][..sw * 3], &rgb[y1 * sw * 3..][..sw * 3]);
+                    for (x, px) in line.chunks_mut(4).enumerate() {
+                        let (x0, fx) = xs[x];
+                        let x1 = (x0 + 1).min(sw - 1);
+                        for c in 0..3 {
+                            let top = u32::from(a[x0 * 3 + c]) * (256 - fx) + u32::from(a[x1 * 3 + c]) * fx;
+                            let bottom = u32::from(b[x0 * 3 + c]) * (256 - fx) + u32::from(b[x1 * 3 + c]) * fx;
+                            px[c] = ((top * (256 - fy) + bottom * fy + (1 << 15)) >> 16) as u8;
+                        }
+                    }
+                }
+            });
+        }
+    });
+    out
+}
+
+fn decode_error(i: u32, e: impl std::fmt::Display) -> String {
+    format!("frame {i}: {e} (B-frames are not supported: encode with -bf 0)")
+}
+
+/// Decodes the video track, sending each picture with its time.
+fn decode_video(path: &PathBuf, send: &SyncSender<Picture>, stop: &AtomicBool) -> Result<(), String> {
+    let mut track = Track::open(path)?;
+    let mut decoder = openh264::decoder::Decoder::new().map_err(|e| e.to_string())?;
+    let mut nal = track.head.clone();
+    for i in 1..=track.count {
+        if stop.load(Ordering::Relaxed) {
+            break;
+        }
+        let Some((time, _)) = track.sample(i, &mut nal)? else { continue };
         let decoded = decoder.decode(&nal);
         nal.clear();
         let yuv = match decoded {
             Ok(Some(yuv)) => yuv,
             Ok(None) => continue,
-            Err(e) => return Err(format!("frame {i}: {e} (B-frames are not supported: encode with -bf 0)")),
+            Err(e) => return Err(decode_error(i, e)),
         };
-        let (width, height) = yuv.dimensions();
-        let mut rgb = vec![0u8; width * height * 3];
-        yuv.write_rgb8(&mut rgb);
+        let (width, height, rgb) = rgb_of(&yuv);
         let pixels = rgb
             .as_chunks::<3>()
             .0
             .iter()
             .map(|p| (u32::from(p[0]) << 16) | (u32::from(p[1]) << 8) | u32::from(p[2]))
             .collect();
-        let time = (sample.start_time as f64 + f64::from(sample.rendering_offset)) / scale;
         if send.send(Picture { width, height, pixels, time }).is_err() {
             break;
         }
+    }
+    Ok(())
+}
+
+/// Decodes the pictures a room's backdrop movie is asked for (`Backdrop`):
+/// each from the key frame at or before it, or on from the last one decoded
+/// when that is closer; the last asked for wins, and none is waited for.
+fn decode_backdrop(path: &PathBuf, backdrop: &Backdrop, stop: &AtomicBool) -> Result<(), String> {
+    let mut track = Track::open(path)?;
+    let _ = backdrop.size.set(track.size);
+    let mut decoder: Option<openh264::decoder::Decoder> = None;
+    // the last sample decoded (from 1), and the last picture made
+    let (mut at, mut done) = (0, None);
+    let mut nal = Vec::new();
+    while !stop.load(Ordering::Relaxed) {
+        let wanted = {
+            let (asked, ring) = &*backdrop.wanted;
+            let mut asked = asked.lock().unwrap();
+            while (asked.is_none() || *asked == done) && !stop.load(Ordering::Relaxed) {
+                asked = ring.wait_timeout(asked, Duration::from_millis(100)).unwrap().0;
+            }
+            *asked
+        };
+        let Some(w) = wanted else { continue };
+        let target = (w.frame + 1).clamp(1, track.count.max(1));
+        // the next picture follows; another goes on from the key frame
+        // before it, unless the last one decoded is closer
+        if decoder.is_none() || target != at + 1 {
+            let mut key = target;
+            while key > 1 && !track.sample(key, &mut Vec::new())?.is_some_and(|(_, sync)| sync) {
+                key -= 1;
+            }
+            if decoder.is_none() || target <= at || key > at {
+                decoder = Some(openh264::decoder::Decoder::new().map_err(|e| e.to_string())?);
+                (at, nal) = (key - 1, track.head.clone());
+            }
+        }
+        let Some(d) = decoder.as_mut() else { continue };
+        for i in at + 1..=target {
+            if track.sample(i, &mut nal)?.is_none() {
+                continue;
+            }
+            let decoded = d.decode(&nal).map_err(|e| decode_error(i, e))?;
+            nal.clear();
+            at = i;
+            if let (true, Some(yuv)) = (i == target, decoded) {
+                let (width, height, rgb) = rgb_of(&yuv);
+                let rgba = scale_rgb(&rgb, (width, height), (w.width as usize, w.height as usize));
+                let picture = super::Picture { width: w.width, height: w.height, rgba };
+                *backdrop.made.lock().unwrap() = Some((target - 1, Arc::new(picture)));
+            }
+        }
+        done = wanted;
     }
     Ok(())
 }
