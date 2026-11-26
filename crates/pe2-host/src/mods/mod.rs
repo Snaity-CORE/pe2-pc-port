@@ -119,6 +119,7 @@ pub fn installed() -> Vec<Mod> {
 pub fn start(discs: &[PathBuf]) {
     strings::load();
     backgrounds::resolve_background_places(discs);
+    movies::start_discs(discs);
     if let Some(first) = discs.first() {
         fontsheets::start(first.clone());
     }
@@ -620,6 +621,13 @@ pub fn wants_textures() -> bool {
 /// its texels, worse than the game's own (backgrounds are averaged down).
 pub fn above_console() -> bool {
     crate::runtime::gpu::scale() > 1
+}
+
+/// above_console, for the game's code (the menus' "Lv." text, drawn there
+/// in place of the console's picture).
+#[unsafe(no_mangle)]
+pub extern "C" fn pc_above_console() -> i32 {
+    i32::from(above_console())
 }
 
 /// A PNG as RGBA (any colour type or depth png can expand to 8 bits),

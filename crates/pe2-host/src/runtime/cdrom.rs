@@ -526,7 +526,7 @@ fn deliver_sector(generation: u64, at: Instant) {
             // CdRead2: the sector goes into the stream ring, not to the
             // game's ready callback.
             d.last_header.copy_from_slice(&raw[12..20]);
-            super::stream::push_sector(&raw[24..24 + 2048], [raw[12], raw[13], raw[14]]);
+            super::stream::push_sector(&raw[24..24 + 2048], [raw[12], raw[13], raw[14]], (d.current, lba));
             return None;
         }
         if super::trace("cdsector") {
