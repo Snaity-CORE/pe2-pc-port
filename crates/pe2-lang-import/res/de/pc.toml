@@ -1,7 +1,23 @@
-# PE2PC's own texts the release has no word for, in its language: the
-# P.Energy levels' "Lv." (a picture on the discs, text in PE2PC above the
-# console's resolution).
+# PE2PC's own texts in the release's language, which it leaves as pictures
+# in English: the P.Energy panel's "Lv." and element names (redrawn by PE2PC
+# above the console's resolution).
 
 [[string]]
 original = 'Lv.'
 text = 'St.'
+
+[[string]]
+original = 'FIRE'
+text = 'FEUER'
+
+[[string]]
+original = 'WIND'
+text = 'WIND'
+
+[[string]]
+original = 'WATER'
+text = 'WASSER'
+
+[[string]]
+original = 'EARTH'
+text = 'ERDE'

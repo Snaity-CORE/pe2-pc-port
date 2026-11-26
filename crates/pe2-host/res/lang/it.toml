@@ -232,8 +232,24 @@ text = 'Uccidi in un colpo'
 original = 'Infinite MP'
 text = 'MP infiniti'
 
-# The P.Energy levels' "Lv." (the game's menu, as text above the
-# console's resolution), as the Italian release has it.
+# The P.Energy panel's "Lv." and element names (the game's menu, as text
+# and redrawn pictures above the console's resolution).
 [[string]]
 original = 'Lv.'
 text = 'Lv.'
+
+[[string]]
+original = 'FIRE'
+text = 'FUOCO'
+
+[[string]]
+original = 'WIND'
+text = 'VENTO'
+
+[[string]]
+original = 'WATER'
+text = 'ACQUA'
+
+[[string]]
+original = 'EARTH'
+text = 'TERRA'

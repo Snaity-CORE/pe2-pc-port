@@ -232,8 +232,24 @@ text = 'Matar de un golpe'
 original = 'Infinite MP'
 text = 'MP infinitos'
 
-# The P.Energy levels' "Lv." (the game's menu, as text above the
-# console's resolution).
+# The P.Energy panel's "Lv." and element names (the game's menu, as text
+# and redrawn pictures above the console's resolution).
 [[string]]
 original = 'Lv.'
 text = 'Nv.'
+
+[[string]]
+original = 'FIRE'
+text = 'FUEGO'
+
+[[string]]
+original = 'WIND'
+text = 'VIENTO'
+
+[[string]]
+original = 'WATER'
+text = 'AGUA'
+
+[[string]]
+original = 'EARTH'
+text = 'TIERRA'
