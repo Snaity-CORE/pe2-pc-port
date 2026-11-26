@@ -41,12 +41,17 @@ pub fn make(game: &Path, other: &Path, out: &Path, name: Option<&str>) -> Result
     std::fs::create_dir_all(out)?;
     let mut report = Vec::new();
     let (lines, texts, details, captions, pictures) = match release.kind {
-        Kind::Pal { speakers, places } => {
+        Kind::Pal { speakers, places, own } => {
             let (_, lines) = dialogue::import(&game.join("text"), &other.join("text"), out, name, &mut report)?;
             std::fs::write(out.join("text").join("speakers.toml"), speakers)?;
             let (found, pictures) = strings::import(&mine, &theirs, out, &mut report)?;
             let places: toml::Table = places.parse()?;
             let (texts, details, captions) = release::import(&mine, &theirs, &found, &places, out, &mut report)?;
+            if let Some(own) = own {
+                let dir = out.join("strings").join("pc");
+                std::fs::create_dir_all(&dir)?;
+                std::fs::write(dir.join("release.toml"), own)?;
+            }
             (lines, texts, details, captions, pictures)
         }
         Kind::Japanese => (japanese::import(game, other, out, &mut report)?, 0, 0, 0, 0),
