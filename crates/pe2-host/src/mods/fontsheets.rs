@@ -150,11 +150,12 @@ pub fn build(catalog: &Catalog, exe: &[u8]) {
             .map(|m| (m, &typewriter_faces[..], &loading_scheme)),
     );
     jobs.extend(super::glyphmaps::disc_prompt(catalog).map(|m| (m, &typewriter_faces[..], &prompt_scheme)));
-    let sheets: Vec<Indexed> = std::thread::scope(|scope| {
+    let mut sheets: Vec<Indexed> = std::thread::scope(|scope| {
         let jobs: Vec<_> =
             jobs.iter().map(|(m, faces, scheme)| scope.spawn(move || redraw(catalog, m, faces, scheme))).collect();
         jobs.into_iter().filter_map(|t| t.join().ok().flatten()).collect()
     });
+    sheets.extend(elements(catalog, &ui));
     let out: HashMap<(u64, u32), Arc<Indexed>> =
         sheets.into_iter().map(|s| ((s.sheet, s.depth), Arc::new(s))).collect();
     eprintln!(
@@ -173,6 +174,111 @@ pub fn build(catalog: &Catalog, exe: &[u8]) {
         }
     }
     let _ = SHEETS.set(out);
+}
+
+/// The P.Energy panel's element names: their pictures' sheet and cells
+/// (gameplay/menu_root.c gItemMenuParasiteEnergyCaptions: FIRE 24 texels
+/// wide, the others 32, 8 high), and their words.
+const ELEMENTS_SHEET: &str = "stage0/file1/1#0";
+pub const ELEMENTS: [([usize; 4], &str); 4] =
+    [([16, 88, 24, 8], "FIRE"), ([40, 88, 32, 8], "WIND"), ([72, 88, 32, 8], "WATER"), ([120, 80, 32, 8], "EARTH")];
+
+/// The sheets drawn over a mod's replacement of them, which therefore win
+/// over it (mods::indexed_texture).
+static OVER_MODS: OnceLock<Vec<(u64, u32)>> = OnceLock::new();
+
+/// The redrawn `sheet` at `depth`, when it is drawn over a mod's.
+pub fn over_mods(sheet: u64, depth: u32) -> Option<Arc<Indexed>> {
+    OVER_MODS.get()?.contains(&(sheet, depth)).then(|| get(sheet, depth)).flatten()
+}
+
+/// The element names' sheet with each name redrawn from the menus' font,
+/// in PE2PC's language or a mod's (strings::translated): the word's
+/// capitals as tall as the game's letters (the cell's rows but its edges),
+/// on their baseline, as much wider
+/// than the font's as the game's English word is, narrowed to fit its cell,
+/// centred where that word is,
+/// in the picture's fill index with a ring of its dark one (15) around. The
+/// rest of the sheet is a mod's replacement of it, if one has it (so the
+/// names come over a mod's pictures of them), else enlarged texel for
+/// texel, as the game draws it.
+fn elements(catalog: &Catalog, font: &Font) -> Option<Indexed> {
+    const PLATE: u8 = 15;
+    let sheet = catalog.sheets.iter().find(|s| s.origin == ELEMENTS_SHEET)?;
+    let (w, idx) = super::indexed::sheet_indices(&sheet.rows, 0);
+    let (w, h) = (w as usize, sheet.rows.len());
+    let bw = w * K;
+    let modded = super::mod_indexed_sheet(sheet.hash, ELEMENTS_SHEET, 0)
+        .filter(|m| m.native == (w as u32, h as u32) && m.depth == 0);
+    let mut out: Vec<u8> = match &modded {
+        Some(m) => {
+            let (mw, ms) = (m.size.0 as usize, m.scale() as usize);
+            (0..h * K)
+                .flat_map(|y| (0..bw).map(move |x| (y, x)))
+                .map(|(y, x)| m.indices[y * ms / K * mw + x * ms / K])
+                .collect()
+        }
+        None => (0..h * K).flat_map(|y| (0..bw).map(move |x| (y, x))).map(|(y, x)| idx[y / K * w + x / K]).collect(),
+    };
+    if modded.is_some() {
+        let _ = OVER_MODS.set(vec![(sheet.hash, 0)]);
+    }
+    let s = K * SS;
+    for ([u, v, cw, ch], word) in ELEMENTS {
+        if u + cw > w || v + ch > h {
+            continue;
+        }
+        let cell = |x: usize, y: usize| idx[(v + y) * w + u + x];
+        // The letters' index: the commonest but the clear 0 and the plate.
+        let mut counts = [0usize; 16];
+        (0..ch).for_each(|y| (0..cw).for_each(|x| counts[usize::from(cell(x, y) & 15)] += 1));
+        let fill = (1..PLATE).max_by_key(|&i| counts[usize::from(i)])?;
+        // The game's word: how wide its letters are against the font's.
+        let letters = (0..cw).filter(|&x| (0..ch).any(|y| !matches!(cell(x, y), 0 | PLATE)));
+        let (first, last) = (letters.clone().min()?, letters.max()?);
+        // The capitals as tall as the cell's rows but its edges, standing
+        // on its last but one: a tail (Q) or a mark (Á) goes past them.
+        let cap = ((ch - 2) * s) as f32;
+        let zoom = cap / font.cap;
+        let (english, _) = font.ink(word)?;
+        let widen = ((last + 1 - first) * s) as f32 / (english.w as f32 * zoom);
+        let (ink, baseline) = font.ink(&super::strings::translated(word))?;
+        // Centred where the game's word is (the levels under it are), a
+        // texel inside the cell: narrowed to fit there.
+        let centre = (first + last + 1) * s / 2;
+        let room = 2 * (centre - s).min((cw - 1) * s - centre);
+        let gw = ((ink.w as f32 * zoom * widen).round() as usize).clamp(1, room);
+        let gh = ((ink.h as f32 * zoom).round() as usize).max(1);
+        let top = ((ch - 1) * s) as f32 - baseline * zoom;
+        let left = centre - gw / 2;
+        let mut word = Mask::from_grey(&resize(&ink, gw, gh));
+        // Above the cell, cut (paste cuts below and right).
+        let above = (-top).max(0.0).round() as usize;
+        word.on.drain(..(above * gw).min(word.on.len()));
+        word.h -= above.min(word.h);
+        let mut big = Mask::new(cw * s, ch * s);
+        big.paste(&word, left, top.max(0.0).round() as usize);
+        let (cover, ring) = coverage(&big, cw, ch, 0.0, 1.0);
+        for y in 0..ch * K {
+            for x in 0..cw * K {
+                let i = y * cw * K + x;
+                out[(v * K + y) * bw + u * K + x] = if cover[i] >= 0.5 {
+                    fill
+                } else if ring[i] >= 0.5 {
+                    PLATE
+                } else {
+                    0
+                };
+            }
+        }
+    }
+    Some(Indexed {
+        sheet: sheet.hash,
+        depth: 0,
+        native: (w as u32, h as u32),
+        size: (bw as u32, (h * K) as u32),
+        indices: out,
+    })
 }
 
 /// A sheet's indices: what its page is, where a glyph's fill and ink begin

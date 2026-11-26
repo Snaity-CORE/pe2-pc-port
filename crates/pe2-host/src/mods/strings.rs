@@ -273,6 +273,18 @@ pub fn file_texts() -> Vec<FileText> {
     out
 }
 
+/// `text` as PE2PC's language or a mod translates it (the host's own
+/// pictures of the game's words, fontsheets.rs), or itself.
+pub fn translated(text: &str) -> String {
+    let original = encode(text);
+    TABLE
+        .get_or_init(read)
+        .by_text
+        .get(&super::fnv1a(original.iter().copied()))
+        .filter(|t| *t.0 == original[..])
+        .map_or_else(|| text.to_string(), |t| decode(&t.1[..t.1.len() - 1]))
+}
+
 /// Reads the mods' translations, before the game draws any text.
 pub fn load() {
     let table = TABLE.get_or_init(read);
@@ -626,6 +638,7 @@ mod tests {
             .iter()
             .map(|t| decode(t))
             .chain(crate::settings::texts().into_iter().map(str::to_string))
+            .chain(super::super::fontsheets::ELEMENTS.iter().map(|e| e.1.to_string()))
             .collect();
         let words = |t: &str| t.chars().filter(|c| c.is_alphabetic()).count() > 1 && !matches!(t, "EXP" | "BP");
         for (code, text) in OWN_LANGUAGES {

@@ -47,11 +47,9 @@ pub fn make(game: &Path, other: &Path, out: &Path, name: Option<&str>) -> Result
             let (found, pictures) = strings::import(&mine, &theirs, out, &mut report)?;
             let places: toml::Table = places.parse()?;
             let (texts, details, captions) = release::import(&mine, &theirs, &found, &places, out, &mut report)?;
-            if let Some(own) = own {
-                let dir = out.join("strings").join("pc");
-                std::fs::create_dir_all(&dir)?;
-                std::fs::write(dir.join("release.toml"), own)?;
-            }
+            let dir = out.join("strings").join("pc");
+            std::fs::create_dir_all(&dir)?;
+            std::fs::write(dir.join("release.toml"), own)?;
             (lines, texts, details, captions, pictures)
         }
         Kind::Japanese => (japanese::import(game, other, out, &mut report)?, 0, 0, 0, 0),

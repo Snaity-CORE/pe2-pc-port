@@ -599,14 +599,31 @@ fn indexed_textures() -> &'static Library<(u64, u32), indexed::Indexed> {
 }
 
 /// The indexed replacement for `sheet` drawn at `depth` (0: 4 bits, 1: 8):
-/// a mod's, once loaded (see Library::get), else one redrawn from the
+/// one redrawn from the built-in fonts over a mod's (fontsheets::over_mods),
+/// else a mod's, once loaded (see Library::get), else one redrawn from the
 /// built-in fonts; and whether it is a mod's (a mod's loads later and must
 /// then take the built-in one's place).
 pub fn indexed_texture(sheet: u64, depth: u32) -> Option<(Arc<indexed::Indexed>, bool)> {
+    if let Some(f) = fontsheets::over_mods(sheet, depth) {
+        return Some((f, false));
+    }
     match indexed_textures().get((sheet, depth)) {
         Some(m) => Some((m, true)),
         None => fontsheets::get(sheet, depth).map(|f| (f, false)),
     }
+}
+
+/// The enabled mods' indexed replacement of `sheet` (at `origin`) at
+/// `depth`, read now: named by its hash first, then by its place (the
+/// highest priority's), as resolve_texture_places has them.
+pub fn mod_indexed_sheet(sheet: u64, origin: &str, depth: u32) -> Option<indexed::Indexed> {
+    if !enabled() {
+        return None;
+    }
+    let by_place =
+        || texture_places().iter().rev().find(|(_, o, d)| o == origin && *d == Some(depth)).map(|p| p.0.clone());
+    let path = indexed_textures().files.get(&(sheet, depth)).cloned().or_else(by_place)?;
+    indexed::read(&path).map_err(|e| eprintln!("pe2: mods: {}: {e}", path.display())).ok()
 }
 
 /// Whether anything here wants to know the textures drawn: mods with

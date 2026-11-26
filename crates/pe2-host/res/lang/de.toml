@@ -232,8 +232,24 @@ text = 'Ein-Treffer-Kills'
 original = 'Infinite MP'
 text = 'Unendlich MP'
 
-# The P.Energy levels' "Lv." (the game's menu, as text above the
-# console's resolution).
+# The P.Energy panel's "Lv." and element names (the game's menu, as text
+# and redrawn pictures above the console's resolution).
 [[string]]
 original = 'Lv.'
 text = 'St.'
+
+[[string]]
+original = 'FIRE'
+text = 'FEUER'
+
+[[string]]
+original = 'WIND'
+text = 'WIND'
+
+[[string]]
+original = 'WATER'
+text = 'WASSER'
+
+[[string]]
+original = 'EARTH'
+text = 'ERDE'
